@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Systemd on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/systemd/</link><description>Recent content in Systemd on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 03 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/systemd/index.xml" rel="self" type="application/rss+xml"/><item><title>Persistent HDD APM settings</title><link>https://articles.maximemoreillon.com/articles/b18a20dc-6916-484c-95c6-858b2c6b98ac/</link><pubDate>Wed, 03 Jan 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/b18a20dc-6916-484c-95c6-858b2c6b98ac/</guid><description>&lt;p>An HDD can be configured to spin down after a certain time via the APM settings which can be managed by smartctl. For example&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo smartctl --set=apm,63 /dev/sdb
+&lt;/code>&lt;/pre>&lt;p>configures the disk sdb to spin down afout about 5 minutes of inactivity.&lt;/p>
+&lt;p>Unfortunately, those settings do not persist after a reboot. To achieve persistence on systems with systemd installed, the following sdb-apm.service service file can be created in /etc/systemd/system/&lt;/p>
+&lt;pre tabindex="0">&lt;code>[Unit]
+Description=/dev/sdb apm settings
+[Service]
+ExecStart=/usr/sbin/smartctl --set=apm,63 /dev/sdb
+[Install]
+WantedBy=multi-user.target
+&lt;/code>&lt;/pre>&lt;p>After enabling the service with&lt;/p></description></item></channel></rss>

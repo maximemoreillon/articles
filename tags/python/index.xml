@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/python/</link><description>Recent content in Python on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Unlocking my apartment with my face</title><link>https://articles.maximemoreillon.com/articles/624/</link><pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/624/</guid><description>&lt;p>As part of a previous project, I installed an &lt;a href="https://articles.maximemoreillon.com/articles/237">IoT lock&lt;/a> on my front door, which allowed me to control it using my smartphone. However, having to take out my smartphone every time I want to unlock the door quickly becomes annoying. To improve on the situation, I installed an RFID reader on the lock, which I used in combination with an &lt;a href="https://articles.maximemoreillon.com/articles/523">RFID ring which now serves as my key&lt;/a>. To follow up on this trend of finding new ways to unlock my door, I decided to explore face recognition technologies.&lt;/p></description></item><item><title>Python list slicing</title><link>https://articles.maximemoreillon.com/articles/131/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/131/</guid><description>&lt;p>Here are a few useful features of Python when dealing with lists (Arrays):&lt;/p>
+&lt;pre tabindex="0">&lt;code>a[::-1] # all items in the array, reversed
+a[1::-1] # the first two items, reversed
+a[:-3:-1] # the last two items, reversed
+a[-3::-1] # everything except the last two items, reversed
+&lt;/code>&lt;/pre></description></item><item><title>Python virtual environments</title><link>https://articles.maximemoreillon.com/articles/246/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/246/</guid><description>&lt;p>When working on multiple python projects, dependencies might conflict. For example, a project might use version 1.5 of Tensorflow while another uses version 2.1.&lt;/p>
+&lt;p>To solve this problem, virtual environments can be used. A virtual environment can be created for each of those projects and specific modules can be installed within those so as not to have conflict between project.&lt;/p>
+&lt;p>Creating a virtual environment can be done as follows:&lt;/p>
+&lt;pre tabindex="0">&lt;code>python -m venv path_of_my_venv
+&lt;/code>&lt;/pre>&lt;p>The environment can then be activated (entered) using:&lt;/p></description></item><item><title>Tensorflow 1.X basics</title><link>https://articles.maximemoreillon.com/articles/236/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/236/</guid><description>&lt;p>Here are the basics steps necessary to write TensorFlow code.&lt;/p>
+&lt;p>Note that this is for &lt;strong>TensorFlow 1.X&lt;/strong>&lt;/p>
+&lt;h2 id="define-constants">Define constants&lt;/h2>
+&lt;pre tabindex="0">&lt;code>a = tf.constant(5.0)
+&lt;/code>&lt;/pre>&lt;h2 id="define-variables">Define variables&lt;/h2>
+&lt;pre tabindex="0">&lt;code>x = tf.Variable(init_value)
+&lt;/code>&lt;/pre>&lt;h2 id="define-placeholders">Define placeholders&lt;/h2>
+&lt;pre tabindex="0">&lt;code>p = tf.placeholder(tf.float32)
+&lt;/code>&lt;/pre>&lt;h2 id="define-operations">Define operations&lt;/h2>
+&lt;pre tabindex="0">&lt;code>c = x * x
+&lt;/code>&lt;/pre>&lt;h2 id="define-way-to-measure-loss">Define way to measure loss&lt;/h2>
+&lt;pre tabindex="0">&lt;code>loss=tf.reduce_mean(tf.square(output - y))
+&lt;/code>&lt;/pre>&lt;h2 id="define-optimizer">Define optimizer&lt;/h2>
+&lt;pre tabindex="0">&lt;code>optimizer = tf.train.AdamOptimizer(learning_rate)
+&lt;/code>&lt;/pre>&lt;h2 id="apply-optimizer-to-loss-function">Apply optimizer to loss function&lt;/h2>
+&lt;pre tabindex="0">&lt;code>train = optimizer.minimize(loss)
+&lt;/code>&lt;/pre>&lt;h2 id="init-variables">init variables&lt;/h2>
+&lt;pre tabindex="0">&lt;code>init = tf.globalvariablesinitializer()
+&lt;/code>&lt;/pre>&lt;h2 id="run-everything-in-a-session">Run everything in a session&lt;/h2>
+&lt;pre tabindex="0">&lt;code>with tf.Session() as sess:
+sess.run(init)
+for epoch in range(epoch_count):
+sess.run(train, feed_dict={&amp;lt;feedDictHere})
+&lt;/code>&lt;/pre></description></item><item><title>Inheritance in Python</title><link>https://articles.maximemoreillon.com/articles/396/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/396/</guid><description>&lt;p>Let&amp;rsquo;s imagine that we have a python class as follows (Python 3):&lt;/p>
+&lt;pre tabindex="0">&lt;code>class MyClass:
+def init(self):
+# Code of the class constructor...
+print(&amp;#34;Instance of MyClass created&amp;#34;)
+&lt;/code>&lt;/pre>&lt;p>A child class of MyClass can be created as such:&lt;/p>
+&lt;pre tabindex="0">&lt;code>class MyChildClass(MyClass):
+def init(self):
+super().init__() # calls constructor of MyClass
+print(&amp;#34;Instance of MyChildClass created&amp;#34;)
+&lt;/code>&lt;/pre>&lt;p>By creating an instance of MyChildClass, &lt;code>Instance of MyClass created&lt;/code> and &lt;code>Instance of MyChildClass created&lt;/code> should be printed in the console.&lt;/p></description></item></channel></rss>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GitLab on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/gitlab/</link><description>Recent content in GitLab on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 03 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/gitlab/index.xml" rel="self" type="application/rss+xml"/><item><title>GitLab Microk8s >1.24 certificate based integration</title><link>https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/</link><pubDate>Fri, 03 Nov 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/</guid><description>&lt;p>With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences&lt;/p>
+&lt;h2 id="ca-certificate">CA certificate&lt;/h2>
+&lt;p>The CA certificate can be obtained directly from the microk8s files:&lt;/p>
+&lt;pre tabindex="0">&lt;code>cat /var/snap/microk8s/current/certs/ca.crt
+&lt;/code>&lt;/pre>&lt;h2 id="access-token">Access Token&lt;/h2>
+&lt;p>As per usual, the RBAC addon must be enabled&lt;/p>
+&lt;pre tabindex="0">&lt;code>micok8s.enable rbac
+&lt;/code>&lt;/pre>&lt;p>Following which, the following manifest can be applied:&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: v1
+kind: ServiceAccount
+metadata:
+name: gitlab
+namespace: kube-system
+---
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/service-account-token
+metadata:
+name: gitlab
+namespace: kube-system
+annotations:
+kubernetes.io/service-account.name: &amp;#34;gitlab&amp;#34;
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+name: gitlab-admin
+roleRef:
+apiGroup: rbac.authorization.k8s.io
+kind: ClusterRole
+name: cluster-admin
+subjects:
+- kind: ServiceAccount
+name: gitlab
+namespace: kube-system
+&lt;/code>&lt;/pre>&lt;p>This creates the access token which can be displayed using:&lt;/p></description></item><item><title>GitLab CI Microk8s integration</title><link>https://articles.maximemoreillon.com/articles/210/</link><pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/210/</guid><description>&lt;p>&lt;strong>Note&lt;/strong>: This guide applies for Kubernetes versions prior to 1.24. Moreover, Kubernetes integration in GitLab is now achieved via the GitLab agent for Kubernetes. This guide is meant for legacy support.&lt;/p>
+&lt;p>GitLab provides Kubernetes integration out of the box, which means that GitLab CI/CD Pipelines can be used to deploy applications in Kubernetes easily. This guide presents how to integrate a Kubernetes cluster in a GitLab Project and follows &lt;a href="https://docs.gitlab.com/ee/user/project/clusters/add_remove_clusters.html">Gitlab documentation&lt;/a>. For this particular case, the cluster will be that of a &lt;a href="https://microk8s.io/">Microk8s&lt;/a> Kubernetes distribution.&lt;/p></description></item><item><title>Reducing GitLab memory consumption</title><link>https://articles.maximemoreillon.com/articles/90/</link><pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/90/</guid><description>&lt;p>The memory consumption of GitLab can be reduced slightly by turning prometheus monitoring off:&lt;/p>
+&lt;p>In /etc/gitlab/gitlab.rb:&lt;/p>
+&lt;pre tabindex="0">&lt;code>prometheus_monitoring[&amp;#39;enable&amp;#39;] = false
+&lt;/code>&lt;/pre>&lt;p>Additionally, the memory used by PostgreSQL can be limited:&lt;/p>
+&lt;pre tabindex="0">&lt;code>postgresql[&amp;#39;shared_buffers&amp;#39;] = &amp;#34;512MB&amp;#34;
+&lt;/code>&lt;/pre></description></item><item><title>Gitlab CI dealing with credentials</title><link>https://articles.maximemoreillon.com/articles/308/</link><pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/308/</guid><description>&lt;p>GitLab can automatically dockerize applications using the appropriate CI configuration. However, for obvious security reasons, it is bad practice to include credentials in a git repository. Consequently, the CI pipeline is by default not in a position to include credentials in the dockerized application, which most likely prevents the latter from running as intended.&lt;/p>
+&lt;p>To solve this, the content of sensitive files can be saved as a CI variable, which becomes accessible as an environment variable by the gitlab-runner. This option can be found under:&lt;/p></description></item><item><title>Gitlab CI commands for TF serving</title><link>https://articles.maximemoreillon.com/articles/302/</link><pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/302/</guid><description>&lt;p>This is an example .gitlab-ci.yml file which can be used to containerize and deploy a tensorflow model&lt;/p>
+&lt;pre tabindex="0">&lt;code>stages:
+- containerize
+- deploy
+variables:
+SERVING_CONTAINER: serving_base
+DOCKER_IMAGE: 192.168.1.2:5000/redblack
+AI_MODEL: redblack
+DEPLOYMENT: redblack
+containerization:
+stage: containerize
+script:
+# Run an empty tensorflow serving container
+- docker run -d --name ${SERVING_CONTAINER} tensorflow/serving
+# Copy the model into the serving container and save it as a new image
+- docker cp ./${AI_MODEL} ${SERVING_CONTAINER}:/models/${AI_MODEL}
+- docker commit --change &amp;#34;ENV MODEL_NAME ${AI_MODEL}&amp;#34; serving_base ${DOCKER_IMAGE}
+# Push the container to the registry
+- docker push ${DOCKER_IMAGE}
+# Cleanup
+- docker stop ${SERVING_CONTAINER}
+- docker container rm ${SERVING_CONTAINER}
+- docker image rm ${DOCKER_IMAGE}
+deployment:
+stage: deploy
+script:
+- kubectl apply -f deployment.yml
+- kubectl rollout restart deployment/${DEPLOYMENT}
+environment:
+name: staging
+&lt;/code>&lt;/pre></description></item><item><title>GitLab CI</title><link>https://articles.maximemoreillon.com/articles/37/</link><pubDate>Wed, 22 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/37/</guid><description>&lt;p>GitLab CI is a feature of GitLab that allows users to have actions triggered upon pushing a repository to it&amp;rsquo;s remote. For example, it can be used to execute all tests defined in the code, containerize the application and deploy it. A popular alternative to GitLab CI is Jenkins.&lt;/p>
+&lt;h2 id="install-gitlab-runner">Install GitLab Runner&lt;/h2>
+&lt;p>GitLab CI requires GitLab runner to execute the actions defined by the user. On Ubuntu, GitLab runner can be installed as so:&lt;/p></description></item></channel></rss>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Network on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/network/</link><description>Recent content in Network on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 16 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/network/index.xml" rel="self" type="application/rss+xml"/><item><title>Apache reverse proxy for web app</title><link>https://articles.maximemoreillon.com/articles/5/</link><pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/5/</guid><description>&lt;p>Let&amp;rsquo;s imagine that we&amp;rsquo;ve just finished developping a NodeJS application that listens for HTTP requests on port 8086 and that we have an Apache2 instance listening on port 80.&lt;/p>
+&lt;p>It is possible to configure Apache so that it connects its clients to the NodeJS app using the proxy module. Here is an example configuration file that does so:&lt;/p>
+&lt;pre tabindex="0">&lt;code>&amp;lt;IfModule mod_ssl.c&amp;gt;
+        &amp;lt;VirtualHost *:443&amp;gt;
+                ServerName app.example.com
+                # SSL configuration
+                SSLEngine on
+                SSLCertificateFile /etc/letsencrypt/live/app.example.com/fullchain.pem
+                SSLCertificateKeyFile /etc/letsencrypt/live/app.example.com/privkey.pem
+                # Proxy config
+                SSLProxyEngine On
+                ProxyPass / http://localhost:8086/
+                ProxyPassReverse / http://localhost:8086/
+        &amp;lt;/VirtualHost&amp;gt;
+&amp;lt;/IfModule&amp;gt;
+&lt;/code>&lt;/pre></description></item></channel></rss>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Neo4J on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/neo4j/</link><description>Recent content in Neo4J on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 25 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/neo4j/index.xml" rel="self" type="application/rss+xml"/><item><title>User management microservice based on Neo4J</title><link>https://articles.maximemoreillon.com/articles/585/</link><pubDate>Sat, 25 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/585/</guid><description>&lt;p>Web applications commonly require a user database and the management logic for it. Having to build such software infrastructure for each individual app would be time consuming so I designed a general-purpose user management microservice that can be easily integrated in a project.&lt;/p>
+&lt;p>At its core, the service consists of a Node.js + Express API which stores and manages users as nodes in a Neo4J database. here, Neo4J was chosen so that other apps could add their own nodes to it and thus benefit from the advantages of a graph database.&lt;/p></description></item><item><title>Group management microservice</title><link>https://articles.maximemoreillon.com/articles/398/</link><pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/398/</guid><description>&lt;p>As a graph database Neo4j is a great choice to manage highly relational data. On the other side, a great number of applications feature at least some form of user management system. With Neo4j, those users can be store as nodes and connected to other items via relationships. A typical example would be a blog, where both articles and users are individual nodes while authorships are represented by a relationship.&lt;/p></description></item><item><title>Deploy a Neo4J instance in Kubernetes</title><link>https://articles.maximemoreillon.com/articles/514/</link><pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/514/</guid><description>&lt;p>Using this manifest, a Neo4J instance can be deployed in a Kubernetes cluster&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: v1
+kind: PersistentVolume
+metadata:
+name: neo4j
+labels:
+type: local
+spec:
+capacity:
+storage:
+10Gi
+accessModes:
+- ReadWriteOnce
+hostPath:
+path: &amp;#34;/mnt/kubernetes/neo4j&amp;#34;
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+name: neo4j
+spec:
+storageClassName: manual
+accessModes:
+- ReadWriteOnce
+resources:
+requests:
+storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: neo4j
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: neo4j
+template:
+metadata:
+labels:
+app: neo4j
+spec:
+volumes:
+- name: neo4j
+persistentVolumeClaim:
+claimName: neo4j
+containers:
+- name: neo4j
+image: neo4j
+env:
+- name: NEO4J_AUTH
+value: neo4j/newPassword
+ports:
+- containerPort: 7474 # Browser
+- containerPort: 7687 # Bolt
+volumeMounts:
+- mountPath: &amp;#34;/data&amp;#34;
+name: neo4j
+---
+apiVersion: v1
+kind: Service
+metadata:
+name: neo4j
+spec:
+ports:
+- port: 7474
+nodePort: 30474
+name: http
+- port: 7687
+name: bolt
+nodePort: 30687
+selector:
+app: neo4j
+type: NodePort
+&lt;/code>&lt;/pre></description></item><item><title>Loading an Neo4J 3.X database in a Neo4J 4.X instance</title><link>https://articles.maximemoreillon.com/articles/253/</link><pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/253/</guid><description>&lt;p>Importing data from a Neo4J v3 database into a v4 one can be a hassle. Here are the steps to achieve the migration.&lt;/p>
+&lt;p>Since Neo4J V4 is a major update from V3, the data imported must be updated to the new version. Enabling the update can be done by editing the /etc/neo4j/neo4j.conf and changing the following line accordingly;&lt;/p>
+&lt;pre tabindex="0">&lt;code>dbms.allow_upgrade=true
+&lt;/code>&lt;/pre>&lt;p>With that done, the data can be imported using the neo4j-admin, executed &lt;strong>as the neo4j user&lt;/strong>&lt;/p></description></item><item><title>This very application, a CMS based on Neo4J</title><link>https://articles.maximemoreillon.com/articles/112/</link><pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/112/</guid><description>&lt;p>Publishing articles on a website can be as simple as uploading HTML files to a web server. However, writing articles in raw HTML can be time consuming. A content management system (CMS) is an application designed to solve this issue by providing a simple way to create and manage web content directly from the web browser. There are many CMSs available, namely Wordpress or Joomla but I decided to create my own as a form of practice and in order to have it highly customized to my needs.&lt;/p></description></item></channel></rss>

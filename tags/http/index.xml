@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HTTP on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/http/</link><description>Recent content in HTTP on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 25 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/http/index.xml" rel="self" type="application/rss+xml"/><item><title>Sending pictures via http with an ESP32-CAM</title><link>https://articles.maximemoreillon.com/articles/38/</link><pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/38/</guid><description>&lt;p>Pictures taken with the ESP32-CAM can be sent in a multipart/form-data type content via HTTP. Here is a sample code to achieve this:&lt;/p>
+&lt;pre tabindex="0">&lt;code>#define BOUNDARY &amp;#34;--------------------------133747188241686651551404&amp;#34;
+#define API_ROUTE &amp;#34;/upload&amp;#34;
+#define API_HOST &amp;#34;192.168.1.2&amp;#34;
+#define API_PORT 80
+void upload_image(){
+// Get a frame
+camera_fb_t * fb = NULL;
+fb = esp_camera_fb_get();
+if (fb) {
+// Frame was taken successfully, now sending it
+// Define the client that will be used for the API call
+WiFiClient client;
+// Attempt a connection
+if (client.connect(API_HOST, API_PORT)) {
+// Connection was successful, prepare the request content
+String body_pre_image;
+body_pre_image = &amp;#34;--&amp;#34;;
+body_pre_image += BOUNDARY;
+body_pre_image += &amp;#34;\r\n&amp;#34;;
+body_pre_image += &amp;#34;Content-Disposition: form-data; name=\&amp;#34;imageFile\&amp;#34;; filename=\&amp;#34;picture.jpg\&amp;#34;\r\n&amp;#34;);
+body_pre_image += &amp;#34;Content-Type: image/jpeg\r\n&amp;#34;;
+body_pre_image += &amp;#34;\r\n&amp;#34;;
+String body_post_image = String(&amp;#34;\r\n--&amp;#34;)+BOUNDARY+String(&amp;#34;--\r\n&amp;#34;);
+int total_length = body_pre_image.length()+body_post_image.length()+fb-&amp;gt;len;
+String header_text;
+header_text = &amp;#34;POST &amp;#34; + String(API_ROUTE) + &amp;#34; HTTP/1.1\r\n&amp;#34;; // the method is defined here
+header_text += &amp;#34;cache-control: no-cache\r\n&amp;#34;;
+header_text += &amp;#34;Content-Type: multipart/form-data; boundary=&amp;#34;;
+header_text += BOUNDARY;
+header_text += &amp;#34;\r\n&amp;#34;;
+header_text += &amp;#34;content-length: &amp;#34;;
+header_text += String(total_length);
+header_text += &amp;#34;\r\n&amp;#34;;
+header_text += &amp;#34;\r\n&amp;#34;;
+// Now send the whole thing
+client.print(header_text+body_pre_image);
+client.write(fb-&amp;gt;buf, fb-&amp;gt;len);
+client.print(body_post_image);
+// timeout management
+unsigned long timeout = millis();
+while (client.available() == 0) {
+if (millis() - timeout &amp;gt; 5000) {
+Serial.println(&amp;#34;Timeout&amp;#34;);
+client.stop();
+break;
+}
+}
+}
+// No matter the result of the upload, clean up the frame buffer
+esp_camera_fb_return(fb);
+fb = NULL;
+}
+}
+&lt;/code>&lt;/pre></description></item></channel></rss>

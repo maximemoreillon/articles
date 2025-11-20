@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Microk8s on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/microk8s/</link><description>Recent content in Microk8s on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 03 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/microk8s/index.xml" rel="self" type="application/rss+xml"/><item><title>GitLab Microk8s >1.24 certificate based integration</title><link>https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/</link><pubDate>Fri, 03 Nov 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/</guid><description>&lt;p>With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences&lt;/p>
+&lt;h2 id="ca-certificate">CA certificate&lt;/h2>
+&lt;p>The CA certificate can be obtained directly from the microk8s files:&lt;/p>
+&lt;pre tabindex="0">&lt;code>cat /var/snap/microk8s/current/certs/ca.crt
+&lt;/code>&lt;/pre>&lt;h2 id="access-token">Access Token&lt;/h2>
+&lt;p>As per usual, the RBAC addon must be enabled&lt;/p>
+&lt;pre tabindex="0">&lt;code>micok8s.enable rbac
+&lt;/code>&lt;/pre>&lt;p>Following which, the following manifest can be applied:&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: v1
+kind: ServiceAccount
+metadata:
+name: gitlab
+namespace: kube-system
+---
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/service-account-token
+metadata:
+name: gitlab
+namespace: kube-system
+annotations:
+kubernetes.io/service-account.name: &amp;#34;gitlab&amp;#34;
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+name: gitlab-admin
+roleRef:
+apiGroup: rbac.authorization.k8s.io
+kind: ClusterRole
+name: cluster-admin
+subjects:
+- kind: ServiceAccount
+name: gitlab
+namespace: kube-system
+&lt;/code>&lt;/pre>&lt;p>This creates the access token which can be displayed using:&lt;/p></description></item><item><title>Resizing a hostpah-storage PVC and its PV in Microk8s</title><link>https://articles.maximemoreillon.com/articles/567/</link><pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/567/</guid><description>&lt;p>With the storage addon enabled, microk8s can automatically provision a PV when a PVC is created. The size of the PV is set according to that of the PVC. However, PVCs cannot be resized after creation. The PVC could be deleted and recreated with a larger size but this would result in the deletion of the PV and, by extension, all the data stored so far in it. This article presents a workaround to resize a PVC and its corresponding PV without any loss of data.&lt;/p></description></item><item><title>GitLab CI Microk8s integration</title><link>https://articles.maximemoreillon.com/articles/210/</link><pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/210/</guid><description>&lt;p>&lt;strong>Note&lt;/strong>: This guide applies for Kubernetes versions prior to 1.24. Moreover, Kubernetes integration in GitLab is now achieved via the GitLab agent for Kubernetes. This guide is meant for legacy support.&lt;/p>
+&lt;p>GitLab provides Kubernetes integration out of the box, which means that GitLab CI/CD Pipelines can be used to deploy applications in Kubernetes easily. This guide presents how to integrate a Kubernetes cluster in a GitLab Project and follows &lt;a href="https://docs.gitlab.com/ee/user/project/clusters/add_remove_clusters.html">Gitlab documentation&lt;/a>. For this particular case, the cluster will be that of a &lt;a href="https://microk8s.io/">Microk8s&lt;/a> Kubernetes distribution.&lt;/p></description></item><item><title>Microk8s manage SSL certificates DNS entries</title><link>https://articles.maximemoreillon.com/articles/89/</link><pubDate>Sat, 18 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/89/</guid><description>&lt;p>From &lt;a href="https://github.com/ubuntu/microk8s/issues/849">https://github.com/ubuntu/microk8s/issues/849&lt;/a>&lt;/p>
+&lt;p>There is a file called &lt;code>/var/snap/microk8s/current/certs/csr.conf.template&lt;/code> where you can add your own domain under the &lt;code>DNS&lt;/code> section:&lt;/p>
+&lt;pre tabindex="0">&lt;code>[ alt_names ]
+DNS.1 = kubernetes
+DNS.2 = kubernetes.default
+DNS.3 = kubernetes.default.svc
+DNS.4 = kubernetes.default.svc.cluster
+DNS.5 = kubernetes.default.svc.cluster.local
+DNS.6 = mydomain.com
+&lt;/code>&lt;/pre></description></item></channel></rss>

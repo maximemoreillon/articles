@@ -1,0 +1,85 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=content-type content="text/html"><meta name=viewport content="width=device-width,initial-scale=1"><title itemprop=name>Creating a private docker registry for Kubernetes | Maxime Moreillon</title><meta property="og:title" content="Creating a private docker registry for Kubernetes | Maxime Moreillon"><meta name=twitter:title content="Creating a private docker registry for Kubernetes | Maxime Moreillon"><meta itemprop=name content="Creating a private docker registry for Kubernetes | Maxime Moreillon"><meta name=application-name content="Creating a private docker registry for Kubernetes | Maxime Moreillon"><meta property="og:site_name" content><meta name=description content><meta itemprop=description content><meta property="og:description" content><meta name=twitter:description content><meta property="og:locale" content="en-us"><meta name=language content="en-us"><link rel=alternate hreflang=en href=https://articles.maximemoreillon.com/articles/421/ title><meta name=generator content="Hugo 0.147.8"><meta property="og:url" content="https://articles.maximemoreillon.com/articles/421/"><meta property="og:site_name" content="Maxime Moreillon"><meta property="og:title" content="Creating a private docker registry for Kubernetes"><meta property="og:description" content='A docker registry can be run easily using as a docker container using docker itself.
+docker run -d -p 5000:5000 --restart=always --name registry registry:2 However, this registry is accessed through HTTP and does not provide any authentication mechanism
+To solve this problem, the docker registry can be made so as to be accessed via an Ingress with Basic Authentication:
+kind: Service apiVersion: v1 metadata: name: registry spec: type: ClusterIP ports: - port: 5000 targetPort: 5000 --- kind: Endpoints apiVersion: v1 metadata: name: registry subsets: - addresses: - ip: 192.168.1.2 ports: - port: 5000 --- apiVersion: extensions/v1beta1 kind: Ingress metadata: name: registry annotations: kubernetes.io/ingress.class: "nginx" # Necessary to prevent 413 errors nginx.ingress.kubernetes.io/proxy-body-size: "500m" nginx/client_max_body_size: 500m cert-manager.io/cluster-issuer: "letsencrypt-prod" nginx.ingress.kubernetes.io/auth-type: basic nginx.ingress.kubernetes.io/auth-secret: registry nginx.ingress.kubernetes.io/auth-realm: &#39;Authentication Required&#39; spec: tls: - hosts: - registry.example.com secretName: registry rules: - host: registry.example.com http: paths: - path: / backend: serviceName: registry servicePort: 5000 Here, it is important to specify the maximum body size in the Ingress annotations to prevent 413 Request Entity Too Large errors'><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="articles"><meta property="article:published_time" content="2020-04-23T00:00:00+00:00"><meta property="article:modified_time" content="2020-04-23T00:00:00+00:00"><meta property="article:tag" content="DevOps"><meta property="article:tag" content="Kubernetes"><meta property="article:tag" content="Docker"><meta name=twitter:card content="summary"><meta name=twitter:title content="Creating a private docker registry for Kubernetes"><meta name=twitter:description content='A docker registry can be run easily using as a docker container using docker itself.
+docker run -d -p 5000:5000 --restart=always --name registry registry:2 However, this registry is accessed through HTTP and does not provide any authentication mechanism
+To solve this problem, the docker registry can be made so as to be accessed via an Ingress with Basic Authentication:
+kind: Service apiVersion: v1 metadata: name: registry spec: type: ClusterIP ports: - port: 5000 targetPort: 5000 --- kind: Endpoints apiVersion: v1 metadata: name: registry subsets: - addresses: - ip: 192.168.1.2 ports: - port: 5000 --- apiVersion: extensions/v1beta1 kind: Ingress metadata: name: registry annotations: kubernetes.io/ingress.class: "nginx" # Necessary to prevent 413 errors nginx.ingress.kubernetes.io/proxy-body-size: "500m" nginx/client_max_body_size: 500m cert-manager.io/cluster-issuer: "letsencrypt-prod" nginx.ingress.kubernetes.io/auth-type: basic nginx.ingress.kubernetes.io/auth-secret: registry nginx.ingress.kubernetes.io/auth-realm: &#39;Authentication Required&#39; spec: tls: - hosts: - registry.example.com secretName: registry rules: - host: registry.example.com http: paths: - path: / backend: serviceName: registry servicePort: 5000 Here, it is important to specify the maximum body size in the Ingress annotations to prevent 413 Request Entity Too Large errors'><link rel=canonical href=https://articles.maximemoreillon.com/articles/421/><link href=/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css rel=stylesheet><link href=/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css rel=stylesheet><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/icons/favicon-16x16.png><link rel=mask-icon href=/icons/safari-pinned-tab.svg><link rel="shortcut icon" href=/favicon.ico><link rel=manifest href=https://articles.maximemoreillon.com/site.webmanifest><meta name=msapplication-config content="/browserconfig.xml"><meta name=msapplication-TileColor content="#2d89ef"><meta name=theme-color content="#434648"><meta name=color-scheme content="light dark"><link rel=icon type=image/svg+xml href=/icons/favicon.svg></head><body data-theme class=notransition><script src=/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script><div class=navbar role=navigation><nav class=menu aria-label="Main Navigation"><a href=https://articles.maximemoreillon.com/ class=logo><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><title/><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+</a><input type=checkbox id=menu-trigger class=menu-trigger>
+<label for=menu-trigger><span class=menu-icon><svg width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7H3.40726"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M.5 12.5V1.5c0-.552285.447715-1 1-1h11C13.0523.5 13.5.947715 13.5 1.5v11C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C.947715 13.5.5 13.0523.5 12.5z"/></svg></span></label><div class=trigger><ul class=trigger-container><li><a class=menu-link href=/>Home</a></li><li><a class="menu-link active" href=/articles/>Articles</a></li><li><a class=menu-link href=/tags/>Tags</a></li><li class=menu-separator><span>|</span></li></ul><a id=mode href=#><svg class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+<svg class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg></a></div></nav></div><div class="wrapper post"><main class=page-content aria-label=Content><article><header class=header><h1 class=header-title>Creating a private docker registry for Kubernetes</h1><div class=post-meta><time datetime=2020-04-23T00:00:00+00:00 itemprop=datePublished>Apr 23, 2020</time></div></header><div class=page-content><p>A docker registry can be run easily using as a docker container using docker itself.</p><pre tabindex=0><code>docker run -d -p 5000:5000 --restart=always --name registry registry:2
+</code></pre><p>However, this registry is accessed through HTTP and does not provide any authentication mechanism</p><p>To solve this problem, the docker registry can be made so as to be accessed via an Ingress with Basic Authentication:</p><pre tabindex=0><code>kind: Service
+apiVersion: v1
+metadata:
+ name: registry
+spec:
+ type: ClusterIP
+ ports:
+ - port: 5000
+   targetPort: 5000
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+ name: registry
+subsets:
+ - addresses:
+     - ip: 192.168.1.2
+   ports:
+     - port: 5000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: registry
+  annotations:
+    kubernetes.io/ingress.class: &#34;nginx&#34;
+
+    # Necessary to prevent 413 errors
+    nginx.ingress.kubernetes.io/proxy-body-size: &#34;500m&#34;
+    nginx/client_max_body_size: 500m
+
+    cert-manager.io/cluster-issuer: &#34;letsencrypt-prod&#34;
+    
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: registry
+    nginx.ingress.kubernetes.io/auth-realm: &#39;Authentication Required&#39;
+spec:
+  tls:
+  - hosts:
+    - registry.example.com
+    secretName: registry
+  rules:
+  - host: registry.example.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: registry
+          servicePort: 5000
+</code></pre><p>Here, it is important to specify the maximum body size in the Ingress annotations to prevent 413 Request Entity Too Large errors</p><h2 id=solving-ufw-not-blocking-access-to-registry>Solving UFW not blocking access to registry</h2><p>Taken from <a href=https://github.com/chaifeng/ufw-docker>here</a></p><pre tabindex=0><code>Modify the UFW configuration file /etc/ufw/after.rules and add the following rules at the end of the file:
+
+# BEGIN UFW AND DOCKER
+*filter
+:ufw-user-forward - [0:0]
+:DOCKER-USER - [0:0]
+-A DOCKER-USER -j RETURN -s 10.0.0.0/8
+-A DOCKER-USER -j RETURN -s 172.16.0.0/12
+-A DOCKER-USER -j RETURN -s 192.168.0.0/16
+
+-A DOCKER-USER -p udp -m udp --sport 53 --dport 1024:65535 -j RETURN
+
+-A DOCKER-USER -j ufw-user-forward
+
+-A DOCKER-USER -j DROP -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -d 192.168.0.0/16
+-A DOCKER-USER -j DROP -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -d 10.0.0.0/8
+-A DOCKER-USER -j DROP -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -d 172.16.0.0/12
+-A DOCKER-USER -j DROP -p udp -m udp --dport 0:32767 -d 192.168.0.0/16
+-A DOCKER-USER -j DROP -p udp -m udp --dport 0:32767 -d 10.0.0.0/8
+-A DOCKER-USER -j DROP -p udp -m udp --dport 0:32767 -d 172.16.0.0/12
+
+-A DOCKER-USER -j RETURN
+COMMIT
+# END UFW AND DOCKER
+</code></pre><h2 id=creating-secret-to-pull-images-from-the-registry>Creating secret to pull images from the registry</h2><pre tabindex=0><code>microk8s.kubectl create secret generic registry-credentials     --from-file=.dockerconfigjson=/home/yourUser/.docker/config.json --type=kubernetes.io/dockerconfigjson --namespace=your-namespace
+</code></pre></div></article></main></div><footer class=footer><span class=footer_item></span>&nbsp;<div class=footer_social-icons></div><small class=footer_copyright>© 2025 Maxime Moreillon.</small></footer><script src=https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script></body></html>

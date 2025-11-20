@@ -1,0 +1,75 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=content-type content="text/html"><meta name=viewport content="width=device-width,initial-scale=1"><title itemprop=name>kubectl basics | Maxime Moreillon</title><meta property="og:title" content="kubectl basics | Maxime Moreillon"><meta name=twitter:title content="kubectl basics | Maxime Moreillon"><meta itemprop=name content="kubectl basics | Maxime Moreillon"><meta name=application-name content="kubectl basics | Maxime Moreillon"><meta property="og:site_name" content><meta name=description content><meta itemprop=description content><meta property="og:description" content><meta name=twitter:description content><meta property="og:locale" content="en-us"><meta name=language content="en-us"><link rel=alternate hreflang=en href=https://articles.maximemoreillon.com/articles/356/ title><meta name=generator content="Hugo 0.147.8"><meta property="og:url" content="https://articles.maximemoreillon.com/articles/356/"><meta property="og:site_name" content="Maxime Moreillon"><meta property="og:title" content="kubectl basics"><meta property="og:description" content='Here are some of the basic kubectl commands.
+Installation sudo apt-get update && sudo apt-get install -y apt-transport-https curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list sudo apt-get update sudo apt-get install -y kubectl Usage Simple commands to get an overview of the cluster
+kubectl cluster-info kubectl get nodes Deployments Create a deployment:
+kubectl create deployment POD_NAME --image=IMAGE_NAME IMAGENAME and PODNAME must not contain underscores. Replace by hyphens.'><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="articles"><meta property="article:published_time" content="2020-01-13T00:00:00+00:00"><meta property="article:modified_time" content="2020-01-13T00:00:00+00:00"><meta property="article:tag" content="Tutorials"><meta property="article:tag" content="Kubernetes"><meta name=twitter:card content="summary"><meta name=twitter:title content="kubectl basics"><meta name=twitter:description content='Here are some of the basic kubectl commands.
+Installation sudo apt-get update && sudo apt-get install -y apt-transport-https curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list sudo apt-get update sudo apt-get install -y kubectl Usage Simple commands to get an overview of the cluster
+kubectl cluster-info kubectl get nodes Deployments Create a deployment:
+kubectl create deployment POD_NAME --image=IMAGE_NAME IMAGENAME and PODNAME must not contain underscores. Replace by hyphens.'><link rel=canonical href=https://articles.maximemoreillon.com/articles/356/><link href=/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css rel=stylesheet><link href=/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css rel=stylesheet><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/icons/favicon-16x16.png><link rel=mask-icon href=/icons/safari-pinned-tab.svg><link rel="shortcut icon" href=/favicon.ico><link rel=manifest href=https://articles.maximemoreillon.com/site.webmanifest><meta name=msapplication-config content="/browserconfig.xml"><meta name=msapplication-TileColor content="#2d89ef"><meta name=theme-color content="#434648"><meta name=color-scheme content="light dark"><link rel=icon type=image/svg+xml href=/icons/favicon.svg></head><body data-theme class=notransition><script src=/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script><div class=navbar role=navigation><nav class=menu aria-label="Main Navigation"><a href=https://articles.maximemoreillon.com/ class=logo><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><title/><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+</a><input type=checkbox id=menu-trigger class=menu-trigger>
+<label for=menu-trigger><span class=menu-icon><svg width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7H3.40726"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M.5 12.5V1.5c0-.552285.447715-1 1-1h11C13.0523.5 13.5.947715 13.5 1.5v11C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C.947715 13.5.5 13.0523.5 12.5z"/></svg></span></label><div class=trigger><ul class=trigger-container><li><a class=menu-link href=/>Home</a></li><li><a class="menu-link active" href=/articles/>Articles</a></li><li><a class=menu-link href=/tags/>Tags</a></li><li class=menu-separator><span>|</span></li></ul><a id=mode href=#><svg class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
+<svg class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg></a></div></nav></div><div class="wrapper post"><main class=page-content aria-label=Content><article><header class=header><h1 class=header-title>kubectl basics</h1><div class=post-meta><time datetime=2020-01-13T00:00:00+00:00 itemprop=datePublished>Jan 13, 2020</time></div></header><div class=page-content><p>Here are some of the basic kubectl commands.</p><h2 id=installation>Installation</h2><pre tabindex=0><code>sudo apt-get update &amp;&amp; sudo apt-get install -y apt-transport-https
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo &#34;deb https://apt.kubernetes.io/ kubernetes-xenial main&#34; | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
+</code></pre><h2 id=usage>Usage</h2><p>Simple commands to get an overview of the cluster</p><pre tabindex=0><code>kubectl cluster-info
+kubectl get nodes
+</code></pre><h3 id=deployments>Deployments</h3><p>Create a deployment:</p><pre tabindex=0><code>kubectl create deployment POD_NAME --image=IMAGE_NAME
+</code></pre><p>IMAGE<em>NAME and POD</em>NAME must not contain underscores. Replace by hyphens.</p><p>IMAGE_NAME is an image from a registry, not local.</p><p>Alternatively, create a .yml file somewhere and use:</p><pre tabindex=0><code>kubectl apply -f [DEPLOYMENT_FILE]
+</code></pre><p>Here is an example file:</p><pre tabindex=0><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redblack-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: redblack-deployment
+  template:
+    metadata:
+      labels:
+        app: redblack-deployment
+    spec:
+      containers:
+      - name: redblack
+        image: 192.168.179.25:5000/redblack:latest
+        ports:
+        - containerPort: 8051
+</code></pre><p>deployments can be seen using:</p><pre tabindex=0><code>kubectl get deployments
+</code></pre><p>Deleting a deployment is as simple as:</p><pre tabindex=0><code>kubectl delete deployment deployment-name
+</code></pre><h3 id=services-deployments-that-have-been-exposed>Services (deployments that have been exposed)</h3><pre tabindex=0><code>kubectl expose deployment/DEPLOYMENT_NAME --type=&#34;NodePort&#34; --port PORT
+</code></pre><p>Where PORT is the port of the application inside the container</p><p>Services can be un-exposed (i.e. deleted) using:</p><pre tabindex=0><code>kubectl delete service my-service
+</code></pre><p>Services and deployments can be created by the same yaml file. Simply separate them using &mdash;:</p><pre tabindex=0><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redblack-deployment
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: redblack-deployment
+  template:
+    metadata:
+      labels:
+        app: redblack-deployment
+    spec:
+      containers:
+      - name: redblack
+        image: 192.168.179.25:5000/redblack-stupid:latest
+        ports:
+        - containerPort: 8051
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: redblack-service
+  name: redblack-service
+spec:
+  ports:
+  - port: 8501
+    nodePort: 30111
+  selector:
+    app: redblack-deployment
+  type: LoadBalancer
+</code></pre><h3 id=accessing-a-service>Accessing a service</h3><p>Services can be accessed via the port specified as <code>nodeport</code></p></div></article></main></div><footer class=footer><span class=footer_item></span>&nbsp;<div class=footer_social-icons></div><small class=footer_copyright>© 2025 Maxime Moreillon.</small></footer><script src=https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script></body></html>

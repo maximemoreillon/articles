@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nextcloud on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/nextcloud/</link><description>Recent content in Nextcloud on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 02 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/nextcloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Nextcloud Apache2 configuration</title><link>https://articles.maximemoreillon.com/articles/335/</link><pubDate>Thu, 02 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/335/</guid><description>&lt;p>Here is an example configuration file to use Nextcloud with an Apache2 server in Ubuntu. Here, it is assumed that nextcloud install is located in &lt;code>/var/www/&lt;/code>&lt;/p>
+&lt;pre tabindex="0">&lt;code>&amp;lt;VirtualHost *:80&amp;gt;
+# Redirection to HTTPS
+ServerName nextcloud.example.com
+Redirect / https://nextcloud.example.com/
+&amp;lt;/VirtualHost&amp;gt;
+&amp;lt;IfModule mod_ssl.c&amp;gt;
+&amp;lt;VirtualHost *:443&amp;gt;
+ServerName nextcloud.example.com
+DocumentRoot /var/www/nextcloud/
+# Specific configuration for nextcloud
+&amp;lt;Directory /var/www/nextcloud/&amp;gt;
+Options +FollowSymlinks
+AllowOverride All
+&amp;lt;IfModule mod_dav.c&amp;gt;
+Dav off
+&amp;lt;/IfModule&amp;gt;
+SetEnv HOME /var/www/nextcloud
+SetEnv HTTP_HOME /var/www/nextcloud
+&amp;lt;IfModule mod_headers.c&amp;gt;
+Header always set Strict-Transport-Security &amp;#34;max-age=15552000; includeSubDomains; preload&amp;#34;
+&amp;lt;/IfModule&amp;gt;
+&amp;lt;/Directory&amp;gt;
+# SSL configuration
+SSLEngine on
+SSLCertificateFile /etc/letsencrypt/live/nextcloud.example.com/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/nextcloud.example.com/privkey.pem
+&amp;lt;/VirtualHost&amp;gt;
+&amp;lt;/IfModule&amp;gt;
+&lt;/code>&lt;/pre></description></item></channel></rss>

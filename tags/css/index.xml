@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CSS on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/css/</link><description>Recent content in CSS on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/css/index.xml" rel="self" type="application/rss+xml"/><item><title>Modeling profile webpage</title><link>https://articles.maximemoreillon.com/articles/339/</link><pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/339/</guid><description>&lt;p>Foreign models are quite in demand in Japan and as such it is not uncommon for foreigners living there to have a side activity in the modeling industry. I had the chance to meet the manager a &lt;a href="https://azs-group.jp/">AZS entertainment&lt;/a> and was told that the agency was currently recruiting. So, since I am always looking for new life experiences, I decided to join.&lt;/p>
+&lt;p>AZS entertainment was kind enough to prepare a &lt;a href="https://azs-group.jp/manage_post/990">webpage for my profile on their website&lt;/a>. However, since I own the maximemoreillon.com domain, I decided that I could also host my own profile web page here. Thus, I made a simple page with some of my pictures, body measurements and links, deployed at &lt;a href="http://modeling.maximemoreillon.com">modeling.maximemoreillon.com&lt;/a>.&lt;/p></description></item><item><title>Divide container in equally sized divs</title><link>https://articles.maximemoreillon.com/articles/238/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/238/</guid><description>&lt;p>Let&amp;rsquo;s imagine a container with three divs as content:&lt;/p>
+&lt;pre tabindex="0">&lt;code>&amp;lt;div class=&amp;#34;container&amp;#34;&amp;gt;
+&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;
+&amp;lt;div&amp;gt;Looooooooooooong&amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>One might want to lay the three divs horizontally and make it so that all divs share the available space equally. This can be achieved using flexbox:&lt;/p>
+&lt;pre tabindex="0">&lt;code>.container {
+display: flex;
+}
+.container div{
+/* take all available space */
+flex-grow: 1;
+/* Insensitivity to size of content */
+/* If not set, the div containing &amp;#34;looong&amp;#34; will take more space */
+flex-basis: 0;
+}
+&lt;/code>&lt;/pre>&lt;p>Here, if &lt;code>flex-basis&lt;/code> was not set the div containing &lt;em>looooong&lt;/em> would get more horizontal space&lt;/p></description></item><item><title>CSS basics</title><link>https://articles.maximemoreillon.com/articles/231/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/231/</guid><description>&lt;p>HTML defines the content of a web page but not its aesthetics. Styling a document is achieved using CSS, which stands for Cascading Style Sheet and is another language that web browsers can interpret.&lt;/p>
+&lt;h2 id="inline-css">Inline CSS&lt;/h2>
+&lt;p>The simplest way to style elements of an HTML document is to add the &amp;ldquo;style&amp;rdquo; property in the HTML tag. For example:&lt;/p>
+&lt;pre tabindex="0">&lt;code>&amp;lt;p style=&amp;#39;color:blue;&amp;#39;&amp;gt;This is a paragraph and it is blue&amp;lt;/p&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>&lt;strong>property:value&lt;/strong> is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:&lt;/p></description></item></channel></rss>

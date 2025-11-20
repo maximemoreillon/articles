@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/docker/</link><description>Recent content in Docker on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 20 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/docker/index.xml" rel="self" type="application/rss+xml"/><item><title>User management and authentication service using MongoDB</title><link>https://articles.maximemoreillon.com/articles/495/</link><pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/495/</guid><description>&lt;p>More often than not, web applications require restrictions regarding who can access the content that they serve. This involves an user management and authentication system, which, if designed inappropriately, can lead to security concerns. However, the development of such system can be time consuming, especially if done repeatedly for multiple applications.&lt;/p>
+&lt;p>To solve this problem, this article presents a user management and authentication service, built around MongoDB, that can be easily plugged into an existing application with only minimal refactoring.&lt;/p></description></item><item><title>Node.js DevOps example</title><link>https://articles.maximemoreillon.com/articles/98/</link><pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/98/</guid><description>&lt;p>In this article, we’ll build a simple &lt;a href="https://nodejs.org/en/">Node.js&lt;/a> application that uses &lt;a href="https://expressjs.com/">Express&lt;/a> to respond to HTTP requests. In order to deploy this application to production, we’ll also configure a &lt;a href="https://docs.gitlab.com/ee/ci/">GitLab CI/CD&lt;/a> pipeline so as to &lt;a href="https://www.docker.com/">dockerize&lt;/a> it and deploy its container to a &lt;a href="https://kubernetes.io/">Kubernetes&lt;/a> cluster.&lt;/p>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;p>This article assumes that the following environment is available to the reader:&lt;/p>
+&lt;ul>
+&lt;li>A development environment with &lt;a href="https://nodejs.org/en/">Node.js&lt;/a> installed.&lt;/li>
+&lt;li>A &lt;a href="https://about.gitlab.com/install/">GitLab&lt;/a> instance with an available &lt;a href="https://docs.gitlab.com/runner/install/">runner&lt;/a> able to run the &lt;em>docker&lt;/em> and &lt;em>kubectl&lt;/em> commands.&lt;/li>
+&lt;li>A production environment with a Kubernetes cluster reachable from the GitLab instance. For this, &lt;a href="https://microk8s.io/">Microk8s&lt;/a> is easy to get started with&lt;/li>
+&lt;li>A &lt;a href="https://docs.docker.com/registry/deploying/">Docker registry&lt;/a> to push and pull containers to and from. Note that running your own registry might require &lt;a href="https://docs.docker.com/registry/insecure/">Docker&lt;/a> and Kubernetes configuration (guide for MicroK8s available &lt;a href="https://microk8s.io/docs/registry-private">here&lt;/a>)&lt;/li>
+&lt;/ul>
+&lt;p>Node.js application&lt;/p></description></item><item><title>Application containerization</title><link>https://articles.maximemoreillon.com/articles/445/</link><pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/445/</guid><description>&lt;p>Let&amp;rsquo;s imagine a developer building an application on his computer and that this application is meant to be deployed on a different machine (production environment). In order to execute properly, this application requires multiple libraries, binaries and packages. For example, a Python program requires the Python interpreter as well as all the imported Python modules.&lt;/p>
+&lt;p>Thus, if the application is unlikely to run properly in the production environment if it is being deployed by simply copying its source code over.&lt;/p></description></item><item><title>Creating a private docker registry for Kubernetes</title><link>https://articles.maximemoreillon.com/articles/421/</link><pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/421/</guid><description>&lt;p>A docker registry can be run easily using as a docker container using docker itself.&lt;/p>
+&lt;pre tabindex="0">&lt;code>docker run -d -p 5000:5000 --restart=always --name registry registry:2
+&lt;/code>&lt;/pre>&lt;p>However, this registry is accessed through HTTP and does not provide any authentication mechanism&lt;/p>
+&lt;p>To solve this problem, the docker registry can be made so as to be accessed via an Ingress with Basic Authentication:&lt;/p>
+&lt;pre tabindex="0">&lt;code>kind: Service
+apiVersion: v1
+metadata:
+name: registry
+spec:
+type: ClusterIP
+ports:
+- port: 5000
+targetPort: 5000
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+name: registry
+subsets:
+- addresses:
+- ip: 192.168.1.2
+ports:
+- port: 5000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+name: registry
+annotations:
+kubernetes.io/ingress.class: &amp;#34;nginx&amp;#34;
+# Necessary to prevent 413 errors
+nginx.ingress.kubernetes.io/proxy-body-size: &amp;#34;500m&amp;#34;
+nginx/client_max_body_size: 500m
+cert-manager.io/cluster-issuer: &amp;#34;letsencrypt-prod&amp;#34;
+nginx.ingress.kubernetes.io/auth-type: basic
+nginx.ingress.kubernetes.io/auth-secret: registry
+nginx.ingress.kubernetes.io/auth-realm: &amp;#39;Authentication Required&amp;#39;
+spec:
+tls:
+- hosts:
+- registry.example.com
+secretName: registry
+rules:
+- host: registry.example.com
+http:
+paths:
+- path: /
+backend:
+serviceName: registry
+servicePort: 5000
+&lt;/code>&lt;/pre>&lt;p>Here, it is important to specify the maximum body size in the Ingress annotations to prevent 413 Request Entity Too Large errors&lt;/p></description></item><item><title>Docker images and containers management</title><link>https://articles.maximemoreillon.com/articles/35/</link><pubDate>Fri, 06 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/35/</guid><description>&lt;p>Here are a few commands to manage docker images and containers&lt;/p>
+&lt;h2 id="images">Images&lt;/h2>
+&lt;p>List all images:&lt;/p>
+&lt;pre tabindex="0">&lt;code>docker image ls -a
+&lt;/code>&lt;/pre>&lt;p>Delete an image:&lt;/p>
+&lt;pre tabindex="0">&lt;code>docker image rm IMAGE_NAME
+&lt;/code>&lt;/pre>&lt;h2 id="containers">Containers&lt;/h2>
+&lt;p>Run a container:&lt;/p>
+&lt;pre tabindex="0">&lt;code>docker run IMAGE_NAME
+&lt;/code>&lt;/pre>&lt;p>Here, the container will run in the foreground with a randomly assigned name&lt;/p>
+&lt;p>Run a container in the background:&lt;/p>
+&lt;pre tabindex="0">&lt;code>docker run -d IMAGE_NAME
+&lt;/code>&lt;/pre>&lt;p>Run a container and give it a certain name:&lt;/p>
+&lt;pre tabindex="0">&lt;code>docker run -n CONTAINER_NAME IMAGE_NAME
+&lt;/code>&lt;/pre>&lt;p>Stop a container (gracefully):&lt;/p>
+&lt;pre tabindex="0">&lt;code>docker stop CONTAINER_NAME
+&lt;/code>&lt;/pre>&lt;p>Kill a container (ungraceful stop):&lt;/p></description></item><item><title>Docker restart container when docker restarts</title><link>https://articles.maximemoreillon.com/articles/303/</link><pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/303/</guid><description>&lt;p>Simply add the following flag when using docker run&lt;/p>
+&lt;pre tabindex="0">&lt;code> --restart=always
+&lt;/code>&lt;/pre>&lt;p>If the container is already running:&lt;/p>
+&lt;pre tabindex="0">&lt;code>docker update --restart=always &amp;lt;container&amp;gt;
+&lt;/code>&lt;/pre></description></item><item><title>Gitlab CI commands for TF serving</title><link>https://articles.maximemoreillon.com/articles/302/</link><pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/302/</guid><description>&lt;p>This is an example .gitlab-ci.yml file which can be used to containerize and deploy a tensorflow model&lt;/p>
+&lt;pre tabindex="0">&lt;code>stages:
+- containerize
+- deploy
+variables:
+SERVING_CONTAINER: serving_base
+DOCKER_IMAGE: 192.168.1.2:5000/redblack
+AI_MODEL: redblack
+DEPLOYMENT: redblack
+containerization:
+stage: containerize
+script:
+# Run an empty tensorflow serving container
+- docker run -d --name ${SERVING_CONTAINER} tensorflow/serving
+# Copy the model into the serving container and save it as a new image
+- docker cp ./${AI_MODEL} ${SERVING_CONTAINER}:/models/${AI_MODEL}
+- docker commit --change &amp;#34;ENV MODEL_NAME ${AI_MODEL}&amp;#34; serving_base ${DOCKER_IMAGE}
+# Push the container to the registry
+- docker push ${DOCKER_IMAGE}
+# Cleanup
+- docker stop ${SERVING_CONTAINER}
+- docker container rm ${SERVING_CONTAINER}
+- docker image rm ${DOCKER_IMAGE}
+deployment:
+stage: deploy
+script:
+- kubectl apply -f deployment.yml
+- kubectl rollout restart deployment/${DEPLOYMENT}
+environment:
+name: staging
+&lt;/code>&lt;/pre></description></item><item><title>Serving a Keras model using Tensorflow serving and Docker</title><link>https://articles.maximemoreillon.com/articles/297/</link><pubDate>Wed, 29 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/297/</guid><description>&lt;p>A Keras model can be created in various ways, for example using the &lt;a href="https://keras.io/getting-started/sequential-model-guide/">sequential model&lt;/a>:&lt;/p>
+&lt;pre tabindex="0">&lt;code>from keras.models import Sequential
+from keras.layers import Dense, Activation
+model = Sequential([
+Dense(32, input_shape=(784,)),
+Activation(&amp;#39;relu&amp;#39;),
+Dense(10),
+Activation(&amp;#39;softmax&amp;#39;),
+])
+&lt;/code>&lt;/pre>&lt;p>Such model can be saved using the save() function:&lt;/p>
+&lt;pre tabindex="0">&lt;code>model.save(&amp;#39;./my_model/1&amp;#39;)
+&lt;/code>&lt;/pre>&lt;p>Here, the /1 at the end of the path is important for later.&lt;/p>
+&lt;p>The model will be run inside a docker container. To do so, first download and run an &amp;ldquo;empty&amp;rdquo; serving container which will serve as a base:&lt;/p></description></item><item><title>Minikube using insecure registry</title><link>https://articles.maximemoreillon.com/articles/360/</link><pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/360/</guid><description>&lt;p>By default, Minikube will not allow the usage of insecure docker registries. To change this setting, Minikube can be started as so:&lt;/p>
+&lt;p>Argument &amp;ndash;insecure registry can be used&lt;/p>
+&lt;pre tabindex="0">&lt;code>minikube start --insecure-registry=&amp;#34;http://192.168.1.2:5000&amp;#34;
+&lt;/code>&lt;/pre>&lt;p>Here, replace http://192.168.1.2 with the URL of the registry&lt;/p>
+&lt;p>For bare-metal (requires sudo):&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo minikube start --insecure-registry=&amp;#34;http://192.168.1.2:5000&amp;#34; --vm-driver=none
+&lt;/code>&lt;/pre>&lt;p>Note: if Minikube had already been started without the insecure-registry option, it must be stopped and recreated:&lt;/p>
+&lt;pre tabindex="0">&lt;code>minikube stop
+minikube delete
+&lt;/code>&lt;/pre></description></item><item><title>Docker behind a proxy</title><link>https://articles.maximemoreillon.com/articles/352/</link><pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/352/</guid><description>&lt;p>Docker does not use environment variables for proxy configuration. This article presents how to configure Docker to use a proxy.&lt;/p>
+&lt;p>To use docker behind a proxy, create the file&lt;code>/etc/systemd/system/docker.service.d/http-proxy.conf&lt;/code> With the following content:&lt;/p>
+&lt;pre tabindex="0">&lt;code>[Service]
+Environment=&amp;#34;HTTP_PROXY=http://127.0.0.1:8118/&amp;#34;
+Environment=&amp;#34;HTTPS_PROXY=http://127.0.0.1:8118/&amp;#34;
+Environment=&amp;#34;NO_PROXY=localhost,127.0.0.1,172.16.98.151&amp;#34;
+&lt;/code>&lt;/pre>&lt;p>Here, &lt;code>127.0.0.1:8118&lt;/code> should be replaced by the address of your proxy&lt;/p>
+&lt;p>Once done, reload the daemon and restart docker&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo systemctl daemon-reload
+sudo systemctl restart docker
+&lt;/code>&lt;/pre></description></item><item><title>Docker HTTP (insecure) registry</title><link>https://articles.maximemoreillon.com/articles/353/</link><pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/353/</guid><description>&lt;p>By default Docker refuses to push/pull from registries that are not served using HTTPS.&lt;/p>
+&lt;p>To enable Docker to push to registries served over HTTP, the address of the registry must be appended to the &lt;code>insecure-registries&lt;/code> Array of the &lt;code>/etc/docker/daemon.json&lt;/code> file. If the file does not exist, it must be created.&lt;/p>
+&lt;p>Here is an example:&lt;/p>
+&lt;pre tabindex="0">&lt;code>{
+  &amp;#34;insecure-registries&amp;#34; : [&amp;#34;IP:PORT&amp;#34;]
+}
+&lt;/code>&lt;/pre>&lt;p>Docker must be restarted after changes to &lt;code>/etc/docker/daemon.json&lt;/code> have been done:&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo systemctl restart docker
+&lt;/code>&lt;/pre></description></item><item><title>Self hosted Docker registry</title><link>https://articles.maximemoreillon.com/articles/351/</link><pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/351/</guid><description>&lt;p>When using the &lt;code>docker pull&lt;/code> command, container images are by default downloaded from docker hub, the official public registry for container images. However, for some projects, images are better stored on a private platform. This can be achieved by hosting one&amp;rsquo;s own docker registry.&lt;/p>
+&lt;p>A complete guide is written here: &lt;a href="https://docs.docker.com/registry/deploying/">https://docs.docker.com/registry/deploying/&lt;/a>&lt;/p>
+&lt;p>This article merely summarizes the basics involved in the process.&lt;/p>
+&lt;h2 id="self-hosted-docker-registry-as-container">Self hosted Docker registry as container&lt;/h2>
+&lt;p>A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:&lt;/p></description></item><item><title>NodeJS app dockerization</title><link>https://articles.maximemoreillon.com/articles/343/</link><pubDate>Thu, 09 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/343/</guid><description>&lt;p>NodeJS apps can be containerized using the &lt;code>docker build&lt;/code> command. This article is based on &lt;a href="https://nodejs.org/de/docs/guides/nodejs-docker-webapp/">this guide&lt;/a>.&lt;/p>
+&lt;p>To create a container image, a Dockerfile is needed. Here is an example specifically made for the containerization of NodeJS apps:&lt;/p>
+&lt;pre tabindex="0">&lt;code>FROM node:14
+# Create and move into app directory
+WORKDIR /usr/src/app
+# Copy files of host current workdir
+# into container workdir
+COPY . .
+# Install dependecies described in packages.json
+RUN npm install
+# Open port 8080
+EXPOSE 8080
+# Run the node app
+CMD [ &amp;#34;node&amp;#34;, &amp;#34;server.js&amp;#34; ]
+&lt;/code>&lt;/pre>&lt;p>RUN is for commands to be executed during the container building process&lt;/p></description></item></channel></rss>

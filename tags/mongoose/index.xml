@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mongoose on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/mongoose/</link><description>Recent content in Mongoose on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 19 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/mongoose/index.xml" rel="self" type="application/rss+xml"/><item><title>Mongoose query documents with matching array element</title><link>https://articles.maximemoreillon.com/articles/adb7dbb3-cc17-4dd2-b8c0-1fe5f46e62de/</link><pubDate>Mon, 19 Dec 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/adb7dbb3-cc17-4dd2-b8c0-1fe5f46e62de/</guid><description>&lt;p>As a NoSQL database, MongoDB can store arrays as fields of a document. This article presents how to query such documents by filtering those with arrays that contain a specific value.&lt;/p>
+&lt;p>Let&amp;rsquo;s imagine a collection containing the following movie records:&lt;/p>
+&lt;pre tabindex="0">&lt;code>[
+{
+title: &amp;#39;Inception&amp;#39;,
+actors: [
+&amp;#39;Tom Hardy&amp;#39;
+&amp;#39;Leonardo DiCaprio&amp;#39;
+]
+},
+{
+title: &amp;#39;The Dark Knight Rises&amp;#39;,
+actors: [
+&amp;#39;Tom Hardy&amp;#39;,
+&amp;#39;Christian Bale&amp;#39;,
+]
+},
+{
+title: &amp;#39;The Dark Knight&amp;#39;,
+actors: [
+&amp;#39;Christian Bale&amp;#39;,
+&amp;#39;Heath Ledger&amp;#39;
+]
+},
+]
+&lt;/code>&lt;/pre>&lt;p>There would be cases where one would want to query all movies in which a specific actor starred.&lt;/p></description></item><item><title>MQTT Logger</title><link>https://articles.maximemoreillon.com/articles/5aa92bbf-956c-43a9-8f3c-e0bdacd6412d/</link><pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/5aa92bbf-956c-43a9-8f3c-e0bdacd6412d/</guid><description>&lt;p>Over the years, I&amp;rsquo;ve used various IoT sensors which collect data that is then broadcast using MQTT. Those sensors generally broadcast individual measurements without saving any form of history locally. Consequently, if one would want to plot time-series graphs, the data would first need to be stored somewhere. This is the objective of the application presented in this article, named MQTT Logger.&lt;/p>
+&lt;p>MQTT Logger is a Node.js application which subscribes to MQTT topics of IoT sensors and stores the data that those published in an InfluxDB time-series database.&lt;/p></description></item><item><title>Wardrobe and outfits management web app</title><link>https://articles.maximemoreillon.com/articles/0c1a7a47-c651-472d-a867-e1e2b040e997/</link><pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/0c1a7a47-c651-472d-a867-e1e2b040e997/</guid><description>&lt;p>Have you ever bought a piece of clothing only to come home and realize you already had a similar one in your wardrobe? This web application aims at solving this problem by allowing users to register their garments in a database.&lt;/p>
+&lt;p>&lt;img src="https://img.maximemoreillon.com/images/61f2b47035a52f9bb09e4eef" alt="">&lt;/p>
+&lt;p>Moreover, the application provides a way to register complete outfits and list the various garments that are parts it.&lt;/p>
+&lt;p>&lt;img src="https://img.maximemoreillon.com/images/62b8fa733bbcba1c3e77be8c" alt="">&lt;/p>
+&lt;p>The application consists of a Node.js back-end which stores garment information in a MongoDB database. It also provides a REST API built using Express to exchange data with the application&amp;rsquo;s GUI. The latter is a Vue.js single page application featuring UI components from the Vuetify library.&lt;/p></description></item><item><title>Food manager</title><link>https://articles.maximemoreillon.com/articles/573/</link><pubDate>Tue, 02 Nov 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/573/</guid><description>&lt;p>The other day, I found myself putting on some weight. This rather surprised me as I thought I was having a healthy diet and exercised almost daily. To identify the root of the problem, I decided to start measuring my calorie intake as well as the macronutrients that constitute said intake.&lt;/p>
+&lt;p>To achieve this, I built a simple web application using the MEVN stack. The application serves two purposes:&lt;/p>
+&lt;ul>
+&lt;li>Store information about the various food I eat&lt;/li>
+&lt;li>Compute the total calorie count and macronutrients constitution of a given list of food&lt;/li>
+&lt;/ul>
+&lt;h2 id="food-database">Food database&lt;/h2>
+&lt;p>In order to compute a calorie count or macronutrient constitution of a meal, one must first know those values for each individual piece of food in it. This information is stored in a MongoDB collection, managed by its own model, controllers, routes and view.&lt;/p></description></item><item><title>Camera viewer</title><link>https://articles.maximemoreillon.com/articles/519/</link><pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/519/</guid><description>&lt;p>IP cameras are cheaper than ever and with the ESP32-CAM boards it is now possible to stream video for less than USD 10. However, IP cameras are commonly either only accessible from within their network, or use servers from third party companies to allow users to see the video feed from anywhere in the world. As both scenarios are inconvenient, I decided to create a camera viewer application that can proxy the video feed to a web interface.&lt;/p></description></item><item><title>User management and authentication service using MongoDB</title><link>https://articles.maximemoreillon.com/articles/495/</link><pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/495/</guid><description>&lt;p>More often than not, web applications require restrictions regarding who can access the content that they serve. This involves an user management and authentication system, which, if designed inappropriately, can lead to security concerns. However, the development of such system can be time consuming, especially if done repeatedly for multiple applications.&lt;/p>
+&lt;p>To solve this problem, this article presents a user management and authentication service, built around MongoDB, that can be easily plugged into an existing application with only minimal refactoring.&lt;/p></description></item><item><title>Image upload microservice</title><link>https://articles.maximemoreillon.com/articles/43/</link><pubDate>Mon, 23 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/43/</guid><description>&lt;p>An image is worth a thousand words and probably even more if comparing their size in bytes. When designing my CMS, I originally intended to store images directly in the article, encoded in Base64. However, this would considerably increase the size of each article, making the whole CMS slow.&lt;/p>
+&lt;p>Ideally images would be loaded independently from articles, which requires them to be served separately. Consequently, I created a simple image management microservice that allows to upload images through a web interface and serves them wherever required.&lt;/p></description></item><item><title>Finances management web app</title><link>https://articles.maximemoreillon.com/articles/165/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/165/</guid><description>&lt;p>Most banks nowadays provide e-banking interfaces that allow clients to monitor the state of their accounts. However, each bank has its own system and the provided interfaces sometimes lack functionalities. Consequently, I decided to create my own finance dashboard, that combines information regarding multiple accounts. Currently I use it to keep track of my bank accounts balance over time as well as provide a breakdown of my transactions.&lt;/p>
+&lt;p>&lt;img src="https://img.maximemoreillon.com/images/60b1cf1043b282317cabca3b" alt="">&lt;/p>
+&lt;p>The back-end of the application is built using NodeJS while data is stored in a MongoDB collection for transactions and InfluxDB for the balance history. On the other hand, the front end is built using VueJS and uses ChartsJS for plots.&lt;/p></description></item><item><title>Mongoose bulk update upsert</title><link>https://articles.maximemoreillon.com/articles/304/</link><pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/304/</guid><description>&lt;p>MongoDB&amp;rsquo;s upsert option enables the creation of a new document if the query of an update operationdoesn&amp;rsquo;t match any existing document. Basically, an update command with upsert creates a document if it does notexist already, and update it otherwise.&lt;/p>
+&lt;p>This operation is rather striaghtforward when updating single documents but can be trickier when applied to multiple documents at conce. For multiple documents, bulkWrite can be used:&lt;/p>
+&lt;pre tabindex="0">&lt;code>let bulk_operations = []
+for (var transaction of req.body.transactions) {
+bulk_operations.push({
+updateOne: {
+filter: transaction,
+update: transaction,
+upsert: true
+}
+})
+}
+Transaction.bulkWrite(bulk_operations)
+.then( bulkWriteOpResult =&amp;gt; {
+console.log(&amp;#39;BULK update OK&amp;#39;);
+})
+.catch( err =&amp;gt; {
+console.log(err);
+});
+&lt;/code>&lt;/pre></description></item><item><title>Mongoose bulkWrite upsert</title><link>https://articles.maximemoreillon.com/articles/287/</link><pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/287/</guid><description>&lt;p>Here is a code snippet for a bulk update with upsert using Mongoose:&lt;/p>
+&lt;pre tabindex="0">&lt;code>let bulk_operations = []
+for (var transaction of req.body.transactions) {
+bulk_operations.push({
+updateOne: {
+filter: transaction,
+update: transaction,
+upsert: true
+}
+})
+}
+Transaction.bulkWrite(bulk_operations)
+.then( bulkWriteOpResult =&amp;gt; {
+console.log(&amp;#39;BULK update OK&amp;#39;);
+res.send(&amp;#39;OK&amp;#39;)
+})
+.catch( err =&amp;gt; {
+console.log(&amp;#39;BULK update error&amp;#39;);
+res.status(500)
+});
+&lt;/code>&lt;/pre></description></item></channel></rss>

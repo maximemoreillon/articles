@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kubernetes on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/kubernetes/</link><description>Recent content in Kubernetes on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 17 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>Nginx as reverse proxy in Kubernetes</title><link>https://articles.maximemoreillon.com/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/</link><pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/</guid><description>&lt;p>Although API gateways such as Kong exist, a simple reverse-proxy can be created using NGINX. Here is a sample manifest to do so in Kubernetes:&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: nginx
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: nginx
+template:
+metadata:
+labels:
+app: nginx
+spec:
+containers:
+- name: nginx
+image: nginx
+volumeMounts:
+- mountPath: /etc/nginx/nginx.conf
+name: config
+subPath: nginx.conf
+volumes:
+- name: config
+configMap:
+name: config
+---
+apiVersion: v1
+kind: Service
+metadata:
+name: nginx
+spec:
+ports:
+- port: 80
+nodePort: 30080
+selector:
+app: nginx
+type: NodePort
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+name: config
+data:
+nginx.conf: |
+user nginx;
+worker_processes 1;
+error_log /var/log/nginx/error.log warn;
+pid /var/run/nginx.pid;
+events {
+worker_connections 1024;
+}
+http {
+include /etc/nginx/mime.types;
+default_type application/octet-stream;
+log_format main &amp;#39;$remote_addr - $remote_user [$time_local] &amp;#34;$request&amp;#34; &amp;#39;
+&amp;#39;$status $body_bytes_sent &amp;#34;$http_referer&amp;#34; &amp;#39;
+&amp;#39;&amp;#34;$http_user_agent&amp;#34; &amp;#34;$http_x_forwarded_for&amp;#34;&amp;#39;;
+access_log /var/log/nginx/access.log main;
+sendfile on;
+keepalive_timeout 65;
+server {
+listen 80;
+server_name localhost;
+location /finances {
+proxy_pass http://my-service;
+}
+error_page 500 502 503 504 /50x.html;
+location = /50x.html {
+root /usr/share/nginx/html;
+}
+}
+}
+---
+&lt;/code>&lt;/pre></description></item><item><title>Migrating a Kubernetes PV to a new storage class for applications that don't have tar installed</title><link>https://articles.maximemoreillon.com/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/</link><pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/</guid><description>&lt;p>NOTE: &lt;a href="https://github.com/utkuozdemir/pv-migrate">pv-migrate&lt;/a> provides an easier approach migrating PVs&lt;/p>
+&lt;p>Kubernetes provides an abstraction layer for persistent data storage. Volumes can be of various storage classes depending on user requirements. Those requirements can evolve with time, meaning that volumes sometimes need to be migrated from one storage class to another. This article introduces a method to do so.&lt;/p>
+&lt;p>In this article, MinIO will be used as an example. MinIO pods do support the &lt;code>kubectl cp&lt;/code> command as the container does not have &lt;code>tar&lt;/code> installed. For applications that allow the &lt;code>kubectl cp command&lt;/code>, the procedure in this article can be simplified&lt;/p></description></item><item><title>Solving Kong latency problems in Kubernetes</title><link>https://articles.maximemoreillon.com/articles/cd7202dc-7b29-41e1-8d05-2b159cb361bb/</link><pubDate>Mon, 04 Dec 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/cd7202dc-7b29-41e1-8d05-2b159cb361bb/</guid><description>&lt;p>Kong is a popular API gateway that can be used as a reverse proxy for clients to access back-end services. It can be run as a Docker container and, as such, can be deployed to Kubernetes.&lt;/p>
+&lt;p>The following is an example manifest to do so:&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: kong
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: kong
+template:
+metadata:
+labels:
+app: kong
+spec:
+containers:
+- name: kong
+image: kong:3.4.0
+ports:
+- containerPort: 8000
+env:
+- name: KONG_DATABASE
+value: &amp;#34;off&amp;#34;
+- name: KONG_DECLARATIVE_CONFIG
+value: /kong/declarative/kong.yml
+volumeMounts:
+- mountPath: /kong/declarative/
+name: config
+volumes:
+- name: config
+configMap:
+name: kong
+---
+apiVersion: v1
+kind: Service
+metadata:
+name: kong
+spec:
+ports:
+- port: 8000
+nodePort: 31800
+selector:
+app: kong
+type: NodePort
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+name: kong
+data:
+kong.yml: |
+_format_version: &amp;#34;3.0&amp;#34;
+_transform: true
+services:
+- name: mqtt-logger
+url: http://mqtt-logger
+routes:
+- name: mqtt-logger
+paths:
+- /mqttlogger
+&lt;/code>&lt;/pre>&lt;p>In this example, Kong is configured to proxy requests on /mqttlogger to mqtt-logger, another service deployed in Kubernetes. As such, from Kong, this service can be resolved by CoreDNS at http://mqtt-logger.&lt;/p></description></item><item><title>GitLab Microk8s >1.24 certificate based integration</title><link>https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/</link><pubDate>Fri, 03 Nov 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/</guid><description>&lt;p>With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences&lt;/p>
+&lt;h2 id="ca-certificate">CA certificate&lt;/h2>
+&lt;p>The CA certificate can be obtained directly from the microk8s files:&lt;/p>
+&lt;pre tabindex="0">&lt;code>cat /var/snap/microk8s/current/certs/ca.crt
+&lt;/code>&lt;/pre>&lt;h2 id="access-token">Access Token&lt;/h2>
+&lt;p>As per usual, the RBAC addon must be enabled&lt;/p>
+&lt;pre tabindex="0">&lt;code>micok8s.enable rbac
+&lt;/code>&lt;/pre>&lt;p>Following which, the following manifest can be applied:&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: v1
+kind: ServiceAccount
+metadata:
+name: gitlab
+namespace: kube-system
+---
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/service-account-token
+metadata:
+name: gitlab
+namespace: kube-system
+annotations:
+kubernetes.io/service-account.name: &amp;#34;gitlab&amp;#34;
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+name: gitlab-admin
+roleRef:
+apiGroup: rbac.authorization.k8s.io
+kind: ClusterRole
+name: cluster-admin
+subjects:
+- kind: ServiceAccount
+name: gitlab
+namespace: kube-system
+&lt;/code>&lt;/pre>&lt;p>This creates the access token which can be displayed using:&lt;/p></description></item><item><title>Kubernetes and Docker equivalence</title><link>https://articles.maximemoreillon.com/articles/a3efd0bb-5866-42ef-94fc-596f4923732b/</link><pubDate>Tue, 21 Feb 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/a3efd0bb-5866-42ef-94fc-596f4923732b/</guid><description>&lt;p>Kubernetes is a container orchestration system. As such, it features functions that are similar to that of Docker. If a container can be run with the Docker CLI, it can also be run equivalently using Kubernetes. This articles highlights such equivalence by presenting how to deploy a PostgreSQL instance using both technologies.&lt;/p>
+&lt;h2 id="docker">Docker&lt;/h2>
+&lt;p>Running a PostgreSQL container usually involves the configuration of its environment variables, persistent volumes and port forwarding. With the &lt;code>docker run&lt;/code> command, those are set using the -e, -v and -p flags respectively. The &lt;code>docker run&lt;/code> command also expects the container image to be specified as last argument. As such, running a PostgreSQL instance can be achieved using:&lt;/p></description></item><item><title>Dissecting a Kubernetes manifest</title><link>https://articles.maximemoreillon.com/articles/fff2ffc2-206a-4172-8f6a-528a36d3ec6d/</link><pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/fff2ffc2-206a-4172-8f6a-528a36d3ec6d/</guid><description>&lt;p>Kubernetes manifests can seem quite daunting at first, but it is important to understand that their apparent complexity is simply a result of the large number of customization options. In the end, manifests are used to deploy resources that interact with each other, which, among others, lead to the correct operations of containerized applications. Consequently, resources specified in a manifest must be configured accordingly. This article aims at explaining how manifests are structured to do so.&lt;/p></description></item><item><title>Updating Ingresses to networking.k8s.io/v1</title><link>https://articles.maximemoreillon.com/articles/9366fcf7-0f3d-42de-a807-f36a66137287/</link><pubDate>Fri, 20 Jan 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/9366fcf7-0f3d-42de-a807-f36a66137287/</guid><description>&lt;p>Using Ingress with the extensions/v1beta1 API has been deprecated in Kubernetes 1.14 and will be removed in 1.22. This article presents how to update an existing manifest to the new API, networking.k8s.io/v1.&lt;/p>
+&lt;p>Let&amp;rsquo;s start with an example manifest using the extensions/v1beta api:&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+name: example-ingress
+namespace: example-namespace
+annotations:
+kubernetes.io/ingress.class: nginx
+cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+tls:
+- hosts:
+- example.com
+secretName: example-secret
+rules:
+- host: example.com
+http:
+paths:
+- path: /
+backend:
+serviceName: example-service
+servicePort: 80
+&lt;/code>&lt;/pre>&lt;p>When using the new networking.k8s.io/v1 API, the ingress manifest becomes:&lt;/p></description></item><item><title>OpenProject in Kubernetes</title><link>https://articles.maximemoreillon.com/articles/f268f113-7b61-48ca-94a7-e00c3ab3b6d4/</link><pubDate>Sun, 09 Jan 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/f268f113-7b61-48ca-94a7-e00c3ab3b6d4/</guid><description>&lt;p>OpenProject is an awesome project management application that can be installed on one&amp;rsquo;s own server. This makes it ideal for users who want to keep control over their data. However, at the time of writing this article, OpenProject does not yet provide installation methods for Kubernetes so I decided to write my own manifest files.&lt;/p>
+&lt;p>The manifests can be found on &lt;a href="https://github.com/maximemoreillon/openproject_kubernetes_manifests">GitHub&lt;/a>.&lt;/p></description></item><item><title>Distributing a Helm chart on Artifact Hub</title><link>https://articles.maximemoreillon.com/articles/626/</link><pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/626/</guid><description>&lt;p>Building applications in a microservice architecture has become more and more popular recently. With this design pattern, an application is composed of multiple services that run independently and generally share data across network protocols.&lt;/p>
+&lt;p>An example of such application could be an e-commerce website where users, product inventory or orders are all managed by their own respective independent service.&lt;/p>
+&lt;p>Since all services are independent, deploying an application to Kubernetes involves the deployment of a large amount of resources such as deployments, services, PVCs, which can quickly become tedious if done by hand. To solve this problem, applications can be packaged using Helm, which takes care of deploying all the necessary resources. An application packaged with Helm is called a chart. Similarly to how Docker containers are spawned from container images, in helm, applications are spawned from Helm Charts.&lt;/p></description></item><item><title>Encrypted Mosquitto broker in Kubernetes</title><link>https://articles.maximemoreillon.com/articles/506/</link><pubDate>Tue, 26 Oct 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/506/</guid><description>&lt;p>Note: an updated version of this article has been posted to &lt;a href="https://moreillon.medium.com/encrypted-mosquitto-mqtt-broker-in-kubernetes-26bb7acd11c7">Medium&lt;/a>&lt;/p>
+&lt;p>Mosquitto can usually be installed on an Ubuntu server fairly easily using the APT package manager. By Default, the broker handles unencrypted MQTT connections but it can be configured to use SSL certificates obtained, for example, using Certbot and thus enable MQTTs connections. This configuration is usually achieved by editing the Mosquitto configuration file in /etc/mosquitto so as to point to certificates obtained independently. However, when deploying Mosquitto to Kubernetes, one would prefer not to edit configuration files manually after install. Moreover, in Kubernetes, one can use Cert-manager to obtain SSL certificates. Thus, this article presents an efficient method to deploy a secure MQTTs broker in Kubernetes.&lt;/p></description></item><item><title>Resizing a hostpah-storage PVC and its PV in Microk8s</title><link>https://articles.maximemoreillon.com/articles/567/</link><pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/567/</guid><description>&lt;p>With the storage addon enabled, microk8s can automatically provision a PV when a PVC is created. The size of the PV is set according to that of the PVC. However, PVCs cannot be resized after creation. The PVC could be deleted and recreated with a larger size but this would result in the deletion of the PV and, by extension, all the data stored so far in it. This article presents a workaround to resize a PVC and its corresponding PV without any loss of data.&lt;/p></description></item><item><title>Multi-user MQTT platform</title><link>https://articles.maximemoreillon.com/articles/485/</link><pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/485/</guid><description>&lt;p>Mosquitto is usually the first candidate to come to mind when looking for an MQTT broker. However, by default, Mosquitto manages users using a password file. This makes it difficult to easily add or remove users, especially when the broker is deployed in Kubernetes.&lt;/p>
+&lt;p>I recently stumbled upon the &lt;a href="https://github.com/iegomez/mosquitto-go-auth">mosquitto-go-auth plugin&lt;/a>, which allows for the authentication to be performed by an external service, by connecting to the latter via, for example, HTTP requests.&lt;/p></description></item><item><title>MongoDB K8s manifest</title><link>https://articles.maximemoreillon.com/articles/503/</link><pubDate>Wed, 31 Mar 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/503/</guid><description>&lt;p>Here&amp;rsquo;s a simple manifest to deploy MongoDB with data persistence in microk8s:&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+name: mongo
+namespace: my-namespace
+spec:
+accessModes:
+- ReadWriteOnce
+resources:
+requests:
+storage: 100Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: mongo
+namespace: my-namespace
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: mongo
+template:
+metadata:
+labels:
+app: mongo
+spec:
+containers:
+- name: mongo
+image: mongo
+imagePullPolicy: Always
+ports:
+- containerPort: 27017
+volumeMounts:
+- mountPath: &amp;#34;/data/db&amp;#34;
+name: mongo
+volumes:
+- name: mongo
+persistentVolumeClaim:
+claimName: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+name: mongo
+namespace: my-namespace
+spec:
+ports:
+- port: 27017
+selector:
+app: mongo
+type: ClusterIP
+&lt;/code>&lt;/pre></description></item><item><title>Cert-manager Certificate Issuer</title><link>https://articles.maximemoreillon.com/articles/541/</link><pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/541/</guid><description>&lt;p>With cert-manager installed, SSL certificates can be automatically obtained for Ingresses deployed in a Kubernetes cluster. To achieve this, one must deploy the appropriate ClusterIssuers to the cluster. Here are example manifests to do so.&lt;/p>
+&lt;h2 id="production">Production&lt;/h2>
+&lt;pre tabindex="0">&lt;code># prod_issuer.yaml
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer # Maybe could make it just an issuer for individual apps
+metadata:
+name: letsencrypt-prod
+spec:
+acme:
+# The ACME server URL
+server: https://acme-v02.api.letsencrypt.org/directory
+# Email address used for ACME registration
+email: MY_EMAIL@gmail.com
+# Name of a secret used to store the ACME account private key
+privateKeySecretRef:
+name: letsencrypt-prod
+# Enable the HTTP-01 challenge provider
+solvers:
+- http01:
+ingress:
+class: nginx
+&lt;/code>&lt;/pre>&lt;h2 id="staging">Staging&lt;/h2>
+&lt;pre tabindex="0">&lt;code># staging_issuer.yaml
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+name: letsencrypt-staging
+spec:
+acme:
+# The ACME server URL
+server: https://acme-staging-v02.api.letsencrypt.org/directory
+# Email address used for ACME registration
+email: MY_EMAIL@gmail.com
+# Name of a secret used to store the ACME account private key
+privateKeySecretRef:
+name: letsencrypt-staging
+# Enable the HTTP-01 challenge provider
+solvers:
+- http01:
+ingress:
+class: nginx
+&lt;/code>&lt;/pre></description></item><item><title>K8s NGINX Deployment for Ingress test</title><link>https://articles.maximemoreillon.com/articles/461/</link><pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/461/</guid><description>&lt;p>An NGINX container can be quite useful to test whether one&amp;rsquo;s Kubernetes setup is working. Here is one example manifest file that deploys such container with an appropriate service and ingress.&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: nginx-example
+namespace: example
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: nginx-example
+template:
+metadata:
+labels:
+app: nginx-example
+spec:
+containers:
+- name: nginx-example
+image: nginx
+ports:
+- containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+name: nginx-example
+namespace: example
+spec:
+type: ClusterIP
+selector:
+app: nginx-example
+ports:
+- port: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+name: nginx-example
+namespace: example
+annotations:
+kubernetes.io/ingress.class: &amp;#34;nginx&amp;#34;
+cert-manager.io/cluster-issuer: &amp;#34;letsencrypt-prod&amp;#34;
+spec:
+tls:
+- hosts:
+- YOUR_DOMAIN
+secretName: nginx-example
+rules:
+- host: YOUR_DOMAIN
+http:
+paths:
+- path: /
+backend:
+serviceName: nginx-example
+servicePort: 80
+&lt;/code>&lt;/pre></description></item><item><title>Deploy a Neo4J instance in Kubernetes</title><link>https://articles.maximemoreillon.com/articles/514/</link><pubDate>Sat, 03 Oct 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/514/</guid><description>&lt;p>Using this manifest, a Neo4J instance can be deployed in a Kubernetes cluster&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: v1
+kind: PersistentVolume
+metadata:
+name: neo4j
+labels:
+type: local
+spec:
+capacity:
+storage:
+10Gi
+accessModes:
+- ReadWriteOnce
+hostPath:
+path: &amp;#34;/mnt/kubernetes/neo4j&amp;#34;
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+name: neo4j
+spec:
+storageClassName: manual
+accessModes:
+- ReadWriteOnce
+resources:
+requests:
+storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: neo4j
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: neo4j
+template:
+metadata:
+labels:
+app: neo4j
+spec:
+volumes:
+- name: neo4j
+persistentVolumeClaim:
+claimName: neo4j
+containers:
+- name: neo4j
+image: neo4j
+env:
+- name: NEO4J_AUTH
+value: neo4j/newPassword
+ports:
+- containerPort: 7474 # Browser
+- containerPort: 7687 # Bolt
+volumeMounts:
+- mountPath: &amp;#34;/data&amp;#34;
+name: neo4j
+---
+apiVersion: v1
+kind: Service
+metadata:
+name: neo4j
+spec:
+ports:
+- port: 7474
+nodePort: 30474
+name: http
+- port: 7687
+name: bolt
+nodePort: 30687
+selector:
+app: neo4j
+type: NodePort
+&lt;/code>&lt;/pre></description></item><item><title>Deploying a TensorFlow model on a Jetson Nano using TensorFlow serving and K3s</title><link>https://articles.maximemoreillon.com/articles/70/</link><pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/70/</guid><description>&lt;p>The Nvidia Jetson Nano constitutes a low cost platform for AI applications, ideal for edge computing.However, due to the architecture of its CPU, deploying applications to the SBC can be challenging. In this guide, we&amp;rsquo;ll install and configure K3s, a lightweight kubernetes distribution made specifically for edge devices. Once done we&amp;rsquo;ll build and deploy an TensorFlow model in the K3s cluster.&lt;/p>
+&lt;h2 id="environment-preparation">Environment preparation&lt;/h2>
+&lt;p>Our objective is to deploy a TensorFlow Serving container in a Kubernetes cluster running on the Jetson Nano. Moreover, this container should fully take advantage of the CUDA capabilities of the Nano. Consequently, some preliminary environment preparation is necessary, namely .The following is based on &lt;a href="https://www.virtualthoughts.co.uk/2020/03/24/k3s-and-nvidia-jetson-nano/">this guide&lt;/a>. Additionally this article assumes that the reader has a Docker container registry available to push to and pull from.&lt;/p></description></item><item><title>GitLab CI Microk8s integration</title><link>https://articles.maximemoreillon.com/articles/210/</link><pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/210/</guid><description>&lt;p>&lt;strong>Note&lt;/strong>: This guide applies for Kubernetes versions prior to 1.24. Moreover, Kubernetes integration in GitLab is now achieved via the GitLab agent for Kubernetes. This guide is meant for legacy support.&lt;/p>
+&lt;p>GitLab provides Kubernetes integration out of the box, which means that GitLab CI/CD Pipelines can be used to deploy applications in Kubernetes easily. This guide presents how to integrate a Kubernetes cluster in a GitLab Project and follows &lt;a href="https://docs.gitlab.com/ee/user/project/clusters/add_remove_clusters.html">Gitlab documentation&lt;/a>. For this particular case, the cluster will be that of a &lt;a href="https://microk8s.io/">Microk8s&lt;/a> Kubernetes distribution.&lt;/p></description></item><item><title>Node.js DevOps example</title><link>https://articles.maximemoreillon.com/articles/98/</link><pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/98/</guid><description>&lt;p>In this article, we’ll build a simple &lt;a href="https://nodejs.org/en/">Node.js&lt;/a> application that uses &lt;a href="https://expressjs.com/">Express&lt;/a> to respond to HTTP requests. In order to deploy this application to production, we’ll also configure a &lt;a href="https://docs.gitlab.com/ee/ci/">GitLab CI/CD&lt;/a> pipeline so as to &lt;a href="https://www.docker.com/">dockerize&lt;/a> it and deploy its container to a &lt;a href="https://kubernetes.io/">Kubernetes&lt;/a> cluster.&lt;/p>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;p>This article assumes that the following environment is available to the reader:&lt;/p>
+&lt;ul>
+&lt;li>A development environment with &lt;a href="https://nodejs.org/en/">Node.js&lt;/a> installed.&lt;/li>
+&lt;li>A &lt;a href="https://about.gitlab.com/install/">GitLab&lt;/a> instance with an available &lt;a href="https://docs.gitlab.com/runner/install/">runner&lt;/a> able to run the &lt;em>docker&lt;/em> and &lt;em>kubectl&lt;/em> commands.&lt;/li>
+&lt;li>A production environment with a Kubernetes cluster reachable from the GitLab instance. For this, &lt;a href="https://microk8s.io/">Microk8s&lt;/a> is easy to get started with&lt;/li>
+&lt;li>A &lt;a href="https://docs.docker.com/registry/deploying/">Docker registry&lt;/a> to push and pull containers to and from. Note that running your own registry might require &lt;a href="https://docs.docker.com/registry/insecure/">Docker&lt;/a> and Kubernetes configuration (guide for MicroK8s available &lt;a href="https://microk8s.io/docs/registry-private">here&lt;/a>)&lt;/li>
+&lt;/ul>
+&lt;p>Node.js application&lt;/p></description></item><item><title>Creating a private docker registry for Kubernetes</title><link>https://articles.maximemoreillon.com/articles/421/</link><pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/421/</guid><description>&lt;p>A docker registry can be run easily using as a docker container using docker itself.&lt;/p>
+&lt;pre tabindex="0">&lt;code>docker run -d -p 5000:5000 --restart=always --name registry registry:2
+&lt;/code>&lt;/pre>&lt;p>However, this registry is accessed through HTTP and does not provide any authentication mechanism&lt;/p>
+&lt;p>To solve this problem, the docker registry can be made so as to be accessed via an Ingress with Basic Authentication:&lt;/p>
+&lt;pre tabindex="0">&lt;code>kind: Service
+apiVersion: v1
+metadata:
+name: registry
+spec:
+type: ClusterIP
+ports:
+- port: 5000
+targetPort: 5000
+---
+kind: Endpoints
+apiVersion: v1
+metadata:
+name: registry
+subsets:
+- addresses:
+- ip: 192.168.1.2
+ports:
+- port: 5000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+name: registry
+annotations:
+kubernetes.io/ingress.class: &amp;#34;nginx&amp;#34;
+# Necessary to prevent 413 errors
+nginx.ingress.kubernetes.io/proxy-body-size: &amp;#34;500m&amp;#34;
+nginx/client_max_body_size: 500m
+cert-manager.io/cluster-issuer: &amp;#34;letsencrypt-prod&amp;#34;
+nginx.ingress.kubernetes.io/auth-type: basic
+nginx.ingress.kubernetes.io/auth-secret: registry
+nginx.ingress.kubernetes.io/auth-realm: &amp;#39;Authentication Required&amp;#39;
+spec:
+tls:
+- hosts:
+- registry.example.com
+secretName: registry
+rules:
+- host: registry.example.com
+http:
+paths:
+- path: /
+backend:
+serviceName: registry
+servicePort: 5000
+&lt;/code>&lt;/pre>&lt;p>Here, it is important to specify the maximum body size in the Ingress annotations to prevent 413 Request Entity Too Large errors&lt;/p></description></item><item><title>Securing an ingress with basic auth</title><link>https://articles.maximemoreillon.com/articles/374/</link><pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/374/</guid><description>&lt;p>This article describes how to use basic auth to protect an ingress in Kuberentes. It it &lt;a href="https://kubernetes.github.io/ingress-nginx/examples/auth/basic/">based on this page&lt;/a>.&lt;/p>
+&lt;p>To protect an ingress using basic auth, a secret must be created. The data of this secret can be generated using htpasswd:&lt;/p>
+&lt;pre tabindex="0">&lt;code>htpasswd -c auth myUsername
+&lt;/code>&lt;/pre>&lt;p>Where &lt;code>myUsername&lt;/code> is to be replaced by whatever you want. This creates a filed called &lt;code>auth&lt;/code> in the working directory&lt;/p>
+&lt;p>Kubectl provides a convenient command to automatically turn the content of the auth file into a secret:&lt;/p></description></item><item><title>Generic Kubernetes manifest for web application deployment</title><link>https://articles.maximemoreillon.com/articles/434/</link><pubDate>Sat, 18 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/434/</guid><description>&lt;p>Deployment name, container registry and service port are externalized, making this manifest general-purpose&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: ${APPLICATION_NAME}
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: ${APPLICATION_NAME}
+template:
+metadata:
+labels:
+app: ${APPLICATION_NAME}
+spec:
+containers:
+- name: ${APPLICATION_NAME}
+image: ${CONTAINER_REGISTRY}/${APPLICATION_NAME}
+imagePullPolicy: Always
+ports:
+- containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+labels:
+run: ${APPLICATION_NAME}
+name: ${APPLICATION_NAME}
+spec:
+ports:
+- port: 80
+nodePort: ${SERVICE_PORT}
+selector:
+app: ${APPLICATION_NAME}
+type: LoadBalancer
+&lt;/code>&lt;/pre>&lt;p>Reminder: To parse environment variables in a kubernetes manifest file, use the following:&lt;/p></description></item><item><title>Microk8s manage SSL certificates DNS entries</title><link>https://articles.maximemoreillon.com/articles/89/</link><pubDate>Sat, 18 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/89/</guid><description>&lt;p>From &lt;a href="https://github.com/ubuntu/microk8s/issues/849">https://github.com/ubuntu/microk8s/issues/849&lt;/a>&lt;/p>
+&lt;p>There is a file called &lt;code>/var/snap/microk8s/current/certs/csr.conf.template&lt;/code> where you can add your own domain under the &lt;code>DNS&lt;/code> section:&lt;/p>
+&lt;pre tabindex="0">&lt;code>[ alt_names ]
+DNS.1 = kubernetes
+DNS.2 = kubernetes.default
+DNS.3 = kubernetes.default.svc
+DNS.4 = kubernetes.default.svc.cluster
+DNS.5 = kubernetes.default.svc.cluster.local
+DNS.6 = mydomain.com
+&lt;/code>&lt;/pre></description></item><item><title>Passing variables to Kubernetes manifest</title><link>https://articles.maximemoreillon.com/articles/216/</link><pubDate>Sun, 12 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/216/</guid><description>&lt;p>When using kubectl apply, environment variables in Kubernetes manifests are not parsed. For this to happen, the envsubst command can be used.&lt;/p>
+&lt;pre tabindex="0">&lt;code>envsubst &amp;lt; deployment.yml | kubectl apply -f -
+&lt;/code>&lt;/pre></description></item><item><title>Kubernetes persistent volumes</title><link>https://articles.maximemoreillon.com/articles/312/</link><pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/312/</guid><description>&lt;p>Applications deployed on a Kubernetes cluster run inside containers. As a consequence, their file system is that of the container, which means that if the container is removed, the data it contained is lost.&lt;/p>
+&lt;p>To save data in a more permanent manner, Kubernetes offers persistent volumes (PV). Those volumes can be in various forms but the one of the simplest consist in mounting a directory of the node&amp;rsquo;s file system into the containers.&lt;/p></description></item><item><title>Kubectl pull new version of image without changes to manifest</title><link>https://articles.maximemoreillon.com/articles/307/</link><pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/307/</guid><description>&lt;p>When using kubectl apply using an already applied and unchanged manifest file, nothing happens on the Kubernetes cluster. However, deployments can be configured so as to always pull a new version image upon restart. This is achieved using the, &lt;code>imagePullPolicy: Always&lt;/code> parameter:&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: example
+spec:
+replicas: 3
+selector:
+matchLabels:
+app: example
+template:
+metadata:
+labels:
+app: example
+spec:
+containers:
+- name: example
+image: 192.168.1.2:5000/kubernetes-example:latest
+imagePullPolicy: Always
+ports:
+- containerPort: 12345
+---
+apiVersion: v1
+kind: Service
+metadata:
+labels:
+run: example
+name: example
+spec:
+ports:
+- port: 12345
+nodePort: 30112
+selector:
+app: example
+type: LoadBalancer
+&lt;/code>&lt;/pre>&lt;p>Thus, a new image can be pulled when using the rollout restart command:&lt;/p></description></item><item><title>Gitlab CI commands for TF serving</title><link>https://articles.maximemoreillon.com/articles/302/</link><pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/302/</guid><description>&lt;p>This is an example .gitlab-ci.yml file which can be used to containerize and deploy a tensorflow model&lt;/p>
+&lt;pre tabindex="0">&lt;code>stages:
+- containerize
+- deploy
+variables:
+SERVING_CONTAINER: serving_base
+DOCKER_IMAGE: 192.168.1.2:5000/redblack
+AI_MODEL: redblack
+DEPLOYMENT: redblack
+containerization:
+stage: containerize
+script:
+# Run an empty tensorflow serving container
+- docker run -d --name ${SERVING_CONTAINER} tensorflow/serving
+# Copy the model into the serving container and save it as a new image
+- docker cp ./${AI_MODEL} ${SERVING_CONTAINER}:/models/${AI_MODEL}
+- docker commit --change &amp;#34;ENV MODEL_NAME ${AI_MODEL}&amp;#34; serving_base ${DOCKER_IMAGE}
+# Push the container to the registry
+- docker push ${DOCKER_IMAGE}
+# Cleanup
+- docker stop ${SERVING_CONTAINER}
+- docker container rm ${SERVING_CONTAINER}
+- docker image rm ${DOCKER_IMAGE}
+deployment:
+stage: deploy
+script:
+- kubectl apply -f deployment.yml
+- kubectl rollout restart deployment/${DEPLOYMENT}
+environment:
+name: staging
+&lt;/code>&lt;/pre></description></item><item><title>Kubectl create deplpoyment and service at same time</title><link>https://articles.maximemoreillon.com/articles/301/</link><pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/301/</guid><description>&lt;p>Simply add entries for both the deployment and the service in the same manifest, separeted by &amp;mdash;&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: helloserver
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: helloserver
+template:
+metadata:
+labels:
+app: helloserver
+spec:
+containers:
+- name: helloserver
+image: 192.168.1.2:5000/helloserver:latest
+ports:
+- containerPort: 3333
+---
+apiVersion: v1
+kind: Service
+metadata:
+labels:
+run: helloserver
+name: helloserver
+spec:
+ports:
+- port: 3333
+nodePort: 33333
+selector:
+app: helloserver
+type: LoadBalancer
+&lt;/code>&lt;/pre></description></item><item><title>Minikube using insecure registry</title><link>https://articles.maximemoreillon.com/articles/360/</link><pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/360/</guid><description>&lt;p>By default, Minikube will not allow the usage of insecure docker registries. To change this setting, Minikube can be started as so:&lt;/p>
+&lt;p>Argument &amp;ndash;insecure registry can be used&lt;/p>
+&lt;pre tabindex="0">&lt;code>minikube start --insecure-registry=&amp;#34;http://192.168.1.2:5000&amp;#34;
+&lt;/code>&lt;/pre>&lt;p>Here, replace http://192.168.1.2 with the URL of the registry&lt;/p>
+&lt;p>For bare-metal (requires sudo):&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo minikube start --insecure-registry=&amp;#34;http://192.168.1.2:5000&amp;#34; --vm-driver=none
+&lt;/code>&lt;/pre>&lt;p>Note: if Minikube had already been started without the insecure-registry option, it must be stopped and recreated:&lt;/p>
+&lt;pre tabindex="0">&lt;code>minikube stop
+minikube delete
+&lt;/code>&lt;/pre></description></item><item><title>kubectl basics</title><link>https://articles.maximemoreillon.com/articles/356/</link><pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/356/</guid><description>&lt;p>Here are some of the basic kubectl commands.&lt;/p>
+&lt;h2 id="installation">Installation&lt;/h2>
+&lt;pre tabindex="0">&lt;code>sudo apt-get update &amp;amp;&amp;amp; sudo apt-get install -y apt-transport-https
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo &amp;#34;deb https://apt.kubernetes.io/ kubernetes-xenial main&amp;#34; | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
+&lt;/code>&lt;/pre>&lt;h2 id="usage">Usage&lt;/h2>
+&lt;p>Simple commands to get an overview of the cluster&lt;/p>
+&lt;pre tabindex="0">&lt;code>kubectl cluster-info
+kubectl get nodes
+&lt;/code>&lt;/pre>&lt;h3 id="deployments">Deployments&lt;/h3>
+&lt;p>Create a deployment:&lt;/p>
+&lt;pre tabindex="0">&lt;code>kubectl create deployment POD_NAME --image=IMAGE_NAME
+&lt;/code>&lt;/pre>&lt;p>IMAGE&lt;em>NAME and POD&lt;/em>NAME must not contain underscores. Replace by hyphens.&lt;/p></description></item></channel></rss>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/git/</link><description>Recent content in Git on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 08 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>Combining two independent git repositories</title><link>https://articles.maximemoreillon.com/articles/314ebc9c-796a-4fbf-a4e4-c0c99fad0343/</link><pubDate>Tue, 08 Mar 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/314ebc9c-796a-4fbf-a4e4-c0c99fad0343/</guid><description>&lt;p>This article presents how to combine two independent and unrelated git repositories.&lt;/p>
+&lt;p>First, clone the first repository locally and cd into it.&lt;/p>
+&lt;pre tabindex="0">&lt;code>git clone URL_TO_REMOTE_1
+&lt;/code>&lt;/pre>&lt;p>Create a branch off the first remote&lt;/p>
+&lt;pre tabindex="0">&lt;code>git checkout -b master-2
+&lt;/code>&lt;/pre>&lt;p>In order to merge a completely independent repository into the current one, &lt;strong>delete&lt;/strong> the content of the folder apart from the .git folder. Once done, commit the changes:&lt;/p>
+&lt;pre tabindex="0">&lt;code>git commit -m &amp;#39;prepared for combining repositories&amp;#39;
+&lt;/code>&lt;/pre>&lt;p>Add the remote of the second repository&lt;/p></description></item><item><title>Git store credentials</title><link>https://articles.maximemoreillon.com/articles/380/</link><pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/380/</guid><description>&lt;p>Having to enter one&amp;rsquo;s credentials for every push to a remote can be annoying. Here is to have git save those credentials for future uses.&lt;/p>
+&lt;pre tabindex="0">&lt;code>git config --global credential.helper store
+&lt;/code>&lt;/pre></description></item></channel></rss>

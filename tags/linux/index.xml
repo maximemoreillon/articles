@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/linux/</link><description>Recent content in Linux on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 03 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Persistent HDD APM settings</title><link>https://articles.maximemoreillon.com/articles/b18a20dc-6916-484c-95c6-858b2c6b98ac/</link><pubDate>Wed, 03 Jan 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/b18a20dc-6916-484c-95c6-858b2c6b98ac/</guid><description>&lt;p>An HDD can be configured to spin down after a certain time via the APM settings which can be managed by smartctl. For example&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo smartctl --set=apm,63 /dev/sdb
+&lt;/code>&lt;/pre>&lt;p>configures the disk sdb to spin down afout about 5 minutes of inactivity.&lt;/p>
+&lt;p>Unfortunately, those settings do not persist after a reboot. To achieve persistence on systems with systemd installed, the following sdb-apm.service service file can be created in /etc/systemd/system/&lt;/p>
+&lt;pre tabindex="0">&lt;code>[Unit]
+Description=/dev/sdb apm settings
+[Service]
+ExecStart=/usr/sbin/smartctl --set=apm,63 /dev/sdb
+[Install]
+WantedBy=multi-user.target
+&lt;/code>&lt;/pre>&lt;p>After enabling the service with&lt;/p></description></item><item><title>LAMP</title><link>https://articles.maximemoreillon.com/articles/170/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/170/</guid><description>&lt;p>This tutorial explains how to setup a Linux, Apache, MariaDB, PHP (LAMP), server.&lt;/p>
+&lt;h2 id="apache-2">Apache 2&lt;/h2>
+&lt;p>Opening an web browser and entering a computer&amp;rsquo;s IP in the URL bar is likely not to result in anything. This is because the computer isn&amp;rsquo;t equipped with any software designed to handle requests from the web browser. A web server must be running of the computer so as to serve webpages in response to requests from a web browser. The two most popular web servers currently are Apache 2 and NGINX. This tutorial explains how to install the former. Apache can be installed using apt-get:&lt;/p></description></item><item><title>Odroid XU4 server</title><link>https://articles.maximemoreillon.com/articles/390/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/390/</guid><description>&lt;p>Having one&amp;rsquo;s own server provides the ability to run web services 24/7. However, having a computer running all the time can significantly increase one&amp;rsquo;s electricity bill. The objective of this project was to build a low power home server capable of running common software (Apache, Node.js, etc.) while only consuming little power.&lt;/p>
+&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e786dc16f2c2af38919cad2" alt="">&lt;/p>
+&lt;p>For this purpose the Odroid XU4 was a great candidate: It runs Ubuntu and is more than powerful enough to run as a web server while drawing less than 20W. Additionally, it comes with USB3.0 ports, great for applications requiring file storage with decent speeds.&lt;/p></description></item><item><title>Samba</title><link>https://articles.maximemoreillon.com/articles/172/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/172/</guid><description>&lt;p>Samba is a piece of software used to share directories over a network. Directories shared using samba appear as network folders on the file manager of computers that are on the same network.&lt;/p>
+&lt;h2 id="samba-installation">Samba installation&lt;/h2>
+&lt;p>samba can be installed easily using apt:&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo apt-get install samba
+&lt;/code>&lt;/pre>&lt;h2 id="samba-configuration">Samba configuration&lt;/h2>
+&lt;p>Samba is configured using the &lt;code>/etc/samba/smb.conf&lt;/code> file&lt;/p>
+&lt;p>Here is an example configuration file that shares the directory /mnt/hdd/samba_shares, belonging to user myusername&lt;/p>
+&lt;pre tabindex="0">&lt;code>[MY SHARED DIRECTORY]
+valid users = myusername
+writable = yes
+path = /mnt/hdd/samba_shares
+comment = My shared directory
+&lt;/code>&lt;/pre>&lt;p>Because permissions don&amp;rsquo;t work the same way between Linux and Windows, the line valid &lt;em>users = myusername&lt;/em> ensures the files can only be accessed by &lt;em>username&lt;/em>. This option requires myusername to be a registered user of samba. This can be done with the following shell command:&lt;/p></description></item><item><title>Serving web applications with Apache</title><link>https://articles.maximemoreillon.com/articles/173/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/173/</guid><description>&lt;p>Let&amp;rsquo;s imagine we have a server with Apache2 listening on port 80. Since port 80 is used, other web apps, developed for example with Node.js, must use another port. Consequently, one would need to open a new port on one&amp;rsquo;s router every time a new app is developed.&lt;/p>
+&lt;p>To solve this problem, Apache can be set to redirect requests to other destinations than itself. In other words, Apache serves as a reverse proxy.&lt;/p></description></item><item><title>systemd</title><link>https://articles.maximemoreillon.com/articles/169/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/169/</guid><description>&lt;p>Let&amp;rsquo;s imagine the file server.js which, when executed by Node.js, serves web pages to connecting clients. A trivial way to execute server.js using NodeJS would be to run the following bash command in a terminal:&lt;/p>
+&lt;pre tabindex="0">&lt;code>node server.js
+&lt;/code>&lt;/pre>&lt;p>Here, Node.js will execute server.js as long as the user does not interrupt the process with Ctrl-C or ends the bash session.&lt;/p>
+&lt;p>However, this last point can cause problems. What if we want to continue serving web pages even after exiting the bash session? Basically, what we want is server.js to be executed in the background. A method to do so is to execute of server.js as a service.&lt;/p></description></item><item><title>Users and groups in Linux</title><link>https://articles.maximemoreillon.com/articles/171/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/171/</guid><description>&lt;h2 id="adding-user">Adding user&lt;/h2>
+&lt;p>In linux, or at least Ubuntu, a user can be added using:&lt;/p>
+&lt;pre tabindex="0">&lt;code>adduser username
+&lt;/code>&lt;/pre>&lt;p>&lt;code>adduser&lt;/code> is a user-friendly command that uses &lt;code>useradd&lt;/code> as back-end. Thus, &lt;code>adduser&lt;/code> should be prefered to &lt;code>useradd&lt;/code>.&lt;/p>
+&lt;h2 id="adding-user-to-a-group">Adding user to a group&lt;/h2>
+&lt;p>A user can be added to a group using:&lt;/p>
+&lt;pre tabindex="0">&lt;code>adduser username groupname
+&lt;/code>&lt;/pre>&lt;p>This can be used to allow users to use sudo:&lt;/p>
+&lt;pre tabindex="0">&lt;code>adduser username sudo
+&lt;/code>&lt;/pre></description></item><item><title>Managing disks in Linux</title><link>https://articles.maximemoreillon.com/articles/277/</link><pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/277/</guid><description>&lt;p>Hard disk drives (HDDs) and Solid state drives (SSDs) are currently the most widespread high capacity storage devices. When such a drive is connected to a computer running Linux, it can be found in the device directory &lt;em>/dev/&lt;/em> under the name &lt;em>sdX&lt;/em>, where &lt;em>X&lt;/em> is a letter changing for each drive.&lt;/p>
+&lt;h2 id="partitions">Partitions&lt;/h2>
+&lt;p>The memory of a HDD can be split into multiple partitions. This can be useful to install several operating systems on a single HDD. In Linux, partitions are listed by adding a number after the drive name. Thus, the 3rd partition of the drive &lt;em>sdb&lt;/em> can be found at &lt;em>/dev/sdb3&lt;/em>. Drives and partitions can be listed using the fdisk tool with root privileges, using the option &lt;em>l&lt;/em>:&lt;/p></description></item><item><title>HDD preparation</title><link>https://articles.maximemoreillon.com/articles/325/</link><pubDate>Mon, 30 Dec 2019 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/325/</guid><description>&lt;p>Here are the steps to prepare a brand new hard drive and install a file system on it.&lt;/p>
+&lt;h2 id="setting-up-partitions">Setting up partitions&lt;/h2>
+&lt;p>Partitions can be managed using parted:&lt;/p>
+&lt;pre tabindex="0">&lt;code>sudo parted
+&lt;/code>&lt;/pre>&lt;h3 id="creating-a-partition-table">Creating a partition table&lt;/h3>
+&lt;p>A partition table stores information about the partitions of the drive. It can be created using:&lt;/p>
+&lt;pre tabindex="0">&lt;code>mklabel
+&lt;/code>&lt;/pre>&lt;p>GPT is the current standard for label types.&lt;/p>
+&lt;pre tabindex="0">&lt;code>New disk label type? gpt
+&lt;/code>&lt;/pre>&lt;h3 id="creating-a-partition">Creating a partition&lt;/h3>
+&lt;p>The command mkpart can be used to create partitions on the disk&lt;/p></description></item><item><title>Mosquitto</title><link>https://articles.maximemoreillon.com/articles/315/</link><pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/315/</guid><description>&lt;p>Mosquitto is an open source message broker that implements the MQTT protocol. It is lightweight and is suitable for use on all devices from low power single board computers to full servers.&lt;/p>
+&lt;h2 id="installation">Installation&lt;/h2>
+&lt;pre tabindex="0">&lt;code>sudo apt install mosquitto mosquitto-clients
+&lt;/code>&lt;/pre>&lt;h2 id="setup">Setup&lt;/h2>
+&lt;p>Place a .conf file in /etc/mosquitto/conf.d&lt;/p>
+&lt;h3 id="setting-up-a-listener">Setting up a listener&lt;/h3>
+&lt;pre tabindex="0">&lt;code>listener 1883
+protocol mqtt
+&lt;/code>&lt;/pre>&lt;p>Also available for websockets:&lt;/p>
+&lt;pre tabindex="0">&lt;code>listener 9001
+protocol websockets
+&lt;/code>&lt;/pre>&lt;h3 id="setting-up-authentication">Setting up authentication&lt;/h3>
+&lt;pre tabindex="0">&lt;code>allow_anonymous false
+password_file /etc/mosquitto/passwd
+&lt;/code>&lt;/pre>&lt;p>the file /etc/mosquitto/passwd can be created using an utility provided by mosquitto (run as root):&lt;/p></description></item></channel></rss>

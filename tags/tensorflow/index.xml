@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TensorFlow on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/tensorflow/</link><description>Recent content in TensorFlow on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 27 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/tensorflow/index.xml" rel="self" type="application/rss+xml"/><item><title>Deployment of a TensorFlow model to Kubernetes</title><link>https://articles.maximemoreillon.com/articles/371/</link><pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/371/</guid><description>&lt;p>Let’s imagine that you’ve just finished training your new TensorFlow model and want to start using it in your application(s). One obvious way to do so is to simply import it in the source code of every application that uses it. However, it might be more versatile to keep your model in one place as standalone and simply have applications exchange data with it through API calls. This article will go through the steps of building such a system and deploy the result to Kubernetes.&lt;/p></description></item><item><title>Tensorflow 1.X basics</title><link>https://articles.maximemoreillon.com/articles/236/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/236/</guid><description>&lt;p>Here are the basics steps necessary to write TensorFlow code.&lt;/p>
+&lt;p>Note that this is for &lt;strong>TensorFlow 1.X&lt;/strong>&lt;/p>
+&lt;h2 id="define-constants">Define constants&lt;/h2>
+&lt;pre tabindex="0">&lt;code>a = tf.constant(5.0)
+&lt;/code>&lt;/pre>&lt;h2 id="define-variables">Define variables&lt;/h2>
+&lt;pre tabindex="0">&lt;code>x = tf.Variable(init_value)
+&lt;/code>&lt;/pre>&lt;h2 id="define-placeholders">Define placeholders&lt;/h2>
+&lt;pre tabindex="0">&lt;code>p = tf.placeholder(tf.float32)
+&lt;/code>&lt;/pre>&lt;h2 id="define-operations">Define operations&lt;/h2>
+&lt;pre tabindex="0">&lt;code>c = x * x
+&lt;/code>&lt;/pre>&lt;h2 id="define-way-to-measure-loss">Define way to measure loss&lt;/h2>
+&lt;pre tabindex="0">&lt;code>loss=tf.reduce_mean(tf.square(output - y))
+&lt;/code>&lt;/pre>&lt;h2 id="define-optimizer">Define optimizer&lt;/h2>
+&lt;pre tabindex="0">&lt;code>optimizer = tf.train.AdamOptimizer(learning_rate)
+&lt;/code>&lt;/pre>&lt;h2 id="apply-optimizer-to-loss-function">Apply optimizer to loss function&lt;/h2>
+&lt;pre tabindex="0">&lt;code>train = optimizer.minimize(loss)
+&lt;/code>&lt;/pre>&lt;h2 id="init-variables">init variables&lt;/h2>
+&lt;pre tabindex="0">&lt;code>init = tf.globalvariablesinitializer()
+&lt;/code>&lt;/pre>&lt;h2 id="run-everything-in-a-session">Run everything in a session&lt;/h2>
+&lt;pre tabindex="0">&lt;code>with tf.Session() as sess:
+sess.run(init)
+for epoch in range(epoch_count):
+sess.run(train, feed_dict={&amp;lt;feedDictHere})
+&lt;/code>&lt;/pre></description></item><item><title>Gitlab CI commands for TF serving</title><link>https://articles.maximemoreillon.com/articles/302/</link><pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/302/</guid><description>&lt;p>This is an example .gitlab-ci.yml file which can be used to containerize and deploy a tensorflow model&lt;/p>
+&lt;pre tabindex="0">&lt;code>stages:
+- containerize
+- deploy
+variables:
+SERVING_CONTAINER: serving_base
+DOCKER_IMAGE: 192.168.1.2:5000/redblack
+AI_MODEL: redblack
+DEPLOYMENT: redblack
+containerization:
+stage: containerize
+script:
+# Run an empty tensorflow serving container
+- docker run -d --name ${SERVING_CONTAINER} tensorflow/serving
+# Copy the model into the serving container and save it as a new image
+- docker cp ./${AI_MODEL} ${SERVING_CONTAINER}:/models/${AI_MODEL}
+- docker commit --change &amp;#34;ENV MODEL_NAME ${AI_MODEL}&amp;#34; serving_base ${DOCKER_IMAGE}
+# Push the container to the registry
+- docker push ${DOCKER_IMAGE}
+# Cleanup
+- docker stop ${SERVING_CONTAINER}
+- docker container rm ${SERVING_CONTAINER}
+- docker image rm ${DOCKER_IMAGE}
+deployment:
+stage: deploy
+script:
+- kubectl apply -f deployment.yml
+- kubectl rollout restart deployment/${DEPLOYMENT}
+environment:
+name: staging
+&lt;/code>&lt;/pre></description></item><item><title>Serving a Keras model using Tensorflow serving and Docker</title><link>https://articles.maximemoreillon.com/articles/297/</link><pubDate>Wed, 29 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/297/</guid><description>&lt;p>A Keras model can be created in various ways, for example using the &lt;a href="https://keras.io/getting-started/sequential-model-guide/">sequential model&lt;/a>:&lt;/p>
+&lt;pre tabindex="0">&lt;code>from keras.models import Sequential
+from keras.layers import Dense, Activation
+model = Sequential([
+Dense(32, input_shape=(784,)),
+Activation(&amp;#39;relu&amp;#39;),
+Dense(10),
+Activation(&amp;#39;softmax&amp;#39;),
+])
+&lt;/code>&lt;/pre>&lt;p>Such model can be saved using the save() function:&lt;/p>
+&lt;pre tabindex="0">&lt;code>model.save(&amp;#39;./my_model/1&amp;#39;)
+&lt;/code>&lt;/pre>&lt;p>Here, the /1 at the end of the path is important for later.&lt;/p>
+&lt;p>The model will be run inside a docker container. To do so, first download and run an &amp;ldquo;empty&amp;rdquo; serving container which will serve as a base:&lt;/p></description></item></channel></rss>

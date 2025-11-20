@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/c/</link><description>Recent content in C on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 18 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/c/index.xml" rel="self" type="application/rss+xml"/><item><title>Some C concepts</title><link>https://articles.maximemoreillon.com/articles/207/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/207/</guid><description>&lt;p>C is widely considered to be a difficult programming language. Here are various code snippets to help make some sense of it.&lt;/p>
+&lt;h2 id="hello-world">Hello world&lt;/h2>
+&lt;p>Here is the traditional Hello World in C:&lt;/p>
+&lt;pre tabindex="0">&lt;code>#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+// printf() displays the string inside quotation
+printf(&amp;#34;Hello, World!&amp;#34;);
+return 0;
+}
+&lt;/code>&lt;/pre>&lt;h2 id="typedef">Typedef&lt;/h2>
+&lt;p>Is used to define a new type.&lt;/p>
+&lt;p>for example:&lt;/p>
+&lt;pre tabindex="0">&lt;code>typedef unsigned int natural;
+&lt;/code>&lt;/pre>&lt;p>defines natural as unsigned int&lt;/p>
+&lt;p>then a natural variable can be declared as:&lt;/p></description></item></channel></rss>

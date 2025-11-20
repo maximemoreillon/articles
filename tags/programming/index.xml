@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Programming on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/programming/</link><description>Recent content in Programming on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 18 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/programming/index.xml" rel="self" type="application/rss+xml"/><item><title>Python list slicing</title><link>https://articles.maximemoreillon.com/articles/131/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/131/</guid><description>&lt;p>Here are a few useful features of Python when dealing with lists (Arrays):&lt;/p>
+&lt;pre tabindex="0">&lt;code>a[::-1] # all items in the array, reversed
+a[1::-1] # the first two items, reversed
+a[:-3:-1] # the last two items, reversed
+a[-3::-1] # everything except the last two items, reversed
+&lt;/code>&lt;/pre></description></item><item><title>Some C concepts</title><link>https://articles.maximemoreillon.com/articles/207/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/207/</guid><description>&lt;p>C is widely considered to be a difficult programming language. Here are various code snippets to help make some sense of it.&lt;/p>
+&lt;h2 id="hello-world">Hello world&lt;/h2>
+&lt;p>Here is the traditional Hello World in C:&lt;/p>
+&lt;pre tabindex="0">&lt;code>#include &amp;lt;stdio.h&amp;gt;
+int main()
+{
+// printf() displays the string inside quotation
+printf(&amp;#34;Hello, World!&amp;#34;);
+return 0;
+}
+&lt;/code>&lt;/pre>&lt;h2 id="typedef">Typedef&lt;/h2>
+&lt;p>Is used to define a new type.&lt;/p>
+&lt;p>for example:&lt;/p>
+&lt;pre tabindex="0">&lt;code>typedef unsigned int natural;
+&lt;/code>&lt;/pre>&lt;p>defines natural as unsigned int&lt;/p>
+&lt;p>then a natural variable can be declared as:&lt;/p></description></item><item><title>Swift basics</title><link>https://articles.maximemoreillon.com/articles/202/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/202/</guid><description>&lt;p>Here are some of the basis of the Swift programming language&lt;/p>
+&lt;h2 id="comments">Comments&lt;/h2>
+&lt;p>Comments are written using &lt;code>//&lt;/code>, Similar to C/C++:&lt;/p>
+&lt;pre tabindex="0">&lt;code>// This is a comment
+&lt;/code>&lt;/pre>&lt;h2 id="constants">Constants&lt;/h2>
+&lt;p>Constants are declared using the let keyword:&lt;/p>
+&lt;pre tabindex="0">&lt;code>let myConstant:Int = 1
+&lt;/code>&lt;/pre>&lt;h2 id="variables">Variables&lt;/h2>
+&lt;p>Swift is a strongly typed language. Variables are declared using the &lt;code>var&lt;/code> keyword as following this syntax:&lt;/p>
+&lt;pre tabindex="0">&lt;code>var variableName:String = &amp;#39;Hello&amp;#39;
+&lt;/code>&lt;/pre>&lt;h2 id="loops">Loops&lt;/h2>
+&lt;p>Here is an example of a for loop:&lt;/p>
+&lt;pre tabindex="0">&lt;code>for i in 1...5{
+// do something
+}
+&lt;/code>&lt;/pre>&lt;h2 id="functions">Functions&lt;/h2>
+&lt;p>Functions are defined using the &lt;code>func&lt;/code> keyword. The type of the function parameters and its return values must be defined. Note that a function can have multiple return values.&lt;/p></description></item><item><title>Javascript self-executing functions</title><link>https://articles.maximemoreillon.com/articles/369/</link><pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/369/</guid><description>&lt;p>In Javascript, a function can be defined as so:&lt;/p>
+&lt;pre tabindex="0">&lt;code>var myFunction = function(){
+console.log(&amp;#39;hello world&amp;#39;)
+}
+&lt;/code>&lt;/pre>&lt;p>This function can be called using brackets as so:&lt;/p>
+&lt;pre tabindex="0">&lt;code>myFunction()
+&lt;/code>&lt;/pre>&lt;p>which would print &lt;code>hello world&lt;/code>in the console.&lt;/p>
+&lt;p>Sometimes, naming a function might not be necessary, for example if the function is just called once within the code. In such case, the function can be made self-executing using wrapping brackets:&lt;/p>
+&lt;pre tabindex="0">&lt;code>(function(){
+console.log(&amp;#39;hello world&amp;#39;)
+})()
+&lt;/code>&lt;/pre></description></item></channel></rss>
