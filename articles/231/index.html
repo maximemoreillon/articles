@@ -1,32 +1,241 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=content-type content="text/html"><meta name=viewport content="width=device-width,initial-scale=1"><title itemprop=name>CSS basics | Maxime Moreillon</title><meta property="og:title" content="CSS basics | Maxime Moreillon"><meta name=twitter:title content="CSS basics | Maxime Moreillon"><meta itemprop=name content="CSS basics | Maxime Moreillon"><meta name=application-name content="CSS basics | Maxime Moreillon"><meta property="og:site_name" content><meta name=description content><meta itemprop=description content><meta property="og:description" content><meta name=twitter:description content><meta property="og:locale" content="en-us"><meta name=language content="en-us"><link rel=alternate hreflang=en href=https://articles.maximemoreillon.com/articles/231/ title><meta name=generator content="Hugo 0.147.8"><meta property="og:url" content="https://articles.maximemoreillon.com/articles/231/"><meta property="og:site_name" content="Maxime Moreillon"><meta property="og:title" content="CSS basics"><meta property="og:description" content="HTML defines the content of a web page but not its aesthetics. Styling a document is achieved using CSS, which stands for Cascading Style Sheet and is another language that web browsers can interpret.
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">CSS basics | Maxime Moreillon</title>
+<meta property="og:title" content="CSS basics | Maxime Moreillon" />
+<meta name="twitter:title" content="CSS basics | Maxime Moreillon" />
+<meta itemprop="name" content="CSS basics | Maxime Moreillon" />
+<meta name="application-name" content="CSS basics | Maxime Moreillon" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/231/" title="" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.147.8">
+
+    
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/231/">
+  <meta property="og:site_name" content="Maxime Moreillon">
+  <meta property="og:title" content="CSS basics">
+  <meta property="og:description" content="HTML defines the content of a web page but not its aesthetics. Styling a document is achieved using CSS, which stands for Cascading Style Sheet and is another language that web browsers can interpret.
 Inline CSS The simplest way to style elements of an HTML document is to add the “style” property in the HTML tag. For example:
-<p style='color:blue;'>This is a paragraph and it is blue</p> property:value is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="articles"><meta property="article:published_time" content="2020-03-10T00:00:00+00:00"><meta property="article:modified_time" content="2020-03-10T00:00:00+00:00"><meta property="article:tag" content="Tutorials"><meta property="article:tag" content="CSS"><meta property="article:tag" content="Web"><meta name=twitter:card content="summary"><meta name=twitter:title content="CSS basics"><meta name=twitter:description content="HTML defines the content of a web page but not its aesthetics. Styling a document is achieved using CSS, which stands for Cascading Style Sheet and is another language that web browsers can interpret.
+&lt;p style=&#39;color:blue;&#39;&gt;This is a paragraph and it is blue&lt;/p&gt; property:value is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2020-03-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-03-10T00:00:00+00:00">
+    <meta property="article:tag" content="Tutorials">
+    <meta property="article:tag" content="CSS">
+    <meta property="article:tag" content="Web">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CSS basics">
+  <meta name="twitter:description" content="HTML defines the content of a web page but not its aesthetics. Styling a document is achieved using CSS, which stands for Cascading Style Sheet and is another language that web browsers can interpret.
 Inline CSS The simplest way to style elements of an HTML document is to add the “style” property in the HTML tag. For example:
-<p style='color:blue;'>This is a paragraph and it is blue</p> property:value is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:"><link rel=canonical href=https://articles.maximemoreillon.com/articles/231/><link href=/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css rel=stylesheet><link href=/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css rel=stylesheet><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/icons/favicon-16x16.png><link rel=mask-icon href=/icons/safari-pinned-tab.svg><link rel="shortcut icon" href=/favicon.ico><link rel=manifest href=https://articles.maximemoreillon.com/site.webmanifest><meta name=msapplication-config content="/browserconfig.xml"><meta name=msapplication-TileColor content="#2d89ef"><meta name=theme-color content="#434648"><meta name=color-scheme content="light dark"><link rel=icon type=image/svg+xml href=/icons/favicon.svg></head><body data-theme class=notransition><script src=/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script><div class=navbar role=navigation><nav class=menu aria-label="Main Navigation"><a href=https://articles.maximemoreillon.com/ class=logo><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><title/><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-</a><input type=checkbox id=menu-trigger class=menu-trigger>
-<label for=menu-trigger><span class=menu-icon><svg width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7H3.40726"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M.5 12.5V1.5c0-.552285.447715-1 1-1h11C13.0523.5 13.5.947715 13.5 1.5v11C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C.947715 13.5.5 13.0523.5 12.5z"/></svg></span></label><div class=trigger><ul class=trigger-container><li><a class=menu-link href=/>Home</a></li><li><a class="menu-link active" href=/articles/>Articles</a></li><li><a class=menu-link href=/tags/>Tags</a></li><li class=menu-separator><span>|</span></li></ul><a id=mode href=#><svg class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
-<svg class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg></a></div></nav></div><div class="wrapper post"><main class=page-content aria-label=Content><article><header class=header><h1 class=header-title>CSS basics</h1><div class=post-meta><time datetime=2020-03-10T00:00:00+00:00 itemprop=datePublished>Mar 10, 2020</time></div></header><div class=page-content><p>HTML defines the content of a web page but not its aesthetics. Styling a document is achieved using CSS, which stands for Cascading Style Sheet and is another language that web browsers can interpret.</p><h2 id=inline-css>Inline CSS</h2><p>The simplest way to style elements of an HTML document is to add the &ldquo;style&rdquo; property in the HTML tag. For example:</p><pre tabindex=0><code>&lt;p style=&#39;color:blue;&#39;&gt;This is a paragraph and it is blue&lt;/p&gt;
-</code></pre><p><strong>property:value</strong> is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:</p><pre tabindex=0><code>&lt;p style=&#39;color:blue;background-color:lightgreen;&#39;&gt;This is a paragraph and it is blue with a light green background&lt;/p&gt;
-</code></pre><h2 id=css-in-head>CSS in head</h2><p>The approach presented previously can quickly become tedious for great amounts of elements to style. To apply a style to multiple elements at once, the styling rule can be written in the head of the document within the <code>&lt;style></code> tag. For example, all links can be turned green using the following code nested in the document head:</p><pre tabindex=0><code>a {
+&lt;p style=&#39;color:blue;&#39;&gt;This is a paragraph and it is blue&lt;/p&gt; property:value is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:">
+
+
+    
+
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/231/">
+    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://articles.maximemoreillon.com/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+    <meta name="color-scheme" content="light dark">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://articles.maximemoreillon.com/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/articles/">
+                        Articles
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">CSS basics</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2020-03-10T00:00:00&#43;00:00" itemprop="datePublished"> Mar 10, 2020 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>HTML defines the content of a web page but not its aesthetics. Styling a document is achieved using CSS, which stands for Cascading Style Sheet and is another language that web browsers can interpret.</p>
+<h2 id="inline-css">Inline CSS</h2>
+<p>The simplest way to style elements of an HTML document is to add the &ldquo;style&rdquo; property in the HTML tag. For example:</p>
+<pre tabindex="0"><code>&lt;p style=&#39;color:blue;&#39;&gt;This is a paragraph and it is blue&lt;/p&gt;
+</code></pre><p><strong>property:value</strong> is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:</p>
+<pre tabindex="0"><code>&lt;p style=&#39;color:blue;background-color:lightgreen;&#39;&gt;This is a paragraph and it is blue with a light green background&lt;/p&gt;
+</code></pre><h2 id="css-in-head">CSS in head</h2>
+<p>The approach presented previously can quickly become tedious for great amounts of elements to style. To apply a style to multiple elements at once, the styling rule can be written in the head of the document within the <code>&lt;style&gt;</code> tag. For example, all links can be turned green using the following code nested in the document head:</p>
+<pre tabindex="0"><code>a {
     color: red;
 }
-</code></pre><p>In this example, the links of the document are targeted by the selector <code>a</code> and the corresponding styling rules are put in brackets. Multiple styling rules and targets can be set in similar fashion:</p><pre tabindex=0><code>a {
+</code></pre><p>In this example, the links of the document are targeted by the selector <code>a</code> and the corresponding styling rules are put in brackets. Multiple styling rules and targets can be set in similar fashion:</p>
+<pre tabindex="0"><code>a {
     color: red;
     font-size: 25px;
 }
 p {
     background-color: pink;
 }
-</code></pre><h2 id=external-css>External CSS</h2><p>Having the CSS in the document head allows to style multiple elements of a document at once. However, websites are often composed of multiple documents. Copying the styles into every one of those would create unnecessary redundancy and make maintenance troublesome. If CSS code is to be shared by multiple documents, it can be put in an external .css file and linked in all relevant documents using:</p><pre tabindex=0><code>&lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;styles.css&#34;&gt;
-</code></pre><p>where styles.css is the document containing the styling rules. It is important to note that styles.css has to contain only CSS, i.e. no <code>&lt;style></code> tags.</p><h2 id=selectors>Selectors</h2><h3 id=classes>Classes</h3><p>Selecting elements to style using their tag can be fairly limiting: What if there were two classes of links and one class should be red while the other should be green? HTML tags can hold a class property. For example, here is a link of class red:</p><pre tabindex=0><code>&lt;a class=&#34;red&#34;&gt;
-</code></pre><p>A class can be selected in CSS by adding a dot in front of it. For example, setting a red color to all elements of class &ldquo;red&rdquo; is done as so:</p><pre tabindex=0><code>.red {
+</code></pre><h2 id="external-css">External CSS</h2>
+<p>Having the CSS in the document head allows to style multiple elements of a document at once. However, websites are often composed of multiple documents. Copying the styles into every one of those would create unnecessary redundancy and make maintenance troublesome. If CSS code is to be shared by multiple documents, it can be put in an external .css file and linked in all relevant documents using:</p>
+<pre tabindex="0"><code>&lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;styles.css&#34;&gt;
+</code></pre><p>where styles.css is the document containing the styling rules. It is important to note that styles.css has to contain only CSS, i.e. no <code>&lt;style&gt;</code> tags.</p>
+<h2 id="selectors">Selectors</h2>
+<h3 id="classes">Classes</h3>
+<p>Selecting elements to style using their tag can be fairly limiting: What if there were two classes of links and one class should be red while the other should be green? HTML tags can hold a class property. For example, here is a link of class red:</p>
+<pre tabindex="0"><code>&lt;a class=&#34;red&#34;&gt;
+</code></pre><p>A class can be selected in CSS by adding a dot in front of it. For example, setting a red color to all elements of class &ldquo;red&rdquo; is done as so:</p>
+<pre tabindex="0"><code>.red {
   color: red;
 }
-</code></pre><p>Note that elements with a different tag type can be part of the same class.</p><h3 id=ids>IDs</h3><p>Sometimes a single specific element must be styled. One option to do so would be to create a class just for it. However, one could use the &ldquo;id&rdquo; property of HTML tags:</p><pre tabindex=0><code>&lt;a id=&#34;specialElement&#34;&gt;
-</code></pre><p>IDs can be targetted in CSS using a # placed in front of the ID:</p><pre tabindex=0><code>#specialElement {
+</code></pre><p>Note that elements with a different tag type can be part of the same class.</p>
+<h3 id="ids">IDs</h3>
+<p>Sometimes a single specific element must be styled. One option to do so would be to create a class just for it. However, one could use the &ldquo;id&rdquo; property of HTML tags:</p>
+<pre tabindex="0"><code>&lt;a id=&#34;specialElement&#34;&gt;
+</code></pre><p>IDs can be targetted in CSS using a # placed in front of the ID:</p>
+<pre tabindex="0"><code>#specialElement {
   font-weight: bold;
 }
-</code></pre><h3 id=relation-to-other-elements>Relation to other elements</h3><p>Another way to target some elements in CSS is to use their relation to other known elements. For example, adding a selector after a selector, separated by a space implies targeting elements matching the second selector if they are nested (at any level) within the first selector. Here, all links that are inside a table will be turned red:</p><pre tabindex=0><code>table a {
+</code></pre><h3 id="relation-to-other-elements">Relation to other elements</h3>
+<p>Another way to target some elements in CSS is to use their relation to other known elements. For example, adding a selector after a selector, separated by a space implies targeting elements matching the second selector if they are nested (at any level) within the first selector. Here, all links that are inside a table will be turned red:</p>
+<pre tabindex="0"><code>table a {
   color: red;
 }
-</code></pre><p>There exist many ways to select elements using CSS and this tutorial only covers the most basic of them. For a more detailed list of selection methods, please check <a href=https://www.w3schools.com/cssref/css_selectors.asp>this page</a>, provided by W3Schools.</p><h2 id=key-takeaways>Key takeaways</h2><p>CSS describes the aesthetics of an HTML content. It targets HTML elements usually by tag, class, id or relation to other elements.</p><h2 id=more-on-the-subject>More on the subject</h2><p>The content of this page constitutes a very rudimentary introduction to CSS for a more thorough study of the subject, <a href=https://www.w3schools.com/>W3Schools</a> offers detailed tutorials on web development.</p></div></article></main></div><footer class=footer><span class=footer_item></span>&nbsp;<div class=footer_social-icons></div><small class=footer_copyright>© 2025 Maxime Moreillon.</small></footer><script src=https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script></body></html>
+</code></pre><p>There exist many ways to select elements using CSS and this tutorial only covers the most basic of them. For a more detailed list of selection methods, please check <a href="https://www.w3schools.com/cssref/css_selectors.asp">this page</a>, provided by W3Schools.</p>
+<h2 id="key-takeaways">Key takeaways</h2>
+<p>CSS describes the aesthetics of an HTML content. It targets HTML elements usually by tag, class, id or relation to other elements.</p>
+<h2 id="more-on-the-subject">More on the subject</h2>
+<p>The content of this page constitutes a very rudimentary introduction to CSS for a more thorough study of the subject, <a href="https://www.w3schools.com/">W3Schools</a> offers detailed tutorials on web development.</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+</div>
+    <small class="footer_copyright">
+        © 2025 Maxime Moreillon.
+        
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

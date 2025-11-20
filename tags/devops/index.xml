@@ -1,164 +1,360 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DevOps on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/devops/</link><description>Recent content in DevOps on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 11 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/devops/index.xml" rel="self" type="application/rss+xml"/><item><title>Node.js testing for multiple environment variables</title><link>https://articles.maximemoreillon.com/articles/cce8a613-0885-4ac0-a0e0-b6d454d811cf/</link><pubDate>Sun, 11 Feb 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/cce8a613-0885-4ac0-a0e0-b6d454d811cf/</guid><description>&lt;p>I recently added S3 support to my &lt;a href="https://github.com/maximemoreillon/image_manager">image serving microservice&lt;/a>. Thanks to it, images uploaded to the service can be stored in an S3 bucket as opposed to a local folder. However, as some users might not want to use the feature, I made it so that is can be enabled by setting a specific environment variable, namely S3_BUCKET.&lt;/p>
-&lt;p>However, as both local storage and S3 storage cannot be both enabled at the same time, the Mocha tests I had written could not cover the whole code of the application in a single run.&lt;/p></description></item><item><title>Combining two independent git repositories</title><link>https://articles.maximemoreillon.com/articles/314ebc9c-796a-4fbf-a4e4-c0c99fad0343/</link><pubDate>Tue, 08 Mar 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/314ebc9c-796a-4fbf-a4e4-c0c99fad0343/</guid><description>&lt;p>This article presents how to combine two independent and unrelated git repositories.&lt;/p>
-&lt;p>First, clone the first repository locally and cd into it.&lt;/p>
-&lt;pre tabindex="0">&lt;code>git clone URL_TO_REMOTE_1
-&lt;/code>&lt;/pre>&lt;p>Create a branch off the first remote&lt;/p>
-&lt;pre tabindex="0">&lt;code>git checkout -b master-2
-&lt;/code>&lt;/pre>&lt;p>In order to merge a completely independent repository into the current one, &lt;strong>delete&lt;/strong> the content of the folder apart from the .git folder. Once done, commit the changes:&lt;/p>
-&lt;pre tabindex="0">&lt;code>git commit -m &amp;#39;prepared for combining repositories&amp;#39;
-&lt;/code>&lt;/pre>&lt;p>Add the remote of the second repository&lt;/p></description></item><item><title>TDD for an Express application</title><link>https://articles.maximemoreillon.com/articles/463/</link><pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/463/</guid><description>&lt;p>TDD has been proven to significantly reduce the amount of bugs in software releases. Moreover, with CI/CD systems, tests can be run automatically before the application deployment, preventing a faulty application to reach its end user. This guide goes through the steps required to set up a TDD workflow with an Express application.&lt;/p>
-&lt;h2 id="an-example-application">An example application&lt;/h2>
-&lt;p>Let&amp;rsquo;s start with the application we would like to test. Here we&amp;rsquo;ll use the following Express application:&lt;/p></description></item><item><title>Distributing a Helm chart on Artifact Hub</title><link>https://articles.maximemoreillon.com/articles/626/</link><pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/626/</guid><description>&lt;p>Building applications in a microservice architecture has become more and more popular recently. With this design pattern, an application is composed of multiple services that run independently and generally share data across network protocols.&lt;/p>
-&lt;p>An example of such application could be an e-commerce website where users, product inventory or orders are all managed by their own respective independent service.&lt;/p>
-&lt;p>Since all services are independent, deploying an application to Kubernetes involves the deployment of a large amount of resources such as deployments, services, PVCs, which can quickly become tedious if done by hand. To solve this problem, applications can be packaged using Helm, which takes care of deploying all the necessary resources. An application packaged with Helm is called a chart. Similarly to how Docker containers are spawned from container images, in helm, applications are spawned from Helm Charts.&lt;/p></description></item><item><title>Self-hosted GitLab instance for DevOps on Ubuntu 18.04</title><link>https://articles.maximemoreillon.com/articles/409/</link><pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/409/</guid><description>&lt;p>GitLab provides a great number of tools needed for the DevOps cycle of an application. In this guide, we&amp;rsquo;ll install a GitLab instance on our own server and configure it to fit our DevOps needs. Here, we will use a fresh install of Ubuntu 18.04 as a base.&lt;/p>
-&lt;h2 id="gitlab-installation">GitLab installation&lt;/h2>
-&lt;p>&lt;a href="https://about.gitlab.com/install/">https://about.gitlab.com/install/&lt;/a>&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo apt-get update
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevOps on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/devops/</link>
+    <description>Recent content in DevOps on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 11 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Node.js testing for multiple environment variables</title>
+      <link>https://articles.maximemoreillon.com/articles/cce8a613-0885-4ac0-a0e0-b6d454d811cf/</link>
+      <pubDate>Sun, 11 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/cce8a613-0885-4ac0-a0e0-b6d454d811cf/</guid>
+      
+      <description>&lt;p&gt;I recently added S3 support to my &lt;a href=&#34;https://github.com/maximemoreillon/image_manager&#34;&gt;image serving microservice&lt;/a&gt;. Thanks to it, images uploaded to the service can be stored in an S3 bucket as opposed to a local folder. However, as some users might not want to use the feature, I made it so that is can be enabled by setting a specific environment variable, namely S3_BUCKET.&lt;/p&gt;
+&lt;p&gt;However, as both local storage and S3 storage cannot be both enabled at the same time, the Mocha tests I had written could not cover the whole code of the application in a single run.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Combining two independent git repositories</title>
+      <link>https://articles.maximemoreillon.com/articles/314ebc9c-796a-4fbf-a4e4-c0c99fad0343/</link>
+      <pubDate>Tue, 08 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/314ebc9c-796a-4fbf-a4e4-c0c99fad0343/</guid>
+      
+      <description>&lt;p&gt;This article presents how to combine two independent and unrelated git repositories.&lt;/p&gt;
+&lt;p&gt;First, clone the first repository locally and cd into it.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone URL_TO_REMOTE_1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Create a branch off the first remote&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git checkout -b master-2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In order to merge a completely independent repository into the current one, &lt;strong&gt;delete&lt;/strong&gt; the content of the folder apart from the .git folder. Once done, commit the changes:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git commit -m &amp;#39;prepared for combining repositories&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Add the remote of the second repository&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>TDD for an Express application</title>
+      <link>https://articles.maximemoreillon.com/articles/463/</link>
+      <pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/463/</guid>
+      
+      <description>&lt;p&gt;TDD has been proven to significantly reduce the amount of bugs in software releases. Moreover, with CI/CD systems, tests can be run automatically before the application deployment, preventing a faulty application to reach its end user. This guide goes through the steps required to set up a TDD workflow with an Express application.&lt;/p&gt;
+&lt;h2 id=&#34;an-example-application&#34;&gt;An example application&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s start with the application we would like to test. Here we&amp;rsquo;ll use the following Express application:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Distributing a Helm chart on Artifact Hub</title>
+      <link>https://articles.maximemoreillon.com/articles/626/</link>
+      <pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/626/</guid>
+      
+      <description>&lt;p&gt;Building applications in a microservice architecture has become more and more popular recently. With this design pattern, an application is composed of multiple services that run independently and generally share data across network protocols.&lt;/p&gt;
+&lt;p&gt;An example of such application could be an e-commerce website where users, product inventory or orders are all managed by their own respective independent service.&lt;/p&gt;
+&lt;p&gt;Since all services are independent, deploying an application to Kubernetes involves the deployment of a large amount of resources such as deployments, services, PVCs, which can quickly become tedious if done by hand. To solve this problem, applications can be packaged using Helm, which takes care of deploying all the necessary resources. An application packaged with Helm is called a chart. Similarly to how Docker containers are spawned from container images, in helm, applications are spawned from Helm Charts.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Self-hosted GitLab instance for DevOps on Ubuntu 18.04</title>
+      <link>https://articles.maximemoreillon.com/articles/409/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/409/</guid>
+      
+      <description>&lt;p&gt;GitLab provides a great number of tools needed for the DevOps cycle of an application. In this guide, we&amp;rsquo;ll install a GitLab instance on our own server and configure it to fit our DevOps needs. Here, we will use a fresh install of Ubuntu 18.04 as a base.&lt;/p&gt;
+&lt;h2 id=&#34;gitlab-installation&#34;&gt;GitLab installation&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://about.gitlab.com/install/&#34;&gt;https://about.gitlab.com/install/&lt;/a&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt-get update
 sudo apt-get install -y curl openssh-server ca-certificates
-&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
-&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>sudo EXTERNAL_URL=&amp;#34;http://192.168.1.2:8090&amp;#34; apt-get install gitlab-ee
-&lt;/code>&lt;/pre>&lt;h2 id="docker-installation">Docker installation&lt;/h2>
-&lt;pre tabindex="0">&lt;code>sudo apt install docker.io
-&lt;/code>&lt;/pre>&lt;h2 id="kubectl-installation">Kubectl installation&lt;/h2>
-&lt;pre tabindex="0">&lt;code>snap install kubectl --classic
-&lt;/code>&lt;/pre>&lt;h2 id="gitlab-runner-installation-registration-and-configuration">GitLab runner installation, registration and configuration&lt;/h2>
-&lt;pre tabindex="0">&lt;code>curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
-&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>sudo apt-get install gitlab-runner
-&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>sudo gitlab-runner register
-&lt;/code>&lt;/pre>&lt;p>Finally, appropriate permissions must be given to the runner to use Docker&lt;/p></description></item><item><title>Containerization of a Flask application</title><link>https://articles.maximemoreillon.com/articles/196/</link><pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/196/</guid><description>&lt;p>Flask can be seen as the equivalent of Express for Python. However, although an express application is basically production ready, a Flask app outputs the following when executed by itself:&lt;/p>
-&lt;pre tabindex="0">&lt;code>WARNING: This is a development server. Do not use it in a production deployment.
-&lt;/code>&lt;/pre>&lt;p>flask_app.py&lt;/p>
-&lt;pre tabindex="0">&lt;code>from flask import Flask
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo EXTERNAL_URL=&amp;#34;http://192.168.1.2:8090&amp;#34; apt-get install gitlab-ee
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;docker-installation&#34;&gt;Docker installation&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt install docker.io
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;kubectl-installation&#34;&gt;Kubectl installation&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;snap install kubectl --classic
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;gitlab-runner-installation-registration-and-configuration&#34;&gt;GitLab runner installation, registration and configuration&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt-get install gitlab-runner
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo gitlab-runner register
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Finally, appropriate permissions must be given to the runner to use Docker&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Containerization of a Flask application</title>
+      <link>https://articles.maximemoreillon.com/articles/196/</link>
+      <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/196/</guid>
+      
+      <description>&lt;p&gt;Flask can be seen as the equivalent of Express for Python. However, although an express application is basically production ready, a Flask app outputs the following when executed by itself:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;WARNING: This is a development server. Do not use it in a production deployment.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;flask_app.py&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;from flask import Flask
 app = Flask(__name__)
+
 @app.route(&amp;#39;/&amp;#39;)
 def hello_world():
-return &amp;#39;Hello, World!&amp;#39;
+    return &amp;#39;Hello, World!&amp;#39;
+
 # Allow the app to be run in devvelopment mode if run using python3 main.py
 if __name__ == &amp;#34;__main__&amp;#34;:
-app.run(&amp;#39;0.0.0.0&amp;#39;, 7193)
-&lt;/code>&lt;/pre>&lt;p>requirements.txt&lt;/p></description></item><item><title>Deployment of a TensorFlow model to Kubernetes</title><link>https://articles.maximemoreillon.com/articles/371/</link><pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/371/</guid><description>&lt;p>Let’s imagine that you’ve just finished training your new TensorFlow model and want to start using it in your application(s). One obvious way to do so is to simply import it in the source code of every application that uses it. However, it might be more versatile to keep your model in one place as standalone and simply have applications exchange data with it through API calls. This article will go through the steps of building such a system and deploy the result to Kubernetes.&lt;/p></description></item><item><title>Node.js DevOps example</title><link>https://articles.maximemoreillon.com/articles/98/</link><pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/98/</guid><description>&lt;p>In this article, we’ll build a simple &lt;a href="https://nodejs.org/en/">Node.js&lt;/a> application that uses &lt;a href="https://expressjs.com/">Express&lt;/a> to respond to HTTP requests. In order to deploy this application to production, we’ll also configure a &lt;a href="https://docs.gitlab.com/ee/ci/">GitLab CI/CD&lt;/a> pipeline so as to &lt;a href="https://www.docker.com/">dockerize&lt;/a> it and deploy its container to a &lt;a href="https://kubernetes.io/">Kubernetes&lt;/a> cluster.&lt;/p>
-&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
-&lt;p>This article assumes that the following environment is available to the reader:&lt;/p>
-&lt;ul>
-&lt;li>A development environment with &lt;a href="https://nodejs.org/en/">Node.js&lt;/a> installed.&lt;/li>
-&lt;li>A &lt;a href="https://about.gitlab.com/install/">GitLab&lt;/a> instance with an available &lt;a href="https://docs.gitlab.com/runner/install/">runner&lt;/a> able to run the &lt;em>docker&lt;/em> and &lt;em>kubectl&lt;/em> commands.&lt;/li>
-&lt;li>A production environment with a Kubernetes cluster reachable from the GitLab instance. For this, &lt;a href="https://microk8s.io/">Microk8s&lt;/a> is easy to get started with&lt;/li>
-&lt;li>A &lt;a href="https://docs.docker.com/registry/deploying/">Docker registry&lt;/a> to push and pull containers to and from. Note that running your own registry might require &lt;a href="https://docs.docker.com/registry/insecure/">Docker&lt;/a> and Kubernetes configuration (guide for MicroK8s available &lt;a href="https://microk8s.io/docs/registry-private">here&lt;/a>)&lt;/li>
-&lt;/ul>
-&lt;p>Node.js application&lt;/p></description></item><item><title>Application containerization</title><link>https://articles.maximemoreillon.com/articles/445/</link><pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/445/</guid><description>&lt;p>Let&amp;rsquo;s imagine a developer building an application on his computer and that this application is meant to be deployed on a different machine (production environment). In order to execute properly, this application requires multiple libraries, binaries and packages. For example, a Python program requires the Python interpreter as well as all the imported Python modules.&lt;/p>
-&lt;p>Thus, if the application is unlikely to run properly in the production environment if it is being deployed by simply copying its source code over.&lt;/p></description></item><item><title>Creating a private docker registry for Kubernetes</title><link>https://articles.maximemoreillon.com/articles/421/</link><pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/421/</guid><description>&lt;p>A docker registry can be run easily using as a docker container using docker itself.&lt;/p>
-&lt;pre tabindex="0">&lt;code>docker run -d -p 5000:5000 --restart=always --name registry registry:2
-&lt;/code>&lt;/pre>&lt;p>However, this registry is accessed through HTTP and does not provide any authentication mechanism&lt;/p>
-&lt;p>To solve this problem, the docker registry can be made so as to be accessed via an Ingress with Basic Authentication:&lt;/p>
-&lt;pre tabindex="0">&lt;code>kind: Service
+    app.run(&amp;#39;0.0.0.0&amp;#39;, 7193)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;requirements.txt&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Deployment of a TensorFlow model to Kubernetes</title>
+      <link>https://articles.maximemoreillon.com/articles/371/</link>
+      <pubDate>Wed, 27 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/371/</guid>
+      
+      <description>&lt;p&gt;Let’s imagine that you’ve just finished training your new TensorFlow model and want to start using it in your application(s). One obvious way to do so is to simply import it in the source code of every application that uses it. However, it might be more versatile to keep your model in one place as standalone and simply have applications exchange data with it through API calls. This article will go through the steps of building such a system and deploy the result to Kubernetes.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Node.js DevOps example</title>
+      <link>https://articles.maximemoreillon.com/articles/98/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/98/</guid>
+      
+      <description>&lt;p&gt;In this article, we’ll build a simple &lt;a href=&#34;https://nodejs.org/en/&#34;&gt;Node.js&lt;/a&gt; application that uses &lt;a href=&#34;https://expressjs.com/&#34;&gt;Express&lt;/a&gt; to respond to HTTP requests. In order to deploy this application to production, we’ll also configure a &lt;a href=&#34;https://docs.gitlab.com/ee/ci/&#34;&gt;GitLab CI/CD&lt;/a&gt; pipeline so as to &lt;a href=&#34;https://www.docker.com/&#34;&gt;dockerize&lt;/a&gt; it and deploy its container to a &lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt; cluster.&lt;/p&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;This article assumes that the following environment is available to the reader:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A development environment with &lt;a href=&#34;https://nodejs.org/en/&#34;&gt;Node.js&lt;/a&gt; installed.&lt;/li&gt;
+&lt;li&gt;A &lt;a href=&#34;https://about.gitlab.com/install/&#34;&gt;GitLab&lt;/a&gt; instance with an available &lt;a href=&#34;https://docs.gitlab.com/runner/install/&#34;&gt;runner&lt;/a&gt; able to run the &lt;em&gt;docker&lt;/em&gt; and &lt;em&gt;kubectl&lt;/em&gt; commands.&lt;/li&gt;
+&lt;li&gt;A production environment with a Kubernetes cluster reachable from the GitLab instance. For this, &lt;a href=&#34;https://microk8s.io/&#34;&gt;Microk8s&lt;/a&gt; is easy to get started with&lt;/li&gt;
+&lt;li&gt;A &lt;a href=&#34;https://docs.docker.com/registry/deploying/&#34;&gt;Docker registry&lt;/a&gt; to push and pull containers to and from. Note that running your own registry might require &lt;a href=&#34;https://docs.docker.com/registry/insecure/&#34;&gt;Docker&lt;/a&gt; and Kubernetes configuration (guide for MicroK8s available &lt;a href=&#34;https://microk8s.io/docs/registry-private&#34;&gt;here&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Node.js application&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Application containerization</title>
+      <link>https://articles.maximemoreillon.com/articles/445/</link>
+      <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/445/</guid>
+      
+      <description>&lt;p&gt;Let&amp;rsquo;s imagine a developer building an application on his computer and that this application is meant to be deployed on a different machine (production environment). In order to execute properly, this application requires multiple libraries, binaries and packages. For example, a Python program requires the Python interpreter as well as all the imported Python modules.&lt;/p&gt;
+&lt;p&gt;Thus, if the application is unlikely to run properly in the production environment if it is being deployed by simply copying its source code over.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Creating a private docker registry for Kubernetes</title>
+      <link>https://articles.maximemoreillon.com/articles/421/</link>
+      <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/421/</guid>
+      
+      <description>&lt;p&gt;A docker registry can be run easily using as a docker container using docker itself.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run -d -p 5000:5000 --restart=always --name registry registry:2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;However, this registry is accessed through HTTP and does not provide any authentication mechanism&lt;/p&gt;
+&lt;p&gt;To solve this problem, the docker registry can be made so as to be accessed via an Ingress with Basic Authentication:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kind: Service
 apiVersion: v1
 metadata:
-name: registry
+ name: registry
 spec:
-type: ClusterIP
-ports:
-- port: 5000
-targetPort: 5000
+ type: ClusterIP
+ ports:
+ - port: 5000
+   targetPort: 5000
 ---
 kind: Endpoints
 apiVersion: v1
 metadata:
-name: registry
+ name: registry
 subsets:
-- addresses:
-- ip: 192.168.1.2
-ports:
-- port: 5000
+ - addresses:
+     - ip: 192.168.1.2
+   ports:
+     - port: 5000
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-name: registry
-annotations:
-kubernetes.io/ingress.class: &amp;#34;nginx&amp;#34;
-# Necessary to prevent 413 errors
-nginx.ingress.kubernetes.io/proxy-body-size: &amp;#34;500m&amp;#34;
-nginx/client_max_body_size: 500m
-cert-manager.io/cluster-issuer: &amp;#34;letsencrypt-prod&amp;#34;
-nginx.ingress.kubernetes.io/auth-type: basic
-nginx.ingress.kubernetes.io/auth-secret: registry
-nginx.ingress.kubernetes.io/auth-realm: &amp;#39;Authentication Required&amp;#39;
+  name: registry
+  annotations:
+    kubernetes.io/ingress.class: &amp;#34;nginx&amp;#34;
+
+    # Necessary to prevent 413 errors
+    nginx.ingress.kubernetes.io/proxy-body-size: &amp;#34;500m&amp;#34;
+    nginx/client_max_body_size: 500m
+
+    cert-manager.io/cluster-issuer: &amp;#34;letsencrypt-prod&amp;#34;
+    
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: registry
+    nginx.ingress.kubernetes.io/auth-realm: &amp;#39;Authentication Required&amp;#39;
 spec:
-tls:
-- hosts:
-- registry.example.com
-secretName: registry
-rules:
-- host: registry.example.com
-http:
-paths:
-- path: /
-backend:
-serviceName: registry
-servicePort: 5000
-&lt;/code>&lt;/pre>&lt;p>Here, it is important to specify the maximum body size in the Ingress annotations to prevent 413 Request Entity Too Large errors&lt;/p></description></item><item><title>Generic Kubernetes manifest for web application deployment</title><link>https://articles.maximemoreillon.com/articles/434/</link><pubDate>Sat, 18 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/434/</guid><description>&lt;p>Deployment name, container registry and service port are externalized, making this manifest general-purpose&lt;/p>
-&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+  tls:
+  - hosts:
+    - registry.example.com
+    secretName: registry
+  rules:
+  - host: registry.example.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: registry
+          servicePort: 5000
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here, it is important to specify the maximum body size in the Ingress annotations to prevent 413 Request Entity Too Large errors&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Generic Kubernetes manifest for web application deployment</title>
+      <link>https://articles.maximemoreillon.com/articles/434/</link>
+      <pubDate>Sat, 18 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/434/</guid>
+      
+      <description>&lt;p&gt;Deployment name, container registry and service port are externalized, making this manifest general-purpose&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: ${APPLICATION_NAME}
+  name: ${APPLICATION_NAME}
 spec:
-replicas: 1
-selector:
-matchLabels:
-app: ${APPLICATION_NAME}
-template:
-metadata:
-labels:
-app: ${APPLICATION_NAME}
-spec:
-containers:
-- name: ${APPLICATION_NAME}
-image: ${CONTAINER_REGISTRY}/${APPLICATION_NAME}
-imagePullPolicy: Always
-ports:
-- containerPort: 80
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${APPLICATION_NAME}
+  template:
+    metadata:
+      labels:
+        app: ${APPLICATION_NAME}
+    spec:
+      containers:
+      - name: ${APPLICATION_NAME}
+        image: ${CONTAINER_REGISTRY}/${APPLICATION_NAME}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-labels:
-run: ${APPLICATION_NAME}
-name: ${APPLICATION_NAME}
+  labels:
+    run: ${APPLICATION_NAME}
+  name: ${APPLICATION_NAME}
 spec:
-ports:
-- port: 80
-nodePort: ${SERVICE_PORT}
-selector:
-app: ${APPLICATION_NAME}
-type: LoadBalancer
-&lt;/code>&lt;/pre>&lt;p>Reminder: To parse environment variables in a kubernetes manifest file, use the following:&lt;/p></description></item><item><title>Passing variables to Kubernetes manifest</title><link>https://articles.maximemoreillon.com/articles/216/</link><pubDate>Sun, 12 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/216/</guid><description>&lt;p>When using kubectl apply, environment variables in Kubernetes manifests are not parsed. For this to happen, the envsubst command can be used.&lt;/p>
-&lt;pre tabindex="0">&lt;code>envsubst &amp;lt; deployment.yml | kubectl apply -f -
-&lt;/code>&lt;/pre></description></item><item><title>GitLab CI</title><link>https://articles.maximemoreillon.com/articles/37/</link><pubDate>Wed, 22 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/37/</guid><description>&lt;p>GitLab CI is a feature of GitLab that allows users to have actions triggered upon pushing a repository to it&amp;rsquo;s remote. For example, it can be used to execute all tests defined in the code, containerize the application and deploy it. A popular alternative to GitLab CI is Jenkins.&lt;/p>
-&lt;h2 id="install-gitlab-runner">Install GitLab Runner&lt;/h2>
-&lt;p>GitLab CI requires GitLab runner to execute the actions defined by the user. On Ubuntu, GitLab runner can be installed as so:&lt;/p></description></item><item><title>Docker HTTP (insecure) registry</title><link>https://articles.maximemoreillon.com/articles/353/</link><pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/353/</guid><description>&lt;p>By default Docker refuses to push/pull from registries that are not served using HTTPS.&lt;/p>
-&lt;p>To enable Docker to push to registries served over HTTP, the address of the registry must be appended to the &lt;code>insecure-registries&lt;/code> Array of the &lt;code>/etc/docker/daemon.json&lt;/code> file. If the file does not exist, it must be created.&lt;/p>
-&lt;p>Here is an example:&lt;/p>
-&lt;pre tabindex="0">&lt;code>{
+  ports:
+  - port: 80
+    nodePort: ${SERVICE_PORT}
+  selector:
+    app: ${APPLICATION_NAME}
+  type: LoadBalancer
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Reminder: To parse environment variables in a kubernetes manifest file, use the following:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Passing variables to Kubernetes manifest</title>
+      <link>https://articles.maximemoreillon.com/articles/216/</link>
+      <pubDate>Sun, 12 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/216/</guid>
+      
+      <description>&lt;p&gt;When using kubectl apply, environment variables in Kubernetes manifests are not parsed. For this to happen, the envsubst command can be used.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;envsubst &amp;lt; deployment.yml | kubectl apply -f -
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>GitLab CI</title>
+      <link>https://articles.maximemoreillon.com/articles/37/</link>
+      <pubDate>Wed, 22 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/37/</guid>
+      
+      <description>&lt;p&gt;GitLab CI is a feature of GitLab that allows users to have actions triggered upon pushing a repository to it&amp;rsquo;s remote. For example, it can be used to execute all tests defined in the code, containerize the application and deploy it. A popular alternative to GitLab CI is Jenkins.&lt;/p&gt;
+&lt;h2 id=&#34;install-gitlab-runner&#34;&gt;Install GitLab Runner&lt;/h2&gt;
+&lt;p&gt;GitLab CI requires GitLab runner to execute the actions defined by the user. On Ubuntu, GitLab runner can be installed as so:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Docker HTTP (insecure) registry</title>
+      <link>https://articles.maximemoreillon.com/articles/353/</link>
+      <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/353/</guid>
+      
+      <description>&lt;p&gt;By default Docker refuses to push/pull from registries that are not served using HTTPS.&lt;/p&gt;
+&lt;p&gt;To enable Docker to push to registries served over HTTP, the address of the registry must be appended to the &lt;code&gt;insecure-registries&lt;/code&gt; Array of the &lt;code&gt;/etc/docker/daemon.json&lt;/code&gt; file. If the file does not exist, it must be created.&lt;/p&gt;
+&lt;p&gt;Here is an example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{
   &amp;#34;insecure-registries&amp;#34; : [&amp;#34;IP:PORT&amp;#34;]
 }
-&lt;/code>&lt;/pre>&lt;p>Docker must be restarted after changes to &lt;code>/etc/docker/daemon.json&lt;/code> have been done:&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo systemctl restart docker
-&lt;/code>&lt;/pre></description></item><item><title>Self hosted Docker registry</title><link>https://articles.maximemoreillon.com/articles/351/</link><pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/351/</guid><description>&lt;p>When using the &lt;code>docker pull&lt;/code> command, container images are by default downloaded from docker hub, the official public registry for container images. However, for some projects, images are better stored on a private platform. This can be achieved by hosting one&amp;rsquo;s own docker registry.&lt;/p>
-&lt;p>A complete guide is written here: &lt;a href="https://docs.docker.com/registry/deploying/">https://docs.docker.com/registry/deploying/&lt;/a>&lt;/p>
-&lt;p>This article merely summarizes the basics involved in the process.&lt;/p>
-&lt;h2 id="self-hosted-docker-registry-as-container">Self hosted Docker registry as container&lt;/h2>
-&lt;p>A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:&lt;/p></description></item><item><title>NodeJS app dockerization</title><link>https://articles.maximemoreillon.com/articles/343/</link><pubDate>Thu, 09 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/343/</guid><description>&lt;p>NodeJS apps can be containerized using the &lt;code>docker build&lt;/code> command. This article is based on &lt;a href="https://nodejs.org/de/docs/guides/nodejs-docker-webapp/">this guide&lt;/a>.&lt;/p>
-&lt;p>To create a container image, a Dockerfile is needed. Here is an example specifically made for the containerization of NodeJS apps:&lt;/p>
-&lt;pre tabindex="0">&lt;code>FROM node:14
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Docker must be restarted after changes to &lt;code&gt;/etc/docker/daemon.json&lt;/code&gt; have been done:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo systemctl restart docker
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Self hosted Docker registry</title>
+      <link>https://articles.maximemoreillon.com/articles/351/</link>
+      <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/351/</guid>
+      
+      <description>&lt;p&gt;When using the &lt;code&gt;docker pull&lt;/code&gt; command, container images are by default downloaded from docker hub, the official public registry for container images. However, for some projects, images are better stored on a private platform. This can be achieved by hosting one&amp;rsquo;s own docker registry.&lt;/p&gt;
+&lt;p&gt;A complete guide is written here: &lt;a href=&#34;https://docs.docker.com/registry/deploying/&#34;&gt;https://docs.docker.com/registry/deploying/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This article merely summarizes the basics involved in the process.&lt;/p&gt;
+&lt;h2 id=&#34;self-hosted-docker-registry-as-container&#34;&gt;Self hosted Docker registry as container&lt;/h2&gt;
+&lt;p&gt;A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>NodeJS app dockerization</title>
+      <link>https://articles.maximemoreillon.com/articles/343/</link>
+      <pubDate>Thu, 09 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/343/</guid>
+      
+      <description>&lt;p&gt;NodeJS apps can be containerized using the &lt;code&gt;docker build&lt;/code&gt; command. This article is based on &lt;a href=&#34;https://nodejs.org/de/docs/guides/nodejs-docker-webapp/&#34;&gt;this guide&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To create a container image, a Dockerfile is needed. Here is an example specifically made for the containerization of NodeJS apps:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;FROM node:14
+
 # Create and move into app directory
 WORKDIR /usr/src/app
+
 # Copy files of host current workdir
 # into container workdir
 COPY . .
+
 # Install dependecies described in packages.json
 RUN npm install
+
 # Open port 8080
 EXPOSE 8080
+
 # Run the node app
 CMD [ &amp;#34;node&amp;#34;, &amp;#34;server.js&amp;#34; ]
-&lt;/code>&lt;/pre>&lt;p>RUN is for commands to be executed during the container building process&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;RUN is for commands to be executed during the container building process&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

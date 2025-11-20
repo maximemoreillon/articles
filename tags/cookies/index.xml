@@ -1,20 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cookies on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/cookies/</link><description>Recent content in Cookies on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/cookies/index.xml" rel="self" type="application/rss+xml"/><item><title>Cookies</title><link>https://articles.maximemoreillon.com/articles/286/</link><pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/286/</guid><description>&lt;p>Cookies are key-value pairs stored on a web browser. They can be set (i.e. created) using client-side JavaScript. Conversely, a server can get a client&amp;rsquo;s browser to set cookies via instructions in an HTTP response. As such, cookies can be set by both the client and the server.&lt;/p>
-&lt;p>Once a cookie is set, it is sent with every subsequent HTTP request addressed at the domain on which the cookie was set. Hence, if a cookie is set while using an application served on the domain example.com, it will not be sent to a server at otherdomain.com. However, cookies can be shared across subdomains. With the previous example, cookies will be sent to exampleapp.example.com.&lt;/p></description></item><item><title>Cookie-session</title><link>https://articles.maximemoreillon.com/articles/283/</link><pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/283/</guid><description>&lt;p>User authenticates using username and password, server sets a signed cookie containing serialized user info&lt;/p>
-&lt;pre tabindex="0">&lt;code>app.use(cookieSession({
-name: &amp;#39;session&amp;#39;,
-secret: &amp;#39;shhhh&amp;#39;,
-maxAge: 253402300000000, // infinite
-sameSite: false,
-domain: &amp;#34;yourdomain.com&amp;#34;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cookies on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/cookies/</link>
+    <description>Recent content in Cookies on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/cookies/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cookies</title>
+      <link>https://articles.maximemoreillon.com/articles/286/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/286/</guid>
+      
+      <description>&lt;p&gt;Cookies are key-value pairs stored on a web browser. They can be set (i.e. created) using client-side JavaScript. Conversely, a server can get a client&amp;rsquo;s browser to set cookies via instructions in an HTTP response. As such, cookies can be set by both the client and the server.&lt;/p&gt;
+&lt;p&gt;Once a cookie is set, it is sent with every subsequent HTTP request addressed at the domain on which the cookie was set. Hence, if a cookie is set while using an application served on the domain example.com, it will not be sent to a server at otherdomain.com. However, cookies can be shared across subdomains. With the previous example, cookies will be sent to exampleapp.example.com.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Cookie-session</title>
+      <link>https://articles.maximemoreillon.com/articles/283/</link>
+      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/283/</guid>
+      
+      <description>&lt;p&gt;User authenticates using username and password, server sets a signed cookie containing serialized user info&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;app.use(cookieSession({
+  name: &amp;#39;session&amp;#39;,
+  secret: &amp;#39;shhhh&amp;#39;,
+  maxAge: 253402300000000, // infinite
+  sameSite: false,
+  domain: &amp;#34;yourdomain.com&amp;#34;
 }));
-&lt;/code>&lt;/pre>&lt;p>key-value pairs can be set using the session property:&lt;/p>
-&lt;pre tabindex="0">&lt;code>req.session.username = &amp;#34;myUsername&amp;#34;
-&lt;/code>&lt;/pre>&lt;p>The value is encrypted using the secret defined hereabove&lt;/p>
-&lt;p>Requires special options for CORS:&lt;/p>
-&lt;pre tabindex="0">&lt;code>app.use(cors({
-origin: [/* origins */],
-credentials: true,
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;key-value pairs can be set using the session property:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;req.session.username = &amp;#34;myUsername&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The value is encrypted using the secret defined hereabove&lt;/p&gt;
+&lt;p&gt;Requires special options for CORS:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;app.use(cors({
+  origin: [/* origins */],
+  credentials: true,
 }));
-&lt;/code>&lt;/pre>&lt;p>As well as Axios:&lt;/p>
-&lt;pre tabindex="0">&lt;code>axios.defaults.withCredentials = true
-&lt;/code>&lt;/pre>&lt;p>This method works well for clients using web browsers with cookies enabled but consequently not so much for mobile or IoT devices&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;As well as Axios:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;axios.defaults.withCredentials = true
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This method works well for clients using web browsers with cookies enabled but consequently not so much for mobile or IoT devices&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

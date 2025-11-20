@@ -1,13 +1,35 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Keras on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/keras/</link><description>Recent content in Keras on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 29 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/keras/index.xml" rel="self" type="application/rss+xml"/><item><title>Serving a Keras model using Tensorflow serving and Docker</title><link>https://articles.maximemoreillon.com/articles/297/</link><pubDate>Wed, 29 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/297/</guid><description>&lt;p>A Keras model can be created in various ways, for example using the &lt;a href="https://keras.io/getting-started/sequential-model-guide/">sequential model&lt;/a>:&lt;/p>
-&lt;pre tabindex="0">&lt;code>from keras.models import Sequential
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Keras on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/keras/</link>
+    <description>Recent content in Keras on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/keras/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Serving a Keras model using Tensorflow serving and Docker</title>
+      <link>https://articles.maximemoreillon.com/articles/297/</link>
+      <pubDate>Wed, 29 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/297/</guid>
+      
+      <description>&lt;p&gt;A Keras model can be created in various ways, for example using the &lt;a href=&#34;https://keras.io/getting-started/sequential-model-guide/&#34;&gt;sequential model&lt;/a&gt;:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;from keras.models import Sequential
 from keras.layers import Dense, Activation
+
 model = Sequential([
-Dense(32, input_shape=(784,)),
-Activation(&amp;#39;relu&amp;#39;),
-Dense(10),
-Activation(&amp;#39;softmax&amp;#39;),
+    Dense(32, input_shape=(784,)),
+    Activation(&amp;#39;relu&amp;#39;),
+    Dense(10),
+    Activation(&amp;#39;softmax&amp;#39;),
 ])
-&lt;/code>&lt;/pre>&lt;p>Such model can be saved using the save() function:&lt;/p>
-&lt;pre tabindex="0">&lt;code>model.save(&amp;#39;./my_model/1&amp;#39;)
-&lt;/code>&lt;/pre>&lt;p>Here, the /1 at the end of the path is important for later.&lt;/p>
-&lt;p>The model will be run inside a docker container. To do so, first download and run an &amp;ldquo;empty&amp;rdquo; serving container which will serve as a base:&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Such model can be saved using the save() function:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;model.save(&amp;#39;./my_model/1&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here, the /1 at the end of the path is important for later.&lt;/p&gt;
+&lt;p&gt;The model will be run inside a docker container. To do so, first download and run an &amp;ldquo;empty&amp;rdquo; serving container which will serve as a base:&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

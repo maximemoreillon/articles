@@ -1,62 +1,84 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kong on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/kong/</link><description>Recent content in Kong on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 04 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/kong/index.xml" rel="self" type="application/rss+xml"/><item><title>Solving Kong latency problems in Kubernetes</title><link>https://articles.maximemoreillon.com/articles/cd7202dc-7b29-41e1-8d05-2b159cb361bb/</link><pubDate>Mon, 04 Dec 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/cd7202dc-7b29-41e1-8d05-2b159cb361bb/</guid><description>&lt;p>Kong is a popular API gateway that can be used as a reverse proxy for clients to access back-end services. It can be run as a Docker container and, as such, can be deployed to Kubernetes.&lt;/p>
-&lt;p>The following is an example manifest to do so:&lt;/p>
-&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kong on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/kong/</link>
+    <description>Recent content in Kong on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/kong/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Solving Kong latency problems in Kubernetes</title>
+      <link>https://articles.maximemoreillon.com/articles/cd7202dc-7b29-41e1-8d05-2b159cb361bb/</link>
+      <pubDate>Mon, 04 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/cd7202dc-7b29-41e1-8d05-2b159cb361bb/</guid>
+      
+      <description>&lt;p&gt;Kong is a popular API gateway that can be used as a reverse proxy for clients to access back-end services. It can be run as a Docker container and, as such, can be deployed to Kubernetes.&lt;/p&gt;
+&lt;p&gt;The following is an example manifest to do so:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: kong
+  name: kong
 spec:
-replicas: 1
-selector:
-matchLabels:
-app: kong
-template:
-metadata:
-labels:
-app: kong
-spec:
-containers:
-- name: kong
-image: kong:3.4.0
-ports:
-- containerPort: 8000
-env:
-- name: KONG_DATABASE
-value: &amp;#34;off&amp;#34;
-- name: KONG_DECLARATIVE_CONFIG
-value: /kong/declarative/kong.yml
-volumeMounts:
-- mountPath: /kong/declarative/
-name: config
-volumes:
-- name: config
-configMap:
-name: kong
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kong
+  template:
+    metadata:
+      labels:
+        app: kong
+    spec:
+      containers:
+        - name: kong
+          image: kong:3.4.0
+          ports:
+            - containerPort: 8000
+          env:
+            - name: KONG_DATABASE
+              value: &amp;#34;off&amp;#34;
+            - name: KONG_DECLARATIVE_CONFIG
+              value: /kong/declarative/kong.yml
+          volumeMounts:
+            - mountPath: /kong/declarative/
+              name: config
+      volumes:
+        - name: config
+          configMap:
+            name: kong
 ---
 apiVersion: v1
 kind: Service
 metadata:
-name: kong
+  name: kong
 spec:
-ports:
-- port: 8000
-nodePort: 31800
-selector:
-app: kong
-type: NodePort
+  ports:
+    - port: 8000
+      nodePort: 31800
+  selector:
+    app: kong
+  type: NodePort
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-name: kong
+  name: kong
 data:
-kong.yml: |
-_format_version: &amp;#34;3.0&amp;#34;
-_transform: true
-services:
-- name: mqtt-logger
-url: http://mqtt-logger
-routes:
-- name: mqtt-logger
-paths:
-- /mqttlogger
-&lt;/code>&lt;/pre>&lt;p>In this example, Kong is configured to proxy requests on /mqttlogger to mqtt-logger, another service deployed in Kubernetes. As such, from Kong, this service can be resolved by CoreDNS at http://mqtt-logger.&lt;/p></description></item></channel></rss>
+  kong.yml: |
+
+    _format_version: &amp;#34;3.0&amp;#34;
+    _transform: true
+    services:
+    - name: mqtt-logger
+      url: http://mqtt-logger
+      routes:
+      - name: mqtt-logger
+        paths:
+        - /mqttlogger
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this example, Kong is configured to proxy requests on /mqttlogger to mqtt-logger, another service deployed in Kubernetes. As such, from Kong, this service can be resolved by CoreDNS at http://mqtt-logger.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

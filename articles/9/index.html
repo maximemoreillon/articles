@@ -1,4 +1,193 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=content-type content="text/html"><meta name=viewport content="width=device-width,initial-scale=1"><title itemprop=name>BLE presence detection | Maxime Moreillon</title><meta property="og:title" content="BLE presence detection | Maxime Moreillon"><meta name=twitter:title content="BLE presence detection | Maxime Moreillon"><meta itemprop=name content="BLE presence detection | Maxime Moreillon"><meta name=application-name content="BLE presence detection | Maxime Moreillon"><meta property="og:site_name" content><meta name=description content><meta itemprop=description content><meta property="og:description" content><meta name=twitter:description content><meta property="og:locale" content="en-us"><meta name=language content="en-us"><link rel=alternate hreflang=en href=https://articles.maximemoreillon.com/articles/9/ title><meta name=generator content="Hugo 0.147.8"><meta property="og:url" content="https://articles.maximemoreillon.com/articles/9/"><meta property="og:site_name" content="Maxime Moreillon"><meta property="og:title" content="BLE presence detection"><meta property="og:description" content="I wanted my home automation system to detect when I arrive home so as to unlock my door automatically or let me know if I leave the apartment without turning the A/C off. I figured my smartphone could be used to achieve this since it is equipped with a vast array of sensors and connectivity options. For example, I could use an app like OwnTracks which would send an MQTT message once I enter a certain perimeter around my apartment. However, constantly monitoring one’s GPS location is wasteful in terms of battery life. Another option would be to ping my phone’s IP address to check if it is connected to the WiFi, but smartphones can sometimes take a while to connect. So, I decided to use BLE advertising, which does not use too much battery while still remaining constantly active."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="articles"><meta property="article:published_time" content="2020-03-10T00:00:00+00:00"><meta property="article:modified_time" content="2020-03-10T00:00:00+00:00"><meta property="article:tag" content="ESP32"><meta property="article:tag" content="Projects"><meta property="article:tag" content="IoT"><meta property="article:tag" content="Bluetooth"><meta name=twitter:card content="summary"><meta name=twitter:title content="BLE presence detection"><meta name=twitter:description content="I wanted my home automation system to detect when I arrive home so as to unlock my door automatically or let me know if I leave the apartment without turning the A/C off. I figured my smartphone could be used to achieve this since it is equipped with a vast array of sensors and connectivity options. For example, I could use an app like OwnTracks which would send an MQTT message once I enter a certain perimeter around my apartment. However, constantly monitoring one’s GPS location is wasteful in terms of battery life. Another option would be to ping my phone’s IP address to check if it is connected to the WiFi, but smartphones can sometimes take a while to connect. So, I decided to use BLE advertising, which does not use too much battery while still remaining constantly active."><link rel=canonical href=https://articles.maximemoreillon.com/articles/9/><link href=/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css rel=stylesheet><link href=/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css rel=stylesheet><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/icons/favicon-16x16.png><link rel=mask-icon href=/icons/safari-pinned-tab.svg><link rel="shortcut icon" href=/favicon.ico><link rel=manifest href=https://articles.maximemoreillon.com/site.webmanifest><meta name=msapplication-config content="/browserconfig.xml"><meta name=msapplication-TileColor content="#2d89ef"><meta name=theme-color content="#434648"><meta name=color-scheme content="light dark"><link rel=icon type=image/svg+xml href=/icons/favicon.svg></head><body data-theme class=notransition><script src=/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script><div class=navbar role=navigation><nav class=menu aria-label="Main Navigation"><a href=https://articles.maximemoreillon.com/ class=logo><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><title/><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-</a><input type=checkbox id=menu-trigger class=menu-trigger>
-<label for=menu-trigger><span class=menu-icon><svg width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7H3.40726"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M.5 12.5V1.5c0-.552285.447715-1 1-1h11C13.0523.5 13.5.947715 13.5 1.5v11C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C.947715 13.5.5 13.0523.5 12.5z"/></svg></span></label><div class=trigger><ul class=trigger-container><li><a class=menu-link href=/>Home</a></li><li><a class="menu-link active" href=/articles/>Articles</a></li><li><a class=menu-link href=/tags/>Tags</a></li><li class=menu-separator><span>|</span></li></ul><a id=mode href=#><svg class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
-<svg class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg></a></div></nav></div><div class="wrapper post"><main class=page-content aria-label=Content><article><header class=header><h1 class=header-title>BLE presence detection</h1><div class=post-meta><time datetime=2020-03-10T00:00:00+00:00 itemprop=datePublished>Mar 10, 2020</time></div></header><div class=page-content><p>I wanted my home automation system to detect when I arrive home so as to unlock my door automatically or let me know if I leave the apartment without turning the A/C off. I figured my smartphone could be used to achieve this since it is equipped with a vast array of sensors and connectivity options. For example, I could use an app like OwnTracks which would send an MQTT message once I enter a certain perimeter around my apartment. However, constantly monitoring one&rsquo;s GPS location is wasteful in terms of battery life. Another option would be to ping my phone&rsquo;s IP address to check if it is connected to the WiFi, but smartphones can sometimes take a while to connect. So, I decided to use BLE advertising, which does not use too much battery while still remaining constantly active.</p><p>To detect my phone&rsquo;s BLE advertisings, I used an ESP32 for its built-in BLE capabilities. The ESP32&rsquo;s code is fairly simple: it listens for BLE advertising and gets their UUIDs. If the UUID matches that of my phone, it sends an MQTT message to the home automation system to tell it I&rsquo;m home. The main challenge here was that the ESP32 cannot scan for BLE advertising and be connected to the WiFi at the same time so I had to make it connect and disconnect accordingly. The code is available on <a href=https://github.com/maximemoreillon/BLE_presence_detection>GitHub</a>.</p><p><img src="https://img.maximemoreillon.com/image?id=5e795e1dad38483c65f86977" alt></p><p>To send BLE advertising, I made a simple android application. To make sure that the advertising would continue even when the phone is in sleep mode, I made the advertising as a service. I have almost no experience with mobile development so the application is probably riddled with bugs. The code is probably not up to date with current Android versions, but is nevertheless available on <a href=https://github.com/maximemoreillon/BLE_key>GitHub</a>.</p></div></article></main></div><footer class=footer><span class=footer_item></span>&nbsp;<div class=footer_social-icons></div><small class=footer_copyright>© 2025 Maxime Moreillon.</small></footer><script src=https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script></body></html>
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">BLE presence detection | Maxime Moreillon</title>
+<meta property="og:title" content="BLE presence detection | Maxime Moreillon" />
+<meta name="twitter:title" content="BLE presence detection | Maxime Moreillon" />
+<meta itemprop="name" content="BLE presence detection | Maxime Moreillon" />
+<meta name="application-name" content="BLE presence detection | Maxime Moreillon" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/9/" title="" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.147.8">
+
+    
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/9/">
+  <meta property="og:site_name" content="Maxime Moreillon">
+  <meta property="og:title" content="BLE presence detection">
+  <meta property="og:description" content="I wanted my home automation system to detect when I arrive home so as to unlock my door automatically or let me know if I leave the apartment without turning the A/C off. I figured my smartphone could be used to achieve this since it is equipped with a vast array of sensors and connectivity options. For example, I could use an app like OwnTracks which would send an MQTT message once I enter a certain perimeter around my apartment. However, constantly monitoring one’s GPS location is wasteful in terms of battery life. Another option would be to ping my phone’s IP address to check if it is connected to the WiFi, but smartphones can sometimes take a while to connect. So, I decided to use BLE advertising, which does not use too much battery while still remaining constantly active.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2020-03-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-03-10T00:00:00+00:00">
+    <meta property="article:tag" content="ESP32">
+    <meta property="article:tag" content="Projects">
+    <meta property="article:tag" content="IoT">
+    <meta property="article:tag" content="Bluetooth">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="BLE presence detection">
+  <meta name="twitter:description" content="I wanted my home automation system to detect when I arrive home so as to unlock my door automatically or let me know if I leave the apartment without turning the A/C off. I figured my smartphone could be used to achieve this since it is equipped with a vast array of sensors and connectivity options. For example, I could use an app like OwnTracks which would send an MQTT message once I enter a certain perimeter around my apartment. However, constantly monitoring one’s GPS location is wasteful in terms of battery life. Another option would be to ping my phone’s IP address to check if it is connected to the WiFi, but smartphones can sometimes take a while to connect. So, I decided to use BLE advertising, which does not use too much battery while still remaining constantly active.">
+
+
+    
+
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/9/">
+    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://articles.maximemoreillon.com/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+    <meta name="color-scheme" content="light dark">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://articles.maximemoreillon.com/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/articles/">
+                        Articles
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">BLE presence detection</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2020-03-10T00:00:00&#43;00:00" itemprop="datePublished"> Mar 10, 2020 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>I wanted my home automation system to detect when I arrive home so as to unlock my door automatically or let me know if I leave the apartment without turning the A/C off. I figured my smartphone could be used to achieve this since it is equipped with a vast array of sensors and connectivity options. For example, I could use an app like OwnTracks which would send an MQTT message once I enter a certain perimeter around my apartment. However, constantly monitoring one&rsquo;s GPS location is wasteful in terms of battery life. Another option would be to ping my phone&rsquo;s IP address to check if it is connected to the WiFi, but smartphones can sometimes take a while to connect. So, I decided to use BLE advertising, which does not use too much battery while still remaining constantly active.</p>
+<p>To detect my phone&rsquo;s BLE advertisings, I used an ESP32 for its built-in BLE capabilities. The ESP32&rsquo;s code is fairly simple: it listens for BLE advertising and gets their UUIDs. If the UUID matches that of my phone, it sends an MQTT message to the home automation system to tell it I&rsquo;m home. The main challenge here was that the ESP32 cannot scan for BLE advertising and be connected to the WiFi at the same time so I had to make it connect and disconnect accordingly. The code is available on <a href="https://github.com/maximemoreillon/BLE_presence_detection">GitHub</a>.</p>
+<p><img src="https://img.maximemoreillon.com/image?id=5e795e1dad38483c65f86977" alt=""></p>
+<p>To send BLE advertising, I made a simple android application. To make sure that the advertising would continue even when the phone is in sleep mode, I made the advertising as a service. I have almost no experience with mobile development so the application is probably riddled with bugs. The code is probably not up to date with current Android versions, but is nevertheless available on <a href="https://github.com/maximemoreillon/BLE_key">GitHub</a>.</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+</div>
+    <small class="footer_copyright">
+        © 2025 Maxime Moreillon.
+        
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

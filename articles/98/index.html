@@ -1,16 +1,194 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=content-type content="text/html"><meta name=viewport content="width=device-width,initial-scale=1"><title itemprop=name>Node.js DevOps example | Maxime Moreillon</title><meta property="og:title" content="Node.js DevOps example | Maxime Moreillon"><meta name=twitter:title content="Node.js DevOps example | Maxime Moreillon"><meta itemprop=name content="Node.js DevOps example | Maxime Moreillon"><meta name=application-name content="Node.js DevOps example | Maxime Moreillon"><meta property="og:site_name" content><meta name=description content><meta itemprop=description content><meta property="og:description" content><meta name=twitter:description content><meta property="og:locale" content="en-us"><meta name=language content="en-us"><link rel=alternate hreflang=en href=https://articles.maximemoreillon.com/articles/98/ title><meta name=generator content="Hugo 0.147.8"><meta property="og:url" content="https://articles.maximemoreillon.com/articles/98/"><meta property="og:site_name" content="Maxime Moreillon"><meta property="og:title" content="Node.js DevOps example"><meta property="og:description" content="In this article, we’ll build a simple Node.js application that uses Express to respond to HTTP requests. In order to deploy this application to production, we’ll also configure a GitLab CI/CD pipeline so as to dockerize it and deploy its container to a Kubernetes cluster.
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">Node.js DevOps example | Maxime Moreillon</title>
+<meta property="og:title" content="Node.js DevOps example | Maxime Moreillon" />
+<meta name="twitter:title" content="Node.js DevOps example | Maxime Moreillon" />
+<meta itemprop="name" content="Node.js DevOps example | Maxime Moreillon" />
+<meta name="application-name" content="Node.js DevOps example | Maxime Moreillon" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/98/" title="" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.147.8">
+
+    
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/98/">
+  <meta property="og:site_name" content="Maxime Moreillon">
+  <meta property="og:title" content="Node.js DevOps example">
+  <meta property="og:description" content="In this article, we’ll build a simple Node.js application that uses Express to respond to HTTP requests. In order to deploy this application to production, we’ll also configure a GitLab CI/CD pipeline so as to dockerize it and deploy its container to a Kubernetes cluster.
 Prerequisites This article assumes that the following environment is available to the reader:
-A development environment with Node.js installed. A GitLab instance with an available runner able to run the docker and kubectl commands. A production environment with a Kubernetes cluster reachable from the GitLab instance. For this, Microk8s is easy to get started with A Docker registry to push and pull containers to and from. Note that running your own registry might require Docker and Kubernetes configuration (guide for MicroK8s available here) Node.js application"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="articles"><meta property="article:published_time" content="2020-05-25T00:00:00+00:00"><meta property="article:modified_time" content="2020-05-25T00:00:00+00:00"><meta property="article:tag" content="DevOps"><meta property="article:tag" content="Kubernetes"><meta property="article:tag" content="Tutorials"><meta property="article:tag" content="Docker"><meta property="article:tag" content="Node.js"><meta name=twitter:card content="summary"><meta name=twitter:title content="Node.js DevOps example"><meta name=twitter:description content="In this article, we’ll build a simple Node.js application that uses Express to respond to HTTP requests. In order to deploy this application to production, we’ll also configure a GitLab CI/CD pipeline so as to dockerize it and deploy its container to a Kubernetes cluster.
+A development environment with Node.js installed. A GitLab instance with an available runner able to run the docker and kubectl commands. A production environment with a Kubernetes cluster reachable from the GitLab instance. For this, Microk8s is easy to get started with A Docker registry to push and pull containers to and from. Note that running your own registry might require Docker and Kubernetes configuration (guide for MicroK8s available here) Node.js application">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2020-05-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-05-25T00:00:00+00:00">
+    <meta property="article:tag" content="DevOps">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="Tutorials">
+    <meta property="article:tag" content="Docker">
+    <meta property="article:tag" content="Node.js">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Node.js DevOps example">
+  <meta name="twitter:description" content="In this article, we’ll build a simple Node.js application that uses Express to respond to HTTP requests. In order to deploy this application to production, we’ll also configure a GitLab CI/CD pipeline so as to dockerize it and deploy its container to a Kubernetes cluster.
 Prerequisites This article assumes that the following environment is available to the reader:
-A development environment with Node.js installed. A GitLab instance with an available runner able to run the docker and kubectl commands. A production environment with a Kubernetes cluster reachable from the GitLab instance. For this, Microk8s is easy to get started with A Docker registry to push and pull containers to and from. Note that running your own registry might require Docker and Kubernetes configuration (guide for MicroK8s available here) Node.js application"><link rel=canonical href=https://articles.maximemoreillon.com/articles/98/><link href=/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css rel=stylesheet><link href=/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css rel=stylesheet><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/icons/favicon-16x16.png><link rel=mask-icon href=/icons/safari-pinned-tab.svg><link rel="shortcut icon" href=/favicon.ico><link rel=manifest href=https://articles.maximemoreillon.com/site.webmanifest><meta name=msapplication-config content="/browserconfig.xml"><meta name=msapplication-TileColor content="#2d89ef"><meta name=theme-color content="#434648"><meta name=color-scheme content="light dark"><link rel=icon type=image/svg+xml href=/icons/favicon.svg></head><body data-theme class=notransition><script src=/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script><div class=navbar role=navigation><nav class=menu aria-label="Main Navigation"><a href=https://articles.maximemoreillon.com/ class=logo><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><title/><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-</a><input type=checkbox id=menu-trigger class=menu-trigger>
-<label for=menu-trigger><span class=menu-icon><svg width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7H3.40726"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M.5 12.5V1.5c0-.552285.447715-1 1-1h11C13.0523.5 13.5.947715 13.5 1.5v11C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C.947715 13.5.5 13.0523.5 12.5z"/></svg></span></label><div class=trigger><ul class=trigger-container><li><a class=menu-link href=/>Home</a></li><li><a class="menu-link active" href=/articles/>Articles</a></li><li><a class=menu-link href=/tags/>Tags</a></li><li class=menu-separator><span>|</span></li></ul><a id=mode href=#><svg class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
-<svg class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg></a></div></nav></div><div class="wrapper post"><main class=page-content aria-label=Content><article><header class=header><h1 class=header-title>Node.js DevOps example</h1><div class=post-meta><time datetime=2020-05-25T00:00:00+00:00 itemprop=datePublished>May 25, 2020</time></div></header><div class=page-content><p>In this article, we’ll build a simple <a href=https://nodejs.org/en/>Node.js</a> application that uses <a href=https://expressjs.com/>Express</a> to respond to HTTP requests. In order to deploy this application to production, we’ll also configure a <a href=https://docs.gitlab.com/ee/ci/>GitLab CI/CD</a> pipeline so as to <a href=https://www.docker.com/>dockerize</a> it and deploy its container to a <a href=https://kubernetes.io/>Kubernetes</a> cluster.</p><h2 id=prerequisites>Prerequisites</h2><p>This article assumes that the following environment is available to the reader:</p><ul><li>A development environment with <a href=https://nodejs.org/en/>Node.js</a> installed.</li><li>A <a href=https://about.gitlab.com/install/>GitLab</a> instance with an available <a href=https://docs.gitlab.com/runner/install/>runner</a> able to run the <em>docker</em> and <em>kubectl</em> commands.</li><li>A production environment with a Kubernetes cluster reachable from the GitLab instance. For this, <a href=https://microk8s.io/>Microk8s</a> is easy to get started with</li><li>A <a href=https://docs.docker.com/registry/deploying/>Docker registry</a> to push and pull containers to and from. Note that running your own registry might require <a href=https://docs.docker.com/registry/insecure/>Docker</a> and Kubernetes configuration (guide for MicroK8s available <a href=https://microk8s.io/docs/registry-private>here</a>)</li></ul><p>Node.js application</p><p>The application deployed in this guide is built using <a href=https://nodejs.org/en/>Node.js.</a> It consists of a simple web server built using the <a href=https://expressjs.com/>Express</a> package and responds Hello World! to HTTP requests. Here, it is assumed that Node.js is installed in the development environment. If this is not the case, a recommendation is to use <a href=https://github.com/nvm-sh/nvm>NVM</a> to install it.</p><h3 id=project-creation>Project creation</h3><p>With Node.js installed, the application can be built. For this purpose, an empty Node.js project can be created as follows:</p><pre tabindex=0><code>mkdir my_app
+A development environment with Node.js installed. A GitLab instance with an available runner able to run the docker and kubectl commands. A production environment with a Kubernetes cluster reachable from the GitLab instance. For this, Microk8s is easy to get started with A Docker registry to push and pull containers to and from. Note that running your own registry might require Docker and Kubernetes configuration (guide for MicroK8s available here) Node.js application">
+
+
+    
+
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/98/">
+    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://articles.maximemoreillon.com/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+    <meta name="color-scheme" content="light dark">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://articles.maximemoreillon.com/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/articles/">
+                        Articles
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Node.js DevOps example</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2020-05-25T00:00:00&#43;00:00" itemprop="datePublished"> May 25, 2020 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>In this article, we’ll build a simple <a href="https://nodejs.org/en/">Node.js</a> application that uses <a href="https://expressjs.com/">Express</a> to respond to HTTP requests. In order to deploy this application to production, we’ll also configure a <a href="https://docs.gitlab.com/ee/ci/">GitLab CI/CD</a> pipeline so as to <a href="https://www.docker.com/">dockerize</a> it and deploy its container to a <a href="https://kubernetes.io/">Kubernetes</a> cluster.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This article assumes that the following environment is available to the reader:</p>
+<ul>
+<li>A development environment with <a href="https://nodejs.org/en/">Node.js</a> installed.</li>
+<li>A <a href="https://about.gitlab.com/install/">GitLab</a> instance with an available <a href="https://docs.gitlab.com/runner/install/">runner</a> able to run the <em>docker</em> and <em>kubectl</em> commands.</li>
+<li>A production environment with a Kubernetes cluster reachable from the GitLab instance. For this, <a href="https://microk8s.io/">Microk8s</a> is easy to get started with</li>
+<li>A <a href="https://docs.docker.com/registry/deploying/">Docker registry</a> to push and pull containers to and from. Note that running your own registry might require <a href="https://docs.docker.com/registry/insecure/">Docker</a> and Kubernetes configuration (guide for MicroK8s available <a href="https://microk8s.io/docs/registry-private">here</a>)</li>
+</ul>
+<p>Node.js application</p>
+<p>The application deployed in this guide is built using <a href="https://nodejs.org/en/">Node.js.</a> It consists of a simple web server built using the <a href="https://expressjs.com/">Express</a> package and responds Hello World! to HTTP requests. Here, it is assumed that Node.js is installed in the development environment. If this is not the case, a recommendation is to use <a href="https://github.com/nvm-sh/nvm">NVM</a> to install it.</p>
+<h3 id="project-creation">Project creation</h3>
+<p>With Node.js installed, the application can be built. For this purpose, an empty Node.js project can be created as follows:</p>
+<pre tabindex="0"><code>mkdir my_app
 cd my_app
 touch main.js
-</code></pre><p>Next, we need to install Express, which can be done using the <a href=https://www.npmjs.com/>Node Package Manager, or NPM</a>, which comes with Node.js. This requires the initialization of the project with NPM, which can be done using the <code>init</code>command:</p><pre tabindex=0><code>npm install --save express
-</code></pre><p>With that done, Express is installed using the following command:</p><pre tabindex=0><code>npm install --save express
-</code></pre><p>At this point, a new folder named <em>node_modules</em>as well as files called <em>package.json</em> and <em>package-lock.json</em> should have appeared in the project’s directory. Those are here for dependencies management. <em>node_modules</em>is effectively where packages are stored locally*.*</p><p>With this done, the project is now ready for actual development.</p><h3 id=example-application>Example application</h3><p>As an example application, we&rsquo;ll use the <a href=https://expressjs.com/en/starter/hello-world.html>hello world example from the Express documentation</a></p><p>With a text editor, open the empty file main.js in the my_app directory and paste the following content</p><pre tabindex=0><code>// Import the express package
+</code></pre><p>Next, we need to install Express, which can be done using the <a href="https://www.npmjs.com/">Node Package Manager, or NPM</a>, which comes with Node.js. This requires the initialization of the project with NPM, which can be done using the <code>init</code>command:</p>
+<pre tabindex="0"><code>npm install --save express
+</code></pre><p>With that done, Express is installed using the following command:</p>
+<pre tabindex="0"><code>npm install --save express
+</code></pre><p>At this point, a new folder named <em>node_modules</em>as well as files called <em>package.json</em> and <em>package-lock.json</em> should have appeared in the project’s directory. Those are here for dependencies management. <em>node_modules</em>is effectively where packages are stored locally*.*</p>
+<p>With this done, the project is now ready for actual development.</p>
+<h3 id="example-application">Example application</h3>
+<p>As an example application, we&rsquo;ll use the <a href="https://expressjs.com/en/starter/hello-world.html">hello world example from the Express documentation</a></p>
+<p>With a text editor, open the empty file main.js in the my_app directory and paste the following content</p>
+<pre tabindex="0"><code>// Import the express package
 const express = require(&#39;express&#39;)
 
 // Instanciate an express app
@@ -24,8 +202,16 @@ app.get(&#39;/&#39;, (req, res) =&gt; res.send(&#39;Hello World!&#39;))
 
 // Start listening on the defined port
 app.listen(port, () =&gt; console.log(`Example app listening at http://0.0.0.0:${port}`))
-</code></pre><p>This application can be executed using</p><pre tabindex=0><code>node main.js
-</code></pre><p>One can now point a browser to the ip of the server and specifying port 3000 to see the application responding with <code>Hello World!</code>. To quit the app, press <em>Ctrl+C</em>.</p><p><img src="https://img.maximemoreillon.com/image?id=5ecb48f555b0c15cbb749cfd" alt>One could argue about the usefuleness of such application. However, it wil likely appear obvious to readers that business logic can be added to the code in order to exapand its capabilities.</p><h2 id=dockerization-configuration>Dockerization configuration</h2><p>Now that the application is working in the development environment, it is time to containerize it so that it can be shipped to the production environment.</p><p>The application is containerized using <a href=https://www.docker.com/>Docker</a>, which simply requires a configuration file (called Dockerfile) to specify the containerization parameters. This section follows the <a href=https://nodejs.org/fr/docs/guides/nodejs-docker-webapp/>NodeJS guide to application dockerization</a></p><p>A Dockerfile is used to create a container image, which servers as template for containers. For example, the official Python docker Image can be used to deploy containers with Python preinstalled.</p><p>Thus, to create an image of our application, create a file named <em>Dockerfile</em>in the root of the project with the following content:</p><pre tabindex=0><code># The image requires node so base it on an image that already has node installed
+</code></pre><p>This application can be executed using</p>
+<pre tabindex="0"><code>node main.js
+</code></pre><p>One can now point a browser to the ip of the server and specifying port 3000 to see the application responding with <code>Hello World!</code>. To quit the app, press <em>Ctrl+C</em>.</p>
+<p><img src="https://img.maximemoreillon.com/image?id=5ecb48f555b0c15cbb749cfd" alt="">One could argue about the usefuleness of such application. However, it wil likely appear obvious to readers that business logic can be added to the code in order to exapand its capabilities.</p>
+<h2 id="dockerization-configuration">Dockerization configuration</h2>
+<p>Now that the application is working in the development environment, it is time to containerize it so that it can be shipped to the production environment.</p>
+<p>The application is containerized using <a href="https://www.docker.com/">Docker</a>, which simply requires a configuration file (called Dockerfile) to specify the containerization parameters. This section follows the <a href="https://nodejs.org/fr/docs/guides/nodejs-docker-webapp/">NodeJS guide to application dockerization</a></p>
+<p>A Dockerfile is used to create a container image, which servers as template for containers. For example, the official Python docker Image can be used to deploy containers with Python preinstalled.</p>
+<p>Thus, to create an image of our application, create a file named <em>Dockerfile</em>in the root of the project with the following content:</p>
+<pre tabindex="0"><code># The image requires node so base it on an image that already has node installed
 FROM node:12
 
 # Create app directory
@@ -42,8 +228,14 @@ EXPOSE 3000
 
 # Start the application
 CMD [ &#34;node&#34;, &#34;main.js&#34; ]
-</code></pre><p>Note that additional commands might be required when working behind a corporate proxy.</p><p>To prevent the container from being too heavy, the <code>node_modules</code> directory is not needed inside of it. Instead, <code>node_modules</code> will be recreated automatically when <code>npm install</code> is run. To prevent the node_modules directory to be copied over, create a file named .dockerignore in the application directory with the following content:</p><pre tabindex=0><code>node_modules
-</code></pre><h2 id=kubernetes-deployment-configuration>Kubernetes deployment configuration</h2><p>With the Dockerfile created in the previous section, a container image of the application can be created and thus pushed to a container registry. This makes the application available for deployment in a Kubernetes cluster.</p><p>Deploying the application in a Kubernetes consists of creating two components: A <a href=https://kubernetes.io/docs/concepts/workloads/controllers/deployment/>deployment</a> and a <a href=https://kubernetes.io/docs/concepts/services-networking/service/>service</a>. The deployment is basically the application itself while a service is a resource used to connect the application to its users, effectively by providing the deployment with a port with which it can communicate with the outside. Here, we will use port 31234 for our service.</p><p>The creation of the deployment and the service for our aplication is done by describing those in a manifest file and having Kubernetes read the content of that file. Thus, create a file names kubernetes.manifes.yml in the root of the project with the following content:</p><pre tabindex=0><code># This section will create a deployment in the Kubernetes cluster
+</code></pre><p>Note that additional commands might be required when working behind a corporate proxy.</p>
+<p>To prevent the container from being too heavy, the <code>node_modules</code> directory is not needed inside of it. Instead, <code>node_modules</code> will be recreated automatically when <code>npm install</code> is run. To prevent the node_modules directory to be copied over, create a file named .dockerignore in the application directory with the following content:</p>
+<pre tabindex="0"><code>node_modules
+</code></pre><h2 id="kubernetes-deployment-configuration">Kubernetes deployment configuration</h2>
+<p>With the Dockerfile created in the previous section, a container image of the application can be created and thus pushed to a container registry. This makes the application available for deployment in a Kubernetes cluster.</p>
+<p>Deploying the application in a Kubernetes consists of creating two components: A <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">deployment</a> and a <a href="https://kubernetes.io/docs/concepts/services-networking/service/">service</a>. The deployment is basically the application itself while a service is a resource used to connect the application to its users, effectively by providing the deployment with a port with which it can communicate with the outside. Here, we will use port 31234 for our service.</p>
+<p>The creation of the deployment and the service for our aplication is done by describing those in a manifest file and having Kubernetes read the content of that file. Thus, create a file names kubernetes.manifes.yml in the root of the project with the following content:</p>
+<pre tabindex="0"><code># This section will create a deployment in the Kubernetes cluster
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -78,7 +270,10 @@ spec:
   selector:
     app: my-application
   type: NodePort
-</code></pre><h2 id=gitlab-cicd-configuration>GitLab CI/CD configuration</h2><p>The project now has a working source code as well as the configuration needed to be containerized and deployed to the Kubernetes cluster. Although the containerization and deployment can be done manually, it is more convenient to have GitLab perform those steps automatically. This is especially true if the tools needed to perform those steps are not installed in the development environment.</p><p>To have GitLab take care of the containerization and deployment, simply create a file named <code>.gitlab-ci.yml</code> that contains the necessary commands for each step as yaml arrays:</p><pre tabindex=0><code>stages:
+</code></pre><h2 id="gitlab-cicd-configuration">GitLab CI/CD configuration</h2>
+<p>The project now has a working source code as well as the configuration needed to be containerized and deployed to the Kubernetes cluster. Although the containerization and deployment can be done manually, it is more convenient to have GitLab perform those steps automatically. This is especially true if the tools needed to perform those steps are not installed in the development environment.</p>
+<p>To have GitLab take care of the containerization and deployment, simply create a file named <code>.gitlab-ci.yml</code> that contains the necessary commands for each step as yaml arrays:</p>
+<pre tabindex="0"><code>stages:
   - containerization
   - deploy
 
@@ -101,10 +296,55 @@ deployment:
     - kubectl rollout restart deployment/my-application
   environment:
     name: production
-</code></pre><h2 id=gitlab-project-preparation>GitLab project preparation</h2><h3 id=project-creation-1>Project creation</h3><p>The local content of the project is ready for the deployment of the application. Now, a remote repository needs to be created for the project in GitLab. This can be done simply by clicking the New project button and then giving a name to the project.</p><p><img src="https://img.maximemoreillon.com/image?id=5ecb4fb355b0c15768749cfe" alt></p><p>Once created, GitLab provides an URL that can be used to push code to the repository.</p><h3 id=kubernetes-integration>Kubernetes Integration</h3><p>Now that the project has been created in GitLab, it must be configured so as to connect to the desired Kubernetes cluster. Ideally, the project should be created in a group that already has a Kubernetes cluster integrated, but if it is not the case, Kubernetes clusters can be integrated at project level.</p><p>To do so, go to the Operations menu of the project in GitLab and click Kubernetes.</p><p><img src="https://img.maximemoreillon.com/image?id=5ecb506a55b0c13a46749cff" alt></p><p>This leads to a page allowing the user to configure details of the Kubernetes cluster integration. The <a href=https://docs.gitlab.com/ee/user/project/clusters/add_remove_clusters.html>Gitlab documentation</a> provides a complete guide on how to do so.</p><h2 id=pushing-the-project-to-gitlab-using-git>Pushing the project to GitLab using Git</h2><p>With the remote repository created, the local content can pushed using <a href=https://git-scm.com/>Git</a>. To do so, the project direcotry must be inisialized so as to be used with git, which can be done as so</p><pre tabindex=0><code>git init
-</code></pre><p>The remote repository can then be registered using the <code>git remote add</code> command:</p><pre tabindex=0><code>git remote add gitlab http://&lt;gitlab url&gt;/&lt;my-user&gt;/my-application
-</code></pre><p>The <code>node_modules</code> directory can be quite heavy so it is not needed to upload it to GitLab. Users can download the modules by running <code>npm install</code> if needed. To prevent it to be uploaded, file named <code>.gitignore</code> in the project&rsquo;s root directory and have the following as content:</p><pre tabindex=0><code>node_modules
-</code></pre><p>With everything in place, the code can be staged, commited and pushed</p><pre tabindex=0><code>git add .
+</code></pre><h2 id="gitlab-project-preparation">GitLab project preparation</h2>
+<h3 id="project-creation-1">Project creation</h3>
+<p>The local content of the project is ready for the deployment of the application. Now, a remote repository needs to be created for the project in GitLab. This can be done simply by clicking the New project button and then giving a name to the project.</p>
+<p><img src="https://img.maximemoreillon.com/image?id=5ecb4fb355b0c15768749cfe" alt=""></p>
+<p>Once created, GitLab provides an URL that can be used to push code to the repository.</p>
+<h3 id="kubernetes-integration">Kubernetes Integration</h3>
+<p>Now that the project has been created in GitLab, it must be configured so as to connect to the desired Kubernetes cluster. Ideally, the project should be created in a group that already has a Kubernetes cluster integrated, but if it is not the case, Kubernetes clusters can be integrated at project level.</p>
+<p>To do so, go to the Operations menu of the project in GitLab and click Kubernetes.</p>
+<p><img src="https://img.maximemoreillon.com/image?id=5ecb506a55b0c13a46749cff" alt=""></p>
+<p>This leads to a page allowing the user to configure details of the Kubernetes cluster integration. The <a href="https://docs.gitlab.com/ee/user/project/clusters/add_remove_clusters.html">Gitlab documentation</a> provides a complete guide on how to do so.</p>
+<h2 id="pushing-the-project-to-gitlab-using-git">Pushing the project to GitLab using Git</h2>
+<p>With the remote repository created, the local content can pushed using <a href="https://git-scm.com/">Git</a>. To do so, the project direcotry must be inisialized so as to be used with git, which can be done as so</p>
+<pre tabindex="0"><code>git init
+</code></pre><p>The remote repository can then be registered using the <code>git remote add</code> command:</p>
+<pre tabindex="0"><code>git remote add gitlab http://&lt;gitlab url&gt;/&lt;my-user&gt;/my-application
+</code></pre><p>The <code>node_modules</code> directory can be quite heavy so it is not needed to upload it to GitLab. Users can download the modules by running <code>npm install</code> if needed. To prevent it to be uploaded, file named <code>.gitignore</code> in the project&rsquo;s root directory and have the following as content:</p>
+<pre tabindex="0"><code>node_modules
+</code></pre><p>With everything in place, the code can be staged, commited and pushed</p>
+<pre tabindex="0"><code>git add .
 git commit -m &#34;Deploying to k8s&#34;
 git push gitlab master
-</code></pre><p>Now that the code has been pushed to GitLab, the CI pipeline takes care of the containerization and deployment of the application. If everything succeeds, the project page should greet users with a green check mark next to the commit number.</p><p>With such a pipeline in place, the application running in Kubernetes will be updated automatically each time the developer pushes code on the master branch of the project, which greatly reduces the hurdles of deployment.</p></div></article></main></div><footer class=footer><span class=footer_item></span>&nbsp;<div class=footer_social-icons></div><small class=footer_copyright>© 2025 Maxime Moreillon.</small></footer><script src=https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script></body></html>
+</code></pre><p>Now that the code has been pushed to GitLab, the CI pipeline takes care of the containerization and deployment of the application. If everything succeeds, the project page should greet users with a green check mark next to the commit number.</p>
+<p>With such a pipeline in place, the application running in Kubernetes will be updated automatically each time the developer pushes code on the master branch of the project, which greatly reduces the hurdles of deployment.</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+</div>
+    <small class="footer_copyright">
+        © 2025 Maxime Moreillon.
+        
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

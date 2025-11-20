@@ -1,17 +1,180 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=content-type content="text/html"><meta name=viewport content="width=device-width,initial-scale=1"><title itemprop=name>GitLab Microk8s >1.24 certificate based integration | Maxime Moreillon</title><meta property="og:title" content="GitLab Microk8s >1.24 certificate based integration | Maxime Moreillon"><meta name=twitter:title content="GitLab Microk8s >1.24 certificate based integration | Maxime Moreillon"><meta itemprop=name content="GitLab Microk8s >1.24 certificate based integration | Maxime Moreillon"><meta name=application-name content="GitLab Microk8s >1.24 certificate based integration | Maxime Moreillon"><meta property="og:site_name" content><meta name=description content><meta itemprop=description content><meta property="og:description" content><meta name=twitter:description content><meta property="og:locale" content="en-us"><meta name=language content="en-us"><link rel=alternate hreflang=en href=https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/ title><meta name=generator content="Hugo 0.147.8"><meta property="og:url" content="https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/"><meta property="og:site_name" content="Maxime Moreillon"><meta property="og:title" content="GitLab Microk8s >1.24 certificate based integration"><meta property="og:description" content='With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">GitLab Microk8s &gt;1.24 certificate based integration | Maxime Moreillon</title>
+<meta property="og:title" content="GitLab Microk8s &gt;1.24 certificate based integration | Maxime Moreillon" />
+<meta name="twitter:title" content="GitLab Microk8s &gt;1.24 certificate based integration | Maxime Moreillon" />
+<meta itemprop="name" content="GitLab Microk8s &gt;1.24 certificate based integration | Maxime Moreillon" />
+<meta name="application-name" content="GitLab Microk8s &gt;1.24 certificate based integration | Maxime Moreillon" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/" title="" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.147.8">
+
+    
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/">
+  <meta property="og:site_name" content="Maxime Moreillon">
+  <meta property="og:title" content="GitLab Microk8s &gt;1.24 certificate based integration">
+  <meta property="og:description" content="With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences
 CA certificate The CA certificate can be obtained directly from the microk8s files:
 cat /var/snap/microk8s/current/certs/ca.crt Access Token As per usual, the RBAC addon must be enabled
 micok8s.enable rbac Following which, the following manifest can be applied:
-apiVersion: v1 kind: ServiceAccount metadata: name: gitlab namespace: kube-system --- apiVersion: v1 kind: Secret type: kubernetes.io/service-account-token metadata: name: gitlab namespace: kube-system annotations: kubernetes.io/service-account.name: "gitlab" --- apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRoleBinding metadata: name: gitlab-admin roleRef: apiGroup: rbac.authorization.k8s.io kind: ClusterRole name: cluster-admin subjects: - kind: ServiceAccount name: gitlab namespace: kube-system This creates the access token which can be displayed using:'><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="articles"><meta property="article:published_time" content="2023-11-03T00:00:00+00:00"><meta property="article:modified_time" content="2023-11-03T00:00:00+00:00"><meta property="article:tag" content="Kubernetes"><meta property="article:tag" content="Microk8s"><meta property="article:tag" content="Tutorials"><meta property="article:tag" content="GitLab"><meta name=twitter:card content="summary"><meta name=twitter:title content="GitLab Microk8s >1.24 certificate based integration"><meta name=twitter:description content='With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences
+apiVersion: v1 kind: ServiceAccount metadata: name: gitlab namespace: kube-system --- apiVersion: v1 kind: Secret type: kubernetes.io/service-account-token metadata: name: gitlab namespace: kube-system annotations: kubernetes.io/service-account.name: &#34;gitlab&#34; --- apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRoleBinding metadata: name: gitlab-admin roleRef: apiGroup: rbac.authorization.k8s.io kind: ClusterRole name: cluster-admin subjects: - kind: ServiceAccount name: gitlab namespace: kube-system This creates the access token which can be displayed using:">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2023-11-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-11-03T00:00:00+00:00">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="Microk8s">
+    <meta property="article:tag" content="Tutorials">
+    <meta property="article:tag" content="GitLab">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GitLab Microk8s &gt;1.24 certificate based integration">
+  <meta name="twitter:description" content="With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences
 CA certificate The CA certificate can be obtained directly from the microk8s files:
 cat /var/snap/microk8s/current/certs/ca.crt Access Token As per usual, the RBAC addon must be enabled
 micok8s.enable rbac Following which, the following manifest can be applied:
-apiVersion: v1 kind: ServiceAccount metadata: name: gitlab namespace: kube-system --- apiVersion: v1 kind: Secret type: kubernetes.io/service-account-token metadata: name: gitlab namespace: kube-system annotations: kubernetes.io/service-account.name: "gitlab" --- apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRoleBinding metadata: name: gitlab-admin roleRef: apiGroup: rbac.authorization.k8s.io kind: ClusterRole name: cluster-admin subjects: - kind: ServiceAccount name: gitlab namespace: kube-system This creates the access token which can be displayed using:'><link rel=canonical href=https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/><link href=/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css rel=stylesheet><link href=/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css rel=stylesheet><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/icons/favicon-16x16.png><link rel=mask-icon href=/icons/safari-pinned-tab.svg><link rel="shortcut icon" href=/favicon.ico><link rel=manifest href=https://articles.maximemoreillon.com/site.webmanifest><meta name=msapplication-config content="/browserconfig.xml"><meta name=msapplication-TileColor content="#2d89ef"><meta name=theme-color content="#434648"><meta name=color-scheme content="light dark"><link rel=icon type=image/svg+xml href=/icons/favicon.svg></head><body data-theme class=notransition><script src=/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script><div class=navbar role=navigation><nav class=menu aria-label="Main Navigation"><a href=https://articles.maximemoreillon.com/ class=logo><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><title/><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-</a><input type=checkbox id=menu-trigger class=menu-trigger>
-<label for=menu-trigger><span class=menu-icon><svg width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7H3.40726"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M.5 12.5V1.5c0-.552285.447715-1 1-1h11C13.0523.5 13.5.947715 13.5 1.5v11C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C.947715 13.5.5 13.0523.5 12.5z"/></svg></span></label><div class=trigger><ul class=trigger-container><li><a class=menu-link href=/>Home</a></li><li><a class="menu-link active" href=/articles/>Articles</a></li><li><a class=menu-link href=/tags/>Tags</a></li><li class=menu-separator><span>|</span></li></ul><a id=mode href=#><svg class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
-<svg class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg></a></div></nav></div><div class="wrapper post"><main class=page-content aria-label=Content><article><header class=header><h1 class=header-title>GitLab Microk8s >1.24 certificate based integration</h1><div class=post-meta><time datetime=2023-11-03T00:00:00+00:00 itemprop=datePublished>Nov 3, 2023</time></div></header><div class=page-content><p>With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences</p><h2 id=ca-certificate>CA certificate</h2><p>The CA certificate can be obtained directly from the microk8s files:</p><pre tabindex=0><code>cat /var/snap/microk8s/current/certs/ca.crt
-</code></pre><h2 id=access-token>Access Token</h2><p>As per usual, the RBAC addon must be enabled</p><pre tabindex=0><code>micok8s.enable rbac
-</code></pre><p>Following which, the following manifest can be applied:</p><pre tabindex=0><code>apiVersion: v1
+apiVersion: v1 kind: ServiceAccount metadata: name: gitlab namespace: kube-system --- apiVersion: v1 kind: Secret type: kubernetes.io/service-account-token metadata: name: gitlab namespace: kube-system annotations: kubernetes.io/service-account.name: &#34;gitlab&#34; --- apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRoleBinding metadata: name: gitlab-admin roleRef: apiGroup: rbac.authorization.k8s.io kind: ClusterRole name: cluster-admin subjects: - kind: ServiceAccount name: gitlab namespace: kube-system This creates the access token which can be displayed using:">
+
+
+    
+
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/">
+    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://articles.maximemoreillon.com/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+    <meta name="color-scheme" content="light dark">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://articles.maximemoreillon.com/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/articles/">
+                        Articles
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">GitLab Microk8s &gt;1.24 certificate based integration</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2023-11-03T00:00:00&#43;00:00" itemprop="datePublished"> Nov 3, 2023 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences</p>
+<h2 id="ca-certificate">CA certificate</h2>
+<p>The CA certificate can be obtained directly from the microk8s files:</p>
+<pre tabindex="0"><code>cat /var/snap/microk8s/current/certs/ca.crt
+</code></pre><h2 id="access-token">Access Token</h2>
+<p>As per usual, the RBAC addon must be enabled</p>
+<pre tabindex="0"><code>micok8s.enable rbac
+</code></pre><p>Following which, the following manifest can be applied:</p>
+<pre tabindex="0"><code>apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: gitlab
@@ -38,5 +201,34 @@ subjects:
   - kind: ServiceAccount
     name: gitlab
     namespace: kube-system
-</code></pre><p>This creates the access token which can be displayed using:</p><pre tabindex=0><code>microk8s.kubectl -n kube-system describe secret $(microk8s.kubectl -n kube-system get secret | grep gitlab | awk &#39;{print $1}&#39;)
-</code></pre></div></article></main></div><footer class=footer><span class=footer_item></span>&nbsp;<div class=footer_social-icons></div><small class=footer_copyright>© 2025 Maxime Moreillon.</small></footer><script src=https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script></body></html>
+</code></pre><p>This creates the access token which can be displayed using:</p>
+<pre tabindex="0"><code>microk8s.kubectl -n kube-system describe secret $(microk8s.kubectl -n kube-system get secret | grep gitlab | awk &#39;{print $1}&#39;)
+</code></pre>
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+</div>
+    <small class="footer_copyright">
+        © 2025 Maxime Moreillon.
+        
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

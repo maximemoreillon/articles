@@ -1,3 +1,35 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Robotics on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/robotics/</link><description>Recent content in Robotics on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 11 Aug 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/robotics/index.xml" rel="self" type="application/rss+xml"/><item><title>4WD robot</title><link>https://articles.maximemoreillon.com/articles/553/</link><pubDate>Mon, 11 Aug 2014 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/553/</guid><description>&lt;p>I found a cheap 4 wheel drive chassis on eBay and decided to make a remote controlled robot out of it. Thus, I made a simple board with two H-bridge modules, an NRF24L01 wireless module and Arduino pro mini.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614fc82f9a075f361259c807" alt="">To control the robot, I designed a simple remote controller with an Arduino pro-mini, joystick and NRF24L01 module&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614fc8519a075f88b759c80b" alt="">As it is, the robot was not very useful, even when displaying some creativity.&lt;/p></description></item><item><title>PET bottle collecting robot</title><link>https://articles.maximemoreillon.com/articles/592/</link><pubDate>Wed, 11 Jun 2014 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/592/</guid><description>&lt;p>While at university, two friends and I registered as a team for the &lt;a href="https://robot-competition.epfl.ch/">EPFL robots competition&lt;/a>. The objective of the competition is to build a robot that would collect PET bottles inside an arena and bring them back to a collection area. We figured the robot would need to be designed with a storage space as well as some form of path finding algorithm if we wanted it to be able to carry bottles to the collection area so decided to simply skip the step. Instead, we designed the robot as a bottle cannon that would shoot the bottles in the collection area.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Robotics on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/robotics/</link>
+    <description>Recent content in Robotics on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Aug 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/robotics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>4WD robot</title>
+      <link>https://articles.maximemoreillon.com/articles/553/</link>
+      <pubDate>Mon, 11 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/553/</guid>
+      
+      <description>&lt;p&gt;I found a cheap 4 wheel drive chassis on eBay and decided to make a remote controlled robot out of it. Thus, I made a simple board with two H-bridge modules, an NRF24L01 wireless module and Arduino pro mini.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fc82f9a075f361259c807&#34; alt=&#34;&#34;&gt;To control the robot, I designed a simple remote controller with an Arduino pro-mini, joystick and NRF24L01 module&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fc8519a075f88b759c80b&#34; alt=&#34;&#34;&gt;As it is, the robot was not very useful, even when displaying some creativity.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>PET bottle collecting robot</title>
+      <link>https://articles.maximemoreillon.com/articles/592/</link>
+      <pubDate>Wed, 11 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/592/</guid>
+      
+      <description>&lt;p&gt;While at university, two friends and I registered as a team for the &lt;a href=&#34;https://robot-competition.epfl.ch/&#34;&gt;EPFL robots competition&lt;/a&gt;. The objective of the competition is to build a robot that would collect PET bottles inside an arena and bring them back to a collection area. We figured the robot would need to be designed with a storage space as well as some form of path finding algorithm if we wanted it to be able to carry bottles to the collection area so decided to simply skip the step. Instead, we designed the robot as a bottle cannon that would shoot the bottles in the collection area.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,1 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Computer Vision on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/computer-vision/</link><description>Recent content in Computer Vision on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/computer-vision/index.xml" rel="self" type="application/rss+xml"/><item><title>Unlocking my apartment with my face</title><link>https://articles.maximemoreillon.com/articles/624/</link><pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/624/</guid><description>&lt;p>As part of a previous project, I installed an &lt;a href="https://articles.maximemoreillon.com/articles/237">IoT lock&lt;/a> on my front door, which allowed me to control it using my smartphone. However, having to take out my smartphone every time I want to unlock the door quickly becomes annoying. To improve on the situation, I installed an RFID reader on the lock, which I used in combination with an &lt;a href="https://articles.maximemoreillon.com/articles/523">RFID ring which now serves as my key&lt;/a>. To follow up on this trend of finding new ways to unlock my door, I decided to explore face recognition technologies.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computer Vision on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/computer-vision/</link>
+    <description>Recent content in Computer Vision on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 22 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/computer-vision/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unlocking my apartment with my face</title>
+      <link>https://articles.maximemoreillon.com/articles/624/</link>
+      <pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/624/</guid>
+      
+      <description>&lt;p&gt;As part of a previous project, I installed an &lt;a href=&#34;https://articles.maximemoreillon.com/articles/237&#34;&gt;IoT lock&lt;/a&gt; on my front door, which allowed me to control it using my smartphone. However, having to take out my smartphone every time I want to unlock the door quickly becomes annoying. To improve on the situation, I installed an RFID reader on the lock, which I used in combination with an &lt;a href=&#34;https://articles.maximemoreillon.com/articles/523&#34;&gt;RFID ring which now serves as my key&lt;/a&gt;. To follow up on this trend of finding new ways to unlock my door, I decided to explore face recognition technologies.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,2 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Infrared on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/infrared/</link><description>Recent content in Infrared on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 20 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/infrared/index.xml" rel="self" type="application/rss+xml"/><item><title>IoT infrared controller</title><link>https://articles.maximemoreillon.com/articles/538/</link><pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/538/</guid><description>&lt;p>Although probably in the decline, infrared is a common way to remotely control household appliances such as air conditioners or TVs. Being able to turn on an AC unit without leaving the sofa is definitely comfortable, but sometimes it would be even better to be able to do it before even getting home. In order to control those various appliances, I designed a simple WiFi controlled IR emitter.&lt;/p>
-&lt;p>The device consists of an ESP8266, an IR LED and IR receiver. The IR receiver is used to record IR signals from the original remote controller of the appliances. Those signals are stored in the ESP8266, which can then replay those using the IR LED.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Infrared on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/infrared/</link>
+    <description>Recent content in Infrared on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/infrared/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IoT infrared controller</title>
+      <link>https://articles.maximemoreillon.com/articles/538/</link>
+      <pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/538/</guid>
+      
+      <description>&lt;p&gt;Although probably in the decline, infrared is a common way to remotely control household appliances such as air conditioners or TVs. Being able to turn on an AC unit without leaving the sofa is definitely comfortable, but sometimes it would be even better to be able to do it before even getting home. In order to control those various appliances, I designed a simple WiFi controlled IR emitter.&lt;/p&gt;
+&lt;p&gt;The device consists of an ESP8266, an IR LED and IR receiver. The IR receiver is used to record IR signals from the original remote controller of the appliances. Those signals are stored in the ESP8266, which can then replay those using the IR LED.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

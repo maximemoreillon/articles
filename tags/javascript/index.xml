@@ -1,48 +1,94 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Javascript on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/javascript/</link><description>Recent content in Javascript on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 12 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>TypeScript setup</title><link>https://articles.maximemoreillon.com/articles/e2334ea0-10af-49fa-bbed-9342e5965e74/</link><pubDate>Thu, 12 Jan 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/e2334ea0-10af-49fa-bbed-9342e5965e74/</guid><description>&lt;p>Node.js can execute .ts files if those do not contain any TypeScript specific syntax. However, the running code like the following example:&lt;/p>
-&lt;pre tabindex="0">&lt;code>interface Movie {
-title: string
-year: number
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/javascript/</link>
+    <description>Recent content in Javascript on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 12 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TypeScript setup</title>
+      <link>https://articles.maximemoreillon.com/articles/e2334ea0-10af-49fa-bbed-9342e5965e74/</link>
+      <pubDate>Thu, 12 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/e2334ea0-10af-49fa-bbed-9342e5965e74/</guid>
+      
+      <description>&lt;p&gt;Node.js can execute .ts files if those do not contain any TypeScript specific syntax. However, the running code like the following example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;interface Movie {
+  title: string
+  year: number
 }
-&lt;/code>&lt;/pre>&lt;p>Yields the following error&lt;/p>
-&lt;pre tabindex="0">&lt;code>[moreillon@fedora ts-test]$ node index.ts
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Yields the following error&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[moreillon@fedora ts-test]$ node index.ts
 /home/moreillon/node/ts-test/index.ts:3
 interface Movie {
-^^^^^
+          ^^^^^
+
 SyntaxError: Unexpected identifier
-at Object.compileFunction (node:vm:360:18)
-at wrapSafe (node:internal/modules/cjs/loader:1088:15)
-at Module._compile (node:internal/modules/cjs/loader:1123:27)
-at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
-at Module.load (node:internal/modules/cjs/loader:1037:32)
-at Module._load (node:internal/modules/cjs/loader:878:12)
-at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
-at node:internal/main/run_main_module:23:47
-&lt;/code>&lt;/pre>&lt;p>Here, TS code must be converted into plain JS. This is achieved using the TypeScript Compiler, or TSC. The compiler can be installed using npm:&lt;/p></description></item><item><title>Callbacks in Javascript</title><link>https://articles.maximemoreillon.com/articles/368/</link><pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/368/</guid><description>&lt;p>Here is a simple javascript function that is designed to print its argument in the console:&lt;/p>
-&lt;pre tabindex="0">&lt;code>var myFunction = function(argument){
-console.log(argument)
+    at Object.compileFunction (node:vm:360:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1088:15)
+    at Module._compile (node:internal/modules/cjs/loader:1123:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+    at Module.load (node:internal/modules/cjs/loader:1037:32)
+    at Module._load (node:internal/modules/cjs/loader:878:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
+    at node:internal/main/run_main_module:23:47
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here, TS code must be converted into plain JS. This is achieved using the TypeScript Compiler, or TSC. The compiler can be installed using npm:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Callbacks in Javascript</title>
+      <link>https://articles.maximemoreillon.com/articles/368/</link>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/368/</guid>
+      
+      <description>&lt;p&gt;Here is a simple javascript function that is designed to print its argument in the console:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var myFunction = function(argument){
+  console.log(argument)
 }
-&lt;/code>&lt;/pre>&lt;p>A function can be called using brackets, the latter containing the argument to be passed:&lt;/p>
-&lt;pre tabindex="0">&lt;code>var a = &amp;#34;Hello world&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A function can be called using brackets, the latter containing the argument to be passed:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var a = &amp;#34;Hello world&amp;#34;
 myFunction(a)
-&lt;/code>&lt;/pre>&lt;p>Which would result in the following console output:&lt;/p>
-&lt;pre tabindex="0">&lt;code>Hello world
-&lt;/code>&lt;/pre>&lt;p>Argument can be be of any type, number, string, array, etc, including functions:&lt;/p>
-&lt;pre tabindex="0">&lt;code>var myFunction = function(argument){
-console.log(argument)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Which would result in the following console output:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Hello world
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Argument can be be of any type, number, string, array, etc, including functions:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var myFunction = function(argument){
+  console.log(argument)
 }
+
 var myOtherFunction = function(){
-console.log(&amp;#39;I am myOtherfunction&amp;#39;)
+  console.log(&amp;#39;I am myOtherfunction&amp;#39;)
 }
+
 myFunction(myOtherFunction)
-&lt;/code>&lt;/pre>&lt;p>This would output:&lt;/p></description></item><item><title>Javascript self-executing functions</title><link>https://articles.maximemoreillon.com/articles/369/</link><pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/369/</guid><description>&lt;p>In Javascript, a function can be defined as so:&lt;/p>
-&lt;pre tabindex="0">&lt;code>var myFunction = function(){
-console.log(&amp;#39;hello world&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This would output:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Javascript self-executing functions</title>
+      <link>https://articles.maximemoreillon.com/articles/369/</link>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/369/</guid>
+      
+      <description>&lt;p&gt;In Javascript, a function can be defined as so:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var myFunction = function(){
+  console.log(&amp;#39;hello world&amp;#39;)
 }
-&lt;/code>&lt;/pre>&lt;p>This function can be called using brackets as so:&lt;/p>
-&lt;pre tabindex="0">&lt;code>myFunction()
-&lt;/code>&lt;/pre>&lt;p>which would print &lt;code>hello world&lt;/code>in the console.&lt;/p>
-&lt;p>Sometimes, naming a function might not be necessary, for example if the function is just called once within the code. In such case, the function can be made self-executing using wrapping brackets:&lt;/p>
-&lt;pre tabindex="0">&lt;code>(function(){
-console.log(&amp;#39;hello world&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This function can be called using brackets as so:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;myFunction()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;which would print &lt;code&gt;hello world&lt;/code&gt;in the console.&lt;/p&gt;
+&lt;p&gt;Sometimes, naming a function might not be necessary, for example if the function is just called once within the code. In such case, the function can be made self-executing using wrapping brackets:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;(function(){
+  console.log(&amp;#39;hello world&amp;#39;)
 })()
-&lt;/code>&lt;/pre></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

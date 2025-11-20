@@ -1,2 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Prisma on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/prisma/</link><description>Recent content in Prisma on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 06 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/prisma/index.xml" rel="self" type="application/rss+xml"/><item><title>Auto CRUD</title><link>https://articles.maximemoreillon.com/articles/1d5d4606-7732-40ec-b7b0-24afdf8b7d85/</link><pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/1d5d4606-7732-40ec-b7b0-24afdf8b7d85/</guid><description>&lt;p>Most web applications that manage data in a database perform at least some form of create, read, update or delete (CRUD) operations on stored records. Moreover, web applications also often expose those operations via a REST API.&lt;/p>
-&lt;p>Most database tables - corresponding to the entities manged by the application - need their own CRUD controller and set of HTTP endpoints. Because of this, large applications can quickly become tedious to develop and maintain. However, the logic for each table is usually quite similar.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Prisma on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/prisma/</link>
+    <description>Recent content in Prisma on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 06 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/prisma/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Auto CRUD</title>
+      <link>https://articles.maximemoreillon.com/articles/1d5d4606-7732-40ec-b7b0-24afdf8b7d85/</link>
+      <pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/1d5d4606-7732-40ec-b7b0-24afdf8b7d85/</guid>
+      
+      <description>&lt;p&gt;Most web applications that manage data in a database perform at least some form of create, read, update or delete (CRUD) operations on stored records. Moreover, web applications also often expose those operations via a REST API.&lt;/p&gt;
+&lt;p&gt;Most database tables - corresponding to the entities manged by the application - need their own CRUD controller and set of HTTP endpoints. Because of this, large applications can quickly become tedious to develop and maintain. However, the logic for each table is usually quite similar.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

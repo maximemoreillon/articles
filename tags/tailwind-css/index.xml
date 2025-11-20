@@ -1,3 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tailwind CSS on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/tailwind-css/</link><description>Recent content in Tailwind CSS on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 12 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/tailwind-css/index.xml" rel="self" type="application/rss+xml"/><item><title>Anshin</title><link>https://articles.maximemoreillon.com/articles/5b068e5d-427d-4721-8ed1-8057ed3d8606/</link><pubDate>Fri, 12 May 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/5b068e5d-427d-4721-8ed1-8057ed3d8606/</guid><description>&lt;p>I live by myself far away from my relatives, which can can make them worried if they don&amp;rsquo;t hear about me for too long. To reassure them, I made a simple web application which displays my recent activity alongside a list of emergency contacts.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/645ecb973581c50013b50aa5" alt="Article image">&lt;/p>
-&lt;p>Because the app did not require any kind of interactivity, I decided to build it using &lt;a href="https://astro.build/">Astro&lt;/a>. As the recent activity needs shown on the app to be up to date, Astro is in SSR mode with the Node.js adapter, thus fetching the latest data every time the page is requested. The app is written in TypeScript and uses the Tailwind CSS framework for styling.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tailwind CSS on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/tailwind-css/</link>
+    <description>Recent content in Tailwind CSS on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 12 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/tailwind-css/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Anshin</title>
+      <link>https://articles.maximemoreillon.com/articles/5b068e5d-427d-4721-8ed1-8057ed3d8606/</link>
+      <pubDate>Fri, 12 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/5b068e5d-427d-4721-8ed1-8057ed3d8606/</guid>
+      
+      <description>&lt;p&gt;I live by myself far away from my relatives, which can can make them worried if they don&amp;rsquo;t hear about me for too long. To reassure them, I made a simple web application which displays my recent activity alongside a list of emergency contacts.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/645ecb973581c50013b50aa5&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Because the app did not require any kind of interactivity, I decided to build it using &lt;a href=&#34;https://astro.build/&#34;&gt;Astro&lt;/a&gt;. As the recent activity needs shown on the app to be up to date, Astro is in SSR mode with the Node.js adapter, thus fetching the latest data every time the page is requested. The app is written in TypeScript and uses the Tailwind CSS framework for styling.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

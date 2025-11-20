@@ -1,17 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Swift on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/swift/</link><description>Recent content in Swift on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 18 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/swift/index.xml" rel="self" type="application/rss+xml"/><item><title>Swift basics</title><link>https://articles.maximemoreillon.com/articles/202/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/202/</guid><description>&lt;p>Here are some of the basis of the Swift programming language&lt;/p>
-&lt;h2 id="comments">Comments&lt;/h2>
-&lt;p>Comments are written using &lt;code>//&lt;/code>, Similar to C/C++:&lt;/p>
-&lt;pre tabindex="0">&lt;code>// This is a comment
-&lt;/code>&lt;/pre>&lt;h2 id="constants">Constants&lt;/h2>
-&lt;p>Constants are declared using the let keyword:&lt;/p>
-&lt;pre tabindex="0">&lt;code>let myConstant:Int = 1
-&lt;/code>&lt;/pre>&lt;h2 id="variables">Variables&lt;/h2>
-&lt;p>Swift is a strongly typed language. Variables are declared using the &lt;code>var&lt;/code> keyword as following this syntax:&lt;/p>
-&lt;pre tabindex="0">&lt;code>var variableName:String = &amp;#39;Hello&amp;#39;
-&lt;/code>&lt;/pre>&lt;h2 id="loops">Loops&lt;/h2>
-&lt;p>Here is an example of a for loop:&lt;/p>
-&lt;pre tabindex="0">&lt;code>for i in 1...5{
-// do something
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Swift on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/swift/</link>
+    <description>Recent content in Swift on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Swift basics</title>
+      <link>https://articles.maximemoreillon.com/articles/202/</link>
+      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/202/</guid>
+      
+      <description>&lt;p&gt;Here are some of the basis of the Swift programming language&lt;/p&gt;
+&lt;h2 id=&#34;comments&#34;&gt;Comments&lt;/h2&gt;
+&lt;p&gt;Comments are written using &lt;code&gt;//&lt;/code&gt;, Similar to C/C++:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// This is a comment
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;constants&#34;&gt;Constants&lt;/h2&gt;
+&lt;p&gt;Constants are declared using the let keyword:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;let myConstant:Int = 1
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;variables&#34;&gt;Variables&lt;/h2&gt;
+&lt;p&gt;Swift is a strongly typed language. Variables are declared using the &lt;code&gt;var&lt;/code&gt; keyword as following this syntax:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var variableName:String = &amp;#39;Hello&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;loops&#34;&gt;Loops&lt;/h2&gt;
+&lt;p&gt;Here is an example of a for loop:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;for i in 1...5{
+    // do something
 }
-&lt;/code>&lt;/pre>&lt;h2 id="functions">Functions&lt;/h2>
-&lt;p>Functions are defined using the &lt;code>func&lt;/code> keyword. The type of the function parameters and its return values must be defined. Note that a function can have multiple return values.&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;functions&#34;&gt;Functions&lt;/h2&gt;
+&lt;p&gt;Functions are defined using the &lt;code&gt;func&lt;/code&gt; keyword. The type of the function parameters and its return values must be defined. Note that a function can have multiple return values.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

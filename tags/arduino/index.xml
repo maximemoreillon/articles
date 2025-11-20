@@ -1,76 +1,259 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Arduino on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/arduino/</link><description>Recent content in Arduino on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/arduino/index.xml" rel="self" type="application/rss+xml"/><item><title>IoT sensor module</title><link>https://articles.maximemoreillon.com/articles/f0b88a38-7271-4f8d-8f60-05efbdd861cc/</link><pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/f0b88a38-7271-4f8d-8f60-05efbdd861cc/</guid><description>&lt;p>Although a wide variety of sensing devices can be envisioned for home automation systems, motion and temperature sensors are among the most widespread. This is mostly due to their low cost and simplicity of use. In order to equip multiple rooms of my apartment with such sensors, I designed a simple IoT sensing module that can easily be produced in any quantity.&lt;/p>
-&lt;p>The module is designed around an Wemos D1 mini (ESP8266 module) which interfaces with a HC-SR501 PIR motion sensor and Dallas DS18B20 temperature sensor. Additionally, since the Wemos still had a lot of available pins available, I added a photoresistor to measure illuminance.&lt;/p></description></item><item><title>IoT LED controller</title><link>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</link><pubDate>Sun, 27 Mar 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</guid><description>&lt;p>Smart lights are usually some of the first appliances to be added to a smart home. Although those can nowadays be purchased easily from various brands, I wanted to have my own hardware so as to integrate it better with other devices and software. Thus, I decided to an IoT LED controller that I can use in various projects where lighting has to be controlled via network protocols.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/6240057135a52f5ea69e899b" alt="">&lt;/p>
-&lt;h2 id="hardware">Hardware&lt;/h2>
-&lt;p>The controller is built around an ESP8266 microcontroller (Wemos D1 mini) and N-Channel MOSFETS. The latter switch the 12V line of LED strips or COBs according to the microcontroller. Here, up to 4 channels of LEDs can be controlled by a single controller.&lt;/p></description></item><item><title>IoT Kernel</title><link>https://articles.maximemoreillon.com/articles/e8563fbc-a061-4bca-ada2-31392fc3e8ad/</link><pubDate>Mon, 03 Jan 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/e8563fbc-a061-4bca-ada2-31392fc3e8ad/</guid><description>&lt;p>Over the years, I have written firmwares for various IoT devices such as lights, locks or heaters. Those firmwares would generally handle a common set of basic functions like managing wifi connection, serving a configuration web interface over HTTP or exchange MQTT messages. However, having to implement and maintain those functions for each individual firmware quickly became tedious work. Consequently, I decided to write a library to handle all those basic functions. This library is used as a base for IoT device firmwares, on top of which device-specific logic can easily be added.&lt;/p></description></item><item><title>An RFID ring as a front door key</title><link>https://articles.maximemoreillon.com/articles/523/</link><pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/523/</guid><description>&lt;p>Global warming and the COVID-19 pandemic are some the many challenges humanity is having to face. However, I somehow decided that the problem I was going to solve is having to take my keys out of my pocket whenever I lock or unlock my front door.&lt;/p>
-&lt;p>Instead of a literal key, I would ideally have some form of access token that stays within hands reach and can unlock my door. In fact, I figured that it could actually be on my hand and thus went shopping for an RFID ring on AliExpress.&lt;/p></description></item><item><title>Wireless motion sensor</title><link>https://articles.maximemoreillon.com/articles/389/</link><pubDate>Sun, 03 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/389/</guid><description>&lt;p>This is a wireless motion sensor that runs on rechargeable batteries. It can be deployed anywhere and sends a signal using an NRF24L01 wireless module whenever it detects motion.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e78598c5e7fee69fd6e5745" alt="">&lt;/p>
-&lt;p>The device is composed of the following parts&lt;/p>
-&lt;ul>
-&lt;li>Arduino pro mini&lt;/li>
-&lt;li>NRF24L01+ wireless transceiver&lt;/li>
-&lt;li>HC-SR501 PIR motion sensor&lt;/li>
-&lt;li>14500 Lithium-ion battery&lt;/li>
-&lt;li>LED + resistor&lt;/li>
-&lt;li>Power switch&lt;/li>
-&lt;li>5.5mm x 2.1mm DC socket&lt;/li>
-&lt;li>2P JST-XH connector for battery charging&lt;/li>
-&lt;/ul>
-&lt;p>Those are laid out as follows&lt;/p></description></item><item><title>Low pass filter for Arduino/ESP8266/ESP32</title><link>https://articles.maximemoreillon.com/articles/85/</link><pubDate>Thu, 12 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/85/</guid><description>&lt;p>A low pass filter written as class for Arduino code&lt;/p>
-&lt;pre tabindex="0">&lt;code>class LowPassFilter {
-private:
-float filter_constant;
-public:
-float output;
-LowPassFilter(float filter_constant) {
-// Constructor
-this-&amp;gt;output = 0;
-this-&amp;gt;filter_constant = filter_constant;
-}
-void feed(float input) {
-this-&amp;gt;output = (this-&amp;gt;output)*(1.00 - this-&amp;gt;filter_constant) + input * (this-&amp;gt;filter_constant);
-}
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arduino on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/arduino/</link>
+    <description>Recent content in Arduino on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/arduino/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IoT sensor module</title>
+      <link>https://articles.maximemoreillon.com/articles/f0b88a38-7271-4f8d-8f60-05efbdd861cc/</link>
+      <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/f0b88a38-7271-4f8d-8f60-05efbdd861cc/</guid>
+      
+      <description>&lt;p&gt;Although a wide variety of sensing devices can be envisioned for home automation systems, motion and temperature sensors are among the most widespread. This is mostly due to their low cost and simplicity of use. In order to equip multiple rooms of my apartment with such sensors, I designed a simple IoT sensing module that can easily be produced in any quantity.&lt;/p&gt;
+&lt;p&gt;The module is designed around an Wemos D1 mini (ESP8266 module) which interfaces with a HC-SR501 PIR motion sensor and Dallas DS18B20 temperature sensor. Additionally, since the Wemos still had a lot of available pins available, I added a photoresistor to measure illuminance.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT LED controller</title>
+      <link>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</link>
+      <pubDate>Sun, 27 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</guid>
+      
+      <description>&lt;p&gt;Smart lights are usually some of the first appliances to be added to a smart home. Although those can nowadays be purchased easily from various brands, I wanted to have my own hardware so as to integrate it better with other devices and software. Thus, I decided to an IoT LED controller that I can use in various projects where lighting has to be controlled via network protocols.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6240057135a52f5ea69e899b&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;hardware&#34;&gt;Hardware&lt;/h2&gt;
+&lt;p&gt;The controller is built around an ESP8266 microcontroller (Wemos D1 mini) and N-Channel MOSFETS. The latter switch the 12V line of LED strips or COBs according to the microcontroller. Here, up to 4 channels of LEDs can be controlled by a single controller.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT Kernel</title>
+      <link>https://articles.maximemoreillon.com/articles/e8563fbc-a061-4bca-ada2-31392fc3e8ad/</link>
+      <pubDate>Mon, 03 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/e8563fbc-a061-4bca-ada2-31392fc3e8ad/</guid>
+      
+      <description>&lt;p&gt;Over the years, I have written firmwares for various IoT devices such as lights, locks or heaters. Those firmwares would generally handle a common set of basic functions like managing wifi connection, serving a configuration web interface over HTTP or exchange MQTT messages. However, having to implement and maintain those functions for each individual firmware quickly became tedious work. Consequently, I decided to write a library to handle all those basic functions. This library is used as a base for IoT device firmwares, on top of which device-specific logic can easily be added.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>An RFID ring as a front door key</title>
+      <link>https://articles.maximemoreillon.com/articles/523/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/523/</guid>
+      
+      <description>&lt;p&gt;Global warming and the COVID-19 pandemic are some the many challenges humanity is having to face. However, I somehow decided that the problem I was going to solve is having to take my keys out of my pocket whenever I lock or unlock my front door.&lt;/p&gt;
+&lt;p&gt;Instead of a literal key, I would ideally have some form of access token that stays within hands reach and can unlock my door. In fact, I figured that it could actually be on my hand and thus went shopping for an RFID ring on AliExpress.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Wireless motion sensor</title>
+      <link>https://articles.maximemoreillon.com/articles/389/</link>
+      <pubDate>Sun, 03 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/389/</guid>
+      
+      <description>&lt;p&gt;This is a wireless motion sensor that runs on rechargeable batteries. It can be deployed anywhere and sends a signal using an NRF24L01 wireless module whenever it detects motion.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e78598c5e7fee69fd6e5745&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The device is composed of the following parts&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Arduino pro mini&lt;/li&gt;
+&lt;li&gt;NRF24L01+ wireless transceiver&lt;/li&gt;
+&lt;li&gt;HC-SR501 PIR motion sensor&lt;/li&gt;
+&lt;li&gt;14500 Lithium-ion battery&lt;/li&gt;
+&lt;li&gt;LED + resistor&lt;/li&gt;
+&lt;li&gt;Power switch&lt;/li&gt;
+&lt;li&gt;5.5mm x 2.1mm DC socket&lt;/li&gt;
+&lt;li&gt;2P JST-XH connector for battery charging&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Those are laid out as follows&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Low pass filter for Arduino/ESP8266/ESP32</title>
+      <link>https://articles.maximemoreillon.com/articles/85/</link>
+      <pubDate>Thu, 12 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/85/</guid>
+      
+      <description>&lt;p&gt;A low pass filter written as class for Arduino code&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;class LowPassFilter {
+  
+  private:
+    float filter_constant;
+    
+  public:
+
+    float output;
+    
+    LowPassFilter(float filter_constant) {
+      // Constructor
+      this-&amp;gt;output = 0;
+      this-&amp;gt;filter_constant = filter_constant;
+    }
+    
+    void feed(float input) {
+      this-&amp;gt;output = (this-&amp;gt;output)*(1.00 - this-&amp;gt;filter_constant) + input * (this-&amp;gt;filter_constant);
+    }
+    
 };
-&lt;/code>&lt;/pre>&lt;p>Top use it, simply instanciate a LowPassFilter object:&lt;/p>
-&lt;pre tabindex="0">&lt;code>LowPassFilter lpf1(FILTER_CONSTANT);
-&lt;/code>&lt;/pre>&lt;p>Then feed values into it:&lt;/p>
-&lt;pre tabindex="0">&lt;code>lpf1.feed(sample);
-&lt;/code>&lt;/pre>&lt;p>The output of the filter can be accessed using:&lt;/p>
-&lt;pre tabindex="0">&lt;code>lpf1.output
-&lt;/code>&lt;/pre></description></item><item><title>Barking alarm</title><link>https://articles.maximemoreillon.com/articles/12/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/12/</guid><description>&lt;p>Dogs are great at detering burglars from entering one&amp;rsquo;s home. This system brings the same advantage, without the need for an actual dog.&lt;/p>
-&lt;p>The system comes in two parts: a motion detection module (MDM) and a sound playback module (SPM). When the MDM detects motion, it sends a wireless signal to the SPM, which starts playing the sound of a large dog barking through a 3.5mm audio jack. If no further signal is received, the barking sound stops after 30 seconds.&lt;/p></description></item><item><title>Fingerprint scanner briefcase</title><link>https://articles.maximemoreillon.com/articles/388/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/388/</guid><description>&lt;p>This briefcase is fitted with an electronic lock and a fingerprint reader so as to be unlocked with a simple touch. It also features a Bluetooth module, which enables unlocking using a smartphone or computer.&lt;/p>
-&lt;p>The briefcase is powered by three 18650 Lithium Ion batteries whose lifespan I haven&amp;rsquo;t had the opportunity to check. Should they start running out of capacity, the red LED at the front of the case will blink. Additionally, the battery level can be checked at all time via Bluetooth. Also, if the battery level isn&amp;rsquo;t sufficient to drive the lock, external 12V can be applied using a DC socket on the side of the case.&lt;/p></description></item><item><title>HUD Goggles</title><link>https://articles.maximemoreillon.com/articles/155/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/155/</guid><description>&lt;p>This headset enables the overlay of information on top of its user&amp;rsquo;s field of view. The field of view of the user is captured by a camera and then fed to video goggles, while a MAX7456 OSD chip overlays text on the video feed.&lt;/p>
-&lt;p>The front camera has been chosen to be sensitive to near infrared light, which allows the device to be used as night vision goggles when paired with IR projectors.&lt;/p></description></item><item><title>Arduino button debounce function</title><link>https://articles.maximemoreillon.com/articles/291/</link><pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/291/</guid><description>&lt;p>Physical buttons and switches do not switch between open and close position instantly and perfectly. Instead, they have a tendency to &amp;ldquo;bounce&amp;rdquo; between the two states before settling on one. This issue is thoroughly described in circuitdigest&amp;rsquo;s excellent article. Consequently, when using such components with, for example, an Arduino microcontroller, a proper debouncing algorithm must be implemented.&lt;/p>
-&lt;p>&lt;img src="https://circuitdigest.com/sites/default/files/inlineimages/u1/Switch-Bouncing-in-the-Circuit.png" alt="">Here is a code sample for my approach to solving the problem.&lt;/p>
-&lt;pre tabindex="0">&lt;code>int readButtonDebounce(int pin) {
-const int DEBOUNCE_DELAY = 50;
-static int buttonState, lastButtonState;
-static long lastDebounceTime;
-int out = 0;
-int reading = digitalRead(pin);
-if(reading != lastButtonState) lastDebounceTime = millis();
-if((millis() - lastDebounceTime) &amp;gt; DEBOUNCE_DELAY) {
-if (reading != buttonState) {
-buttonState = reading;
-// CHANGE TO !buttonState if active low
-if(buttonState) {
-out = 1;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Top use it, simply instanciate a LowPassFilter object:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;LowPassFilter lpf1(FILTER_CONSTANT);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Then feed values into it:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;lpf1.feed(sample);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The output of the filter can be accessed using:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;lpf1.output
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Barking alarm</title>
+      <link>https://articles.maximemoreillon.com/articles/12/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/12/</guid>
+      
+      <description>&lt;p&gt;Dogs are great at detering burglars from entering one&amp;rsquo;s home. This system brings the same advantage, without the need for an actual dog.&lt;/p&gt;
+&lt;p&gt;The system comes in two parts: a motion detection module (MDM) and a sound playback module (SPM). When the MDM detects motion, it sends a wireless signal to the SPM, which starts playing the sound of a large dog barking through a 3.5mm audio jack. If no further signal is received, the barking sound stops after 30 seconds.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Fingerprint scanner briefcase</title>
+      <link>https://articles.maximemoreillon.com/articles/388/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/388/</guid>
+      
+      <description>&lt;p&gt;This briefcase is fitted with an electronic lock and a fingerprint reader so as to be unlocked with a simple touch. It also features a Bluetooth module, which enables unlocking using a smartphone or computer.&lt;/p&gt;
+&lt;p&gt;The briefcase is powered by three 18650 Lithium Ion batteries whose lifespan I haven&amp;rsquo;t had the opportunity to check. Should they start running out of capacity, the red LED at the front of the case will blink. Additionally, the battery level can be checked at all time via Bluetooth. Also, if the battery level isn&amp;rsquo;t sufficient to drive the lock, external 12V can be applied using a DC socket on the side of the case.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>HUD Goggles</title>
+      <link>https://articles.maximemoreillon.com/articles/155/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/155/</guid>
+      
+      <description>&lt;p&gt;This headset enables the overlay of information on top of its user&amp;rsquo;s field of view. The field of view of the user is captured by a camera and then fed to video goggles, while a MAX7456 OSD chip overlays text on the video feed.&lt;/p&gt;
+&lt;p&gt;The front camera has been chosen to be sensitive to near infrared light, which allows the device to be used as night vision goggles when paired with IR projectors.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Arduino button debounce function</title>
+      <link>https://articles.maximemoreillon.com/articles/291/</link>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/291/</guid>
+      
+      <description>&lt;p&gt;Physical buttons and switches do not switch between open and close position instantly and perfectly. Instead, they have a tendency to &amp;ldquo;bounce&amp;rdquo; between the two states before settling on one. This issue is thoroughly described in circuitdigest&amp;rsquo;s excellent article. Consequently, when using such components with, for example, an Arduino microcontroller, a proper debouncing algorithm must be implemented.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://circuitdigest.com/sites/default/files/inlineimages/u1/Switch-Bouncing-in-the-Circuit.png&#34; alt=&#34;&#34;&gt;Here is a code sample for my approach to solving the problem.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;int readButtonDebounce(int pin) {
+  const int DEBOUNCE_DELAY = 50;
+  static int buttonState, lastButtonState;
+  static long lastDebounceTime; 
+  int out = 0;
+
+  int reading = digitalRead(pin);
+  if(reading != lastButtonState) lastDebounceTime = millis();
+
+  if((millis() - lastDebounceTime) &amp;gt; DEBOUNCE_DELAY) {
+    if (reading != buttonState) {
+      buttonState = reading;
+      // CHANGE TO !buttonState if active low
+      if(buttonState) {
+        out = 1;
+      }
+    }
+  }
+  lastButtonState = reading;
+  return out;
 }
-}
-}
-lastButtonState = reading;
-return out;
-}
-&lt;/code>&lt;/pre></description></item><item><title>Arduino 7-segment alarm clock</title><link>https://articles.maximemoreillon.com/articles/13/</link><pubDate>Tue, 04 Oct 2016 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/13/</guid><description>&lt;p>This is one of my earliest electronics project: An alarm clock built around an Arduino nano, a real-time clock (RTC) module and a 7-segment display.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e796da9ad3848334cf8697d" alt="">&lt;/p>
-&lt;p>Among other,it features the following functions:&lt;/p>
-&lt;ul>
-&lt;li>Alarm clock&lt;/li>
-&lt;li>Countdown timer&lt;/li>
-&lt;li>Stopwatch&lt;/li>
-&lt;li>Automatic brightness using a photoresistor&lt;/li>
-&lt;/ul>
-&lt;p>The device is operated using rotary encodes with integrated push buttons and includes a buzzer for acoustic feedback.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/615173279a075f836f59cd42" alt="">&lt;/p></description></item><item><title>4WD robot</title><link>https://articles.maximemoreillon.com/articles/553/</link><pubDate>Mon, 11 Aug 2014 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/553/</guid><description>&lt;p>I found a cheap 4 wheel drive chassis on eBay and decided to make a remote controlled robot out of it. Thus, I made a simple board with two H-bridge modules, an NRF24L01 wireless module and Arduino pro mini.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614fc82f9a075f361259c807" alt="">To control the robot, I designed a simple remote controller with an Arduino pro-mini, joystick and NRF24L01 module&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614fc8519a075f88b759c80b" alt="">As it is, the robot was not very useful, even when displaying some creativity.&lt;/p></description></item><item><title>PET bottle collecting robot</title><link>https://articles.maximemoreillon.com/articles/592/</link><pubDate>Wed, 11 Jun 2014 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/592/</guid><description>&lt;p>While at university, two friends and I registered as a team for the &lt;a href="https://robot-competition.epfl.ch/">EPFL robots competition&lt;/a>. The objective of the competition is to build a robot that would collect PET bottles inside an arena and bring them back to a collection area. We figured the robot would need to be designed with a storage space as well as some form of path finding algorithm if we wanted it to be able to carry bottles to the collection area so decided to simply skip the step. Instead, we designed the robot as a bottle cannon that would shoot the bottles in the collection area.&lt;/p></description></item><item><title>A DIY quadcopter drone</title><link>https://articles.maximemoreillon.com/articles/476/</link><pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/476/</guid><description>&lt;p>When I was a university student, drones were starting to get popular so I decided to make my own. I made two attempt at the idea: The first attempt involved designing the most of drone from scratch, its mechanical design as well as its electronics, including the remote controller. After that attempt proved less than satisfactory, I designed a new version of the drone, this time with off the shelf electronics.&lt;/p></description></item><item><title>GPS tracker</title><link>https://articles.maximemoreillon.com/articles/477/</link><pubDate>Fri, 07 Mar 2014 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/477/</guid><description>&lt;p>When I was in the army, we would often have exercises where we need to setup some equipment in the field and establish a security perimeter around to prevent access from unauthorized personnel. During those exercises, the sergeants and lieutenants would sometimes disguise themselves as enemies and try to access the equipment to see how successful we would be at stopping them. I didn&amp;rsquo;t like the idea of staying alert for long periods of time and instead wanted to receive some kind of warning whenever a superior would be arriving in our vicinity so I designed a GPS tracker that I intended to put on his car.&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Arduino 7-segment alarm clock</title>
+      <link>https://articles.maximemoreillon.com/articles/13/</link>
+      <pubDate>Tue, 04 Oct 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/13/</guid>
+      
+      <description>&lt;p&gt;This is one of my earliest electronics project: An alarm clock built around an Arduino nano, a real-time clock (RTC) module and a 7-segment display.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e796da9ad3848334cf8697d&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Among other,it features the following functions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Alarm clock&lt;/li&gt;
+&lt;li&gt;Countdown timer&lt;/li&gt;
+&lt;li&gt;Stopwatch&lt;/li&gt;
+&lt;li&gt;Automatic brightness using a photoresistor&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The device is operated using rotary encodes with integrated push buttons and includes a buzzer for acoustic feedback.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/615173279a075f836f59cd42&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>4WD robot</title>
+      <link>https://articles.maximemoreillon.com/articles/553/</link>
+      <pubDate>Mon, 11 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/553/</guid>
+      
+      <description>&lt;p&gt;I found a cheap 4 wheel drive chassis on eBay and decided to make a remote controlled robot out of it. Thus, I made a simple board with two H-bridge modules, an NRF24L01 wireless module and Arduino pro mini.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fc82f9a075f361259c807&#34; alt=&#34;&#34;&gt;To control the robot, I designed a simple remote controller with an Arduino pro-mini, joystick and NRF24L01 module&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fc8519a075f88b759c80b&#34; alt=&#34;&#34;&gt;As it is, the robot was not very useful, even when displaying some creativity.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>PET bottle collecting robot</title>
+      <link>https://articles.maximemoreillon.com/articles/592/</link>
+      <pubDate>Wed, 11 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/592/</guid>
+      
+      <description>&lt;p&gt;While at university, two friends and I registered as a team for the &lt;a href=&#34;https://robot-competition.epfl.ch/&#34;&gt;EPFL robots competition&lt;/a&gt;. The objective of the competition is to build a robot that would collect PET bottles inside an arena and bring them back to a collection area. We figured the robot would need to be designed with a storage space as well as some form of path finding algorithm if we wanted it to be able to carry bottles to the collection area so decided to simply skip the step. Instead, we designed the robot as a bottle cannon that would shoot the bottles in the collection area.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>A DIY quadcopter drone</title>
+      <link>https://articles.maximemoreillon.com/articles/476/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/476/</guid>
+      
+      <description>&lt;p&gt;When I was a university student, drones were starting to get popular so I decided to make my own. I made two attempt at the idea: The first attempt involved designing the most of drone from scratch, its mechanical design as well as its electronics, including the remote controller. After that attempt proved less than satisfactory, I designed a new version of the drone, this time with off the shelf electronics.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>GPS tracker</title>
+      <link>https://articles.maximemoreillon.com/articles/477/</link>
+      <pubDate>Fri, 07 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/477/</guid>
+      
+      <description>&lt;p&gt;When I was in the army, we would often have exercises where we need to setup some equipment in the field and establish a security perimeter around to prevent access from unauthorized personnel. During those exercises, the sergeants and lieutenants would sometimes disguise themselves as enemies and try to access the equipment to see how successful we would be at stopping them. I didn&amp;rsquo;t like the idea of staying alert for long periods of time and instead wanted to receive some kind of warning whenever a superior would be arriving in our vicinity so I designed a GPS tracker that I intended to put on his car.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,3 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CI/CD on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/ci/cd/</link><description>Recent content in CI/CD on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 12 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/ci/cd/index.xml" rel="self" type="application/rss+xml"/><item><title>Passing variables to Kubernetes manifest</title><link>https://articles.maximemoreillon.com/articles/216/</link><pubDate>Sun, 12 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/216/</guid><description>&lt;p>When using kubectl apply, environment variables in Kubernetes manifests are not parsed. For this to happen, the envsubst command can be used.&lt;/p>
-&lt;pre tabindex="0">&lt;code>envsubst &amp;lt; deployment.yml | kubectl apply -f -
-&lt;/code>&lt;/pre></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CI/CD on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/ci/cd/</link>
+    <description>Recent content in CI/CD on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/ci/cd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Passing variables to Kubernetes manifest</title>
+      <link>https://articles.maximemoreillon.com/articles/216/</link>
+      <pubDate>Sun, 12 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/216/</guid>
+      
+      <description>&lt;p&gt;When using kubectl apply, environment variables in Kubernetes manifests are not parsed. For this to happen, the envsubst command can be used.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;envsubst &amp;lt; deployment.yml | kubectl apply -f -
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

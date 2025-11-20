@@ -1,2 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Bluetooth on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/bluetooth/</link><description>Recent content in Bluetooth on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/bluetooth/index.xml" rel="self" type="application/rss+xml"/><item><title>BLE presence detection</title><link>https://articles.maximemoreillon.com/articles/9/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/9/</guid><description>&lt;p>I wanted my home automation system to detect when I arrive home so as to unlock my door automatically or let me know if I leave the apartment without turning the A/C off. I figured my smartphone could be used to achieve this since it is equipped with a vast array of sensors and connectivity options. For example, I could use an app like OwnTracks which would send an MQTT message once I enter a certain perimeter around my apartment. However, constantly monitoring one&amp;rsquo;s GPS location is wasteful in terms of battery life. Another option would be to ping my phone&amp;rsquo;s IP address to check if it is connected to the WiFi, but smartphones can sometimes take a while to connect. So, I decided to use BLE advertising, which does not use too much battery while still remaining constantly active.&lt;/p></description></item><item><title>Fingerprint scanner briefcase</title><link>https://articles.maximemoreillon.com/articles/388/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/388/</guid><description>&lt;p>This briefcase is fitted with an electronic lock and a fingerprint reader so as to be unlocked with a simple touch. It also features a Bluetooth module, which enables unlocking using a smartphone or computer.&lt;/p>
-&lt;p>The briefcase is powered by three 18650 Lithium Ion batteries whose lifespan I haven&amp;rsquo;t had the opportunity to check. Should they start running out of capacity, the red LED at the front of the case will blink. Additionally, the battery level can be checked at all time via Bluetooth. Also, if the battery level isn&amp;rsquo;t sufficient to drive the lock, external 12V can be applied using a DC socket on the side of the case.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bluetooth on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/bluetooth/</link>
+    <description>Recent content in Bluetooth on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/bluetooth/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BLE presence detection</title>
+      <link>https://articles.maximemoreillon.com/articles/9/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/9/</guid>
+      
+      <description>&lt;p&gt;I wanted my home automation system to detect when I arrive home so as to unlock my door automatically or let me know if I leave the apartment without turning the A/C off. I figured my smartphone could be used to achieve this since it is equipped with a vast array of sensors and connectivity options. For example, I could use an app like OwnTracks which would send an MQTT message once I enter a certain perimeter around my apartment. However, constantly monitoring one&amp;rsquo;s GPS location is wasteful in terms of battery life. Another option would be to ping my phone&amp;rsquo;s IP address to check if it is connected to the WiFi, but smartphones can sometimes take a while to connect. So, I decided to use BLE advertising, which does not use too much battery while still remaining constantly active.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Fingerprint scanner briefcase</title>
+      <link>https://articles.maximemoreillon.com/articles/388/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/388/</guid>
+      
+      <description>&lt;p&gt;This briefcase is fitted with an electronic lock and a fingerprint reader so as to be unlocked with a simple touch. It also features a Bluetooth module, which enables unlocking using a smartphone or computer.&lt;/p&gt;
+&lt;p&gt;The briefcase is powered by three 18650 Lithium Ion batteries whose lifespan I haven&amp;rsquo;t had the opportunity to check. Should they start running out of capacity, the red LED at the front of the case will blink. Additionally, the battery level can be checked at all time via Bluetooth. Also, if the battery level isn&amp;rsquo;t sufficient to drive the lock, external 12V can be applied using a DC socket on the side of the case.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

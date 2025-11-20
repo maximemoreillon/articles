@@ -1,2 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mechatronics on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/mechatronics/</link><description>Recent content in Mechatronics on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/mechatronics/index.xml" rel="self" type="application/rss+xml"/><item><title>IoT lock</title><link>https://articles.maximemoreillon.com/articles/237/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/237/</guid><description>&lt;p>Have you ever left your apartment and couldn&amp;rsquo;t remember if you locked your front door or not? Sadly, if it is unlocked, there is not much you can do about it until you get back home. This system is an attempt to solve the problem. Simply put, it consists of attaching an actuator to the door&amp;rsquo;s original locking mechanism and control it via WiFi.&lt;/p>
-&lt;p>I chose an MG996R as an actuator for its sufficient torque and angle range (180 deg). Most of the parts for this project have been 3D printed and designed in Fusion 360. The STL files are available on &lt;a href="https://www.thingiverse.com/thing:2462482">Thingiverse&lt;/a>. The servo&amp;rsquo;s shaft and the door&amp;rsquo;s locking mechanism are connected with parts designed specially so as to have a 90 degree play between them. This allows the lock to be operated normally without having the servo interfering.&lt;/p></description></item><item><title>Controlling a motor using an H bridge</title><link>https://articles.maximemoreillon.com/articles/269/</link><pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/269/</guid><description>&lt;p>A DC motor model can be as simple as: T = K * I where T is the torque provided by the motor, K the motor constant and I the current that flows through it. From this simple model, one can see that if the sign of the current changes, that of the torque also changes. Thus, changing the direction of rotation of a DC motor is a simple as reverting flow into it.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mechatronics on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/mechatronics/</link>
+    <description>Recent content in Mechatronics on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/mechatronics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IoT lock</title>
+      <link>https://articles.maximemoreillon.com/articles/237/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/237/</guid>
+      
+      <description>&lt;p&gt;Have you ever left your apartment and couldn&amp;rsquo;t remember if you locked your front door or not? Sadly, if it is unlocked, there is not much you can do about it until you get back home. This system is an attempt to solve the problem. Simply put, it consists of attaching an actuator to the door&amp;rsquo;s original locking mechanism and control it via WiFi.&lt;/p&gt;
+&lt;p&gt;I chose an MG996R as an actuator for its sufficient torque and angle range (180 deg). Most of the parts for this project have been 3D printed and designed in Fusion 360. The STL files are available on &lt;a href=&#34;https://www.thingiverse.com/thing:2462482&#34;&gt;Thingiverse&lt;/a&gt;. The servo&amp;rsquo;s shaft and the door&amp;rsquo;s locking mechanism are connected with parts designed specially so as to have a 90 degree play between them. This allows the lock to be operated normally without having the servo interfering.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Controlling a motor using an H bridge</title>
+      <link>https://articles.maximemoreillon.com/articles/269/</link>
+      <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/269/</guid>
+      
+      <description>&lt;p&gt;A DC motor model can be as simple as: T = K * I where T is the torque provided by the motor, K the motor constant and I the current that flows through it. From this simple model, one can see that if the sign of the current changes, that of the torque also changes. Thus, changing the direction of rotation of a DC motor is a simple as reverting flow into it.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

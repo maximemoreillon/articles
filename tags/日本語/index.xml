@@ -1,76 +1,196 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>日本語 on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/</link><description>Recent content in 日本語 on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 24 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/index.xml" rel="self" type="application/rss+xml"/><item><title>IoT 体重計</title><link>https://articles.maximemoreillon.com/articles/818698f9-9a0d-4b9d-bc92-846fcc395d04/</link><pubDate>Mon, 24 Oct 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/818698f9-9a0d-4b9d-bc92-846fcc395d04/</guid><description>&lt;p>測定データをクラウドに上げ体重の推移を管理できるIoT体重計&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e786e056f2c2a1eca19cad4" alt="Article image">&lt;/p>
-&lt;h2 id="動画">動画&lt;/h2>
-&lt;h2 id="回路図">回路図&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/62d36ff23bbcba047377d4af" alt="Article image">&lt;/p>
-&lt;h2 id="電子">電子&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/62d370223bbcbae9b777d4b5" alt="Article image">&lt;/p>
-&lt;h2 id="webアプリ">WEBアプリ&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/635718cc640e527e1a2be369" alt="Article image">&lt;/p>
-&lt;h2 id="ソースコード">ソースコード&lt;/h2>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;a href="https://github.com/maximemoreillon/scale">体重計&lt;/a>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>WEBアプリ&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://github.com/maximemoreillon/weight_front">GUI&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://github.com/maximemoreillon/weight">バックエンド&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul></description></item><item><title>水耕栽培システム</title><link>https://articles.maximemoreillon.com/articles/424a57bd-226c-4b7d-a688-1a9e416e3b12/</link><pubDate>Sun, 23 Oct 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/424a57bd-226c-4b7d-a688-1a9e416e3b12/</guid><description>&lt;p>土を使わず、インドアでレタスを作れるシステム&lt;/p>
-&lt;h2 id="動画">動画&lt;/h2>
-&lt;h2 id="野菜木鉢">野菜木鉢&lt;/h2>
-&lt;p>野菜木鉢は3Dプリンターで作りました&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614532f55d171aba41416cc5" alt="Article image">&lt;/p>
-&lt;h2 id="iot-led-ライト">IoT LED ライト&lt;/h2>
-&lt;p>水耕栽培システムのライトはIoT照明と同じことで、スマホで制御できます&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614533bd5d171a3df8416cc6" alt="Article image">&lt;/p></description></item><item><title>IoT キャッシュレス支払いシステム</title><link>https://articles.maximemoreillon.com/articles/b71b0561-59b2-4650-a9c1-866e3f5d501c/</link><pubDate>Sat, 22 Oct 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/b71b0561-59b2-4650-a9c1-866e3f5d501c/</guid><description>&lt;p>社内にコーヒーサーバーを設置したとする。コーヒー代はもちろん飲んだ人が負担をするが、だれが何杯飲んだかを管理するための購買システムが必要になる。&lt;/p>
-&lt;p>そこで、簡単に使える購買システムを開発した。&lt;/p>
-&lt;p>使い方は、社員はあらかじめ入金をして、社員証をデバイスにかざしてプリペイドカードのようにコーヒーの元を購入することができる。&lt;/p>
-&lt;p>社内で運用していて、２年間でおよそ27万円の購買実績がある。&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e796ef4ad3848218cf8697e" alt="Article image">&lt;/p>
-&lt;h2 id="動画">動画&lt;/h2>
-&lt;h2 id="gui-スクリーンショット">GUI スクリーンショット&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614969859a075f92be59b6f5" alt="Article image">&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e787e6a83516e8e5fa90c3f" alt="Article image">&lt;/p></description></item><item><title>IoT マンション電流測定システム</title><link>https://articles.maximemoreillon.com/articles/c21bf7cf-a170-4805-920c-6bfda6a1ee81/</link><pubDate>Sat, 22 Oct 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/c21bf7cf-a170-4805-920c-6bfda6a1ee81/</guid><description>&lt;p>マンションの電流測れるIoTセンサー。&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e786e4b6f2c2a628a19cad5" alt="Article image">&lt;/p>
-&lt;h2 id="動画">動画&lt;/h2>
-&lt;h2 id="回路図">回路図&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e79931b2143b0ee5ebdf007" alt="Article image">&lt;/p></description></item><item><title>IoT 赤外線リモコン</title><link>https://articles.maximemoreillon.com/articles/f461f598-f74d-4e31-b861-e14f6534faa5/</link><pubDate>Sat, 22 Oct 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/f461f598-f74d-4e31-b861-e14f6534faa5/</guid><description>&lt;p>テレビ、エアコン、掃除ロボット、空気清浄機など様々な家電に赤外線リモコンが使われている。このIoT赤外線リモコンを使って、家電をスマホで操作することができる。&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614874945d171a5d90416cd7" alt="Article image">&lt;/p>
-&lt;h2 id="動画">動画&lt;/h2>
-&lt;h2 id="回路図">回路図&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614875905d171ab68f416cd8" alt="Article image">&lt;/p>
-&lt;h2 id="プリント基板">プリント基板&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614875da5d171a3edb416cd9" alt="Article image">&lt;/p></description></item><item><title>指紋リーダブリーフケース</title><link>https://articles.maximemoreillon.com/articles/715c35db-6a4b-4e28-bee7-379e73e8a196/</link><pubDate>Sat, 22 Oct 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/715c35db-6a4b-4e28-bee7-379e73e8a196/</guid><description>&lt;p>ブリーフケースには電子ロックと指紋リーダがついてるので、指で解除される。&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e786d976f2c2a633319cad1" alt="Article image">&lt;/p>
-&lt;h2 id="動画">動画&lt;/h2>
-&lt;h2 id="回路図">回路図&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e79a8d8110ef24ac9856591" alt="Article image">&lt;/p></description></item><item><title>IoT LED 照明</title><link>https://articles.maximemoreillon.com/articles/cd5fd69b-2e8b-4a25-8901-6573c3ed5b30/</link><pubDate>Fri, 21 Oct 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/cd5fd69b-2e8b-4a25-8901-6573c3ed5b30/</guid><description>&lt;p>スマホやタブレットから制御できるIoT LED 照明。自分で選んだ色を選択して光らすことができる。&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/635717b2640e5275a72be33d" alt="Article image">&lt;/p>
-&lt;h2 id="動画">動画&lt;/h2>
-&lt;h2 id="回路図">回路図&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/624005e935a52f35f79e89a1" alt="Article image">&lt;/p>
-&lt;h2 id="プリント基板">プリント基板&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/6240064235a52f35689e89a5" alt="Article image">&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/6240057135a52f5ea69e899b" alt="Article image">&lt;/p>
-&lt;h2 id="ソースコード">ソースコード&lt;/h2>
-&lt;p>&lt;a href="https://github.com/maximemoreillon/led_controller">GitHubへ&lt;/a>&lt;/p></description></item><item><title>IoT デバイス制御アプリ</title><link>https://articles.maximemoreillon.com/articles/dbb20572-5cc0-492f-aa1e-6c692215f7d1/</link><pubDate>Fri, 21 Oct 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/dbb20572-5cc0-492f-aa1e-6c692215f7d1/</guid><description>&lt;p>IoTデバイスを盛業するために作ったWEBアプリ。パソコンでも、スマホでも使えます。&lt;/p>
-&lt;h2 id="スクリーンショット">スクリーンショット&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/63567cd0640e5212932be136" alt="Article image">&lt;/p>
-&lt;h2 id="アーキテクチャ">アーキテクチャ&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e79964c2143b04ff1bdf00c" alt="Article image">&lt;/p></description></item><item><title>IoT ロック</title><link>https://articles.maximemoreillon.com/articles/1a16f802-0b75-4d78-9ecc-e66126b3cf1f/</link><pubDate>Fri, 21 Oct 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/1a16f802-0b75-4d78-9ecc-e66126b3cf1f/</guid><description>&lt;p>入口のロックをスマホやパソコンで制御できるようなシステム。&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/63571951640e527d5b2be37b" alt="Article image">&lt;/p>
-&lt;h2 id="動画">動画&lt;/h2>
-&lt;h2 id="回路図">回路図&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/635719e4640e5230ae2be37f" alt="Article image">&lt;/p></description></item><item><title>RFID指輪スマートキー</title><link>https://articles.maximemoreillon.com/articles/450db931-83ab-474a-aae8-7aa215853748/</link><pubDate>Fri, 21 Oct 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/450db931-83ab-474a-aae8-7aa215853748/</guid><description>&lt;p>ドアについているIoT RFIDリーダーにRFID指輪をかざすとドアのロックが解除される。指輪は既製品だが、それ以外は部品を集めて自作している&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/6240f10735a52f2bf39e8a89" alt="Article image">&lt;/p>
-&lt;h2 id="動画">動画&lt;/h2>
-&lt;h2 id="回路図">回路図&lt;/h2>
-&lt;p>&lt;img src="https://image.easyeda.com/histories/1676b7f91a72451cb105d23d906229a0.png" alt="Article image">&lt;/p>
-&lt;h2 id="プリント基板">プリント基板&lt;/h2>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/63537c44640e5293f62bd3c1" alt="Article image">&lt;/p>
-&lt;h2 id="ソースコード">ソースコード&lt;/h2>
-&lt;p>&lt;a href="https://github.com/maximemoreillon/ring_reader_oled">GitHubへ&lt;/a>&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>日本語 on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/</link>
+    <description>Recent content in 日本語 on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/%E6%97%A5%E6%9C%AC%E8%AA%9E/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IoT 体重計</title>
+      <link>https://articles.maximemoreillon.com/articles/818698f9-9a0d-4b9d-bc92-846fcc395d04/</link>
+      <pubDate>Mon, 24 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/818698f9-9a0d-4b9d-bc92-846fcc395d04/</guid>
+      
+      <description>&lt;p&gt;測定データをクラウドに上げ体重の推移を管理できるIoT体重計&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786e056f2c2a1eca19cad4&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
+&lt;h2 id=&#34;回路図&#34;&gt;回路図&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62d36ff23bbcba047377d4af&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;電子&#34;&gt;電子&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62d370223bbcbae9b777d4b5&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;webアプリ&#34;&gt;WEBアプリ&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/635718cc640e527e1a2be369&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;ソースコード&#34;&gt;ソースコード&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/maximemoreillon/scale&#34;&gt;体重計&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;WEBアプリ&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/maximemoreillon/weight_front&#34;&gt;GUI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/maximemoreillon/weight&#34;&gt;バックエンド&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>水耕栽培システム</title>
+      <link>https://articles.maximemoreillon.com/articles/424a57bd-226c-4b7d-a688-1a9e416e3b12/</link>
+      <pubDate>Sun, 23 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/424a57bd-226c-4b7d-a688-1a9e416e3b12/</guid>
+      
+      <description>&lt;p&gt;土を使わず、インドアでレタスを作れるシステム&lt;/p&gt;
+&lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
+&lt;h2 id=&#34;野菜木鉢&#34;&gt;野菜木鉢&lt;/h2&gt;
+&lt;p&gt;野菜木鉢は3Dプリンターで作りました&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614532f55d171aba41416cc5&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;iot-led-ライト&#34;&gt;IoT LED ライト&lt;/h2&gt;
+&lt;p&gt;水耕栽培システムのライトはIoT照明と同じことで、スマホで制御できます&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614533bd5d171a3df8416cc6&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT キャッシュレス支払いシステム</title>
+      <link>https://articles.maximemoreillon.com/articles/b71b0561-59b2-4650-a9c1-866e3f5d501c/</link>
+      <pubDate>Sat, 22 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/b71b0561-59b2-4650-a9c1-866e3f5d501c/</guid>
+      
+      <description>&lt;p&gt;社内にコーヒーサーバーを設置したとする。コーヒー代はもちろん飲んだ人が負担をするが、だれが何杯飲んだかを管理するための購買システムが必要になる。&lt;/p&gt;
+&lt;p&gt;そこで、簡単に使える購買システムを開発した。&lt;/p&gt;
+&lt;p&gt;使い方は、社員はあらかじめ入金をして、社員証をデバイスにかざしてプリペイドカードのようにコーヒーの元を購入することができる。&lt;/p&gt;
+&lt;p&gt;社内で運用していて、２年間でおよそ27万円の購買実績がある。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e796ef4ad3848218cf8697e&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
+&lt;h2 id=&#34;gui-スクリーンショット&#34;&gt;GUI スクリーンショット&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614969859a075f92be59b6f5&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e787e6a83516e8e5fa90c3f&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT マンション電流測定システム</title>
+      <link>https://articles.maximemoreillon.com/articles/c21bf7cf-a170-4805-920c-6bfda6a1ee81/</link>
+      <pubDate>Sat, 22 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/c21bf7cf-a170-4805-920c-6bfda6a1ee81/</guid>
+      
+      <description>&lt;p&gt;マンションの電流測れるIoTセンサー。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786e4b6f2c2a628a19cad5&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
+&lt;h2 id=&#34;回路図&#34;&gt;回路図&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e79931b2143b0ee5ebdf007&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT 赤外線リモコン</title>
+      <link>https://articles.maximemoreillon.com/articles/f461f598-f74d-4e31-b861-e14f6534faa5/</link>
+      <pubDate>Sat, 22 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/f461f598-f74d-4e31-b861-e14f6534faa5/</guid>
+      
+      <description>&lt;p&gt;テレビ、エアコン、掃除ロボット、空気清浄機など様々な家電に赤外線リモコンが使われている。このIoT赤外線リモコンを使って、家電をスマホで操作することができる。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614874945d171a5d90416cd7&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
+&lt;h2 id=&#34;回路図&#34;&gt;回路図&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614875905d171ab68f416cd8&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;プリント基板&#34;&gt;プリント基板&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614875da5d171a3edb416cd9&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>指紋リーダブリーフケース</title>
+      <link>https://articles.maximemoreillon.com/articles/715c35db-6a4b-4e28-bee7-379e73e8a196/</link>
+      <pubDate>Sat, 22 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/715c35db-6a4b-4e28-bee7-379e73e8a196/</guid>
+      
+      <description>&lt;p&gt;ブリーフケースには電子ロックと指紋リーダがついてるので、指で解除される。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786d976f2c2a633319cad1&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
+&lt;h2 id=&#34;回路図&#34;&gt;回路図&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e79a8d8110ef24ac9856591&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT LED 照明</title>
+      <link>https://articles.maximemoreillon.com/articles/cd5fd69b-2e8b-4a25-8901-6573c3ed5b30/</link>
+      <pubDate>Fri, 21 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/cd5fd69b-2e8b-4a25-8901-6573c3ed5b30/</guid>
+      
+      <description>&lt;p&gt;スマホやタブレットから制御できるIoT LED 照明。自分で選んだ色を選択して光らすことができる。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/635717b2640e5275a72be33d&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
+&lt;h2 id=&#34;回路図&#34;&gt;回路図&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/624005e935a52f35f79e89a1&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;プリント基板&#34;&gt;プリント基板&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6240064235a52f35689e89a5&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6240057135a52f5ea69e899b&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;ソースコード&#34;&gt;ソースコード&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/maximemoreillon/led_controller&#34;&gt;GitHubへ&lt;/a&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT デバイス制御アプリ</title>
+      <link>https://articles.maximemoreillon.com/articles/dbb20572-5cc0-492f-aa1e-6c692215f7d1/</link>
+      <pubDate>Fri, 21 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/dbb20572-5cc0-492f-aa1e-6c692215f7d1/</guid>
+      
+      <description>&lt;p&gt;IoTデバイスを盛業するために作ったWEBアプリ。パソコンでも、スマホでも使えます。&lt;/p&gt;
+&lt;h2 id=&#34;スクリーンショット&#34;&gt;スクリーンショット&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/63567cd0640e5212932be136&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;アーキテクチャ&#34;&gt;アーキテクチャ&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e79964c2143b04ff1bdf00c&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT ロック</title>
+      <link>https://articles.maximemoreillon.com/articles/1a16f802-0b75-4d78-9ecc-e66126b3cf1f/</link>
+      <pubDate>Fri, 21 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/1a16f802-0b75-4d78-9ecc-e66126b3cf1f/</guid>
+      
+      <description>&lt;p&gt;入口のロックをスマホやパソコンで制御できるようなシステム。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/63571951640e527d5b2be37b&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
+&lt;h2 id=&#34;回路図&#34;&gt;回路図&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/635719e4640e5230ae2be37f&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>RFID指輪スマートキー</title>
+      <link>https://articles.maximemoreillon.com/articles/450db931-83ab-474a-aae8-7aa215853748/</link>
+      <pubDate>Fri, 21 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/450db931-83ab-474a-aae8-7aa215853748/</guid>
+      
+      <description>&lt;p&gt;ドアについているIoT RFIDリーダーにRFID指輪をかざすとドアのロックが解除される。指輪は既製品だが、それ以外は部品を集めて自作している&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6240f10735a52f2bf39e8a89&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
+&lt;h2 id=&#34;回路図&#34;&gt;回路図&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://image.easyeda.com/histories/1676b7f91a72451cb105d23d906229a0.png&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;プリント基板&#34;&gt;プリント基板&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/63537c44640e5293f62bd3c1&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;ソースコード&#34;&gt;ソースコード&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/maximemoreillon/ring_reader_oled&#34;&gt;GitHubへ&lt;/a&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

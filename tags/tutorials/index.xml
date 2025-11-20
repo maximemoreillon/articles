@@ -1,931 +1,1841 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tutorials on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/tutorials/</link><description>Recent content in Tutorials on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 17 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/tutorials/index.xml" rel="self" type="application/rss+xml"/><item><title>Nginx as reverse proxy in Kubernetes</title><link>https://articles.maximemoreillon.com/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/</link><pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/</guid><description>&lt;p>Although API gateways such as Kong exist, a simple reverse-proxy can be created using NGINX. Here is a sample manifest to do so in Kubernetes:&lt;/p>
-&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tutorials on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/tutorials/</link>
+    <description>Recent content in Tutorials on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 17 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nginx as reverse proxy in Kubernetes</title>
+      <link>https://articles.maximemoreillon.com/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/</link>
+      <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/</guid>
+      
+      <description>&lt;p&gt;Although API gateways such as Kong exist, a simple reverse-proxy can be created using NGINX. Here is a sample manifest to do so in Kubernetes:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: nginx
+  name: nginx
 spec:
-replicas: 1
-selector:
-matchLabels:
-app: nginx
-template:
-metadata:
-labels:
-app: nginx
-spec:
-containers:
-- name: nginx
-image: nginx
-volumeMounts:
-- mountPath: /etc/nginx/nginx.conf
-name: config
-subPath: nginx.conf
-volumes:
-- name: config
-configMap:
-name: config
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: config
+              subPath: nginx.conf
+      volumes:
+        - name: config
+          configMap:
+            name: config
 ---
 apiVersion: v1
 kind: Service
 metadata:
-name: nginx
+  name: nginx
 spec:
-ports:
-- port: 80
-nodePort: 30080
-selector:
-app: nginx
-type: NodePort
+  ports:
+    - port: 80
+      nodePort: 30080
+  selector:
+    app: nginx
+  type: NodePort
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-name: config
+  name: config
 data:
-nginx.conf: |
-user nginx;
-worker_processes 1;
-error_log /var/log/nginx/error.log warn;
-pid /var/run/nginx.pid;
-events {
-worker_connections 1024;
-}
-http {
-include /etc/nginx/mime.types;
-default_type application/octet-stream;
-log_format main &amp;#39;$remote_addr - $remote_user [$time_local] &amp;#34;$request&amp;#34; &amp;#39;
-&amp;#39;$status $body_bytes_sent &amp;#34;$http_referer&amp;#34; &amp;#39;
-&amp;#39;&amp;#34;$http_user_agent&amp;#34; &amp;#34;$http_x_forwarded_for&amp;#34;&amp;#39;;
-access_log /var/log/nginx/access.log main;
-sendfile on;
-keepalive_timeout 65;
-server {
-listen 80;
-server_name localhost;
-location /finances {
-proxy_pass http://my-service;
-}
-error_page 500 502 503 504 /50x.html;
-location = /50x.html {
-root /usr/share/nginx/html;
-}
-}
-}
+  nginx.conf: |
+    user  nginx;
+    worker_processes  1;
+    error_log  /var/log/nginx/error.log warn;
+    pid        /var/run/nginx.pid;
+    events {
+      worker_connections  1024;
+    }
+    http {
+      include       /etc/nginx/mime.types;
+      default_type  application/octet-stream;
+      log_format  main  &amp;#39;$remote_addr - $remote_user [$time_local] &amp;#34;$request&amp;#34; &amp;#39;
+                        &amp;#39;$status $body_bytes_sent &amp;#34;$http_referer&amp;#34; &amp;#39;
+                        &amp;#39;&amp;#34;$http_user_agent&amp;#34; &amp;#34;$http_x_forwarded_for&amp;#34;&amp;#39;;
+      access_log  /var/log/nginx/access.log  main;
+      sendfile        on;
+      keepalive_timeout  65;
+      server {
+        listen       80;
+        server_name  localhost;
+        location /finances {
+          proxy_pass http://my-service;
+        }
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+          root   /usr/share/nginx/html;
+        }
+      }
+    }
+
 ---
-&lt;/code>&lt;/pre></description></item><item><title>Migrating a Kubernetes PV to a new storage class for applications that don't have tar installed</title><link>https://articles.maximemoreillon.com/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/</link><pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/</guid><description>&lt;p>NOTE: &lt;a href="https://github.com/utkuozdemir/pv-migrate">pv-migrate&lt;/a> provides an easier approach migrating PVs&lt;/p>
-&lt;p>Kubernetes provides an abstraction layer for persistent data storage. Volumes can be of various storage classes depending on user requirements. Those requirements can evolve with time, meaning that volumes sometimes need to be migrated from one storage class to another. This article introduces a method to do so.&lt;/p>
-&lt;p>In this article, MinIO will be used as an example. MinIO pods do support the &lt;code>kubectl cp&lt;/code> command as the container does not have &lt;code>tar&lt;/code> installed. For applications that allow the &lt;code>kubectl cp command&lt;/code>, the procedure in this article can be simplified&lt;/p></description></item><item><title>Node.js testing for multiple environment variables</title><link>https://articles.maximemoreillon.com/articles/cce8a613-0885-4ac0-a0e0-b6d454d811cf/</link><pubDate>Sun, 11 Feb 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/cce8a613-0885-4ac0-a0e0-b6d454d811cf/</guid><description>&lt;p>I recently added S3 support to my &lt;a href="https://github.com/maximemoreillon/image_manager">image serving microservice&lt;/a>. Thanks to it, images uploaded to the service can be stored in an S3 bucket as opposed to a local folder. However, as some users might not want to use the feature, I made it so that is can be enabled by setting a specific environment variable, namely S3_BUCKET.&lt;/p>
-&lt;p>However, as both local storage and S3 storage cannot be both enabled at the same time, the Mocha tests I had written could not cover the whole code of the application in a single run.&lt;/p></description></item><item><title>Generating certificates for an Aruba Instant AP using pfSense</title><link>https://articles.maximemoreillon.com/articles/b5ccfbce-cabb-4606-a84b-45710b4ac914/</link><pubDate>Sat, 20 Jan 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/b5ccfbce-cabb-4606-a84b-45710b4ac914/</guid><description>&lt;p>Aruba Instant APs allow users to upload their own certificates which can be useful when trying to get rid of browser warnings regarding untrusted HTTPS connections.&lt;/p>
-&lt;h2 id="creating-and-uploading-certificate-authority">Creating and uploading certificate authority&lt;/h2>
-&lt;p>On the &lt;em>System / Certificates / Authorities&lt;/em> page, click the &lt;em>Add&lt;/em> button to create a new CA. This opens the CA edit page. Here the method must be set to &lt;em>Create an internal Certificate Authority.&lt;/em> The remaining settings can either be left as they are or straightforward.&lt;/p></description></item><item><title>Persistent HDD APM settings</title><link>https://articles.maximemoreillon.com/articles/b18a20dc-6916-484c-95c6-858b2c6b98ac/</link><pubDate>Wed, 03 Jan 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/b18a20dc-6916-484c-95c6-858b2c6b98ac/</guid><description>&lt;p>An HDD can be configured to spin down after a certain time via the APM settings which can be managed by smartctl. For example&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo smartctl --set=apm,63 /dev/sdb
-&lt;/code>&lt;/pre>&lt;p>configures the disk sdb to spin down afout about 5 minutes of inactivity.&lt;/p>
-&lt;p>Unfortunately, those settings do not persist after a reboot. To achieve persistence on systems with systemd installed, the following sdb-apm.service service file can be created in /etc/systemd/system/&lt;/p>
-&lt;pre tabindex="0">&lt;code>[Unit]
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed</title>
+      <link>https://articles.maximemoreillon.com/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/</link>
+      <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/</guid>
+      
+      <description>&lt;p&gt;NOTE: &lt;a href=&#34;https://github.com/utkuozdemir/pv-migrate&#34;&gt;pv-migrate&lt;/a&gt; provides an easier approach migrating PVs&lt;/p&gt;
+&lt;p&gt;Kubernetes provides an abstraction layer for persistent data storage. Volumes can be of various storage classes depending on user requirements. Those requirements can evolve with time, meaning that volumes sometimes need to be migrated from one storage class to another. This article introduces a method to do so.&lt;/p&gt;
+&lt;p&gt;In this article, MinIO will be used as an example. MinIO pods do support the &lt;code&gt;kubectl cp&lt;/code&gt; command as the container does not have &lt;code&gt;tar&lt;/code&gt; installed. For applications that allow the &lt;code&gt;kubectl cp command&lt;/code&gt;, the procedure in this article can be simplified&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Node.js testing for multiple environment variables</title>
+      <link>https://articles.maximemoreillon.com/articles/cce8a613-0885-4ac0-a0e0-b6d454d811cf/</link>
+      <pubDate>Sun, 11 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/cce8a613-0885-4ac0-a0e0-b6d454d811cf/</guid>
+      
+      <description>&lt;p&gt;I recently added S3 support to my &lt;a href=&#34;https://github.com/maximemoreillon/image_manager&#34;&gt;image serving microservice&lt;/a&gt;. Thanks to it, images uploaded to the service can be stored in an S3 bucket as opposed to a local folder. However, as some users might not want to use the feature, I made it so that is can be enabled by setting a specific environment variable, namely S3_BUCKET.&lt;/p&gt;
+&lt;p&gt;However, as both local storage and S3 storage cannot be both enabled at the same time, the Mocha tests I had written could not cover the whole code of the application in a single run.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Generating certificates for an Aruba Instant AP using pfSense</title>
+      <link>https://articles.maximemoreillon.com/articles/b5ccfbce-cabb-4606-a84b-45710b4ac914/</link>
+      <pubDate>Sat, 20 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/b5ccfbce-cabb-4606-a84b-45710b4ac914/</guid>
+      
+      <description>&lt;p&gt;Aruba Instant APs allow users to upload their own certificates which can be useful when trying to get rid of browser warnings regarding untrusted HTTPS connections.&lt;/p&gt;
+&lt;h2 id=&#34;creating-and-uploading-certificate-authority&#34;&gt;Creating and uploading certificate authority&lt;/h2&gt;
+&lt;p&gt;On the &lt;em&gt;System / Certificates / Authorities&lt;/em&gt; page, click the &lt;em&gt;Add&lt;/em&gt; button to create a new CA. This opens the CA edit page. Here the method must be set to &lt;em&gt;Create an internal Certificate Authority.&lt;/em&gt; The remaining settings can either be left as they are or straightforward.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Persistent HDD APM settings</title>
+      <link>https://articles.maximemoreillon.com/articles/b18a20dc-6916-484c-95c6-858b2c6b98ac/</link>
+      <pubDate>Wed, 03 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/b18a20dc-6916-484c-95c6-858b2c6b98ac/</guid>
+      
+      <description>&lt;p&gt;An HDD can be configured to spin down after a certain time via the APM settings which can be managed by smartctl. For example&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo smartctl --set=apm,63 /dev/sdb
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;configures the disk sdb to spin down afout about 5 minutes of inactivity.&lt;/p&gt;
+&lt;p&gt;Unfortunately, those settings do not persist after a reboot. To achieve persistence on systems with systemd installed, the following sdb-apm.service service file can be created in /etc/systemd/system/&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Unit]
 Description=/dev/sdb apm settings
+
 [Service]
 ExecStart=/usr/sbin/smartctl --set=apm,63 /dev/sdb
+
 [Install]
 WantedBy=multi-user.target
-&lt;/code>&lt;/pre>&lt;p>After enabling the service with&lt;/p></description></item><item><title>Solving Kong latency problems in Kubernetes</title><link>https://articles.maximemoreillon.com/articles/cd7202dc-7b29-41e1-8d05-2b159cb361bb/</link><pubDate>Mon, 04 Dec 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/cd7202dc-7b29-41e1-8d05-2b159cb361bb/</guid><description>&lt;p>Kong is a popular API gateway that can be used as a reverse proxy for clients to access back-end services. It can be run as a Docker container and, as such, can be deployed to Kubernetes.&lt;/p>
-&lt;p>The following is an example manifest to do so:&lt;/p>
-&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;After enabling the service with&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Solving Kong latency problems in Kubernetes</title>
+      <link>https://articles.maximemoreillon.com/articles/cd7202dc-7b29-41e1-8d05-2b159cb361bb/</link>
+      <pubDate>Mon, 04 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/cd7202dc-7b29-41e1-8d05-2b159cb361bb/</guid>
+      
+      <description>&lt;p&gt;Kong is a popular API gateway that can be used as a reverse proxy for clients to access back-end services. It can be run as a Docker container and, as such, can be deployed to Kubernetes.&lt;/p&gt;
+&lt;p&gt;The following is an example manifest to do so:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: kong
+  name: kong
 spec:
-replicas: 1
-selector:
-matchLabels:
-app: kong
-template:
-metadata:
-labels:
-app: kong
-spec:
-containers:
-- name: kong
-image: kong:3.4.0
-ports:
-- containerPort: 8000
-env:
-- name: KONG_DATABASE
-value: &amp;#34;off&amp;#34;
-- name: KONG_DECLARATIVE_CONFIG
-value: /kong/declarative/kong.yml
-volumeMounts:
-- mountPath: /kong/declarative/
-name: config
-volumes:
-- name: config
-configMap:
-name: kong
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kong
+  template:
+    metadata:
+      labels:
+        app: kong
+    spec:
+      containers:
+        - name: kong
+          image: kong:3.4.0
+          ports:
+            - containerPort: 8000
+          env:
+            - name: KONG_DATABASE
+              value: &amp;#34;off&amp;#34;
+            - name: KONG_DECLARATIVE_CONFIG
+              value: /kong/declarative/kong.yml
+          volumeMounts:
+            - mountPath: /kong/declarative/
+              name: config
+      volumes:
+        - name: config
+          configMap:
+            name: kong
 ---
 apiVersion: v1
 kind: Service
 metadata:
-name: kong
+  name: kong
 spec:
-ports:
-- port: 8000
-nodePort: 31800
-selector:
-app: kong
-type: NodePort
+  ports:
+    - port: 8000
+      nodePort: 31800
+  selector:
+    app: kong
+  type: NodePort
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-name: kong
+  name: kong
 data:
-kong.yml: |
-_format_version: &amp;#34;3.0&amp;#34;
-_transform: true
-services:
-- name: mqtt-logger
-url: http://mqtt-logger
-routes:
-- name: mqtt-logger
-paths:
-- /mqttlogger
-&lt;/code>&lt;/pre>&lt;p>In this example, Kong is configured to proxy requests on /mqttlogger to mqtt-logger, another service deployed in Kubernetes. As such, from Kong, this service can be resolved by CoreDNS at http://mqtt-logger.&lt;/p></description></item><item><title>GitLab Microk8s >1.24 certificate based integration</title><link>https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/</link><pubDate>Fri, 03 Nov 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/</guid><description>&lt;p>With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences&lt;/p>
-&lt;h2 id="ca-certificate">CA certificate&lt;/h2>
-&lt;p>The CA certificate can be obtained directly from the microk8s files:&lt;/p>
-&lt;pre tabindex="0">&lt;code>cat /var/snap/microk8s/current/certs/ca.crt
-&lt;/code>&lt;/pre>&lt;h2 id="access-token">Access Token&lt;/h2>
-&lt;p>As per usual, the RBAC addon must be enabled&lt;/p>
-&lt;pre tabindex="0">&lt;code>micok8s.enable rbac
-&lt;/code>&lt;/pre>&lt;p>Following which, the following manifest can be applied:&lt;/p>
-&lt;pre tabindex="0">&lt;code>apiVersion: v1
+  kong.yml: |
+
+    _format_version: &amp;#34;3.0&amp;#34;
+    _transform: true
+    services:
+    - name: mqtt-logger
+      url: http://mqtt-logger
+      routes:
+      - name: mqtt-logger
+        paths:
+        - /mqttlogger
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this example, Kong is configured to proxy requests on /mqttlogger to mqtt-logger, another service deployed in Kubernetes. As such, from Kong, this service can be resolved by CoreDNS at http://mqtt-logger.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>GitLab Microk8s &gt;1.24 certificate based integration</title>
+      <link>https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/</link>
+      <pubDate>Fri, 03 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/642f3b57-7076-42db-bacf-77fe59e5f6ad/</guid>
+      
+      <description>&lt;p&gt;With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences&lt;/p&gt;
+&lt;h2 id=&#34;ca-certificate&#34;&gt;CA certificate&lt;/h2&gt;
+&lt;p&gt;The CA certificate can be obtained directly from the microk8s files:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /var/snap/microk8s/current/certs/ca.crt
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;access-token&#34;&gt;Access Token&lt;/h2&gt;
+&lt;p&gt;As per usual, the RBAC addon must be enabled&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;micok8s.enable rbac
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Following which, the following manifest can be applied:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: v1
 kind: ServiceAccount
 metadata:
-name: gitlab
-namespace: kube-system
+  name: gitlab
+  namespace: kube-system
 ---
 apiVersion: v1
 kind: Secret
 type: kubernetes.io/service-account-token
 metadata:
-name: gitlab
-namespace: kube-system
-annotations:
-kubernetes.io/service-account.name: &amp;#34;gitlab&amp;#34;
+  name: gitlab
+  namespace: kube-system
+  annotations:
+    kubernetes.io/service-account.name: &amp;#34;gitlab&amp;#34;
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-name: gitlab-admin
+  name: gitlab-admin
 roleRef:
-apiGroup: rbac.authorization.k8s.io
-kind: ClusterRole
-name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
 subjects:
-- kind: ServiceAccount
-name: gitlab
-namespace: kube-system
-&lt;/code>&lt;/pre>&lt;p>This creates the access token which can be displayed using:&lt;/p></description></item><item><title>Kubernetes and Docker equivalence</title><link>https://articles.maximemoreillon.com/articles/a3efd0bb-5866-42ef-94fc-596f4923732b/</link><pubDate>Tue, 21 Feb 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/a3efd0bb-5866-42ef-94fc-596f4923732b/</guid><description>&lt;p>Kubernetes is a container orchestration system. As such, it features functions that are similar to that of Docker. If a container can be run with the Docker CLI, it can also be run equivalently using Kubernetes. This articles highlights such equivalence by presenting how to deploy a PostgreSQL instance using both technologies.&lt;/p>
-&lt;h2 id="docker">Docker&lt;/h2>
-&lt;p>Running a PostgreSQL container usually involves the configuration of its environment variables, persistent volumes and port forwarding. With the &lt;code>docker run&lt;/code> command, those are set using the -e, -v and -p flags respectively. The &lt;code>docker run&lt;/code> command also expects the container image to be specified as last argument. As such, running a PostgreSQL instance can be achieved using:&lt;/p></description></item><item><title>Dissecting a Kubernetes manifest</title><link>https://articles.maximemoreillon.com/articles/fff2ffc2-206a-4172-8f6a-528a36d3ec6d/</link><pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/fff2ffc2-206a-4172-8f6a-528a36d3ec6d/</guid><description>&lt;p>Kubernetes manifests can seem quite daunting at first, but it is important to understand that their apparent complexity is simply a result of the large number of customization options. In the end, manifests are used to deploy resources that interact with each other, which, among others, lead to the correct operations of containerized applications. Consequently, resources specified in a manifest must be configured accordingly. This article aims at explaining how manifests are structured to do so.&lt;/p></description></item><item><title>Vue3 Options vs Composition API</title><link>https://articles.maximemoreillon.com/articles/dab7a1ac-0d3e-4c8f-8e5c-6a724ad97b31/</link><pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/dab7a1ac-0d3e-4c8f-8e5c-6a724ad97b31/</guid><description>&lt;p>This article presents code snippets illustrating how to transition from the Options API to the Composition API in Vue 3.&lt;/p>
-&lt;h2 id="data">Data&lt;/h2>
-&lt;p>With the options API, reactive variables are defined in data():&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;lt;template&amp;gt;
-&amp;lt;p&amp;gt;x: {{ x }}&amp;lt;/p&amp;gt;
+  - kind: ServiceAccount
+    name: gitlab
+    namespace: kube-system
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This creates the access token which can be displayed using:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Kubernetes and Docker equivalence</title>
+      <link>https://articles.maximemoreillon.com/articles/a3efd0bb-5866-42ef-94fc-596f4923732b/</link>
+      <pubDate>Tue, 21 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/a3efd0bb-5866-42ef-94fc-596f4923732b/</guid>
+      
+      <description>&lt;p&gt;Kubernetes is a container orchestration system. As such, it features functions that are similar to that of Docker. If a container can be run with the Docker CLI, it can also be run equivalently using Kubernetes. This articles highlights such equivalence by presenting how to deploy a PostgreSQL instance using both technologies.&lt;/p&gt;
+&lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
+&lt;p&gt;Running a PostgreSQL container usually involves the configuration of its environment variables, persistent volumes and port forwarding. With the &lt;code&gt;docker run&lt;/code&gt; command, those are set using the -e, -v and -p flags respectively. The &lt;code&gt;docker run&lt;/code&gt; command also expects the container image to be specified as last argument. As such, running a PostgreSQL instance can be achieved using:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Dissecting a Kubernetes manifest</title>
+      <link>https://articles.maximemoreillon.com/articles/fff2ffc2-206a-4172-8f6a-528a36d3ec6d/</link>
+      <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/fff2ffc2-206a-4172-8f6a-528a36d3ec6d/</guid>
+      
+      <description>&lt;p&gt;Kubernetes manifests can seem quite daunting at first, but it is important to understand that their apparent complexity is simply a result of the large number of customization options. In the end, manifests are used to deploy resources that interact with each other, which, among others, lead to the correct operations of containerized applications. Consequently, resources specified in a manifest must be configured accordingly. This article aims at explaining how manifests are structured to do so.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Vue3 Options vs Composition API</title>
+      <link>https://articles.maximemoreillon.com/articles/dab7a1ac-0d3e-4c8f-8e5c-6a724ad97b31/</link>
+      <pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/dab7a1ac-0d3e-4c8f-8e5c-6a724ad97b31/</guid>
+      
+      <description>&lt;p&gt;This article presents code snippets illustrating how to transition from the Options API to the Composition API in Vue 3.&lt;/p&gt;
+&lt;h2 id=&#34;data&#34;&gt;Data&lt;/h2&gt;
+&lt;p&gt;With the options API, reactive variables are defined in data():&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;template&amp;gt;
+  &amp;lt;p&amp;gt;x: {{ x }}&amp;lt;/p&amp;gt;
 &amp;lt;/template&amp;gt;
 &amp;lt;script&amp;gt;
 export default {
-data() {
-return {
-x: 2,
-};
-},
+  data() {
+    return {
+      x: 2,
+    };
+  },
 };
 &amp;lt;/script&amp;gt;
-&lt;/code>&lt;/pre>&lt;p>Using the composition API, reactive variables are defined as refs:&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;lt;template&amp;gt;
-&amp;lt;p&amp;gt;x: {{ x }}&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Using the composition API, reactive variables are defined as refs:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;template&amp;gt;
+  &amp;lt;p&amp;gt;x: {{ x }}&amp;lt;/p&amp;gt;
 &amp;lt;/template&amp;gt;
 &amp;lt;script setup&amp;gt;
 import { ref } from &amp;#34;vue&amp;#34;;
 const x = ref(2);
 &amp;lt;/script&amp;gt;
-&lt;/code>&lt;/pre>&lt;h2 id="methods">Methods&lt;/h2>
-&lt;p>When using the options API, methods are written in the property of the same name:&lt;/p></description></item><item><title>Updating Ingresses to networking.k8s.io/v1</title><link>https://articles.maximemoreillon.com/articles/9366fcf7-0f3d-42de-a807-f36a66137287/</link><pubDate>Fri, 20 Jan 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/9366fcf7-0f3d-42de-a807-f36a66137287/</guid><description>&lt;p>Using Ingress with the extensions/v1beta1 API has been deprecated in Kubernetes 1.14 and will be removed in 1.22. This article presents how to update an existing manifest to the new API, networking.k8s.io/v1.&lt;/p>
-&lt;p>Let&amp;rsquo;s start with an example manifest using the extensions/v1beta api:&lt;/p>
-&lt;pre tabindex="0">&lt;code>apiVersion: extensions/v1beta1
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;methods&#34;&gt;Methods&lt;/h2&gt;
+&lt;p&gt;When using the options API, methods are written in the property of the same name:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Updating Ingresses to networking.k8s.io/v1</title>
+      <link>https://articles.maximemoreillon.com/articles/9366fcf7-0f3d-42de-a807-f36a66137287/</link>
+      <pubDate>Fri, 20 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/9366fcf7-0f3d-42de-a807-f36a66137287/</guid>
+      
+      <description>&lt;p&gt;Using Ingress with the extensions/v1beta1 API has been deprecated in Kubernetes 1.14 and will be removed in 1.22. This article presents how to update an existing manifest to the new API, networking.k8s.io/v1.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s start with an example manifest using the extensions/v1beta api:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-name: example-ingress
-namespace: example-namespace
-annotations:
-kubernetes.io/ingress.class: nginx
-cert-manager.io/cluster-issuer: letsencrypt-prod
+  name: example-ingress
+  namespace: example-namespace
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
-tls:
-- hosts:
-- example.com
-secretName: example-secret
-rules:
-- host: example.com
-http:
-paths:
-- path: /
-backend:
-serviceName: example-service
-servicePort: 80
-&lt;/code>&lt;/pre>&lt;p>When using the new networking.k8s.io/v1 API, the ingress manifest becomes:&lt;/p></description></item><item><title>TypeScript setup</title><link>https://articles.maximemoreillon.com/articles/e2334ea0-10af-49fa-bbed-9342e5965e74/</link><pubDate>Thu, 12 Jan 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/e2334ea0-10af-49fa-bbed-9342e5965e74/</guid><description>&lt;p>Node.js can execute .ts files if those do not contain any TypeScript specific syntax. However, the running code like the following example:&lt;/p>
-&lt;pre tabindex="0">&lt;code>interface Movie {
-title: string
-year: number
+  tls:
+    - hosts:
+        - example.com
+      secretName: example-secret
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: example-service
+              servicePort: 80
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;When using the new networking.k8s.io/v1 API, the ingress manifest becomes:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>TypeScript setup</title>
+      <link>https://articles.maximemoreillon.com/articles/e2334ea0-10af-49fa-bbed-9342e5965e74/</link>
+      <pubDate>Thu, 12 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/e2334ea0-10af-49fa-bbed-9342e5965e74/</guid>
+      
+      <description>&lt;p&gt;Node.js can execute .ts files if those do not contain any TypeScript specific syntax. However, the running code like the following example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;interface Movie {
+  title: string
+  year: number
 }
-&lt;/code>&lt;/pre>&lt;p>Yields the following error&lt;/p>
-&lt;pre tabindex="0">&lt;code>[moreillon@fedora ts-test]$ node index.ts
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Yields the following error&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[moreillon@fedora ts-test]$ node index.ts
 /home/moreillon/node/ts-test/index.ts:3
 interface Movie {
-^^^^^
+          ^^^^^
+
 SyntaxError: Unexpected identifier
-at Object.compileFunction (node:vm:360:18)
-at wrapSafe (node:internal/modules/cjs/loader:1088:15)
-at Module._compile (node:internal/modules/cjs/loader:1123:27)
-at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
-at Module.load (node:internal/modules/cjs/loader:1037:32)
-at Module._load (node:internal/modules/cjs/loader:878:12)
-at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
-at node:internal/main/run_main_module:23:47
-&lt;/code>&lt;/pre>&lt;p>Here, TS code must be converted into plain JS. This is achieved using the TypeScript Compiler, or TSC. The compiler can be installed using npm:&lt;/p></description></item><item><title>Mongoose query documents with matching array element</title><link>https://articles.maximemoreillon.com/articles/adb7dbb3-cc17-4dd2-b8c0-1fe5f46e62de/</link><pubDate>Mon, 19 Dec 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/adb7dbb3-cc17-4dd2-b8c0-1fe5f46e62de/</guid><description>&lt;p>As a NoSQL database, MongoDB can store arrays as fields of a document. This article presents how to query such documents by filtering those with arrays that contain a specific value.&lt;/p>
-&lt;p>Let&amp;rsquo;s imagine a collection containing the following movie records:&lt;/p>
-&lt;pre tabindex="0">&lt;code>[
-{
-title: &amp;#39;Inception&amp;#39;,
-actors: [
-&amp;#39;Tom Hardy&amp;#39;
-&amp;#39;Leonardo DiCaprio&amp;#39;
+    at Object.compileFunction (node:vm:360:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1088:15)
+    at Module._compile (node:internal/modules/cjs/loader:1123:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+    at Module.load (node:internal/modules/cjs/loader:1037:32)
+    at Module._load (node:internal/modules/cjs/loader:878:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
+    at node:internal/main/run_main_module:23:47
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here, TS code must be converted into plain JS. This is achieved using the TypeScript Compiler, or TSC. The compiler can be installed using npm:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Mongoose query documents with matching array element</title>
+      <link>https://articles.maximemoreillon.com/articles/adb7dbb3-cc17-4dd2-b8c0-1fe5f46e62de/</link>
+      <pubDate>Mon, 19 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/adb7dbb3-cc17-4dd2-b8c0-1fe5f46e62de/</guid>
+      
+      <description>&lt;p&gt;As a NoSQL database, MongoDB can store arrays as fields of a document. This article presents how to query such documents by filtering those with arrays that contain a specific value.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s imagine a collection containing the following movie records:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[
+  {
+    title: &amp;#39;Inception&amp;#39;,
+    actors: [
+      &amp;#39;Tom Hardy&amp;#39;
+      &amp;#39;Leonardo DiCaprio&amp;#39;
+    ]
+  },
+  {
+    title: &amp;#39;The Dark Knight Rises&amp;#39;,
+    actors: [
+      &amp;#39;Tom Hardy&amp;#39;,
+      &amp;#39;Christian Bale&amp;#39;,
+    ]
+  },
+  {
+    title: &amp;#39;The Dark Knight&amp;#39;,
+    actors: [
+      &amp;#39;Christian Bale&amp;#39;,
+      &amp;#39;Heath Ledger&amp;#39;
+    ]
+  },	
 ]
-},
-{
-title: &amp;#39;The Dark Knight Rises&amp;#39;,
-actors: [
-&amp;#39;Tom Hardy&amp;#39;,
-&amp;#39;Christian Bale&amp;#39;,
-]
-},
-{
-title: &amp;#39;The Dark Knight&amp;#39;,
-actors: [
-&amp;#39;Christian Bale&amp;#39;,
-&amp;#39;Heath Ledger&amp;#39;
-]
-},
-]
-&lt;/code>&lt;/pre>&lt;p>There would be cases where one would want to query all movies in which a specific actor starred.&lt;/p></description></item><item><title>Vue Router setup in Vue 3</title><link>https://articles.maximemoreillon.com/articles/07acf065-3dbb-4c7e-86cf-7a0769ec7379/</link><pubDate>Wed, 16 Nov 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/07acf065-3dbb-4c7e-86cf-7a0769ec7379/</guid><description>&lt;p>&lt;strong>Note&lt;/strong>: an option to add the Vue-router has now been integrated in Vite.&lt;/p>
-&lt;p>Previously, when creating a Vue project using the Vue CLI, the Vue Router could be installed easily by running vue add router. However, with Vue 3 and Vite, the router is installed manually. This can be done with NPM:&lt;/p>
-&lt;pre tabindex="0">&lt;code>npm install vue-router@4
-&lt;/code>&lt;/pre>&lt;p>Once installed, the configuration of the router can be done by creating a dedicated .js file in the src directory of the app. To mimic the structure of Vue 2 projects, the router config file is named index.js, to be created in a folder called router, sub-folder of src. A basic content would look as follows:&lt;/p></description></item><item><title>Quasar and i18n-ally</title><link>https://articles.maximemoreillon.com/articles/a42bf7ab-7140-47e8-a2af-9dcef527105d/</link><pubDate>Thu, 29 Sep 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/a42bf7ab-7140-47e8-a2af-9dcef527105d/</guid><description>&lt;p>Quasar integrates i18n fairly well but its suggested usage does not suit the i18n-ally VS code extension very well. This article presents how to adapt the quasar proposed i18n usage so that i18n-ally can be used properly.&lt;/p>
-&lt;p>When following the quasar i18n integration guide, translations are stored in .ts files, residing in their respective folders in src/i18n. For i18n-ally to work, those need to be .json files. Also, I personally prefer to have all translations files in the same folder so let&amp;rsquo;s go ahead and delete the translation folders. Instead, the new structure of the i18n folder should look like this:&lt;/p></description></item><item><title>SSH keys</title><link>https://articles.maximemoreillon.com/articles/83930a48-3f2c-4292-a3c3-5fd0eb266065/</link><pubDate>Sun, 28 Aug 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/83930a48-3f2c-4292-a3c3-5fd0eb266065/</guid><description>&lt;p>Using a key file can greatly increase security when connecting to a host via SSH. This article presents how to create such keys and configure hosts to use them.&lt;/p>
-&lt;p>First, a SSH key can be created on a local host using the ssh-keygen command:&lt;/p>
-&lt;pre tabindex="0">&lt;code>ssh-keygen
-&lt;/code>&lt;/pre>&lt;p>ssh-keygen will prompt the user for a filename as well as an optional password for the keys. In this example, let&amp;rsquo;s assume that the chosen filename was myKey.&lt;/p></description></item><item><title>Using v-model on a prop</title><link>https://articles.maximemoreillon.com/articles/76fbaccb-e02e-4b16-bcdb-f3f9e1b1cc31/</link><pubDate>Fri, 15 Jul 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/76fbaccb-e02e-4b16-bcdb-f3f9e1b1cc31/</guid><description>&lt;p>With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoque the prop update from their parent using $emit.&lt;/p>
-&lt;p>For this purpose, computed values can be leveraged as they provide ways to define custom getters and setters. In this case, the get() method can simply return the value passed as prop by the parent while set() emits the desired new value.&lt;/p></description></item><item><title>Combining two independent git repositories</title><link>https://articles.maximemoreillon.com/articles/314ebc9c-796a-4fbf-a4e4-c0c99fad0343/</link><pubDate>Tue, 08 Mar 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/314ebc9c-796a-4fbf-a4e4-c0c99fad0343/</guid><description>&lt;p>This article presents how to combine two independent and unrelated git repositories.&lt;/p>
-&lt;p>First, clone the first repository locally and cd into it.&lt;/p>
-&lt;pre tabindex="0">&lt;code>git clone URL_TO_REMOTE_1
-&lt;/code>&lt;/pre>&lt;p>Create a branch off the first remote&lt;/p>
-&lt;pre tabindex="0">&lt;code>git checkout -b master-2
-&lt;/code>&lt;/pre>&lt;p>In order to merge a completely independent repository into the current one, &lt;strong>delete&lt;/strong> the content of the folder apart from the .git folder. Once done, commit the changes:&lt;/p>
-&lt;pre tabindex="0">&lt;code>git commit -m &amp;#39;prepared for combining repositories&amp;#39;
-&lt;/code>&lt;/pre>&lt;p>Add the remote of the second repository&lt;/p></description></item><item><title>Encrypted Mosquitto broker in Kubernetes</title><link>https://articles.maximemoreillon.com/articles/506/</link><pubDate>Tue, 26 Oct 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/506/</guid><description>&lt;p>Note: an updated version of this article has been posted to &lt;a href="https://moreillon.medium.com/encrypted-mosquitto-mqtt-broker-in-kubernetes-26bb7acd11c7">Medium&lt;/a>&lt;/p>
-&lt;p>Mosquitto can usually be installed on an Ubuntu server fairly easily using the APT package manager. By Default, the broker handles unencrypted MQTT connections but it can be configured to use SSL certificates obtained, for example, using Certbot and thus enable MQTTs connections. This configuration is usually achieved by editing the Mosquitto configuration file in /etc/mosquitto so as to point to certificates obtained independently. However, when deploying Mosquitto to Kubernetes, one would prefer not to edit configuration files manually after install. Moreover, in Kubernetes, one can use Cert-manager to obtain SSL certificates. Thus, this article presents an efficient method to deploy a secure MQTTs broker in Kubernetes.&lt;/p></description></item><item><title>Resizing a hostpah-storage PVC and its PV in Microk8s</title><link>https://articles.maximemoreillon.com/articles/567/</link><pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/567/</guid><description>&lt;p>With the storage addon enabled, microk8s can automatically provision a PV when a PVC is created. The size of the PV is set according to that of the PVC. However, PVCs cannot be resized after creation. The PVC could be deleted and recreated with a larger size but this would result in the deletion of the PV and, by extension, all the data stored so far in it. This article presents a workaround to resize a PVC and its corresponding PV without any loss of data.&lt;/p></description></item><item><title>Cert-manager Certificate Issuer</title><link>https://articles.maximemoreillon.com/articles/541/</link><pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/541/</guid><description>&lt;p>With cert-manager installed, SSL certificates can be automatically obtained for Ingresses deployed in a Kubernetes cluster. To achieve this, one must deploy the appropriate ClusterIssuers to the cluster. Here are example manifests to do so.&lt;/p>
-&lt;h2 id="production">Production&lt;/h2>
-&lt;pre tabindex="0">&lt;code># prod_issuer.yaml
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;There would be cases where one would want to query all movies in which a specific actor starred.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Vue Router setup in Vue 3</title>
+      <link>https://articles.maximemoreillon.com/articles/07acf065-3dbb-4c7e-86cf-7a0769ec7379/</link>
+      <pubDate>Wed, 16 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/07acf065-3dbb-4c7e-86cf-7a0769ec7379/</guid>
+      
+      <description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: an option to add the Vue-router has now been integrated in Vite.&lt;/p&gt;
+&lt;p&gt;Previously, when creating a Vue project using the Vue CLI, the Vue Router could be installed easily by running vue add router. However, with Vue 3 and Vite, the router is installed manually. This can be done with NPM:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;npm install vue-router@4
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Once installed, the configuration of the router can be done by creating a dedicated .js file in the src directory of the app. To mimic the structure of Vue 2 projects, the router config file is named index.js, to be created in a folder called router, sub-folder of src. A basic content would look as follows:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Quasar and i18n-ally</title>
+      <link>https://articles.maximemoreillon.com/articles/a42bf7ab-7140-47e8-a2af-9dcef527105d/</link>
+      <pubDate>Thu, 29 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/a42bf7ab-7140-47e8-a2af-9dcef527105d/</guid>
+      
+      <description>&lt;p&gt;Quasar integrates i18n fairly well but its suggested usage does not suit the i18n-ally VS code extension very well. This article presents how to adapt the quasar proposed i18n usage so that i18n-ally can be used properly.&lt;/p&gt;
+&lt;p&gt;When following the quasar i18n integration guide, translations are stored in .ts files, residing in their respective folders in src/i18n. For i18n-ally to work, those need to be .json files. Also, I personally prefer to have all translations files in the same folder so let&amp;rsquo;s go ahead and delete the translation folders. Instead, the new structure of the i18n folder should look like this:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>SSH keys</title>
+      <link>https://articles.maximemoreillon.com/articles/83930a48-3f2c-4292-a3c3-5fd0eb266065/</link>
+      <pubDate>Sun, 28 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/83930a48-3f2c-4292-a3c3-5fd0eb266065/</guid>
+      
+      <description>&lt;p&gt;Using a key file can greatly increase security when connecting to a host via SSH. This article presents how to create such keys and configure hosts to use them.&lt;/p&gt;
+&lt;p&gt;First, a SSH key can be created on a local host using the ssh-keygen command:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ssh-keygen
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;ssh-keygen will prompt the user for a filename as well as an optional password for the keys. In this example, let&amp;rsquo;s assume that the chosen filename was myKey.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Using v-model on a prop</title>
+      <link>https://articles.maximemoreillon.com/articles/76fbaccb-e02e-4b16-bcdb-f3f9e1b1cc31/</link>
+      <pubDate>Fri, 15 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/76fbaccb-e02e-4b16-bcdb-f3f9e1b1cc31/</guid>
+      
+      <description>&lt;p&gt;With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoque the prop update from their parent using $emit.&lt;/p&gt;
+&lt;p&gt;For this purpose, computed values can be leveraged as they provide ways to define custom getters and setters. In this case, the get() method can simply return the value passed as prop by the parent while set() emits the desired new value.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Combining two independent git repositories</title>
+      <link>https://articles.maximemoreillon.com/articles/314ebc9c-796a-4fbf-a4e4-c0c99fad0343/</link>
+      <pubDate>Tue, 08 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/314ebc9c-796a-4fbf-a4e4-c0c99fad0343/</guid>
+      
+      <description>&lt;p&gt;This article presents how to combine two independent and unrelated git repositories.&lt;/p&gt;
+&lt;p&gt;First, clone the first repository locally and cd into it.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone URL_TO_REMOTE_1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Create a branch off the first remote&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git checkout -b master-2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In order to merge a completely independent repository into the current one, &lt;strong&gt;delete&lt;/strong&gt; the content of the folder apart from the .git folder. Once done, commit the changes:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git commit -m &amp;#39;prepared for combining repositories&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Add the remote of the second repository&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Encrypted Mosquitto broker in Kubernetes</title>
+      <link>https://articles.maximemoreillon.com/articles/506/</link>
+      <pubDate>Tue, 26 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/506/</guid>
+      
+      <description>&lt;p&gt;Note: an updated version of this article has been posted to &lt;a href=&#34;https://moreillon.medium.com/encrypted-mosquitto-mqtt-broker-in-kubernetes-26bb7acd11c7&#34;&gt;Medium&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Mosquitto can usually be installed on an Ubuntu server fairly easily using the APT package manager. By Default, the broker handles unencrypted MQTT connections but it can be configured to use SSL certificates obtained, for example, using Certbot and thus enable MQTTs connections. This configuration is usually achieved by editing the Mosquitto configuration file in /etc/mosquitto so as to point to certificates obtained independently. However, when deploying Mosquitto to Kubernetes, one would prefer not to edit configuration files manually after install. Moreover, in Kubernetes, one can use Cert-manager to obtain SSL certificates. Thus, this article presents an efficient method to deploy a secure MQTTs broker in Kubernetes.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Resizing a hostpah-storage PVC and its PV in Microk8s</title>
+      <link>https://articles.maximemoreillon.com/articles/567/</link>
+      <pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/567/</guid>
+      
+      <description>&lt;p&gt;With the storage addon enabled, microk8s can automatically provision a PV when a PVC is created. The size of the PV is set according to that of the PVC. However, PVCs cannot be resized after creation. The PVC could be deleted and recreated with a larger size but this would result in the deletion of the PV and, by extension, all the data stored so far in it. This article presents a workaround to resize a PVC and its corresponding PV without any loss of data.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Cert-manager Certificate Issuer</title>
+      <link>https://articles.maximemoreillon.com/articles/541/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/541/</guid>
+      
+      <description>&lt;p&gt;With cert-manager installed, SSL certificates can be automatically obtained for Ingresses deployed in a Kubernetes cluster. To achieve this, one must deploy the appropriate ClusterIssuers to the cluster. Here are example manifests to do so.&lt;/p&gt;
+&lt;h2 id=&#34;production&#34;&gt;Production&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# prod_issuer.yaml
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer # Maybe could make it just an issuer for individual apps
 metadata:
-name: letsencrypt-prod
+  name: letsencrypt-prod
 spec:
-acme:
-# The ACME server URL
-server: https://acme-v02.api.letsencrypt.org/directory
-# Email address used for ACME registration
-email: MY_EMAIL@gmail.com
-# Name of a secret used to store the ACME account private key
-privateKeySecretRef:
-name: letsencrypt-prod
-# Enable the HTTP-01 challenge provider
-solvers:
-- http01:
-ingress:
-class: nginx
-&lt;/code>&lt;/pre>&lt;h2 id="staging">Staging&lt;/h2>
-&lt;pre tabindex="0">&lt;code># staging_issuer.yaml
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: MY_EMAIL@gmail.com
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - http01:
+        ingress:
+          class:  nginx
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;staging&#34;&gt;Staging&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# staging_issuer.yaml
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
-name: letsencrypt-staging
+  name: letsencrypt-staging
 spec:
-acme:
-# The ACME server URL
-server: https://acme-staging-v02.api.letsencrypt.org/directory
-# Email address used for ACME registration
-email: MY_EMAIL@gmail.com
-# Name of a secret used to store the ACME account private key
-privateKeySecretRef:
-name: letsencrypt-staging
-# Enable the HTTP-01 challenge provider
-solvers:
-- http01:
-ingress:
-class: nginx
-&lt;/code>&lt;/pre></description></item><item><title>K8s NGINX Deployment for Ingress test</title><link>https://articles.maximemoreillon.com/articles/461/</link><pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/461/</guid><description>&lt;p>An NGINX container can be quite useful to test whether one&amp;rsquo;s Kubernetes setup is working. Here is one example manifest file that deploys such container with an appropriate service and ingress.&lt;/p>
-&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+  acme:
+    # The ACME server URL
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: MY_EMAIL@gmail.com
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - http01:
+        ingress:
+          class:  nginx
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>K8s NGINX Deployment for Ingress test</title>
+      <link>https://articles.maximemoreillon.com/articles/461/</link>
+      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/461/</guid>
+      
+      <description>&lt;p&gt;An NGINX container can be quite useful to test whether one&amp;rsquo;s Kubernetes setup is working. Here is one example manifest file that deploys such container with an appropriate service and ingress.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: nginx-example
-namespace: example
+  name: nginx-example
+  namespace: example
 spec:
-replicas: 1
-selector:
-matchLabels:
-app: nginx-example
-template:
-metadata:
-labels:
-app: nginx-example
-spec:
-containers:
-- name: nginx-example
-image: nginx
-ports:
-- containerPort: 80
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-example
+  template:
+    metadata:
+      labels:
+        app: nginx-example
+    spec:
+      containers:
+      - name: nginx-example
+        image: nginx
+        ports:
+        - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-name: nginx-example
-namespace: example
+  name: nginx-example
+  namespace: example
 spec:
-type: ClusterIP
-selector:
-app: nginx-example
-ports:
-- port: 80
+  type: ClusterIP
+  selector:
+    app: nginx-example
+  ports:
+  - port: 80
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-name: nginx-example
-namespace: example
-annotations:
-kubernetes.io/ingress.class: &amp;#34;nginx&amp;#34;
-cert-manager.io/cluster-issuer: &amp;#34;letsencrypt-prod&amp;#34;
+  name: nginx-example
+  namespace: example
+  annotations:
+    kubernetes.io/ingress.class: &amp;#34;nginx&amp;#34;
+    cert-manager.io/cluster-issuer: &amp;#34;letsencrypt-prod&amp;#34;
 spec:
-tls:
-- hosts:
-- YOUR_DOMAIN
-secretName: nginx-example
-rules:
-- host: YOUR_DOMAIN
-http:
-paths:
-- path: /
-backend:
-serviceName: nginx-example
-servicePort: 80
-&lt;/code>&lt;/pre></description></item><item><title>Encrypting Mosquitto using Certbot</title><link>https://articles.maximemoreillon.com/articles/497/</link><pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/497/</guid><description>&lt;p>The Mosquitto server must be configured using the /etc/mosquitto/conf.d/main.conf file, inside which the path to SSL certificates must be specified. A good topic on the matter can be found &lt;a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-the-mosquitto-mqtt-messaging-broker-on-ubuntu-18-04-quickstart">here&lt;/a>.&lt;/p>
-&lt;p>Certificates can be retrieved using Certbot, but for configurations where a microk8s instance is running with the NGINX Ingress controller, A special access for Certbot to fulfill its challenges is required.&lt;/p>
-&lt;p>To do so, one can create a endpoint with a port on which certbot will listen, alongside a service and Ingress for it:&lt;/p></description></item><item><title>Loading an Neo4J 3.X database in a Neo4J 4.X instance</title><link>https://articles.maximemoreillon.com/articles/253/</link><pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/253/</guid><description>&lt;p>Importing data from a Neo4J v3 database into a v4 one can be a hassle. Here are the steps to achieve the migration.&lt;/p>
-&lt;p>Since Neo4J V4 is a major update from V3, the data imported must be updated to the new version. Enabling the update can be done by editing the /etc/neo4j/neo4j.conf and changing the following line accordingly;&lt;/p>
-&lt;pre tabindex="0">&lt;code>dbms.allow_upgrade=true
-&lt;/code>&lt;/pre>&lt;p>With that done, the data can be imported using the neo4j-admin, executed &lt;strong>as the neo4j user&lt;/strong>&lt;/p></description></item><item><title>RESTful API design</title><link>https://articles.maximemoreillon.com/articles/15/</link><pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/15/</guid><description>&lt;p>There are four main kind of operations when working with a database: &lt;strong>C&lt;/strong>reate, &lt;strong>R&lt;/strong>ead, &lt;strong>U&lt;/strong>pdate and &lt;strong>D&lt;/strong>elete (CRUD). However, databases are usually not exposed directly to the clients. Instead, those operations are performed by a server side application with a client-facing API. The most common type of APIs nowadays are based on HTTP. An HTTP API can be built with complete freedom. However, guidelines for best-practice HTTP API design have been created. An API following those guidlines is called a REST (or RESTful) API.&lt;/p></description></item><item><title>Self-hosted GitLab instance for DevOps on Ubuntu 18.04</title><link>https://articles.maximemoreillon.com/articles/409/</link><pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/409/</guid><description>&lt;p>GitLab provides a great number of tools needed for the DevOps cycle of an application. In this guide, we&amp;rsquo;ll install a GitLab instance on our own server and configure it to fit our DevOps needs. Here, we will use a fresh install of Ubuntu 18.04 as a base.&lt;/p>
-&lt;h2 id="gitlab-installation">GitLab installation&lt;/h2>
-&lt;p>&lt;a href="https://about.gitlab.com/install/">https://about.gitlab.com/install/&lt;/a>&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo apt-get update
+  tls:
+  - hosts:
+    - YOUR_DOMAIN
+    secretName: nginx-example
+  rules:
+  - host: YOUR_DOMAIN
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-example
+          servicePort: 80
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Encrypting Mosquitto using Certbot</title>
+      <link>https://articles.maximemoreillon.com/articles/497/</link>
+      <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/497/</guid>
+      
+      <description>&lt;p&gt;The Mosquitto server must be configured using the /etc/mosquitto/conf.d/main.conf file, inside which the path to SSL certificates must be specified. A good topic on the matter can be found &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-the-mosquitto-mqtt-messaging-broker-on-ubuntu-18-04-quickstart&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Certificates can be retrieved using Certbot, but for configurations where a microk8s instance is running with the NGINX Ingress controller, A special access for Certbot to fulfill its challenges is required.&lt;/p&gt;
+&lt;p&gt;To do so, one can create a endpoint with a port on which certbot will listen, alongside a service and Ingress for it:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Loading an Neo4J 3.X database in a Neo4J 4.X instance</title>
+      <link>https://articles.maximemoreillon.com/articles/253/</link>
+      <pubDate>Thu, 27 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/253/</guid>
+      
+      <description>&lt;p&gt;Importing data from a Neo4J v3 database into a v4 one can be a hassle. Here are the steps to achieve the migration.&lt;/p&gt;
+&lt;p&gt;Since Neo4J V4 is a major update from V3, the data imported must be updated to the new version. Enabling the update can be done by editing the /etc/neo4j/neo4j.conf and changing the following line accordingly;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;dbms.allow_upgrade=true
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;With that done, the data can be imported using the neo4j-admin, executed &lt;strong&gt;as the neo4j user&lt;/strong&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>RESTful API design</title>
+      <link>https://articles.maximemoreillon.com/articles/15/</link>
+      <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/15/</guid>
+      
+      <description>&lt;p&gt;There are four main kind of operations when working with a database: &lt;strong&gt;C&lt;/strong&gt;reate, &lt;strong&gt;R&lt;/strong&gt;ead, &lt;strong&gt;U&lt;/strong&gt;pdate and &lt;strong&gt;D&lt;/strong&gt;elete (CRUD). However, databases are usually not exposed directly to the clients. Instead, those operations are performed by a server side application with a client-facing API. The most common type of APIs nowadays are based on HTTP. An HTTP API can be built with complete freedom. However, guidelines for best-practice HTTP API design have been created. An API following those guidlines is called a REST (or RESTful) API.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Self-hosted GitLab instance for DevOps on Ubuntu 18.04</title>
+      <link>https://articles.maximemoreillon.com/articles/409/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/409/</guid>
+      
+      <description>&lt;p&gt;GitLab provides a great number of tools needed for the DevOps cycle of an application. In this guide, we&amp;rsquo;ll install a GitLab instance on our own server and configure it to fit our DevOps needs. Here, we will use a fresh install of Ubuntu 18.04 as a base.&lt;/p&gt;
+&lt;h2 id=&#34;gitlab-installation&#34;&gt;GitLab installation&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://about.gitlab.com/install/&#34;&gt;https://about.gitlab.com/install/&lt;/a&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt-get update
 sudo apt-get install -y curl openssh-server ca-certificates
-&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
-&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>sudo EXTERNAL_URL=&amp;#34;http://192.168.1.2:8090&amp;#34; apt-get install gitlab-ee
-&lt;/code>&lt;/pre>&lt;h2 id="docker-installation">Docker installation&lt;/h2>
-&lt;pre tabindex="0">&lt;code>sudo apt install docker.io
-&lt;/code>&lt;/pre>&lt;h2 id="kubectl-installation">Kubectl installation&lt;/h2>
-&lt;pre tabindex="0">&lt;code>snap install kubectl --classic
-&lt;/code>&lt;/pre>&lt;h2 id="gitlab-runner-installation-registration-and-configuration">GitLab runner installation, registration and configuration&lt;/h2>
-&lt;pre tabindex="0">&lt;code>curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
-&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>sudo apt-get install gitlab-runner
-&lt;/code>&lt;/pre>&lt;pre tabindex="0">&lt;code>sudo gitlab-runner register
-&lt;/code>&lt;/pre>&lt;p>Finally, appropriate permissions must be given to the runner to use Docker&lt;/p></description></item><item><title>Deploying a TensorFlow model on a Jetson Nano using TensorFlow serving and K3s</title><link>https://articles.maximemoreillon.com/articles/70/</link><pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/70/</guid><description>&lt;p>The Nvidia Jetson Nano constitutes a low cost platform for AI applications, ideal for edge computing.However, due to the architecture of its CPU, deploying applications to the SBC can be challenging. In this guide, we&amp;rsquo;ll install and configure K3s, a lightweight kubernetes distribution made specifically for edge devices. Once done we&amp;rsquo;ll build and deploy an TensorFlow model in the K3s cluster.&lt;/p>
-&lt;h2 id="environment-preparation">Environment preparation&lt;/h2>
-&lt;p>Our objective is to deploy a TensorFlow Serving container in a Kubernetes cluster running on the Jetson Nano. Moreover, this container should fully take advantage of the CUDA capabilities of the Nano. Consequently, some preliminary environment preparation is necessary, namely .The following is based on &lt;a href="https://www.virtualthoughts.co.uk/2020/03/24/k3s-and-nvidia-jetson-nano/">this guide&lt;/a>. Additionally this article assumes that the reader has a Docker container registry available to push to and pull from.&lt;/p></description></item><item><title>Containerization of a Flask application</title><link>https://articles.maximemoreillon.com/articles/196/</link><pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/196/</guid><description>&lt;p>Flask can be seen as the equivalent of Express for Python. However, although an express application is basically production ready, a Flask app outputs the following when executed by itself:&lt;/p>
-&lt;pre tabindex="0">&lt;code>WARNING: This is a development server. Do not use it in a production deployment.
-&lt;/code>&lt;/pre>&lt;p>flask_app.py&lt;/p>
-&lt;pre tabindex="0">&lt;code>from flask import Flask
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo EXTERNAL_URL=&amp;#34;http://192.168.1.2:8090&amp;#34; apt-get install gitlab-ee
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;docker-installation&#34;&gt;Docker installation&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt install docker.io
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;kubectl-installation&#34;&gt;Kubectl installation&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;snap install kubectl --classic
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;gitlab-runner-installation-registration-and-configuration&#34;&gt;GitLab runner installation, registration and configuration&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt-get install gitlab-runner
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo gitlab-runner register
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Finally, appropriate permissions must be given to the runner to use Docker&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Deploying a TensorFlow model on a Jetson Nano using TensorFlow serving and K3s</title>
+      <link>https://articles.maximemoreillon.com/articles/70/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/70/</guid>
+      
+      <description>&lt;p&gt;The Nvidia Jetson Nano constitutes a low cost platform for AI applications, ideal for edge computing.However, due to the architecture of its CPU, deploying applications to the SBC can be challenging. In this guide, we&amp;rsquo;ll install and configure K3s, a lightweight kubernetes distribution made specifically for edge devices. Once done we&amp;rsquo;ll build and deploy an TensorFlow model in the K3s cluster.&lt;/p&gt;
+&lt;h2 id=&#34;environment-preparation&#34;&gt;Environment preparation&lt;/h2&gt;
+&lt;p&gt;Our objective is to deploy a TensorFlow Serving container in a Kubernetes cluster running on the Jetson Nano. Moreover, this container should fully take advantage of the CUDA capabilities of the Nano. Consequently, some preliminary environment preparation is necessary, namely .The following is based on &lt;a href=&#34;https://www.virtualthoughts.co.uk/2020/03/24/k3s-and-nvidia-jetson-nano/&#34;&gt;this guide&lt;/a&gt;. Additionally this article assumes that the reader has a Docker container registry available to push to and pull from.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Containerization of a Flask application</title>
+      <link>https://articles.maximemoreillon.com/articles/196/</link>
+      <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/196/</guid>
+      
+      <description>&lt;p&gt;Flask can be seen as the equivalent of Express for Python. However, although an express application is basically production ready, a Flask app outputs the following when executed by itself:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;WARNING: This is a development server. Do not use it in a production deployment.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;flask_app.py&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;from flask import Flask
 app = Flask(__name__)
+
 @app.route(&amp;#39;/&amp;#39;)
 def hello_world():
-return &amp;#39;Hello, World!&amp;#39;
+    return &amp;#39;Hello, World!&amp;#39;
+
 # Allow the app to be run in devvelopment mode if run using python3 main.py
 if __name__ == &amp;#34;__main__&amp;#34;:
-app.run(&amp;#39;0.0.0.0&amp;#39;, 7193)
-&lt;/code>&lt;/pre>&lt;p>requirements.txt&lt;/p></description></item><item><title>GitLab CI Microk8s integration</title><link>https://articles.maximemoreillon.com/articles/210/</link><pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/210/</guid><description>&lt;p>&lt;strong>Note&lt;/strong>: This guide applies for Kubernetes versions prior to 1.24. Moreover, Kubernetes integration in GitLab is now achieved via the GitLab agent for Kubernetes. This guide is meant for legacy support.&lt;/p>
-&lt;p>GitLab provides Kubernetes integration out of the box, which means that GitLab CI/CD Pipelines can be used to deploy applications in Kubernetes easily. This guide presents how to integrate a Kubernetes cluster in a GitLab Project and follows &lt;a href="https://docs.gitlab.com/ee/user/project/clusters/add_remove_clusters.html">Gitlab documentation&lt;/a>. For this particular case, the cluster will be that of a &lt;a href="https://microk8s.io/">Microk8s&lt;/a> Kubernetes distribution.&lt;/p></description></item><item><title>Node.js DevOps example</title><link>https://articles.maximemoreillon.com/articles/98/</link><pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/98/</guid><description>&lt;p>In this article, we’ll build a simple &lt;a href="https://nodejs.org/en/">Node.js&lt;/a> application that uses &lt;a href="https://expressjs.com/">Express&lt;/a> to respond to HTTP requests. In order to deploy this application to production, we’ll also configure a &lt;a href="https://docs.gitlab.com/ee/ci/">GitLab CI/CD&lt;/a> pipeline so as to &lt;a href="https://www.docker.com/">dockerize&lt;/a> it and deploy its container to a &lt;a href="https://kubernetes.io/">Kubernetes&lt;/a> cluster.&lt;/p>
-&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
-&lt;p>This article assumes that the following environment is available to the reader:&lt;/p>
-&lt;ul>
-&lt;li>A development environment with &lt;a href="https://nodejs.org/en/">Node.js&lt;/a> installed.&lt;/li>
-&lt;li>A &lt;a href="https://about.gitlab.com/install/">GitLab&lt;/a> instance with an available &lt;a href="https://docs.gitlab.com/runner/install/">runner&lt;/a> able to run the &lt;em>docker&lt;/em> and &lt;em>kubectl&lt;/em> commands.&lt;/li>
-&lt;li>A production environment with a Kubernetes cluster reachable from the GitLab instance. For this, &lt;a href="https://microk8s.io/">Microk8s&lt;/a> is easy to get started with&lt;/li>
-&lt;li>A &lt;a href="https://docs.docker.com/registry/deploying/">Docker registry&lt;/a> to push and pull containers to and from. Note that running your own registry might require &lt;a href="https://docs.docker.com/registry/insecure/">Docker&lt;/a> and Kubernetes configuration (guide for MicroK8s available &lt;a href="https://microk8s.io/docs/registry-private">here&lt;/a>)&lt;/li>
-&lt;/ul>
-&lt;p>Node.js application&lt;/p></description></item><item><title>Application containerization</title><link>https://articles.maximemoreillon.com/articles/445/</link><pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/445/</guid><description>&lt;p>Let&amp;rsquo;s imagine a developer building an application on his computer and that this application is meant to be deployed on a different machine (production environment). In order to execute properly, this application requires multiple libraries, binaries and packages. For example, a Python program requires the Python interpreter as well as all the imported Python modules.&lt;/p>
-&lt;p>Thus, if the application is unlikely to run properly in the production environment if it is being deployed by simply copying its source code over.&lt;/p></description></item><item><title>APIs: Why and how</title><link>https://articles.maximemoreillon.com/articles/33/</link><pubDate>Wed, 20 May 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/33/</guid><description>&lt;p>From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5ec5d30a55b0c12424749cf4" alt="">As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p>
-&lt;pre tabindex="0">&lt;code>function area_of_circle(radius){
-return Math.PI * radius * radius
+    app.run(&amp;#39;0.0.0.0&amp;#39;, 7193)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;requirements.txt&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>GitLab CI Microk8s integration</title>
+      <link>https://articles.maximemoreillon.com/articles/210/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/210/</guid>
+      
+      <description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: This guide applies for Kubernetes versions prior to 1.24. Moreover, Kubernetes integration in GitLab is now achieved via the GitLab agent for Kubernetes. This guide is meant for legacy support.&lt;/p&gt;
+&lt;p&gt;GitLab provides Kubernetes integration out of the box, which means that GitLab CI/CD Pipelines can be used to deploy applications in Kubernetes easily. This guide presents how to integrate a Kubernetes cluster in a GitLab Project and follows &lt;a href=&#34;https://docs.gitlab.com/ee/user/project/clusters/add_remove_clusters.html&#34;&gt;Gitlab documentation&lt;/a&gt;. For this particular case, the cluster will be that of a &lt;a href=&#34;https://microk8s.io/&#34;&gt;Microk8s&lt;/a&gt; Kubernetes distribution.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Node.js DevOps example</title>
+      <link>https://articles.maximemoreillon.com/articles/98/</link>
+      <pubDate>Mon, 25 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/98/</guid>
+      
+      <description>&lt;p&gt;In this article, we’ll build a simple &lt;a href=&#34;https://nodejs.org/en/&#34;&gt;Node.js&lt;/a&gt; application that uses &lt;a href=&#34;https://expressjs.com/&#34;&gt;Express&lt;/a&gt; to respond to HTTP requests. In order to deploy this application to production, we’ll also configure a &lt;a href=&#34;https://docs.gitlab.com/ee/ci/&#34;&gt;GitLab CI/CD&lt;/a&gt; pipeline so as to &lt;a href=&#34;https://www.docker.com/&#34;&gt;dockerize&lt;/a&gt; it and deploy its container to a &lt;a href=&#34;https://kubernetes.io/&#34;&gt;Kubernetes&lt;/a&gt; cluster.&lt;/p&gt;
+&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;This article assumes that the following environment is available to the reader:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A development environment with &lt;a href=&#34;https://nodejs.org/en/&#34;&gt;Node.js&lt;/a&gt; installed.&lt;/li&gt;
+&lt;li&gt;A &lt;a href=&#34;https://about.gitlab.com/install/&#34;&gt;GitLab&lt;/a&gt; instance with an available &lt;a href=&#34;https://docs.gitlab.com/runner/install/&#34;&gt;runner&lt;/a&gt; able to run the &lt;em&gt;docker&lt;/em&gt; and &lt;em&gt;kubectl&lt;/em&gt; commands.&lt;/li&gt;
+&lt;li&gt;A production environment with a Kubernetes cluster reachable from the GitLab instance. For this, &lt;a href=&#34;https://microk8s.io/&#34;&gt;Microk8s&lt;/a&gt; is easy to get started with&lt;/li&gt;
+&lt;li&gt;A &lt;a href=&#34;https://docs.docker.com/registry/deploying/&#34;&gt;Docker registry&lt;/a&gt; to push and pull containers to and from. Note that running your own registry might require &lt;a href=&#34;https://docs.docker.com/registry/insecure/&#34;&gt;Docker&lt;/a&gt; and Kubernetes configuration (guide for MicroK8s available &lt;a href=&#34;https://microk8s.io/docs/registry-private&#34;&gt;here&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Node.js application&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Application containerization</title>
+      <link>https://articles.maximemoreillon.com/articles/445/</link>
+      <pubDate>Thu, 21 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/445/</guid>
+      
+      <description>&lt;p&gt;Let&amp;rsquo;s imagine a developer building an application on his computer and that this application is meant to be deployed on a different machine (production environment). In order to execute properly, this application requires multiple libraries, binaries and packages. For example, a Python program requires the Python interpreter as well as all the imported Python modules.&lt;/p&gt;
+&lt;p&gt;Thus, if the application is unlikely to run properly in the production environment if it is being deployed by simply copying its source code over.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>APIs: Why and how</title>
+      <link>https://articles.maximemoreillon.com/articles/33/</link>
+      <pubDate>Wed, 20 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/33/</guid>
+      
+      <description>&lt;p&gt;From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;function area_of_circle(radius){
+  return Math.PI * radius * radius
 }
-&lt;/code>&lt;/pre>&lt;p>With this implementation, this function can be used within other parts of the code. For instance, one could later use it to compute the volume of a cylinder as so:&lt;/p></description></item><item><title>Securing an ingress with basic auth</title><link>https://articles.maximemoreillon.com/articles/374/</link><pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/374/</guid><description>&lt;p>This article describes how to use basic auth to protect an ingress in Kuberentes. It it &lt;a href="https://kubernetes.github.io/ingress-nginx/examples/auth/basic/">based on this page&lt;/a>.&lt;/p>
-&lt;p>To protect an ingress using basic auth, a secret must be created. The data of this secret can be generated using htpasswd:&lt;/p>
-&lt;pre tabindex="0">&lt;code>htpasswd -c auth myUsername
-&lt;/code>&lt;/pre>&lt;p>Where &lt;code>myUsername&lt;/code> is to be replaced by whatever you want. This creates a filed called &lt;code>auth&lt;/code> in the working directory&lt;/p>
-&lt;p>Kubectl provides a convenient command to automatically turn the content of the auth file into a secret:&lt;/p></description></item><item><title>Divide container in equally sized divs</title><link>https://articles.maximemoreillon.com/articles/238/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/238/</guid><description>&lt;p>Let&amp;rsquo;s imagine a container with three divs as content:&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;lt;div class=&amp;#34;container&amp;#34;&amp;gt;
-&amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;
-&amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;
-&amp;lt;div&amp;gt;Looooooooooooong&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;With this implementation, this function can be used within other parts of the code. For instance, one could later use it to compute the volume of a cylinder as so:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Securing an ingress with basic auth</title>
+      <link>https://articles.maximemoreillon.com/articles/374/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/374/</guid>
+      
+      <description>&lt;p&gt;This article describes how to use basic auth to protect an ingress in Kuberentes. It it &lt;a href=&#34;https://kubernetes.github.io/ingress-nginx/examples/auth/basic/&#34;&gt;based on this page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To protect an ingress using basic auth, a secret must be created. The data of this secret can be generated using htpasswd:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;htpasswd -c auth myUsername
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Where &lt;code&gt;myUsername&lt;/code&gt; is to be replaced by whatever you want. This creates a filed called &lt;code&gt;auth&lt;/code&gt; in the working directory&lt;/p&gt;
+&lt;p&gt;Kubectl provides a convenient command to automatically turn the content of the auth file into a secret:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Divide container in equally sized divs</title>
+      <link>https://articles.maximemoreillon.com/articles/238/</link>
+      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/238/</guid>
+      
+      <description>&lt;p&gt;Let&amp;rsquo;s imagine a container with three divs as content:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;div class=&amp;#34;container&amp;#34;&amp;gt;
+  &amp;lt;div&amp;gt;1&amp;lt;/div&amp;gt;
+  &amp;lt;div&amp;gt;2&amp;lt;/div&amp;gt;
+  &amp;lt;div&amp;gt;Looooooooooooong&amp;lt;/div&amp;gt;
 &amp;lt;/div&amp;gt;
-&lt;/code>&lt;/pre>&lt;p>One might want to lay the three divs horizontally and make it so that all divs share the available space equally. This can be achieved using flexbox:&lt;/p>
-&lt;pre tabindex="0">&lt;code>.container {
-display: flex;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;One might want to lay the three divs horizontally and make it so that all divs share the available space equally. This can be achieved using flexbox:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;.container {
+  display: flex;
 }
+
 .container div{
-/* take all available space */
-flex-grow: 1;
-/* Insensitivity to size of content */
-/* If not set, the div containing &amp;#34;looong&amp;#34; will take more space */
-flex-basis: 0;
+  /* take all available space */
+  flex-grow: 1;
+	
+  /* Insensitivity to size of content */
+  /* If not set, the div containing &amp;#34;looong&amp;#34; will take more space */
+  flex-basis: 0;
 }
-&lt;/code>&lt;/pre>&lt;p>Here, if &lt;code>flex-basis&lt;/code> was not set the div containing &lt;em>looooong&lt;/em> would get more horizontal space&lt;/p></description></item><item><title>Force IE to use its latest version</title><link>https://articles.maximemoreillon.com/articles/200/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/200/</guid><description>&lt;p>Depending on the settings, Internet Explorer can decide to render webpages using a lower version, which can result in compatibility issues.&lt;/p>
-&lt;p>To force IE to use its latest, the following can be added to an HTML document&amp;rsquo;s head:&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;lt;meta http-equiv=&amp;#34;X-UA-Compatible&amp;#34; content=&amp;#34;IE=edge&amp;#34; /&amp;gt;
-&lt;/code>&lt;/pre></description></item><item><title>Python list slicing</title><link>https://articles.maximemoreillon.com/articles/131/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/131/</guid><description>&lt;p>Here are a few useful features of Python when dealing with lists (Arrays):&lt;/p>
-&lt;pre tabindex="0">&lt;code>a[::-1] # all items in the array, reversed
-a[1::-1] # the first two items, reversed
-a[:-3:-1] # the last two items, reversed
-a[-3::-1] # everything except the last two items, reversed
-&lt;/code>&lt;/pre></description></item><item><title>Python virtual environments</title><link>https://articles.maximemoreillon.com/articles/246/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/246/</guid><description>&lt;p>When working on multiple python projects, dependencies might conflict. For example, a project might use version 1.5 of Tensorflow while another uses version 2.1.&lt;/p>
-&lt;p>To solve this problem, virtual environments can be used. A virtual environment can be created for each of those projects and specific modules can be installed within those so as not to have conflict between project.&lt;/p>
-&lt;p>Creating a virtual environment can be done as follows:&lt;/p>
-&lt;pre tabindex="0">&lt;code>python -m venv path_of_my_venv
-&lt;/code>&lt;/pre>&lt;p>The environment can then be activated (entered) using:&lt;/p></description></item><item><title>Some C concepts</title><link>https://articles.maximemoreillon.com/articles/207/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/207/</guid><description>&lt;p>C is widely considered to be a difficult programming language. Here are various code snippets to help make some sense of it.&lt;/p>
-&lt;h2 id="hello-world">Hello world&lt;/h2>
-&lt;p>Here is the traditional Hello World in C:&lt;/p>
-&lt;pre tabindex="0">&lt;code>#include &amp;lt;stdio.h&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here, if &lt;code&gt;flex-basis&lt;/code&gt; was not set the div containing &lt;em&gt;looooong&lt;/em&gt; would get more horizontal space&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Force IE to use its latest version</title>
+      <link>https://articles.maximemoreillon.com/articles/200/</link>
+      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/200/</guid>
+      
+      <description>&lt;p&gt;Depending on the settings, Internet Explorer can decide to render webpages using a lower version, which can result in compatibility issues.&lt;/p&gt;
+&lt;p&gt;To force IE to use its latest, the following can be added to an HTML document&amp;rsquo;s head:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;meta http-equiv=&amp;#34;X-UA-Compatible&amp;#34; content=&amp;#34;IE=edge&amp;#34; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Python list slicing</title>
+      <link>https://articles.maximemoreillon.com/articles/131/</link>
+      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/131/</guid>
+      
+      <description>&lt;p&gt;Here are a few useful features of Python when dealing with lists (Arrays):&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;a[::-1]    # all items in the array, reversed
+a[1::-1]   # the first two items, reversed
+a[:-3:-1]  # the last two items, reversed
+a[-3::-1]  # everything except the last two items, reversed
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Python virtual environments</title>
+      <link>https://articles.maximemoreillon.com/articles/246/</link>
+      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/246/</guid>
+      
+      <description>&lt;p&gt;When working on multiple python projects, dependencies might conflict. For example, a project might use version 1.5 of Tensorflow while another uses version 2.1.&lt;/p&gt;
+&lt;p&gt;To solve this problem, virtual environments can be used. A virtual environment can be created for each of those projects and specific modules can be installed within those so as not to have conflict between project.&lt;/p&gt;
+&lt;p&gt;Creating a virtual environment can be done as follows:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;python -m venv path_of_my_venv
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The environment can then be activated (entered) using:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Some C concepts</title>
+      <link>https://articles.maximemoreillon.com/articles/207/</link>
+      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/207/</guid>
+      
+      <description>&lt;p&gt;C is widely considered to be a difficult programming language. Here are various code snippets to help make some sense of it.&lt;/p&gt;
+&lt;h2 id=&#34;hello-world&#34;&gt;Hello world&lt;/h2&gt;
+&lt;p&gt;Here is the traditional Hello World in C:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include &amp;lt;stdio.h&amp;gt;
 int main()
 {
-// printf() displays the string inside quotation
-printf(&amp;#34;Hello, World!&amp;#34;);
-return 0;
+   // printf() displays the string inside quotation
+   printf(&amp;#34;Hello, World!&amp;#34;);
+   return 0;
 }
-&lt;/code>&lt;/pre>&lt;h2 id="typedef">Typedef&lt;/h2>
-&lt;p>Is used to define a new type.&lt;/p>
-&lt;p>for example:&lt;/p>
-&lt;pre tabindex="0">&lt;code>typedef unsigned int natural;
-&lt;/code>&lt;/pre>&lt;p>defines natural as unsigned int&lt;/p>
-&lt;p>then a natural variable can be declared as:&lt;/p></description></item><item><title>Swift basics</title><link>https://articles.maximemoreillon.com/articles/202/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/202/</guid><description>&lt;p>Here are some of the basis of the Swift programming language&lt;/p>
-&lt;h2 id="comments">Comments&lt;/h2>
-&lt;p>Comments are written using &lt;code>//&lt;/code>, Similar to C/C++:&lt;/p>
-&lt;pre tabindex="0">&lt;code>// This is a comment
-&lt;/code>&lt;/pre>&lt;h2 id="constants">Constants&lt;/h2>
-&lt;p>Constants are declared using the let keyword:&lt;/p>
-&lt;pre tabindex="0">&lt;code>let myConstant:Int = 1
-&lt;/code>&lt;/pre>&lt;h2 id="variables">Variables&lt;/h2>
-&lt;p>Swift is a strongly typed language. Variables are declared using the &lt;code>var&lt;/code> keyword as following this syntax:&lt;/p>
-&lt;pre tabindex="0">&lt;code>var variableName:String = &amp;#39;Hello&amp;#39;
-&lt;/code>&lt;/pre>&lt;h2 id="loops">Loops&lt;/h2>
-&lt;p>Here is an example of a for loop:&lt;/p>
-&lt;pre tabindex="0">&lt;code>for i in 1...5{
-// do something
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;typedef&#34;&gt;Typedef&lt;/h2&gt;
+&lt;p&gt;Is used to define a new type.&lt;/p&gt;
+&lt;p&gt;for example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;typedef unsigned int natural;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;defines natural as unsigned int&lt;/p&gt;
+&lt;p&gt;then a natural variable can be declared as:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Swift basics</title>
+      <link>https://articles.maximemoreillon.com/articles/202/</link>
+      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/202/</guid>
+      
+      <description>&lt;p&gt;Here are some of the basis of the Swift programming language&lt;/p&gt;
+&lt;h2 id=&#34;comments&#34;&gt;Comments&lt;/h2&gt;
+&lt;p&gt;Comments are written using &lt;code&gt;//&lt;/code&gt;, Similar to C/C++:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// This is a comment
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;constants&#34;&gt;Constants&lt;/h2&gt;
+&lt;p&gt;Constants are declared using the let keyword:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;let myConstant:Int = 1
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;variables&#34;&gt;Variables&lt;/h2&gt;
+&lt;p&gt;Swift is a strongly typed language. Variables are declared using the &lt;code&gt;var&lt;/code&gt; keyword as following this syntax:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var variableName:String = &amp;#39;Hello&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;loops&#34;&gt;Loops&lt;/h2&gt;
+&lt;p&gt;Here is an example of a for loop:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;for i in 1...5{
+    // do something
 }
-&lt;/code>&lt;/pre>&lt;h2 id="functions">Functions&lt;/h2>
-&lt;p>Functions are defined using the &lt;code>func&lt;/code> keyword. The type of the function parameters and its return values must be defined. Note that a function can have multiple return values.&lt;/p></description></item><item><title>Tensorflow 1.X basics</title><link>https://articles.maximemoreillon.com/articles/236/</link><pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/236/</guid><description>&lt;p>Here are the basics steps necessary to write TensorFlow code.&lt;/p>
-&lt;p>Note that this is for &lt;strong>TensorFlow 1.X&lt;/strong>&lt;/p>
-&lt;h2 id="define-constants">Define constants&lt;/h2>
-&lt;pre tabindex="0">&lt;code>a = tf.constant(5.0)
-&lt;/code>&lt;/pre>&lt;h2 id="define-variables">Define variables&lt;/h2>
-&lt;pre tabindex="0">&lt;code>x = tf.Variable(init_value)
-&lt;/code>&lt;/pre>&lt;h2 id="define-placeholders">Define placeholders&lt;/h2>
-&lt;pre tabindex="0">&lt;code>p = tf.placeholder(tf.float32)
-&lt;/code>&lt;/pre>&lt;h2 id="define-operations">Define operations&lt;/h2>
-&lt;pre tabindex="0">&lt;code>c = x * x
-&lt;/code>&lt;/pre>&lt;h2 id="define-way-to-measure-loss">Define way to measure loss&lt;/h2>
-&lt;pre tabindex="0">&lt;code>loss=tf.reduce_mean(tf.square(output - y))
-&lt;/code>&lt;/pre>&lt;h2 id="define-optimizer">Define optimizer&lt;/h2>
-&lt;pre tabindex="0">&lt;code>optimizer = tf.train.AdamOptimizer(learning_rate)
-&lt;/code>&lt;/pre>&lt;h2 id="apply-optimizer-to-loss-function">Apply optimizer to loss function&lt;/h2>
-&lt;pre tabindex="0">&lt;code>train = optimizer.minimize(loss)
-&lt;/code>&lt;/pre>&lt;h2 id="init-variables">init variables&lt;/h2>
-&lt;pre tabindex="0">&lt;code>init = tf.globalvariablesinitializer()
-&lt;/code>&lt;/pre>&lt;h2 id="run-everything-in-a-session">Run everything in a session&lt;/h2>
-&lt;pre tabindex="0">&lt;code>with tf.Session() as sess:
-sess.run(init)
-for epoch in range(epoch_count):
-sess.run(train, feed_dict={&amp;lt;feedDictHere})
-&lt;/code>&lt;/pre></description></item><item><title>CSS basics</title><link>https://articles.maximemoreillon.com/articles/231/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/231/</guid><description>&lt;p>HTML defines the content of a web page but not its aesthetics. Styling a document is achieved using CSS, which stands for Cascading Style Sheet and is another language that web browsers can interpret.&lt;/p>
-&lt;h2 id="inline-css">Inline CSS&lt;/h2>
-&lt;p>The simplest way to style elements of an HTML document is to add the &amp;ldquo;style&amp;rdquo; property in the HTML tag. For example:&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;lt;p style=&amp;#39;color:blue;&amp;#39;&amp;gt;This is a paragraph and it is blue&amp;lt;/p&amp;gt;
-&lt;/code>&lt;/pre>&lt;p>&lt;strong>property:value&lt;/strong> is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:&lt;/p></description></item><item><title>HTML basics</title><link>https://articles.maximemoreillon.com/articles/176/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/176/</guid><description>&lt;p>HTML stands for HyperText Markup Language. It is used to describe the content of a webpage to web browsers. Originally, web browsers were designed to display text documents and so HTML was used to define the various parts making up those documents.&lt;/p>
-&lt;h2 id="tags">Tags&lt;/h2>
-&lt;p>HTML uses tags to define the attributes of content such as:&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;lt;p&amp;gt;This is a pararaph&amp;lt;/a&amp;gt;
-&lt;/code>&lt;/pre>&lt;p>In this example, the text &amp;ldquo;This is a paragraph&amp;rdquo; is defined as a paragraph because it is surrounded by &lt;code>&amp;lt;p&amp;gt;&lt;/code> and &lt;code>&amp;lt;/p&amp;gt;&lt;/code> tags. Note the &amp;ldquo;/&amp;rdquo; for the tag after the content, which implies that it is a closing tag.&lt;/p></description></item><item><title>Inheritance in Python</title><link>https://articles.maximemoreillon.com/articles/396/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/396/</guid><description>&lt;p>Let&amp;rsquo;s imagine that we have a python class as follows (Python 3):&lt;/p>
-&lt;pre tabindex="0">&lt;code>class MyClass:
-def init(self):
-# Code of the class constructor...
-print(&amp;#34;Instance of MyClass created&amp;#34;)
-&lt;/code>&lt;/pre>&lt;p>A child class of MyClass can be created as such:&lt;/p>
-&lt;pre tabindex="0">&lt;code>class MyChildClass(MyClass):
-def init(self):
-super().init__() # calls constructor of MyClass
-print(&amp;#34;Instance of MyChildClass created&amp;#34;)
-&lt;/code>&lt;/pre>&lt;p>By creating an instance of MyChildClass, &lt;code>Instance of MyClass created&lt;/code> and &lt;code>Instance of MyChildClass created&lt;/code> should be printed in the console.&lt;/p></description></item><item><title>LAMP</title><link>https://articles.maximemoreillon.com/articles/170/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/170/</guid><description>&lt;p>This tutorial explains how to setup a Linux, Apache, MariaDB, PHP (LAMP), server.&lt;/p>
-&lt;h2 id="apache-2">Apache 2&lt;/h2>
-&lt;p>Opening an web browser and entering a computer&amp;rsquo;s IP in the URL bar is likely not to result in anything. This is because the computer isn&amp;rsquo;t equipped with any software designed to handle requests from the web browser. A web server must be running of the computer so as to serve webpages in response to requests from a web browser. The two most popular web servers currently are Apache 2 and NGINX. This tutorial explains how to install the former. Apache can be installed using apt-get:&lt;/p></description></item><item><title>Network basics</title><link>https://articles.maximemoreillon.com/articles/394/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/394/</guid><description>&lt;p>When data needs to be exchanged between several computers, those need to be connected to each other, i.e. forming a network.&lt;/p>
-&lt;h2 id="ip-addresses-and-netmask">IP addresses and netmask&lt;/h2>
-&lt;p>Just like a home needs an address to get mail delivered by the post office, devices of a network need a network address so that data packets can be delivered to them. This address has various forms but for the sake of simplicity, this tutorial will focus on the Internet Protocol (IP) address, more specifically IP v4.&lt;/p></description></item><item><title>Samba</title><link>https://articles.maximemoreillon.com/articles/172/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/172/</guid><description>&lt;p>Samba is a piece of software used to share directories over a network. Directories shared using samba appear as network folders on the file manager of computers that are on the same network.&lt;/p>
-&lt;h2 id="samba-installation">Samba installation&lt;/h2>
-&lt;p>samba can be installed easily using apt:&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo apt-get install samba
-&lt;/code>&lt;/pre>&lt;h2 id="samba-configuration">Samba configuration&lt;/h2>
-&lt;p>Samba is configured using the &lt;code>/etc/samba/smb.conf&lt;/code> file&lt;/p>
-&lt;p>Here is an example configuration file that shares the directory /mnt/hdd/samba_shares, belonging to user myusername&lt;/p>
-&lt;pre tabindex="0">&lt;code>[MY SHARED DIRECTORY]
-valid users = myusername
-writable = yes
-path = /mnt/hdd/samba_shares
-comment = My shared directory
-&lt;/code>&lt;/pre>&lt;p>Because permissions don&amp;rsquo;t work the same way between Linux and Windows, the line valid &lt;em>users = myusername&lt;/em> ensures the files can only be accessed by &lt;em>username&lt;/em>. This option requires myusername to be a registered user of samba. This can be done with the following shell command:&lt;/p></description></item><item><title>Serving web applications with Apache</title><link>https://articles.maximemoreillon.com/articles/173/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/173/</guid><description>&lt;p>Let&amp;rsquo;s imagine we have a server with Apache2 listening on port 80. Since port 80 is used, other web apps, developed for example with Node.js, must use another port. Consequently, one would need to open a new port on one&amp;rsquo;s router every time a new app is developed.&lt;/p>
-&lt;p>To solve this problem, Apache can be set to redirect requests to other destinations than itself. In other words, Apache serves as a reverse proxy.&lt;/p></description></item><item><title>systemd</title><link>https://articles.maximemoreillon.com/articles/169/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/169/</guid><description>&lt;p>Let&amp;rsquo;s imagine the file server.js which, when executed by Node.js, serves web pages to connecting clients. A trivial way to execute server.js using NodeJS would be to run the following bash command in a terminal:&lt;/p>
-&lt;pre tabindex="0">&lt;code>node server.js
-&lt;/code>&lt;/pre>&lt;p>Here, Node.js will execute server.js as long as the user does not interrupt the process with Ctrl-C or ends the bash session.&lt;/p>
-&lt;p>However, this last point can cause problems. What if we want to continue serving web pages even after exiting the bash session? Basically, what we want is server.js to be executed in the background. A method to do so is to execute of server.js as a service.&lt;/p></description></item><item><title>Users and groups in Linux</title><link>https://articles.maximemoreillon.com/articles/171/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/171/</guid><description>&lt;h2 id="adding-user">Adding user&lt;/h2>
-&lt;p>In linux, or at least Ubuntu, a user can be added using:&lt;/p>
-&lt;pre tabindex="0">&lt;code>adduser username
-&lt;/code>&lt;/pre>&lt;p>&lt;code>adduser&lt;/code> is a user-friendly command that uses &lt;code>useradd&lt;/code> as back-end. Thus, &lt;code>adduser&lt;/code> should be prefered to &lt;code>useradd&lt;/code>.&lt;/p>
-&lt;h2 id="adding-user-to-a-group">Adding user to a group&lt;/h2>
-&lt;p>A user can be added to a group using:&lt;/p>
-&lt;pre tabindex="0">&lt;code>adduser username groupname
-&lt;/code>&lt;/pre>&lt;p>This can be used to allow users to use sudo:&lt;/p>
-&lt;pre tabindex="0">&lt;code>adduser username sudo
-&lt;/code>&lt;/pre></description></item><item><title>Docker images and containers management</title><link>https://articles.maximemoreillon.com/articles/35/</link><pubDate>Fri, 06 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/35/</guid><description>&lt;p>Here are a few commands to manage docker images and containers&lt;/p>
-&lt;h2 id="images">Images&lt;/h2>
-&lt;p>List all images:&lt;/p>
-&lt;pre tabindex="0">&lt;code>docker image ls -a
-&lt;/code>&lt;/pre>&lt;p>Delete an image:&lt;/p>
-&lt;pre tabindex="0">&lt;code>docker image rm IMAGE_NAME
-&lt;/code>&lt;/pre>&lt;h2 id="containers">Containers&lt;/h2>
-&lt;p>Run a container:&lt;/p>
-&lt;pre tabindex="0">&lt;code>docker run IMAGE_NAME
-&lt;/code>&lt;/pre>&lt;p>Here, the container will run in the foreground with a randomly assigned name&lt;/p>
-&lt;p>Run a container in the background:&lt;/p>
-&lt;pre tabindex="0">&lt;code>docker run -d IMAGE_NAME
-&lt;/code>&lt;/pre>&lt;p>Run a container and give it a certain name:&lt;/p>
-&lt;pre tabindex="0">&lt;code>docker run -n CONTAINER_NAME IMAGE_NAME
-&lt;/code>&lt;/pre>&lt;p>Stop a container (gracefully):&lt;/p>
-&lt;pre tabindex="0">&lt;code>docker stop CONTAINER_NAME
-&lt;/code>&lt;/pre>&lt;p>Kill a container (ungraceful stop):&lt;/p></description></item><item><title>Cookies</title><link>https://articles.maximemoreillon.com/articles/286/</link><pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/286/</guid><description>&lt;p>Cookies are key-value pairs stored on a web browser. They can be set (i.e. created) using client-side JavaScript. Conversely, a server can get a client&amp;rsquo;s browser to set cookies via instructions in an HTTP response. As such, cookies can be set by both the client and the server.&lt;/p>
-&lt;p>Once a cookie is set, it is sent with every subsequent HTTP request addressed at the domain on which the cookie was set. Hence, if a cookie is set while using an application served on the domain example.com, it will not be sent to a server at otherdomain.com. However, cookies can be shared across subdomains. With the previous example, cookies will be sent to exampleapp.example.com.&lt;/p></description></item><item><title>Cookie-session</title><link>https://articles.maximemoreillon.com/articles/283/</link><pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/283/</guid><description>&lt;p>User authenticates using username and password, server sets a signed cookie containing serialized user info&lt;/p>
-&lt;pre tabindex="0">&lt;code>app.use(cookieSession({
-name: &amp;#39;session&amp;#39;,
-secret: &amp;#39;shhhh&amp;#39;,
-maxAge: 253402300000000, // infinite
-sameSite: false,
-domain: &amp;#34;yourdomain.com&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;functions&#34;&gt;Functions&lt;/h2&gt;
+&lt;p&gt;Functions are defined using the &lt;code&gt;func&lt;/code&gt; keyword. The type of the function parameters and its return values must be defined. Note that a function can have multiple return values.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Tensorflow 1.X basics</title>
+      <link>https://articles.maximemoreillon.com/articles/236/</link>
+      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/236/</guid>
+      
+      <description>&lt;p&gt;Here are the basics steps necessary to write TensorFlow code.&lt;/p&gt;
+&lt;p&gt;Note that this is for &lt;strong&gt;TensorFlow 1.X&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;define-constants&#34;&gt;Define constants&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;a = tf.constant(5.0)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;define-variables&#34;&gt;Define variables&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;x = tf.Variable(init_value)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;define-placeholders&#34;&gt;Define placeholders&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;p = tf.placeholder(tf.float32)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;define-operations&#34;&gt;Define operations&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;c = x * x
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;define-way-to-measure-loss&#34;&gt;Define way to measure loss&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;loss=tf.reduce_mean(tf.square(output - y))
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;define-optimizer&#34;&gt;Define optimizer&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;optimizer = tf.train.AdamOptimizer(learning_rate)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;apply-optimizer-to-loss-function&#34;&gt;Apply optimizer to loss function&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;train = optimizer.minimize(loss)
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;init-variables&#34;&gt;init variables&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;init = tf.globalvariablesinitializer()
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;run-everything-in-a-session&#34;&gt;Run everything in a session&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;with tf.Session() as sess:
+	sess.run(init)
+	
+	for epoch in range(epoch_count):
+		sess.run(train, feed_dict={&amp;lt;feedDictHere})
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>CSS basics</title>
+      <link>https://articles.maximemoreillon.com/articles/231/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/231/</guid>
+      
+      <description>&lt;p&gt;HTML defines the content of a web page but not its aesthetics. Styling a document is achieved using CSS, which stands for Cascading Style Sheet and is another language that web browsers can interpret.&lt;/p&gt;
+&lt;h2 id=&#34;inline-css&#34;&gt;Inline CSS&lt;/h2&gt;
+&lt;p&gt;The simplest way to style elements of an HTML document is to add the &amp;ldquo;style&amp;rdquo; property in the HTML tag. For example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;p style=&amp;#39;color:blue;&amp;#39;&amp;gt;This is a paragraph and it is blue&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;property:value&lt;/strong&gt; is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>HTML basics</title>
+      <link>https://articles.maximemoreillon.com/articles/176/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/176/</guid>
+      
+      <description>&lt;p&gt;HTML stands for HyperText Markup Language. It is used to describe the content of a webpage to web browsers. Originally, web browsers were designed to display text documents and so HTML was used to define the various parts making up those documents.&lt;/p&gt;
+&lt;h2 id=&#34;tags&#34;&gt;Tags&lt;/h2&gt;
+&lt;p&gt;HTML uses tags to define the attributes of content such as:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;p&amp;gt;This is a pararaph&amp;lt;/a&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this example, the text &amp;ldquo;This is a paragraph&amp;rdquo; is defined as a paragraph because it is surrounded by &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;/p&amp;gt;&lt;/code&gt; tags. Note the &amp;ldquo;/&amp;rdquo; for the tag after the content, which implies that it is a closing tag.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Inheritance in Python</title>
+      <link>https://articles.maximemoreillon.com/articles/396/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/396/</guid>
+      
+      <description>&lt;p&gt;Let&amp;rsquo;s imagine that we have a python class as follows (Python 3):&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;class MyClass:
+	def init(self):
+	# Code of the class constructor...
+	print(&amp;#34;Instance of MyClass created&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A child class of MyClass can be created as such:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;class MyChildClass(MyClass):
+	def init(self):
+	    super().init__() # calls constructor of MyClass
+	    print(&amp;#34;Instance of MyChildClass created&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;By creating an instance of MyChildClass, &lt;code&gt;Instance of MyClass created&lt;/code&gt; and &lt;code&gt;Instance of MyChildClass created&lt;/code&gt; should be printed in the console.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>LAMP</title>
+      <link>https://articles.maximemoreillon.com/articles/170/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/170/</guid>
+      
+      <description>&lt;p&gt;This tutorial explains how to setup a Linux, Apache, MariaDB, PHP (LAMP), server.&lt;/p&gt;
+&lt;h2 id=&#34;apache-2&#34;&gt;Apache 2&lt;/h2&gt;
+&lt;p&gt;Opening an web browser and entering a computer&amp;rsquo;s IP in the URL bar is likely not to result in anything. This is because the computer isn&amp;rsquo;t equipped with any software designed to handle requests from the web browser. A web server must be running of the computer so as to serve webpages in response to requests from a web browser. The two most popular web servers currently are Apache 2 and NGINX. This tutorial explains how to install the former. Apache can be installed using apt-get:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Network basics</title>
+      <link>https://articles.maximemoreillon.com/articles/394/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/394/</guid>
+      
+      <description>&lt;p&gt;When data needs to be exchanged between several computers, those need to be connected to each other, i.e. forming a network.&lt;/p&gt;
+&lt;h2 id=&#34;ip-addresses-and-netmask&#34;&gt;IP addresses and netmask&lt;/h2&gt;
+&lt;p&gt;Just like a home needs an address to get mail delivered by the post office, devices of a network need a network address so that data packets can be delivered to them. This address has various forms but for the sake of simplicity, this tutorial will focus on the Internet Protocol (IP) address, more specifically IP v4.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Samba</title>
+      <link>https://articles.maximemoreillon.com/articles/172/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/172/</guid>
+      
+      <description>&lt;p&gt;Samba is a piece of software used to share directories over a network. Directories shared using samba appear as network folders on the file manager of computers that are on the same network.&lt;/p&gt;
+&lt;h2 id=&#34;samba-installation&#34;&gt;Samba installation&lt;/h2&gt;
+&lt;p&gt;samba can be installed easily using apt:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt-get install samba
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;samba-configuration&#34;&gt;Samba configuration&lt;/h2&gt;
+&lt;p&gt;Samba is configured using the &lt;code&gt;/etc/samba/smb.conf&lt;/code&gt; file&lt;/p&gt;
+&lt;p&gt;Here is an example configuration file that shares the directory /mnt/hdd/samba_shares, belonging to user myusername&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[MY SHARED DIRECTORY]
+  valid users = myusername
+  writable = yes
+  path = /mnt/hdd/samba_shares
+  comment = My shared directory
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Because permissions don&amp;rsquo;t work the same way between Linux and Windows, the line valid &lt;em&gt;users = myusername&lt;/em&gt; ensures the files can only be accessed by &lt;em&gt;username&lt;/em&gt;. This option requires myusername to be a registered user of samba. This can be done with the following shell command:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Serving web applications with Apache</title>
+      <link>https://articles.maximemoreillon.com/articles/173/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/173/</guid>
+      
+      <description>&lt;p&gt;Let&amp;rsquo;s imagine we have a server with Apache2 listening on port 80. Since port 80 is used, other web apps, developed for example with Node.js, must use another port. Consequently, one would need to open a new port on one&amp;rsquo;s router every time a new app is developed.&lt;/p&gt;
+&lt;p&gt;To solve this problem, Apache can be set to redirect requests to other destinations than itself. In other words, Apache serves as a reverse proxy.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>systemd</title>
+      <link>https://articles.maximemoreillon.com/articles/169/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/169/</guid>
+      
+      <description>&lt;p&gt;Let&amp;rsquo;s imagine the file server.js which, when executed by Node.js, serves web pages to connecting clients. A trivial way to execute server.js using NodeJS would be to run the following bash command in a terminal:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;node server.js
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here, Node.js will execute server.js as long as the user does not interrupt the process with Ctrl-C or ends the bash session.&lt;/p&gt;
+&lt;p&gt;However, this last point can cause problems. What if we want to continue serving web pages even after exiting the bash session? Basically, what we want is server.js to be executed in the background. A method to do so is to execute of server.js as a service.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Users and groups in Linux</title>
+      <link>https://articles.maximemoreillon.com/articles/171/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/171/</guid>
+      
+      <description>&lt;h2 id=&#34;adding-user&#34;&gt;Adding user&lt;/h2&gt;
+&lt;p&gt;In linux, or at least Ubuntu, a user can be added using:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;adduser username
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;adduser&lt;/code&gt; is a user-friendly command that uses &lt;code&gt;useradd&lt;/code&gt; as back-end. Thus, &lt;code&gt;adduser&lt;/code&gt; should be prefered to &lt;code&gt;useradd&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;adding-user-to-a-group&#34;&gt;Adding user to a group&lt;/h2&gt;
+&lt;p&gt;A user can be added to a group using:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;adduser username groupname
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This can be used to allow users to use sudo:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;adduser username sudo
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Docker images and containers management</title>
+      <link>https://articles.maximemoreillon.com/articles/35/</link>
+      <pubDate>Fri, 06 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/35/</guid>
+      
+      <description>&lt;p&gt;Here are a few commands to manage docker images and containers&lt;/p&gt;
+&lt;h2 id=&#34;images&#34;&gt;Images&lt;/h2&gt;
+&lt;p&gt;List all images:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker image ls -a
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Delete an image:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker image rm IMAGE_NAME
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;containers&#34;&gt;Containers&lt;/h2&gt;
+&lt;p&gt;Run a container:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run IMAGE_NAME
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here, the container will run in the foreground with a randomly assigned name&lt;/p&gt;
+&lt;p&gt;Run a container in the background:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run -d IMAGE_NAME
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Run a container and give it a certain name:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run -n CONTAINER_NAME IMAGE_NAME
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Stop a container (gracefully):&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker stop CONTAINER_NAME
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Kill a container (ungraceful stop):&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Cookies</title>
+      <link>https://articles.maximemoreillon.com/articles/286/</link>
+      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/286/</guid>
+      
+      <description>&lt;p&gt;Cookies are key-value pairs stored on a web browser. They can be set (i.e. created) using client-side JavaScript. Conversely, a server can get a client&amp;rsquo;s browser to set cookies via instructions in an HTTP response. As such, cookies can be set by both the client and the server.&lt;/p&gt;
+&lt;p&gt;Once a cookie is set, it is sent with every subsequent HTTP request addressed at the domain on which the cookie was set. Hence, if a cookie is set while using an application served on the domain example.com, it will not be sent to a server at otherdomain.com. However, cookies can be shared across subdomains. With the previous example, cookies will be sent to exampleapp.example.com.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Cookie-session</title>
+      <link>https://articles.maximemoreillon.com/articles/283/</link>
+      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/283/</guid>
+      
+      <description>&lt;p&gt;User authenticates using username and password, server sets a signed cookie containing serialized user info&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;app.use(cookieSession({
+  name: &amp;#39;session&amp;#39;,
+  secret: &amp;#39;shhhh&amp;#39;,
+  maxAge: 253402300000000, // infinite
+  sameSite: false,
+  domain: &amp;#34;yourdomain.com&amp;#34;
 }));
-&lt;/code>&lt;/pre>&lt;p>key-value pairs can be set using the session property:&lt;/p>
-&lt;pre tabindex="0">&lt;code>req.session.username = &amp;#34;myUsername&amp;#34;
-&lt;/code>&lt;/pre>&lt;p>The value is encrypted using the secret defined hereabove&lt;/p>
-&lt;p>Requires special options for CORS:&lt;/p>
-&lt;pre tabindex="0">&lt;code>app.use(cors({
-origin: [/* origins */],
-credentials: true,
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;key-value pairs can be set using the session property:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;req.session.username = &amp;#34;myUsername&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The value is encrypted using the secret defined hereabove&lt;/p&gt;
+&lt;p&gt;Requires special options for CORS:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;app.use(cors({
+  origin: [/* origins */],
+  credentials: true,
 }));
-&lt;/code>&lt;/pre>&lt;p>As well as Axios:&lt;/p>
-&lt;pre tabindex="0">&lt;code>axios.defaults.withCredentials = true
-&lt;/code>&lt;/pre>&lt;p>This method works well for clients using web browsers with cookies enabled but consequently not so much for mobile or IoT devices&lt;/p></description></item><item><title>Managing disks in Linux</title><link>https://articles.maximemoreillon.com/articles/277/</link><pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/277/</guid><description>&lt;p>Hard disk drives (HDDs) and Solid state drives (SSDs) are currently the most widespread high capacity storage devices. When such a drive is connected to a computer running Linux, it can be found in the device directory &lt;em>/dev/&lt;/em> under the name &lt;em>sdX&lt;/em>, where &lt;em>X&lt;/em> is a letter changing for each drive.&lt;/p>
-&lt;h2 id="partitions">Partitions&lt;/h2>
-&lt;p>The memory of a HDD can be split into multiple partitions. This can be useful to install several operating systems on a single HDD. In Linux, partitions are listed by adding a number after the drive name. Thus, the 3rd partition of the drive &lt;em>sdb&lt;/em> can be found at &lt;em>/dev/sdb3&lt;/em>. Drives and partitions can be listed using the fdisk tool with root privileges, using the option &lt;em>l&lt;/em>:&lt;/p></description></item><item><title>Kubernetes persistent volumes</title><link>https://articles.maximemoreillon.com/articles/312/</link><pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/312/</guid><description>&lt;p>Applications deployed on a Kubernetes cluster run inside containers. As a consequence, their file system is that of the container, which means that if the container is removed, the data it contained is lost.&lt;/p>
-&lt;p>To save data in a more permanent manner, Kubernetes offers persistent volumes (PV). Those volumes can be in various forms but the one of the simplest consist in mounting a directory of the node&amp;rsquo;s file system into the containers.&lt;/p></description></item><item><title>Gitlab CI dealing with credentials</title><link>https://articles.maximemoreillon.com/articles/308/</link><pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/308/</guid><description>&lt;p>GitLab can automatically dockerize applications using the appropriate CI configuration. However, for obvious security reasons, it is bad practice to include credentials in a git repository. Consequently, the CI pipeline is by default not in a position to include credentials in the dockerized application, which most likely prevents the latter from running as intended.&lt;/p>
-&lt;p>To solve this, the content of sensitive files can be saved as a CI variable, which becomes accessible as an environment variable by the gitlab-runner. This option can be found under:&lt;/p></description></item><item><title>Kubectl pull new version of image without changes to manifest</title><link>https://articles.maximemoreillon.com/articles/307/</link><pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/307/</guid><description>&lt;p>When using kubectl apply using an already applied and unchanged manifest file, nothing happens on the Kubernetes cluster. However, deployments can be configured so as to always pull a new version image upon restart. This is achieved using the, &lt;code>imagePullPolicy: Always&lt;/code> parameter:&lt;/p>
-&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;As well as Axios:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;axios.defaults.withCredentials = true
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This method works well for clients using web browsers with cookies enabled but consequently not so much for mobile or IoT devices&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Managing disks in Linux</title>
+      <link>https://articles.maximemoreillon.com/articles/277/</link>
+      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/277/</guid>
+      
+      <description>&lt;p&gt;Hard disk drives (HDDs) and Solid state drives (SSDs) are currently the most widespread high capacity storage devices. When such a drive is connected to a computer running Linux, it can be found in the device directory &lt;em&gt;/dev/&lt;/em&gt; under the name &lt;em&gt;sdX&lt;/em&gt;, where &lt;em&gt;X&lt;/em&gt; is a letter changing for each drive.&lt;/p&gt;
+&lt;h2 id=&#34;partitions&#34;&gt;Partitions&lt;/h2&gt;
+&lt;p&gt;The memory of a HDD can be split into multiple partitions. This can be useful to install several operating systems on a single HDD. In Linux, partitions are listed by adding a number after the drive name. Thus, the 3rd partition of the drive &lt;em&gt;sdb&lt;/em&gt; can be found at &lt;em&gt;/dev/sdb3&lt;/em&gt;. Drives and partitions can be listed using the fdisk tool with root privileges, using the option &lt;em&gt;l&lt;/em&gt;:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Kubernetes persistent volumes</title>
+      <link>https://articles.maximemoreillon.com/articles/312/</link>
+      <pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/312/</guid>
+      
+      <description>&lt;p&gt;Applications deployed on a Kubernetes cluster run inside containers. As a consequence, their file system is that of the container, which means that if the container is removed, the data it contained is lost.&lt;/p&gt;
+&lt;p&gt;To save data in a more permanent manner, Kubernetes offers persistent volumes (PV). Those volumes can be in various forms but the one of the simplest consist in mounting a directory of the node&amp;rsquo;s file system into the containers.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Gitlab CI dealing with credentials</title>
+      <link>https://articles.maximemoreillon.com/articles/308/</link>
+      <pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/308/</guid>
+      
+      <description>&lt;p&gt;GitLab can automatically dockerize applications using the appropriate CI configuration. However, for obvious security reasons, it is bad practice to include credentials in a git repository. Consequently, the CI pipeline is by default not in a position to include credentials in the dockerized application, which most likely prevents the latter from running as intended.&lt;/p&gt;
+&lt;p&gt;To solve this, the content of sensitive files can be saved as a CI variable, which becomes accessible as an environment variable by the gitlab-runner. This option can be found under:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Kubectl pull new version of image without changes to manifest</title>
+      <link>https://articles.maximemoreillon.com/articles/307/</link>
+      <pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/307/</guid>
+      
+      <description>&lt;p&gt;When using kubectl apply using an already applied and unchanged manifest file, nothing happens on the Kubernetes cluster. However, deployments can be configured so as to always pull a new version image upon restart. This is achieved using the, &lt;code&gt;imagePullPolicy: Always&lt;/code&gt; parameter:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: example
+  name: example
 spec:
-replicas: 3
-selector:
-matchLabels:
-app: example
-template:
-metadata:
-labels:
-app: example
-spec:
-containers:
-- name: example
-image: 192.168.1.2:5000/kubernetes-example:latest
-imagePullPolicy: Always
-ports:
-- containerPort: 12345
+  replicas: 3
+  selector:
+    matchLabels:
+      app: example
+  template:
+    metadata:
+      labels:
+        app: example
+    spec:
+      containers:
+      - name: example
+        image: 192.168.1.2:5000/kubernetes-example:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 12345
 ---
 apiVersion: v1
 kind: Service
 metadata:
-labels:
-run: example
-name: example
+  labels:
+    run: example
+  name: example
 spec:
-ports:
-- port: 12345
-nodePort: 30112
-selector:
-app: example
-type: LoadBalancer
-&lt;/code>&lt;/pre>&lt;p>Thus, a new image can be pulled when using the rollout restart command:&lt;/p></description></item><item><title>Docker restart container when docker restarts</title><link>https://articles.maximemoreillon.com/articles/303/</link><pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/303/</guid><description>&lt;p>Simply add the following flag when using docker run&lt;/p>
-&lt;pre tabindex="0">&lt;code> --restart=always
-&lt;/code>&lt;/pre>&lt;p>If the container is already running:&lt;/p>
-&lt;pre tabindex="0">&lt;code>docker update --restart=always &amp;lt;container&amp;gt;
-&lt;/code>&lt;/pre></description></item><item><title>Mongoose bulk update upsert</title><link>https://articles.maximemoreillon.com/articles/304/</link><pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/304/</guid><description>&lt;p>MongoDB&amp;rsquo;s upsert option enables the creation of a new document if the query of an update operationdoesn&amp;rsquo;t match any existing document. Basically, an update command with upsert creates a document if it does notexist already, and update it otherwise.&lt;/p>
-&lt;p>This operation is rather striaghtforward when updating single documents but can be trickier when applied to multiple documents at conce. For multiple documents, bulkWrite can be used:&lt;/p>
-&lt;pre tabindex="0">&lt;code>let bulk_operations = []
+  ports:
+  - port: 12345
+    nodePort: 30112
+  selector:
+    app: example
+  type: LoadBalancer
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Thus, a new image can be pulled when using the rollout restart command:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Docker restart container when docker restarts</title>
+      <link>https://articles.maximemoreillon.com/articles/303/</link>
+      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/303/</guid>
+      
+      <description>&lt;p&gt;Simply add the following flag when using docker run&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;  --restart=always
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;If the container is already running:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker update --restart=always &amp;lt;container&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Mongoose bulk update upsert</title>
+      <link>https://articles.maximemoreillon.com/articles/304/</link>
+      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/304/</guid>
+      
+      <description>&lt;p&gt;MongoDB&amp;rsquo;s upsert option enables the creation of a new document if the query of an update operationdoesn&amp;rsquo;t match any existing document. Basically, an update command with upsert creates a document if it does notexist already, and update it otherwise.&lt;/p&gt;
+&lt;p&gt;This operation is rather striaghtforward when updating single documents but can be trickier when applied to multiple documents at conce. For multiple documents, bulkWrite can be used:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;let bulk_operations = []
+
 for (var transaction of req.body.transactions) {
-bulk_operations.push({
-updateOne: {
-filter: transaction,
-update: transaction,
-upsert: true
+  bulk_operations.push({
+    updateOne: {
+      filter: transaction,
+      update: transaction,
+      upsert: true
+    }
+  })
 }
-})
-}
+
 Transaction.bulkWrite(bulk_operations)
 .then( bulkWriteOpResult =&amp;gt; {
-console.log(&amp;#39;BULK update OK&amp;#39;);
+  console.log(&amp;#39;BULK update OK&amp;#39;);
 })
 .catch( err =&amp;gt; {
-console.log(err);
+  console.log(err);
 });
-&lt;/code>&lt;/pre></description></item><item><title>Kubectl create deplpoyment and service at same time</title><link>https://articles.maximemoreillon.com/articles/301/</link><pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/301/</guid><description>&lt;p>Simply add entries for both the deployment and the service in the same manifest, separeted by &amp;mdash;&lt;/p>
-&lt;pre tabindex="0">&lt;code>apiVersion: apps/v1
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Kubectl create deplpoyment and service at same time</title>
+      <link>https://articles.maximemoreillon.com/articles/301/</link>
+      <pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/301/</guid>
+      
+      <description>&lt;p&gt;Simply add entries for both the deployment and the service in the same manifest, separeted by &amp;mdash;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: apps/v1
 kind: Deployment
 metadata:
-name: helloserver
+  name: helloserver
 spec:
-replicas: 1
-selector:
-matchLabels:
-app: helloserver
-template:
-metadata:
-labels:
-app: helloserver
-spec:
-containers:
-- name: helloserver
-image: 192.168.1.2:5000/helloserver:latest
-ports:
-- containerPort: 3333
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloserver
+  template:
+    metadata:
+      labels:
+        app: helloserver
+    spec:
+      containers:
+      - name: helloserver
+        image: 192.168.1.2:5000/helloserver:latest
+        ports:
+        - containerPort: 3333
 ---
 apiVersion: v1
 kind: Service
 metadata:
-labels:
-run: helloserver
-name: helloserver
+  labels:
+    run: helloserver
+  name: helloserver
 spec:
-ports:
-- port: 3333
-nodePort: 33333
-selector:
-app: helloserver
-type: LoadBalancer
-&lt;/code>&lt;/pre></description></item><item><title>Controlling a motor using an H bridge</title><link>https://articles.maximemoreillon.com/articles/269/</link><pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/269/</guid><description>&lt;p>A DC motor model can be as simple as: T = K * I where T is the torque provided by the motor, K the motor constant and I the current that flows through it. From this simple model, one can see that if the sign of the current changes, that of the torque also changes. Thus, changing the direction of rotation of a DC motor is a simple as reverting flow into it.&lt;/p></description></item><item><title>Sending pictures via http with an ESP32-CAM</title><link>https://articles.maximemoreillon.com/articles/38/</link><pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/38/</guid><description>&lt;p>Pictures taken with the ESP32-CAM can be sent in a multipart/form-data type content via HTTP. Here is a sample code to achieve this:&lt;/p>
-&lt;pre tabindex="0">&lt;code>#define BOUNDARY &amp;#34;--------------------------133747188241686651551404&amp;#34;
+  ports:
+  - port: 3333
+    nodePort: 33333
+  selector:
+    app: helloserver
+  type: LoadBalancer
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Controlling a motor using an H bridge</title>
+      <link>https://articles.maximemoreillon.com/articles/269/</link>
+      <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/269/</guid>
+      
+      <description>&lt;p&gt;A DC motor model can be as simple as: T = K * I where T is the torque provided by the motor, K the motor constant and I the current that flows through it. From this simple model, one can see that if the sign of the current changes, that of the torque also changes. Thus, changing the direction of rotation of a DC motor is a simple as reverting flow into it.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Sending pictures via http with an ESP32-CAM</title>
+      <link>https://articles.maximemoreillon.com/articles/38/</link>
+      <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/38/</guid>
+      
+      <description>&lt;p&gt;Pictures taken with the ESP32-CAM can be sent in a multipart/form-data type content via HTTP. Here is a sample code to achieve this:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#define BOUNDARY     &amp;#34;--------------------------133747188241686651551404&amp;#34;  
 #define API_ROUTE &amp;#34;/upload&amp;#34;
 #define API_HOST &amp;#34;192.168.1.2&amp;#34;
 #define API_PORT 80
+
 void upload_image(){
-// Get a frame
-camera_fb_t * fb = NULL;
-fb = esp_camera_fb_get();
-if (fb) {
-// Frame was taken successfully, now sending it
-// Define the client that will be used for the API call
-WiFiClient client;
-// Attempt a connection
-if (client.connect(API_HOST, API_PORT)) {
-// Connection was successful, prepare the request content
-String body_pre_image;
-body_pre_image = &amp;#34;--&amp;#34;;
-body_pre_image += BOUNDARY;
-body_pre_image += &amp;#34;\r\n&amp;#34;;
-body_pre_image += &amp;#34;Content-Disposition: form-data; name=\&amp;#34;imageFile\&amp;#34;; filename=\&amp;#34;picture.jpg\&amp;#34;\r\n&amp;#34;);
-body_pre_image += &amp;#34;Content-Type: image/jpeg\r\n&amp;#34;;
-body_pre_image += &amp;#34;\r\n&amp;#34;;
-String body_post_image = String(&amp;#34;\r\n--&amp;#34;)+BOUNDARY+String(&amp;#34;--\r\n&amp;#34;);
-int total_length = body_pre_image.length()+body_post_image.length()+fb-&amp;gt;len;
-String header_text;
-header_text = &amp;#34;POST &amp;#34; + String(API_ROUTE) + &amp;#34; HTTP/1.1\r\n&amp;#34;; // the method is defined here
-header_text += &amp;#34;cache-control: no-cache\r\n&amp;#34;;
-header_text += &amp;#34;Content-Type: multipart/form-data; boundary=&amp;#34;;
-header_text += BOUNDARY;
-header_text += &amp;#34;\r\n&amp;#34;;
-header_text += &amp;#34;content-length: &amp;#34;;
-header_text += String(total_length);
-header_text += &amp;#34;\r\n&amp;#34;;
-header_text += &amp;#34;\r\n&amp;#34;;
-// Now send the whole thing
-client.print(header_text+body_pre_image);
-client.write(fb-&amp;gt;buf, fb-&amp;gt;len);
-client.print(body_post_image);
-// timeout management
-unsigned long timeout = millis();
-while (client.available() == 0) {
-if (millis() - timeout &amp;gt; 5000) {
-Serial.println(&amp;#34;Timeout&amp;#34;);
-client.stop();
-break;
+
+  // Get a frame
+  camera_fb_t * fb = NULL;
+  fb = esp_camera_fb_get();
+  
+  if (fb) {
+    // Frame was taken successfully, now sending it
+
+    // Define the client that will be used for the API call
+    WiFiClient client;
+
+    // Attempt a connection
+    if (client.connect(API_HOST, API_PORT)) {
+
+      // Connection was successful, prepare the request content
+      String body_pre_image;
+      body_pre_image = &amp;#34;--&amp;#34;;
+      body_pre_image += BOUNDARY;
+      body_pre_image += &amp;#34;\r\n&amp;#34;;
+      body_pre_image += &amp;#34;Content-Disposition: form-data; name=\&amp;#34;imageFile\&amp;#34;; filename=\&amp;#34;picture.jpg\&amp;#34;\r\n&amp;#34;);
+      body_pre_image += &amp;#34;Content-Type: image/jpeg\r\n&amp;#34;;
+      body_pre_image += &amp;#34;\r\n&amp;#34;;
+    
+      String body_post_image = String(&amp;#34;\r\n--&amp;#34;)+BOUNDARY+String(&amp;#34;--\r\n&amp;#34;);
+    
+      int total_length = body_pre_image.length()+body_post_image.length()+fb-&amp;gt;len;
+      
+      String header_text;
+      header_text =  &amp;#34;POST &amp;#34; + String(API_ROUTE) + &amp;#34; HTTP/1.1\r\n&amp;#34;; // the method is defined here
+      header_text += &amp;#34;cache-control: no-cache\r\n&amp;#34;;
+      header_text += &amp;#34;Content-Type: multipart/form-data; boundary=&amp;#34;;
+      header_text += BOUNDARY;
+      header_text += &amp;#34;\r\n&amp;#34;;
+      header_text += &amp;#34;content-length: &amp;#34;;
+      header_text += String(total_length);
+      header_text += &amp;#34;\r\n&amp;#34;;
+      header_text += &amp;#34;\r\n&amp;#34;;
+   
+      // Now send the whole thing
+      client.print(header_text+body_pre_image);
+      client.write(fb-&amp;gt;buf, fb-&amp;gt;len);
+      client.print(body_post_image);
+      
+      // timeout management
+      unsigned long timeout = millis();
+      while (client.available() == 0) {
+        if (millis() - timeout &amp;gt; 5000) {
+          Serial.println(&amp;#34;Timeout&amp;#34;);
+          client.stop();
+          break;
+        }
+      }
+    }
+
+    // No matter the result of the upload, clean up the frame buffer
+    esp_camera_fb_return(fb);
+    fb = NULL;
+    
+  }
+ 
 }
-}
-}
-// No matter the result of the upload, clean up the frame buffer
-esp_camera_fb_return(fb);
-fb = NULL;
-}
-}
-&lt;/code>&lt;/pre></description></item><item><title>Publish a module to NPM</title><link>https://articles.maximemoreillon.com/articles/385/</link><pubDate>Sat, 18 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/385/</guid><description>&lt;p>This article is based on &lt;a href="https://www.freecodecamp.org/news/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78/">this publiation&lt;/a>.&lt;/p>
-&lt;p>To publish to npm, being logged in is required:&lt;/p>
-&lt;pre tabindex="0">&lt;code>npm login
-&lt;/code>&lt;/pre>&lt;p>The package to be published must be contained in its own directory, which must include a &lt;code>package.json&lt;/code> file&lt;/p>
-&lt;p>The &lt;code>package.json&lt;/code> file must contain at least the following information:&lt;/p>
-&lt;pre tabindex="0">&lt;code>{
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Publish a module to NPM</title>
+      <link>https://articles.maximemoreillon.com/articles/385/</link>
+      <pubDate>Sat, 18 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/385/</guid>
+      
+      <description>&lt;p&gt;This article is based on &lt;a href=&#34;https://www.freecodecamp.org/news/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78/&#34;&gt;this publiation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To publish to npm, being logged in is required:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;npm login
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The package to be published must be contained in its own directory, which must include a &lt;code&gt;package.json&lt;/code&gt; file&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;package.json&lt;/code&gt; file must contain at least the following information:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{
   &amp;#34;name&amp;#34;: &amp;#34;@USERNAME/MODULE_NAME&amp;#34;,
   &amp;#34;version&amp;#34;: &amp;#34;0.0.1&amp;#34;
-&amp;#34;main&amp;#34;: &amp;#34;FILE.js&amp;#34;,
+  &amp;#34;main&amp;#34;: &amp;#34;FILE.js&amp;#34;,
 }
-&lt;/code>&lt;/pre>&lt;p>where &lt;code>USERNAME&lt;/code> is the username of registered npmjs.com account, &lt;code>MODULE_NAME&lt;/code> is the name of the module to publish and &lt;code>FILE.js&lt;/code> the main file of the module.&lt;/p></description></item><item><title>Callbacks in Javascript</title><link>https://articles.maximemoreillon.com/articles/368/</link><pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/368/</guid><description>&lt;p>Here is a simple javascript function that is designed to print its argument in the console:&lt;/p>
-&lt;pre tabindex="0">&lt;code>var myFunction = function(argument){
-console.log(argument)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;where &lt;code&gt;USERNAME&lt;/code&gt; is the username of registered npmjs.com account, &lt;code&gt;MODULE_NAME&lt;/code&gt; is the name of the module to publish and &lt;code&gt;FILE.js&lt;/code&gt; the main file of the module.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Callbacks in Javascript</title>
+      <link>https://articles.maximemoreillon.com/articles/368/</link>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/368/</guid>
+      
+      <description>&lt;p&gt;Here is a simple javascript function that is designed to print its argument in the console:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var myFunction = function(argument){
+  console.log(argument)
 }
-&lt;/code>&lt;/pre>&lt;p>A function can be called using brackets, the latter containing the argument to be passed:&lt;/p>
-&lt;pre tabindex="0">&lt;code>var a = &amp;#34;Hello world&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A function can be called using brackets, the latter containing the argument to be passed:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var a = &amp;#34;Hello world&amp;#34;
 myFunction(a)
-&lt;/code>&lt;/pre>&lt;p>Which would result in the following console output:&lt;/p>
-&lt;pre tabindex="0">&lt;code>Hello world
-&lt;/code>&lt;/pre>&lt;p>Argument can be be of any type, number, string, array, etc, including functions:&lt;/p>
-&lt;pre tabindex="0">&lt;code>var myFunction = function(argument){
-console.log(argument)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Which would result in the following console output:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Hello world
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Argument can be be of any type, number, string, array, etc, including functions:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var myFunction = function(argument){
+  console.log(argument)
 }
+
 var myOtherFunction = function(){
-console.log(&amp;#39;I am myOtherfunction&amp;#39;)
+  console.log(&amp;#39;I am myOtherfunction&amp;#39;)
 }
+
 myFunction(myOtherFunction)
-&lt;/code>&lt;/pre>&lt;p>This would output:&lt;/p></description></item><item><title>Javascript self-executing functions</title><link>https://articles.maximemoreillon.com/articles/369/</link><pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/369/</guid><description>&lt;p>In Javascript, a function can be defined as so:&lt;/p>
-&lt;pre tabindex="0">&lt;code>var myFunction = function(){
-console.log(&amp;#39;hello world&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This would output:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Javascript self-executing functions</title>
+      <link>https://articles.maximemoreillon.com/articles/369/</link>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/369/</guid>
+      
+      <description>&lt;p&gt;In Javascript, a function can be defined as so:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var myFunction = function(){
+  console.log(&amp;#39;hello world&amp;#39;)
 }
-&lt;/code>&lt;/pre>&lt;p>This function can be called using brackets as so:&lt;/p>
-&lt;pre tabindex="0">&lt;code>myFunction()
-&lt;/code>&lt;/pre>&lt;p>which would print &lt;code>hello world&lt;/code>in the console.&lt;/p>
-&lt;p>Sometimes, naming a function might not be necessary, for example if the function is just called once within the code. In such case, the function can be made self-executing using wrapping brackets:&lt;/p>
-&lt;pre tabindex="0">&lt;code>(function(){
-console.log(&amp;#39;hello world&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This function can be called using brackets as so:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;myFunction()
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;which would print &lt;code&gt;hello world&lt;/code&gt;in the console.&lt;/p&gt;
+&lt;p&gt;Sometimes, naming a function might not be necessary, for example if the function is just called once within the code. In such case, the function can be made self-executing using wrapping brackets:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;(function(){
+  console.log(&amp;#39;hello world&amp;#39;)
 })()
-&lt;/code>&lt;/pre></description></item><item><title>Git store credentials</title><link>https://articles.maximemoreillon.com/articles/380/</link><pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/380/</guid><description>&lt;p>Having to enter one&amp;rsquo;s credentials for every push to a remote can be annoying. Here is to have git save those credentials for future uses.&lt;/p>
-&lt;pre tabindex="0">&lt;code>git config --global credential.helper store
-&lt;/code>&lt;/pre></description></item><item><title>Installing VirtualBox on Ubuntu 18.04</title><link>https://articles.maximemoreillon.com/articles/358/</link><pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/358/</guid><description>&lt;p>VirtualBox used to be installed easily using apt, but this recently changed. Here is a method proven to work:&lt;/p>
-&lt;pre tabindex="0">&lt;code>wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Git store credentials</title>
+      <link>https://articles.maximemoreillon.com/articles/380/</link>
+      <pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/380/</guid>
+      
+      <description>&lt;p&gt;Having to enter one&amp;rsquo;s credentials for every push to a remote can be annoying. Here is to have git save those credentials for future uses.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git config --global credential.helper store
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Installing VirtualBox on Ubuntu 18.04</title>
+      <link>https://articles.maximemoreillon.com/articles/358/</link>
+      <pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/358/</guid>
+      
+      <description>&lt;p&gt;VirtualBox used to be installed easily using apt, but this recently changed. Here is a method proven to work:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 echo &amp;#34;deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian bionic contrib&amp;#34; | sudo tee /etc/apt/sources.list.d/virtualbox.list
 sudo apt-get update
 sudo apt-get -y install virtualbox-6.0
-&lt;/code>&lt;/pre></description></item><item><title>Minikube using insecure registry</title><link>https://articles.maximemoreillon.com/articles/360/</link><pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/360/</guid><description>&lt;p>By default, Minikube will not allow the usage of insecure docker registries. To change this setting, Minikube can be started as so:&lt;/p>
-&lt;p>Argument &amp;ndash;insecure registry can be used&lt;/p>
-&lt;pre tabindex="0">&lt;code>minikube start --insecure-registry=&amp;#34;http://192.168.1.2:5000&amp;#34;
-&lt;/code>&lt;/pre>&lt;p>Here, replace http://192.168.1.2 with the URL of the registry&lt;/p>
-&lt;p>For bare-metal (requires sudo):&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo minikube start --insecure-registry=&amp;#34;http://192.168.1.2:5000&amp;#34; --vm-driver=none
-&lt;/code>&lt;/pre>&lt;p>Note: if Minikube had already been started without the insecure-registry option, it must be stopped and recreated:&lt;/p>
-&lt;pre tabindex="0">&lt;code>minikube stop
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Minikube using insecure registry</title>
+      <link>https://articles.maximemoreillon.com/articles/360/</link>
+      <pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/360/</guid>
+      
+      <description>&lt;p&gt;By default, Minikube will not allow the usage of insecure docker registries. To change this setting, Minikube can be started as so:&lt;/p&gt;
+&lt;p&gt;Argument &amp;ndash;insecure registry can be used&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;minikube start --insecure-registry=&amp;#34;http://192.168.1.2:5000&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here, replace http://192.168.1.2 with the URL of the registry&lt;/p&gt;
+&lt;p&gt;For bare-metal (requires sudo):&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo minikube start --insecure-registry=&amp;#34;http://192.168.1.2:5000&amp;#34; --vm-driver=none
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Note: if Minikube had already been started without the insecure-registry option, it must be stopped and recreated:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;minikube stop
 minikube delete
-&lt;/code>&lt;/pre></description></item><item><title>kubectl basics</title><link>https://articles.maximemoreillon.com/articles/356/</link><pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/356/</guid><description>&lt;p>Here are some of the basic kubectl commands.&lt;/p>
-&lt;h2 id="installation">Installation&lt;/h2>
-&lt;pre tabindex="0">&lt;code>sudo apt-get update &amp;amp;&amp;amp; sudo apt-get install -y apt-transport-https
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>kubectl basics</title>
+      <link>https://articles.maximemoreillon.com/articles/356/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/356/</guid>
+      
+      <description>&lt;p&gt;Here are some of the basic kubectl commands.&lt;/p&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt-get update &amp;amp;&amp;amp; sudo apt-get install -y apt-transport-https
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 echo &amp;#34;deb https://apt.kubernetes.io/ kubernetes-xenial main&amp;#34; | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
-&lt;/code>&lt;/pre>&lt;h2 id="usage">Usage&lt;/h2>
-&lt;p>Simple commands to get an overview of the cluster&lt;/p>
-&lt;pre tabindex="0">&lt;code>kubectl cluster-info
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+&lt;p&gt;Simple commands to get an overview of the cluster&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl cluster-info
 kubectl get nodes
-&lt;/code>&lt;/pre>&lt;h3 id="deployments">Deployments&lt;/h3>
-&lt;p>Create a deployment:&lt;/p>
-&lt;pre tabindex="0">&lt;code>kubectl create deployment POD_NAME --image=IMAGE_NAME
-&lt;/code>&lt;/pre>&lt;p>IMAGE&lt;em>NAME and POD&lt;/em>NAME must not contain underscores. Replace by hyphens.&lt;/p></description></item><item><title>Docker behind a proxy</title><link>https://articles.maximemoreillon.com/articles/352/</link><pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/352/</guid><description>&lt;p>Docker does not use environment variables for proxy configuration. This article presents how to configure Docker to use a proxy.&lt;/p>
-&lt;p>To use docker behind a proxy, create the file&lt;code>/etc/systemd/system/docker.service.d/http-proxy.conf&lt;/code> With the following content:&lt;/p>
-&lt;pre tabindex="0">&lt;code>[Service]
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;deployments&#34;&gt;Deployments&lt;/h3&gt;
+&lt;p&gt;Create a deployment:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;kubectl create deployment POD_NAME --image=IMAGE_NAME
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;IMAGE&lt;em&gt;NAME and POD&lt;/em&gt;NAME must not contain underscores. Replace by hyphens.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Docker behind a proxy</title>
+      <link>https://articles.maximemoreillon.com/articles/352/</link>
+      <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/352/</guid>
+      
+      <description>&lt;p&gt;Docker does not use environment variables for proxy configuration. This article presents how to configure Docker to use a proxy.&lt;/p&gt;
+&lt;p&gt;To use docker behind a proxy, create the file&lt;code&gt;/etc/systemd/system/docker.service.d/http-proxy.conf&lt;/code&gt; With the following content:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Service]
 Environment=&amp;#34;HTTP_PROXY=http://127.0.0.1:8118/&amp;#34;
 Environment=&amp;#34;HTTPS_PROXY=http://127.0.0.1:8118/&amp;#34;
 Environment=&amp;#34;NO_PROXY=localhost,127.0.0.1,172.16.98.151&amp;#34;
-&lt;/code>&lt;/pre>&lt;p>Here, &lt;code>127.0.0.1:8118&lt;/code> should be replaced by the address of your proxy&lt;/p>
-&lt;p>Once done, reload the daemon and restart docker&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo systemctl daemon-reload
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here, &lt;code&gt;127.0.0.1:8118&lt;/code&gt; should be replaced by the address of your proxy&lt;/p&gt;
+&lt;p&gt;Once done, reload the daemon and restart docker&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo systemctl daemon-reload
 sudo systemctl restart docker
-&lt;/code>&lt;/pre></description></item><item><title>Docker HTTP (insecure) registry</title><link>https://articles.maximemoreillon.com/articles/353/</link><pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/353/</guid><description>&lt;p>By default Docker refuses to push/pull from registries that are not served using HTTPS.&lt;/p>
-&lt;p>To enable Docker to push to registries served over HTTP, the address of the registry must be appended to the &lt;code>insecure-registries&lt;/code> Array of the &lt;code>/etc/docker/daemon.json&lt;/code> file. If the file does not exist, it must be created.&lt;/p>
-&lt;p>Here is an example:&lt;/p>
-&lt;pre tabindex="0">&lt;code>{
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Docker HTTP (insecure) registry</title>
+      <link>https://articles.maximemoreillon.com/articles/353/</link>
+      <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/353/</guid>
+      
+      <description>&lt;p&gt;By default Docker refuses to push/pull from registries that are not served using HTTPS.&lt;/p&gt;
+&lt;p&gt;To enable Docker to push to registries served over HTTP, the address of the registry must be appended to the &lt;code&gt;insecure-registries&lt;/code&gt; Array of the &lt;code&gt;/etc/docker/daemon.json&lt;/code&gt; file. If the file does not exist, it must be created.&lt;/p&gt;
+&lt;p&gt;Here is an example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{
   &amp;#34;insecure-registries&amp;#34; : [&amp;#34;IP:PORT&amp;#34;]
 }
-&lt;/code>&lt;/pre>&lt;p>Docker must be restarted after changes to &lt;code>/etc/docker/daemon.json&lt;/code> have been done:&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo systemctl restart docker
-&lt;/code>&lt;/pre></description></item><item><title>Self hosted Docker registry</title><link>https://articles.maximemoreillon.com/articles/351/</link><pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/351/</guid><description>&lt;p>When using the &lt;code>docker pull&lt;/code> command, container images are by default downloaded from docker hub, the official public registry for container images. However, for some projects, images are better stored on a private platform. This can be achieved by hosting one&amp;rsquo;s own docker registry.&lt;/p>
-&lt;p>A complete guide is written here: &lt;a href="https://docs.docker.com/registry/deploying/">https://docs.docker.com/registry/deploying/&lt;/a>&lt;/p>
-&lt;p>This article merely summarizes the basics involved in the process.&lt;/p>
-&lt;h2 id="self-hosted-docker-registry-as-container">Self hosted Docker registry as container&lt;/h2>
-&lt;p>A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:&lt;/p></description></item><item><title>NodeJS app dockerization</title><link>https://articles.maximemoreillon.com/articles/343/</link><pubDate>Thu, 09 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/343/</guid><description>&lt;p>NodeJS apps can be containerized using the &lt;code>docker build&lt;/code> command. This article is based on &lt;a href="https://nodejs.org/de/docs/guides/nodejs-docker-webapp/">this guide&lt;/a>.&lt;/p>
-&lt;p>To create a container image, a Dockerfile is needed. Here is an example specifically made for the containerization of NodeJS apps:&lt;/p>
-&lt;pre tabindex="0">&lt;code>FROM node:14
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Docker must be restarted after changes to &lt;code&gt;/etc/docker/daemon.json&lt;/code&gt; have been done:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo systemctl restart docker
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Self hosted Docker registry</title>
+      <link>https://articles.maximemoreillon.com/articles/351/</link>
+      <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/351/</guid>
+      
+      <description>&lt;p&gt;When using the &lt;code&gt;docker pull&lt;/code&gt; command, container images are by default downloaded from docker hub, the official public registry for container images. However, for some projects, images are better stored on a private platform. This can be achieved by hosting one&amp;rsquo;s own docker registry.&lt;/p&gt;
+&lt;p&gt;A complete guide is written here: &lt;a href=&#34;https://docs.docker.com/registry/deploying/&#34;&gt;https://docs.docker.com/registry/deploying/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This article merely summarizes the basics involved in the process.&lt;/p&gt;
+&lt;h2 id=&#34;self-hosted-docker-registry-as-container&#34;&gt;Self hosted Docker registry as container&lt;/h2&gt;
+&lt;p&gt;A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>NodeJS app dockerization</title>
+      <link>https://articles.maximemoreillon.com/articles/343/</link>
+      <pubDate>Thu, 09 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/343/</guid>
+      
+      <description>&lt;p&gt;NodeJS apps can be containerized using the &lt;code&gt;docker build&lt;/code&gt; command. This article is based on &lt;a href=&#34;https://nodejs.org/de/docs/guides/nodejs-docker-webapp/&#34;&gt;this guide&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To create a container image, a Dockerfile is needed. Here is an example specifically made for the containerization of NodeJS apps:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;FROM node:14
+
 # Create and move into app directory
 WORKDIR /usr/src/app
+
 # Copy files of host current workdir
 # into container workdir
 COPY . .
+
 # Install dependecies described in packages.json
 RUN npm install
+
 # Open port 8080
 EXPOSE 8080
+
 # Run the node app
 CMD [ &amp;#34;node&amp;#34;, &amp;#34;server.js&amp;#34; ]
-&lt;/code>&lt;/pre>&lt;p>RUN is for commands to be executed during the container building process&lt;/p></description></item><item><title>Puppeteer setup for NodeJS</title><link>https://articles.maximemoreillon.com/articles/266/</link><pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/266/</guid><description>&lt;p>Puppeteer is a headless browser with which NodeJS can interact to automate web pages manipulation.&lt;/p>
-&lt;h2 id="installation">Installation&lt;/h2>
-&lt;pre tabindex="0">&lt;code>npm install --save puppeteer
-&lt;/code>&lt;/pre>&lt;h2 id="fixing-dependency-issues">Fixing dependency issues&lt;/h2>
-&lt;p>If this error occurs:&lt;/p>
-&lt;pre tabindex="0">&lt;code>error while loading shared libraries: libX11-xcb.so.1: cannot open shared object file: No such file or directory
-&lt;/code>&lt;/pre>&lt;p>Install dependencies:&lt;/p>
-&lt;pre tabindex="0">&lt;code>sudo apt install gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
-&lt;/code>&lt;/pre></description></item><item><title>NodeJS modules</title><link>https://articles.maximemoreillon.com/articles/264/</link><pubDate>Tue, 07 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/264/</guid><description>&lt;p>A JavaScript file can be imported as a module into another file using the &lt;code>require&lt;/code> command. For example, he file myPackage.js can be imported as so:&lt;/p>
-&lt;pre tabindex="0">&lt;code>var myModule= require(&amp;#39;./myModule&amp;#39;)
-&lt;/code>&lt;/pre>&lt;p>Here, &lt;code>myModule&lt;/code> becomes an object whose properties are that nested in the &lt;code>exports&lt;/code> object present in the myModule.js file:&lt;/p>
-&lt;pre tabindex="0">&lt;code>exports.foo= &amp;#34;bar&amp;#34;
-&lt;/code>&lt;/pre>&lt;p>This allows the variable foo to be used in the code that imported myModule.js:&lt;/p>
-&lt;pre tabindex="0">&lt;code>var myModule= require(&amp;#39;./myModule&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;RUN is for commands to be executed during the container building process&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Puppeteer setup for NodeJS</title>
+      <link>https://articles.maximemoreillon.com/articles/266/</link>
+      <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/266/</guid>
+      
+      <description>&lt;p&gt;Puppeteer is a headless browser with which NodeJS can interact to automate web pages manipulation.&lt;/p&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;npm install --save puppeteer
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;fixing-dependency-issues&#34;&gt;Fixing dependency issues&lt;/h2&gt;
+&lt;p&gt;If this error occurs:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;error while loading shared libraries: libX11-xcb.so.1: cannot open shared object file: No such file or directory
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Install dependencies:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt install gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>NodeJS modules</title>
+      <link>https://articles.maximemoreillon.com/articles/264/</link>
+      <pubDate>Tue, 07 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/264/</guid>
+      
+      <description>&lt;p&gt;A JavaScript file can be imported as a module into another file using the &lt;code&gt;require&lt;/code&gt; command. For example, he file myPackage.js can be imported as so:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var myModule= require(&amp;#39;./myModule&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here, &lt;code&gt;myModule&lt;/code&gt; becomes an object whose properties are that nested in the &lt;code&gt;exports&lt;/code&gt; object present in the myModule.js file:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;exports.foo= &amp;#34;bar&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This allows the variable foo to be used in the code that imported myModule.js:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var myModule= require(&amp;#39;./myModule&amp;#39;)
 console.log(myModule.foo) // Will print &amp;#34;bar&amp;#34;
-&lt;/code>&lt;/pre>&lt;p>However, &lt;code>exports&lt;/code>is an alias of module.exports. Consequently, whatever is assigned to exports is also available on module.exports. However, if something is assigned directly to exports, then the shortcut to module.exports is lost (from &lt;a href="https://adrianmejia.com/getting-started-with-node-js-modules-require-exports-imports-npm-and-beyond/">here&lt;/a>&lt;/p></description></item><item><title>SSH through an SSH blocking proxy</title><link>https://articles.maximemoreillon.com/articles/337/</link><pubDate>Sat, 04 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/337/</guid><description>&lt;p>Most corporate networks have their outbound traffic go through a proxy server to prevent unauthorized access to external resources. It can happen that such proxy only allows HTTP and HTTPS traffic. As such, one cannot connect to an external host via SSH. One way to solve this problem is to use &lt;a href="https://github.com/proxytunnel/proxytunnel">Proxytunnel&lt;/a>. This article follows &lt;a href="https://egret.psychol.cam.ac.uk/techniques/firewall.html">this guide&lt;/a>.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e78590a5e7fee7b9d6e5742" alt="">&lt;/p>
-&lt;h2 id="server-side-apache-configuration">Server-side: Apache configuration&lt;/h2>
-&lt;p>The following snippet is to be placed into the configuration of your default virtual host. X.X.X.X is the public IP of the local proxy.&lt;/p></description></item><item><title>Nextcloud Apache2 configuration</title><link>https://articles.maximemoreillon.com/articles/335/</link><pubDate>Thu, 02 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/335/</guid><description>&lt;p>Here is an example configuration file to use Nextcloud with an Apache2 server in Ubuntu. Here, it is assumed that nextcloud install is located in &lt;code>/var/www/&lt;/code>&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;lt;VirtualHost *:80&amp;gt;
-# Redirection to HTTPS
-ServerName nextcloud.example.com
-Redirect / https://nextcloud.example.com/
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;However, &lt;code&gt;exports&lt;/code&gt;is an alias of module.exports. Consequently, whatever is assigned to exports is also available on module.exports. However, if something is assigned directly to exports, then the shortcut to module.exports is lost (from &lt;a href=&#34;https://adrianmejia.com/getting-started-with-node-js-modules-require-exports-imports-npm-and-beyond/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>SSH through an SSH blocking proxy</title>
+      <link>https://articles.maximemoreillon.com/articles/337/</link>
+      <pubDate>Sat, 04 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/337/</guid>
+      
+      <description>&lt;p&gt;Most corporate networks have their outbound traffic go through a proxy server to prevent unauthorized access to external resources. It can happen that such proxy only allows HTTP and HTTPS traffic. As such, one cannot connect to an external host via SSH. One way to solve this problem is to use &lt;a href=&#34;https://github.com/proxytunnel/proxytunnel&#34;&gt;Proxytunnel&lt;/a&gt;. This article follows &lt;a href=&#34;https://egret.psychol.cam.ac.uk/techniques/firewall.html&#34;&gt;this guide&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e78590a5e7fee7b9d6e5742&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;server-side-apache-configuration&#34;&gt;Server-side: Apache configuration&lt;/h2&gt;
+&lt;p&gt;The following snippet is to be placed into the configuration of your default virtual host. X.X.X.X is the public IP of the local proxy.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Nextcloud Apache2 configuration</title>
+      <link>https://articles.maximemoreillon.com/articles/335/</link>
+      <pubDate>Thu, 02 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/335/</guid>
+      
+      <description>&lt;p&gt;Here is an example configuration file to use Nextcloud with an Apache2 server in Ubuntu. Here, it is assumed that nextcloud install is located in &lt;code&gt;/var/www/&lt;/code&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;VirtualHost *:80&amp;gt;
+	# Redirection to HTTPS
+	ServerName nextcloud.example.com
+	Redirect / https://nextcloud.example.com/
 &amp;lt;/VirtualHost&amp;gt;
+
 &amp;lt;IfModule mod_ssl.c&amp;gt;
-&amp;lt;VirtualHost *:443&amp;gt;
-ServerName nextcloud.example.com
-DocumentRoot /var/www/nextcloud/
-# Specific configuration for nextcloud
-&amp;lt;Directory /var/www/nextcloud/&amp;gt;
-Options +FollowSymlinks
-AllowOverride All
-&amp;lt;IfModule mod_dav.c&amp;gt;
-Dav off
+	&amp;lt;VirtualHost *:443&amp;gt;
+
+	ServerName nextcloud.example.com
+
+	DocumentRoot /var/www/nextcloud/
+
+	# Specific configuration for nextcloud
+	&amp;lt;Directory /var/www/nextcloud/&amp;gt;
+		Options +FollowSymlinks
+		AllowOverride All
+
+		&amp;lt;IfModule mod_dav.c&amp;gt;
+			Dav off
+		&amp;lt;/IfModule&amp;gt;
+
+		SetEnv HOME /var/www/nextcloud
+		SetEnv HTTP_HOME /var/www/nextcloud
+
+		&amp;lt;IfModule mod_headers.c&amp;gt;
+			Header always set Strict-Transport-Security &amp;#34;max-age=15552000; includeSubDomains; preload&amp;#34;
+		&amp;lt;/IfModule&amp;gt;
+	&amp;lt;/Directory&amp;gt;
+
+	# SSL configuration
+	SSLEngine on
+	SSLCertificateFile /etc/letsencrypt/live/nextcloud.example.com/fullchain.pem
+	SSLCertificateKeyFile /etc/letsencrypt/live/nextcloud.example.com/privkey.pem
+
+	&amp;lt;/VirtualHost&amp;gt;
 &amp;lt;/IfModule&amp;gt;
-SetEnv HOME /var/www/nextcloud
-SetEnv HTTP_HOME /var/www/nextcloud
-&amp;lt;IfModule mod_headers.c&amp;gt;
-Header always set Strict-Transport-Security &amp;#34;max-age=15552000; includeSubDomains; preload&amp;#34;
-&amp;lt;/IfModule&amp;gt;
-&amp;lt;/Directory&amp;gt;
-# SSL configuration
-SSLEngine on
-SSLCertificateFile /etc/letsencrypt/live/nextcloud.example.com/fullchain.pem
-SSLCertificateKeyFile /etc/letsencrypt/live/nextcloud.example.com/privkey.pem
-&amp;lt;/VirtualHost&amp;gt;
-&amp;lt;/IfModule&amp;gt;
-&lt;/code>&lt;/pre></description></item><item><title>Using v-for or v-if on multiple elements</title><link>https://articles.maximemoreillon.com/articles/321/</link><pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/321/</guid><description>&lt;p>Items to which &lt;code>v-if&lt;/code> or &lt;code>v-for&lt;/code> apply can be grouped inside &lt;code>&amp;lt;template&amp;gt;&lt;/code> tags. For example:&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;lt;ul&amp;gt;
-&amp;lt;template v-for=&amp;#34;item in items&amp;#34;&amp;gt;
-&amp;lt;li&amp;gt;{{ item.msg }}&amp;lt;/li&amp;gt;
-&amp;lt;li class=&amp;#34;divider&amp;#34; role=&amp;#34;presentation&amp;#34;&amp;gt;&amp;lt;/li&amp;gt;
-&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Using v-for or v-if on multiple elements</title>
+      <link>https://articles.maximemoreillon.com/articles/321/</link>
+      <pubDate>Tue, 24 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/321/</guid>
+      
+      <description>&lt;p&gt;Items to which &lt;code&gt;v-if&lt;/code&gt; or &lt;code&gt;v-for&lt;/code&gt; apply can be grouped inside &lt;code&gt;&amp;lt;template&amp;gt;&lt;/code&gt; tags. For example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;ul&amp;gt;
+  &amp;lt;template v-for=&amp;#34;item in items&amp;#34;&amp;gt;
+    &amp;lt;li&amp;gt;{{ item.msg }}&amp;lt;/li&amp;gt;
+    &amp;lt;li class=&amp;#34;divider&amp;#34; role=&amp;#34;presentation&amp;#34;&amp;gt;&amp;lt;/li&amp;gt;
+  &amp;lt;/template&amp;gt;
 &amp;lt;/ul&amp;gt;
-&lt;/code>&lt;/pre></description></item><item><title>Mosquitto</title><link>https://articles.maximemoreillon.com/articles/315/</link><pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/315/</guid><description>&lt;p>Mosquitto is an open source message broker that implements the MQTT protocol. It is lightweight and is suitable for use on all devices from low power single board computers to full servers.&lt;/p>
-&lt;h2 id="installation">Installation&lt;/h2>
-&lt;pre tabindex="0">&lt;code>sudo apt install mosquitto mosquitto-clients
-&lt;/code>&lt;/pre>&lt;h2 id="setup">Setup&lt;/h2>
-&lt;p>Place a .conf file in /etc/mosquitto/conf.d&lt;/p>
-&lt;h3 id="setting-up-a-listener">Setting up a listener&lt;/h3>
-&lt;pre tabindex="0">&lt;code>listener 1883
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Mosquitto</title>
+      <link>https://articles.maximemoreillon.com/articles/315/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/315/</guid>
+      
+      <description>&lt;p&gt;Mosquitto is an open source message broker that implements the MQTT protocol. It is lightweight and is suitable for use on all devices from low power single board computers to full servers.&lt;/p&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt install mosquitto mosquitto-clients
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;
+&lt;p&gt;Place a .conf file in /etc/mosquitto/conf.d&lt;/p&gt;
+&lt;h3 id=&#34;setting-up-a-listener&#34;&gt;Setting up a listener&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;listener 1883
 protocol mqtt
-&lt;/code>&lt;/pre>&lt;p>Also available for websockets:&lt;/p>
-&lt;pre tabindex="0">&lt;code>listener 9001
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Also available for websockets:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;listener 9001
 protocol websockets
-&lt;/code>&lt;/pre>&lt;h3 id="setting-up-authentication">Setting up authentication&lt;/h3>
-&lt;pre tabindex="0">&lt;code>allow_anonymous false
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;setting-up-authentication&#34;&gt;Setting up authentication&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;allow_anonymous false
 password_file /etc/mosquitto/passwd
-&lt;/code>&lt;/pre>&lt;p>the file /etc/mosquitto/passwd can be created using an utility provided by mosquitto (run as root):&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;the file /etc/mosquitto/passwd can be created using an utility provided by mosquitto (run as root):&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

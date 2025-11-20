@@ -1,66 +1,156 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ESP32 on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/esp32/</link><description>Recent content in ESP32 on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 04 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/esp32/index.xml" rel="self" type="application/rss+xml"/><item><title>IoT fingerprint reader</title><link>https://articles.maximemoreillon.com/articles/c322b2f5-5180-4cf7-8ecf-4fd3a1d21783/</link><pubDate>Tue, 04 Jul 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/c322b2f5-5180-4cf7-8ecf-4fd3a1d21783/</guid><description>&lt;p>I have been unlocking my door with this &lt;a href="https://articles.maximemoreillon.com/articles/03878fe3-1eca-4f22-9521-0589ba076930">RFID ring and its dedicated IoT RFID reader&lt;/a> for several years now. Despite working without any issues, this system required me to wear a ring that I could potentially lose. So, instead of using the ring as a key, I decided to use the finger that I would put it on and thus designed an IoT fingerprint reader.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/64a496783581c50013b5a9f9" alt="Article image">&lt;/p>
-&lt;p>The reader is made of an AS608 fingerprint reader module driven by an ESP32. Additionally, an OLED display and buzzer are provided for user feedback. Those components are connected as follows:&lt;/p></description></item><item><title>Unlocking my apartment with my face</title><link>https://articles.maximemoreillon.com/articles/624/</link><pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/624/</guid><description>&lt;p>As part of a previous project, I installed an &lt;a href="https://articles.maximemoreillon.com/articles/237">IoT lock&lt;/a> on my front door, which allowed me to control it using my smartphone. However, having to take out my smartphone every time I want to unlock the door quickly becomes annoying. To improve on the situation, I installed an RFID reader on the lock, which I used in combination with an &lt;a href="https://articles.maximemoreillon.com/articles/523">RFID ring which now serves as my key&lt;/a>. To follow up on this trend of finding new ways to unlock my door, I decided to explore face recognition technologies.&lt;/p></description></item><item><title>BLE presence detection</title><link>https://articles.maximemoreillon.com/articles/9/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/9/</guid><description>&lt;p>I wanted my home automation system to detect when I arrive home so as to unlock my door automatically or let me know if I leave the apartment without turning the A/C off. I figured my smartphone could be used to achieve this since it is equipped with a vast array of sensors and connectivity options. For example, I could use an app like OwnTracks which would send an MQTT message once I enter a certain perimeter around my apartment. However, constantly monitoring one&amp;rsquo;s GPS location is wasteful in terms of battery life. Another option would be to ping my phone&amp;rsquo;s IP address to check if it is connected to the WiFi, but smartphones can sometimes take a while to connect. So, I decided to use BLE advertising, which does not use too much battery while still remaining constantly active.&lt;/p></description></item><item><title>Solar power setup</title><link>https://articles.maximemoreillon.com/articles/186/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/186/</guid><description>&lt;p>I got my hands on a 600W 12V inverter so I decided to experiment with generating my own electricity.&lt;/p>
-&lt;p>The inverter converts 12V DC power into 100V AC electricity which can be used for household appliances. Here, the 12V DC power is supplied by a 45Ah lead-acid battery, which would allow the inverter to run at full power for slightly short of an hour.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/62b91cd73bbcbae9ee77c094" alt="">&lt;/p>
-&lt;p>The battery is charged by a 30W solar panel, through a 10A solar charge controller. Thus, with full sunlight, the battery would theoretically be charged in about 18 hours. I don&amp;rsquo;t intend to use the inverter on a daily basis so the slow rate of charge isn&amp;rsquo;t so much of a limitation. If needed, I could still add another solar panel in parallel in order to boost the charging current.&lt;/p></description></item><item><title>Sending pictures via http with an ESP32-CAM</title><link>https://articles.maximemoreillon.com/articles/38/</link><pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/38/</guid><description>&lt;p>Pictures taken with the ESP32-CAM can be sent in a multipart/form-data type content via HTTP. Here is a sample code to achieve this:&lt;/p>
-&lt;pre tabindex="0">&lt;code>#define BOUNDARY &amp;#34;--------------------------133747188241686651551404&amp;#34;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ESP32 on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/esp32/</link>
+    <description>Recent content in ESP32 on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/esp32/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IoT fingerprint reader</title>
+      <link>https://articles.maximemoreillon.com/articles/c322b2f5-5180-4cf7-8ecf-4fd3a1d21783/</link>
+      <pubDate>Tue, 04 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/c322b2f5-5180-4cf7-8ecf-4fd3a1d21783/</guid>
+      
+      <description>&lt;p&gt;I have been unlocking my door with this &lt;a href=&#34;https://articles.maximemoreillon.com/articles/03878fe3-1eca-4f22-9521-0589ba076930&#34;&gt;RFID ring and its dedicated IoT RFID reader&lt;/a&gt; for several years now. Despite working without any issues, this system required me to wear a ring that I could potentially lose. So, instead of using the ring as a key, I decided to use the finger that I would put it on and thus designed an IoT fingerprint reader.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/64a496783581c50013b5a9f9&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The reader is made of an AS608 fingerprint reader module driven by an ESP32. Additionally, an OLED display and buzzer are provided for user feedback. Those components are connected as follows:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Unlocking my apartment with my face</title>
+      <link>https://articles.maximemoreillon.com/articles/624/</link>
+      <pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/624/</guid>
+      
+      <description>&lt;p&gt;As part of a previous project, I installed an &lt;a href=&#34;https://articles.maximemoreillon.com/articles/237&#34;&gt;IoT lock&lt;/a&gt; on my front door, which allowed me to control it using my smartphone. However, having to take out my smartphone every time I want to unlock the door quickly becomes annoying. To improve on the situation, I installed an RFID reader on the lock, which I used in combination with an &lt;a href=&#34;https://articles.maximemoreillon.com/articles/523&#34;&gt;RFID ring which now serves as my key&lt;/a&gt;. To follow up on this trend of finding new ways to unlock my door, I decided to explore face recognition technologies.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>BLE presence detection</title>
+      <link>https://articles.maximemoreillon.com/articles/9/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/9/</guid>
+      
+      <description>&lt;p&gt;I wanted my home automation system to detect when I arrive home so as to unlock my door automatically or let me know if I leave the apartment without turning the A/C off. I figured my smartphone could be used to achieve this since it is equipped with a vast array of sensors and connectivity options. For example, I could use an app like OwnTracks which would send an MQTT message once I enter a certain perimeter around my apartment. However, constantly monitoring one&amp;rsquo;s GPS location is wasteful in terms of battery life. Another option would be to ping my phone&amp;rsquo;s IP address to check if it is connected to the WiFi, but smartphones can sometimes take a while to connect. So, I decided to use BLE advertising, which does not use too much battery while still remaining constantly active.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Solar power setup</title>
+      <link>https://articles.maximemoreillon.com/articles/186/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/186/</guid>
+      
+      <description>&lt;p&gt;I got my hands on a 600W 12V inverter so I decided to experiment with generating my own electricity.&lt;/p&gt;
+&lt;p&gt;The inverter converts 12V DC power into 100V AC electricity which can be used for household appliances. Here, the 12V DC power is supplied by a 45Ah lead-acid battery, which would allow the inverter to run at full power for slightly short of an hour.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62b91cd73bbcbae9ee77c094&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The battery is charged by a 30W solar panel, through a 10A solar charge controller. Thus, with full sunlight, the battery would theoretically be charged in about 18 hours. I don&amp;rsquo;t intend to use the inverter on a daily basis so the slow rate of charge isn&amp;rsquo;t so much of a limitation. If needed, I could still add another solar panel in parallel in order to boost the charging current.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Sending pictures via http with an ESP32-CAM</title>
+      <link>https://articles.maximemoreillon.com/articles/38/</link>
+      <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/38/</guid>
+      
+      <description>&lt;p&gt;Pictures taken with the ESP32-CAM can be sent in a multipart/form-data type content via HTTP. Here is a sample code to achieve this:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#define BOUNDARY     &amp;#34;--------------------------133747188241686651551404&amp;#34;  
 #define API_ROUTE &amp;#34;/upload&amp;#34;
 #define API_HOST &amp;#34;192.168.1.2&amp;#34;
 #define API_PORT 80
+
 void upload_image(){
-// Get a frame
-camera_fb_t * fb = NULL;
-fb = esp_camera_fb_get();
-if (fb) {
-// Frame was taken successfully, now sending it
-// Define the client that will be used for the API call
-WiFiClient client;
-// Attempt a connection
-if (client.connect(API_HOST, API_PORT)) {
-// Connection was successful, prepare the request content
-String body_pre_image;
-body_pre_image = &amp;#34;--&amp;#34;;
-body_pre_image += BOUNDARY;
-body_pre_image += &amp;#34;\r\n&amp;#34;;
-body_pre_image += &amp;#34;Content-Disposition: form-data; name=\&amp;#34;imageFile\&amp;#34;; filename=\&amp;#34;picture.jpg\&amp;#34;\r\n&amp;#34;);
-body_pre_image += &amp;#34;Content-Type: image/jpeg\r\n&amp;#34;;
-body_pre_image += &amp;#34;\r\n&amp;#34;;
-String body_post_image = String(&amp;#34;\r\n--&amp;#34;)+BOUNDARY+String(&amp;#34;--\r\n&amp;#34;);
-int total_length = body_pre_image.length()+body_post_image.length()+fb-&amp;gt;len;
-String header_text;
-header_text = &amp;#34;POST &amp;#34; + String(API_ROUTE) + &amp;#34; HTTP/1.1\r\n&amp;#34;; // the method is defined here
-header_text += &amp;#34;cache-control: no-cache\r\n&amp;#34;;
-header_text += &amp;#34;Content-Type: multipart/form-data; boundary=&amp;#34;;
-header_text += BOUNDARY;
-header_text += &amp;#34;\r\n&amp;#34;;
-header_text += &amp;#34;content-length: &amp;#34;;
-header_text += String(total_length);
-header_text += &amp;#34;\r\n&amp;#34;;
-header_text += &amp;#34;\r\n&amp;#34;;
-// Now send the whole thing
-client.print(header_text+body_pre_image);
-client.write(fb-&amp;gt;buf, fb-&amp;gt;len);
-client.print(body_post_image);
-// timeout management
-unsigned long timeout = millis();
-while (client.available() == 0) {
-if (millis() - timeout &amp;gt; 5000) {
-Serial.println(&amp;#34;Timeout&amp;#34;);
-client.stop();
-break;
+
+  // Get a frame
+  camera_fb_t * fb = NULL;
+  fb = esp_camera_fb_get();
+  
+  if (fb) {
+    // Frame was taken successfully, now sending it
+
+    // Define the client that will be used for the API call
+    WiFiClient client;
+
+    // Attempt a connection
+    if (client.connect(API_HOST, API_PORT)) {
+
+      // Connection was successful, prepare the request content
+      String body_pre_image;
+      body_pre_image = &amp;#34;--&amp;#34;;
+      body_pre_image += BOUNDARY;
+      body_pre_image += &amp;#34;\r\n&amp;#34;;
+      body_pre_image += &amp;#34;Content-Disposition: form-data; name=\&amp;#34;imageFile\&amp;#34;; filename=\&amp;#34;picture.jpg\&amp;#34;\r\n&amp;#34;);
+      body_pre_image += &amp;#34;Content-Type: image/jpeg\r\n&amp;#34;;
+      body_pre_image += &amp;#34;\r\n&amp;#34;;
+    
+      String body_post_image = String(&amp;#34;\r\n--&amp;#34;)+BOUNDARY+String(&amp;#34;--\r\n&amp;#34;);
+    
+      int total_length = body_pre_image.length()+body_post_image.length()+fb-&amp;gt;len;
+      
+      String header_text;
+      header_text =  &amp;#34;POST &amp;#34; + String(API_ROUTE) + &amp;#34; HTTP/1.1\r\n&amp;#34;; // the method is defined here
+      header_text += &amp;#34;cache-control: no-cache\r\n&amp;#34;;
+      header_text += &amp;#34;Content-Type: multipart/form-data; boundary=&amp;#34;;
+      header_text += BOUNDARY;
+      header_text += &amp;#34;\r\n&amp;#34;;
+      header_text += &amp;#34;content-length: &amp;#34;;
+      header_text += String(total_length);
+      header_text += &amp;#34;\r\n&amp;#34;;
+      header_text += &amp;#34;\r\n&amp;#34;;
+   
+      // Now send the whole thing
+      client.print(header_text+body_pre_image);
+      client.write(fb-&amp;gt;buf, fb-&amp;gt;len);
+      client.print(body_post_image);
+      
+      // timeout management
+      unsigned long timeout = millis();
+      while (client.available() == 0) {
+        if (millis() - timeout &amp;gt; 5000) {
+          Serial.println(&amp;#34;Timeout&amp;#34;);
+          client.stop();
+          break;
+        }
+      }
+    }
+
+    // No matter the result of the upload, clean up the frame buffer
+    esp_camera_fb_return(fb);
+    fb = NULL;
+    
+  }
+ 
 }
-}
-}
-// No matter the result of the upload, clean up the frame buffer
-esp_camera_fb_return(fb);
-fb = NULL;
-}
-}
-&lt;/code>&lt;/pre></description></item><item><title>ESP32-CAM firmware</title><link>https://articles.maximemoreillon.com/articles/317/</link><pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/317/</guid><description>&lt;p>The ESP32 supports ov2640 cameras, which makes it an ideal platform for a DIY IP camera. For this purpose, I wrote a customized firmware for the ESP32 which provides the following features:&lt;/p>
-&lt;ul>
-&lt;li>Streaming from the camera&lt;/li>
-&lt;li>Getting the latest frame from the camera&lt;/li>
-&lt;li>Firmware update by uploading new binary files&lt;/li>
-&lt;/ul>
-&lt;p>This firmware is written for &lt;a href="https://www.ai-thinker.com/">AI Thinker&lt;/a> boards but could easily be adapted to other boards by modifying the GPIO assignment. &lt;a href="https://github.com/maximemoreillon/esp32_camera_web_server">Here&lt;/a> is a link to its GitHub repo.&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>ESP32-CAM firmware</title>
+      <link>https://articles.maximemoreillon.com/articles/317/</link>
+      <pubDate>Tue, 17 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/317/</guid>
+      
+      <description>&lt;p&gt;The ESP32 supports ov2640 cameras, which makes it an ideal platform for a DIY IP camera. For this purpose, I wrote a customized firmware for the ESP32 which provides the following features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Streaming from the camera&lt;/li&gt;
+&lt;li&gt;Getting the latest frame from the camera&lt;/li&gt;
+&lt;li&gt;Firmware update by uploading new binary files&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This firmware is written for &lt;a href=&#34;https://www.ai-thinker.com/&#34;&gt;AI Thinker&lt;/a&gt; boards but could easily be adapted to other boards by modifying the GPIO assignment. &lt;a href=&#34;https://github.com/maximemoreillon/esp32_camera_web_server&#34;&gt;Here&lt;/a&gt; is a link to its GitHub repo.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

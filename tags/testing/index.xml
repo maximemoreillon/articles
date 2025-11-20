@@ -1,16 +1,37 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Testing on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/testing/</link><description>Recent content in Testing on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 08 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/testing/index.xml" rel="self" type="application/rss+xml"/><item><title>Testing in NodeJS with Mocha</title><link>https://articles.maximemoreillon.com/articles/341/</link><pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/341/</guid><description>&lt;p>Mocha is a popular testing framework for NodeJS. it can be installed using npm:&lt;/p>
-&lt;pre tabindex="0">&lt;code>npm install mocha
-&lt;/code>&lt;/pre>&lt;p>Mocha works with files placed inside the &lt;em>test&lt;/em> directory, which must be created:&lt;/p>
-&lt;pre tabindex="0">&lt;code>mkdir test
-&lt;/code>&lt;/pre>&lt;h2 id="setting-up-npm-run-command">Setting up npm run command&lt;/h2>
-&lt;p>Normally, mocha is executed using the following command:&lt;/p>
-&lt;pre tabindex="0">&lt;code>./node_modules/mocha/bin/mocha
-&lt;/code>&lt;/pre>&lt;p>To simplify things, &lt;em>package.json&lt;/em> can be modified as such:&lt;/p>
-&lt;pre tabindex="0">&lt;code>...
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Testing on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/testing/</link>
+    <description>Recent content in Testing on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Testing in NodeJS with Mocha</title>
+      <link>https://articles.maximemoreillon.com/articles/341/</link>
+      <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/341/</guid>
+      
+      <description>&lt;p&gt;Mocha is a popular testing framework for NodeJS. it can be installed using npm:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;npm install mocha
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Mocha works with files placed inside the &lt;em&gt;test&lt;/em&gt; directory, which must be created:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;mkdir test
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;setting-up-npm-run-command&#34;&gt;Setting up npm run command&lt;/h2&gt;
+&lt;p&gt;Normally, mocha is executed using the following command:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;./node_modules/mocha/bin/mocha
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;To simplify things, &lt;em&gt;package.json&lt;/em&gt; can be modified as such:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;...
 &amp;#34;scripts&amp;#34;: {
   &amp;#34;test&amp;#34;: &amp;#34;mocha&amp;#34;
 },
 ...
-&lt;/code>&lt;/pre>&lt;p>Mocha can then be executed using the following command:&lt;/p>
-&lt;pre tabindex="0">&lt;code>npm run test
-&lt;/code>&lt;/pre>&lt;p>test/test.js&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Mocha can then be executed using the following command:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;npm run test
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;test/test.js&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

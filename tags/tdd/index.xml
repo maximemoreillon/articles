@@ -1,3 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TDD on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/tdd/</link><description>Recent content in TDD on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 30 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/tdd/index.xml" rel="self" type="application/rss+xml"/><item><title>TDD for an Express application</title><link>https://articles.maximemoreillon.com/articles/463/</link><pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/463/</guid><description>&lt;p>TDD has been proven to significantly reduce the amount of bugs in software releases. Moreover, with CI/CD systems, tests can be run automatically before the application deployment, preventing a faulty application to reach its end user. This guide goes through the steps required to set up a TDD workflow with an Express application.&lt;/p>
-&lt;h2 id="an-example-application">An example application&lt;/h2>
-&lt;p>Let&amp;rsquo;s start with the application we would like to test. Here we&amp;rsquo;ll use the following Express application:&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TDD on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/tdd/</link>
+    <description>Recent content in TDD on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 30 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/tdd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TDD for an Express application</title>
+      <link>https://articles.maximemoreillon.com/articles/463/</link>
+      <pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/463/</guid>
+      
+      <description>&lt;p&gt;TDD has been proven to significantly reduce the amount of bugs in software releases. Moreover, with CI/CD systems, tests can be run automatically before the application deployment, preventing a faulty application to reach its end user. This guide goes through the steps required to set up a TDD workflow with an Express application.&lt;/p&gt;
+&lt;h2 id=&#34;an-example-application&#34;&gt;An example application&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s start with the application we would like to test. Here we&amp;rsquo;ll use the following Express application:&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,1 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Medium on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/medium/</link><description>Recent content in Medium on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 21 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/medium/index.xml" rel="self" type="application/rss+xml"/><item><title>Resizing a hostpah-storage PVC and its PV in Microk8s</title><link>https://articles.maximemoreillon.com/articles/567/</link><pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/567/</guid><description>&lt;p>With the storage addon enabled, microk8s can automatically provision a PV when a PVC is created. The size of the PV is set according to that of the PVC. However, PVCs cannot be resized after creation. The PVC could be deleted and recreated with a larger size but this would result in the deletion of the PV and, by extension, all the data stored so far in it. This article presents a workaround to resize a PVC and its corresponding PV without any loss of data.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Medium on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/medium/</link>
+    <description>Recent content in Medium on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/medium/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Resizing a hostpah-storage PVC and its PV in Microk8s</title>
+      <link>https://articles.maximemoreillon.com/articles/567/</link>
+      <pubDate>Thu, 21 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/567/</guid>
+      
+      <description>&lt;p&gt;With the storage addon enabled, microk8s can automatically provision a PV when a PVC is created. The size of the PV is set according to that of the PVC. However, PVCs cannot be resized after creation. The PVC could be deleted and recreated with a larger size but this would result in the deletion of the PV and, by extension, all the data stored so far in it. This article presents a workaround to resize a PVC and its corresponding PV without any loss of data.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

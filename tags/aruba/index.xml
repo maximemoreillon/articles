@@ -1,3 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Aruba on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/aruba/</link><description>Recent content in Aruba on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 20 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/aruba/index.xml" rel="self" type="application/rss+xml"/><item><title>Generating certificates for an Aruba Instant AP using pfSense</title><link>https://articles.maximemoreillon.com/articles/b5ccfbce-cabb-4606-a84b-45710b4ac914/</link><pubDate>Sat, 20 Jan 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/b5ccfbce-cabb-4606-a84b-45710b4ac914/</guid><description>&lt;p>Aruba Instant APs allow users to upload their own certificates which can be useful when trying to get rid of browser warnings regarding untrusted HTTPS connections.&lt;/p>
-&lt;h2 id="creating-and-uploading-certificate-authority">Creating and uploading certificate authority&lt;/h2>
-&lt;p>On the &lt;em>System / Certificates / Authorities&lt;/em> page, click the &lt;em>Add&lt;/em> button to create a new CA. This opens the CA edit page. Here the method must be set to &lt;em>Create an internal Certificate Authority.&lt;/em> The remaining settings can either be left as they are or straightforward.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Aruba on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/aruba/</link>
+    <description>Recent content in Aruba on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 20 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/aruba/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Generating certificates for an Aruba Instant AP using pfSense</title>
+      <link>https://articles.maximemoreillon.com/articles/b5ccfbce-cabb-4606-a84b-45710b4ac914/</link>
+      <pubDate>Sat, 20 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/b5ccfbce-cabb-4606-a84b-45710b4ac914/</guid>
+      
+      <description>&lt;p&gt;Aruba Instant APs allow users to upload their own certificates which can be useful when trying to get rid of browser warnings regarding untrusted HTTPS connections.&lt;/p&gt;
+&lt;h2 id=&#34;creating-and-uploading-certificate-authority&#34;&gt;Creating and uploading certificate authority&lt;/h2&gt;
+&lt;p&gt;On the &lt;em&gt;System / Certificates / Authorities&lt;/em&gt; page, click the &lt;em&gt;Add&lt;/em&gt; button to create a new CA. This opens the CA edit page. Here the method must be set to &lt;em&gt;Create an internal Certificate Authority.&lt;/em&gt; The remaining settings can either be left as they are or straightforward.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

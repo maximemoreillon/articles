@@ -1,6 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VirtualBox on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/virtualbox/</link><description>Recent content in VirtualBox on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 14 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/virtualbox/index.xml" rel="self" type="application/rss+xml"/><item><title>Installing VirtualBox on Ubuntu 18.04</title><link>https://articles.maximemoreillon.com/articles/358/</link><pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/358/</guid><description>&lt;p>VirtualBox used to be installed easily using apt, but this recently changed. Here is a method proven to work:&lt;/p>
-&lt;pre tabindex="0">&lt;code>wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VirtualBox on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/virtualbox/</link>
+    <description>Recent content in VirtualBox on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing VirtualBox on Ubuntu 18.04</title>
+      <link>https://articles.maximemoreillon.com/articles/358/</link>
+      <pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/358/</guid>
+      
+      <description>&lt;p&gt;VirtualBox used to be installed easily using apt, but this recently changed. Here is a method proven to work:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 echo &amp;#34;deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian bionic contrib&amp;#34; | sudo tee /etc/apt/sources.list.d/virtualbox.list
 sudo apt-get update
 sudo apt-get -y install virtualbox-6.0
-&lt;/code>&lt;/pre></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

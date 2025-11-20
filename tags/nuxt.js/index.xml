@@ -1,5 +1,48 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nuxt.js on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/nuxt.js/</link><description>Recent content in Nuxt.js on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/nuxt.js/index.xml" rel="self" type="application/rss+xml"/><item><title>MQTThree</title><link>https://articles.maximemoreillon.com/articles/2e301bdf-99eb-49cc-8c11-02ac8f0a4f72/</link><pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/2e301bdf-99eb-49cc-8c11-02ac8f0a4f72/</guid><description>&lt;p>Recently, I&amp;rsquo;ve been working on a few projects involving digital twins. At its core, a digital twin is simply a digital representation, oftentimes in 3D, of a physical system. Such representation commonly provides information about the system as well as ways of interactions. On the physical system, this is can be accomplished with IoT devices.&lt;/p>
-&lt;p>Having to build a dedicated application for each digital twin would be tedious so I designed a simple framework to make the process more convenient. The framework uses Three.js for the 3D representation of the system and MQTT to interact with its IoT devices, which led to the name MQTThree.&lt;/p></description></item><item><title>Rebuilding the GUI of this CMS with Nuxt 3</title><link>https://articles.maximemoreillon.com/articles/8c63c27c-e250-4207-a284-971a33096d5b/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/8c63c27c-e250-4207-a284-971a33096d5b/</guid><description>&lt;p>The GUI of this CMS has gone through multiple versions and revisions. It started as a &lt;a href="https://vuejs.org/">Vue.js&lt;/a> SPA but was then turned into a &lt;a href="https://nuxt.com/">Nuxt&lt;/a> SSR application to improve SEO.&lt;/p>
-&lt;p>Recently, Nuxt version 3 was released so I decided, once again, to rewrite this GUI from scratch, mainly as an excuse to learn about the newest frameworks available.&lt;/p>
-&lt;p>Alongside Nuxt 3, this rebuild was also an opportunity to leverage TypeScript and the Vue.js composition API.&lt;/p></description></item><item><title>Rebuilding the GUI of this CMS with Nuxt.js</title><link>https://articles.maximemoreillon.com/articles/a15483c4-b4dc-4478-a1ee-06b7045ea591/</link><pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/a15483c4-b4dc-4478-a1ee-06b7045ea591/</guid><description>&lt;p>I have been using this CMS for several years now and overall, it has served me well. However, I mainly use it to showcase projects and share tutorials, which would highly benefit from SEO. Unfortunately, as the GUI of the CMS was built as an single page application (SPA), meta tags and other SEO options could not easily be generated for each article.&lt;/p>
-&lt;p>To solve this problem, I rebuilt this GUI using Nuxt.js as as to leverage server-side rendering (SSR). Articles are now fetched from the CMS API server-side, which allows meta tags to be set before sending content to clients.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nuxt.js on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/nuxt.js/</link>
+    <description>Recent content in Nuxt.js on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/nuxt.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MQTThree</title>
+      <link>https://articles.maximemoreillon.com/articles/2e301bdf-99eb-49cc-8c11-02ac8f0a4f72/</link>
+      <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/2e301bdf-99eb-49cc-8c11-02ac8f0a4f72/</guid>
+      
+      <description>&lt;p&gt;Recently, I&amp;rsquo;ve been working on a few projects involving digital twins. At its core, a digital twin is simply a digital representation, oftentimes in 3D, of a physical system. Such representation commonly provides information about the system as well as ways of interactions. On the physical system, this is can be accomplished with IoT devices.&lt;/p&gt;
+&lt;p&gt;Having to build a dedicated application for each digital twin would be tedious so I designed a simple framework to make the process more convenient. The framework uses Three.js for the 3D representation of the system and MQTT to interact with its IoT devices, which led to the name MQTThree.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Rebuilding the GUI of this CMS with Nuxt 3</title>
+      <link>https://articles.maximemoreillon.com/articles/8c63c27c-e250-4207-a284-971a33096d5b/</link>
+      <pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/8c63c27c-e250-4207-a284-971a33096d5b/</guid>
+      
+      <description>&lt;p&gt;The GUI of this CMS has gone through multiple versions and revisions. It started as a &lt;a href=&#34;https://vuejs.org/&#34;&gt;Vue.js&lt;/a&gt; SPA but was then turned into a &lt;a href=&#34;https://nuxt.com/&#34;&gt;Nuxt&lt;/a&gt; SSR application to improve SEO.&lt;/p&gt;
+&lt;p&gt;Recently, Nuxt version 3 was released so I decided, once again, to rewrite this GUI from scratch, mainly as an excuse to learn about the newest frameworks available.&lt;/p&gt;
+&lt;p&gt;Alongside Nuxt 3, this rebuild was also an opportunity to leverage TypeScript and the Vue.js composition API.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Rebuilding the GUI of this CMS with Nuxt.js</title>
+      <link>https://articles.maximemoreillon.com/articles/a15483c4-b4dc-4478-a1ee-06b7045ea591/</link>
+      <pubDate>Wed, 06 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/a15483c4-b4dc-4478-a1ee-06b7045ea591/</guid>
+      
+      <description>&lt;p&gt;I have been using this CMS for several years now and overall, it has served me well. However, I mainly use it to showcase projects and share tutorials, which would highly benefit from SEO. Unfortunately, as the GUI of the CMS was built as an single page application (SPA), meta tags and other SEO options could not easily be generated for each article.&lt;/p&gt;
+&lt;p&gt;To solve this problem, I rebuilt this GUI using Nuxt.js as as to leverage server-side rendering (SSR). Articles are now fetched from the CMS API server-side, which allows meta tags to be set before sending content to clients.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

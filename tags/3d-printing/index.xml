@@ -1,23 +1,176 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>3D Printing on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/3d-printing/</link><description>Recent content in 3D Printing on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 31 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/3d-printing/index.xml" rel="self" type="application/rss+xml"/><item><title>Rebuilding the Odroid XU4 server</title><link>https://articles.maximemoreillon.com/articles/e321210f-1643-4db8-8dae-6e2a8b71df87/</link><pubDate>Tue, 31 Jan 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/e321210f-1643-4db8-8dae-6e2a8b71df87/</guid><description>&lt;p>&lt;a href="https://articles.maximemoreillon.com/articles/390">In a previous article&lt;/a> I showcased a simple home server built around an Odroid XU4, which I dismantled after migrating to a full-size desktop computer. However, having the Odroid laying around unused was a bit of a waste and I recently started needing a secondary file server to store data backups. So I decided to build a new server with the single board computer.&lt;/p>
-&lt;p>The core hardware remained similar to the original server: the Odroid itself, a hard disk connected via USB to SATA converter and a power supply. However, this time I decided to package the components in a compact PC case.&lt;/p></description></item><item><title>3D printed mount for USB dock</title><link>https://articles.maximemoreillon.com/articles/d3224302-ba33-437e-919c-b8c463f29eec/</link><pubDate>Wed, 03 Aug 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/d3224302-ba33-437e-919c-b8c463f29eec/</guid><description>&lt;p>I recenly got myself an USB ype C dock for my laptop. This accessory quite convenient as it allows me to connect my laptop to power, my external monitor and USB peripherals with just one cable.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/62ea71be27a6008518376123" alt="Article image">&lt;/p>
-&lt;p>The dock itself works fine but because of the way its ports are laid out, it makes a mess of wires on my desk. To solve the issue, I decided to mount the USB dock on the back of my laptop stand.&lt;/p></description></item><item><title>3D printed solder spool holder</title><link>https://articles.maximemoreillon.com/articles/586/</link><pubDate>Sat, 25 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/586/</guid><description>&lt;p>One day I got fed up with my solder spool rolling around all the time so I designed this simple spool holder in Fusion360 and 3D printed it.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614eac539a075f54f559c415" alt="">&lt;img src="https://img.maximemoreillon.com/images/614eac5d9a075f3fd559c419" alt="">&lt;/p>
-&lt;p>The STL files for this project are available on &lt;a href="https://www.thingiverse.com/thing:5145144">Thingiverse&lt;/a>&lt;/p></description></item><item><title>General purpose IoT button</title><link>https://articles.maximemoreillon.com/articles/483/</link><pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/483/</guid><description>&lt;p>Over the years, I have built multiple IoT devices ranging from AC controllers to ceiling lights. Usually, I would control those devices using my smartphone or computer but sometimes a physical button can be more convenient. Thus, I designed this simple IoT button which publishes MQTT messages when pressed.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/6148102f5d171a137f416ccb" alt="">&lt;/p>
-&lt;p>At its core, the button integrates my ESP12-F base PCB, which features a switch connected to GPIO0 used to put the ESP8266 in programming mode. After a successful boot, the GPIO0 can be used freely so I wrote a simple firmware that publishes an MQTT message when the pin gets pulled LOW.&lt;/p></description></item><item><title>IoT infrared controller</title><link>https://articles.maximemoreillon.com/articles/538/</link><pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/538/</guid><description>&lt;p>Although probably in the decline, infrared is a common way to remotely control household appliances such as air conditioners or TVs. Being able to turn on an AC unit without leaving the sofa is definitely comfortable, but sometimes it would be even better to be able to do it before even getting home. In order to control those various appliances, I designed a simple WiFi controlled IR emitter.&lt;/p>
-&lt;p>The device consists of an ESP8266, an IR LED and IR receiver. The IR receiver is used to record IR signals from the original remote controller of the appliances. Those signals are stored in the ESP8266, which can then replay those using the IR LED.&lt;/p></description></item><item><title>Sign holders for COVID-19 prevention</title><link>https://articles.maximemoreillon.com/articles/462/</link><pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/462/</guid><description>&lt;p>Compared to other countries, Japan did not enforce a strict lockdown on its population during the COVID-19 pandemic. As a result, most bars and restaurants continued their operations as usual. However, in order to prevent the spread of the virus as much as possible, the staff of my local pub printed out signs asking customers to not leave their table without wearing a mask.&lt;/p>
-&lt;p>As they didn&amp;rsquo;t have anything to hold the signs on the table, I offered to use my 3D printer to solve the problem.&lt;/p></description></item><item><title>DWC hydroponics system</title><link>https://articles.maximemoreillon.com/articles/482/</link><pubDate>Fri, 17 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/482/</guid><description>&lt;p>I am not much of a cook so salads are usually one of my favorite options for a healthy meal. So, just like for everything else, I started wondering if I could make my own. However, I don&amp;rsquo;t have access to a garden so I started looking into solutions to grow vegetables indoors. I settled for hydroponics, which seemed to provide a good balance between yield and operational hassle. Specifically, I went for a Deep Water Culture type of hydroponic system as it is usually considered easy for beginners to setup.&lt;/p></description></item><item><title>RFID wristband</title><link>https://articles.maximemoreillon.com/articles/589/</link><pubDate>Sun, 04 Oct 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/589/</guid><description>&lt;p>RFID tags are great but often easy to lose. To solve this problem, I designed this case for an RFID tag, which can be worn on one&amp;rsquo;s wrist using a standard watch strap. The case was designed using Fusion360 and then 3D printed.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614eaa369a075f73f659c403" alt="">&lt;/p>
-&lt;p>The RFID tag is slim enough to fit in the enclosure and is secured using the provided adhesive&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614eaa419a075f432e59c407" alt="">&lt;/p>
-&lt;p>The STL file for this project is available on &lt;a href="https://www.thingiverse.com/thing:5145141">Thingiverse&lt;/a>&lt;/p></description></item><item><title>3D printed bracket for fume extractor</title><link>https://articles.maximemoreillon.com/articles/522/</link><pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/522/</guid><description>&lt;p>I got myself a fume extractor but it takes a rather large amount of real-estate on my desk. I decided to mount it on an arm so that I could easily move it out of the way so I designed and 3D printed an attachment bracket for it.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614fd10f9a075f99a459c899" alt="">The bracket was designed in Fusion 360&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614fd8ca9a075faaea59c8ad" alt="">And then printed on my QIDI Tech 1&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614fd97c9a075f778d59c8b1" alt="">It ended up fitting the fume extractor nicely&lt;/p></description></item><item><title>IoT heater controller</title><link>https://articles.maximemoreillon.com/articles/81/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/81/</guid><description>&lt;p>The thermal insulation of my apartment not being the best, I decided to buy an electric heater in order not to freeze during cold winter nights. However, the one I got was probably too powerful for my needs and letting it run for too long would heat up my place too much. Thus, I added a wifi enabled controller to it so its operations are controlled by my home automation system.&lt;/p></description></item><item><title>IoT lock</title><link>https://articles.maximemoreillon.com/articles/237/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/237/</guid><description>&lt;p>Have you ever left your apartment and couldn&amp;rsquo;t remember if you locked your front door or not? Sadly, if it is unlocked, there is not much you can do about it until you get back home. This system is an attempt to solve the problem. Simply put, it consists of attaching an actuator to the door&amp;rsquo;s original locking mechanism and control it via WiFi.&lt;/p>
-&lt;p>I chose an MG996R as an actuator for its sufficient torque and angle range (180 deg). Most of the parts for this project have been 3D printed and designed in Fusion 360. The STL files are available on &lt;a href="https://www.thingiverse.com/thing:2462482">Thingiverse&lt;/a>. The servo&amp;rsquo;s shaft and the door&amp;rsquo;s locking mechanism are connected with parts designed specially so as to have a 90 degree play between them. This allows the lock to be operated normally without having the servo interfering.&lt;/p></description></item><item><title>Odroid XU4 server</title><link>https://articles.maximemoreillon.com/articles/390/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/390/</guid><description>&lt;p>Having one&amp;rsquo;s own server provides the ability to run web services 24/7. However, having a computer running all the time can significantly increase one&amp;rsquo;s electricity bill. The objective of this project was to build a low power home server capable of running common software (Apache, Node.js, etc.) while only consuming little power.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e786dc16f2c2af38919cad2" alt="">&lt;/p>
-&lt;p>For this purpose the Odroid XU4 was a great candidate: It runs Ubuntu and is more than powerful enough to run as a web server while drawing less than 20W. Additionally, it comes with USB3.0 ports, great for applications requiring file storage with decent speeds.&lt;/p></description></item><item><title>Raspberry Pi based NAS</title><link>https://articles.maximemoreillon.com/articles/591/</link><pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/591/</guid><description>&lt;p>This is a simple Raspberry Pi based NAS. It features, as the title suggests, a Raspberry Pi as well as a 1TB 3.5&amp;rsquo;&amp;rsquo; HDD, interfaced with a USB to SATA converter.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614ed5d29a075fe79a59c599" alt="">&lt;/p>
-&lt;p>The NAS is self-contained in a enclosure made of wood, Acrylic and 3D printed parts.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/614ed5b99a075f73e059c595" alt="">&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>3D Printing on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/3d-printing/</link>
+    <description>Recent content in 3D Printing on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 31 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/3d-printing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rebuilding the Odroid XU4 server</title>
+      <link>https://articles.maximemoreillon.com/articles/e321210f-1643-4db8-8dae-6e2a8b71df87/</link>
+      <pubDate>Tue, 31 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/e321210f-1643-4db8-8dae-6e2a8b71df87/</guid>
+      
+      <description>&lt;p&gt;&lt;a href=&#34;https://articles.maximemoreillon.com/articles/390&#34;&gt;In a previous article&lt;/a&gt; I showcased a simple home server built around an Odroid XU4, which I dismantled after migrating to a full-size desktop computer. However, having the Odroid laying around unused was a bit of a waste and I recently started needing a secondary file server to store data backups. So I decided to build a new server with the single board computer.&lt;/p&gt;
+&lt;p&gt;The core hardware remained similar to the original server: the Odroid itself, a hard disk connected via USB to SATA converter and a power supply. However, this time I decided to package the components in a compact PC case.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>3D printed mount for USB dock</title>
+      <link>https://articles.maximemoreillon.com/articles/d3224302-ba33-437e-919c-b8c463f29eec/</link>
+      <pubDate>Wed, 03 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/d3224302-ba33-437e-919c-b8c463f29eec/</guid>
+      
+      <description>&lt;p&gt;I recenly got myself an USB ype C dock for my laptop. This accessory quite convenient as it allows me to connect my laptop to power, my external monitor and USB peripherals with just one cable.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62ea71be27a6008518376123&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The dock itself works fine but because of the way its ports are laid out, it makes a mess of wires on my desk. To solve the issue, I decided to mount the USB dock on the back of my laptop stand.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>3D printed solder spool holder</title>
+      <link>https://articles.maximemoreillon.com/articles/586/</link>
+      <pubDate>Sat, 25 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/586/</guid>
+      
+      <description>&lt;p&gt;One day I got fed up with my solder spool rolling around all the time so I designed this simple spool holder in Fusion360 and 3D printed it.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eac539a075f54f559c415&#34; alt=&#34;&#34;&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eac5d9a075f3fd559c419&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The STL files for this project are available on &lt;a href=&#34;https://www.thingiverse.com/thing:5145144&#34;&gt;Thingiverse&lt;/a&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>General purpose IoT button</title>
+      <link>https://articles.maximemoreillon.com/articles/483/</link>
+      <pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/483/</guid>
+      
+      <description>&lt;p&gt;Over the years, I have built multiple IoT devices ranging from AC controllers to ceiling lights. Usually, I would control those devices using my smartphone or computer but sometimes a physical button can be more convenient. Thus, I designed this simple IoT button which publishes MQTT messages when pressed.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6148102f5d171a137f416ccb&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;At its core, the button integrates my ESP12-F base PCB, which features a switch connected to GPIO0 used to put the ESP8266 in programming mode. After a successful boot, the GPIO0 can be used freely so I wrote a simple firmware that publishes an MQTT message when the pin gets pulled LOW.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT infrared controller</title>
+      <link>https://articles.maximemoreillon.com/articles/538/</link>
+      <pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/538/</guid>
+      
+      <description>&lt;p&gt;Although probably in the decline, infrared is a common way to remotely control household appliances such as air conditioners or TVs. Being able to turn on an AC unit without leaving the sofa is definitely comfortable, but sometimes it would be even better to be able to do it before even getting home. In order to control those various appliances, I designed a simple WiFi controlled IR emitter.&lt;/p&gt;
+&lt;p&gt;The device consists of an ESP8266, an IR LED and IR receiver. The IR receiver is used to record IR signals from the original remote controller of the appliances. Those signals are stored in the ESP8266, which can then replay those using the IR LED.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Sign holders for COVID-19 prevention</title>
+      <link>https://articles.maximemoreillon.com/articles/462/</link>
+      <pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/462/</guid>
+      
+      <description>&lt;p&gt;Compared to other countries, Japan did not enforce a strict lockdown on its population during the COVID-19 pandemic. As a result, most bars and restaurants continued their operations as usual. However, in order to prevent the spread of the virus as much as possible, the staff of my local pub printed out signs asking customers to not leave their table without wearing a mask.&lt;/p&gt;
+&lt;p&gt;As they didn&amp;rsquo;t have anything to hold the signs on the table, I offered to use my 3D printer to solve the problem.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>DWC hydroponics system</title>
+      <link>https://articles.maximemoreillon.com/articles/482/</link>
+      <pubDate>Fri, 17 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/482/</guid>
+      
+      <description>&lt;p&gt;I am not much of a cook so salads are usually one of my favorite options for a healthy meal. So, just like for everything else, I started wondering if I could make my own. However, I don&amp;rsquo;t have access to a garden so I started looking into solutions to grow vegetables indoors. I settled for hydroponics, which seemed to provide a good balance between yield and operational hassle. Specifically, I went for a Deep Water Culture type of hydroponic system as it is usually considered easy for beginners to setup.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>RFID wristband</title>
+      <link>https://articles.maximemoreillon.com/articles/589/</link>
+      <pubDate>Sun, 04 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/589/</guid>
+      
+      <description>&lt;p&gt;RFID tags are great but often easy to lose. To solve this problem, I designed this case for an RFID tag, which can be worn on one&amp;rsquo;s wrist using a standard watch strap. The case was designed using Fusion360 and then 3D printed.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eaa369a075f73f659c403&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The RFID tag is slim enough to fit in the enclosure and is secured using the provided adhesive&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eaa419a075f432e59c407&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The STL file for this project is available on &lt;a href=&#34;https://www.thingiverse.com/thing:5145141&#34;&gt;Thingiverse&lt;/a&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>3D printed bracket for fume extractor</title>
+      <link>https://articles.maximemoreillon.com/articles/522/</link>
+      <pubDate>Sun, 09 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/522/</guid>
+      
+      <description>&lt;p&gt;I got myself a fume extractor but it takes a rather large amount of real-estate on my desk. I decided to mount it on an arm so that I could easily move it out of the way so I designed and 3D printed an attachment bracket for it.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fd10f9a075f99a459c899&#34; alt=&#34;&#34;&gt;The bracket was designed in Fusion 360&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fd8ca9a075faaea59c8ad&#34; alt=&#34;&#34;&gt;And then printed on my QIDI Tech 1&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fd97c9a075f778d59c8b1&#34; alt=&#34;&#34;&gt;It ended up fitting the fume extractor nicely&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT heater controller</title>
+      <link>https://articles.maximemoreillon.com/articles/81/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/81/</guid>
+      
+      <description>&lt;p&gt;The thermal insulation of my apartment not being the best, I decided to buy an electric heater in order not to freeze during cold winter nights. However, the one I got was probably too powerful for my needs and letting it run for too long would heat up my place too much. Thus, I added a wifi enabled controller to it so its operations are controlled by my home automation system.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT lock</title>
+      <link>https://articles.maximemoreillon.com/articles/237/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/237/</guid>
+      
+      <description>&lt;p&gt;Have you ever left your apartment and couldn&amp;rsquo;t remember if you locked your front door or not? Sadly, if it is unlocked, there is not much you can do about it until you get back home. This system is an attempt to solve the problem. Simply put, it consists of attaching an actuator to the door&amp;rsquo;s original locking mechanism and control it via WiFi.&lt;/p&gt;
+&lt;p&gt;I chose an MG996R as an actuator for its sufficient torque and angle range (180 deg). Most of the parts for this project have been 3D printed and designed in Fusion 360. The STL files are available on &lt;a href=&#34;https://www.thingiverse.com/thing:2462482&#34;&gt;Thingiverse&lt;/a&gt;. The servo&amp;rsquo;s shaft and the door&amp;rsquo;s locking mechanism are connected with parts designed specially so as to have a 90 degree play between them. This allows the lock to be operated normally without having the servo interfering.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Odroid XU4 server</title>
+      <link>https://articles.maximemoreillon.com/articles/390/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/390/</guid>
+      
+      <description>&lt;p&gt;Having one&amp;rsquo;s own server provides the ability to run web services 24/7. However, having a computer running all the time can significantly increase one&amp;rsquo;s electricity bill. The objective of this project was to build a low power home server capable of running common software (Apache, Node.js, etc.) while only consuming little power.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786dc16f2c2af38919cad2&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;For this purpose the Odroid XU4 was a great candidate: It runs Ubuntu and is more than powerful enough to run as a web server while drawing less than 20W. Additionally, it comes with USB3.0 ports, great for applications requiring file storage with decent speeds.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Raspberry Pi based NAS</title>
+      <link>https://articles.maximemoreillon.com/articles/591/</link>
+      <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/591/</guid>
+      
+      <description>&lt;p&gt;This is a simple Raspberry Pi based NAS. It features, as the title suggests, a Raspberry Pi as well as a 1TB 3.5&amp;rsquo;&amp;rsquo; HDD, interfaced with a USB to SATA converter.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614ed5d29a075fe79a59c599&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The NAS is self-contained in a enclosure made of wood, Acrylic and 3D printed parts.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614ed5b99a075f73e059c595&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,2 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Quasar on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/quasar/</link><description>Recent content in Quasar on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 29 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/quasar/index.xml" rel="self" type="application/rss+xml"/><item><title>Quasar and i18n-ally</title><link>https://articles.maximemoreillon.com/articles/a42bf7ab-7140-47e8-a2af-9dcef527105d/</link><pubDate>Thu, 29 Sep 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/a42bf7ab-7140-47e8-a2af-9dcef527105d/</guid><description>&lt;p>Quasar integrates i18n fairly well but its suggested usage does not suit the i18n-ally VS code extension very well. This article presents how to adapt the quasar proposed i18n usage so that i18n-ally can be used properly.&lt;/p>
-&lt;p>When following the quasar i18n integration guide, translations are stored in .ts files, residing in their respective folders in src/i18n. For i18n-ally to work, those need to be .json files. Also, I personally prefer to have all translations files in the same folder so let&amp;rsquo;s go ahead and delete the translation folders. Instead, the new structure of the i18n folder should look like this:&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Quasar on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/quasar/</link>
+    <description>Recent content in Quasar on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 29 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/quasar/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quasar and i18n-ally</title>
+      <link>https://articles.maximemoreillon.com/articles/a42bf7ab-7140-47e8-a2af-9dcef527105d/</link>
+      <pubDate>Thu, 29 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/a42bf7ab-7140-47e8-a2af-9dcef527105d/</guid>
+      
+      <description>&lt;p&gt;Quasar integrates i18n fairly well but its suggested usage does not suit the i18n-ally VS code extension very well. This article presents how to adapt the quasar proposed i18n usage so that i18n-ally can be used properly.&lt;/p&gt;
+&lt;p&gt;When following the quasar i18n integration guide, translations are stored in .ts files, residing in their respective folders in src/i18n. For i18n-ally to work, those need to be .json files. Also, I personally prefer to have all translations files in the same folder so let&amp;rsquo;s go ahead and delete the translation folders. Instead, the new structure of the i18n folder should look like this:&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

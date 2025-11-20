@@ -1,16 +1,81 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>NPM on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/npm/</link><description>Recent content in NPM on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 06 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/npm/index.xml" rel="self" type="application/rss+xml"/><item><title>Auto CRUD</title><link>https://articles.maximemoreillon.com/articles/1d5d4606-7732-40ec-b7b0-24afdf8b7d85/</link><pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/1d5d4606-7732-40ec-b7b0-24afdf8b7d85/</guid><description>&lt;p>Most web applications that manage data in a database perform at least some form of create, read, update or delete (CRUD) operations on stored records. Moreover, web applications also often expose those operations via a REST API.&lt;/p>
-&lt;p>Most database tables - corresponding to the entities manged by the application - need their own CRUD controller and set of HTTP endpoints. Because of this, large applications can quickly become tedious to develop and maintain. However, the logic for each table is usually quite similar.&lt;/p></description></item><item><title>A template for Vue.js applications</title><link>https://articles.maximemoreillon.com/articles/28/</link><pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/28/</guid><description>&lt;p>Over the years, I have built multiple Vue.js applications. Although their business logic differs, those applications often share similar components such as a navigation panel, a header with my logo and an authentication mechanism. Writing those from scratch for each application would be time consuming so I designed an application template that can be installed using &lt;a href="https://www.npmjs.com/package/@moreillon/vue_application_template">NPM&lt;/a> to bootstrap my projects.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/615255af9a075f4e3559ce34" alt="">&lt;/p>
-&lt;p>The template integrates in existing Vue.js applications as a component. By default, it wraps the router-view component and adds the following UI components to the app:&lt;/p></description></item><item><title>Group and User Pickers</title><link>https://articles.maximemoreillon.com/articles/134/</link><pubDate>Sat, 25 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/134/</guid><description>&lt;p>With the &lt;a href="https://articles.maximemoreillon.com/articles/585">user management&lt;/a> and &lt;a href="https://articles.maximemoreillon.com/articles/398">group management microservices&lt;/a>, users and their groups can be easily queried through HTTP requests. However, the GUI that the user interacts with must also be properly designed so as to provide an optimal UX. To facilitate the query of users via the GUI, I designed a group and user picker component for Vue.js that can be easily installed using NPM.&lt;/p>
-&lt;h2 id="group-picker">Group picker&lt;/h2>
-&lt;p>With the group management microservice, users are divided into groups. So, I first designed a group picker that allows to query the node corresponding to a specific group in the database. This picker takes advantage of the tree structure of groups to show those in orderly fashion. The component has been made so as to emit the group properties when a selection is made.&lt;/p></description></item><item><title>Express authorization middleware</title><link>https://articles.maximemoreillon.com/articles/247/</link><pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/247/</guid><description>&lt;p>Many applications require some form of authorization mechanism to prevent users from accessing restricted content. Authenticated users are commonly in possession of a cookie containing identification data. With the authentication microservice that I designed, this cookie contains a JWT that contains the user&amp;rsquo;s username. This JWT is sent in the authorization header of HTTP requests. Thus, authorization can be performed easily within each application by simply decoding the JWT. To do so, I designed this simple middleware for ExpressJS.&lt;/p></description></item><item><title>Publish a module to NPM</title><link>https://articles.maximemoreillon.com/articles/385/</link><pubDate>Sat, 18 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/385/</guid><description>&lt;p>This article is based on &lt;a href="https://www.freecodecamp.org/news/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78/">this publiation&lt;/a>.&lt;/p>
-&lt;p>To publish to npm, being logged in is required:&lt;/p>
-&lt;pre tabindex="0">&lt;code>npm login
-&lt;/code>&lt;/pre>&lt;p>The package to be published must be contained in its own directory, which must include a &lt;code>package.json&lt;/code> file&lt;/p>
-&lt;p>The &lt;code>package.json&lt;/code> file must contain at least the following information:&lt;/p>
-&lt;pre tabindex="0">&lt;code>{
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NPM on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/npm/</link>
+    <description>Recent content in NPM on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 06 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/npm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Auto CRUD</title>
+      <link>https://articles.maximemoreillon.com/articles/1d5d4606-7732-40ec-b7b0-24afdf8b7d85/</link>
+      <pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/1d5d4606-7732-40ec-b7b0-24afdf8b7d85/</guid>
+      
+      <description>&lt;p&gt;Most web applications that manage data in a database perform at least some form of create, read, update or delete (CRUD) operations on stored records. Moreover, web applications also often expose those operations via a REST API.&lt;/p&gt;
+&lt;p&gt;Most database tables - corresponding to the entities manged by the application - need their own CRUD controller and set of HTTP endpoints. Because of this, large applications can quickly become tedious to develop and maintain. However, the logic for each table is usually quite similar.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>A template for Vue.js applications</title>
+      <link>https://articles.maximemoreillon.com/articles/28/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/28/</guid>
+      
+      <description>&lt;p&gt;Over the years, I have built multiple Vue.js applications. Although their business logic differs, those applications often share similar components such as a navigation panel, a header with my logo and an authentication mechanism. Writing those from scratch for each application would be time consuming so I designed an application template that can be installed using &lt;a href=&#34;https://www.npmjs.com/package/@moreillon/vue_application_template&#34;&gt;NPM&lt;/a&gt; to bootstrap my projects.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/615255af9a075f4e3559ce34&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The template integrates in existing Vue.js applications as a component. By default, it wraps the router-view component and adds the following UI components to the app:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Group and User Pickers</title>
+      <link>https://articles.maximemoreillon.com/articles/134/</link>
+      <pubDate>Sat, 25 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/134/</guid>
+      
+      <description>&lt;p&gt;With the &lt;a href=&#34;https://articles.maximemoreillon.com/articles/585&#34;&gt;user management&lt;/a&gt; and &lt;a href=&#34;https://articles.maximemoreillon.com/articles/398&#34;&gt;group management microservices&lt;/a&gt;, users and their groups can be easily queried through HTTP requests. However, the GUI that the user interacts with must also be properly designed so as to provide an optimal UX. To facilitate the query of users via the GUI, I designed a group and user picker component for Vue.js that can be easily installed using NPM.&lt;/p&gt;
+&lt;h2 id=&#34;group-picker&#34;&gt;Group picker&lt;/h2&gt;
+&lt;p&gt;With the group management microservice, users are divided into groups. So, I first designed a group picker that allows to query the node corresponding to a specific group in the database. This picker takes advantage of the tree structure of groups to show those in orderly fashion. The component has been made so as to emit the group properties when a selection is made.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Express authorization middleware</title>
+      <link>https://articles.maximemoreillon.com/articles/247/</link>
+      <pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/247/</guid>
+      
+      <description>&lt;p&gt;Many applications require some form of authorization mechanism to prevent users from accessing restricted content. Authenticated users are commonly in possession of a cookie containing identification data. With the authentication microservice that I designed, this cookie contains a JWT that contains the user&amp;rsquo;s username. This JWT is sent in the authorization header of HTTP requests. Thus, authorization can be performed easily within each application by simply decoding the JWT. To do so, I designed this simple middleware for ExpressJS.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Publish a module to NPM</title>
+      <link>https://articles.maximemoreillon.com/articles/385/</link>
+      <pubDate>Sat, 18 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/385/</guid>
+      
+      <description>&lt;p&gt;This article is based on &lt;a href=&#34;https://www.freecodecamp.org/news/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78/&#34;&gt;this publiation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To publish to npm, being logged in is required:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;npm login
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The package to be published must be contained in its own directory, which must include a &lt;code&gt;package.json&lt;/code&gt; file&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;package.json&lt;/code&gt; file must contain at least the following information:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{
   &amp;#34;name&amp;#34;: &amp;#34;@USERNAME/MODULE_NAME&amp;#34;,
   &amp;#34;version&amp;#34;: &amp;#34;0.0.1&amp;#34;
-&amp;#34;main&amp;#34;: &amp;#34;FILE.js&amp;#34;,
+  &amp;#34;main&amp;#34;: &amp;#34;FILE.js&amp;#34;,
 }
-&lt;/code>&lt;/pre>&lt;p>where &lt;code>USERNAME&lt;/code> is the username of registered npmjs.com account, &lt;code>MODULE_NAME&lt;/code> is the name of the module to publish and &lt;code>FILE.js&lt;/code> the main file of the module.&lt;/p></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;where &lt;code&gt;USERNAME&lt;/code&gt; is the username of registered npmjs.com account, &lt;code&gt;MODULE_NAME&lt;/code&gt; is the name of the module to publish and &lt;code&gt;FILE.js&lt;/code&gt; the main file of the module.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

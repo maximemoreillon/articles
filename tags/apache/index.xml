@@ -1,46 +1,102 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apache on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/apache/</link><description>Recent content in Apache on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/apache/index.xml" rel="self" type="application/rss+xml"/><item><title>Serving web applications with Apache</title><link>https://articles.maximemoreillon.com/articles/173/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/173/</guid><description>&lt;p>Let&amp;rsquo;s imagine we have a server with Apache2 listening on port 80. Since port 80 is used, other web apps, developed for example with Node.js, must use another port. Consequently, one would need to open a new port on one&amp;rsquo;s router every time a new app is developed.&lt;/p>
-&lt;p>To solve this problem, Apache can be set to redirect requests to other destinations than itself. In other words, Apache serves as a reverse proxy.&lt;/p></description></item><item><title>Apache reverse proxy for web app</title><link>https://articles.maximemoreillon.com/articles/5/</link><pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/5/</guid><description>&lt;p>Let&amp;rsquo;s imagine that we&amp;rsquo;ve just finished developping a NodeJS application that listens for HTTP requests on port 8086 and that we have an Apache2 instance listening on port 80.&lt;/p>
-&lt;p>It is possible to configure Apache so that it connects its clients to the NodeJS app using the proxy module. Here is an example configuration file that does so:&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;lt;IfModule mod_ssl.c&amp;gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apache on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/apache/</link>
+    <description>Recent content in Apache on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/apache/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Serving web applications with Apache</title>
+      <link>https://articles.maximemoreillon.com/articles/173/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/173/</guid>
+      
+      <description>&lt;p&gt;Let&amp;rsquo;s imagine we have a server with Apache2 listening on port 80. Since port 80 is used, other web apps, developed for example with Node.js, must use another port. Consequently, one would need to open a new port on one&amp;rsquo;s router every time a new app is developed.&lt;/p&gt;
+&lt;p&gt;To solve this problem, Apache can be set to redirect requests to other destinations than itself. In other words, Apache serves as a reverse proxy.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Apache reverse proxy for web app</title>
+      <link>https://articles.maximemoreillon.com/articles/5/</link>
+      <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/5/</guid>
+      
+      <description>&lt;p&gt;Let&amp;rsquo;s imagine that we&amp;rsquo;ve just finished developping a NodeJS application that listens for HTTP requests on port 8086 and that we have an Apache2 instance listening on port 80.&lt;/p&gt;
+&lt;p&gt;It is possible to configure Apache so that it connects its clients to the NodeJS app using the proxy module. Here is an example configuration file that does so:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;IfModule mod_ssl.c&amp;gt;
         &amp;lt;VirtualHost *:443&amp;gt;
+
                 ServerName app.example.com
+
                 # SSL configuration
                 SSLEngine on
                 SSLCertificateFile /etc/letsencrypt/live/app.example.com/fullchain.pem
                 SSLCertificateKeyFile /etc/letsencrypt/live/app.example.com/privkey.pem
+
                 # Proxy config
                 SSLProxyEngine On
                 ProxyPass / http://localhost:8086/
                 ProxyPassReverse / http://localhost:8086/
+
         &amp;lt;/VirtualHost&amp;gt;
 &amp;lt;/IfModule&amp;gt;
-&lt;/code>&lt;/pre></description></item><item><title>Nextcloud Apache2 configuration</title><link>https://articles.maximemoreillon.com/articles/335/</link><pubDate>Thu, 02 Jan 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/335/</guid><description>&lt;p>Here is an example configuration file to use Nextcloud with an Apache2 server in Ubuntu. Here, it is assumed that nextcloud install is located in &lt;code>/var/www/&lt;/code>&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;lt;VirtualHost *:80&amp;gt;
-# Redirection to HTTPS
-ServerName nextcloud.example.com
-Redirect / https://nextcloud.example.com/
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Nextcloud Apache2 configuration</title>
+      <link>https://articles.maximemoreillon.com/articles/335/</link>
+      <pubDate>Thu, 02 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/335/</guid>
+      
+      <description>&lt;p&gt;Here is an example configuration file to use Nextcloud with an Apache2 server in Ubuntu. Here, it is assumed that nextcloud install is located in &lt;code&gt;/var/www/&lt;/code&gt;&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;VirtualHost *:80&amp;gt;
+	# Redirection to HTTPS
+	ServerName nextcloud.example.com
+	Redirect / https://nextcloud.example.com/
 &amp;lt;/VirtualHost&amp;gt;
+
 &amp;lt;IfModule mod_ssl.c&amp;gt;
-&amp;lt;VirtualHost *:443&amp;gt;
-ServerName nextcloud.example.com
-DocumentRoot /var/www/nextcloud/
-# Specific configuration for nextcloud
-&amp;lt;Directory /var/www/nextcloud/&amp;gt;
-Options +FollowSymlinks
-AllowOverride All
-&amp;lt;IfModule mod_dav.c&amp;gt;
-Dav off
+	&amp;lt;VirtualHost *:443&amp;gt;
+
+	ServerName nextcloud.example.com
+
+	DocumentRoot /var/www/nextcloud/
+
+	# Specific configuration for nextcloud
+	&amp;lt;Directory /var/www/nextcloud/&amp;gt;
+		Options +FollowSymlinks
+		AllowOverride All
+
+		&amp;lt;IfModule mod_dav.c&amp;gt;
+			Dav off
+		&amp;lt;/IfModule&amp;gt;
+
+		SetEnv HOME /var/www/nextcloud
+		SetEnv HTTP_HOME /var/www/nextcloud
+
+		&amp;lt;IfModule mod_headers.c&amp;gt;
+			Header always set Strict-Transport-Security &amp;#34;max-age=15552000; includeSubDomains; preload&amp;#34;
+		&amp;lt;/IfModule&amp;gt;
+	&amp;lt;/Directory&amp;gt;
+
+	# SSL configuration
+	SSLEngine on
+	SSLCertificateFile /etc/letsencrypt/live/nextcloud.example.com/fullchain.pem
+	SSLCertificateKeyFile /etc/letsencrypt/live/nextcloud.example.com/privkey.pem
+
+	&amp;lt;/VirtualHost&amp;gt;
 &amp;lt;/IfModule&amp;gt;
-SetEnv HOME /var/www/nextcloud
-SetEnv HTTP_HOME /var/www/nextcloud
-&amp;lt;IfModule mod_headers.c&amp;gt;
-Header always set Strict-Transport-Security &amp;#34;max-age=15552000; includeSubDomains; preload&amp;#34;
-&amp;lt;/IfModule&amp;gt;
-&amp;lt;/Directory&amp;gt;
-# SSL configuration
-SSLEngine on
-SSLCertificateFile /etc/letsencrypt/live/nextcloud.example.com/fullchain.pem
-SSLCertificateKeyFile /etc/letsencrypt/live/nextcloud.example.com/privkey.pem
-&amp;lt;/VirtualHost&amp;gt;
-&amp;lt;/IfModule&amp;gt;
-&lt;/code>&lt;/pre></description></item></channel></rss>
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

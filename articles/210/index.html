@@ -1,10 +1,184 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=content-type content="text/html"><meta name=viewport content="width=device-width,initial-scale=1"><title itemprop=name>GitLab CI Microk8s integration | Maxime Moreillon</title><meta property="og:title" content="GitLab CI Microk8s integration | Maxime Moreillon"><meta name=twitter:title content="GitLab CI Microk8s integration | Maxime Moreillon"><meta itemprop=name content="GitLab CI Microk8s integration | Maxime Moreillon"><meta name=application-name content="GitLab CI Microk8s integration | Maxime Moreillon"><meta property="og:site_name" content><meta name=description content><meta itemprop=description content><meta property="og:description" content><meta name=twitter:description content><meta property="og:locale" content="en-us"><meta name=language content="en-us"><link rel=alternate hreflang=en href=https://articles.maximemoreillon.com/articles/210/ title><meta name=generator content="Hugo 0.147.8"><meta property="og:url" content="https://articles.maximemoreillon.com/articles/210/"><meta property="og:site_name" content="Maxime Moreillon"><meta property="og:title" content="GitLab CI Microk8s integration"><meta property="og:description" content="Note: This guide applies for Kubernetes versions prior to 1.24. Moreover, Kubernetes integration in GitLab is now achieved via the GitLab agent for Kubernetes. This guide is meant for legacy support.
-GitLab provides Kubernetes integration out of the box, which means that GitLab CI/CD Pipelines can be used to deploy applications in Kubernetes easily. This guide presents how to integrate a Kubernetes cluster in a GitLab Project and follows Gitlab documentation. For this particular case, the cluster will be that of a Microk8s Kubernetes distribution."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="articles"><meta property="article:published_time" content="2020-05-25T00:00:00+00:00"><meta property="article:modified_time" content="2020-05-25T00:00:00+00:00"><meta property="article:tag" content="Microk8s"><meta property="article:tag" content="GitLab"><meta property="article:tag" content="Tutorials"><meta property="article:tag" content="Kubernetes"><meta name=twitter:card content="summary"><meta name=twitter:title content="GitLab CI Microk8s integration"><meta name=twitter:description content="Note: This guide applies for Kubernetes versions prior to 1.24. Moreover, Kubernetes integration in GitLab is now achieved via the GitLab agent for Kubernetes. This guide is meant for legacy support.
-GitLab provides Kubernetes integration out of the box, which means that GitLab CI/CD Pipelines can be used to deploy applications in Kubernetes easily. This guide presents how to integrate a Kubernetes cluster in a GitLab Project and follows Gitlab documentation. For this particular case, the cluster will be that of a Microk8s Kubernetes distribution."><link rel=canonical href=https://articles.maximemoreillon.com/articles/210/><link href=/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css rel=stylesheet><link href=/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css rel=stylesheet><link rel=apple-touch-icon sizes=180x180 href=/icons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/icons/favicon-16x16.png><link rel=mask-icon href=/icons/safari-pinned-tab.svg><link rel="shortcut icon" href=/favicon.ico><link rel=manifest href=https://articles.maximemoreillon.com/site.webmanifest><meta name=msapplication-config content="/browserconfig.xml"><meta name=msapplication-TileColor content="#2d89ef"><meta name=theme-color content="#434648"><meta name=color-scheme content="light dark"><link rel=icon type=image/svg+xml href=/icons/favicon.svg></head><body data-theme class=notransition><script src=/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script><div class=navbar role=navigation><nav class=menu aria-label="Main Navigation"><a href=https://articles.maximemoreillon.com/ class=logo><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><title/><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-</a><input type=checkbox id=menu-trigger class=menu-trigger>
-<label for=menu-trigger><span class=menu-icon><svg width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7H3.40726"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"/><path stroke-linecap="round" stroke-linejoin="round" d="M.5 12.5V1.5c0-.552285.447715-1 1-1h11C13.0523.5 13.5.947715 13.5 1.5v11C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C.947715 13.5.5 13.0523.5 12.5z"/></svg></span></label><div class=trigger><ul class=trigger-container><li><a class=menu-link href=/>Home</a></li><li><a class="menu-link active" href=/articles/>Articles</a></li><li><a class=menu-link href=/tags/>Tags</a></li><li class=menu-separator><span>|</span></li></ul><a id=mode href=#><svg class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>
-<svg class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1"><title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1=".5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1=".5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg></a></div></nav></div><div class="wrapper post"><main class=page-content aria-label=Content><article><header class=header><h1 class=header-title>GitLab CI Microk8s integration</h1><div class=post-meta><time datetime=2020-05-25T00:00:00+00:00 itemprop=datePublished>May 25, 2020</time></div></header><div class=page-content><p><strong>Note</strong>: This guide applies for Kubernetes versions prior to 1.24. Moreover, Kubernetes integration in GitLab is now achieved via the GitLab agent for Kubernetes. This guide is meant for legacy support.</p><p>GitLab provides Kubernetes integration out of the box, which means that GitLab CI/CD Pipelines can be used to deploy applications in Kubernetes easily. This guide presents how to integrate a Kubernetes cluster in a GitLab Project and follows <a href=https://docs.gitlab.com/ee/user/project/clusters/add_remove_clusters.html>Gitlab documentation</a>. For this particular case, the cluster will be that of a <a href=https://microk8s.io/>Microk8s</a> Kubernetes distribution.</p><p>Once a project has been created ion GitLab, go to the Operations menu of the project in GitLab and click Kubernetes.</p><p><img src="https://img.maximemoreillon.com/image?id=5ecb506a55b0c13a46749cff" alt></p><p>Once in the Kubernetes section of the project, click &ldquo;Add Kubernetes cluster&rdquo; And then click the &ldquo;Add Existing Cluster&rdquo; tab.</p><p>Apart from giving a name of your choice to the cluster, three pieces of information are required to register a kubernetes cluster in GitLab:</p><ul><li>The API URL of the cluster</li><li>The CA certificate of the cluster</li><li>The service token of the GitLab service account in the cluster</li></ul><p><img src="https://img.maximemoreillon.com/image?id=5ecb554755b0c15fe1749d00" alt></p><h2 id=api-url>API URL</h2><p>The API port of a Microk8s cluster is 16443. Thus, the API URL should be in the form <code>https://&lt;Server IP>:16443</code>, where <code>&lt;Server IP></code> is to be replaced with the IP of the server where the Microk8s cluster is running.</p><h2 id=ca-certificate>CA certificate</h2><p>The CA certificate of the cluster can be retrieved using the following command:</p><pre tabindex=0><code>microk8s.kubectl get secret $(microk8s.kubectl get secrets | grep default-token | awk &#39;{print $1}&#39;) -o jsonpath=&#34;{[&#39;data&#39;][&#39;ca\.crt&#39;]}&#34; | base64 --decode
-</code></pre><p>The command should output the certificate of the cluster in the following form:</p><pre tabindex=0><code>-----BEGIN CERTIFICATE-----
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">GitLab CI Microk8s integration | Maxime Moreillon</title>
+<meta property="og:title" content="GitLab CI Microk8s integration | Maxime Moreillon" />
+<meta name="twitter:title" content="GitLab CI Microk8s integration | Maxime Moreillon" />
+<meta itemprop="name" content="GitLab CI Microk8s integration | Maxime Moreillon" />
+<meta name="application-name" content="GitLab CI Microk8s integration | Maxime Moreillon" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/210/" title="" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.147.8">
+
+    
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/210/">
+  <meta property="og:site_name" content="Maxime Moreillon">
+  <meta property="og:title" content="GitLab CI Microk8s integration">
+  <meta property="og:description" content="Note: This guide applies for Kubernetes versions prior to 1.24. Moreover, Kubernetes integration in GitLab is now achieved via the GitLab agent for Kubernetes. This guide is meant for legacy support.
+GitLab provides Kubernetes integration out of the box, which means that GitLab CI/CD Pipelines can be used to deploy applications in Kubernetes easily. This guide presents how to integrate a Kubernetes cluster in a GitLab Project and follows Gitlab documentation. For this particular case, the cluster will be that of a Microk8s Kubernetes distribution.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2020-05-25T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-05-25T00:00:00+00:00">
+    <meta property="article:tag" content="Microk8s">
+    <meta property="article:tag" content="GitLab">
+    <meta property="article:tag" content="Tutorials">
+    <meta property="article:tag" content="Kubernetes">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GitLab CI Microk8s integration">
+  <meta name="twitter:description" content="Note: This guide applies for Kubernetes versions prior to 1.24. Moreover, Kubernetes integration in GitLab is now achieved via the GitLab agent for Kubernetes. This guide is meant for legacy support.
+GitLab provides Kubernetes integration out of the box, which means that GitLab CI/CD Pipelines can be used to deploy applications in Kubernetes easily. This guide presents how to integrate a Kubernetes cluster in a GitLab Project and follows Gitlab documentation. For this particular case, the cluster will be that of a Microk8s Kubernetes distribution.">
+
+
+    
+
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/210/">
+    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://articles.maximemoreillon.com/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+    <meta name="color-scheme" content="light dark">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://articles.maximemoreillon.com/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title></title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/articles/">
+                        Articles
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">GitLab CI Microk8s integration</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2020-05-25T00:00:00&#43;00:00" itemprop="datePublished"> May 25, 2020 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p><strong>Note</strong>: This guide applies for Kubernetes versions prior to 1.24. Moreover, Kubernetes integration in GitLab is now achieved via the GitLab agent for Kubernetes. This guide is meant for legacy support.</p>
+<p>GitLab provides Kubernetes integration out of the box, which means that GitLab CI/CD Pipelines can be used to deploy applications in Kubernetes easily. This guide presents how to integrate a Kubernetes cluster in a GitLab Project and follows <a href="https://docs.gitlab.com/ee/user/project/clusters/add_remove_clusters.html">Gitlab documentation</a>. For this particular case, the cluster will be that of a <a href="https://microk8s.io/">Microk8s</a> Kubernetes distribution.</p>
+<p>Once a project has been created ion GitLab, go to the Operations menu of the project in GitLab and click Kubernetes.</p>
+<p><img src="https://img.maximemoreillon.com/image?id=5ecb506a55b0c13a46749cff" alt=""></p>
+<p>Once in the Kubernetes section of the project, click &ldquo;Add Kubernetes cluster&rdquo; And then click the &ldquo;Add Existing Cluster&rdquo; tab.</p>
+<p>Apart from giving a name of your choice to the cluster, three pieces of information are required to register a kubernetes cluster in GitLab:</p>
+<ul>
+<li>The API URL of the cluster</li>
+<li>The CA certificate of the cluster</li>
+<li>The service token of the GitLab service account in the cluster</li>
+</ul>
+<p><img src="https://img.maximemoreillon.com/image?id=5ecb554755b0c15fe1749d00" alt=""></p>
+<h2 id="api-url">API URL</h2>
+<p>The API port of a Microk8s cluster is 16443. Thus, the API URL should be in the form <code>https://&lt;Server IP&gt;:16443</code>, where <code>&lt;Server IP&gt;</code> is to be replaced with the IP of the server where the Microk8s cluster is running.</p>
+<h2 id="ca-certificate">CA certificate</h2>
+<p>The CA certificate of the cluster can be retrieved using the following command:</p>
+<pre tabindex="0"><code>microk8s.kubectl get secret $(microk8s.kubectl get secrets | grep default-token | awk &#39;{print $1}&#39;) -o jsonpath=&#34;{[&#39;data&#39;][&#39;ca\.crt&#39;]}&#34; | base64 --decode
+</code></pre><p>The command should output the certificate of the cluster in the following form:</p>
+<pre tabindex="0"><code>-----BEGIN CERTIFICATE-----
 MIICwTCCAamgAwIBAgIEMv8+mzANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDDApJ
 bnRlcm1lZENBMB4XDTIwMDYwMjAzNDkzMVoXDTI1MTIzMTAwMDAwMFowETEPMA0G
 A1UEAwwGYXNkYXNkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1Mwr
@@ -21,8 +195,11 @@ kVlnylXsf0mimfkQNfN1I2RJfPjpX6aAq4XereUFbNFXWA7Nl/36YNMSQWoGPps7
 Rz7uXOy3p2VS+FsHUmBGDjX5x7koAJbE3+h9xn+bqwkHy3roxHOgI2fxjvARHgsg
 58SIFfm6D+9Pisp2ej/gd7uX/k95FzVgnaVDQMoCyC0tPcbcUw==
 -----END CERTIFICATE-----
-</code></pre><h2 id=service-token>Service token</h2><p>Finally, the service token can be obtained by creating a service account for GitLab in the Kubernetes cluster. This requires RBAC to be enabled in the Kubernetes cluster. For Microk8s, RBAC can be enabled easily using</p><pre tabindex=0><code>microk8s enable rbac
-</code></pre><p>The GitLab service account can be created just like any other Kubernetes resource using a manifest file. Thus, create a file named <code>gitlabserviceaccount.yml</code> with the following content</p><pre tabindex=0><code>apiVersion: v1
+</code></pre><h2 id="service-token">Service token</h2>
+<p>Finally, the service token can be obtained by creating a service account for GitLab in the Kubernetes cluster. This requires RBAC to be enabled in the Kubernetes cluster. For Microk8s, RBAC can be enabled easily using</p>
+<pre tabindex="0"><code>microk8s enable rbac
+</code></pre><p>The GitLab service account can be created just like any other Kubernetes resource using a manifest file. Thus, create a file named <code>gitlabserviceaccount.yml</code> with the following content</p>
+<pre tabindex="0"><code>apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: gitlab-admin
@@ -40,9 +217,12 @@ subjects:
 - kind: ServiceAccount
   name: gitlab-admin
   namespace: kube-system
-</code></pre><p>The resources can be created by running</p><pre tabindex=0><code>microk8s.kubectl apply -f gitlab_service_account.yml
-</code></pre><p>With the newly created service account, the token can be retrieved using this command:</p><pre tabindex=0><code>microk8s.kubectl -n kube-system describe secret $(microk8s.kubectl -n kube-system get secret | grep gitlab-admin | awk &#39;{print $1}&#39;)
-</code></pre><p>Which should output the following</p><pre tabindex=0><code>Name:         gitlab-admin-token-xwb79
+</code></pre><p>The resources can be created by running</p>
+<pre tabindex="0"><code>microk8s.kubectl apply -f gitlab_service_account.yml
+</code></pre><p>With the newly created service account, the token can be retrieved using this command:</p>
+<pre tabindex="0"><code>microk8s.kubectl -n kube-system describe secret $(microk8s.kubectl -n kube-system get secret | grep gitlab-admin | awk &#39;{print $1}&#39;)
+</code></pre><p>Which should output the following</p>
+<pre tabindex="0"><code>Name:         gitlab-admin-token-xwb79
 Namespace:    kube-system
 Labels:       &lt;none&gt;
 Annotations:  kubernetes.io/service-account.name: gitlab-admin
@@ -55,4 +235,34 @@ Data
 token:      eyJhbGciO893mlaKlas73ASm3...30cvPbicVMm98asdSDD9uFas29OASJeUBQ
 ca.crt:     1103 bytes
 namespace:  11 bytes
-</code></pre><p>Here, simply copy and paste the long string after <em>token</em> into the GitLab configuration page.</p><p>With those steps completed, the only thing left to do is to click save and the cluster should be integrated in GitLab.</p></div></article></main></div><footer class=footer><span class=footer_item></span>&nbsp;<div class=footer_social-icons></div><small class=footer_copyright>© 2025 Maxime Moreillon.</small></footer><script src=https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script></body></html>
+</code></pre><p>Here, simply copy and paste the long string after <em>token</em> into the GitLab configuration page.</p>
+<p>With those steps completed, the only thing left to do is to click save and the cluster should be integrated in GitLab.</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+</div>
+    <small class="footer_copyright">
+        © 2025 Maxime Moreillon.
+        
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

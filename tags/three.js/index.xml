@@ -1,2 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Three.js on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/three.js/</link><description>Recent content in Three.js on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/three.js/index.xml" rel="self" type="application/rss+xml"/><item><title>MQTThree</title><link>https://articles.maximemoreillon.com/articles/2e301bdf-99eb-49cc-8c11-02ac8f0a4f72/</link><pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/2e301bdf-99eb-49cc-8c11-02ac8f0a4f72/</guid><description>&lt;p>Recently, I&amp;rsquo;ve been working on a few projects involving digital twins. At its core, a digital twin is simply a digital representation, oftentimes in 3D, of a physical system. Such representation commonly provides information about the system as well as ways of interactions. On the physical system, this is can be accomplished with IoT devices.&lt;/p>
-&lt;p>Having to build a dedicated application for each digital twin would be tedious so I designed a simple framework to make the process more convenient. The framework uses Three.js for the 3D representation of the system and MQTT to interact with its IoT devices, which led to the name MQTThree.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Three.js on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/three.js/</link>
+    <description>Recent content in Three.js on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/three.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MQTThree</title>
+      <link>https://articles.maximemoreillon.com/articles/2e301bdf-99eb-49cc-8c11-02ac8f0a4f72/</link>
+      <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/2e301bdf-99eb-49cc-8c11-02ac8f0a4f72/</guid>
+      
+      <description>&lt;p&gt;Recently, I&amp;rsquo;ve been working on a few projects involving digital twins. At its core, a digital twin is simply a digital representation, oftentimes in 3D, of a physical system. Such representation commonly provides information about the system as well as ways of interactions. On the physical system, this is can be accomplished with IoT devices.&lt;/p&gt;
+&lt;p&gt;Having to build a dedicated application for each digital twin would be tedious so I designed a simple framework to make the process more convenient. The framework uses Three.js for the 3D representation of the system and MQTT to interact with its IoT devices, which led to the name MQTThree.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

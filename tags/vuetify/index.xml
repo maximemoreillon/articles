@@ -1,9 +1,74 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vuetify on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/vuetify/</link><description>Recent content in Vuetify on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 09 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/vuetify/index.xml" rel="self" type="application/rss+xml"/><item><title>MQTT Logger</title><link>https://articles.maximemoreillon.com/articles/5aa92bbf-956c-43a9-8f3c-e0bdacd6412d/</link><pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/5aa92bbf-956c-43a9-8f3c-e0bdacd6412d/</guid><description>&lt;p>Over the years, I&amp;rsquo;ve used various IoT sensors which collect data that is then broadcast using MQTT. Those sensors generally broadcast individual measurements without saving any form of history locally. Consequently, if one would want to plot time-series graphs, the data would first need to be stored somewhere. This is the objective of the application presented in this article, named MQTT Logger.&lt;/p>
-&lt;p>MQTT Logger is a Node.js application which subscribes to MQTT topics of IoT sensors and stores the data that those published in an InfluxDB time-series database.&lt;/p></description></item><item><title>Wardrobe and outfits management web app</title><link>https://articles.maximemoreillon.com/articles/0c1a7a47-c651-472d-a867-e1e2b040e997/</link><pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/0c1a7a47-c651-472d-a867-e1e2b040e997/</guid><description>&lt;p>Have you ever bought a piece of clothing only to come home and realize you already had a similar one in your wardrobe? This web application aims at solving this problem by allowing users to register their garments in a database.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/61f2b47035a52f9bb09e4eef" alt="">&lt;/p>
-&lt;p>Moreover, the application provides a way to register complete outfits and list the various garments that are parts it.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/62b8fa733bbcba1c3e77be8c" alt="">&lt;/p>
-&lt;p>The application consists of a Node.js back-end which stores garment information in a MongoDB database. It also provides a REST API built using Express to exchange data with the application&amp;rsquo;s GUI. The latter is a Vue.js single page application featuring UI components from the Vuetify library.&lt;/p></description></item><item><title>File POSTer</title><link>https://articles.maximemoreillon.com/articles/441/</link><pubDate>Sun, 28 Nov 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/441/</guid><description>&lt;p>Many web applications rely on the upload of files from client to server via a POST request. The content-type of this request is generally multipart/form-data. When developing the server-side of such application, being able to quickly test the upload feature can greatly increase productivity. So, I designed this simple web application that can POST a file to any URL.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/61a2ddd34b39954ad9dae5c4" alt="">&lt;/p>
-&lt;p>The application is built using Vue.js with the Vuetify plugin and uses Axios to send the HTTP requests. Its source code is available on &lt;a href="https://gitlab.com/moreillon_k8s_home/file-poster">GitLab&lt;/a>. The application can be deployed as a Docker container, for which the image is available on &lt;a href="https://hub.docker.com/repository/docker/moreillon/file-poster">Docker Hub&lt;/a>.&lt;/p></description></item><item><title>MQTT control dashboard</title><link>https://articles.maximemoreillon.com/articles/555/</link><pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/555/</guid><description>&lt;p>With the cloud native multi-user MQTT platform deployed, I started designing IoT devices that I could distribute to end users. However, without a GUI, interacting with those devices would be difficult. Of course, one could install applications like MQTT dash or similar but this would require tedious configuration such as MQTT broker and topics. I wanted to give users a simpler UX so I made this simple control interface that automatically displays a users devices and allows those to be controlled.&lt;/p></description></item><item><title>API tester</title><link>https://articles.maximemoreillon.com/articles/518/</link><pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/518/</guid><description>&lt;p>There are multiple tools available for API testing, Postman and Insomnia being probably the most popular. However, those are desktop applications that need to be installed. I wanted a solution that I can use in the browser so I made a simple web application to achieve basic API testing functions.&lt;/p>
-&lt;p>This application can send GET, POST, DELETE, PUT and PATCH HPP requests and allows the user to add headers or a JSON body to the request.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vuetify on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/vuetify/</link>
+    <description>Recent content in Vuetify on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/vuetify/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MQTT Logger</title>
+      <link>https://articles.maximemoreillon.com/articles/5aa92bbf-956c-43a9-8f3c-e0bdacd6412d/</link>
+      <pubDate>Sat, 09 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/5aa92bbf-956c-43a9-8f3c-e0bdacd6412d/</guid>
+      
+      <description>&lt;p&gt;Over the years, I&amp;rsquo;ve used various IoT sensors which collect data that is then broadcast using MQTT. Those sensors generally broadcast individual measurements without saving any form of history locally. Consequently, if one would want to plot time-series graphs, the data would first need to be stored somewhere. This is the objective of the application presented in this article, named MQTT Logger.&lt;/p&gt;
+&lt;p&gt;MQTT Logger is a Node.js application which subscribes to MQTT topics of IoT sensors and stores the data that those published in an InfluxDB time-series database.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Wardrobe and outfits management web app</title>
+      <link>https://articles.maximemoreillon.com/articles/0c1a7a47-c651-472d-a867-e1e2b040e997/</link>
+      <pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/0c1a7a47-c651-472d-a867-e1e2b040e997/</guid>
+      
+      <description>&lt;p&gt;Have you ever bought a piece of clothing only to come home and realize you already had a similar one in your wardrobe? This web application aims at solving this problem by allowing users to register their garments in a database.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/61f2b47035a52f9bb09e4eef&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Moreover, the application provides a way to register complete outfits and list the various garments that are parts it.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62b8fa733bbcba1c3e77be8c&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The application consists of a Node.js back-end which stores garment information in a MongoDB database. It also provides a REST API built using Express to exchange data with the application&amp;rsquo;s GUI. The latter is a Vue.js single page application featuring UI components from the Vuetify library.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>File POSTer</title>
+      <link>https://articles.maximemoreillon.com/articles/441/</link>
+      <pubDate>Sun, 28 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/441/</guid>
+      
+      <description>&lt;p&gt;Many web applications rely on the upload of files from client to server via a POST request. The content-type of this request is generally multipart/form-data. When developing the server-side of such application, being able to quickly test the upload feature can greatly increase productivity. So, I designed this simple web application that can POST a file to any URL.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/61a2ddd34b39954ad9dae5c4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The application is built using Vue.js with the Vuetify plugin and uses Axios to send the HTTP requests. Its source code is available on &lt;a href=&#34;https://gitlab.com/moreillon_k8s_home/file-poster&#34;&gt;GitLab&lt;/a&gt;. The application can be deployed as a Docker container, for which the image is available on &lt;a href=&#34;https://hub.docker.com/repository/docker/moreillon/file-poster&#34;&gt;Docker Hub&lt;/a&gt;.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>MQTT control dashboard</title>
+      <link>https://articles.maximemoreillon.com/articles/555/</link>
+      <pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/555/</guid>
+      
+      <description>&lt;p&gt;With the cloud native multi-user MQTT platform deployed, I started designing IoT devices that I could distribute to end users. However, without a GUI, interacting with those devices would be difficult. Of course, one could install applications like MQTT dash or similar but this would require tedious configuration such as MQTT broker and topics. I wanted to give users a simpler UX so I made this simple control interface that automatically displays a users devices and allows those to be controlled.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>API tester</title>
+      <link>https://articles.maximemoreillon.com/articles/518/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/518/</guid>
+      
+      <description>&lt;p&gt;There are multiple tools available for API testing, Postman and Insomnia being probably the most popular. However, those are desktop applications that need to be installed. I wanted a solution that I can use in the browser so I made a simple web application to achieve basic API testing functions.&lt;/p&gt;
+&lt;p&gt;This application can send GET, POST, DELETE, PUT and PATCH HPP requests and allows the user to add headers or a JSON body to the request.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

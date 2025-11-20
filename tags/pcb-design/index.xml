@@ -1,9 +1,85 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PCB Design on Maxime Moreillon</title><link>https://articles.maximemoreillon.com/tags/pcb-design/</link><description>Recent content in PCB Design on Maxime Moreillon</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/pcb-design/index.xml" rel="self" type="application/rss+xml"/><item><title>IoT sensor module</title><link>https://articles.maximemoreillon.com/articles/f0b88a38-7271-4f8d-8f60-05efbdd861cc/</link><pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/f0b88a38-7271-4f8d-8f60-05efbdd861cc/</guid><description>&lt;p>Although a wide variety of sensing devices can be envisioned for home automation systems, motion and temperature sensors are among the most widespread. This is mostly due to their low cost and simplicity of use. In order to equip multiple rooms of my apartment with such sensors, I designed a simple IoT sensing module that can easily be produced in any quantity.&lt;/p>
-&lt;p>The module is designed around an Wemos D1 mini (ESP8266 module) which interfaces with a HC-SR501 PIR motion sensor and Dallas DS18B20 temperature sensor. Additionally, since the Wemos still had a lot of available pins available, I added a photoresistor to measure illuminance.&lt;/p></description></item><item><title>IoT LED controller</title><link>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</link><pubDate>Sun, 27 Mar 2022 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</guid><description>&lt;p>Smart lights are usually some of the first appliances to be added to a smart home. Although those can nowadays be purchased easily from various brands, I wanted to have my own hardware so as to integrate it better with other devices and software. Thus, I decided to an IoT LED controller that I can use in various projects where lighting has to be controlled via network protocols.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/images/6240057135a52f5ea69e899b" alt="">&lt;/p>
-&lt;h2 id="hardware">Hardware&lt;/h2>
-&lt;p>The controller is built around an ESP8266 microcontroller (Wemos D1 mini) and N-Channel MOSFETS. The latter switch the 12V line of LED strips or COBs according to the microcontroller. Here, up to 4 channels of LEDs can be controlled by a single controller.&lt;/p></description></item><item><title>WiFi light bulb controller</title><link>https://articles.maximemoreillon.com/articles/520/</link><pubDate>Tue, 21 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/520/</guid><description>&lt;p>Wifi controlled smart light bulbs can now be purchased from less than USD 10. However, those can often only be used by a specific application provided by the vendor and can involve exchanging data with a third party server. I wanted a solution to use my own software while benefiting from the cheap hardware so I replaced the wifi module of a a cheap Wifi light bulb my own electronics.&lt;/p></description></item><item><title>ESP-12F basic circuit and PCB</title><link>https://articles.maximemoreillon.com/articles/460/</link><pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/460/</guid><description>&lt;p>Modules like the Wemos D1 mini are a relatively cheap and easy way to integrate an ESP8266 in a project. However, one would sometimes require to have more freedom over the electronics, especially when it comes to PCB layout. For this purpose, the ESP8266 can be used in a form factor closer to its raw form, the ESP12-F module.&lt;/p>
-&lt;p>An ESP12-F is lacking many of the components required for its operation that would normally be present on the Wemos D1 mini. Thus, whenever integrating an ESP12-F in a project, it is important to add those components to the schematic and PCB.&lt;/p></description></item><item><title>IoT infrared controller</title><link>https://articles.maximemoreillon.com/articles/538/</link><pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/538/</guid><description>&lt;p>Although probably in the decline, infrared is a common way to remotely control household appliances such as air conditioners or TVs. Being able to turn on an AC unit without leaving the sofa is definitely comfortable, but sometimes it would be even better to be able to do it before even getting home. In order to control those various appliances, I designed a simple WiFi controlled IR emitter.&lt;/p>
-&lt;p>The device consists of an ESP8266, an IR LED and IR receiver. The IR receiver is used to record IR signals from the original remote controller of the appliances. Those signals are stored in the ESP8266, which can then replay those using the IR LED.&lt;/p></description></item><item><title>IoT RFID reader</title><link>https://articles.maximemoreillon.com/articles/79/</link><pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate><guid>https://articles.maximemoreillon.com/articles/79/</guid><description>&lt;p>RFID is a convenient technology for access control and authentication. In this project, I connected an RC522 RFID reader to an ESP32 in order to use it for IoT applications. Additionally, to provide feedback to the user, the ESP32 is also connected to an SSD1306 OLED display and a buzzer. I chose an ESP32 over an ESP8266 simply because of the amount of GPIOs required.&lt;/p>
-&lt;p>&lt;img src="https://img.maximemoreillon.com/image?id=5e786e6f6f2c2a9eb519cad6" alt="">&lt;/p>
-&lt;p>I intended to build multiple of those readers but it would take too much time to make them using protoboard. So, I designed a custom PCB using &lt;a href="https://easyeda.com/">EasyEDA&lt;/a> and had multiple copies manufactured by &lt;a href="https://jlcpcb.com/">JLCPCB&lt;/a>. A link to the complete EasyEDA project can be found &lt;a href="https://easyeda.com/m.moreillon/iot_rfid_reader">Here&lt;/a>.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PCB Design on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/pcb-design/</link>
+    <description>Recent content in PCB Design on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/pcb-design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IoT sensor module</title>
+      <link>https://articles.maximemoreillon.com/articles/f0b88a38-7271-4f8d-8f60-05efbdd861cc/</link>
+      <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/f0b88a38-7271-4f8d-8f60-05efbdd861cc/</guid>
+      
+      <description>&lt;p&gt;Although a wide variety of sensing devices can be envisioned for home automation systems, motion and temperature sensors are among the most widespread. This is mostly due to their low cost and simplicity of use. In order to equip multiple rooms of my apartment with such sensors, I designed a simple IoT sensing module that can easily be produced in any quantity.&lt;/p&gt;
+&lt;p&gt;The module is designed around an Wemos D1 mini (ESP8266 module) which interfaces with a HC-SR501 PIR motion sensor and Dallas DS18B20 temperature sensor. Additionally, since the Wemos still had a lot of available pins available, I added a photoresistor to measure illuminance.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT LED controller</title>
+      <link>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</link>
+      <pubDate>Sun, 27 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</guid>
+      
+      <description>&lt;p&gt;Smart lights are usually some of the first appliances to be added to a smart home. Although those can nowadays be purchased easily from various brands, I wanted to have my own hardware so as to integrate it better with other devices and software. Thus, I decided to an IoT LED controller that I can use in various projects where lighting has to be controlled via network protocols.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6240057135a52f5ea69e899b&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;hardware&#34;&gt;Hardware&lt;/h2&gt;
+&lt;p&gt;The controller is built around an ESP8266 microcontroller (Wemos D1 mini) and N-Channel MOSFETS. The latter switch the 12V line of LED strips or COBs according to the microcontroller. Here, up to 4 channels of LEDs can be controlled by a single controller.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>WiFi light bulb controller</title>
+      <link>https://articles.maximemoreillon.com/articles/520/</link>
+      <pubDate>Tue, 21 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/520/</guid>
+      
+      <description>&lt;p&gt;Wifi controlled smart light bulbs can now be purchased from less than USD 10. However, those can often only be used by a specific application provided by the vendor and can involve exchanging data with a third party server. I wanted a solution to use my own software while benefiting from the cheap hardware so I replaced the wifi module of a a cheap Wifi light bulb my own electronics.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>ESP-12F basic circuit and PCB</title>
+      <link>https://articles.maximemoreillon.com/articles/460/</link>
+      <pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/460/</guid>
+      
+      <description>&lt;p&gt;Modules like the Wemos D1 mini are a relatively cheap and easy way to integrate an ESP8266 in a project. However, one would sometimes require to have more freedom over the electronics, especially when it comes to PCB layout. For this purpose, the ESP8266 can be used in a form factor closer to its raw form, the ESP12-F module.&lt;/p&gt;
+&lt;p&gt;An ESP12-F is lacking many of the components required for its operation that would normally be present on the Wemos D1 mini. Thus, whenever integrating an ESP12-F in a project, it is important to add those components to the schematic and PCB.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT infrared controller</title>
+      <link>https://articles.maximemoreillon.com/articles/538/</link>
+      <pubDate>Mon, 20 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/538/</guid>
+      
+      <description>&lt;p&gt;Although probably in the decline, infrared is a common way to remotely control household appliances such as air conditioners or TVs. Being able to turn on an AC unit without leaving the sofa is definitely comfortable, but sometimes it would be even better to be able to do it before even getting home. In order to control those various appliances, I designed a simple WiFi controlled IR emitter.&lt;/p&gt;
+&lt;p&gt;The device consists of an ESP8266, an IR LED and IR receiver. The IR receiver is used to record IR signals from the original remote controller of the appliances. Those signals are stored in the ESP8266, which can then replay those using the IR LED.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>IoT RFID reader</title>
+      <link>https://articles.maximemoreillon.com/articles/79/</link>
+      <pubDate>Mon, 09 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/79/</guid>
+      
+      <description>&lt;p&gt;RFID is a convenient technology for access control and authentication. In this project, I connected an RC522 RFID reader to an ESP32 in order to use it for IoT applications. Additionally, to provide feedback to the user, the ESP32 is also connected to an SSD1306 OLED display and a buzzer. I chose an ESP32 over an ESP8266 simply because of the amount of GPIOs required.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786e6f6f2c2a9eb519cad6&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I intended to build multiple of those readers but it would take too much time to make them using protoboard. So, I designed a custom PCB using &lt;a href=&#34;https://easyeda.com/&#34;&gt;EasyEDA&lt;/a&gt; and had multiple copies manufactured by &lt;a href=&#34;https://jlcpcb.com/&#34;&gt;JLCPCB&lt;/a&gt;. A link to the complete EasyEDA project can be found &lt;a href=&#34;https://easyeda.com/m.moreillon/iot_rfid_reader&#34;&gt;Here&lt;/a&gt;.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
