@@ -1,0 +1,36 @@
+baseURL = 'https://articles.maximemoreillon.com/'
+languageCode = 'en-us'
+title = 'Maxime Moreillon'
+theme = 'hugo-blog-awesome'
+# theme ='flat'
+# summaryLength = 20
+
+# hugo-blog-awesome theme configuration
+[Params]
+  [Params.author]
+    name = 'Maxime Moreillon'
+    avatar = '/logo.svg'
+    intro = 'Maxime Moreillon'
+    description = 'DevOps, Wev development, IoT'
+
+
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+  [[menus.main]]
+    name = 'Articles'
+    pageRef = '/articles'
+    weight = 20
+
+  [[menus.main]]
+    name = 'Tags'
+    pageRef = '/tags'
+    weight = 30
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = '0.146.0'
