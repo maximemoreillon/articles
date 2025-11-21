@@ -7,6 +7,8 @@ theme = 'hugo-blog-awesome'
 
 # hugo-blog-awesome theme configuration
 [Params]
+  # [params.metadata]
+  #   favicon = '/icons/favicon.ico'
   [Params.author]
     name = 'Maxime Moreillon'
     avatar = '/images/logo.png'
