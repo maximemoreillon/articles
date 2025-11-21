@@ -11,7 +11,7 @@ theme = 'hugo-blog-awesome'
     name = 'Maxime Moreillon'
     avatar = '/images/logo.png'
     intro = 'Maxime Moreillon'
-    description = 'DevOps, Wev development, IoT'
+    # description = 'DevOps, Wev development, IoT'
 
 
 [menus]
