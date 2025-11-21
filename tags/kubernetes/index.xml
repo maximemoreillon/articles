@@ -94,7 +94,7 @@ data:
     </item>
     
     <item>
-      <title>Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed</title>
+      <title>Migrating a Kubernetes PV to a new storage class</title>
       <link>https://articles.maximemoreillon.com/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/</link>
       <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
       
