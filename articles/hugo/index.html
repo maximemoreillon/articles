@@ -1,12 +1,13 @@
-<!DOCTYPE html><html lang="en-us"><head><meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Maxime Moreillon | Maxime Moreillon</title>
-<meta property="og:title" content="Maxime Moreillon | Maxime Moreillon" />
-<meta name="twitter:title" content="Maxime Moreillon | Maxime Moreillon" />
-<meta itemprop="name" content="Maxime Moreillon | Maxime Moreillon" />
-<meta name="application-name" content="Maxime Moreillon | Maxime Moreillon" />
+<title itemprop="name">Migrating from my CMS to Hugo | Maxime Moreillon</title>
+<meta property="og:title" content="Migrating from my CMS to Hugo | Maxime Moreillon" />
+<meta name="twitter:title" content="Migrating from my CMS to Hugo | Maxime Moreillon" />
+<meta itemprop="name" content="Migrating from my CMS to Hugo | Maxime Moreillon" />
+<meta name="application-name" content="Migrating from my CMS to Hugo | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -17,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/hugo/" title="" />
 
 
 
@@ -27,24 +28,31 @@
 <meta name="generator" content="Hugo 0.147.8">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/hugo/">
   <meta property="og:site_name" content="Maxime Moreillon">
-  <meta property="og:title" content="Maxime Moreillon">
+  <meta property="og:title" content="Migrating from my CMS to Hugo">
+  <meta property="og:description" content="For several years, I have been managing articles such as this one using a custom CMS built around Neo4j. Although functional, this approach required operational overhead such as server administration, authentication and maintenance.
+To reduce this burden, I decided to export all articles as markdown files and use Hugo, a popular static site generator, to render and serve those.
+Adding articles now involves adding mardkown files to the Hugo project’s content folder and pushing the code to GitHub for CI/CD to compile it into the newest version of the site to be served.">
   <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2025-11-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-11-21T00:00:00+00:00">
 
 
     
     
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Maxime Moreillon">
+  <meta name="twitter:title" content="Migrating from my CMS to Hugo">
+  <meta name="twitter:description" content="For several years, I have been managing articles such as this one using a custom CMS built around Neo4j. Although functional, this approach required operational overhead such as server administration, authentication and maintenance.
+To reduce this burden, I decided to export all articles as markdown files and use Hugo, a popular static site generator, to render and serve those.
+Adding articles now involves adding mardkown files to the Hugo project’s content folder and pushing the code to GitHub for CI/CD to compile it into the newest version of the site to be served.">
 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/">
-    <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/hugo/">
     <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -72,7 +80,7 @@
     
     
 </head>
-<body data-theme="auto" class="notransition">
+<body data-theme = "" class="notransition">
 
 <script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
 
@@ -99,14 +107,14 @@ stroke-linejoin="round" class="feather feather-home">
                 
                 
                 <li>
-                    <a class="menu-link active" href="/">
+                    <a class="menu-link " href="/">
                         Home
                     </a>
                     
                 </li>
                 
                 <li>
-                    <a class="menu-link " href="/articles/">
+                    <a class="menu-link active" href="/articles/">
                         Articles
                     </a>
                     
@@ -134,119 +142,32 @@ stroke-linejoin="round" class="feather feather-home">
         </div>
     </nav>
 </div>
-<div class="wrapper">
-        
 
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Migrating from my CMS to Hugo</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2025-11-21T00:00:00&#43;00:00" itemprop="datePublished"> Nov 21, 2025 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>For several years, I have been managing articles such as this one using a custom CMS built around Neo4j.
+Although functional, this approach required operational overhead such as server administration, authentication and maintenance.</p>
+<p>To reduce this burden, I decided to export all articles as markdown files and use Hugo, a popular static site generator, to render and serve those.</p>
+<p>Adding articles now involves adding mardkown files to the Hugo project&rsquo;s <code>content</code> folder and pushing the code to GitHub for CI/CD to compile it into the newest version of the site to be served.</p>
+<p>Although this means I can no longer edit or add articles directly from the CMS&rsquo;s web UI, the simplicity and security that it provides feels worth it.</p>
 
-<div class="author">
-    
-    
-    
-    
-    
-    <img
-        class="author-avatar"
-        src="/images/logo_hu_cbf61aec8f426ab5.webp"
-        srcset="/images/logo_hu_ba84a9fd646f9f7e.webp 2x, /images/logo_hu_e5260cf3c7eb520d.webp 3x"
-        alt="Maxime Moreillon"
-        width="70"
-        height="70" />
-    
-    
-    <h2 class="author-name">Maxime Moreillon</h2>
-    <p class="author-bio"></p>
+            </div>
+        </article></main>
 </div>
-
-        <main aria-label="Content">
-            <h3 class="posts-item-note" aria-label="Recent Posts"></h3>
-            
-            
-            
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/hugo/">Migrating from my CMS to Hugo</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2025-11-21T00:00:00Z">
-        21 Nov 2025
-        
-    </time>
-</article>
-
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/">Nginx as reverse proxy in Kubernetes</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-06-17T00:00:00Z">
-        17 Jun 2024
-        
-    </time>
-</article>
-
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/">Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-05-20T00:00:00Z">
-        20 May 2024
-        
-    </time>
-</article>
-
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/e6687cab-6c3d-41bc-b713-7ea50b6e6cb6/">Neighbridge homepage</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-05-03T00:00:00Z">
-        3 May 2024
-        
-    </time>
-</article>
-
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/bd9dcf40-ce45-42ac-8d58-de4be0c04ab1/">Countries tracker</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-02-18T00:00:00Z">
-        18 Feb 2024
-        
-    </time>
-</article>
-
-            
-            
-            <p>
-                
-                <a href="https://articles.maximemoreillon.com/articles/"></a>
-                
-            </p>
-            
-        </main>
-    </div><footer class="footer">
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 
@@ -270,5 +191,4 @@ stroke-linejoin="round" class="feather feather-home">
     
 
 </body>
-
 </html>

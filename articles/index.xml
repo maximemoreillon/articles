@@ -6,7 +6,21 @@
     <description>Recent content in Articles on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 21 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrating from my CMS to Hugo</title>
+      <link>https://articles.maximemoreillon.com/articles/hugo/</link>
+      <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/hugo/</guid>
+      
+      <description>&lt;p&gt;For several years, I have been managing articles such as this one using a custom CMS built around Neo4j.
+Although functional, this approach required operational overhead such as server administration, authentication and maintenance.&lt;/p&gt;
+&lt;p&gt;To reduce this burden, I decided to export all articles as markdown files and use Hugo, a popular static site generator, to render and serve those.&lt;/p&gt;
+&lt;p&gt;Adding articles now involves adding mardkown files to the Hugo project&amp;rsquo;s &lt;code&gt;content&lt;/code&gt; folder and pushing the code to GitHub for CI/CD to compile it into the newest version of the site to be served.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Nginx as reverse proxy in Kubernetes</title>
       <link>https://articles.maximemoreillon.com/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/</link>
