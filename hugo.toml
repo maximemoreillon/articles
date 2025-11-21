@@ -9,7 +9,7 @@ theme = 'hugo-blog-awesome'
 [Params]
   [Params.author]
     name = 'Maxime Moreillon'
-    avatar = '/logo.svg'
+    avatar = '/images/logo.png'
     intro = 'Maxime Moreillon'
     description = 'DevOps, Wev development, IoT'
 
