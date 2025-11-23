@@ -1,6 +1,7 @@
 +++
-date = '2024-02-18'
 title = "Countries tracker"
+date = '2024-02-18'
+lastmod = '2024-03-04'
 tags = ['Firebase', 'Projects', 'Svelte']
 +++
 

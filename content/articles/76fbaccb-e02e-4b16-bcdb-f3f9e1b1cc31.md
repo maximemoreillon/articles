@@ -1,6 +1,7 @@
 +++
-date = '2022-07-15'
 title = "Using v-model on a prop"
+date = '2022-07-15'
+lastmod = '2024-02-11'
 tags = ['Vue.js', 'Tutorials']
 +++
 

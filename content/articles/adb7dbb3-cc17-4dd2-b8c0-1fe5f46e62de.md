@@ -1,6 +1,7 @@
 +++
-date = '2022-12-19'
 title = "Mongoose query documents with matching array element"
+date = '2022-12-19'
+lastmod = '2024-02-17'
 tags = ['MongoDB', 'Mongoose', 'Tutorials']
 +++
 
