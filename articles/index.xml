@@ -108,7 +108,7 @@ data:
     </item>
     
     <item>
-      <title>Migrating a Kubernetes PV to a new storage class</title>
+      <title>Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed</title>
       <link>https://articles.maximemoreillon.com/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/</link>
       <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
       
@@ -619,7 +619,7 @@ SyntaxError: Unexpected identifier
       <guid>https://articles.maximemoreillon.com/articles/818698f9-9a0d-4b9d-bc92-846fcc395d04/</guid>
       
       <description>&lt;p&gt;測定データをクラウドに上げ体重の推移を管理できるIoT体重計&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786e056f2c2a1eca19cad4&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786e056f2c2a1eca19cad4&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
 &lt;h2 id=&#34;回路図&#34;&gt;回路図&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62d36ff23bbcba047377d4af&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
@@ -672,11 +672,11 @@ SyntaxError: Unexpected identifier
 &lt;p&gt;そこで、簡単に使える購買システムを開発した。&lt;/p&gt;
 &lt;p&gt;使い方は、社員はあらかじめ入金をして、社員証をデバイスにかざしてプリペイドカードのようにコーヒーの元を購入することができる。&lt;/p&gt;
 &lt;p&gt;社内で運用していて、２年間でおよそ27万円の購買実績がある。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e796ef4ad3848218cf8697e&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e796ef4ad3848218cf8697e&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
 &lt;h2 id=&#34;gui-スクリーンショット&#34;&gt;GUI スクリーンショット&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614969859a075f92be59b6f5&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e787e6a83516e8e5fa90c3f&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e787e6a83516e8e5fa90c3f&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
       
     </item>
     
@@ -688,10 +688,10 @@ SyntaxError: Unexpected identifier
       <guid>https://articles.maximemoreillon.com/articles/c21bf7cf-a170-4805-920c-6bfda6a1ee81/</guid>
       
       <description>&lt;p&gt;マンションの電流測れるIoTセンサー。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786e4b6f2c2a628a19cad5&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786e4b6f2c2a628a19cad5&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
 &lt;h2 id=&#34;回路図&#34;&gt;回路図&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e79931b2143b0ee5ebdf007&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e79931b2143b0ee5ebdf007&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
       
     </item>
     
@@ -720,10 +720,10 @@ SyntaxError: Unexpected identifier
       <guid>https://articles.maximemoreillon.com/articles/715c35db-6a4b-4e28-bee7-379e73e8a196/</guid>
       
       <description>&lt;p&gt;ブリーフケースには電子ロックと指紋リーダがついてるので、指で解除される。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786d976f2c2a633319cad1&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786d976f2c2a633319cad1&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
 &lt;h2 id=&#34;回路図&#34;&gt;回路図&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e79a8d8110ef24ac9856591&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e79a8d8110ef24ac9856591&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
       
     </item>
     
@@ -758,7 +758,7 @@ SyntaxError: Unexpected identifier
 &lt;h2 id=&#34;スクリーンショット&#34;&gt;スクリーンショット&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/63567cd0640e5212932be136&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;アーキテクチャ&#34;&gt;アーキテクチャ&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e79964c2143b04ff1bdf00c&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e79964c2143b04ff1bdf00c&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;</description>
       
     </item>
     
@@ -1821,7 +1821,7 @@ if __name__ == &amp;#34;__main__&amp;#34;:
       <guid>https://articles.maximemoreillon.com/articles/33/</guid>
       
       <description>&lt;p&gt;From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;function area_of_circle(radius){
   return Math.PI * radius * radius
 }
@@ -1837,7 +1837,7 @@ if __name__ == &amp;#34;__main__&amp;#34;:
       <guid>https://articles.maximemoreillon.com/articles/389/</guid>
       
       <description>&lt;p&gt;This is a wireless motion sensor that runs on rechargeable batteries. It can be deployed anywhere and sends a signal using an NRF24L01 wireless module whenever it detects motion.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e78598c5e7fee69fd6e5745&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e78598c5e7fee69fd6e5745&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The device is composed of the following parts&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Arduino pro mini&lt;/li&gt;
@@ -2075,7 +2075,7 @@ DNS.6 = mydomain.com
       
       <description>&lt;p&gt;A company I worked for had a coffee machine for which employees could purchase coffee. However, the payment was done by putting coins in a jar.&lt;/p&gt;
 &lt;p&gt;Not only did this present the obvious risk of theft, this system was also impractical for people not carrying spare change at all time. I decided to solve this issue by designing this cashless payment system.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e796ef4ad3848218cf8697e&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e796ef4ad3848218cf8697e&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Here is a video of the system in action:&lt;/p&gt;</description>
       
     </item>
@@ -2387,7 +2387,7 @@ int main()
       <guid>https://articles.maximemoreillon.com/articles/156/</guid>
       
       <description>&lt;p&gt;This project consists of an HC-SR501 PIR motion sensor and a DHT22 temperature and humidity sensor connected to a Wemos D1 mini, an ESP8266 breakout board.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e785a235e7fee47b76e5746&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e785a235e7fee47b76e5746&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;MQTT messages are published whenever motion is detected, which can be used for room presence estimation. On the other hand, humidity and temperature are measured and published periodically.&lt;/p&gt;
 &lt;p&gt;The parts list is pretty straightforward:&lt;/p&gt;
 &lt;ul&gt;
@@ -2432,7 +2432,7 @@ int main()
       <guid>https://articles.maximemoreillon.com/articles/11/</guid>
       
       <description>&lt;p&gt;One of the companies I worked for put a lot of importance on safety. As a way to improve the employees&amp;rsquo; awareness of danger, there would be regular meetings during which participants would need to identify dangerous points in a picture. The results were written down and archived on paper, which I believed could be improved. So, I created this web application.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786ddc6f2c2a0fca19cad3&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786ddc6f2c2a0fca19cad3&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This app is built around an HTML5 canvas that displays an image of a random situation. One by one, the participants click on the dangerous points in it, which draws a colored circle at the clicks location. After all participants are done, the circles of every participant is displayed, giving an opportunity to discuss every one&amp;rsquo;s input. Once discussed, the results, in the form of the point count and the canvas containing the circles of every member, can be saved on the server. The points of each session are stored in a new row of a MySQL table and is displayed prior to the session.&lt;/p&gt;</description>
       
     </item>
@@ -2553,7 +2553,7 @@ int main()
       <guid>https://articles.maximemoreillon.com/articles/372/</guid>
       
       <description>&lt;p&gt;This is an IoT ceiling light controller which includes an HC-SR501 PIR motion sensor. It is built around a Wemos D1 mini (ESP8266 breakout board), which controls a homemade TRIAC breakout board. TRIACs provide the advantage of switching devices on and off silently, as opposed to a mechanical relay.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e7859695e7feee2d46e5744&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e7859695e7feee2d46e5744&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The system is powered from the same AC lines as the lights, thanks to an embedded AC-DC converter. This removes the need for an additional power supply.&lt;/p&gt;</description>
       
     </item>
@@ -2579,7 +2579,7 @@ int main()
       <guid>https://articles.maximemoreillon.com/articles/390/</guid>
       
       <description>&lt;p&gt;Having one&amp;rsquo;s own server provides the ability to run web services 24/7. However, having a computer running all the time can significantly increase one&amp;rsquo;s electricity bill. The objective of this project was to build a low power home server capable of running common software (Apache, Node.js, etc.) while only consuming little power.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786dc16f2c2af38919cad2&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786dc16f2c2af38919cad2&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;For this purpose the Odroid XU4 was a great candidate: It runs Ubuntu and is more than powerful enough to run as a web server while drawing less than 20W. Additionally, it comes with USB3.0 ports, great for applications requiring file storage with decent speeds.&lt;/p&gt;</description>
       
     </item>
@@ -2759,7 +2759,7 @@ int main()
       <guid>https://articles.maximemoreillon.com/articles/79/</guid>
       
       <description>&lt;p&gt;RFID is a convenient technology for access control and authentication. In this project, I connected an RC522 RFID reader to an ESP32 in order to use it for IoT applications. Additionally, to provide feedback to the user, the ESP32 is also connected to an SSD1306 OLED display and a buzzer. I chose an ESP32 over an ESP8266 simply because of the amount of GPIOs required.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786e6f6f2c2a9eb519cad6&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786e6f6f2c2a9eb519cad6&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I intended to build multiple of those readers but it would take too much time to make them using protoboard. So, I designed a custom PCB using &lt;a href=&#34;https://easyeda.com/&#34;&gt;EasyEDA&lt;/a&gt; and had multiple copies manufactured by &lt;a href=&#34;https://jlcpcb.com/&#34;&gt;JLCPCB&lt;/a&gt;. A link to the complete EasyEDA project can be found &lt;a href=&#34;https://easyeda.com/m.moreillon/iot_rfid_reader&#34;&gt;Here&lt;/a&gt;.&lt;/p&gt;</description>
       
     </item>
@@ -3600,7 +3600,7 @@ console.log(myModule.foo) // Will print &amp;#34;bar&amp;#34;
       <guid>https://articles.maximemoreillon.com/articles/337/</guid>
       
       <description>&lt;p&gt;Most corporate networks have their outbound traffic go through a proxy server to prevent unauthorized access to external resources. It can happen that such proxy only allows HTTP and HTTPS traffic. As such, one cannot connect to an external host via SSH. One way to solve this problem is to use &lt;a href=&#34;https://github.com/proxytunnel/proxytunnel&#34;&gt;Proxytunnel&lt;/a&gt;. This article follows &lt;a href=&#34;https://egret.psychol.cam.ac.uk/techniques/firewall.html&#34;&gt;this guide&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e78590a5e7fee7b9d6e5742&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e78590a5e7fee7b9d6e5742&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;server-side-apache-configuration&#34;&gt;Server-side: Apache configuration&lt;/h2&gt;
 &lt;p&gt;The following snippet is to be placed into the configuration of your default virtual host. X.X.X.X is the public IP of the local proxy.&lt;/p&gt;</description>
       
@@ -3775,7 +3775,7 @@ password_file /etc/mosquitto/passwd
       <guid>https://articles.maximemoreillon.com/articles/13/</guid>
       
       <description>&lt;p&gt;This is one of my earliest electronics project: An alarm clock built around an Arduino nano, a real-time clock (RTC) module and a 7-segment display.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e796da9ad3848334cf8697d&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e796da9ad3848334cf8697d&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Among other,it features the following functions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Alarm clock&lt;/li&gt;

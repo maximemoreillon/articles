@@ -64,7 +64,7 @@
       <guid>https://articles.maximemoreillon.com/articles/389/</guid>
       
       <description>&lt;p&gt;This is a wireless motion sensor that runs on rechargeable batteries. It can be deployed anywhere and sends a signal using an NRF24L01 wireless module whenever it detects motion.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e78598c5e7fee69fd6e5745&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e78598c5e7fee69fd6e5745&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The device is composed of the following parts&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Arduino pro mini&lt;/li&gt;
@@ -196,7 +196,7 @@
       <guid>https://articles.maximemoreillon.com/articles/13/</guid>
       
       <description>&lt;p&gt;This is one of my earliest electronics project: An alarm clock built around an Arduino nano, a real-time clock (RTC) module and a 7-segment display.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e796da9ad3848334cf8697d&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e796da9ad3848334cf8697d&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Among other,it features the following functions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Alarm clock&lt;/li&gt;

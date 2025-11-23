@@ -94,7 +94,7 @@ data:
     </item>
     
     <item>
-      <title>Migrating a Kubernetes PV to a new storage class</title>
+      <title>Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed</title>
       <link>https://articles.maximemoreillon.com/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/</link>
       <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
       
@@ -797,7 +797,7 @@ if __name__ == &amp;#34;__main__&amp;#34;:
       <guid>https://articles.maximemoreillon.com/articles/33/</guid>
       
       <description>&lt;p&gt;From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;function area_of_circle(radius){
   return Math.PI * radius * radius
 }
@@ -1739,7 +1739,7 @@ console.log(myModule.foo) // Will print &amp;#34;bar&amp;#34;
       <guid>https://articles.maximemoreillon.com/articles/337/</guid>
       
       <description>&lt;p&gt;Most corporate networks have their outbound traffic go through a proxy server to prevent unauthorized access to external resources. It can happen that such proxy only allows HTTP and HTTPS traffic. As such, one cannot connect to an external host via SSH. One way to solve this problem is to use &lt;a href=&#34;https://github.com/proxytunnel/proxytunnel&#34;&gt;Proxytunnel&lt;/a&gt;. This article follows &lt;a href=&#34;https://egret.psychol.cam.ac.uk/techniques/firewall.html&#34;&gt;this guide&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e78590a5e7fee7b9d6e5742&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e78590a5e7fee7b9d6e5742&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;server-side-apache-configuration&#34;&gt;Server-side: Apache configuration&lt;/h2&gt;
 &lt;p&gt;The following snippet is to be placed into the configuration of your default virtual host. X.X.X.X is the public IP of the local proxy.&lt;/p&gt;</description>
       

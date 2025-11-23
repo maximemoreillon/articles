@@ -161,7 +161,7 @@ stroke-linejoin="round" class="feather feather-home">
             
             <div class="page-content">
                 <p>From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.</p>
-<p><img src="https://img.maximemoreillon.com/image?id=5ec5d30a55b0c12424749cf4" alt="">As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:</p>
+<p><img src="https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4" alt="">As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:</p>
 <pre tabindex="0"><code>function area_of_circle(radius){
   return Math.PI * radius * radius
 }
@@ -171,9 +171,9 @@ let cylinder_radius = 3
 
 let cylinder_volume = area_of_circle(cylinder_radius ) * cylinder_height
 </code></pre><p>However, defining a function in this fashion does obviously not make it available to every single piece of software in the world. In fact, the function can only be used within the scope of the application it is part of. Consequenlty, data flow is also bound the the application scope.</p>
-<p><img src="https://img.maximemoreillon.com/image?id=5ec5d21055b0c175c0749cf3" alt=""></p>
+<p><img src="https://img.maximemoreillon.com/images/5ec5d21055b0c175c0749cf3" alt=""></p>
 <p>In numerous cases, data needs to be exchanged not only within but also between applications. This requires some form of interface for data to leave and enter the scope of their respective application. Such interface is called an application programming interface, or API.</p>
-<p><img src="https://img.maximemoreillon.com/image?id=5ec5d32255b0c1675b749cf5" alt=""></p>
+<p><img src="https://img.maximemoreillon.com/images/5ec5d32255b0c1675b749cf5" alt=""></p>
 <p>Enabling the exchange of data between multiple applications requires the establishment of communication standards. Currently, the most widespread method to exchange data between applications is the Hyper Text Transfer Protocol, or HTTP. APIs based on HTTP that follow the proper HTTP usage guidelines are called REST APIs.</p>
 <h2 id="practical-examples">Practical examples</h2>
 <p>Now that we&rsquo;ve cleared some basic theory about APIs, let&rsquo;s go through some practical examples. Here, we are going to take our <em>area_of_circle</em> function and expose it using a REST API so that other applications can access it.</p>

@@ -153,7 +153,7 @@
       <guid>https://articles.maximemoreillon.com/articles/390/</guid>
       
       <description>&lt;p&gt;Having one&amp;rsquo;s own server provides the ability to run web services 24/7. However, having a computer running all the time can significantly increase one&amp;rsquo;s electricity bill. The objective of this project was to build a low power home server capable of running common software (Apache, Node.js, etc.) while only consuming little power.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786dc16f2c2af38919cad2&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786dc16f2c2af38919cad2&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;For this purpose the Odroid XU4 was a great candidate: It runs Ubuntu and is more than powerful enough to run as a web server while drawing less than 20W. Additionally, it comes with USB3.0 ports, great for applications requiring file storage with decent speeds.&lt;/p&gt;</description>
       
     </item>

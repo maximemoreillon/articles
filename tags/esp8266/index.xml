@@ -52,7 +52,7 @@
       
       <description>&lt;p&gt;A company I worked for had a coffee machine for which employees could purchase coffee. However, the payment was done by putting coins in a jar.&lt;/p&gt;
 &lt;p&gt;Not only did this present the obvious risk of theft, this system was also impractical for people not carrying spare change at all time. I decided to solve this issue by designing this cashless payment system.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e796ef4ad3848218cf8697e&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e796ef4ad3848218cf8697e&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Here is a video of the system in action:&lt;/p&gt;</description>
       
     </item>
@@ -76,7 +76,7 @@
       <guid>https://articles.maximemoreillon.com/articles/156/</guid>
       
       <description>&lt;p&gt;This project consists of an HC-SR501 PIR motion sensor and a DHT22 temperature and humidity sensor connected to a Wemos D1 mini, an ESP8266 breakout board.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e785a235e7fee47b76e5746&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e785a235e7fee47b76e5746&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;MQTT messages are published whenever motion is detected, which can be used for room presence estimation. On the other hand, humidity and temperature are measured and published periodically.&lt;/p&gt;
 &lt;p&gt;The parts list is pretty straightforward:&lt;/p&gt;
 &lt;ul&gt;
@@ -131,7 +131,7 @@
       <guid>https://articles.maximemoreillon.com/articles/372/</guid>
       
       <description>&lt;p&gt;This is an IoT ceiling light controller which includes an HC-SR501 PIR motion sensor. It is built around a Wemos D1 mini (ESP8266 breakout board), which controls a homemade TRIAC breakout board. TRIACs provide the advantage of switching devices on and off silently, as opposed to a mechanical relay.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e7859695e7feee2d46e5744&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e7859695e7feee2d46e5744&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The system is powered from the same AC lines as the lights, thanks to an embedded AC-DC converter. This removes the need for an additional power supply.&lt;/p&gt;</description>
       
     </item>
@@ -157,7 +157,7 @@
       <guid>https://articles.maximemoreillon.com/articles/79/</guid>
       
       <description>&lt;p&gt;RFID is a convenient technology for access control and authentication. In this project, I connected an RC522 RFID reader to an ESP32 in order to use it for IoT applications. Additionally, to provide feedback to the user, the ESP32 is also connected to an SSD1306 OLED display and a buzzer. I chose an ESP32 over an ESP8266 simply because of the amount of GPIOs required.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e786e6f6f2c2a9eb519cad6&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786e6f6f2c2a9eb519cad6&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I intended to build multiple of those readers but it would take too much time to make them using protoboard. So, I designed a custom PCB using &lt;a href=&#34;https://easyeda.com/&#34;&gt;EasyEDA&lt;/a&gt; and had multiple copies manufactured by &lt;a href=&#34;https://jlcpcb.com/&#34;&gt;JLCPCB&lt;/a&gt;. A link to the complete EasyEDA project can be found &lt;a href=&#34;https://easyeda.com/m.moreillon/iot_rfid_reader&#34;&gt;Here&lt;/a&gt;.&lt;/p&gt;</description>
       
     </item>

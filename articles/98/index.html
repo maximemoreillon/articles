@@ -205,7 +205,7 @@ app.listen(port, () =&gt; console.log(`Example app listening at http://0.0.0.0:$
 </code></pre><p>This application can be executed using</p>
 <pre tabindex="0"><code>node main.js
 </code></pre><p>One can now point a browser to the ip of the server and specifying port 3000 to see the application responding with <code>Hello World!</code>. To quit the app, press <em>Ctrl+C</em>.</p>
-<p><img src="https://img.maximemoreillon.com/image?id=5ecb48f555b0c15cbb749cfd" alt="">One could argue about the usefuleness of such application. However, it wil likely appear obvious to readers that business logic can be added to the code in order to exapand its capabilities.</p>
+<p><img src="https://img.maximemoreillon.com/images/5ecb48f555b0c15cbb749cfd" alt="">One could argue about the usefuleness of such application. However, it wil likely appear obvious to readers that business logic can be added to the code in order to exapand its capabilities.</p>
 <h2 id="dockerization-configuration">Dockerization configuration</h2>
 <p>Now that the application is working in the development environment, it is time to containerize it so that it can be shipped to the production environment.</p>
 <p>The application is containerized using <a href="https://www.docker.com/">Docker</a>, which simply requires a configuration file (called Dockerfile) to specify the containerization parameters. This section follows the <a href="https://nodejs.org/fr/docs/guides/nodejs-docker-webapp/">NodeJS guide to application dockerization</a></p>
@@ -299,12 +299,12 @@ deployment:
 </code></pre><h2 id="gitlab-project-preparation">GitLab project preparation</h2>
 <h3 id="project-creation-1">Project creation</h3>
 <p>The local content of the project is ready for the deployment of the application. Now, a remote repository needs to be created for the project in GitLab. This can be done simply by clicking the New project button and then giving a name to the project.</p>
-<p><img src="https://img.maximemoreillon.com/image?id=5ecb4fb355b0c15768749cfe" alt=""></p>
+<p><img src="https://img.maximemoreillon.com/images/5ecb4fb355b0c15768749cfe" alt=""></p>
 <p>Once created, GitLab provides an URL that can be used to push code to the repository.</p>
 <h3 id="kubernetes-integration">Kubernetes Integration</h3>
 <p>Now that the project has been created in GitLab, it must be configured so as to connect to the desired Kubernetes cluster. Ideally, the project should be created in a group that already has a Kubernetes cluster integrated, but if it is not the case, Kubernetes clusters can be integrated at project level.</p>
 <p>To do so, go to the Operations menu of the project in GitLab and click Kubernetes.</p>
-<p><img src="https://img.maximemoreillon.com/image?id=5ecb506a55b0c13a46749cff" alt=""></p>
+<p><img src="https://img.maximemoreillon.com/images/5ecb506a55b0c13a46749cff" alt=""></p>
 <p>This leads to a page allowing the user to configure details of the Kubernetes cluster integration. The <a href="https://docs.gitlab.com/ee/user/project/clusters/add_remove_clusters.html">Gitlab documentation</a> provides a complete guide on how to do so.</p>
 <h2 id="pushing-the-project-to-gitlab-using-git">Pushing the project to GitLab using Git</h2>
 <p>With the remote repository created, the local content can pushed using <a href="https://git-scm.com/">Git</a>. To do so, the project direcotry must be inisialized so as to be used with git, which can be done as so</p>

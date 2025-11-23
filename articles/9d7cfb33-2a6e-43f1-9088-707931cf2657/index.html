@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Migrating a Kubernetes PV to a new storage class | Maxime Moreillon</title>
-<meta property="og:title" content="Migrating a Kubernetes PV to a new storage class | Maxime Moreillon" />
-<meta name="twitter:title" content="Migrating a Kubernetes PV to a new storage class | Maxime Moreillon" />
-<meta itemprop="name" content="Migrating a Kubernetes PV to a new storage class | Maxime Moreillon" />
-<meta name="application-name" content="Migrating a Kubernetes PV to a new storage class | Maxime Moreillon" />
+<title itemprop="name">Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed | Maxime Moreillon</title>
+<meta property="og:title" content="Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed | Maxime Moreillon" />
+<meta name="twitter:title" content="Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed | Maxime Moreillon" />
+<meta itemprop="name" content="Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed | Maxime Moreillon" />
+<meta name="application-name" content="Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -30,7 +30,7 @@
     
     <meta property="og:url" content="https://articles.maximemoreillon.com/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/">
   <meta property="og:site_name" content="Maxime Moreillon">
-  <meta property="og:title" content="Migrating a Kubernetes PV to a new storage class">
+  <meta property="og:title" content="Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed">
   <meta property="og:description" content="NOTE: pv-migrate provides an easier approach migrating PVs
 Kubernetes provides an abstraction layer for persistent data storage. Volumes can be of various storage classes depending on user requirements. Those requirements can evolve with time, meaning that volumes sometimes need to be migrated from one storage class to another. This article introduces a method to do so.
 In this article, MinIO will be used as an example. MinIO pods do support the kubectl cp command as the container does not have tar installed. For applications that allow the kubectl cp command, the procedure in this article can be simplified">
@@ -46,7 +46,7 @@ In this article, MinIO will be used as an example. MinIO pods do support the kub
     
     
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Migrating a Kubernetes PV to a new storage class">
+  <meta name="twitter:title" content="Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed">
   <meta name="twitter:description" content="NOTE: pv-migrate provides an easier approach migrating PVs
 Kubernetes provides an abstraction layer for persistent data storage. Volumes can be of various storage classes depending on user requirements. Those requirements can evolve with time, meaning that volumes sometimes need to be migrated from one storage class to another. This article introduces a method to do so.
 In this article, MinIO will be used as an example. MinIO pods do support the kubectl cp command as the container does not have tar installed. For applications that allow the kubectl cp command, the procedure in this article can be simplified">
@@ -149,7 +149,7 @@ stroke-linejoin="round" class="feather feather-home">
     <main class="page-content" aria-label="Content">
         <article>
             <header class="header">
-                <h1 class="header-title">Migrating a Kubernetes PV to a new storage class</h1>
+                <h1 class="header-title">Migrating a Kubernetes PV to a new storage class for applications that don&#39;t have tar installed</h1>
                 
                 
                 

@@ -172,7 +172,7 @@
       <guid>https://articles.maximemoreillon.com/articles/372/</guid>
       
       <description>&lt;p&gt;This is an IoT ceiling light controller which includes an HC-SR501 PIR motion sensor. It is built around a Wemos D1 mini (ESP8266 breakout board), which controls a homemade TRIAC breakout board. TRIACs provide the advantage of switching devices on and off silently, as opposed to a mechanical relay.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/image?id=5e7859695e7feee2d46e5744&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e7859695e7feee2d46e5744&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The system is powered from the same AC lines as the lights, thanks to an embedded AC-DC converter. This removes the need for an additional power supply.&lt;/p&gt;</description>
       
     </item>
