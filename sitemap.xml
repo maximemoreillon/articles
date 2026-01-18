@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://articles.maximemoreillon.com/articles/</loc>
-    <lastmod>2025-11-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</loc>
+    <lastmod>2026-01-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/</loc>
-    <lastmod>2025-11-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/hugo/</loc>
     <lastmod>2025-11-21T00:00:00+00:00</lastmod>

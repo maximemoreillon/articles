@@ -6,7 +6,23 @@
     <description>Recent content on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 21 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Grafana database migration from sqlite to postgresql</title>
+      <link>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</link>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</guid>
+      
+      <description>&lt;p&gt;By default, Grafana stores its settings in an SQLite database but it can be configured to use PostgreSQL instead.&lt;/p&gt;
+&lt;p&gt;This article explains how to migrate settings from an existing Grafana instance from SQLite to PostgreSQL using &lt;code&gt;pgloader&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This approach is based on &lt;a href=&#34;https://polyglot.jamie.ly/programming/2019/07/01/grafana-sqlite-to-postgres.html&#34;&gt;this article&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here, both Grafana and PostgreSQL are deployed in Kubernete but the general approach would would for other kind of installations as well.&lt;/p&gt;
+&lt;h2 id=&#34;getting-the-sqlite-db&#34;&gt;Getting the SQLite DB&lt;/h2&gt;
+&lt;p&gt;Getting the SQLite database from the existing Grafana instance can be achieved by simply copying it over locally. Here, we are putting it in a folder named &lt;code&gt;pgloader&lt;/code&gt; for reasons that will become clear later.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Migrating from my CMS to Hugo</title>
       <link>https://articles.maximemoreillon.com/articles/hugo/</link>
