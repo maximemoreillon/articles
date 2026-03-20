@@ -1,9 +1,12 @@
 <div class="navbar" role="navigation">
     <nav class="menu" aria-label="Main Navigation">
-        <a href="{{ .Site.Home.Permalink }}" class="logo">
+        
+        <!-- <a href="{{ .Site.Home.Permalink }}" class="logo">
             {{ partial "svgs/home.svg" (dict "height" 25 "width" 25) . }}
-        </a>
+        </a> -->
+
         <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+
         <label for="menu-trigger">
             <span class="menu-icon">
                 {{ partial "svgs/menu.svg" (dict "height" 25 "width" 25) . }}
@@ -11,6 +14,7 @@
         </label>
 
         <div class="trigger">
+
             <ul class="trigger-container">
                 {{ $currentPage := . }}
                 {{ range .Site.Menus.main }}
@@ -63,12 +67,15 @@
                     </li>
                 {{ end }} -->
             </ul>
-            <!-- <div class="tools"> -->
+
+            <div class="tools">
+
+                
                 <button id="search-trigger" aria-label="Search (Ctrl+K)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
+                    fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
                 </button>
@@ -76,7 +83,7 @@
                     {{ partial "svgs/sun.svg" (dict "height" 21 "width" 21 "class" "mode-sunny" "title" "LIGHT") . }}
                     {{ partial "svgs/sun.svg" (dict "height" 21 "width" 21 "class" "mode-moon" "title" "DARK") . }}
                 </a>
-            <!-- </div> -->
+            </div>
         </div>
     </nav>
 </div>
@@ -87,6 +94,7 @@
     </div>
 </div>
 
+<!-- Search  -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     var overlay = document.getElementById('search-overlay');
