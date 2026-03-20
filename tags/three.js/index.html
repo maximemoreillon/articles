@@ -46,7 +46,7 @@
     <link rel="canonical" href="https://articles.maximemoreillon.com/tags/three.js/">
     <link href="/tags/three.js/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
     <link href="/tags/three.js/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/style.min.e390ba7da26222f4dc42a349955d76dbbe44e5ce2535a43de5a70633a0a9ec3c.css" rel="stylesheet">
+    <link href="/style.min.42e235bcce534af545427dbf27ec93f80b4c303f1bb8b210b595746ada76882f.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
     
@@ -126,6 +126,14 @@ stroke-linejoin="round" class="feather feather-home">
                 
                 
             </ul>
+            <button id="search-trigger" aria-label="Search (Ctrl+K)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
             <a id="mode" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
 <title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
@@ -135,6 +143,77 @@ stroke-linejoin="round" class="feather feather-home">
         </div>
     </nav>
 </div>
+
+<div id="search-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Search">
+    <div id="search-box">
+        <div id="search"></div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var overlay = document.getElementById('search-overlay');
+    var trigger = document.getElementById('search-trigger');
+    var initialized = false;
+
+    function loadPagefind() {
+        return new Promise(function (resolve) {
+            if (typeof PagefindUI !== 'undefined') { resolve(); return; }
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = '/pagefind/pagefind-ui.css';
+            document.head.appendChild(link);
+            var script = document.createElement('script');
+            script.src = '/pagefind/pagefind-ui.js';
+            script.onload = resolve;
+            script.onerror = resolve;
+            document.head.appendChild(script);
+        });
+    }
+
+    function focusInput() {
+        setTimeout(function () {
+            var input = document.querySelector('.pagefind-ui__search-input');
+            if (input) input.focus();
+        }, 50);
+    }
+
+    function openSearch() {
+        overlay.setAttribute('aria-hidden', 'false');
+        overlay.classList.add('is-open');
+        if (!initialized) {
+            loadPagefind().then(function () {
+                if (typeof PagefindUI !== 'undefined') {
+                    new PagefindUI({ element: '#search', showSubResults: true });
+                    initialized = true;
+                }
+                focusInput();
+            });
+        } else {
+            focusInput();
+        }
+    }
+
+    function closeSearch() {
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.classList.remove('is-open');
+    }
+
+    trigger.addEventListener('click', openSearch);
+
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeSearch();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeSearch();
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+    });
+});
+</script>
 <div class="wrapper list-page">
     <header class="header">
         <h1 class="header-title center">Three.js</h1>
