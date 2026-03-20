@@ -1,0 +1,90 @@
+// ── Pagefind UI theme variables ───────────────────────────────────────────────
+
+:root {
+    --pagefind-ui-primary:     #{$text-link-blue};
+    --pagefind-ui-text:        #{$text-base-color};
+    --pagefind-ui-background:  #{$white};
+    --pagefind-ui-border:      #{$light};
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 5px;
+    --pagefind-ui-font:        #{$sans-family};
+}
+
+html.dark {
+    --pagefind-ui-primary:    #{$dark-text-link-blue};
+    --pagefind-ui-text:       #{$dark-text-base-color};
+    --pagefind-ui-background: #{$dark-black};
+    --pagefind-ui-border:     #{$dark-light};
+}
+
+// ── Search trigger button ─────────────────────────────────────────────────────
+
+#search-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    color: $black;
+    margin-right: 0.4rem;
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:active {
+        -webkit-transform: scale(0.9, 0.9);
+        transform: scale(0.9, 0.9);
+    }
+}
+
+html.dark #search-trigger {
+    color: $dark-white;
+}
+
+// ── Search overlay ────────────────────────────────────────────────────────────
+
+#search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    padding-top: 10vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    opacity: 0;
+    visibility: hidden;
+    // override the global * transition rule
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+
+    &.is-open {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+#search-box {
+    background: $white;
+    border-radius: 8px;
+    padding: 1.2rem;
+    width: 90%;
+    max-width: 620px;
+    max-height: 75vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    align-self: flex-start;
+}
+
+html.dark #search-box {
+    background: $dark-light;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
