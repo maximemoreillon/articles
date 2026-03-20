@@ -33,10 +33,10 @@
                     {{ end }}
                 </li>
                 {{ end }}
+                <!-- 
                 <li class="menu-separator">
                     <span>|</span>
                 </li>
-                <!-- Language List -->
                 {{ if .IsTranslated }}
                     <li>
                         <select aria-label="Select Language" class="lang-list" id="select-language" onchange="location = this.value;">
@@ -61,20 +61,22 @@
                     <li class="menu-separator">
                         <span>|</span>
                     </li>
-                {{ end }}
+                {{ end }} -->
             </ul>
-            <button id="search-trigger" aria-label="Search (Ctrl+K)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </button>
-            <a id="mode" href="#">
-                {{ partial "svgs/sun.svg" (dict "height" 21 "width" 21 "class" "mode-sunny" "title" "LIGHT") . }}
-                {{ partial "svgs/sun.svg" (dict "height" 21 "width" 21 "class" "mode-moon" "title" "DARK") . }}
-            </a>
+            <!-- <div class="tools"> -->
+                <button id="search-trigger" aria-label="Search (Ctrl+K)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <a id="mode" href="#">
+                    {{ partial "svgs/sun.svg" (dict "height" 21 "width" 21 "class" "mode-sunny" "title" "LIGHT") . }}
+                    {{ partial "svgs/sun.svg" (dict "height" 21 "width" 21 "class" "mode-moon" "title" "DARK") . }}
+                </a>
+            <!-- </div> -->
         </div>
     </nav>
 </div>

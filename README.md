@@ -11,5 +11,5 @@ hugo server
 Using pageFind
 
 ```
-npx -y pagefind --site public --serve
+npx -y pagefind --site public
 ```
