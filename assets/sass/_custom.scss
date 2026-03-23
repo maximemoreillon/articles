@@ -1,13 +1,15 @@
 .menu {
   display: flex;
+  gap: 1em;
   align-items: center;
-  border: 0;
+  justify-content: space-between;
 }
 
 .menu .menu-icon {
   margin: 0;
-  top: 1em;
-  right: 1em;
+  top: 0.75em;
+  right: 0.75em;
+  // position: relative;
 }
 
 .trigger {
@@ -15,6 +17,19 @@
   gap: 3em;
   display: flex;
   justify-content: space-between;
+}
+
+.menu .logo {
+  position: absolute;
+  top: 0.75em;
+  left: 0.75em;
+  margin: 0;
+  // margin: 0.75;
+  display: none;
+  padding: 0;
+  @include media-query($on-mobile) {
+    display: block;
+  }
 }
 
 .tools {
