@@ -1,4 +1,5 @@
 +++
+date = '2026-05-26'
 title = "OpenTelemetry Collector configuration for Prometheus"
 tags = [OpenTelemetry]
 +++
