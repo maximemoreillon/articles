@@ -6,7 +6,7 @@
     <description>Recent content on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Grafana database migration from sqlite to postgresql</title>
       <link>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</link>
