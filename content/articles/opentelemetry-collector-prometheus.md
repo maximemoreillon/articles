@@ -1,7 +1,7 @@
 +++
 date = '2026-05-26'
 title = "OpenTelemetry Collector configuration for Prometheus"
-tags = [OpenTelemetry]
+tags = ['OpenTelemetry']
 +++
 
 OpenTelemetry can export metrics so as to be scraped by Prometheus. Here is a manifest for an OpenTelemetryCollector object configured to do so:
