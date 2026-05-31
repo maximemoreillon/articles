@@ -1,12 +1,13 @@
-<!DOCTYPE html><html lang="en-us"><head><meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Maxime Moreillon | Maxime Moreillon</title>
-<meta property="og:title" content="Maxime Moreillon | Maxime Moreillon" />
-<meta name="twitter:title" content="Maxime Moreillon | Maxime Moreillon" />
-<meta itemprop="name" content="Maxime Moreillon | Maxime Moreillon" />
-<meta name="application-name" content="Maxime Moreillon | Maxime Moreillon" />
+<title itemprop="name">OpenTelemetry Collector configuration for Prometheus | Maxime Moreillon</title>
+<meta property="og:title" content="OpenTelemetry Collector configuration for Prometheus | Maxime Moreillon" />
+<meta name="twitter:title" content="OpenTelemetry Collector configuration for Prometheus | Maxime Moreillon" />
+<meta itemprop="name" content="OpenTelemetry Collector configuration for Prometheus | Maxime Moreillon" />
+<meta name="application-name" content="OpenTelemetry Collector configuration for Prometheus | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -17,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/opentelemetry-collector-prometheus/" title="" />
 
 
 
@@ -27,24 +28,30 @@
 <meta name="generator" content="Hugo 0.147.8">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/opentelemetry-collector-prometheus/">
   <meta property="og:site_name" content="Maxime Moreillon">
-  <meta property="og:title" content="Maxime Moreillon">
+  <meta property="og:title" content="OpenTelemetry Collector configuration for Prometheus">
+  <meta property="og:description" content="OpenTelemetry can export metrics so as to be scraped by Prometheus. Here is a manifest for an OpenTelemetryCollector object configured to do so:
+apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: otel-gateway spec: image: otel/opentelemetry-collector-contrib:0.152.0 mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 processors: batch: {} exporters: prometheus: endpoint: &#34;0.0.0.0:8889&#34; debug: verbosity: detailed service: pipelines: metrics: receivers: [otlp] processors: [batch] exporters: [prometheus, debug] traces: receivers: [otlp] processors: [batch] exporters: [debug] logs: receivers: [otlp] processors: [batch] exporters: [debug]">
   <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2026-05-26T00:00:00+09:00">
+    <meta property="article:modified_time" content="2026-05-26T00:00:00+09:00">
+    <meta property="article:tag" content="OpenTelemetry">
 
 
     
     
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Maxime Moreillon">
+  <meta name="twitter:title" content="OpenTelemetry Collector configuration for Prometheus">
+  <meta name="twitter:description" content="OpenTelemetry can export metrics so as to be scraped by Prometheus. Here is a manifest for an OpenTelemetryCollector object configured to do so:
+apiVersion: opentelemetry.io/v1beta1 kind: OpenTelemetryCollector metadata: name: otel-gateway spec: image: otel/opentelemetry-collector-contrib:0.152.0 mode: deployment config: receivers: otlp: protocols: grpc: endpoint: 0.0.0.0:4317 http: endpoint: 0.0.0.0:4318 processors: batch: {} exporters: prometheus: endpoint: &#34;0.0.0.0:8889&#34; debug: verbosity: detailed service: pipelines: metrics: receivers: [otlp] processors: [batch] exporters: [prometheus, debug] traces: receivers: [otlp] processors: [batch] exporters: [debug] logs: receivers: [otlp] processors: [batch] exporters: [debug]">
 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/">
-    <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/opentelemetry-collector-prometheus/">
     <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -72,7 +79,7 @@
     
     
 </head>
-<body data-theme="auto" class="notransition">
+<body data-theme = "" class="notransition">
 
 <script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
 
@@ -103,14 +110,14 @@ stroke-linejoin="round" class="feather feather-home">
                 
                 
                 <li>
-                    <a class="menu-link active" href="/">
+                    <a class="menu-link " href="/">
                         Home
                     </a>
                     
                 </li>
                 
                 <li>
-                    <a class="menu-link " href="/articles/">
+                    <a class="menu-link active" href="/articles/">
                         Articles
                     </a>
                     
@@ -219,119 +226,70 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<div class="wrapper">
-        
 
-
-<div class="author">
-    
-    
-    
-    
-    
-    <img
-        class="author-avatar"
-        src="/images/logo_hu_cbf61aec8f426ab5.webp"
-        srcset="/images/logo_hu_ba84a9fd646f9f7e.webp 2x, /images/logo_hu_e5260cf3c7eb520d.webp 3x"
-        alt="Maxime Moreillon"
-        width="70"
-        height="70" />
-    
-    
-    <h2 class="author-name">Maxime Moreillon</h2>
-    <p class="author-bio"></p>
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">OpenTelemetry Collector configuration for Prometheus</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-05-26T00:00:00&#43;09:00" itemprop="datePublished"> May 26, 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>OpenTelemetry can export metrics so as to be scraped by Prometheus. Here is a manifest for an OpenTelemetryCollector object configured to do so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">opentelemetry.io/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">OpenTelemetryCollector</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">otel-gateway</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">otel/opentelemetry-collector-contrib:0.152.0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mode</span>: <span style="color:#ae81ff">deployment</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">receivers</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">otlp</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">protocols</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">grpc</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">endpoint</span>: <span style="color:#ae81ff">0.0.0.0</span>:<span style="color:#ae81ff">4317</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">http</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">endpoint</span>: <span style="color:#ae81ff">0.0.0.0</span>:<span style="color:#ae81ff">4318</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">processors</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">batch</span>: {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">exporters</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prometheus</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">endpoint</span>: <span style="color:#e6db74">&#34;0.0.0.0:8889&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">debug</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">verbosity</span>: <span style="color:#ae81ff">detailed</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">service</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">pipelines</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">metrics</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">receivers</span>: [<span style="color:#ae81ff">otlp]</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">processors</span>: [<span style="color:#ae81ff">batch]</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">exporters</span>: [<span style="color:#ae81ff">prometheus, debug]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">traces</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">receivers</span>: [<span style="color:#ae81ff">otlp]</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">processors</span>: [<span style="color:#ae81ff">batch]</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">exporters</span>: [<span style="color:#ae81ff">debug]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">logs</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">receivers</span>: [<span style="color:#ae81ff">otlp]</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">processors</span>: [<span style="color:#ae81ff">batch]</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">exporters</span>: [<span style="color:#ae81ff">debug]</span>
+</span></span></code></pre></div>
+            </div>
+        </article></main>
 </div>
-
-        <main aria-label="Content">
-            <h3 class="posts-item-note" aria-label="Recent Posts"></h3>
-            
-            
-            
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/opentelemetry-collector-prometheus/">OpenTelemetry Collector configuration for Prometheus</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-05-26T00:00:00&#43;0900">
-        26 May 2026
-        
-    </time>
-</article>
-
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/grafana-sqlite-to-postgresql/">Grafana database migration from sqlite to postgresql</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-01-18T00:00:00Z">
-        18 Jan 2026
-        
-    </time>
-</article>
-
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/hugo/">Migrating from my CMS to Hugo</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2025-11-21T00:00:00Z">
-        21 Nov 2025
-        
-    </time>
-</article>
-
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/">Nginx as reverse proxy in Kubernetes</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-06-17T00:00:00Z">
-        17 Jun 2024
-        
-    </time>
-</article>
-
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/">Migrating a K8s PV</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-05-20T00:00:00Z">
-        20 May 2024
-        
-    </time>
-</article>
-
-            
-            
-            <p>
-                
-                <a href="https://articles.maximemoreillon.com/articles/"></a>
-                
-            </p>
-            
-        </main>
-    </div><footer class="footer">
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 
@@ -355,5 +313,4 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
 </body>
-
 </html>
