@@ -2,11 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://articles.maximemoreillon.com/tags/argo-cd/</loc>
+    <lastmod>2026-06-04T00:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://articles.maximemoreillon.com/articles/</loc>
-    <lastmod>2026-05-26T00:00:00+09:00</lastmod>
+    <lastmod>2026-06-04T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/kubernetes/</loc>
+    <lastmod>2026-06-04T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/</loc>
-    <lastmod>2026-05-26T00:00:00+09:00</lastmod>
+    <lastmod>2026-06-04T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/</loc>
+    <lastmod>2026-06-04T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/argocd-kustomize/</loc>
+    <lastmod>2026-06-04T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/opentelemetry/</loc>
     <lastmod>2026-05-26T00:00:00+09:00</lastmod>
@@ -14,17 +26,11 @@
     <loc>https://articles.maximemoreillon.com/articles/opentelemetry-collector-prometheus/</loc>
     <lastmod>2026-05-26T00:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/</loc>
-    <lastmod>2026-05-26T00:00:00+09:00</lastmod>
-  </url><url>
     <loc>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</loc>
     <lastmod>2026-01-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/hugo/</loc>
     <lastmod>2025-11-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/kubernetes/</loc>
-    <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/</loc>
     <lastmod>2024-06-17T00:00:00+00:00</lastmod>

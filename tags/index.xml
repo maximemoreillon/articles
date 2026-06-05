@@ -6,13 +6,13 @@
     <description>Recent content in Tags on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 May 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Jun 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>OpenTelemetry</title>
-      <link>https://articles.maximemoreillon.com/tags/opentelemetry/</link>
-      <pubDate>Tue, 26 May 2026 00:00:00 +0900</pubDate>
+      <title>Argo CD</title>
+      <link>https://articles.maximemoreillon.com/tags/argo-cd/</link>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 +0900</pubDate>
       
-      <guid>https://articles.maximemoreillon.com/tags/opentelemetry/</guid>
+      <guid>https://articles.maximemoreillon.com/tags/argo-cd/</guid>
       
       <description></description>
       
@@ -21,9 +21,20 @@
     <item>
       <title>Kubernetes</title>
       <link>https://articles.maximemoreillon.com/tags/kubernetes/</link>
-      <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 +0900</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/kubernetes/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>OpenTelemetry</title>
+      <link>https://articles.maximemoreillon.com/tags/opentelemetry/</link>
+      <pubDate>Tue, 26 May 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/opentelemetry/</guid>
       
       <description></description>
       
