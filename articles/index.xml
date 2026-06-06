@@ -6,7 +6,21 @@
     <description>Recent content in Articles on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fixing Frigate&#39;s RTSP Issues on Kubernetes</title>
+      <link>https://articles.maximemoreillon.com/articles/frigate-talos/</link>
+      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/frigate-talos/</guid>
+      
+      <description>&lt;h1 id=&#34;fixing-frigates-rtsp-issues-on-kubernetes&#34;&gt;Fixing Frigate&amp;rsquo;s RTSP Issues on Kubernetes&lt;/h1&gt;
+&lt;p&gt;If you&amp;rsquo;ve tried deploying &lt;a href=&#34;https://frigate.video/&#34;&gt;Frigate NVR&lt;/a&gt; on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate&amp;rsquo;s API stops working correctly. The root cause comes down to how OpenCV handles RTSP streams by default, and the fix is a single environment variable.&lt;/p&gt;
+&lt;h2 id=&#34;whats-going-on&#34;&gt;What&amp;rsquo;s Going On&lt;/h2&gt;
+&lt;p&gt;Frigate&amp;rsquo;s FastAPI layer uses OpenCV under the hood for certain frame-level operations. By default, OpenCV probes RTSP streams over &lt;strong&gt;UDP&lt;/strong&gt;. Under most environments this works fine, but in Kubernetes — especially with CNI plugins like Flannel — UDP-based RTSP handling tends to break silently, causing the API to malfunction.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Use case for Kustomize with ArgoCD</title>
       <link>https://articles.maximemoreillon.com/articles/argocd-kustomize/</link>

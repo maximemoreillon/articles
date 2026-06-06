@@ -1,12 +1,13 @@
-<!DOCTYPE html><html lang="en-us"><head><meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Maxime Moreillon | Maxime Moreillon</title>
-<meta property="og:title" content="Maxime Moreillon | Maxime Moreillon" />
-<meta name="twitter:title" content="Maxime Moreillon | Maxime Moreillon" />
-<meta itemprop="name" content="Maxime Moreillon | Maxime Moreillon" />
-<meta name="application-name" content="Maxime Moreillon | Maxime Moreillon" />
+<title itemprop="name">Fixing Frigate&#39;s RTSP Issues on Kubernetes | Maxime Moreillon</title>
+<meta property="og:title" content="Fixing Frigate&#39;s RTSP Issues on Kubernetes | Maxime Moreillon" />
+<meta name="twitter:title" content="Fixing Frigate&#39;s RTSP Issues on Kubernetes | Maxime Moreillon" />
+<meta itemprop="name" content="Fixing Frigate&#39;s RTSP Issues on Kubernetes | Maxime Moreillon" />
+<meta name="application-name" content="Fixing Frigate&#39;s RTSP Issues on Kubernetes | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -17,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/frigate-talos/" title="" />
 
 
 
@@ -27,24 +28,30 @@
 <meta name="generator" content="Hugo 0.147.8">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/frigate-talos/">
   <meta property="og:site_name" content="Maxime Moreillon">
-  <meta property="og:title" content="Maxime Moreillon">
+  <meta property="og:title" content="Fixing Frigate&#39;s RTSP Issues on Kubernetes">
+  <meta property="og:description" content="Fixing Frigate’s RTSP Issues on Kubernetes If you’ve tried deploying Frigate NVR on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate’s API stops working correctly. The root cause comes down to how OpenCV handles RTSP streams by default, and the fix is a single environment variable.
+What’s Going On Frigate’s FastAPI layer uses OpenCV under the hood for certain frame-level operations. By default, OpenCV probes RTSP streams over UDP. Under most environments this works fine, but in Kubernetes — especially with CNI plugins like Flannel — UDP-based RTSP handling tends to break silently, causing the API to malfunction.">
   <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="articles">
+    <meta property="article:published_time" content="2026-06-05T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-06-05T00:00:00+00:00">
+    <meta property="article:tag" content="Kubernetes">
 
 
     
     
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Maxime Moreillon">
+  <meta name="twitter:title" content="Fixing Frigate&#39;s RTSP Issues on Kubernetes">
+  <meta name="twitter:description" content="Fixing Frigate’s RTSP Issues on Kubernetes If you’ve tried deploying Frigate NVR on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate’s API stops working correctly. The root cause comes down to how OpenCV handles RTSP streams by default, and the fix is a single environment variable.
+What’s Going On Frigate’s FastAPI layer uses OpenCV under the hood for certain frame-level operations. By default, OpenCV probes RTSP streams over UDP. Under most environments this works fine, but in Kubernetes — especially with CNI plugins like Flannel — UDP-based RTSP handling tends to break silently, causing the API to malfunction.">
 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/">
-    <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/frigate-talos/">
     <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -72,7 +79,7 @@
     
     
 </head>
-<body data-theme="auto" class="notransition">
+<body data-theme = "" class="notransition">
 
 <script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
 
@@ -103,14 +110,14 @@ stroke-linejoin="round" class="feather feather-home">
                 
                 
                 <li>
-                    <a class="menu-link active" href="/">
+                    <a class="menu-link " href="/">
                         Home
                     </a>
                     
                 </li>
                 
                 <li>
-                    <a class="menu-link " href="/articles/">
+                    <a class="menu-link active" href="/articles/">
                         Articles
                     </a>
                     
@@ -219,119 +226,40 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<div class="wrapper">
-        
 
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Fixing Frigate&#39;s RTSP Issues on Kubernetes</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-06-05T00:00:00&#43;00:00" itemprop="datePublished"> Jun 5, 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <h1 id="fixing-frigates-rtsp-issues-on-kubernetes">Fixing Frigate&rsquo;s RTSP Issues on Kubernetes</h1>
+<p>If you&rsquo;ve tried deploying <a href="https://frigate.video/">Frigate NVR</a> on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate&rsquo;s API stops working correctly. The root cause comes down to how OpenCV handles RTSP streams by default, and the fix is a single environment variable.</p>
+<h2 id="whats-going-on">What&rsquo;s Going On</h2>
+<p>Frigate&rsquo;s FastAPI layer uses OpenCV under the hood for certain frame-level operations. By default, OpenCV probes RTSP streams over <strong>UDP</strong>. Under most environments this works fine, but in Kubernetes — especially with CNI plugins like Flannel — UDP-based RTSP handling tends to break silently, causing the API to malfunction.</p>
+<p>This is the exact issue I hit while deploying Frigate on a homelab Kubernetes cluster running Talos Linux with Flannel as the CNI.</p>
+<h2 id="the-fix">The Fix</h2>
+<p>Set the <code>OPENCV_FFMPEG_CAPTURE_OPTIONS</code> environment variable in your Frigate pod spec:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">OPENCV_FFMPEG_CAPTURE_OPTIONS</span> <span style="color:#75715e"># Forces RTSP over TCP</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;rtsp_transport;tcp&#34;</span>
+</span></span></code></pre></div><p>That&rsquo;s it. This tells OpenCV&rsquo;s FFmpeg backend to use TCP transport for RTSP connections, bypassing the UDP handling that breaks in Kubernetes networking environments.</p>
+<h2 id="closing-notes">Closing Notes</h2>
+<p>This issue likely affects any Kubernetes distribution where the CNI doesn&rsquo;t handle UDP RTSP traffic gracefully — Flannel is a known case, but others may behave similarly. If you&rsquo;re seeing Frigate&rsquo;s API fail or cameras not connecting despite valid RTSP streams outside the cluster, this should be your first thing to check.</p>
 
-<div class="author">
-    
-    
-    
-    
-    
-    <img
-        class="author-avatar"
-        src="/images/logo_hu_cbf61aec8f426ab5.webp"
-        srcset="/images/logo_hu_ba84a9fd646f9f7e.webp 2x, /images/logo_hu_e5260cf3c7eb520d.webp 3x"
-        alt="Maxime Moreillon"
-        width="70"
-        height="70" />
-    
-    
-    <h2 class="author-name">Maxime Moreillon</h2>
-    <p class="author-bio"></p>
+            </div>
+        </article></main>
 </div>
-
-        <main aria-label="Content">
-            <h3 class="posts-item-note" aria-label="Recent Posts"></h3>
-            
-            
-            
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/frigate-talos/">Fixing Frigate&#39;s RTSP Issues on Kubernetes</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-06-05T00:00:00Z">
-        5 Jun 2026
-        
-    </time>
-</article>
-
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/argocd-kustomize/">Use case for Kustomize with ArgoCD</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-06-04T00:00:00&#43;0900">
-        4 Jun 2026
-        
-    </time>
-</article>
-
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/opentelemetry-collector-prometheus/">OpenTelemetry Collector configuration for Prometheus</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-05-26T00:00:00&#43;0900">
-        26 May 2026
-        
-    </time>
-</article>
-
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/grafana-sqlite-to-postgresql/">Grafana database migration from sqlite to postgresql</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-01-18T00:00:00Z">
-        18 Jan 2026
-        
-    </time>
-</article>
-
-            
-            <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/hugo/">Migrating from my CMS to Hugo</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2025-11-21T00:00:00Z">
-        21 Nov 2025
-        
-    </time>
-</article>
-
-            
-            
-            <p>
-                
-                <a href="https://articles.maximemoreillon.com/articles/"></a>
-                
-            </p>
-            
-        </main>
-    </div><footer class="footer">
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 
@@ -355,5 +283,4 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
 </body>
-
 </html>
