@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">env</span>:
 </span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">OPENCV_FFMPEG_CAPTURE_OPTIONS</span> <span style="color:#75715e"># Forces RTSP over TCP</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;rtsp_transport;tcp&#34;</span>
-</span></span></code></pre></div><p>That&rsquo;s it. This tells OpenCV&rsquo;s FFmpeg backend to use TCP transport for RTSP connections, bypassing the UDP handling that breaks in Kubernetes networking environments.</p>
+</span></span></code></pre></div><p>This tells OpenCV&rsquo;s FFmpeg backend to use TCP transport for RTSP connections, bypassing the UDP handling that breaks in Kubernetes networking environments.</p>
 <h2 id="closing-notes">Closing Notes</h2>
 <p>This issue likely affects any Kubernetes distribution where the CNI doesn&rsquo;t handle UDP RTSP traffic gracefully — Flannel is a known case, but others may behave similarly. If you&rsquo;re seeing Frigate&rsquo;s API fail or cameras not connecting despite valid RTSP streams outside the cluster, this should be your first thing to check.</p>
 
