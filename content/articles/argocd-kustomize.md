@@ -1,6 +1,6 @@
 +++
 date = '2026-06-04T00:00:00+09:00'
-title = "Use case for Kustomize with ArgoCD"
+title = "ArgoCD with Kustomize"
 tags = ['Argo CD', 'Kubernetes']
 +++
 

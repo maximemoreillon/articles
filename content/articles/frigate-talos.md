@@ -24,7 +24,7 @@ env:
     value: "rtsp_transport;tcp"
 ```
 
-That's it. This tells OpenCV's FFmpeg backend to use TCP transport for RTSP connections, bypassing the UDP handling that breaks in Kubernetes networking environments.
+This tells OpenCV's FFmpeg backend to use TCP transport for RTSP connections, bypassing the UDP handling that breaks in Kubernetes networking environments.
 
 ## Closing Notes
 
