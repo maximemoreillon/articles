@@ -6,7 +6,40 @@
     <description>Recent content in Tags on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Grafana</title>
+      <link>https://articles.maximemoreillon.com/tags/grafana/</link>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/grafana/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Monitoring</title>
+      <link>https://articles.maximemoreillon.com/tags/monitoring/</link>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/monitoring/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Prometheus</title>
+      <link>https://articles.maximemoreillon.com/tags/prometheus/</link>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/prometheus/</guid>
+      
+      <description></description>
+      
+    </item>
+    
     <item>
       <title>Kubernetes</title>
       <link>https://articles.maximemoreillon.com/tags/kubernetes/</link>
@@ -651,17 +684,6 @@
       <pubDate>Sat, 25 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/neo4j/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Grafana</title>
-      <link>https://articles.maximemoreillon.com/tags/grafana/</link>
-      <pubDate>Tue, 21 Sep 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/grafana/</guid>
       
       <description></description>
       

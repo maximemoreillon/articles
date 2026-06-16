@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Monitoring on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/monitoring/</link>
+    <description>Recent content in Monitoring on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 15 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/monitoring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Monitoring an Aruba WiFi access point with Prometheus and Grafana</title>
+      <link>https://articles.maximemoreillon.com/articles/aruba-monitoring/</link>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/aruba-monitoring/</guid>
+      
+      <description>&lt;p&gt;I currently use an Aruba IAP-315 (ArubaOS v8) as WiFi access point. Although it provides insight such as the number connected clients on its own web interface, I wanted to visualize this data in Grafana.&lt;/p&gt;
+&lt;p&gt;This can be achieved thanks to Aruba access points&amp;rsquo; support of the SNMP protocol, which can be exported as Prometheus metrics using the &lt;a href=&#34;https://github.com/prometheus/snmp_exporter/tree/main&#34;&gt;Prometheus SNMP Exporter&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This article focuses simply on client count but more data can be extracted in similar fashion.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
