@@ -1,8 +1,8 @@
-+++
-date = '2025-11-21'
-title = "Migrating from my CMS to Hugo"
-tags = []
-+++
+---
+date: '2025-11-21'
+title: "Migrating from my CMS to Hugo"
+tags: []
+---
 
 For several years, I have been managing articles such as this one using a custom CMS built around Neo4j.
 Although functional, this approach required operational overhead such as server administration, authentication and maintenance.

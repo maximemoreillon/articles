@@ -1,8 +1,8 @@
-+++
-date = '2026-06-05'
-title = "Fixing Frigate's RTSP Issues on Kubernetes"
-tags = ["Kubernetes"]
-+++
+---
+date: '2026-06-05'
+title: "Fixing Frigate's RTSP Issues on Kubernetes"
+tags: ["Kubernetes"]
+---
 
 # Fixing Frigate's RTSP Issues on Kubernetes
 

@@ -1,8 +1,8 @@
-+++
-date = '2026-06-04T00:00:00+09:00'
-title = "ArgoCD with Kustomize"
-tags = ['Argo CD', 'Kubernetes']
-+++
+---
+date: '2026-06-04T00:00:00+09:00'
+title: "ArgoCD with Kustomize"
+tags: ['Argo CD', 'Kubernetes']
+---
 
 Here is an example of how Kustomize can be used with Argo CD.
 

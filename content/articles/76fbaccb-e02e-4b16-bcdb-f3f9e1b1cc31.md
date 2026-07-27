@@ -1,9 +1,9 @@
-+++
-title = "Using v-model on a prop"
-date = '2022-07-15'
-lastmod = '2024-02-11'
-tags = ['Vue.js', 'Tutorials']
-+++
+---
+title: "Using v-model on a prop"
+date: '2022-07-15'
+lastmod: '2024-02-11'
+tags: ['Vue.js', 'Tutorials']
+---
 
 With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoque the prop update from their parent using $emit.
 

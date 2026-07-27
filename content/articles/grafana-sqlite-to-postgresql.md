@@ -1,8 +1,8 @@
-+++
-date = '2026-01-18'
-title = "Grafana database migration from sqlite to postgresql"
-tags = []
-+++
+---
+date: '2026-01-18'
+title: "Grafana database migration from sqlite to postgresql"
+tags: []
+---
 
 By default, Grafana stores its settings in an SQLite database but it can be configured to use PostgreSQL instead.
 

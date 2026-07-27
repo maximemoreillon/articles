@@ -1,9 +1,9 @@
-+++
-title = "Mongoose query documents with matching array element"
-date = '2022-12-19'
-lastmod = '2024-02-17'
-tags = ['MongoDB', 'Mongoose', 'Tutorials']
-+++
+---
+title: "Mongoose query documents with matching array element"
+date: '2022-12-19'
+lastmod: '2024-02-17'
+tags: ['MongoDB', 'Mongoose', 'Tutorials']
+---
 
 As a NoSQL database, MongoDB can store arrays as fields of a document. This article presents how to query such documents by filtering those with arrays that contain a specific value.
 

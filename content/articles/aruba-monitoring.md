@@ -1,8 +1,8 @@
-+++
-date = '2026-06-15'
-title = "Monitoring an Aruba WiFi access point with Prometheus and Grafana"
-tags = ['Monitoring', 'Grafana', 'Prometheus']
-+++
+---
+date: '2026-06-15'
+title: "Monitoring an Aruba WiFi access point with Prometheus and Grafana"
+tags: ['Monitoring', 'Grafana', 'Prometheus']
+---
 
 I currently use an Aruba IAP-315 (ArubaOS v8) as WiFi access point. Although it provides insight such as the number connected clients on its own web interface, I wanted to visualize this data in Grafana.
 
