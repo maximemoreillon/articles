@@ -27,4 +27,4 @@ That one choice is what makes the server bundle-agnostic rather than a single-pu
 
 The server itself is a thin `FastMCP` app — five `@mcp.tool`-decorated functions over `streamable-http` transport, which is what let it plug into JTEKT's existing setup without extra glue. Compared to the K8s agent, there's no agent loop here at all: this project doesn't run its own LLM or make any decisions. It's pure protocol — tools in, MCP out — and the reasoning happens entirely on the client side, wherever the server is plugged in.
 
-Code's on GitHub: [github.com/maximemoreillon/okf-mcp-server](https://github.com/maximemoreillon/okf-mcp-server)
+The source code is available on GitHub: [github.com/maximemoreillon/okf-mcp-server](https://github.com/maximemoreillon/okf-mcp-server)
