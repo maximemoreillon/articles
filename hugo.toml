@@ -1,5 +1,5 @@
 baseURL = 'https://articles.maximemoreillon.com/'
-languageCode = 'en-us'
+locale = 'en-us'
 title = 'Maxime Moreillon'
 theme = 'hugo-blog-awesome'
 # theme ='flat'
@@ -35,4 +35,4 @@ theme = 'hugo-blog-awesome'
 [module]
   [module.hugoVersion]
     extended = false
-    min = '0.146.0'
+    min = '0.160.0'
