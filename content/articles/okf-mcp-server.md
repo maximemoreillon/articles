@@ -1,5 +1,5 @@
 ---
-date: "2026-7-9"
+date: "2026-07-09"
 title: "OKF MCP server"
 tags: ["AI", "OKF", "MCP"]
 ---

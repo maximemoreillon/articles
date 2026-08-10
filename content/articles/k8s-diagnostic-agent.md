@@ -1,5 +1,5 @@
 ---
-date: "2026-5-28"
+date: "2026-05-28"
 title: "Kubernetes diagnostic AI agent"
 tags: ["AI", "Kubernetes"]
 ---
