@@ -1,7 +1,7 @@
 ---
 date: "2026-07-09"
 title: "OKF MCP server"
-tags: ["AI", "OKF", "MCP"]
+tags: ["AI", "OKF", "MCP", "Projects"]
 ---
 
 OKF (Open Knowledge Format) is Google's spec for representing a knowledge base as a directory of linked Markdown files — YAML frontmatter for structured metadata (`type`, `title`, `tags`), a Markdown body for the actual content, and regular `[link](path.md)` references between files forming a graph. It's a plain-text, git-friendly way to store the kind of internal knowledge that used to live in a wiki or a pile of Confluence pages, and it maps cleanly onto how an LLM wants to consume information: bounded chunks with explicit relationships, not a search index.

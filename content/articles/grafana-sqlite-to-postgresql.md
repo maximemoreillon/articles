@@ -1,6 +1,6 @@
 ---
-date: '2026-01-18'
-title: "Grafana database migration from sqlite to postgresql"
+date: "2026-01-18"
+title: "Grafana database migration from SQLite to postgresql"
 tags: []
 ---
 

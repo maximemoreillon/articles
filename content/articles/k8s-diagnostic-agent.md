@@ -1,7 +1,7 @@
 ---
 date: "2026-05-28"
 title: "Kubernetes diagnostic AI agent"
-tags: ["AI", "Kubernetes"]
+tags: ["AI", "Kubernetes", "Projects"]
 ---
 
 Every conversation about AI agents eventually needs a real project behind it, not just a demo. So I set myself a narrow, deliberately unambitious goal: build something that uses an LLM to do a job I already do by hand — reading `kubectl describe`, `kubectl logs`, and `kubectl get events` output to figure out why a pod is broken — and experiment with what it actually takes to make that reliable.
