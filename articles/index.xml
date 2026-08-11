@@ -169,7 +169,7 @@
     </item>
     
     <item>
-      <title>Grafana database migration from sqlite to postgresql</title>
+      <title>Grafana database migration from SQLite to postgresql</title>
       <link>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</link>
       <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
       
@@ -2762,7 +2762,7 @@ int main()
     </item>
     
     <item>
-      <title>Samba</title>
+      <title>Samba on Ubuntu</title>
       <link>https://articles.maximemoreillon.com/articles/172/</link>
       <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
       
