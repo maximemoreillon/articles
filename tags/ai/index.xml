@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/ai/</link>
+    <description>Recent content in AI on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OKF MCP server</title>
+      <link>https://articles.maximemoreillon.com/articles/okf-mcp-server/</link>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/okf-mcp-server/</guid>
+      
+      <description>&lt;p&gt;OKF (Open Knowledge Format) is Google&amp;rsquo;s spec for representing a knowledge base as a directory of linked Markdown files — YAML frontmatter for structured metadata (&lt;code&gt;type&lt;/code&gt;, &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;tags&lt;/code&gt;), a Markdown body for the actual content, and regular &lt;code&gt;[link](path.md)&lt;/code&gt; references between files forming a graph. It&amp;rsquo;s a plain-text, git-friendly way to store the kind of internal knowledge that used to live in a wiki or a pile of Confluence pages, and it maps cleanly onto how an LLM wants to consume information: bounded chunks with explicit relationships, not a search index.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Kubernetes diagnostic AI agent</title>
+      <link>https://articles.maximemoreillon.com/articles/k8s-diagnostic-agent/</link>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/k8s-diagnostic-agent/</guid>
+      
+      <description>&lt;p&gt;Every conversation about AI agents eventually needs a real project behind it, not just a demo. So I set myself a narrow, deliberately unambitious goal: build something that uses an LLM to do a job I already do by hand — reading &lt;code&gt;kubectl describe&lt;/code&gt;, &lt;code&gt;kubectl logs&lt;/code&gt;, and &lt;code&gt;kubectl get events&lt;/code&gt; output to figure out why a pod is broken — and experiment with what it actually takes to make that reliable.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

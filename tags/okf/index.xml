@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OKF on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/okf/</link>
+    <description>Recent content in OKF on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/okf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OKF MCP server</title>
+      <link>https://articles.maximemoreillon.com/articles/okf-mcp-server/</link>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/okf-mcp-server/</guid>
+      
+      <description>&lt;p&gt;OKF (Open Knowledge Format) is Google&amp;rsquo;s spec for representing a knowledge base as a directory of linked Markdown files — YAML frontmatter for structured metadata (&lt;code&gt;type&lt;/code&gt;, &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;tags&lt;/code&gt;), a Markdown body for the actual content, and regular &lt;code&gt;[link](path.md)&lt;/code&gt; references between files forming a graph. It&amp;rsquo;s a plain-text, git-friendly way to store the kind of internal knowledge that used to live in a wiki or a pile of Confluence pages, and it maps cleanly onto how an LLM wants to consume information: bounded chunks with explicit relationships, not a search index.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

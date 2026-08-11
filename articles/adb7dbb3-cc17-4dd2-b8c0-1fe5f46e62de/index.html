@@ -25,30 +25,30 @@
 
 
 
-<meta name="generator" content="Hugo 0.147.8">
+<meta name="generator" content="Hugo 0.162.1">
 
     
     <meta property="og:url" content="https://articles.maximemoreillon.com/articles/adb7dbb3-cc17-4dd2-b8c0-1fe5f46e62de/">
-  <meta property="og:site_name" content="Maxime Moreillon">
-  <meta property="og:title" content="Mongoose query documents with matching array element">
-  <meta property="og:description" content="As a NoSQL database, MongoDB can store arrays as fields of a document. This article presents how to query such documents by filtering those with arrays that contain a specific value.
+	<meta property="og:site_name" content="Maxime Moreillon">
+	<meta property="og:title" content="Mongoose query documents with matching array element">
+	<meta property="og:description" content="As a NoSQL database, MongoDB can store arrays as fields of a document. This article presents how to query such documents by filtering those with arrays that contain a specific value.
 Let’s imagine a collection containing the following movie records:
 [ { title: &#39;Inception&#39;, actors: [ &#39;Tom Hardy&#39; &#39;Leonardo DiCaprio&#39; ] }, { title: &#39;The Dark Knight Rises&#39;, actors: [ &#39;Tom Hardy&#39;, &#39;Christian Bale&#39;, ] }, { title: &#39;The Dark Knight&#39;, actors: [ &#39;Christian Bale&#39;, &#39;Heath Ledger&#39; ] },	] There would be cases where one would want to query all movies in which a specific actor starred.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="articles">
-    <meta property="article:published_time" content="2022-12-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-02-17T00:00:00+00:00">
-    <meta property="article:tag" content="MongoDB">
-    <meta property="article:tag" content="Mongoose">
-    <meta property="article:tag" content="Tutorials">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2022-12-19T00:00:00+00:00">
+		<meta property="article:modified_time" content="2024-02-17T00:00:00+00:00">
+		<meta property="article:tag" content="MongoDB">
+		<meta property="article:tag" content="Mongoose">
+		<meta property="article:tag" content="Tutorials">
 
 
     
     
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Mongoose query documents with matching array element">
-  <meta name="twitter:description" content="As a NoSQL database, MongoDB can store arrays as fields of a document. This article presents how to query such documents by filtering those with arrays that contain a specific value.
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Mongoose query documents with matching array element">
+	<meta name="twitter:description" content="As a NoSQL database, MongoDB can store arrays as fields of a document. This article presents how to query such documents by filtering those with arrays that contain a specific value.
 Let’s imagine a collection containing the following movie records:
 [ { title: &#39;Inception&#39;, actors: [ &#39;Tom Hardy&#39; &#39;Leonardo DiCaprio&#39; ] }, { title: &#39;The Dark Knight Rises&#39;, actors: [ &#39;Tom Hardy&#39;, &#39;Christian Bale&#39;, ] }, { title: &#39;The Dark Knight&#39;, actors: [ &#39;Christian Bale&#39;, &#39;Heath Ledger&#39; ] },	] There would be cases where one would want to query all movies in which a specific actor starred.">
 
@@ -94,7 +94,7 @@ Let’s imagine a collection containing the following movie records:
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
 stroke-linejoin="round" class="feather feather-home">
-<title></title>
+<title>Home</title>
 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
 <polyline points="9 22 9 12 15 12 15 22"></polyline>
 </svg>
@@ -133,7 +133,6 @@ stroke-linejoin="round" class="feather feather-home">
                     </a>
                     
                 </li>
-                
                 
             </ul>
 
@@ -240,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 
                 <div class="post-meta">
-                    <time datetime="2022-12-19T00:00:00&#43;00:00" itemprop="datePublished"> Dec 19, 2022 </time>
+                    <time datetime="2022-12-19T00:00:00&#43;00:00" itemprop="datePublished"> 19 Dec 2022 </time>
                 </div>
                 
             </header>
@@ -286,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
     <small class="footer_copyright">
         © 2026 Maxime Moreillon.
-        
+        Powered by <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
     </small>
 </footer>
 

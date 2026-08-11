@@ -25,29 +25,29 @@
 
 
 
-<meta name="generator" content="Hugo 0.147.8">
+<meta name="generator" content="Hugo 0.162.1">
 
     
     <meta property="og:url" content="https://articles.maximemoreillon.com/articles/9366fcf7-0f3d-42de-a807-f36a66137287/">
-  <meta property="og:site_name" content="Maxime Moreillon">
-  <meta property="og:title" content="Updating Ingresses to networking.k8s.io/v1">
-  <meta property="og:description" content="Using Ingress with the extensions/v1beta1 API has been deprecated in Kubernetes 1.14 and will be removed in 1.22. This article presents how to update an existing manifest to the new API, networking.k8s.io/v1.
+	<meta property="og:site_name" content="Maxime Moreillon">
+	<meta property="og:title" content="Updating Ingresses to networking.k8s.io/v1">
+	<meta property="og:description" content="Using Ingress with the extensions/v1beta1 API has been deprecated in Kubernetes 1.14 and will be removed in 1.22. This article presents how to update an existing manifest to the new API, networking.k8s.io/v1.
 Let’s start with an example manifest using the extensions/v1beta api:
 apiVersion: extensions/v1beta1 kind: Ingress metadata: name: example-ingress namespace: example-namespace annotations: kubernetes.io/ingress.class: nginx cert-manager.io/cluster-issuer: letsencrypt-prod spec: tls: - hosts: - example.com secretName: example-secret rules: - host: example.com http: paths: - path: / backend: serviceName: example-service servicePort: 80 When using the new networking.k8s.io/v1 API, the ingress manifest becomes:">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="articles">
-    <meta property="article:published_time" content="2023-01-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-02-11T00:00:00+00:00">
-    <meta property="article:tag" content="Kubernetes">
-    <meta property="article:tag" content="Tutorials">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2023-01-20T00:00:00+00:00">
+		<meta property="article:modified_time" content="2024-02-11T00:00:00+00:00">
+		<meta property="article:tag" content="Kubernetes">
+		<meta property="article:tag" content="Tutorials">
 
 
     
     
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Updating Ingresses to networking.k8s.io/v1">
-  <meta name="twitter:description" content="Using Ingress with the extensions/v1beta1 API has been deprecated in Kubernetes 1.14 and will be removed in 1.22. This article presents how to update an existing manifest to the new API, networking.k8s.io/v1.
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Updating Ingresses to networking.k8s.io/v1">
+	<meta name="twitter:description" content="Using Ingress with the extensions/v1beta1 API has been deprecated in Kubernetes 1.14 and will be removed in 1.22. This article presents how to update an existing manifest to the new API, networking.k8s.io/v1.
 Let’s start with an example manifest using the extensions/v1beta api:
 apiVersion: extensions/v1beta1 kind: Ingress metadata: name: example-ingress namespace: example-namespace annotations: kubernetes.io/ingress.class: nginx cert-manager.io/cluster-issuer: letsencrypt-prod spec: tls: - hosts: - example.com secretName: example-secret rules: - host: example.com http: paths: - path: / backend: serviceName: example-service servicePort: 80 When using the new networking.k8s.io/v1 API, the ingress manifest becomes:">
 
@@ -93,7 +93,7 @@ apiVersion: extensions/v1beta1 kind: Ingress metadata: name: example-ingress nam
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
 stroke-linejoin="round" class="feather feather-home">
-<title></title>
+<title>Home</title>
 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
 <polyline points="9 22 9 12 15 12 15 22"></polyline>
 </svg>
@@ -132,7 +132,6 @@ stroke-linejoin="round" class="feather feather-home">
                     </a>
                     
                 </li>
-                
                 
             </ul>
 
@@ -239,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 
                 <div class="post-meta">
-                    <time datetime="2023-01-20T00:00:00&#43;00:00" itemprop="datePublished"> Jan 20, 2023 </time>
+                    <time datetime="2023-01-20T00:00:00&#43;00:00" itemprop="datePublished"> 20 Jan 2023 </time>
                 </div>
                 
             </header>
@@ -306,7 +305,7 @@ spec:
 </div>
     <small class="footer_copyright">
         © 2026 Maxime Moreillon.
-        
+        Powered by <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
     </small>
 </footer>
 
