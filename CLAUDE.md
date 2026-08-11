@@ -27,7 +27,7 @@ There is no test suite or linter in this repo.
 ## Deployment
 
 `.github/workflows/deploy.yml` runs on every push to `master`: checks out submodules, builds with Hugo
-`0.147.8` (extended), indexes the build with Pagefind, then publishes `./public` to GitHub Pages
+`0.162.1` (extended), indexes the build with Pagefind, then publishes `./public` to GitHub Pages
 (custom domain `articles.maximemoreillon.com` via the `cname` input). There is no separate staging step —
 pushing to `master` deploys.
 
