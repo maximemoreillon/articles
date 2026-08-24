@@ -13,13 +13,8 @@ The fix is a service layer: plain functions that contain the actual business log
 ```ts
 app.get("/users/:id", async (req, res) => {
   const user = await db.users.findById(req.params.id);
-
-  if (!user) {
-    return res
-      .status(404)
-      .json({ error: `User '${req.params.id}' was not found` });
-  }
-
+  if (!user)
+    throw createHttpError(404, `User '${req.params.id}' was not found`);
   res.json(user);
 });
 ```
