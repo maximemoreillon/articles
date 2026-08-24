@@ -12,7 +12,7 @@ The fix is a service layer: plain functions that contain the actual business log
 
 ```ts
 app.get("/users/:id", async (req, res) => {
-  const user = await userRepository.findById(req.params.id);
+  const user = await db.users.findById(req.params.id);
 
   if (!user) {
     return res
@@ -33,13 +33,9 @@ This is fine as a single route. But the "not found" rule, the response shape, an
 A service function takes and returns plain values, not `req`/`res`:
 
 ```ts
-export async function getUser(id: string): Promise<User> {
-  const user = await userRepository.findById(id);
-
-  if (!user) {
-    throw new NotFoundError("User", id);
-  }
-
+export async function readUser(id: string): Promise<User> {
+  const user = await db.users.findById(id);
+  if (!user) throw new NotFoundError("User", id);
   return user;
 }
 ```
@@ -52,7 +48,7 @@ The controller's only job is translating between the HTTP world and the service 
 
 ```ts
 export async function getUser(req, res) {
-  const user = await userService.get(req.params.id);
+  const user = await readUser(req.params.id);
   res.json(user);
 }
 ```
