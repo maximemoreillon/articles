@@ -274,9 +274,14 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">kubernetes.io/service-account.name</span>: <span style="color:#e6db74">&#34;namespace-limited-user&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">kubernetes.io/service-account-token</span>
 </span></span></code></pre></div><p>Once created, the token can be extracted from the secret using:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl -n your-target-namespace get secret namespace-limited-token -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.data.token}&#39;</span> | base64 --decode
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -n your-target-namespace get secret namespace-limited-token <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.data.token}&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  | base64 --decode
 </span></span></code></pre></div><p>A kubeconfig file also needs a certificate authority which can also be extracted from the secret:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl -n your-target-namespace get secret namespace-limited-token -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.data.ca\.crt}&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -n your-target-namespace get secret namespace-limited-token <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.data.ca\.crt}&#39;</span>
 </span></span></code></pre></div><p>With this information, the kubeconfig file can be assembled:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">clusters</span>:
