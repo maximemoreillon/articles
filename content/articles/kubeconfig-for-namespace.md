@@ -54,13 +54,18 @@ type: kubernetes.io/service-account-token
 Once created, the token can be extracted from the secret using:
 
 ```bash
-kubectl -n your-target-namespace get secret namespace-limited-token -o jsonpath='{.data.token}' | base64 --decode
+kubectl \
+  -n your-target-namespace get secret namespace-limited-token \
+  -o jsonpath='{.data.token}' \
+  | base64 --decode
 ```
 
 A kubeconfig file also needs a certificate authority which can also be extracted from the secret:
 
 ```bash
-kubectl -n your-target-namespace get secret namespace-limited-token -o jsonpath='{.data.ca\.crt}'
+kubectl \
+  -n your-target-namespace get secret namespace-limited-token \
+  -o jsonpath='{.data.ca\.crt}'
 ```
 
 With this information, the kubeconfig file can be assembled:
