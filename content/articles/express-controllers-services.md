@@ -13,8 +13,7 @@ The fix is a service layer: plain functions that contain the actual business log
 ```ts
 app.get("/users/:id", async (req, res) => {
   const user = await db.users.findById(req.params.id);
-  if (!user)
-    throw createHttpError(404, `User '${req.params.id}' was not found`);
+  if (!user) throw createHttpError(404, `User ${req.params.id} not found`);
   res.json(user);
 });
 ```
@@ -57,7 +56,7 @@ One thing this split forces you to solve properly: since services can't reach fo
 ```ts
 export class NotFoundError extends Error {
   constructor(resource: string, id: string | number) {
-    super(`${resource} '${id}' was not found`);
+    super(`${resource} ${id} not found`);
     this.name = new.target.name;
   }
 }
