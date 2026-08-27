@@ -31,8 +31,8 @@
     <meta property="og:url" content="https://articles.maximemoreillon.com/articles/kustomize-gitlab-cicd/">
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Kustomize with GitLab CICD">
-	<meta property="og:description" content="Kustomize is a convenient tool when it comes ro deploying applications to multiple environments, where each has its own minor differences. This articles presents an approach to leverage Kustomize in GitLab CICD pipeline. Throughout this article, the master branch is used to deploy to prod while staging deploys to the eponymous environment.
-Repository structure Heres is an example repository structure for an application that would have both staging and production environments to deploy to:">
+	<meta property="og:description" content="Kustomize is a convenient tool when it comes to deploying applications to multiple environments, where each has its own minor differences. This article presents an approach to leverage Kustomize in a GitLab CICD pipeline. Throughout this article, git tags deploy to the prod environment while the staging branch deploys to the eponymous environment.
+Repository structure Here is an example repository structure for an application that would have both staging and production environments to deploy to:">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -47,8 +47,8 @@ Repository structure Heres is an example repository structure for an application
     
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Kustomize with GitLab CICD">
-	<meta name="twitter:description" content="Kustomize is a convenient tool when it comes ro deploying applications to multiple environments, where each has its own minor differences. This articles presents an approach to leverage Kustomize in GitLab CICD pipeline. Throughout this article, the master branch is used to deploy to prod while staging deploys to the eponymous environment.
-Repository structure Heres is an example repository structure for an application that would have both staging and production environments to deploy to:">
+	<meta name="twitter:description" content="Kustomize is a convenient tool when it comes to deploying applications to multiple environments, where each has its own minor differences. This article presents an approach to leverage Kustomize in a GitLab CICD pipeline. Throughout this article, git tags deploy to the prod environment while the staging branch deploys to the eponymous environment.
+Repository structure Here is an example repository structure for an application that would have both staging and production environments to deploy to:">
 
 
     
@@ -243,11 +243,11 @@ document.addEventListener('DOMContentLoaded', function () {
             </header>
             
             <div class="page-content">
-                <p>Kustomize is a convenient tool when it comes ro deploying applications to multiple environments, where each has its own minor differences.
-This articles presents an approach to leverage Kustomize in GitLab CICD pipeline.
-Throughout this article, the <code>master</code> branch is used to deploy to <code>prod</code> while <code>staging</code> deploys to the eponymous environment.</p>
+                <p>Kustomize is a convenient tool when it comes to deploying applications to multiple environments, where each has its own minor differences.
+This article presents an approach to leverage Kustomize in a GitLab CICD pipeline.
+Throughout this article, git tags deploy to the <code>prod</code> environment while the <code>staging</code> branch deploys to the eponymous environment.</p>
 <h2 id="repository-structure">Repository structure</h2>
-<p>Heres is an example repository structure for an application that would have both staging and production environments to deploy to:</p>
+<p>Here is an example repository structure for an application that would have both staging and production environments to deploy to:</p>
 <pre tabindex="0"><code>my-app/
 ├── kustomize/
 │   ├── base/
@@ -261,7 +261,7 @@ Throughout this article, the <code>master</code> branch is used to deploy to <co
 ├── ...
 └── .gitlab-ci.yml
 </code></pre><h2 id="kustomize">Kustomize</h2>
-<p>In such scenario, Kustomize would be used as follows.</p>
+<p>In such a scenario, Kustomize would be used as follows.</p>
 <h3 id="base">Base</h3>
 <p>In this example, a simple deployment manifest is applied by <code>kubectl</code>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># kustomize/base/deployment.yml</span>
@@ -273,22 +273,26 @@ Throughout this article, the <code>master</code> branch is used to deploy to <co
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">my-app</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app.kubernetes.io/name</span>: <span style="color:#ae81ff">my-app</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">my-app</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app.kubernetes.io/name</span>: <span style="color:#ae81ff">my-app</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
 </span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-app</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">my-registry/my-app:{IMAGE_TAG}</span>
-</span></span></code></pre></div><p>Note that here, the image tag is set as environment variable as it will be infered from CICD.</p>
-<h3 id="overlays">Overlays</h3>
-<p>To each deployment environment corresponds an overlay. In this case, <code>prod</code> simply applies the base manifest</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># kustomize/base/prod/kustomization.yml</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">my-registry/my-app:${IMAGE_TAG}</span>
+</span></span></code></pre></div><p>Note that here, the image tag is written as a shell variable (<code>${IMAGE_TAG}</code>) as it will be inferred from CICD and substituted with <code>envsubst</code>.</p>
+<p>The base also needs its own <code>kustomization.yml</code> listing the resources the overlays will build on:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># kustomize/base/kustomization.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">deployment.yml</span>
+</span></span></code></pre></div><h3 id="overlays">Overlays</h3>
+<p>To each deployment environment corresponds an overlay. In this case, <code>prod</code> simply applies the base manifest.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># kustomize/overlays/prod/kustomization.yml</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
 </span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">../../base</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># kustomize/base/staging/kustomization.yml</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># kustomize/overlays/staging/kustomization.yml</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
 </span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">../../base</span>
 </span></span><span style="display:flex;"><span>
@@ -298,10 +302,11 @@ Throughout this article, the <code>master</code> branch is used to deploy to <co
 </span></span><span style="display:flex;"><span>  - <span style="color:#f92672">pairs</span>:
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">app.kubernetes.io/name</span>: <span style="color:#ae81ff">my-app-staging</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">includeSelectors</span>: <span style="color:#66d9ef">true</span>
-</span></span></code></pre></div><h2 id="cicd-configuration">CICD configuration</h2>
+</span></span></code></pre></div><p>Because <code>includeSelectors: true</code> rewrites the Deployment&rsquo;s <code>spec.selector</code>, apply this overlay to a fresh Deployment: selector labels are immutable, so adding it to an already-deployed workload requires deleting and recreating it.</p>
+<h2 id="cicd-configuration">CICD configuration</h2>
 <p>By leveraging <code>.gitlab-ci.yml</code>&rsquo;s <code>rules</code> field, one can define per-branch - and thus per environment - variables.
 This can be used to not only select the appropriate overlay, but also set the container image tag, which is substituted using <code>envsubst</code>.
-In this example, <code>prod</code> uses git tags as image tag while <code>staging</code> simply uses the commit sha.</p>
+In this example, <code>prod</code> uses the git tag as image tag while <code>staging</code> simply uses the commit sha. However, more environments can easily be added by creating dedicated branches and overlays, and adding an <code>if</code> statement to the rules.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># .gitlab-ci.yml</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">deploy-job</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">deploy</span>
@@ -319,7 +324,8 @@ In this example, <code>prod</code> uses git tags as image tag while <code>stagin
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      kubectl kustomize kustomize/overlays/${TARGET_ENV}
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      | envsubst
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      | kubectl apply -f -</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><p>The job image must provide both <code>kubectl</code> and <code>envsubst</code> (the latter ships with the <code>gettext</code> package). Cluster access is handled by the GitLab agent for Kubernetes.</p>
+
             </div>
         </article></main>
 </div>
