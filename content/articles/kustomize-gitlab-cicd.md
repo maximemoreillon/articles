@@ -36,7 +36,7 @@ In such Scenario, Kustomize would be used as follows.
 In this example, a simple deployment manifest is applied by `kubectl`.
 
 ```yml
-# repo/kustomize/base/deployment.yml
+# kustomize/base/deployment.yml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -63,13 +63,13 @@ Note that here, the image tag is set as environment variable as it will be infer
 To each deployment environment corresponds an overlay. In this case, `prod` simply applies the base manifest
 
 ```yml
-# repo/kustomize/base/prod/kustomization.yml
+# kustomize/base/prod/kustomization.yml
 resources:
   - ../../base
 ```
 
 ```yml
-# repo/kustomize/base/staging/kustomization.yml
+# kustomize/base/staging/kustomization.yml
 resources:
   - ../../base
 
