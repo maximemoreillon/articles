@@ -29,7 +29,7 @@ my-app/
 
 ## Kustomize
 
-In such Scenario, Kustomize would be used as follows.
+In such scenario, Kustomize would be used as follows.
 
 ### Base
 
