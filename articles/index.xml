@@ -6,7 +6,22 @@
     <description>Recent content in Articles on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kustomize with GitLab CICD</title>
+      <link>https://articles.maximemoreillon.com/articles/kustomize-gitlab-cicd/</link>
+      <pubDate>Wed, 26 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/kustomize-gitlab-cicd/</guid>
+      
+      <description>&lt;p&gt;Kustomize is a convenient tool when it comes ro deploying applications to multiple environments, where each has its own minor differences.
+This articles presents an approach to leverage Kustomize in GitLab CICD pipeline.
+Throughout this article, the &lt;code&gt;master&lt;/code&gt; branch is used to deploy to &lt;code&gt;prod&lt;/code&gt; while &lt;code&gt;staging&lt;/code&gt; deploys to the eponymous environment.&lt;/p&gt;
+&lt;h2 id=&#34;repository-structure&#34;&gt;Repository structure&lt;/h2&gt;
+&lt;p&gt;Heres is an example repository structure for an application that would have both staging and production environments to deploy to:&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Kubeconfig for specific namespace</title>
       <link>https://articles.maximemoreillon.com/articles/kubeconfig-for-namespace/</link>
