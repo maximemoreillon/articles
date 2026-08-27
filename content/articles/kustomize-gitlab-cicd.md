@@ -77,7 +77,7 @@ nameSuffix: -staging
 
 labels:
   - pairs:
-      app.kubernetes.io/name: nginx-staging
+      app.kubernetes.io/name: my-app-staging
     includeSelectors: true
 ```
 
