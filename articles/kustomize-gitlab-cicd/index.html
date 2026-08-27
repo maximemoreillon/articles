@@ -264,7 +264,7 @@ Throughout this article, the <code>master</code> branch is used to deploy to <co
 <p>In such Scenario, Kustomize would be used as follows.</p>
 <h3 id="base">Base</h3>
 <p>In this example, a simple deployment manifest is applied by <code>kubectl</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># repo/kustomize/base/deployment.yml</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># kustomize/base/deployment.yml</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
@@ -285,10 +285,10 @@ Throughout this article, the <code>master</code> branch is used to deploy to <co
 </span></span></code></pre></div><p>Note that here, the image tag is set as environment variable as it will be infered from CICD.</p>
 <h3 id="overlays">Overlays</h3>
 <p>To each deployment environment corresponds an overlay. In this case, <code>prod</code> simply applies the base manifest</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># repo/kustomize/base/prod/kustomization.yml</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># kustomize/base/prod/kustomization.yml</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
 </span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">../../base</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># repo/kustomize/base/staging/kustomization.yml</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># kustomize/base/staging/kustomization.yml</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
 </span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">../../base</span>
 </span></span><span style="display:flex;"><span>
