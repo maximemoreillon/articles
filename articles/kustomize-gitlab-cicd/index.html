@@ -296,7 +296,7 @@ Throughout this article, the <code>master</code> branch is used to deploy to <co
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">labels</span>:
 </span></span><span style="display:flex;"><span>  - <span style="color:#f92672">pairs</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app.kubernetes.io/name</span>: <span style="color:#ae81ff">nginx-staging</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app.kubernetes.io/name</span>: <span style="color:#ae81ff">my-app-staging</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">includeSelectors</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><h2 id="cicd-configuration">CICD configuration</h2>
 <p>By leveraging <code>.gitlab-ci.yml</code>&rsquo;s <code>rules</code> field, one can define per-branch - and thus per environment - variables.
