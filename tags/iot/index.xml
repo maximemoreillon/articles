@@ -33,38 +33,6 @@
     </item>
     
     <item>
-      <title>IoT 体重計</title>
-      <link>https://articles.maximemoreillon.com/articles/818698f9-9a0d-4b9d-bc92-846fcc395d04/</link>
-      <pubDate>Mon, 24 Oct 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/articles/818698f9-9a0d-4b9d-bc92-846fcc395d04/</guid>
-      
-      <description>&lt;p&gt;測定データをクラウドに上げ体重の推移を管理できるIoT体重計&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786e056f2c2a1eca19cad4&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;動画&#34;&gt;動画&lt;/h2&gt;
-&lt;h2 id=&#34;回路図&#34;&gt;回路図&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62d36ff23bbcba047377d4af&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;電子&#34;&gt;電子&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62d370223bbcbae9b777d4b5&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;webアプリ&#34;&gt;WEBアプリ&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/635718cc640e527e1a2be369&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;ソースコード&#34;&gt;ソースコード&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/maximemoreillon/scale&#34;&gt;体重計&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;WEBアプリ&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/maximemoreillon/weight_front&#34;&gt;GUI&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/maximemoreillon/weight&#34;&gt;バックエンド&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</description>
-      
-    </item>
-    
-    <item>
       <title>IoT sensor module</title>
       <link>https://articles.maximemoreillon.com/articles/f0b88a38-7271-4f8d-8f60-05efbdd861cc/</link>
       <pubDate>Mon, 11 Jul 2022 00:00:00 +0000</pubDate>
