@@ -6,7 +6,18 @@
     <description>Recent content in Node.js on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 11 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Decoupling business logic from Express with a service layer</title>
+      <link>https://articles.maximemoreillon.com/articles/express-controllers-services/</link>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/express-controllers-services/</guid>
+      
+      <description>&lt;p&gt;In early development of an Express application, it is tempting to write business loginc in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes &lt;code&gt;(req, res)&lt;/code&gt;, reads from &lt;code&gt;req.params&lt;/code&gt; or &lt;code&gt;req.body&lt;/code&gt;, and writes directly to &lt;code&gt;res&lt;/code&gt;. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Node.js testing for multiple environment variables</title>
       <link>https://articles.maximemoreillon.com/articles/cce8a613-0885-4ac0-a0e0-b6d454d811cf/</link>

@@ -34,6 +34,22 @@
     </item>
     
     <item>
+      <title>Smart outlet setup</title>
+      <link>https://articles.maximemoreillon.com/articles/f356f02e-9ba0-4b3b-9c89-159345cea5a4/</link>
+      <pubDate>Tue, 28 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/f356f02e-9ba0-4b3b-9c89-159345cea5a4/</guid>
+      
+      <description>&lt;h2 id=&#34;connect-to-the-devices-wifi-access-point&#34;&gt;Connect to the device&amp;rsquo;s WiFi access point&lt;/h2&gt;
+&lt;p&gt;When used for the first time, the device will have no knowledge of what WiFi to connect to. Consequently, the smart outlet will generate its own, prefixed with the name &lt;em&gt;socket.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;61cab9b835a52f0b519e337d.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Connecting to the access point should automatically open a configuration page.&lt;/p&gt;
+&lt;h2 id=&#34;wifi-configuration&#34;&gt;WiFi configuration&lt;/h2&gt;
+&lt;p&gt;Once connected to the wifi, the following page should open. On this page, the WiFi settings and MQTT credentials can be set.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>SONOFF S20 firmware</title>
       <link>https://articles.maximemoreillon.com/articles/587/</link>
       <pubDate>Sat, 25 Sep 2021 00:00:00 +0000</pubDate>

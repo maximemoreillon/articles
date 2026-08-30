@@ -6,7 +6,46 @@
     <description>Recent content in Tutorials on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubeconfig for specific namespace</title>
+      <link>https://articles.maximemoreillon.com/articles/kubeconfig-for-namespace/</link>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/kubeconfig-for-namespace/</guid>
+      
+      <description>&lt;p&gt;Kubeconfig files allow clients such as &lt;code&gt;kubectl&lt;/code&gt; or Headlamp to connect and authenticate to Kubernetes clusters so as to perform administrative and maintenance operations. Most often, cluster administrators get a kubeconfig file with cluster-wide administrator privileges from the Kubernetes distribution. For example, with Talos, this is achieved with &lt;code&gt;talosctl kubeconfig&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In some cases, one would want to provide a kubectl file where privileges are limited to the scope of a single namespace. Examples would include providing a user with their own namespace that they can manage by themselves.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Decoupling business logic from Express with a service layer</title>
+      <link>https://articles.maximemoreillon.com/articles/express-controllers-services/</link>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/express-controllers-services/</guid>
+      
+      <description>&lt;p&gt;In early development of an Express application, it is tempting to write business loginc in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes &lt;code&gt;(req, res)&lt;/code&gt;, reads from &lt;code&gt;req.params&lt;/code&gt; or &lt;code&gt;req.body&lt;/code&gt;, and writes directly to &lt;code&gt;res&lt;/code&gt;. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Grafana database migration from SQLite to postgresql</title>
+      <link>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</link>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</guid>
+      
+      <description>&lt;p&gt;By default, Grafana stores its settings in an SQLite database but it can be configured to use PostgreSQL instead.&lt;/p&gt;
+&lt;p&gt;This article explains how to migrate settings from an existing Grafana instance from SQLite to PostgreSQL using &lt;code&gt;pgloader&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This approach is based on &lt;a href=&#34;https://polyglot.jamie.ly/programming/2019/07/01/grafana-sqlite-to-postgres.html&#34;&gt;this article&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here, both Grafana and PostgreSQL are deployed in Kubernete but the general approach would would for other kind of installations as well.&lt;/p&gt;
+&lt;h2 id=&#34;getting-the-sqlite-db&#34;&gt;Getting the SQLite DB&lt;/h2&gt;
+&lt;p&gt;Getting the SQLite database from the existing Grafana instance can be achieved by simply copying it over locally. Here, we are putting it in a folder named &lt;code&gt;pgloader&lt;/code&gt; for reasons that will become clear later.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Nginx as reverse proxy in Kubernetes</title>
       <link>https://articles.maximemoreillon.com/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/</link>

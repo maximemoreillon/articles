@@ -6,7 +6,20 @@
     <description>Recent content in Network on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Network basics</title>
+      <link>https://articles.maximemoreillon.com/articles/394/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/394/</guid>
+      
+      <description>&lt;p&gt;When data needs to be exchanged between several computers, those need to be connected to each other, i.e. forming a network.&lt;/p&gt;
+&lt;h2 id=&#34;ip-addresses-and-netmask&#34;&gt;IP addresses and netmask&lt;/h2&gt;
+&lt;p&gt;Just like a home needs an address to get mail delivered by the post office, devices of a network need a network address so that data packets can be delivered to them. This address has various forms but for the sake of simplicity, this tutorial will focus on the Internet Protocol (IP) address, more specifically IP v4.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Apache reverse proxy for web app</title>
       <link>https://articles.maximemoreillon.com/articles/5/</link>

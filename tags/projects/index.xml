@@ -30,6 +30,20 @@
     </item>
     
     <item>
+      <title>Migrating from my CMS to Hugo</title>
+      <link>https://articles.maximemoreillon.com/articles/hugo/</link>
+      <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/hugo/</guid>
+      
+      <description>&lt;p&gt;For several years, I have been managing articles such as this one using a custom CMS built around Neo4j.
+Although functional, this approach required operational overhead such as server administration, authentication and maintenance.&lt;/p&gt;
+&lt;p&gt;To reduce this burden, I decided to export all articles as markdown files and use &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;, a popular static site generator, to render and serve those.&lt;/p&gt;
+&lt;p&gt;Adding articles now involves adding mardkown files to the Hugo project&amp;rsquo;s &lt;code&gt;content&lt;/code&gt; folder and pushing the code to GitHub for CI/CD to compile it into the newest version of the site to be served.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Countries tracker</title>
       <link>https://articles.maximemoreillon.com/articles/bd9dcf40-ce45-42ac-8d58-de4be0c04ab1/</link>
       <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
@@ -212,6 +226,22 @@
       <description>&lt;p&gt;RFID tags come in various forms and sizes, from standard plastic cards to chips that can be implanted in one&amp;rsquo;s hand. I got particularly interested in RFID rings, which can be purchased online for less than USD 20$. Those are based on EM4305 chips, which require a compatible reader. Thus, I designed an IoT EM4305 reader that can exchange data over MQTT with other devices.&lt;/p&gt;
 &lt;h2 id=&#34;hardware&#34;&gt;Hardware&lt;/h2&gt;
 &lt;p&gt;The reader is built around an ESP8266 Wifi microcontroller and an unnamed EM4305 reader module.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Smart outlet setup</title>
+      <link>https://articles.maximemoreillon.com/articles/f356f02e-9ba0-4b3b-9c89-159345cea5a4/</link>
+      <pubDate>Tue, 28 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/f356f02e-9ba0-4b3b-9c89-159345cea5a4/</guid>
+      
+      <description>&lt;h2 id=&#34;connect-to-the-devices-wifi-access-point&#34;&gt;Connect to the device&amp;rsquo;s WiFi access point&lt;/h2&gt;
+&lt;p&gt;When used for the first time, the device will have no knowledge of what WiFi to connect to. Consequently, the smart outlet will generate its own, prefixed with the name &lt;em&gt;socket.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;61cab9b835a52f0b519e337d.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Connecting to the access point should automatically open a configuration page.&lt;/p&gt;
+&lt;h2 id=&#34;wifi-configuration&#34;&gt;WiFi configuration&lt;/h2&gt;
+&lt;p&gt;Once connected to the wifi, the following page should open. On this page, the WiFi settings and MQTT credentials can be set.&lt;/p&gt;</description>
       
     </item>
     

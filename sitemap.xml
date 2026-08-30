@@ -27,10 +27,16 @@
     <loc>https://articles.maximemoreillon.com/articles/kubeconfig-for-namespace/</loc>
     <lastmod>2026-08-24T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/tutorials/</loc>
+    <lastmod>2026-08-24T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://articles.maximemoreillon.com/articles/express-controllers-services/</loc>
     <lastmod>2026-08-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/express/</loc>
+    <lastmod>2026-08-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/node.js/</loc>
     <lastmod>2026-08-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/ai/</loc>
@@ -63,6 +69,9 @@
     <loc>https://articles.maximemoreillon.com/articles/frigate-talos/</loc>
     <lastmod>2026-06-05T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/talos/</loc>
+    <lastmod>2026-06-05T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://articles.maximemoreillon.com/tags/argo-cd/</loc>
     <lastmod>2026-06-04T00:00:00+09:00</lastmod>
   </url><url>
@@ -78,17 +87,20 @@
     <loc>https://articles.maximemoreillon.com/articles/opentelemetry-collector-prometheus/</loc>
     <lastmod>2026-05-26T00:00:00+09:00</lastmod>
   </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/database/</loc>
+    <lastmod>2026-01-18T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</loc>
     <lastmod>2026-01-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/hugo/</loc>
+    <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/hugo/</loc>
     <lastmod>2025-11-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/</loc>
     <lastmod>2024-06-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/tutorials/</loc>
-    <lastmod>2025-10-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/9d7cfb33-2a6e-43f1-9088-707931cf2657/</loc>
     <lastmod>2025-10-26T00:00:00+00:00</lastmod>
@@ -111,9 +123,6 @@
     <loc>https://articles.maximemoreillon.com/tags/svelte/</loc>
     <lastmod>2024-03-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/node.js/</loc>
-    <lastmod>2024-05-04T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://articles.maximemoreillon.com/articles/cce8a613-0885-4ac0-a0e0-b6d454d811cf/</loc>
     <lastmod>2024-02-11T00:00:00+00:00</lastmod>
   </url><url>
@@ -127,9 +136,6 @@
     <lastmod>2024-01-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/1d5d4606-7732-40ec-b7b0-24afdf8b7d85/</loc>
-    <lastmod>2024-01-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/database/</loc>
     <lastmod>2024-01-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/npm/</loc>
@@ -317,9 +323,6 @@
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</loc>
     <lastmod>2022-10-23T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/wip/</loc>
-    <lastmod>2024-05-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/314ebc9c-796a-4fbf-a4e4-c0c99fad0343/</loc>
     <lastmod>2023-01-03T00:00:00+00:00</lastmod>
@@ -570,9 +573,6 @@
     <loc>https://articles.maximemoreillon.com/articles/200/</loc>
     <lastmod>2020-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/programming/</loc>
-    <lastmod>2021-09-21T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://articles.maximemoreillon.com/articles/131/</loc>
     <lastmod>2020-03-18T00:00:00+00:00</lastmod>
   </url><url>
@@ -668,6 +668,9 @@
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/mysql/</loc>
     <lastmod>2020-03-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/network/</loc>
+    <lastmod>2020-03-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/394/</loc>
     <lastmod>2020-03-10T00:00:00+00:00</lastmod>
@@ -799,9 +802,6 @@
     <lastmod>2020-03-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/5/</loc>
-    <lastmod>2020-01-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/network/</loc>
     <lastmod>2020-01-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/proxy/</loc>

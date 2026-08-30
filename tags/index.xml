@@ -41,11 +41,33 @@
     </item>
     
     <item>
+      <title>Tutorials</title>
+      <link>https://articles.maximemoreillon.com/tags/tutorials/</link>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/tutorials/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Express</title>
       <link>https://articles.maximemoreillon.com/tags/express/</link>
       <pubDate>Sat, 15 Aug 2026 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/express/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Node.js</title>
+      <link>https://articles.maximemoreillon.com/tags/node.js/</link>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/node.js/</guid>
       
       <description></description>
       
@@ -129,6 +151,17 @@
     </item>
     
     <item>
+      <title>Talos</title>
+      <link>https://articles.maximemoreillon.com/tags/talos/</link>
+      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/talos/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Argo CD</title>
       <link>https://articles.maximemoreillon.com/tags/argo-cd/</link>
       <pubDate>Thu, 04 Jun 2026 00:00:00 +0900</pubDate>
@@ -151,11 +184,22 @@
     </item>
     
     <item>
-      <title>Tutorials</title>
-      <link>https://articles.maximemoreillon.com/tags/tutorials/</link>
-      <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
+      <title>Database</title>
+      <link>https://articles.maximemoreillon.com/tags/database/</link>
+      <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://articles.maximemoreillon.com/tags/tutorials/</guid>
+      <guid>https://articles.maximemoreillon.com/tags/database/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://articles.maximemoreillon.com/tags/hugo/</link>
+      <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/hugo/</guid>
       
       <description></description>
       
@@ -206,17 +250,6 @@
     </item>
     
     <item>
-      <title>Node.js</title>
-      <link>https://articles.maximemoreillon.com/tags/node.js/</link>
-      <pubDate>Sun, 11 Feb 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/node.js/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
       <title>Aruba</title>
       <link>https://articles.maximemoreillon.com/tags/aruba/</link>
       <pubDate>Sat, 20 Jan 2024 00:00:00 +0000</pubDate>
@@ -233,17 +266,6 @@
       <pubDate>Sat, 20 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/pfsense/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Database</title>
-      <link>https://articles.maximemoreillon.com/tags/database/</link>
-      <pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/database/</guid>
       
       <description></description>
       
@@ -602,17 +624,6 @@
     </item>
     
     <item>
-      <title>WIP</title>
-      <link>https://articles.maximemoreillon.com/tags/wip/</link>
-      <pubDate>Sun, 27 Mar 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/wip/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
       <title>Git</title>
       <link>https://articles.maximemoreillon.com/tags/git/</link>
       <pubDate>Tue, 08 Mar 2022 00:00:00 +0000</pubDate>
@@ -833,17 +844,6 @@
     </item>
     
     <item>
-      <title>Programming</title>
-      <link>https://articles.maximemoreillon.com/tags/programming/</link>
-      <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/programming/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
       <title>Swift</title>
       <link>https://articles.maximemoreillon.com/tags/swift/</link>
       <pubDate>Wed, 18 Mar 2020 00:00:00 +0000</pubDate>
@@ -893,6 +893,17 @@
       <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/mysql/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Network</title>
+      <link>https://articles.maximemoreillon.com/tags/network/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/network/</guid>
       
       <description></description>
       
@@ -981,17 +992,6 @@
       <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/motor/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Network</title>
-      <link>https://articles.maximemoreillon.com/tags/network/</link>
-      <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/network/</guid>
       
       <description></description>
       
