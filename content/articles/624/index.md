@@ -1,8 +1,8 @@
 ---
 title: "Unlocking my apartment with my face"
-date: '2021-11-22'
-lastmod: '2022-12-29'
-tags: ['AI / ML', 'Computer vision', 'ESP32', 'Python', 'IoT']
+date: "2021-11-22"
+lastmod: "2022-12-29"
+tags: ["AI", "Computer vision", "ESP32", "Python", "IoT"]
 ---
 
 As part of a previous project, I installed an [IoT lock](/articles/237) on my front door, which allowed me to control it using my smartphone. However, having to take out my smartphone every time I want to unlock the door quickly becomes annoying. To improve on the situation, I installed an RFID reader on the lock, which I used in combination with an [RFID ring which now serves as my key](/articles/523). To follow up on this trend of finding new ways to unlock my door, I decided to explore face recognition technologies.
@@ -11,7 +11,7 @@ The first step in this endeavor was to get my hands on a camera that I could use
 
 There are various Arduino sketch available online that can interact with an OV2640 camera from the ESP32. One such sketch in particular performs face detection and even recognition. For this project, I created a firmware for the T-camera plus based on this face detection system. However, I left the face recognition aside as I didn't trust it so much and wanted to have more control on how to achieve it.
 
-For face recognition, I used the popular [face\_recognition pip package](https://github.com/ageitgey/face_recognition). Here, I designed a simple FastAPI application that exposes the face recognition abilities of the package via HTTP requests, which the ESP32 can handle. This application also manages user registration, storing user information in a MongoDB database.
+For face recognition, I used the popular [face_recognition pip package](https://github.com/ageitgey/face_recognition). Here, I designed a simple FastAPI application that exposes the face recognition abilities of the package via HTTP requests, which the ESP32 can handle. This application also manages user registration, storing user information in a MongoDB database.
 
 I deployed the application in K3s on an Nvidia Jetson Nano in order to benefit from GPU acceleration.
 
@@ -23,11 +23,11 @@ With this setup, the ESP32 constantly scans for faces. When a face is detected, 
 
 The code for this project is available on GitHub:
 
-* [ESP32 firmware](https://github.com/maximemoreillon/esp32-cam-remote-face-recognition)
-* [Face recognition FastAPI app](https://github.com/maximemoreillon/face-recognition-fastapi)
-* [GUI for the FastAPI app](https://github.com/maximemoreillon/face-recognition-fastapi-front)
+- [ESP32 firmware](https://github.com/maximemoreillon/esp32-cam-remote-face-recognition)
+- [Face recognition FastAPI app](https://github.com/maximemoreillon/face-recognition-fastapi)
+- [GUI for the FastAPI app](https://github.com/maximemoreillon/face-recognition-fastapi-front)
 
 Moreover, the web application can be deployed as docker containers, for which images can be found on Docker Hub:
 
-* [Front-end](https://hub.docker.com/repository/docker/moreillon/face-recognition-fastapi-front)
-* [Back-end](https://hub.docker.com/repository/docker/moreillon/face-recognition-fastapi)
+- [Front-end](https://hub.docker.com/repository/docker/moreillon/face-recognition-fastapi-front)
+- [Back-end](https://hub.docker.com/repository/docker/moreillon/face-recognition-fastapi)

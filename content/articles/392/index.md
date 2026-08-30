@@ -1,8 +1,8 @@
 ---
 title: "Vanilla javascript neural network"
-date: '2020-03-10'
-lastmod: '2020-03-18'
-tags: ['Projects', 'AI / ML', 'PHP']
+date: "2020-03-10"
+lastmod: "2020-03-18"
+tags: ["Projects", "AI", "PHP"]
 ---
 
 This simple web app written in JavaScript which trains a neural network on data provided as .csv file. The neural network is a fully connected network implemented from scratch and the structure of its hidden layers can be set by the user. The dimension of its inputs and outputs is automatically adjusted to fit the provided training data.
