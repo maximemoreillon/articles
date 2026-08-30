@@ -33,7 +33,7 @@ snmpwalk -v3 -l authPriv \
 
 The output contains a notable lines such as
 
-```
+```text
 SNMPv2-SMI::enterprises.14823.2.3.3.1.2.2.1.21.36.242.127.195.244.230.1 = INTEGER: 24
 ```
 
@@ -147,7 +147,7 @@ curl "http://localhost:9116/snmp?target=YOUR_ARUBA_CONTROLLER_IP&auth=aruba_v3&m
 
 which should return various metrics, including that of the client count:
 
-```
+```text
 # HELP aruba_ssid_client_count Number of clients associated to this SSID
 # TYPE aruba_ssid_client_count gauge
 aruba_ssid_client_count{ssid_index="0"} 24

@@ -12,7 +12,7 @@ Throughout this article, git tags deploy to the `prod` environment while the `st
 
 Here is an example repository structure for an application that would have both staging and production environments to deploy to:
 
-```
+```text
 my-app/
 ├── kustomize/
 │   ├── base/

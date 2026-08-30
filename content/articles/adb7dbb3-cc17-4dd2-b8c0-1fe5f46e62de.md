@@ -9,7 +9,7 @@ As a NoSQL database, MongoDB can store arrays as fields of a document. This arti
 
 Let's imagine a collection containing the following movie records:
 
-```
+```js
 [
   {
     title: 'Inception',
@@ -39,6 +39,6 @@ There would be cases where one would want to query all movies in which a specifi
 
 With Mongoose, this can be achieved using the find() function as follows:
 
-```
+```js
 const moviesStarringTomHardy = await Movies.find({actors: 'Tom Hardy'})
 ```

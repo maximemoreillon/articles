@@ -9,7 +9,7 @@ With Vue.js, passing data to a child component is generally achieved using props
 
 For this purpose, computed values can be leveraged as they provide ways to define custom getters and setters. In this case, the get() method can simply return the value passed as prop by the parent while set() emits the desired new value.
 
-```
+```html
 <template>
   <div>
     <input v-model="myComputedProp" />
@@ -34,7 +34,7 @@ export default {
 
 In this example, the prop is named value and its value updates are emitted using the input event. Consequently the parent component can directly achieve bi-directional syncing using v-model.
 
-```
+```html
 <template>
   <div>
     <ChildComponent v-model="myVar" />

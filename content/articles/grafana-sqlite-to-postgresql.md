@@ -29,7 +29,7 @@ In order to create all the necessary tables yet keep them empty so as to load ou
 
 Configuring Grafana to use PostgreSQL can be achieved with environment variables
 
-```
+```yaml
 GF_DATABASE_TYPE: postgres
 GF_DATABASE_URL: postgres://grafana:<password>@postgres.postgresql:5432/grafana-dummy
 ```
@@ -53,7 +53,7 @@ Once the PostresQL database that Grafana will use, in this case `grafana` has be
 
 `pgloader` expcts a folder structure as follows:
 
-```
+```text
 |-pgloader
 	|-grafana.db
 	|-main.load
@@ -63,7 +63,7 @@ This explains why the `grafana.db` file has been saved in the `pgloader` folder
 
 `main.load` contains the data loading configuration. Note the `with data only` setting.
 
-```
+```text
 load database
   from sqlite:///pgloader/grafana.db
   into postgresql://postgres:<password>@192.168.1.6:32032/grafana
@@ -84,6 +84,6 @@ docker run --rm -it  \
 
 Grafana can now be started, now configured to use its PostgreSQL database for storage
 
-```
+```yaml
 GF_DATABASE_URL: postgres://grafana:<password>@postgres.postgresql:5432/grafana
 ```
