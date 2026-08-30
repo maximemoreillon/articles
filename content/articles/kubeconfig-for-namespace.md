@@ -80,9 +80,9 @@ clusters:
 contexts:
   - context:
       cluster: my-cluster
-      user: static-admin-user
+      user: namespace-limited-user
     name: my-limited-context
-current-context: my-context
+current-context: my-limited-context
 kind: Config
 preferences: {}
 users:

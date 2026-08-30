@@ -73,7 +73,7 @@ spec:
   source:
     repoURL: https://github.com/your-org/repo-b
     targetRevision: main
-    path: path/to/kustomization.yml
+    path: path/to
   destination:
     server: https://kubernetes.default.svc
     namespace: whatever
