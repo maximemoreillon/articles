@@ -2,7 +2,7 @@
 title: "Multi-user MQTT platform"
 date: '2021-09-20'
 lastmod: '2022-07-06'
-tags: ['Projects', 'Kubernetes', 'MQTT', 'WIP', 'Security', 'Node.js']
+tags: ['Projects', 'Kubernetes', 'MQTT', 'Security', 'Node.js']
 ---
 
 Mosquitto is usually the first candidate to come to mind when looking for an MQTT broker. However, by default, Mosquitto manages users using a password file. This makes it difficult to easily add or remove users, especially when the broker is deployed in Kubernetes.

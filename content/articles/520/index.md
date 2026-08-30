@@ -2,7 +2,7 @@
 title: "WiFi light bulb controller"
 date: '2021-09-21'
 lastmod: '2022-06-27'
-tags: ['SMD', 'Projects', 'IoT', 'WIP', 'PCB design', 'Electronics']
+tags: ['SMD', 'Projects', 'IoT', 'PCB design', 'Electronics']
 ---
 
 Wifi controlled smart light bulbs can now be purchased from less than USD 10. However, those can often only be used by a specific application provided by the vendor and can involve exchanging data with a third party server. I wanted a solution to use my own software while benefiting from the cheap hardware so I replaced the wifi module of a a cheap Wifi light bulb my own electronics.

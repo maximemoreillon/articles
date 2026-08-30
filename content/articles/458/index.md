@@ -2,7 +2,7 @@
 title: "IoT pan-tilt platform"
 date: '2021-02-04'
 lastmod: '2022-06-26'
-tags: ['Electronics', 'IoT', 'WIP', 'MQTT', 'Projects']
+tags: ['Electronics', 'IoT', 'MQTT', 'Projects']
 ---
 
 With the COVID-19 pandemic, many of us cannot participate in family gatherings or other similar events in person. Instead, some opt for video-call applications like zoom, but then get constrained to the field of view of camera of the device used for the call.

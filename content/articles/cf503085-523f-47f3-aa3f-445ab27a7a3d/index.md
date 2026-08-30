@@ -2,7 +2,7 @@
 title: "IoT LED controller"
 date: '2022-03-27'
 lastmod: '2022-10-23'
-tags: ['Featured', 'PCB design', 'Electronics', 'WIP', 'Arduino', 'IoT']
+tags: ['Featured', 'PCB design', 'Electronics', 'Arduino', 'IoT']
 ---
 
 Smart lights are usually some of the first appliances to be added to a smart home. Although those can nowadays be purchased easily from various brands, I wanted to have my own hardware so as to integrate it better with other devices and software. Thus, I decided to an IoT LED controller that I can use in various projects where lighting has to be controlled via network protocols.

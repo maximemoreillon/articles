@@ -2,7 +2,7 @@
 title: "Wardrobe and outfits management web app"
 date: '2022-01-27'
 lastmod: '2022-12-30'
-tags: ['Vue.js', 'MongoDB', 'Mongoose', 'Vuetify', 'WIP', 'Express', 'Web', 'Node.js']
+tags: ['Vue.js', 'MongoDB', 'Mongoose', 'Vuetify', 'Express', 'Web', 'Node.js']
 ---
 
 Have you ever bought a piece of clothing only to come home and realize you already had a similar one in your wardrobe? This web application aims at solving this problem by allowing users to register their garments in a database.

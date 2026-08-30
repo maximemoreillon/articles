@@ -2,7 +2,7 @@
 title: "This very application, a CMS based on Neo4J"
 date: '2020-03-05'
 lastmod: '2022-06-27'
-tags: ['Node.js', 'WIP', 'Projects', 'Web', 'Neo4J']
+tags: ['Node.js', 'Projects', 'Web', 'Neo4J']
 ---
 
 Publishing articles on a website can be as simple as uploading HTML files to a web server. However, writing articles in raw HTML can be time consuming. A content management system (CMS) is an application designed to solve this issue by providing a simple way to create and manage web content directly from the web browser. There are many CMSs available, namely Wordpress or Joomla but I decided to create my own as a form of practice and in order to have it highly customized to my needs.

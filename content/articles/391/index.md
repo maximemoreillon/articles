@@ -2,7 +2,7 @@
 title: "Home automation"
 date: '2020-03-10'
 lastmod: '2022-07-03'
-tags: ['WIP', 'Node.js', 'MQTT', 'Projects', 'IoT']
+tags: ['Node.js', 'MQTT', 'Projects', 'IoT']
 ---
 
 Few would argue that having lights turned on in a room without occupant is a waste of electricity. Ideally, lights and other appliances like air conditioners would only be turned on when someone is around. This project is a NodeJS application that gathers data about the occupancy of an apartment and manages appliances accordingly.

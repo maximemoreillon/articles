@@ -2,7 +2,7 @@
 title: "SONOFF S20 firmware"
 date: '2021-09-25'
 lastmod: '2022-10-22'
-tags: ['Electronics', 'IoT', 'WIP', 'MQTT']
+tags: ['Electronics', 'IoT', 'MQTT']
 ---
 
 The SONOFF S20 is a cheap Wifi smart socket that enables the remote control of appliances for less than USD 10. Although the hardware is more than decent, its usage requires a proprietary app which most likely involves a third party server between the user and the device. Since the socket uses an ESP8266 at its core, I decided to write my own firmware for it.

@@ -2,7 +2,7 @@
 title: "4WD robot"
 date: '2014-08-11'
 lastmod: '2021-09-26'
-tags: ['Robotics', 'Arduino', 'WIP', 'Projects']
+tags: ['Robotics', 'Arduino', 'Projects']
 ---
 
 I found a cheap 4 wheel drive chassis on eBay and decided to make a remote controlled robot out of it. Thus, I made a simple board with two H-bridge modules, an NRF24L01 wireless module and Arduino pro mini.

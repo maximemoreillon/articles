@@ -2,7 +2,7 @@
 title: "Image upload microservice"
 date: '2020-03-23'
 lastmod: '2021-09-20'
-tags: ['Web', 'WIP', 'Node.js', 'MongoDB', 'Projects', 'Mongoose']
+tags: ['Web', 'Node.js', 'MongoDB', 'Projects', 'Mongoose']
 ---
 
 An image is worth a thousand words and probably even more if comparing their size in bytes. When designing my CMS, I originally intended to store images directly in the article, encoded in Base64. However, this would considerably increase the size of each article, making the whole CMS slow.

@@ -2,7 +2,7 @@
 title: "IoT ceiling lights"
 date: '2020-03-09'
 lastmod: '2022-10-24'
-tags: ['IoT', 'WIP', 'Electronics', 'Projects', 'MQTT', 'ESP8266']
+tags: ['IoT', 'Electronics', 'Projects', 'MQTT', 'ESP8266']
 ---
 
 After experimenting with various options to make my existing lights smarter, I decided that designing my own hardware would provide me with more customization options. The result are those ceiling lights, made out of an aluminum frame and COB LEDs.

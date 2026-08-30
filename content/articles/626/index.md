@@ -2,7 +2,7 @@
 title: "Distributing a Helm chart on Artifact Hub"
 date: '2021-11-23'
 lastmod: '2022-06-27'
-tags: ['Kubernetes', 'Helm', 'WIP', 'DevOps']
+tags: ['Kubernetes', 'Helm', 'DevOps']
 ---
 
 Building applications in a microservice architecture has become more and more popular recently. With this design pattern, an application is composed of multiple services that run independently and generally share data across network protocols.

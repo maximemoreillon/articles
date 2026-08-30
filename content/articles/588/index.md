@@ -2,7 +2,7 @@
 title: "Energy transformation demonstration"
 date: '2020-11-08'
 lastmod: '2022-06-27'
-tags: ['Energy', 'Electronics', 'WIP', 'Projects', 'IoT']
+tags: ['Energy', 'Electronics', 'Projects', 'IoT']
 ---
 
 Earlier this year, a friend of mine was organizing an event to promote eco-friendly behaviors. She wanted someone to talk about our relationship with energy and asked me to give a presentation on the topic, which I agreed to. I wanted the presentation to be entertaining so I designed a set of hardware demonstrations aimed at explaining physical concepts related to energy.
