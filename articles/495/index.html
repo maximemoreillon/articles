@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>More often than not, web applications require restrictions regarding who can access the content that they serve. This involves an user management and authentication system, which, if designed inappropriately, can lead to security concerns. However, the development of such system can be time consuming, especially if done repeatedly for multiple applications.</p>
 <p>To solve this problem, this article presents a user management and authentication service, built around MongoDB, that can be easily plugged into an existing application with only minimal refactoring.</p>
 <p>Additionally, this article introduces middleware for Express and Vue that facilitate the integration of the service into existing applications.</p>
-<p><strong>An example application</strong></p>
+<h2 id="an-example-application">An example application</h2>
 <p>Let’s imagine a simple Express application which serves <code>Sensitive data</code> upon receiving an HTTP GET requests on the <em>/data</em> endpoint:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;cors&#39;</span>)<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>()
@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p><img src="https://miro.medium.com/max/261/1*eubvoN4ZHHtRHsi9BfvrAw.png" alt=""></p>
 <p>Without any authentication mechanism, the front-end can freely retrieve the back-end’s sensitive data</p>
 <p>Here, one way to implement access restrictions would be to build an authentication system from the ground up, but having to do so for every application would be tedious. Instead, we’ll deploy our pluggable authentication system to handle the task.</p>
-<p><strong>The user management and authentication service</strong></p>
+<h2 id="the-user-management-and-authentication-service">The user management and authentication service</h2>
 <p>The user management and authentication service comes in four parts:</p>
 <ul>
 <li>A MongoDB database to store users</li>
@@ -338,9 +338,9 @@ document.addEventListener('DOMContentLoaded', function () {
 <p><img src="https://miro.medium.com/max/638/1*gcFXiWEjm-rxPNULpLtSEQ.png" alt=""></p>
 <p>The newly created user (roger) appearing in the user list</p>
 <p>Further configuration of a user can be done by clicking on the corresponding row of the user table. Options include granting administrator rights which provides the user with the ability to create and delete users.</p>
-<p><strong>Integration with the existing application</strong></p>
+<h2 id="integration-with-the-existing-application">Integration with the existing application</h2>
 <p>Now that the user management service is deployed, our example application needs to be updated so as to use the former for authentication. This involves connecting the both the back-end and the front end of our example application to the user management service’s server-side application.</p>
-<h2 id="back-end-integration"><strong>Back-end integration</strong></h2>
+<h3 id="back-end-integration">Back-end integration</h3>
 <p>We will start with the back-end integration. Here the objective is to prevent unauthenticated usersfrom accessing retriving data from the <em>/data</em> endpoint. For Express applications, <a href="https://github.com/maximemoreillon/express_identification_middleware">a dedicated module</a> has been developed and can be installed via NPM:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install @moreillon/express_identification_middleware
 </span></span></code></pre></div><p>Once downloaded, our back-end code can be refactored so as to use the module as an express middleware:</p>
@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>With this done, the front-end should no longer be able to display the <code>Sensitive data</code> from the <em>/data</em> endpoint and return a 403 (forbidden) error code instead:</p>
 <p><img src="https://miro.medium.com/max/571/1*icmAjhmWnkUfC03kGWR18g.png" alt=""></p>
 <p>The front-end after authentication has been implemented in the back-end</p>
-<h2 id="front-end-integration"><strong>Front-end integration</strong></h2>
+<h3 id="front-end-integration">Front-end integration</h3>
 <p>Now that the data is restricted to authenticated users on the back-end, it is time to provide our front-end with means of authenticating users.</p>
 <p>Here again, <a href="https://github.com/maximemoreillon/vue_authentication_wall">a dedicated front-end module</a> has been developed for this purpose. It can be installed using NPM as follows:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install @moreillon/vue_authentication_wall
@@ -399,10 +399,10 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Here, one can log in using any user account listed in the user management service, such as the <em>roger</em> user previously created. Upon successful login, the back-end data is finally visible to the user.</p>
 <p><img src="https://miro.medium.com/max/261/1*eubvoN4ZHHtRHsi9BfvrAw.png" alt=""></p>
 <p>The back-end data visible to clients after successful login</p>
-<p><strong>Conclusion</strong></p>
+<h2 id="conclusion">Conclusion</h2>
 <p>With the user management service and integration modules presented in this article, authentication can be easily implemented in existing applications, which allows developers to focus their time and energy on the actual content of their project.</p>
 <p>A working example of the service presented in this article is available on GitHub <a href="https://github.com/maximemoreillon/authentication_example">here</a>.</p>
-<p>Links and references</p>
+<h2 id="links-and-references">Links and references</h2>
 <p>This article has also been posted to <a href="https://moreillon.medium.com/a-pluggable-user-management-and-authentication-service-for-web-applications-a6f23ae5816b">Medium</a></p>
 
             </div>
