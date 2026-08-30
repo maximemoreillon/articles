@@ -27,7 +27,7 @@
       <guid>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</guid>
       
       <description>&lt;p&gt;Smart lights are usually some of the first appliances to be added to a smart home. Although those can nowadays be purchased easily from various brands, I wanted to have my own hardware so as to integrate it better with other devices and software. Thus, I decided to an IoT LED controller that I can use in various projects where lighting has to be controlled via network protocols.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6240057135a52f5ea69e899b&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;6240057135a52f5ea69e899b.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;hardware&#34;&gt;Hardware&lt;/h2&gt;
 &lt;p&gt;The controller is built around an ESP8266 microcontroller (Wemos D1 mini) and N-Channel MOSFETS. The latter switch the 12V line of LED strips or COBs according to the microcontroller. Here, up to 4 channels of LEDs can be controlled by a single controller.&lt;/p&gt;</description>
       
@@ -64,7 +64,7 @@
       <guid>https://articles.maximemoreillon.com/articles/389/</guid>
       
       <description>&lt;p&gt;This is a wireless motion sensor that runs on rechargeable batteries. It can be deployed anywhere and sends a signal using an NRF24L01 wireless module whenever it detects motion.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e78598c5e7fee69fd6e5745&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e78598c5e7fee69fd6e5745.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The device is composed of the following parts&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Arduino pro mini&lt;/li&gt;
@@ -196,7 +196,7 @@
       <guid>https://articles.maximemoreillon.com/articles/13/</guid>
       
       <description>&lt;p&gt;This is one of my earliest electronics project: An alarm clock built around an Arduino nano, a real-time clock (RTC) module and a 7-segment display.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e796da9ad3848334cf8697d&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e796da9ad3848334cf8697d.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Among other,it features the following functions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Alarm clock&lt;/li&gt;
@@ -205,7 +205,7 @@
 &lt;li&gt;Automatic brightness using a photoresistor&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The device is operated using rotary encodes with integrated push buttons and includes a buzzer for acoustic feedback.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/615173279a075f836f59cd42&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;615173279a075f836f59cd42.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
       
     </item>
     
@@ -217,8 +217,8 @@
       <guid>https://articles.maximemoreillon.com/articles/553/</guid>
       
       <description>&lt;p&gt;I found a cheap 4 wheel drive chassis on eBay and decided to make a remote controlled robot out of it. Thus, I made a simple board with two H-bridge modules, an NRF24L01 wireless module and Arduino pro mini.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fc82f9a075f361259c807&#34; alt=&#34;&#34;&gt;To control the robot, I designed a simple remote controller with an Arduino pro-mini, joystick and NRF24L01 module&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fc8519a075f88b759c80b&#34; alt=&#34;&#34;&gt;As it is, the robot was not very useful, even when displaying some creativity.&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;614fc82f9a075f361259c807.jpg&#34; alt=&#34;&#34;&gt;To control the robot, I designed a simple remote controller with an Arduino pro-mini, joystick and NRF24L01 module&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614fc8519a075f88b759c80b.jpg&#34; alt=&#34;&#34;&gt;As it is, the robot was not very useful, even when displaying some creativity.&lt;/p&gt;</description>
       
     </item>
     

@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>For face recognition, I used the popular <a href="https://github.com/ageitgey/face_recognition">face_recognition pip package</a>. Here, I designed a simple FastAPI application that exposes the face recognition abilities of the package via HTTP requests, which the ESP32 can handle. This application also manages user registration, storing user information in a MongoDB database.</p>
 <p>I deployed the application in K3s on an Nvidia Jetson Nano in order to benefit from GPU acceleration.</p>
 <p>To facilitate user management, I built a simple front-end for the application using Vue.js and Vuetify.</p>
-<p><img src="https://img.maximemoreillon.com/images/619b82549a075fef0e5a079b" alt=""></p>
+<p><img src="619b82549a075fef0e5a079b.png" alt=""></p>
 <p>With this setup, the ESP32 constantly scans for faces. When a face is detected, a frame is captured and sent to the face recognition service running on the Jetson Nano. The latter then checks the face against those stored in the user database. If a match is found, the application respond with an HTTP 200, after which the ESP32 sends an MQTT message to the lock so as to unlock the door.</p>
 <p>The code for this project is available on GitHub:</p>
 <ul>

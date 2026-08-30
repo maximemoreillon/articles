@@ -244,11 +244,11 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>IP cameras are cheaper than ever and with the ESP32-CAM boards it is now possible to stream video for less than USD 10. However, IP cameras are commonly either only accessible from within their network, or use servers from third party companies to allow users to see the video feed from anywhere in the world. As both scenarios are inconvenient, I decided to create a camera viewer application that can proxy the video feed to a web interface.</p>
-<p><img src="https://img.maximemoreillon.com/images/614923829a075f7a4459b189" alt=""></p>
+<p><img src="614923829a075f7a4459b189.png" alt=""></p>
 <p>Basically, this is a Node.JS + Express app with the <a href="https://www.npmjs.com/package/http-proxy">HTTP-proxy</a> package at its core. The latter forwards requests to the video streams while access control is enforced with an Express middleware.</p>
 <p>On the other hand, the list of cameras that can be accessed with the application is stored in a MongoDB database, interfaced with Mongoose.</p>
 <p>The GUI has been built using Vue.js</p>
-<p><img src="https://img.maximemoreillon.com/images/6149238b9a075f209a59b18d" alt=""></p>
+<p><img src="6149238b9a075f209a59b18d.png" alt=""></p>
 <p>The source code for this app can be found on GitHub:</p>
 <ul>
 <li><a href="https://github.com/maximemoreillon/camera_proxy">Back-end</a></li>

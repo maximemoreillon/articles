@@ -15,8 +15,8 @@
       <guid>https://articles.maximemoreillon.com/articles/553/</guid>
       
       <description>&lt;p&gt;I found a cheap 4 wheel drive chassis on eBay and decided to make a remote controlled robot out of it. Thus, I made a simple board with two H-bridge modules, an NRF24L01 wireless module and Arduino pro mini.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fc82f9a075f361259c807&#34; alt=&#34;&#34;&gt;To control the robot, I designed a simple remote controller with an Arduino pro-mini, joystick and NRF24L01 module&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fc8519a075f88b759c80b&#34; alt=&#34;&#34;&gt;As it is, the robot was not very useful, even when displaying some creativity.&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;614fc82f9a075f361259c807.jpg&#34; alt=&#34;&#34;&gt;To control the robot, I designed a simple remote controller with an Arduino pro-mini, joystick and NRF24L01 module&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614fc8519a075f88b759c80b.jpg&#34; alt=&#34;&#34;&gt;As it is, the robot was not very useful, even when displaying some creativity.&lt;/p&gt;</description>
       
     </item>
     

@@ -63,9 +63,9 @@
       <guid>https://articles.maximemoreillon.com/articles/0c1a7a47-c651-472d-a867-e1e2b040e997/</guid>
       
       <description>&lt;p&gt;Have you ever bought a piece of clothing only to come home and realize you already had a similar one in your wardrobe? This web application aims at solving this problem by allowing users to register their garments in a database.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/61f2b47035a52f9bb09e4eef&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;61f2b47035a52f9bb09e4eef.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Moreover, the application provides a way to register complete outfits and list the various garments that are parts it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62b8fa733bbcba1c3e77be8c&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;62b8fa733bbcba1c3e77be8c.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The application consists of a Node.js back-end which stores garment information in a MongoDB database. It also provides a REST API built using Express to exchange data with the application&amp;rsquo;s GUI. The latter is a Vue.js single page application featuring UI components from the Vuetify library.&lt;/p&gt;</description>
       
     </item>
@@ -209,7 +209,7 @@
       
       <description>&lt;p&gt;A company I worked for had a coffee machine for which employees could purchase coffee. However, the payment was done by putting coins in a jar.&lt;/p&gt;
 &lt;p&gt;Not only did this present the obvious risk of theft, this system was also impractical for people not carrying spare change at all time. I decided to solve this issue by designing this cashless payment system.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e796ef4ad3848218cf8697e&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e796ef4ad3848218cf8697e.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Here is a video of the system in action:&lt;/p&gt;</description>
       
     </item>
@@ -222,7 +222,7 @@
       <guid>https://articles.maximemoreillon.com/articles/165/</guid>
       
       <description>&lt;p&gt;Most banks nowadays provide e-banking interfaces that allow clients to monitor the state of their accounts. However, each bank has its own system and the provided interfaces sometimes lack functionalities. Consequently, I decided to create my own finance dashboard, that combines information regarding multiple accounts. Currently I use it to keep track of my bank accounts balance over time as well as provide a breakdown of my transactions.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/60b1cf1043b282317cabca3b&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;60b1cf1043b282317cabca3b.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The back-end of the application is built using NodeJS while data is stored in a MongoDB collection for transactions and InfluxDB for the balance history. On the other hand, the front end is built using VueJS and uses ChartsJS for plots.&lt;/p&gt;</description>
       
     </item>

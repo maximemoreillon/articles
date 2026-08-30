@@ -27,7 +27,7 @@
       <guid>https://articles.maximemoreillon.com/articles/28/</guid>
       
       <description>&lt;p&gt;Over the years, I have built multiple Vue.js applications. Although their business logic differs, those applications often share similar components such as a navigation panel, a header with my logo and an authentication mechanism. Writing those from scratch for each application would be time consuming so I designed an application template that can be installed using &lt;a href=&#34;https://www.npmjs.com/package/@moreillon/vue_application_template&#34;&gt;NPM&lt;/a&gt; to bootstrap my projects.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/615255af9a075f4e3559ce34&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;615255af9a075f4e3559ce34.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The template integrates in existing Vue.js applications as a component. By default, it wraps the router-view component and adds the following UI components to the app:&lt;/p&gt;</description>
       
     </item>

@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Helm facilitates the deployment of an application by taking care of the creation of all its necessary Kubernetes objects such as deployments, services, PVCs etc. An application packaged with Helm is called a chart. Such chart can be created using the helm create command;</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm3 create my-helm-chart
 </span></span></code></pre></div><p>This should create a project with the following content:</p>
-<p><img src="https://img.maximemoreillon.com/images/61a225c84b39953b62dae550" alt=""></p>
+<p><img src="61a225c84b39953b62dae550.png" alt=""></p>
 <h2 id="adding-kubernetes-manifests">Adding Kubernetes manifests</h2>
 <p>Simply put, Helm applies all the Kubernetes manifests that are in the <em>templates</em> folder whenever a chart is installed. Additionally, Helm offers many tools and options such as templating but we will ignore those for the moment in order to keep this guide concise. For this example, let&rsquo;s delete everything from the templates folder and start from scratch. The values.yaml file is not needed at the moment either and can also be deleted.</p>
 <p>Let&rsquo;s assume that we want to deploy an application simply comprised of an NGINX container, exposed via a NodePort. For such an application, here is what a Kubernetes manifest would look like:</p>
@@ -310,28 +310,28 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>In order to be shared on Artifact Hub, the helm chart must be packaged. This can be done using the Helm <em>package</em> command:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm3 package .
 </span></span></code></pre></div><p>This should generate a tgz archive in the chart directory.</p>
-<p><img src="https://img.maximemoreillon.com/images/61a61db34b39956825dae7b4" alt=""></p>
+<p><img src="61a61db34b39956825dae7b4.png" alt=""></p>
 <h2 id="creating-an-index-file-for-the-chart">Creating an index file for the chart</h2>
 <p>Artifact Hub requires an <em>index.yaml</em> file to be present in the chart&rsquo;s directory. This file contains information about the chart and is created automatically by running the following command:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm3 repo index .
 </span></span></code></pre></div><p>This should generate the index file for the chart in the working directory.</p>
-<p><img src="https://img.maximemoreillon.com/images/61a61e114b399579fddae7b8" alt=""></p>
+<p><img src="61a61e114b399579fddae7b8.png" alt=""></p>
 <h2 id="a-github-repository-with-pages-to-host-the-chart">A GitHub repository with pages to host the chart</h2>
 <p>Our chart directory now contains pretty much everything it needs in order to be distributed. Although Artifact Hub is a distribution service for resources like Helm charts, it is not a file storage service. Consequently, we need to find some other place to store our chart online. For this purpose, we can leverage GitHub pages.</p>
 <p>Let&rsquo;s go ahead and create a GitHub repository for our chart and upload our files there using git. With our files uploaded on the repository, we can configure GitHub Pages for the latter so that the files get served via HTTP. This can be done by going into settings &gt; pages and selecting which branch to serve (most likely master or main).</p>
-<p><img src="https://img.maximemoreillon.com/images/619cdc619a075f72015a0992" alt=""></p>
+<p><img src="619cdc619a075f72015a0992.png" alt=""></p>
 <p>With this done, our Chart files are now accessible as static assets from an URL in the form:</p>
 <p><a href="https://maximemoreillon.github.io/face-recognition-fastapi-helm-chart/">https://USERNAME.github.io/GITHUB_REPO_NAME/</a></p>
 <h2 id="adding-a-repository-on-artifact-hub">Adding a repository on Artifact Hub</h2>
 <p>Now that our chart has its files properly being served by GitHub pages, we can finally register it on Artifact Hub. Let&rsquo;s start by creating an Artifact Hub account if not already done and log in. From there, let&rsquo;s head into the control panel and click the <em>add</em> button. We are presented with a form requiring information about our chart:</p>
-<p><img src="https://img.maximemoreillon.com/images/619cdd4a9a075f3df25a0998" alt=""></p>
+<p><img src="619cdd4a9a075f3df25a0998.png" alt=""></p>
 <p>After giving a name to our chart and providing the URL pointing to our files on the GitHub pages of the repository we can go ahead and click add. Our chart should now be properly registered on Artifact Hub.</p>
-<p><img src="https://img.maximemoreillon.com/images/61a622724b39951db3dae7cc" alt=""></p>
+<p><img src="61a622724b39951db3dae7cc.png" alt=""></p>
 <h2 id="publisher-verification">Publisher verification</h2>
 <p>The last step of the chart&rsquo;s publication is the verification of the publisher. This can be achieved by creating a file named <em>artifacthub-repo.yml</em>along the other project files with a content in the form of the following:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">repositoryID</span>: <span style="color:#ae81ff">YOUR_REPOSITORY_ID</span>
 </span></span></code></pre></div><p>Here, we need to replace YOUR_REPOSITORY_ID with the ID provided on the repository page of Artifact Hub. Once done, let&rsquo;s push this new file to GitHub and wait for Artifact Hub to notice it. After a few minutes, the Helm chart should have received a <em>publisher verified</em> badge and can now be shared with Artifact Hub users.</p>
-<p><img src="https://img.maximemoreillon.com/images/61a627f94b39954825dae7ee" alt=""></p>
+<p><img src="61a627f94b39954825dae7ee.png" alt=""></p>
 <h2 id="installing-the-helm-chart-from-artifact-hub">Installing the Helm chart from Artifact Hub</h2>
 <p>After those numerous steps, our Helm chart is finally published on Artifact Hub. Users can then go ahead and install it from there. This can be done with the following commands:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm3 repo add my-helm-chart REPO_URL

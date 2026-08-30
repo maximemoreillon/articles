@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>When dealing with a large number of users, it can become convenient to arrange those in groups. Here, groups too can be represented as nodes and the membership of a user by a relationship. However, building group management logic from scratch for every application would be tedious.</p>
 <p>This microservice, named Group manager, proposes a solution to this problem by offering just the generic logic to handle groups and their relationships, making it easy to integrate in a microservice architecture, alongside other services managing Neo4j records.</p>
 <p>This service takes advantage from the Neo4j database used by the user management service and adds a &ldquo;Group&rdquo; node type. Members can be added to a group by creating a BELONGS_TO relationship between a user and the desired group. Similarly, a user can be made administrator of a group using an ADMINISTRATED_BY relationship.</p>
-<p><img src="https://img.maximemoreillon.com/images/6149cfd89a075fff8259b929" alt=""></p>
+<p><img src="6149cfd89a075fff8259b929.png" alt=""></p>
 <p>The group nodes and their relationships are managed by a back-end built using Node.js and express, which exposes a REST API to perform the appropriate operations.</p>
 <p>To make group management easier, I developed a companion GUI using Vue.js. The GUI allows the creation and deletion of groups, edition of their details as well as adding and removing members or administrators to them.</p>
 <h2 id="source-code">Source code</h2>

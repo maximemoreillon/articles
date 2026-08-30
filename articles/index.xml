@@ -355,7 +355,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/bd9dcf40-ce45-42ac-8d58-de4be0c04ab1/</guid>
       
       <description>&lt;p&gt;Nagoya Global Friends is an international community in Nagoya whose events gather people from all over the world. In order to visualize the various countries represented, I designed a simple Firebase application. The application allows users to register their home country, which gets stored in a Firestore database. The data is then displayed as a 3D globe with markers for each record.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/65d163cf12a3120013538c56&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;65d163cf12a3120013538c56.png&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The interface is built using Svelte and the &lt;a href=&#34;https://threlte.xyz/&#34;&gt;Threlte&lt;/a&gt; library for 3D rendering. Its source code is available on &lt;a href=&#34;https://github.com/maximemoreillon/countries-tracker&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</description>
       
     </item>
@@ -549,7 +549,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/c322b2f5-5180-4cf7-8ecf-4fd3a1d21783/</guid>
       
       <description>&lt;p&gt;I have been unlocking my door with this &lt;a href=&#34;https://articles.maximemoreillon.com/articles/03878fe3-1eca-4f22-9521-0589ba076930&#34;&gt;RFID ring and its dedicated IoT RFID reader&lt;/a&gt; for several years now. Despite working without any issues, this system required me to wear a ring that I could potentially lose. So, instead of using the ring as a key, I decided to use the finger that I would put it on and thus designed an IoT fingerprint reader.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/64a496783581c50013b5a9f9&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;64a496783581c50013b5a9f9.png&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The reader is made of an AS608 fingerprint reader module driven by an ESP32. Additionally, an OLED display and buzzer are provided for user feedback. Those components are connected as follows:&lt;/p&gt;</description>
       
     </item>
@@ -562,7 +562,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/5b068e5d-427d-4721-8ed1-8057ed3d8606/</guid>
       
       <description>&lt;p&gt;I live by myself far away from my relatives, which can can make them worried if they don&amp;rsquo;t hear about me for too long. To reassure them, I made a simple web application which displays my recent activity alongside a list of emergency contacts.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/645ecb973581c50013b50aa5&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;645ecb973581c50013b50aa5.png&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Because the app did not require any kind of interactivity, I decided to build it using &lt;a href=&#34;https://astro.build/&#34;&gt;Astro&lt;/a&gt;. As the recent activity needs shown on the app to be up to date, Astro is in SSR mode with the Node.js adapter, thus fetching the latest data every time the page is requested. The app is written in TypeScript and uses the Tailwind CSS framework for styling.&lt;/p&gt;</description>
       
     </item>
@@ -575,7 +575,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/56e285eb-3b1f-436a-b56a-39f0c69245a1/</guid>
       
       <description>&lt;p&gt;Maintaining good habits can sometimes be hard. Recently, I&amp;rsquo;ve been looking at the way contributions are displayed on GitHub: a grid with a cell for each day, turning green if contributions have been made on that date.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/64571be23581c50013b501a0&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;64571be23581c50013b501a0.png&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I realized that it motivated me to write code everyday, just to keep that grid as green as possible. So, I decided to create an app that provides a similar kind of motivation but for habits other than coding daily.&lt;/p&gt;</description>
       
     </item>
@@ -850,7 +850,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/d3224302-ba33-437e-919c-b8c463f29eec/</guid>
       
       <description>&lt;p&gt;I recenly got myself an USB ype C dock for my laptop. This accessory quite convenient as it allows me to connect my laptop to power, my external monitor and USB peripherals with just one cable.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62ea71be27a6008518376123&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;62ea71be27a6008518376123.jpg&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The dock itself works fine but because of the way its ports are laid out, it makes a mess of wires on my desk. To solve the issue, I decided to mount the USB dock on the back of my laptop stand.&lt;/p&gt;</description>
       
     </item>
@@ -948,7 +948,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</guid>
       
       <description>&lt;p&gt;Smart lights are usually some of the first appliances to be added to a smart home. Although those can nowadays be purchased easily from various brands, I wanted to have my own hardware so as to integrate it better with other devices and software. Thus, I decided to an IoT LED controller that I can use in various projects where lighting has to be controlled via network protocols.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6240057135a52f5ea69e899b&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;6240057135a52f5ea69e899b.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;hardware&#34;&gt;Hardware&lt;/h2&gt;
 &lt;p&gt;The controller is built around an ESP8266 microcontroller (Wemos D1 mini) and N-Channel MOSFETS. The latter switch the 12V line of LED strips or COBs according to the microcontroller. Here, up to 4 channels of LEDs can be controlled by a single controller.&lt;/p&gt;</description>
       
@@ -978,9 +978,9 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/0c1a7a47-c651-472d-a867-e1e2b040e997/</guid>
       
       <description>&lt;p&gt;Have you ever bought a piece of clothing only to come home and realize you already had a similar one in your wardrobe? This web application aims at solving this problem by allowing users to register their garments in a database.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/61f2b47035a52f9bb09e4eef&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;61f2b47035a52f9bb09e4eef.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Moreover, the application provides a way to register complete outfits and list the various garments that are parts it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62b8fa733bbcba1c3e77be8c&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;62b8fa733bbcba1c3e77be8c.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The application consists of a Node.js back-end which stores garment information in a MongoDB database. It also provides a REST API built using Express to exchange data with the application&amp;rsquo;s GUI. The latter is a Vue.js single page application featuring UI components from the Vuetify library.&lt;/p&gt;</description>
       
     </item>
@@ -1005,7 +1005,7 @@ Although functional, this approach required operational overhead such as server 
       
       <description>&lt;h2 id=&#34;connect-to-the-devices-wifi-access-point&#34;&gt;Connect to the device&amp;rsquo;s WiFi access point&lt;/h2&gt;
 &lt;p&gt;When used for the first time, the device will have no knowledge of what WiFi to connect to. Consequently, the smart outlet will generate its own, prefixed with the name &lt;em&gt;socket.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/61cab9b835a52f0b519e337d&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;61cab9b835a52f0b519e337d.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Connecting to the access point should automatically open a configuration page.&lt;/p&gt;
 &lt;h2 id=&#34;wifi-configuration&#34;&gt;WiFi configuration&lt;/h2&gt;
 &lt;p&gt;Once connected to the wifi, the following page should open. On this page, the WiFi settings and MQTT credentials can be set.&lt;/p&gt;</description>
@@ -1033,7 +1033,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/441/</guid>
       
       <description>&lt;p&gt;Many web applications rely on the upload of files from client to server via a POST request. The content-type of this request is generally multipart/form-data. When developing the server-side of such application, being able to quickly test the upload feature can greatly increase productivity. So, I designed this simple web application that can POST a file to any URL.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/61a2ddd34b39954ad9dae5c4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;61a2ddd34b39954ad9dae5c4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The application is built using Vue.js with the Vuetify plugin and uses Axios to send the HTTP requests. Its source code is available on &lt;a href=&#34;https://gitlab.com/moreillon_k8s_home/file-poster&#34;&gt;GitLab&lt;/a&gt;. The application can be deployed as a Docker container, for which the image is available on &lt;a href=&#34;https://hub.docker.com/repository/docker/moreillon/file-poster&#34;&gt;Docker Hub&lt;/a&gt;.&lt;/p&gt;</description>
       
     </item>
@@ -1134,7 +1134,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/28/</guid>
       
       <description>&lt;p&gt;Over the years, I have built multiple Vue.js applications. Although their business logic differs, those applications often share similar components such as a navigation panel, a header with my logo and an authentication mechanism. Writing those from scratch for each application would be time consuming so I designed an application template that can be installed using &lt;a href=&#34;https://www.npmjs.com/package/@moreillon/vue_application_template&#34;&gt;NPM&lt;/a&gt; to bootstrap my projects.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/615255af9a075f4e3559ce34&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;615255af9a075f4e3559ce34.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The template integrates in existing Vue.js applications as a component. By default, it wraps the router-view component and adds the following UI components to the app:&lt;/p&gt;</description>
       
     </item>
@@ -1159,7 +1159,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/586/</guid>
       
       <description>&lt;p&gt;One day I got fed up with my solder spool rolling around all the time so I designed this simple spool holder in Fusion360 and 3D printed it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eac539a075f54f559c415&#34; alt=&#34;&#34;&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eac5d9a075f3fd559c419&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614eac539a075f54f559c415.jpg&#34; alt=&#34;&#34;&gt;&lt;img src=&#34;614eac5d9a075f3fd559c419.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The STL files for this project are available on &lt;a href=&#34;https://www.thingiverse.com/thing:5145144&#34;&gt;Thingiverse&lt;/a&gt;&lt;/p&gt;</description>
       
     </item>
@@ -1209,7 +1209,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/500/</guid>
       
       <description>&lt;p&gt;I recently started using Grafana to visualize my apartment data. Although I can easily open a browser tab to view the dashboard I created, I wanted to have a standalone display dedicated to the task that I could put on a shelf of my living room.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/61494d039a075f5e9b59b485&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;61494d039a075f5e9b59b485.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I took apart the display of a dead laptop I had laying around and bought an HDMI adapter board for it, thus turning it into a standalone PC monitor.&lt;/p&gt;</description>
       
     </item>
@@ -1256,7 +1256,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/483/</guid>
       
       <description>&lt;p&gt;Over the years, I have built multiple IoT devices ranging from AC controllers to ceiling lights. Usually, I would control those devices using my smartphone or computer but sometimes a physical button can be more convenient. Thus, I designed this simple IoT button which publishes MQTT messages when pressed.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6148102f5d171a137f416ccb&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;6148102f5d171a137f416ccb.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;At its core, the button integrates my ESP12-F base PCB, which features a switch connected to GPIO0 used to put the ESP8266 in programming mode. After a successful boot, the GPIO0 can be used freely so I wrote a simple firmware that publishes an MQTT message when the pin gets pulled LOW.&lt;/p&gt;</description>
       
     </item>
@@ -1570,9 +1570,9 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/589/</guid>
       
       <description>&lt;p&gt;RFID tags are great but often easy to lose. To solve this problem, I designed this case for an RFID tag, which can be worn on one&amp;rsquo;s wrist using a standard watch strap. The case was designed using Fusion360 and then 3D printed.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eaa369a075f73f659c403&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614eaa369a075f73f659c403.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The RFID tag is slim enough to fit in the enclosure and is secured using the provided adhesive&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eaa419a075f432e59c407&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614eaa419a075f432e59c407.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The STL file for this project is available on &lt;a href=&#34;https://www.thingiverse.com/thing:5145141&#34;&gt;Thingiverse&lt;/a&gt;&lt;/p&gt;</description>
       
     </item>
@@ -1684,9 +1684,9 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/522/</guid>
       
       <description>&lt;p&gt;I got myself a fume extractor but it takes a rather large amount of real-estate on my desk. I decided to mount it on an arm so that I could easily move it out of the way so I designed and 3D printed an attachment bracket for it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fd10f9a075f99a459c899&#34; alt=&#34;&#34;&gt;The bracket was designed in Fusion 360&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fd8ca9a075faaea59c8ad&#34; alt=&#34;&#34;&gt;And then printed on my QIDI Tech 1&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fd97c9a075f778d59c8b1&#34; alt=&#34;&#34;&gt;It ended up fitting the fume extractor nicely&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;614fd10f9a075f99a459c899.jpg&#34; alt=&#34;&#34;&gt;The bracket was designed in Fusion 360&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614fd8ca9a075faaea59c8ad.png&#34; alt=&#34;&#34;&gt;And then printed on my QIDI Tech 1&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614fd97c9a075f778d59c8b1.jpg&#34; alt=&#34;&#34;&gt;It ended up fitting the fume extractor nicely&lt;/p&gt;</description>
       
     </item>
     
@@ -1827,7 +1827,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/33/</guid>
       
       <description>&lt;p&gt;From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5ec5d30a55b0c12424749cf4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;area_of_circle&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;radius&lt;/span&gt;){
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Math.&lt;span style=&#34;color:#a6e22e&#34;&gt;PI&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;radius&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;radius&lt;/span&gt;
@@ -1844,7 +1844,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/389/</guid>
       
       <description>&lt;p&gt;This is a wireless motion sensor that runs on rechargeable batteries. It can be deployed anywhere and sends a signal using an NRF24L01 wireless module whenever it detects motion.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e78598c5e7fee69fd6e5745&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e78598c5e7fee69fd6e5745.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The device is composed of the following parts&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Arduino pro mini&lt;/li&gt;
@@ -2084,7 +2084,7 @@ Although functional, this approach required operational overhead such as server 
       
       <description>&lt;p&gt;A company I worked for had a coffee machine for which employees could purchase coffee. However, the payment was done by putting coins in a jar.&lt;/p&gt;
 &lt;p&gt;Not only did this present the obvious risk of theft, this system was also impractical for people not carrying spare change at all time. I decided to solve this issue by designing this cashless payment system.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e796ef4ad3848218cf8697e&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e796ef4ad3848218cf8697e.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Here is a video of the system in action:&lt;/p&gt;</description>
       
     </item>
@@ -2356,7 +2356,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/166/</guid>
       
       <description>&lt;p&gt;Smartwatches can be rather expensive and tend to be known for their poor battery life. On the other hand, Xiaomi&amp;rsquo;s Mi band 2 is cheap and its battery lasts for up to 20 days. However, the Mi band 2 is mainly limited to fitness tracking functions, at least without the appropriate apps.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/61484d8e5d171a8106416cd4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;61484d8e5d171a8106416cd4.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The objective of this project was to take advantage of the Mi Band 2&amp;rsquo;s connection with a smartphone to control IoT devices.&lt;/p&gt;</description>
       
     </item>
@@ -2396,7 +2396,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/156/</guid>
       
       <description>&lt;p&gt;This project consists of an HC-SR501 PIR motion sensor and a DHT22 temperature and humidity sensor connected to a Wemos D1 mini, an ESP8266 breakout board.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e785a235e7fee47b76e5746&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e785a235e7fee47b76e5746.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;MQTT messages are published whenever motion is detected, which can be used for room presence estimation. On the other hand, humidity and temperature are measured and published periodically.&lt;/p&gt;
 &lt;p&gt;The parts list is pretty straightforward:&lt;/p&gt;
 &lt;ul&gt;
@@ -2416,7 +2416,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/165/</guid>
       
       <description>&lt;p&gt;Most banks nowadays provide e-banking interfaces that allow clients to monitor the state of their accounts. However, each bank has its own system and the provided interfaces sometimes lack functionalities. Consequently, I decided to create my own finance dashboard, that combines information regarding multiple accounts. Currently I use it to keep track of my bank accounts balance over time as well as provide a breakdown of my transactions.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/60b1cf1043b282317cabca3b&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;60b1cf1043b282317cabca3b.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The back-end of the application is built using NodeJS while data is stored in a MongoDB collection for transactions and InfluxDB for the balance history. On the other hand, the front end is built using VueJS and uses ChartsJS for plots.&lt;/p&gt;</description>
       
     </item>
@@ -2441,7 +2441,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/11/</guid>
       
       <description>&lt;p&gt;One of the companies I worked for put a lot of importance on safety. As a way to improve the employees&amp;rsquo; awareness of danger, there would be regular meetings during which participants would need to identify dangerous points in a picture. The results were written down and archived on paper, which I believed could be improved. So, I created this web application.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786ddc6f2c2a0fca19cad3&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e786ddc6f2c2a0fca19cad3.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This app is built around an HTML5 canvas that displays an image of a random situation. One by one, the participants click on the dangerous points in it, which draws a colored circle at the clicks location. After all participants are done, the circles of every participant is displayed, giving an opportunity to discuss every one&amp;rsquo;s input. Once discussed, the results, in the form of the point count and the canvas containing the circles of every member, can be saved on the server. The points of each session are stored in a new row of a MySQL table and is displayed prior to the session.&lt;/p&gt;</description>
       
     </item>
@@ -2562,7 +2562,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/372/</guid>
       
       <description>&lt;p&gt;This is an IoT ceiling light controller which includes an HC-SR501 PIR motion sensor. It is built around a Wemos D1 mini (ESP8266 breakout board), which controls a homemade TRIAC breakout board. TRIACs provide the advantage of switching devices on and off silently, as opposed to a mechanical relay.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e7859695e7feee2d46e5744&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e7859695e7feee2d46e5744.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The system is powered from the same AC lines as the lights, thanks to an embedded AC-DC converter. This removes the need for an additional power supply.&lt;/p&gt;</description>
       
     </item>
@@ -2588,7 +2588,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/390/</guid>
       
       <description>&lt;p&gt;Having one&amp;rsquo;s own server provides the ability to run web services 24/7. However, having a computer running all the time can significantly increase one&amp;rsquo;s electricity bill. The objective of this project was to build a low power home server capable of running common software (Apache, Node.js, etc.) while only consuming little power.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786dc16f2c2af38919cad2&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e786dc16f2c2af38919cad2.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;For this purpose the Odroid XU4 was a great candidate: It runs Ubuntu and is more than powerful enough to run as a web server while drawing less than 20W. Additionally, it comes with USB3.0 ports, great for applications requiring file storage with decent speeds.&lt;/p&gt;</description>
       
     </item>
@@ -2643,7 +2643,7 @@ Although functional, this approach required operational overhead such as server 
       
       <description>&lt;p&gt;I got my hands on a 600W 12V inverter so I decided to experiment with generating my own electricity.&lt;/p&gt;
 &lt;p&gt;The inverter converts 12V DC power into 100V AC electricity which can be used for household appliances. Here, the 12V DC power is supplied by a 45Ah lead-acid battery, which would allow the inverter to run at full power for slightly short of an hour.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62b91cd73bbcbae9ee77c094&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;62b91cd73bbcbae9ee77c094.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The battery is charged by a 30W solar panel, through a 10A solar charge controller. Thus, with full sunlight, the battery would theoretically be charged in about 18 hours. I don&amp;rsquo;t intend to use the inverter on a daily basis so the slow rate of charge isn&amp;rsquo;t so much of a limitation. If needed, I could still add another solar panel in parallel in order to boost the charging current.&lt;/p&gt;</description>
       
     </item>
@@ -2762,7 +2762,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/79/</guid>
       
       <description>&lt;p&gt;RFID is a convenient technology for access control and authentication. In this project, I connected an RC522 RFID reader to an ESP32 in order to use it for IoT applications. Additionally, to provide feedback to the user, the ESP32 is also connected to an SSD1306 OLED display and a buzzer. I chose an ESP32 over an ESP8266 simply because of the amount of GPIOs required.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786e6f6f2c2a9eb519cad6&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e786e6f6f2c2a9eb519cad6.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I intended to build multiple of those readers but it would take too much time to make them using protoboard. So, I designed a custom PCB using &lt;a href=&#34;https://easyeda.com/&#34;&gt;EasyEDA&lt;/a&gt; and had multiple copies manufactured by &lt;a href=&#34;https://jlcpcb.com/&#34;&gt;JLCPCB&lt;/a&gt;. A link to the complete EasyEDA project can be found &lt;a href=&#34;https://easyeda.com/m.moreillon/iot_rfid_reader&#34;&gt;Here&lt;/a&gt;.&lt;/p&gt;</description>
       
     </item>
@@ -2876,18 +2876,6 @@ Although functional, this approach required operational overhead such as server 
       
       <description>&lt;p&gt;Applications deployed on a Kubernetes cluster run inside containers. As a consequence, their file system is that of the container, which means that if the container is removed, the data it contained is lost.&lt;/p&gt;
 &lt;p&gt;To save data in a more permanent manner, Kubernetes offers persistent volumes (PV). Those volumes can be in various forms but the one of the simplest consist in mounting a directory of the node&amp;rsquo;s file system into the containers.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Gitlab CI dealing with credentials</title>
-      <link>https://articles.maximemoreillon.com/articles/308/</link>
-      <pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/articles/308/</guid>
-      
-      <description>&lt;p&gt;GitLab can automatically dockerize applications using the appropriate CI configuration. However, for obvious security reasons, it is bad practice to include credentials in a git repository. Consequently, the CI pipeline is by default not in a position to include credentials in the dockerized application, which most likely prevents the latter from running as intended.&lt;/p&gt;
-&lt;p&gt;To solve this, the content of sensitive files can be saved as a CI variable, which becomes accessible as an environment variable by the gitlab-runner. This option can be found under:&lt;/p&gt;</description>
       
     </item>
     
@@ -3595,7 +3583,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/337/</guid>
       
       <description>&lt;p&gt;Most corporate networks have their outbound traffic go through a proxy server to prevent unauthorized access to external resources. It can happen that such proxy only allows HTTP and HTTPS traffic. As such, one cannot connect to an external host via SSH. One way to solve this problem is to use &lt;a href=&#34;https://github.com/proxytunnel/proxytunnel&#34;&gt;Proxytunnel&lt;/a&gt;. This article follows &lt;a href=&#34;https://egret.psychol.cam.ac.uk/techniques/firewall.html&#34;&gt;this guide&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e78590a5e7fee7b9d6e5742&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e78590a5e7fee7b9d6e5742.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;server-side-apache-configuration&#34;&gt;Server-side: Apache configuration&lt;/h2&gt;
 &lt;p&gt;The following snippet is to be placed into the configuration of your default virtual host. X.X.X.X is the public IP of the local proxy.&lt;/p&gt;</description>
       
@@ -3756,9 +3744,9 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/591/</guid>
       
       <description>&lt;p&gt;This is a simple Raspberry Pi based NAS. It features, as the title suggests, a Raspberry Pi as well as a 1TB 3.5&amp;rsquo;&amp;rsquo; HDD, interfaced with a USB to SATA converter.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614ed5d29a075fe79a59c599&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614ed5d29a075fe79a59c599.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The NAS is self-contained in a enclosure made of wood, Acrylic and 3D printed parts.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614ed5b99a075f73e059c595&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;614ed5b99a075f73e059c595.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
       
     </item>
     
@@ -3770,7 +3758,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/13/</guid>
       
       <description>&lt;p&gt;This is one of my earliest electronics project: An alarm clock built around an Arduino nano, a real-time clock (RTC) module and a 7-segment display.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e796da9ad3848334cf8697d&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e796da9ad3848334cf8697d.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Among other,it features the following functions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Alarm clock&lt;/li&gt;
@@ -3779,7 +3767,7 @@ Although functional, this approach required operational overhead such as server 
 &lt;li&gt;Automatic brightness using a photoresistor&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The device is operated using rotary encodes with integrated push buttons and includes a buzzer for acoustic feedback.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/615173279a075f836f59cd42&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;615173279a075f836f59cd42.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
       
     </item>
     
@@ -3791,8 +3779,8 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/553/</guid>
       
       <description>&lt;p&gt;I found a cheap 4 wheel drive chassis on eBay and decided to make a remote controlled robot out of it. Thus, I made a simple board with two H-bridge modules, an NRF24L01 wireless module and Arduino pro mini.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fc82f9a075f361259c807&#34; alt=&#34;&#34;&gt;To control the robot, I designed a simple remote controller with an Arduino pro-mini, joystick and NRF24L01 module&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fc8519a075f88b759c80b&#34; alt=&#34;&#34;&gt;As it is, the robot was not very useful, even when displaying some creativity.&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;614fc82f9a075f361259c807.jpg&#34; alt=&#34;&#34;&gt;To control the robot, I designed a simple remote controller with an Arduino pro-mini, joystick and NRF24L01 module&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614fc8519a075f88b759c80b.jpg&#34; alt=&#34;&#34;&gt;As it is, the robot was not very useful, even when displaying some creativity.&lt;/p&gt;</description>
       
     </item>
     

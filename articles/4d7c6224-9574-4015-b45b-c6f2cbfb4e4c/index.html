@@ -248,10 +248,10 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>I used <a href="https://thingspeak.com/">ThingSpeak</a> to store this data for some time but then decided I wanted to have my own storing system. Thus I designed a simple Node.js application to handle this.</p>
 <p>The application stores and retrieves data from an <a href="https://www.influxdata.com/">InfluxDB</a> time-series database, which I deployed on a server of my own. Moreover, the application provides a REST API built using Express so as to exchange data with third party services or devices. Thus, body weight data can be uploaded by the scale using HTTP POST requests.</p>
 <p>With this data being stored in InfluxDB, it can easily be displayed using either the InfluxDB GUI or a Grafana dashboard.</p>
-<p><img src="https://img.maximemoreillon.com/images/62b1024a3bbcba121e77b0be" alt=""></p>
+<p><img src="62b1024a3bbcba121e77b0be.png" alt=""></p>
 <p>The source-code for this application is available on GitHub <a href="https://github.com/maximemoreillon/weight">here</a>.</p>
 <p>I also designed a dedicated GUI to visualize the data. It is built using Vue.js, Vuetify and ApexCharts. Data is fetched from the back-end via its the REST API using the Axios HTTP client.</p>
-<p><img src="https://img.maximemoreillon.com/images/62b103463bbcba5d7077b0c2" alt=""></p>
+<p><img src="62b103463bbcba5d7077b0c2.png" alt=""></p>
 <p>This GUI has been built as a PWA so as to behave similarly to native apps on various platforms.</p>
 <p>Its source code is also available on GitHub, <a href="https://github.com/maximemoreillon/weight_front">here</a>.</p>
 

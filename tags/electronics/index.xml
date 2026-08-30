@@ -27,7 +27,7 @@
       <guid>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</guid>
       
       <description>&lt;p&gt;Smart lights are usually some of the first appliances to be added to a smart home. Although those can nowadays be purchased easily from various brands, I wanted to have my own hardware so as to integrate it better with other devices and software. Thus, I decided to an IoT LED controller that I can use in various projects where lighting has to be controlled via network protocols.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6240057135a52f5ea69e899b&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;6240057135a52f5ea69e899b.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;hardware&#34;&gt;Hardware&lt;/h2&gt;
 &lt;p&gt;The controller is built around an ESP8266 microcontroller (Wemos D1 mini) and N-Channel MOSFETS. The latter switch the 12V line of LED strips or COBs according to the microcontroller. Here, up to 4 channels of LEDs can be controlled by a single controller.&lt;/p&gt;</description>
       
@@ -53,7 +53,7 @@
       <guid>https://articles.maximemoreillon.com/articles/500/</guid>
       
       <description>&lt;p&gt;I recently started using Grafana to visualize my apartment data. Although I can easily open a browser tab to view the dashboard I created, I wanted to have a standalone display dedicated to the task that I could put on a shelf of my living room.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/61494d039a075f5e9b59b485&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;61494d039a075f5e9b59b485.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I took apart the display of a dead laptop I had laying around and bought an HDMI adapter board for it, thus turning it into a standalone PC monitor.&lt;/p&gt;</description>
       
     </item>
@@ -89,7 +89,7 @@
       <guid>https://articles.maximemoreillon.com/articles/483/</guid>
       
       <description>&lt;p&gt;Over the years, I have built multiple IoT devices ranging from AC controllers to ceiling lights. Usually, I would control those devices using my smartphone or computer but sometimes a physical button can be more convenient. Thus, I designed this simple IoT button which publishes MQTT messages when pressed.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6148102f5d171a137f416ccb&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;6148102f5d171a137f416ccb.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;At its core, the button integrates my ESP12-F base PCB, which features a switch connected to GPIO0 used to put the ESP8266 in programming mode. After a successful boot, the GPIO0 can be used freely so I wrote a simple firmware that publishes an MQTT message when the pin gets pulled LOW.&lt;/p&gt;</description>
       
     </item>
@@ -149,7 +149,7 @@
       <guid>https://articles.maximemoreillon.com/articles/389/</guid>
       
       <description>&lt;p&gt;This is a wireless motion sensor that runs on rechargeable batteries. It can be deployed anywhere and sends a signal using an NRF24L01 wireless module whenever it detects motion.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e78598c5e7fee69fd6e5745&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e78598c5e7fee69fd6e5745.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The device is composed of the following parts&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Arduino pro mini&lt;/li&gt;
@@ -174,7 +174,7 @@
       
       <description>&lt;p&gt;A company I worked for had a coffee machine for which employees could purchase coffee. However, the payment was done by putting coins in a jar.&lt;/p&gt;
 &lt;p&gt;Not only did this present the obvious risk of theft, this system was also impractical for people not carrying spare change at all time. I decided to solve this issue by designing this cashless payment system.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e796ef4ad3848218cf8697e&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e796ef4ad3848218cf8697e.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Here is a video of the system in action:&lt;/p&gt;</description>
       
     </item>
@@ -210,7 +210,7 @@
       <guid>https://articles.maximemoreillon.com/articles/156/</guid>
       
       <description>&lt;p&gt;This project consists of an HC-SR501 PIR motion sensor and a DHT22 temperature and humidity sensor connected to a Wemos D1 mini, an ESP8266 breakout board.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e785a235e7fee47b76e5746&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e785a235e7fee47b76e5746.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;MQTT messages are published whenever motion is detected, which can be used for room presence estimation. On the other hand, humidity and temperature are measured and published periodically.&lt;/p&gt;
 &lt;p&gt;The parts list is pretty straightforward:&lt;/p&gt;
 &lt;ul&gt;
@@ -289,7 +289,7 @@
       <guid>https://articles.maximemoreillon.com/articles/372/</guid>
       
       <description>&lt;p&gt;This is an IoT ceiling light controller which includes an HC-SR501 PIR motion sensor. It is built around a Wemos D1 mini (ESP8266 breakout board), which controls a homemade TRIAC breakout board. TRIACs provide the advantage of switching devices on and off silently, as opposed to a mechanical relay.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e7859695e7feee2d46e5744&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e7859695e7feee2d46e5744.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The system is powered from the same AC lines as the lights, thanks to an embedded AC-DC converter. This removes the need for an additional power supply.&lt;/p&gt;</description>
       
     </item>
@@ -303,7 +303,7 @@
       
       <description>&lt;p&gt;I got my hands on a 600W 12V inverter so I decided to experiment with generating my own electricity.&lt;/p&gt;
 &lt;p&gt;The inverter converts 12V DC power into 100V AC electricity which can be used for household appliances. Here, the 12V DC power is supplied by a 45Ah lead-acid battery, which would allow the inverter to run at full power for slightly short of an hour.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62b91cd73bbcbae9ee77c094&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;62b91cd73bbcbae9ee77c094.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The battery is charged by a 30W solar panel, through a 10A solar charge controller. Thus, with full sunlight, the battery would theoretically be charged in about 18 hours. I don&amp;rsquo;t intend to use the inverter on a daily basis so the slow rate of charge isn&amp;rsquo;t so much of a limitation. If needed, I could still add another solar panel in parallel in order to boost the charging current.&lt;/p&gt;</description>
       
     </item>
@@ -341,7 +341,7 @@
       <guid>https://articles.maximemoreillon.com/articles/79/</guid>
       
       <description>&lt;p&gt;RFID is a convenient technology for access control and authentication. In this project, I connected an RC522 RFID reader to an ESP32 in order to use it for IoT applications. Additionally, to provide feedback to the user, the ESP32 is also connected to an SSD1306 OLED display and a buzzer. I chose an ESP32 over an ESP8266 simply because of the amount of GPIOs required.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786e6f6f2c2a9eb519cad6&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e786e6f6f2c2a9eb519cad6.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I intended to build multiple of those readers but it would take too much time to make them using protoboard. So, I designed a custom PCB using &lt;a href=&#34;https://easyeda.com/&#34;&gt;EasyEDA&lt;/a&gt; and had multiple copies manufactured by &lt;a href=&#34;https://jlcpcb.com/&#34;&gt;JLCPCB&lt;/a&gt;. A link to the complete EasyEDA project can be found &lt;a href=&#34;https://easyeda.com/m.moreillon/iot_rfid_reader&#34;&gt;Here&lt;/a&gt;.&lt;/p&gt;</description>
       
     </item>
@@ -411,7 +411,7 @@
       <guid>https://articles.maximemoreillon.com/articles/13/</guid>
       
       <description>&lt;p&gt;This is one of my earliest electronics project: An alarm clock built around an Arduino nano, a real-time clock (RTC) module and a 7-segment display.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e796da9ad3848334cf8697d&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e796da9ad3848334cf8697d.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Among other,it features the following functions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Alarm clock&lt;/li&gt;
@@ -420,7 +420,7 @@
 &lt;li&gt;Automatic brightness using a photoresistor&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The device is operated using rotary encodes with integrated push buttons and includes a buzzer for acoustic feedback.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/615173279a075f836f59cd42&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;615173279a075f836f59cd42.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
       
     </item>
     

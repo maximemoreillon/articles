@@ -27,9 +27,9 @@
       <guid>https://articles.maximemoreillon.com/articles/589/</guid>
       
       <description>&lt;p&gt;RFID tags are great but often easy to lose. To solve this problem, I designed this case for an RFID tag, which can be worn on one&amp;rsquo;s wrist using a standard watch strap. The case was designed using Fusion360 and then 3D printed.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eaa369a075f73f659c403&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614eaa369a075f73f659c403.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The RFID tag is slim enough to fit in the enclosure and is secured using the provided adhesive&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eaa419a075f432e59c407&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614eaa419a075f432e59c407.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The STL file for this project is available on &lt;a href=&#34;https://www.thingiverse.com/thing:5145141&#34;&gt;Thingiverse&lt;/a&gt;&lt;/p&gt;</description>
       
     </item>
@@ -42,7 +42,7 @@
       <guid>https://articles.maximemoreillon.com/articles/79/</guid>
       
       <description>&lt;p&gt;RFID is a convenient technology for access control and authentication. In this project, I connected an RC522 RFID reader to an ESP32 in order to use it for IoT applications. Additionally, to provide feedback to the user, the ESP32 is also connected to an SSD1306 OLED display and a buzzer. I chose an ESP32 over an ESP8266 simply because of the amount of GPIOs required.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786e6f6f2c2a9eb519cad6&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e786e6f6f2c2a9eb519cad6.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;I intended to build multiple of those readers but it would take too much time to make them using protoboard. So, I designed a custom PCB using &lt;a href=&#34;https://easyeda.com/&#34;&gt;EasyEDA&lt;/a&gt; and had multiple copies manufactured by &lt;a href=&#34;https://jlcpcb.com/&#34;&gt;JLCPCB&lt;/a&gt;. A link to the complete EasyEDA project can be found &lt;a href=&#34;https://easyeda.com/m.moreillon/iot_rfid_reader&#34;&gt;Here&lt;/a&gt;.&lt;/p&gt;</description>
       
     </item>

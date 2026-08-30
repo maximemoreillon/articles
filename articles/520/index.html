@@ -246,16 +246,16 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>Wifi controlled smart light bulbs can now be purchased from less than USD 10. However, those can often only be used by a specific application provided by the vendor and can involve exchanging data with a third party server. I wanted a solution to use my own software while benefiting from the cheap hardware so I replaced the wifi module of a a cheap Wifi light bulb my own electronics.</p>
 <p>Here are the original insides of the light bulb:</p>
-<p><img src="https://img.maximemoreillon.com/images/6149d2bc9a075f7ad159b93b" alt=""></p>
+<p><img src="6149d2bc9a075f7ad159b93b.jpg" alt=""></p>
 <p>The Wifi module is a simple daughter board soldered to the LED and power electronics. They are connected via 3 pins, GND, VCC and a PWM signal produced by the wifi module to control the LED brightness.</p>
 <p>As such, this Wifi module is easily replaceable by an ESP12-F carrier board as long as the former exposes the same interface. Thus, I designed such carrier board and here is its schematic:</p>
-<p><img src="https://img.maximemoreillon.com/images/61494a949a075f426659b471" alt=""></p>
+<p><img src="61494a949a075f426659b471.png" alt=""></p>
 <p>Since the space available inside the light bulb is limited, I designed the PCB to be as compact as possible:</p>
-<p><img src="https://img.maximemoreillon.com/images/61495d249a075f5f3459b54d" alt=""></p>
+<p><img src="61495d249a075f5f3459b54d.png" alt=""></p>
 <p>The PCB was then manufactured by JLCPCB:</p>
-<p><img src="https://img.maximemoreillon.com/images/614bfa109a075fca3b59bd97" alt=""></p>
+<p><img src="614bfa109a075fca3b59bd97.jpg" alt=""></p>
 <p>With the components soldered on the board, the latter could then be installed in the bulb:</p>
-<p><img src="https://img.maximemoreillon.com/images/614d64b99a075f26d659c04f" alt=""></p>
+<p><img src="614d64b99a075f26d659c04f.jpg" alt=""></p>
 <p>The source code for the firmware running on the ESP8266 is available on <a href="https://github.com/maximemoreillon/iot_light_bulb">GitHub</a>.</p>
 <p>More info about the hardware on <a href="https://oshwlab.com/m.moreillon/iot_bulb">OSHWLab</a></p>
 

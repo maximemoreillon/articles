@@ -250,14 +250,14 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>I got my hands on a 600W 12V inverter so I decided to experiment with generating my own electricity.</p>
 <p>The inverter converts 12V DC power into 100V AC electricity which can be used for household appliances. Here, the 12V DC power is supplied by a 45Ah lead-acid battery, which would allow the inverter to run at full power for slightly short of an hour.</p>
-<p><img src="https://img.maximemoreillon.com/images/62b91cd73bbcbae9ee77c094" alt=""></p>
+<p><img src="62b91cd73bbcbae9ee77c094.png" alt=""></p>
 <p>The battery is charged by a 30W solar panel, through a 10A solar charge controller. Thus, with full sunlight, the battery would theoretically be charged in about 18 hours. I don&rsquo;t intend to use the inverter on a daily basis so the slow rate of charge isn&rsquo;t so much of a limitation. If needed, I could still add another solar panel in parallel in order to boost the charging current.</p>
 <p>To keep an eye on the battery&rsquo;s charge level, I made a simple protoboard featuring an ESP32 dev board that reads the battery voltage through a voltage divider. This measurement can be seen in real time through a webpage served by the ESP32. On top of that, the ESP32 also broadcast the measurement periodically via MQTT.</p>
-<p><img src="https://img.maximemoreillon.com/images/61484f8e5d171a0331416cd5" alt=""></p>
+<p><img src="61484f8e5d171a0331416cd5.png" alt=""></p>
 <p>In addition to the power inverter, I installed a 5V DC-DC converter so as to charge devices like smartphones through USB. Here is a what the complete setup looks like:</p>
-<p><img src="https://img.maximemoreillon.com/images/6148504d5d171a2060416cd6" alt=""></p>
+<p><img src="6148504d5d171a2060416cd6.jpg" alt=""></p>
 <p>The battery voltage is logged in an InfluxDB database via a NodeJS app</p>
-<p><img src="https://img.maximemoreillon.com/images/62b91d083bbcba298277c098" alt=""></p>
+<p><img src="62b91d083bbcba298277c098.png" alt=""></p>
 <p>Source code available on GitHub:</p>
 <ul>
 <li><a href="https://github.com/maximemoreillon/solar_front">Front-end</a></li>

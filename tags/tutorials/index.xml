@@ -785,7 +785,7 @@
       <guid>https://articles.maximemoreillon.com/articles/33/</guid>
       
       <description>&lt;p&gt;From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5ec5d30a55b0c12424749cf4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;area_of_circle&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;radius&lt;/span&gt;){
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Math.&lt;span style=&#34;color:#a6e22e&#34;&gt;PI&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;radius&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;radius&lt;/span&gt;
@@ -1198,18 +1198,6 @@
       
       <description>&lt;p&gt;Applications deployed on a Kubernetes cluster run inside containers. As a consequence, their file system is that of the container, which means that if the container is removed, the data it contained is lost.&lt;/p&gt;
 &lt;p&gt;To save data in a more permanent manner, Kubernetes offers persistent volumes (PV). Those volumes can be in various forms but the one of the simplest consist in mounting a directory of the node&amp;rsquo;s file system into the containers.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
-      <title>Gitlab CI dealing with credentials</title>
-      <link>https://articles.maximemoreillon.com/articles/308/</link>
-      <pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/articles/308/</guid>
-      
-      <description>&lt;p&gt;GitLab can automatically dockerize applications using the appropriate CI configuration. However, for obvious security reasons, it is bad practice to include credentials in a git repository. Consequently, the CI pipeline is by default not in a position to include credentials in the dockerized application, which most likely prevents the latter from running as intended.&lt;/p&gt;
-&lt;p&gt;To solve this, the content of sensitive files can be saved as a CI variable, which becomes accessible as an environment variable by the gitlab-runner. This option can be found under:&lt;/p&gt;</description>
       
     </item>
     
@@ -1716,7 +1704,7 @@
       <guid>https://articles.maximemoreillon.com/articles/337/</guid>
       
       <description>&lt;p&gt;Most corporate networks have their outbound traffic go through a proxy server to prevent unauthorized access to external resources. It can happen that such proxy only allows HTTP and HTTPS traffic. As such, one cannot connect to an external host via SSH. One way to solve this problem is to use &lt;a href=&#34;https://github.com/proxytunnel/proxytunnel&#34;&gt;Proxytunnel&lt;/a&gt;. This article follows &lt;a href=&#34;https://egret.psychol.cam.ac.uk/techniques/firewall.html&#34;&gt;this guide&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e78590a5e7fee7b9d6e5742&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e78590a5e7fee7b9d6e5742.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;server-side-apache-configuration&#34;&gt;Server-side: Apache configuration&lt;/h2&gt;
 &lt;p&gt;The following snippet is to be placed into the configuration of your default virtual host. X.X.X.X is the public IP of the local proxy.&lt;/p&gt;</description>
       

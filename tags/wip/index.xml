@@ -15,7 +15,7 @@
       <guid>https://articles.maximemoreillon.com/articles/cf503085-523f-47f3-aa3f-445ab27a7a3d/</guid>
       
       <description>&lt;p&gt;Smart lights are usually some of the first appliances to be added to a smart home. Although those can nowadays be purchased easily from various brands, I wanted to have my own hardware so as to integrate it better with other devices and software. Thus, I decided to an IoT LED controller that I can use in various projects where lighting has to be controlled via network protocols.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6240057135a52f5ea69e899b&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;6240057135a52f5ea69e899b.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;hardware&#34;&gt;Hardware&lt;/h2&gt;
 &lt;p&gt;The controller is built around an ESP8266 microcontroller (Wemos D1 mini) and N-Channel MOSFETS. The latter switch the 12V line of LED strips or COBs according to the microcontroller. Here, up to 4 channels of LEDs can be controlled by a single controller.&lt;/p&gt;</description>
       
@@ -29,9 +29,9 @@
       <guid>https://articles.maximemoreillon.com/articles/0c1a7a47-c651-472d-a867-e1e2b040e997/</guid>
       
       <description>&lt;p&gt;Have you ever bought a piece of clothing only to come home and realize you already had a similar one in your wardrobe? This web application aims at solving this problem by allowing users to register their garments in a database.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/61f2b47035a52f9bb09e4eef&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;61f2b47035a52f9bb09e4eef.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Moreover, the application provides a way to register complete outfits and list the various garments that are parts it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62b8fa733bbcba1c3e77be8c&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;62b8fa733bbcba1c3e77be8c.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The application consists of a Node.js back-end which stores garment information in a MongoDB database. It also provides a REST API built using Express to exchange data with the application&amp;rsquo;s GUI. The latter is a Vue.js single page application featuring UI components from the Vuetify library.&lt;/p&gt;</description>
       
     </item>
@@ -180,9 +180,9 @@
       <guid>https://articles.maximemoreillon.com/articles/589/</guid>
       
       <description>&lt;p&gt;RFID tags are great but often easy to lose. To solve this problem, I designed this case for an RFID tag, which can be worn on one&amp;rsquo;s wrist using a standard watch strap. The case was designed using Fusion360 and then 3D printed.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eaa369a075f73f659c403&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614eaa369a075f73f659c403.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The RFID tag is slim enough to fit in the enclosure and is secured using the provided adhesive&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eaa419a075f432e59c407&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614eaa419a075f432e59c407.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The STL file for this project is available on &lt;a href=&#34;https://www.thingiverse.com/thing:5145141&#34;&gt;Thingiverse&lt;/a&gt;&lt;/p&gt;</description>
       
     </item>
@@ -269,8 +269,8 @@
       <guid>https://articles.maximemoreillon.com/articles/553/</guid>
       
       <description>&lt;p&gt;I found a cheap 4 wheel drive chassis on eBay and decided to make a remote controlled robot out of it. Thus, I made a simple board with two H-bridge modules, an NRF24L01 wireless module and Arduino pro mini.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fc82f9a075f361259c807&#34; alt=&#34;&#34;&gt;To control the robot, I designed a simple remote controller with an Arduino pro-mini, joystick and NRF24L01 module&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fc8519a075f88b759c80b&#34; alt=&#34;&#34;&gt;As it is, the robot was not very useful, even when displaying some creativity.&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;614fc82f9a075f361259c807.jpg&#34; alt=&#34;&#34;&gt;To control the robot, I designed a simple remote controller with an Arduino pro-mini, joystick and NRF24L01 module&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614fc8519a075f88b759c80b.jpg&#34; alt=&#34;&#34;&gt;As it is, the robot was not very useful, even when displaying some creativity.&lt;/p&gt;</description>
       
     </item>
     

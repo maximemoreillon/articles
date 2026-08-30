@@ -245,12 +245,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>Kubernetes is a container orchestration system. As such, it features functions that are similar to that of Docker. If a container can be run with the Docker CLI, it can also be run equivalently using Kubernetes. This articles highlights such equivalence by presenting how to deploy a PostgreSQL instance using both technologies.</p>
 <h2 id="docker">Docker</h2>
 <p>Running a PostgreSQL container usually involves the configuration of its environment variables, persistent volumes and port forwarding. With the <code>docker run</code> command, those are set using the -e, -v and -p flags respectively. The <code>docker run</code> command also expects the container image to be specified as last argument. As such, running a PostgreSQL instance can be achieved using:</p>
-<p><img src="https://img.maximemoreillon.com/images/63f43a594417694465b84957" alt="Article image"></p>
+<p><img src="63f43a594417694465b84957.png" alt="Article image"></p>
 <h2 id="kubernetes">Kubernetes</h2>
 <p>When using Kubernetes, containers can be run by using manifests, which contain specifications of the resources need for its operations. In the case of PostgreSQL, three resources are necessary: A deployment, service and persistent volume claim.</p>
 <p>The deployment mainly specifies what container is to be run as well as its environment variables and volume mounts. The service handles networking. In this case, it ensures the container is accessible using the chosen port. Finally, the persistent volume claim is used to allocate a persistent volume for the chosen volume mounts.</p>
 <p>As such, the equivalent Kubernetes manifest for the <code>docker run</code> command here above becomes:</p>
-<p><img src="https://img.maximemoreillon.com/images/63f43c46441769b69db8495b" alt="Article image"></p>
+<p><img src="63f43c46441769b69db8495b.png" alt="Article image"></p>
 <p>Such manifest is obviously much more complex than the docker command here above. However, it is important to keep in mind that such complexity is the result of having much more customization options. For instance, containers managed by Kubernetes can be configured to be automatically replicated to accommodate larger request volumes. On the other hand, docker commands can quickly become tedious to write when the parameter count increases or when dealing with multiple containers that need to be connected to each other.</p>
 
             </div>

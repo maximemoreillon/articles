@@ -97,18 +97,6 @@ Throughout this article, git tags deploy to the &lt;code&gt;prod&lt;/code&gt; en
     </item>
     
     <item>
-      <title>Gitlab CI dealing with credentials</title>
-      <link>https://articles.maximemoreillon.com/articles/308/</link>
-      <pubDate>Wed, 05 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/articles/308/</guid>
-      
-      <description>&lt;p&gt;GitLab can automatically dockerize applications using the appropriate CI configuration. However, for obvious security reasons, it is bad practice to include credentials in a git repository. Consequently, the CI pipeline is by default not in a position to include credentials in the dockerized application, which most likely prevents the latter from running as intended.&lt;/p&gt;
-&lt;p&gt;To solve this, the content of sensitive files can be saved as a CI variable, which becomes accessible as an environment variable by the gitlab-runner. This option can be found under:&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
       <title>Gitlab CI commands for TF serving</title>
       <link>https://articles.maximemoreillon.com/articles/302/</link>
       <pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate>

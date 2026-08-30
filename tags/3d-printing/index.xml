@@ -27,7 +27,7 @@
       <guid>https://articles.maximemoreillon.com/articles/d3224302-ba33-437e-919c-b8c463f29eec/</guid>
       
       <description>&lt;p&gt;I recenly got myself an USB ype C dock for my laptop. This accessory quite convenient as it allows me to connect my laptop to power, my external monitor and USB peripherals with just one cable.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62ea71be27a6008518376123&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;62ea71be27a6008518376123.jpg&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The dock itself works fine but because of the way its ports are laid out, it makes a mess of wires on my desk. To solve the issue, I decided to mount the USB dock on the back of my laptop stand.&lt;/p&gt;</description>
       
     </item>
@@ -40,7 +40,7 @@
       <guid>https://articles.maximemoreillon.com/articles/586/</guid>
       
       <description>&lt;p&gt;One day I got fed up with my solder spool rolling around all the time so I designed this simple spool holder in Fusion360 and 3D printed it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eac539a075f54f559c415&#34; alt=&#34;&#34;&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eac5d9a075f3fd559c419&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614eac539a075f54f559c415.jpg&#34; alt=&#34;&#34;&gt;&lt;img src=&#34;614eac5d9a075f3fd559c419.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The STL files for this project are available on &lt;a href=&#34;https://www.thingiverse.com/thing:5145144&#34;&gt;Thingiverse&lt;/a&gt;&lt;/p&gt;</description>
       
     </item>
@@ -53,7 +53,7 @@
       <guid>https://articles.maximemoreillon.com/articles/483/</guid>
       
       <description>&lt;p&gt;Over the years, I have built multiple IoT devices ranging from AC controllers to ceiling lights. Usually, I would control those devices using my smartphone or computer but sometimes a physical button can be more convenient. Thus, I designed this simple IoT button which publishes MQTT messages when pressed.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/6148102f5d171a137f416ccb&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;6148102f5d171a137f416ccb.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;At its core, the button integrates my ESP12-F base PCB, which features a switch connected to GPIO0 used to put the ESP8266 in programming mode. After a successful boot, the GPIO0 can be used freely so I wrote a simple firmware that publishes an MQTT message when the pin gets pulled LOW.&lt;/p&gt;</description>
       
     </item>
@@ -101,9 +101,9 @@
       <guid>https://articles.maximemoreillon.com/articles/589/</guid>
       
       <description>&lt;p&gt;RFID tags are great but often easy to lose. To solve this problem, I designed this case for an RFID tag, which can be worn on one&amp;rsquo;s wrist using a standard watch strap. The case was designed using Fusion360 and then 3D printed.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eaa369a075f73f659c403&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614eaa369a075f73f659c403.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The RFID tag is slim enough to fit in the enclosure and is secured using the provided adhesive&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614eaa419a075f432e59c407&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614eaa419a075f432e59c407.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The STL file for this project is available on &lt;a href=&#34;https://www.thingiverse.com/thing:5145141&#34;&gt;Thingiverse&lt;/a&gt;&lt;/p&gt;</description>
       
     </item>
@@ -116,9 +116,9 @@
       <guid>https://articles.maximemoreillon.com/articles/522/</guid>
       
       <description>&lt;p&gt;I got myself a fume extractor but it takes a rather large amount of real-estate on my desk. I decided to mount it on an arm so that I could easily move it out of the way so I designed and 3D printed an attachment bracket for it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fd10f9a075f99a459c899&#34; alt=&#34;&#34;&gt;The bracket was designed in Fusion 360&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fd8ca9a075faaea59c8ad&#34; alt=&#34;&#34;&gt;And then printed on my QIDI Tech 1&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614fd97c9a075f778d59c8b1&#34; alt=&#34;&#34;&gt;It ended up fitting the fume extractor nicely&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;614fd10f9a075f99a459c899.jpg&#34; alt=&#34;&#34;&gt;The bracket was designed in Fusion 360&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614fd8ca9a075faaea59c8ad.png&#34; alt=&#34;&#34;&gt;And then printed on my QIDI Tech 1&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614fd97c9a075f778d59c8b1.jpg&#34; alt=&#34;&#34;&gt;It ended up fitting the fume extractor nicely&lt;/p&gt;</description>
       
     </item>
     
@@ -153,7 +153,7 @@
       <guid>https://articles.maximemoreillon.com/articles/390/</guid>
       
       <description>&lt;p&gt;Having one&amp;rsquo;s own server provides the ability to run web services 24/7. However, having a computer running all the time can significantly increase one&amp;rsquo;s electricity bill. The objective of this project was to build a low power home server capable of running common software (Apache, Node.js, etc.) while only consuming little power.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5e786dc16f2c2af38919cad2&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5e786dc16f2c2af38919cad2.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;For this purpose the Odroid XU4 was a great candidate: It runs Ubuntu and is more than powerful enough to run as a web server while drawing less than 20W. Additionally, it comes with USB3.0 ports, great for applications requiring file storage with decent speeds.&lt;/p&gt;</description>
       
     </item>
@@ -166,9 +166,9 @@
       <guid>https://articles.maximemoreillon.com/articles/591/</guid>
       
       <description>&lt;p&gt;This is a simple Raspberry Pi based NAS. It features, as the title suggests, a Raspberry Pi as well as a 1TB 3.5&amp;rsquo;&amp;rsquo; HDD, interfaced with a USB to SATA converter.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614ed5d29a075fe79a59c599&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;614ed5d29a075fe79a59c599.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The NAS is self-contained in a enclosure made of wood, Acrylic and 3D printed parts.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/614ed5b99a075f73e059c595&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;614ed5b99a075f73e059c595.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
       
     </item>
     

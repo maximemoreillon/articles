@@ -15,7 +15,7 @@
       <guid>https://articles.maximemoreillon.com/articles/c322b2f5-5180-4cf7-8ecf-4fd3a1d21783/</guid>
       
       <description>&lt;p&gt;I have been unlocking my door with this &lt;a href=&#34;https://articles.maximemoreillon.com/articles/03878fe3-1eca-4f22-9521-0589ba076930&#34;&gt;RFID ring and its dedicated IoT RFID reader&lt;/a&gt; for several years now. Despite working without any issues, this system required me to wear a ring that I could potentially lose. So, instead of using the ring as a key, I decided to use the finger that I would put it on and thus designed an IoT fingerprint reader.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/64a496783581c50013b5a9f9&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;64a496783581c50013b5a9f9.png&#34; alt=&#34;Article image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The reader is made of an AS608 fingerprint reader module driven by an ESP32. Additionally, an OLED display and buzzer are provided for user feedback. Those components are connected as follows:&lt;/p&gt;</description>
       
     </item>
@@ -51,7 +51,7 @@
       
       <description>&lt;p&gt;I got my hands on a 600W 12V inverter so I decided to experiment with generating my own electricity.&lt;/p&gt;
 &lt;p&gt;The inverter converts 12V DC power into 100V AC electricity which can be used for household appliances. Here, the 12V DC power is supplied by a 45Ah lead-acid battery, which would allow the inverter to run at full power for slightly short of an hour.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62b91cd73bbcbae9ee77c094&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;62b91cd73bbcbae9ee77c094.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The battery is charged by a 30W solar panel, through a 10A solar charge controller. Thus, with full sunlight, the battery would theoretically be charged in about 18 hours. I don&amp;rsquo;t intend to use the inverter on a daily basis so the slow rate of charge isn&amp;rsquo;t so much of a limitation. If needed, I could still add another solar panel in parallel in order to boost the charging current.&lt;/p&gt;</description>
       
     </item>

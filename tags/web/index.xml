@@ -27,9 +27,9 @@
       <guid>https://articles.maximemoreillon.com/articles/0c1a7a47-c651-472d-a867-e1e2b040e997/</guid>
       
       <description>&lt;p&gt;Have you ever bought a piece of clothing only to come home and realize you already had a similar one in your wardrobe? This web application aims at solving this problem by allowing users to register their garments in a database.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/61f2b47035a52f9bb09e4eef&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;61f2b47035a52f9bb09e4eef.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;Moreover, the application provides a way to register complete outfits and list the various garments that are parts it.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/62b8fa733bbcba1c3e77be8c&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;62b8fa733bbcba1c3e77be8c.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The application consists of a Node.js back-end which stores garment information in a MongoDB database. It also provides a REST API built using Express to exchange data with the application&amp;rsquo;s GUI. The latter is a Vue.js single page application featuring UI components from the Vuetify library.&lt;/p&gt;</description>
       
     </item>
@@ -55,7 +55,7 @@
       <guid>https://articles.maximemoreillon.com/articles/441/</guid>
       
       <description>&lt;p&gt;Many web applications rely on the upload of files from client to server via a POST request. The content-type of this request is generally multipart/form-data. When developing the server-side of such application, being able to quickly test the upload feature can greatly increase productivity. So, I designed this simple web application that can POST a file to any URL.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/61a2ddd34b39954ad9dae5c4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;61a2ddd34b39954ad9dae5c4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The application is built using Vue.js with the Vuetify plugin and uses Axios to send the HTTP requests. Its source code is available on &lt;a href=&#34;https://gitlab.com/moreillon_k8s_home/file-poster&#34;&gt;GitLab&lt;/a&gt;. The application can be deployed as a Docker container, for which the image is available on &lt;a href=&#34;https://hub.docker.com/repository/docker/moreillon/file-poster&#34;&gt;Docker Hub&lt;/a&gt;.&lt;/p&gt;</description>
       
     </item>
@@ -109,7 +109,7 @@
       <guid>https://articles.maximemoreillon.com/articles/28/</guid>
       
       <description>&lt;p&gt;Over the years, I have built multiple Vue.js applications. Although their business logic differs, those applications often share similar components such as a navigation panel, a header with my logo and an authentication mechanism. Writing those from scratch for each application would be time consuming so I designed an application template that can be installed using &lt;a href=&#34;https://www.npmjs.com/package/@moreillon/vue_application_template&#34;&gt;NPM&lt;/a&gt; to bootstrap my projects.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/615255af9a075f4e3559ce34&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;615255af9a075f4e3559ce34.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The template integrates in existing Vue.js applications as a component. By default, it wraps the router-view component and adds the following UI components to the app:&lt;/p&gt;</description>
       
     </item>
@@ -192,7 +192,7 @@
       <guid>https://articles.maximemoreillon.com/articles/33/</guid>
       
       <description>&lt;p&gt;From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;5ec5d30a55b0c12424749cf4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;area_of_circle&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;radius&lt;/span&gt;){
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Math.&lt;span style=&#34;color:#a6e22e&#34;&gt;PI&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;radius&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;radius&lt;/span&gt;
@@ -263,7 +263,7 @@
       <guid>https://articles.maximemoreillon.com/articles/165/</guid>
       
       <description>&lt;p&gt;Most banks nowadays provide e-banking interfaces that allow clients to monitor the state of their accounts. However, each bank has its own system and the provided interfaces sometimes lack functionalities. Consequently, I decided to create my own finance dashboard, that combines information regarding multiple accounts. Currently I use it to keep track of my bank accounts balance over time as well as provide a breakdown of my transactions.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/60b1cf1043b282317cabca3b&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;60b1cf1043b282317cabca3b.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The back-end of the application is built using NodeJS while data is stored in a MongoDB collection for transactions and InfluxDB for the balance history. On the other hand, the front end is built using VueJS and uses ChartsJS for plots.&lt;/p&gt;</description>
       
     </item>
