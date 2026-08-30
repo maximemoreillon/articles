@@ -1,7 +1,7 @@
 ---
 date: "2026-08-24"
 title: "Kubeconfig for specific namespace"
-tags: ["Kubernetes"]
+tags: ["Kubernetes", "Tutorials"]
 ---
 
 Kubeconfig files allow clients such as `kubectl` or Headlamp to connect and authenticate to Kubernetes clusters so as to perform administrative and maintenance operations. Most often, cluster administrators get a kubeconfig file with cluster-wide administrator privileges from the Kubernetes distribution. For example, with Talos, this is achieved with `talosctl kubeconfig`.

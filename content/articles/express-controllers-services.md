@@ -1,7 +1,7 @@
 ---
 date: "2026-08-15"
 title: "Decoupling business logic from Express with a service layer"
-tags: ["Express"]
+tags: ["Express", "Node.js", "Tutorials"]
 ---
 
 In early development of an Express application, it is tempting to write business loginc in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes `(req, res)`, reads from `req.params` or `req.body`, and writes directly to `res`. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.

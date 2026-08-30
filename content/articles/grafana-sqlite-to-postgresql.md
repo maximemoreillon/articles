@@ -1,7 +1,7 @@
 ---
 date: "2026-01-18"
 title: "Grafana database migration from SQLite to postgresql"
-tags: []
+tags: ["Grafana", "Database", "Kubernetes", "Tutorials"]
 ---
 
 By default, Grafana stores its settings in an SQLite database but it can be configured to use PostgreSQL instead.

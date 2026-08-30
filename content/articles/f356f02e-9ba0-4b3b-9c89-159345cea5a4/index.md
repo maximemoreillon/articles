@@ -2,7 +2,7 @@
 title: "Smart outlet setup"
 date: '2021-12-28'
 lastmod: '2022-06-27'
-tags: ['IoT']
+tags: ['IoT', 'Projects', 'Electronics']
 ---
 
 ## Connect to the device's WiFi access point

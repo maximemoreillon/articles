@@ -1,7 +1,7 @@
 ---
 date: '2025-11-21'
 title: "Migrating from my CMS to Hugo"
-tags: []
+tags: ["Hugo", "Projects"]
 ---
 
 For several years, I have been managing articles such as this one using a custom CMS built around Neo4j.
