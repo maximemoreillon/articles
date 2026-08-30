@@ -282,7 +282,7 @@ app.route(&#39;/articles&#39;)
 app.route(&#39;/articles/:article_id&#39;)
   .get(article_controllers.read)
   .put(article_controllers.update)
-  .put(article_controllers.delete)
+  .delete(article_controllers.delete)
 
 // Start listening on the defined port
 app.listen(port, () =&gt; console.log(`Example app listening on port ${port}`))

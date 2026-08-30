@@ -138,15 +138,13 @@
 }));
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;key-value pairs can be set using the session property:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;req.session.username = &amp;#34;myUsername&amp;#34;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The value is encrypted using the secret defined hereabove&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The value is signed (not encrypted) using the secret defined hereabove, meaning it prevents tampering but does not prevent the payload from being read&lt;/p&gt;
 &lt;p&gt;Requires special options for CORS:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;app.use(cors({
   origin: [/* origins */],
   credentials: true,
 }));
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;As well as Axios:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;axios.defaults.withCredentials = true
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This method works well for clients using web browsers with cookies enabled but consequently not so much for mobile or IoT devices&lt;/p&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;As well as Axios:&lt;/p&gt;</description>
       
     </item>
     

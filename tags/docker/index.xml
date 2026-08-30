@@ -135,7 +135,7 @@ spec:
 &lt;p&gt;Run a container in the background:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run -d IMAGE_NAME
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Run a container and give it a certain name:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run -n CONTAINER_NAME IMAGE_NAME
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run --name CONTAINER_NAME IMAGE_NAME
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Stop a container (gracefully):&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker stop CONTAINER_NAME
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Kill a container (ungraceful stop):&lt;/p&gt;</description>

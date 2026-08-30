@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Kubectl provides a convenient command to automatically turn the content of the auth file into a secret:</p>
 <pre tabindex="0"><code>kubectl create secret generic my-app-secret --from-file=auth
 </code></pre><p>Then, the ingress can be adapted as so</p>
-<pre tabindex="0"><code>apiVersion: extensions/v1beta1
+<pre tabindex="0"><code>apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-app
@@ -271,9 +271,12 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: my-app
-          servicePort: 80
+          service:
+            name: my-app
+            port:
+              number: 80
 </code></pre>
             </div>
         </article></main>

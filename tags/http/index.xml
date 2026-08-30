@@ -40,7 +40,7 @@ void upload_image(){
       body_pre_image = &amp;#34;--&amp;#34;;
       body_pre_image += BOUNDARY;
       body_pre_image += &amp;#34;\r\n&amp;#34;;
-      body_pre_image += &amp;#34;Content-Disposition: form-data; name=\&amp;#34;imageFile\&amp;#34;; filename=\&amp;#34;picture.jpg\&amp;#34;\r\n&amp;#34;);
+      body_pre_image += &amp;#34;Content-Disposition: form-data; name=\&amp;#34;imageFile\&amp;#34;; filename=\&amp;#34;picture.jpg\&amp;#34;\r\n&amp;#34;;
       body_pre_image += &amp;#34;Content-Type: image/jpeg\r\n&amp;#34;;
       body_pre_image += &amp;#34;\r\n&amp;#34;;
     

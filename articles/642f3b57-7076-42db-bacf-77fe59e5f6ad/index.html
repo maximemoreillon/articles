@@ -34,7 +34,7 @@
 	<meta property="og:description" content="With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences
 CA certificate The CA certificate can be obtained directly from the microk8s files:
 cat /var/snap/microk8s/current/certs/ca.crt Access Token As per usual, the RBAC addon must be enabled
-micok8s.enable rbac Following which, the following manifest can be applied:
+microk8s.enable rbac Following which, the following manifest can be applied:
 apiVersion: v1 kind: ServiceAccount metadata: name: gitlab namespace: kube-system --- apiVersion: v1 kind: Secret type: kubernetes.io/service-account-token metadata: name: gitlab namespace: kube-system annotations: kubernetes.io/service-account.name: &#34;gitlab&#34; --- apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRoleBinding metadata: name: gitlab-admin roleRef: apiGroup: rbac.authorization.k8s.io kind: ClusterRole name: cluster-admin subjects: - kind: ServiceAccount name: gitlab namespace: kube-system This creates the access token which can be displayed using:">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
@@ -54,7 +54,7 @@ apiVersion: v1 kind: ServiceAccount metadata: name: gitlab namespace: kube-syste
 	<meta name="twitter:description" content="With newer versions of Microk8s, its GitLab integration changes slightly. Here are the key differences
 CA certificate The CA certificate can be obtained directly from the microk8s files:
 cat /var/snap/microk8s/current/certs/ca.crt Access Token As per usual, the RBAC addon must be enabled
-micok8s.enable rbac Following which, the following manifest can be applied:
+microk8s.enable rbac Following which, the following manifest can be applied:
 apiVersion: v1 kind: ServiceAccount metadata: name: gitlab namespace: kube-system --- apiVersion: v1 kind: Secret type: kubernetes.io/service-account-token metadata: name: gitlab namespace: kube-system annotations: kubernetes.io/service-account.name: &#34;gitlab&#34; --- apiVersion: rbac.authorization.k8s.io/v1 kind: ClusterRoleBinding metadata: name: gitlab-admin roleRef: apiGroup: rbac.authorization.k8s.io kind: ClusterRole name: cluster-admin subjects: - kind: ServiceAccount name: gitlab namespace: kube-system This creates the access token which can be displayed using:">
 
 
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <pre tabindex="0"><code>cat /var/snap/microk8s/current/certs/ca.crt
 </code></pre><h2 id="access-token">Access Token</h2>
 <p>As per usual, the RBAC addon must be enabled</p>
-<pre tabindex="0"><code>micok8s.enable rbac
+<pre tabindex="0"><code>microk8s.enable rbac
 </code></pre><p>Following which, the following manifest can be applied:</p>
 <pre tabindex="0"><code>apiVersion: v1
 kind: ServiceAccount

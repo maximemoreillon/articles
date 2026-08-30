@@ -33,10 +33,9 @@
 	<meta property="og:title" content="Cookie-session">
 	<meta property="og:description" content="User authenticates using username and password, server sets a signed cookie containing serialized user info
 app.use(cookieSession({ name: &#39;session&#39;, secret: &#39;shhhh&#39;, maxAge: 253402300000000, // infinite sameSite: false, domain: &#34;yourdomain.com&#34; })); key-value pairs can be set using the session property:
-req.session.username = &#34;myUsername&#34; The value is encrypted using the secret defined hereabove
+req.session.username = &#34;myUsername&#34; The value is signed (not encrypted) using the secret defined hereabove, meaning it prevents tampering but does not prevent the payload from being read
 Requires special options for CORS:
-app.use(cors({ origin: [/* origins */], credentials: true, })); As well as Axios:
-axios.defaults.withCredentials = true This method works well for clients using web browsers with cookies enabled but consequently not so much for mobile or IoT devices">
+app.use(cors({ origin: [/* origins */], credentials: true, })); As well as Axios:">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -53,10 +52,9 @@ axios.defaults.withCredentials = true This method works well for clients using w
 	<meta name="twitter:title" content="Cookie-session">
 	<meta name="twitter:description" content="User authenticates using username and password, server sets a signed cookie containing serialized user info
 app.use(cookieSession({ name: &#39;session&#39;, secret: &#39;shhhh&#39;, maxAge: 253402300000000, // infinite sameSite: false, domain: &#34;yourdomain.com&#34; })); key-value pairs can be set using the session property:
-req.session.username = &#34;myUsername&#34; The value is encrypted using the secret defined hereabove
+req.session.username = &#34;myUsername&#34; The value is signed (not encrypted) using the secret defined hereabove, meaning it prevents tampering but does not prevent the payload from being read
 Requires special options for CORS:
-app.use(cors({ origin: [/* origins */], credentials: true, })); As well as Axios:
-axios.defaults.withCredentials = true This method works well for clients using web browsers with cookies enabled but consequently not so much for mobile or IoT devices">
+app.use(cors({ origin: [/* origins */], credentials: true, })); As well as Axios:">
 
 
     
@@ -261,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function () {
 }));
 </code></pre><p>key-value pairs can be set using the session property:</p>
 <pre tabindex="0"><code>req.session.username = &#34;myUsername&#34;
-</code></pre><p>The value is encrypted using the secret defined hereabove</p>
+</code></pre><p>The value is signed (not encrypted) using the secret defined hereabove, meaning it prevents tampering but does not prevent the payload from being read</p>
 <p>Requires special options for CORS:</p>
 <pre tabindex="0"><code>app.use(cors({
   origin: [/* origins */],

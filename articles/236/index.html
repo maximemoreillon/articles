@@ -33,7 +33,7 @@
 	<meta property="og:title" content="Tensorflow 1.X basics">
 	<meta property="og:description" content="Here are the basics steps necessary to write TensorFlow code.
 Note that this is for TensorFlow 1.X
-Define constants a = tf.constant(5.0) Define variables x = tf.Variable(init_value) Define placeholders p = tf.placeholder(tf.float32) Define operations c = x * x Define way to measure loss loss=tf.reduce_mean(tf.square(output - y)) Define optimizer optimizer = tf.train.AdamOptimizer(learning_rate) Apply optimizer to loss function train = optimizer.minimize(loss) init variables init = tf.globalvariablesinitializer() Run everything in a session with tf.Session() as sess: sess.run(init) for epoch in range(epoch_count): sess.run(train, feed_dict={&lt;feedDictHere})">
+Define constants a = tf.constant(5.0) Define variables x = tf.Variable(init_value) Define placeholders p = tf.placeholder(tf.float32) Define operations c = x * x Define way to measure loss loss=tf.reduce_mean(tf.square(output - y)) Define optimizer optimizer = tf.train.AdamOptimizer(learning_rate) Apply optimizer to loss function train = optimizer.minimize(loss) init variables init = tf.global_variables_initializer() Run everything in a session with tf.Session() as sess: sess.run(init) for epoch in range(epoch_count): sess.run(train, feed_dict={&lt;feedDictHere})">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -51,7 +51,7 @@ Define constants a = tf.constant(5.0) Define variables x = tf.Variable(init_valu
 	<meta name="twitter:title" content="Tensorflow 1.X basics">
 	<meta name="twitter:description" content="Here are the basics steps necessary to write TensorFlow code.
 Note that this is for TensorFlow 1.X
-Define constants a = tf.constant(5.0) Define variables x = tf.Variable(init_value) Define placeholders p = tf.placeholder(tf.float32) Define operations c = x * x Define way to measure loss loss=tf.reduce_mean(tf.square(output - y)) Define optimizer optimizer = tf.train.AdamOptimizer(learning_rate) Apply optimizer to loss function train = optimizer.minimize(loss) init variables init = tf.globalvariablesinitializer() Run everything in a session with tf.Session() as sess: sess.run(init) for epoch in range(epoch_count): sess.run(train, feed_dict={&lt;feedDictHere})">
+Define constants a = tf.constant(5.0) Define variables x = tf.Variable(init_value) Define placeholders p = tf.placeholder(tf.float32) Define operations c = x * x Define way to measure loss loss=tf.reduce_mean(tf.square(output - y)) Define optimizer optimizer = tf.train.AdamOptimizer(learning_rate) Apply optimizer to loss function train = optimizer.minimize(loss) init variables init = tf.global_variables_initializer() Run everything in a session with tf.Session() as sess: sess.run(init) for epoch in range(epoch_count): sess.run(train, feed_dict={&lt;feedDictHere})">
 
 
     
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </code></pre><h2 id="apply-optimizer-to-loss-function">Apply optimizer to loss function</h2>
 <pre tabindex="0"><code>train = optimizer.minimize(loss)
 </code></pre><h2 id="init-variables">init variables</h2>
-<pre tabindex="0"><code>init = tf.globalvariablesinitializer()
+<pre tabindex="0"><code>init = tf.global_variables_initializer()
 </code></pre><h2 id="run-everything-in-a-session">Run everything in a session</h2>
 <pre tabindex="0"><code>with tf.Session() as sess:
 	sess.run(init)

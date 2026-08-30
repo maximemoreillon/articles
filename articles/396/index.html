@@ -32,8 +32,8 @@
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Inheritance in Python">
 	<meta property="og:description" content="Let’s imagine that we have a python class as follows (Python 3):
-class MyClass: def init(self): # Code of the class constructor... print(&#34;Instance of MyClass created&#34;) A child class of MyClass can be created as such:
-class MyChildClass(MyClass): def init(self): super().init__() # calls constructor of MyClass print(&#34;Instance of MyChildClass created&#34;) By creating an instance of MyChildClass, Instance of MyClass created and Instance of MyChildClass created should be printed in the console.">
+class MyClass: def __init__(self): # Code of the class constructor... print(&#34;Instance of MyClass created&#34;) A child class of MyClass can be created as such:
+class MyChildClass(MyClass): def __init__(self): super().__init__() # calls constructor of MyClass print(&#34;Instance of MyChildClass created&#34;) By creating an instance of MyChildClass, Instance of MyClass created and Instance of MyChildClass created should be printed in the console.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -48,8 +48,8 @@ class MyChildClass(MyClass): def init(self): super().init__() # calls constructo
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Inheritance in Python">
 	<meta name="twitter:description" content="Let’s imagine that we have a python class as follows (Python 3):
-class MyClass: def init(self): # Code of the class constructor... print(&#34;Instance of MyClass created&#34;) A child class of MyClass can be created as such:
-class MyChildClass(MyClass): def init(self): super().init__() # calls constructor of MyClass print(&#34;Instance of MyChildClass created&#34;) By creating an instance of MyChildClass, Instance of MyClass created and Instance of MyChildClass created should be printed in the console.">
+class MyClass: def __init__(self): # Code of the class constructor... print(&#34;Instance of MyClass created&#34;) A child class of MyClass can be created as such:
+class MyChildClass(MyClass): def __init__(self): super().__init__() # calls constructor of MyClass print(&#34;Instance of MyChildClass created&#34;) By creating an instance of MyChildClass, Instance of MyClass created and Instance of MyChildClass created should be printed in the console.">
 
 
     
@@ -246,13 +246,13 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>Let&rsquo;s imagine that we have a python class as follows (Python 3):</p>
 <pre tabindex="0"><code>class MyClass:
-	def init(self):
+	def __init__(self):
 	# Code of the class constructor...
 	print(&#34;Instance of MyClass created&#34;)
 </code></pre><p>A child class of MyClass can be created as such:</p>
 <pre tabindex="0"><code>class MyChildClass(MyClass):
-	def init(self):
-	    super().init__() # calls constructor of MyClass
+	def __init__(self):
+	    super().__init__() # calls constructor of MyClass
 	    print(&#34;Instance of MyChildClass created&#34;)
 </code></pre><p>By creating an instance of MyChildClass, <code>Instance of MyClass created</code> and <code>Instance of MyChildClass created</code> should be printed in the console.</p>
 

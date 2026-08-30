@@ -20,7 +20,7 @@
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /var/snap/microk8s/current/certs/ca.crt
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;access-token&#34;&gt;Access Token&lt;/h2&gt;
 &lt;p&gt;As per usual, the RBAC addon must be enabled&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;micok8s.enable rbac
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;microk8s.enable rbac
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Following which, the following manifest can be applied:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: v1
 kind: ServiceAccount

@@ -272,7 +272,7 @@ model = Sequential([
 <pre tabindex="0"><code>docker kill serving_base
 docker rm serving_base
 </code></pre><p>Containers can now be started from the generated image:</p>
-<pre tabindex="0"><code>docker run -d -p 8501:8501 my_model_serving
+<pre tabindex="0"><code>docker run -d -p 8501:8501 my-model-serving
 </code></pre><p>To test if this is working, curl can be used:</p>
 <pre tabindex="0"><code>curl -d &#39;{&#34;instances&#34;: [1.0, 2.0, 5.0]}&#39; http://localhost:8501/v1/models/my_model:predict
 </code></pre>

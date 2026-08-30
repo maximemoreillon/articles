@@ -16,7 +16,7 @@
       
       <description>&lt;p&gt;When writing bash scripts, it is sometimes necessary to check if an environment bariable is set.&lt;/p&gt;
 &lt;p&gt;The following command will print &lt;code&gt;hello&lt;/code&gt; if the environment variable &lt;code&gt;HELLO&lt;/code&gt; is set:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[[ -z ${HELLO}]] || echo &amp;#34;hello&amp;#34;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[[ -z ${HELLO} ]] || echo &amp;#34;hello&amp;#34;
 &lt;/code&gt;&lt;/pre&gt;</description>
       
     </item>

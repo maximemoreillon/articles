@@ -302,7 +302,7 @@ subjects:
   name: gitlab-admin
   namespace: kube-system
 </code></pre><p>The resources can be created by running</p>
-<pre tabindex="0"><code>microk8s.kubectl apply -f gitlab_service_account.yml
+<pre tabindex="0"><code>microk8s.kubectl apply -f gitlabserviceaccount.yml
 </code></pre><p>With the newly created service account, the token can be retrieved using this command:</p>
 <pre tabindex="0"><code>microk8s.kubectl -n kube-system describe secret $(microk8s.kubectl -n kube-system get secret | grep gitlab-admin | awk &#39;{print $1}&#39;)
 </code></pre><p>Which should output the following</p>

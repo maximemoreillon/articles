@@ -255,9 +255,13 @@ document.addEventListener('DOMContentLoaded', function () {
 <pre tabindex="0"><code>sudo apt-get install mariadb-server php-mysql
 </code></pre><h3 id="mariadb-secure-installation">MariaDB secure installation</h3>
 <p>Once setup, MariaDB must be setup so as to increase security:</p>
-<pre tabindex="0"><code>sudo mysqlsecureinstallation
+<pre tabindex="0"><code>sudo mysql_secure_installation
 </code></pre><p>The same actions can also be performed through command line:</p>
-<pre tabindex="0"><code>sudo mysql -uroot -p$mariadbrootpassword -e &#34;UPDATE mysql.user SET Password = PASSWORD(&#39;$mariadbrootpassword&#39;) WHERE User = &#39;root&#39;&#34;sudo mysql -uroot -p$mariadbrootpassword -e &#34;DELETE FROM mysql.user WHERE User=&#39;&#39;&#34;sudo mysql -uroot -p$mariadbrootpassword -e &#34;DELETE FROM mysql.user WHERE User=&#39;root&#39; AND Host NOT IN (&#39;localhost&#39;, &#39;127.0.0.1&#39;, &#39;::1&#39;)&#34;sudo mysql -uroot -p$mariadbrootpassword -e &#34;DROP DATABASE IF EXISTS test&#34;sudo mysql -uroot -p$mariadbrootpassword -e &#34;FLUSH PRIVILEGES&#34;
+<pre tabindex="0"><code>sudo mysql -uroot -p$mariadbrootpassword -e &#34;UPDATE mysql.user SET Password = PASSWORD(&#39;$mariadbrootpassword&#39;) WHERE User = &#39;root&#39;&#34;
+sudo mysql -uroot -p$mariadbrootpassword -e &#34;DELETE FROM mysql.user WHERE User=&#39;&#39;&#34;
+sudo mysql -uroot -p$mariadbrootpassword -e &#34;DELETE FROM mysql.user WHERE User=&#39;root&#39; AND Host NOT IN (&#39;localhost&#39;, &#39;127.0.0.1&#39;, &#39;::1&#39;)&#34;
+sudo mysql -uroot -p$mariadbrootpassword -e &#34;DROP DATABASE IF EXISTS test&#34;
+sudo mysql -uroot -p$mariadbrootpassword -e &#34;FLUSH PRIVILEGES&#34;
 </code></pre><p>Thus, a LAMP server can serve dynamic web pages with content coming from Databases.</p>
 
             </div>

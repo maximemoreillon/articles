@@ -16,17 +16,7 @@
       
       <description>&lt;p&gt;An HDD can be configured to spin down after a certain time via the APM settings which can be managed by smartctl. For example&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo smartctl --set=apm,63 /dev/sdb
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;configures the disk sdb to spin down afout about 5 minutes of inactivity.&lt;/p&gt;
-&lt;p&gt;Unfortunately, those settings do not persist after a reboot. To achieve persistence on systems with systemd installed, the following sdb-apm.service service file can be created in /etc/systemd/system/&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Unit]
-Description=/dev/sdb apm settings
-
-[Service]
-ExecStart=/usr/sbin/smartctl --set=apm,63 /dev/sdb
-
-[Install]
-WantedBy=multi-user.target
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;After enabling the service with&lt;/p&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;sets the APM (Advanced Power Management) level of disk sdb to 63, a fairly aggressive power-saving level. Note that APM controls how aggressively the drive manages power, not a literal spin-down timer; an actual idle timeout is configured separately, for example via &lt;code&gt;hdparm -S&lt;/code&gt;.&lt;/p&gt;</description>
       
     </item>
     

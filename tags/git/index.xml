@@ -19,9 +19,7 @@
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone URL_TO_REMOTE_1
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Create a branch off the first remote&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git checkout -b master-2
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In order to merge a completely independent repository into the current one, &lt;strong&gt;delete&lt;/strong&gt; the content of the folder apart from the .git folder. Once done, commit the changes:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git commit -m &amp;#39;prepared for combining repositories&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Add the remote of the second repository&lt;/p&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In order to combine a completely independent repository into the current one without losing either one&amp;rsquo;s content, &lt;strong&gt;move&lt;/strong&gt; the existing content of the folder into its own subdirectory (apart from the .git folder). Once done, commit the changes:&lt;/p&gt;</description>
       
     </item>
     

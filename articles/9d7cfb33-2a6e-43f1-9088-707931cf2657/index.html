@@ -33,7 +33,7 @@
 	<meta property="og:title" content="Migrating a K8s PV">
 	<meta property="og:description" content="NOTE: pv-migrate provides an easier approach migrating PVs
 Kubernetes provides an abstraction layer for persistent data storage. Volumes can be of various storage classes depending on user requirements. Those requirements can evolve with time, meaning that volumes sometimes need to be migrated from one storage class to another. This article introduces a method to do so.
-In this article, MinIO will be used as an example. MinIO pods do support the kubectl cp command as the container does not have tar installed. For applications that allow the kubectl cp command, the procedure in this article can be simplified">
+In this article, MinIO will be used as an example. MinIO pods do not support the kubectl cp command as the container does not have tar installed, which kubectl cp requires to stream files. For applications that do support the kubectl cp command, the procedure in this article can be simplified">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -49,7 +49,7 @@ In this article, MinIO will be used as an example. MinIO pods do support the kub
 	<meta name="twitter:title" content="Migrating a K8s PV">
 	<meta name="twitter:description" content="NOTE: pv-migrate provides an easier approach migrating PVs
 Kubernetes provides an abstraction layer for persistent data storage. Volumes can be of various storage classes depending on user requirements. Those requirements can evolve with time, meaning that volumes sometimes need to be migrated from one storage class to another. This article introduces a method to do so.
-In this article, MinIO will be used as an example. MinIO pods do support the kubectl cp command as the container does not have tar installed. For applications that allow the kubectl cp command, the procedure in this article can be simplified">
+In this article, MinIO will be used as an example. MinIO pods do not support the kubectl cp command as the container does not have tar installed, which kubectl cp requires to stream files. For applications that do support the kubectl cp command, the procedure in this article can be simplified">
 
 
     
@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>NOTE: <a href="https://github.com/utkuozdemir/pv-migrate">pv-migrate</a> provides an easier approach migrating PVs</p>
 <p>Kubernetes provides an abstraction layer for persistent data storage. Volumes can be of various storage classes depending on user requirements. Those requirements can evolve with time, meaning that volumes sometimes need to be migrated from one storage class to another. This article introduces a method to do so.</p>
-<p>In this article, MinIO will be used as an example. MinIO pods do support the <code>kubectl cp</code> command as the container does not have <code>tar</code> installed. For applications that allow the <code>kubectl cp command</code>, the procedure in this article can be simplified</p>
+<p>In this article, MinIO will be used as an example. MinIO pods do not support the <code>kubectl cp</code> command as the container does not have <code>tar</code> installed, which <code>kubectl cp</code> requires to stream files. For applications that do support the <code>kubectl cp</code> command, the procedure in this article can be simplified</p>
 <p>Here is a manifest for a MinIO pod, where data is stored using a storage class called <code>nfs-csi</code>:</p>
 <pre tabindex="0"><code>apiVersion: v1
 kind: PersistentVolumeClaim
@@ -319,7 +319,7 @@ spec:
 </code></pre><p>Once done, we can delete the Ubuntu pod and recreate it by changing the <code>spec.volumes.persistentVolumeClaim.claimName</code> to <code>minio-longhorn</code>. The newly create Ubuntu pod now has the new PVC mounted to <code>/mnt</code>. This allows us to copy the content of the temporary folder into the PV:</p>
 <pre tabindex="0"><code>microk8s.kubectl cp ./tmp/. ubuntu:/mnt
 </code></pre><p>After the data has been transferred to the new PV, the Ubuntu pod can once again be deleted.</p>
-<pre tabindex="0"><code>kubectl delete pod minio
+<pre tabindex="0"><code>kubectl delete pod ubuntu
 </code></pre><p>The <code>spec.volumes.persistentVolumeClaim.claimName</code> of the MinIO pod can now be changed to <code>longhorn</code> as well, after which the pod can be redeployed.</p>
 <p>The MinIO pod should now be using Longhorn as a storage class and have its data from the original <code>nfs-csi</code> PV.</p>
 

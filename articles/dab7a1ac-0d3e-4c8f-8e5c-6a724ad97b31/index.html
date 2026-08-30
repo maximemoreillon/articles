@@ -294,7 +294,7 @@ export default {
   &lt;button @click=&#34;logX()&#34;&gt;logX&lt;/button&gt;
 &lt;/template&gt;
 
-&lt;script&gt;
+&lt;script setup&gt;
 import { ref } from &#34;vue&#34;;
 const x = ref(2);
 function logX(){
@@ -353,7 +353,7 @@ export default {
 <pre tabindex="0"><code>&lt;template&gt;
   &lt;p&gt;x: {{ x }}&lt;/p&gt;
 &lt;/template&gt;
-&lt;script&gt;
+&lt;script setup&gt;
 import { ref, onMounted } from &#34;vue&#34;;
 const x = ref(2);
 onMounted(() =&gt; {

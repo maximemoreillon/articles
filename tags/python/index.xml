@@ -73,7 +73,7 @@ a[-3::-1]  # everything except the last two items, reversed
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;apply-optimizer-to-loss-function&#34;&gt;Apply optimizer to loss function&lt;/h2&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;train = optimizer.minimize(loss)
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;init-variables&#34;&gt;init variables&lt;/h2&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;init = tf.globalvariablesinitializer()
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;init = tf.global_variables_initializer()
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;run-everything-in-a-session&#34;&gt;Run everything in a session&lt;/h2&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;with tf.Session() as sess:
 	sess.run(init)
@@ -93,13 +93,13 @@ a[-3::-1]  # everything except the last two items, reversed
       
       <description>&lt;p&gt;Let&amp;rsquo;s imagine that we have a python class as follows (Python 3):&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;class MyClass:
-	def init(self):
+	def __init__(self):
 	# Code of the class constructor...
 	print(&amp;#34;Instance of MyClass created&amp;#34;)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A child class of MyClass can be created as such:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;class MyChildClass(MyClass):
-	def init(self):
-	    super().init__() # calls constructor of MyClass
+	def __init__(self):
+	    super().__init__() # calls constructor of MyClass
 	    print(&amp;#34;Instance of MyChildClass created&amp;#34;)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;By creating an instance of MyChildClass, &lt;code&gt;Instance of MyClass created&lt;/code&gt; and &lt;code&gt;Instance of MyChildClass created&lt;/code&gt; should be printed in the console.&lt;/p&gt;</description>
       

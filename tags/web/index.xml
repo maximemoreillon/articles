@@ -192,7 +192,8 @@
       <guid>https://articles.maximemoreillon.com/articles/33/</guid>
       
       <description>&lt;p&gt;From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;function area_of_circle(radius){
   return Math.PI * radius * radius
 }
@@ -277,7 +278,7 @@
       <description>&lt;p&gt;HTML stands for HyperText Markup Language. It is used to describe the content of a webpage to web browsers. Originally, web browsers were designed to display text documents and so HTML was used to define the various parts making up those documents.&lt;/p&gt;
 &lt;h2 id=&#34;tags&#34;&gt;Tags&lt;/h2&gt;
 &lt;p&gt;HTML uses tags to define the attributes of content such as:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;p&amp;gt;This is a pararaph&amp;lt;/a&amp;gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;p&amp;gt;This is a pararaph&amp;lt;/p&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this example, the text &amp;ldquo;This is a paragraph&amp;rdquo; is defined as a paragraph because it is surrounded by &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;/p&amp;gt;&lt;/code&gt; tags. Note the &amp;ldquo;/&amp;rdquo; for the tag after the content, which implies that it is a closing tag.&lt;/p&gt;</description>
       
     </item>

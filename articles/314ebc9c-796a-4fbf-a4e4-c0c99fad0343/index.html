@@ -34,8 +34,7 @@
 	<meta property="og:description" content="This article presents how to combine two independent and unrelated git repositories.
 First, clone the first repository locally and cd into it.
 git clone URL_TO_REMOTE_1 Create a branch off the first remote
-git checkout -b master-2 In order to merge a completely independent repository into the current one, delete the content of the folder apart from the .git folder. Once done, commit the changes:
-git commit -m &#39;prepared for combining repositories&#39; Add the remote of the second repository">
+git checkout -b master-2 In order to combine a completely independent repository into the current one without losing either one’s content, move the existing content of the folder into its own subdirectory (apart from the .git folder). Once done, commit the changes:">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -53,8 +52,7 @@ git commit -m &#39;prepared for combining repositories&#39; Add the remote of th
 	<meta name="twitter:description" content="This article presents how to combine two independent and unrelated git repositories.
 First, clone the first repository locally and cd into it.
 git clone URL_TO_REMOTE_1 Create a branch off the first remote
-git checkout -b master-2 In order to merge a completely independent repository into the current one, delete the content of the folder apart from the .git folder. Once done, commit the changes:
-git commit -m &#39;prepared for combining repositories&#39; Add the remote of the second repository">
+git checkout -b master-2 In order to combine a completely independent repository into the current one without losing either one’s content, move the existing content of the folder into its own subdirectory (apart from the .git folder). Once done, commit the changes:">
 
 
     
@@ -254,14 +252,19 @@ document.addEventListener('DOMContentLoaded', function () {
 <pre tabindex="0"><code>git clone URL_TO_REMOTE_1
 </code></pre><p>Create a branch off the first remote</p>
 <pre tabindex="0"><code>git checkout -b master-2
-</code></pre><p>In order to merge a completely independent repository into the current one, <strong>delete</strong> the content of the folder apart from the .git folder. Once done, commit the changes:</p>
-<pre tabindex="0"><code>git commit -m &#39;prepared for combining repositories&#39;
+</code></pre><p>In order to combine a completely independent repository into the current one without losing either one&rsquo;s content, <strong>move</strong> the existing content of the folder into its own subdirectory (apart from the .git folder). Once done, commit the changes:</p>
+<pre tabindex="0"><code>mkdir repo-1-content
+git mv &lt;existing files/folders&gt; repo-1-content/
+git commit -m &#39;moved repo 1 content into its own subdirectory&#39;
 </code></pre><p>Add the remote of the second repository</p>
 <pre tabindex="0"><code>git remote add remote-2 URL_TO_REPOSITORY_2
 </code></pre><p>Its content can be pulled into the current branch:</p>
 <pre tabindex="0"><code>git pull remote-2 master --allow-unrelated-histories
-</code></pre><p>The content of remote-2 will now be part of the git tree of the original remote, under a branch called master-2.</p>
-<p>Master-2 can be merged into master one to finish the combination of the repositories.</p>
+</code></pre><p>The content of remote-2 will now be part of the git tree of the original remote, under a branch called master-2. Since remote-2&rsquo;s content still sits at the root of the branch, move it into its own subdirectory as well and commit:</p>
+<pre tabindex="0"><code>mkdir repo-2-content
+git mv &lt;files/folders from remote-2&gt; repo-2-content/
+git commit -m &#39;moved repo 2 content into its own subdirectory&#39;
+</code></pre><p>Master-2 can then be merged into master to finish the combination of the repositories, with each original repository&rsquo;s content preserved under its own subdirectory.</p>
 
             </div>
         </article></main>

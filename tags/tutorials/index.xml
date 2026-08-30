@@ -102,7 +102,7 @@ data:
       
       <description>&lt;p&gt;NOTE: &lt;a href=&#34;https://github.com/utkuozdemir/pv-migrate&#34;&gt;pv-migrate&lt;/a&gt; provides an easier approach migrating PVs&lt;/p&gt;
 &lt;p&gt;Kubernetes provides an abstraction layer for persistent data storage. Volumes can be of various storage classes depending on user requirements. Those requirements can evolve with time, meaning that volumes sometimes need to be migrated from one storage class to another. This article introduces a method to do so.&lt;/p&gt;
-&lt;p&gt;In this article, MinIO will be used as an example. MinIO pods do support the &lt;code&gt;kubectl cp&lt;/code&gt; command as the container does not have &lt;code&gt;tar&lt;/code&gt; installed. For applications that allow the &lt;code&gt;kubectl cp command&lt;/code&gt;, the procedure in this article can be simplified&lt;/p&gt;</description>
+&lt;p&gt;In this article, MinIO will be used as an example. MinIO pods do not support the &lt;code&gt;kubectl cp&lt;/code&gt; command as the container does not have &lt;code&gt;tar&lt;/code&gt; installed, which &lt;code&gt;kubectl cp&lt;/code&gt; requires to stream files. For applications that do support the &lt;code&gt;kubectl cp&lt;/code&gt; command, the procedure in this article can be simplified&lt;/p&gt;</description>
       
     </item>
     
@@ -140,17 +140,7 @@ data:
       
       <description>&lt;p&gt;An HDD can be configured to spin down after a certain time via the APM settings which can be managed by smartctl. For example&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo smartctl --set=apm,63 /dev/sdb
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;configures the disk sdb to spin down afout about 5 minutes of inactivity.&lt;/p&gt;
-&lt;p&gt;Unfortunately, those settings do not persist after a reboot. To achieve persistence on systems with systemd installed, the following sdb-apm.service service file can be created in /etc/systemd/system/&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[Unit]
-Description=/dev/sdb apm settings
-
-[Service]
-ExecStart=/usr/sbin/smartctl --set=apm,63 /dev/sdb
-
-[Install]
-WantedBy=multi-user.target
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;After enabling the service with&lt;/p&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;sets the APM (Advanced Power Management) level of disk sdb to 63, a fairly aggressive power-saving level. Note that APM controls how aggressively the drive manages power, not a literal spin-down timer; an actual idle timeout is configured separately, for example via &lt;code&gt;hdparm -S&lt;/code&gt;.&lt;/p&gt;</description>
       
     </item>
     
@@ -240,7 +230,7 @@ data:
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat /var/snap/microk8s/current/certs/ca.crt
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;access-token&#34;&gt;Access Token&lt;/h2&gt;
 &lt;p&gt;As per usual, the RBAC addon must be enabled&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;micok8s.enable rbac
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;microk8s.enable rbac
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Following which, the following manifest can be applied:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;apiVersion: v1
 kind: ServiceAccount
@@ -497,9 +487,7 @@ SyntaxError: Unexpected identifier
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone URL_TO_REMOTE_1
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Create a branch off the first remote&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git checkout -b master-2
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In order to merge a completely independent repository into the current one, &lt;strong&gt;delete&lt;/strong&gt; the content of the folder apart from the .git folder. Once done, commit the changes:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git commit -m &amp;#39;prepared for combining repositories&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Add the remote of the second repository&lt;/p&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In order to combine a completely independent repository into the current one without losing either one&amp;rsquo;s content, &lt;strong&gt;move&lt;/strong&gt; the existing content of the folder into its own subdirectory (apart from the .git folder). Once done, commit the changes:&lt;/p&gt;</description>
       
     </item>
     
@@ -730,7 +718,7 @@ sudo apt-get install -y curl openssh-server ca-certificates
       
       <description>&lt;p&gt;Flask can be seen as the equivalent of Express for Python. However, although an express application is basically production ready, a Flask app outputs the following when executed by itself:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;WARNING: This is a development server. Do not use it in a production deployment.
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;flask_app.py&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;`flask_app.py&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;from flask import Flask
 app = Flask(__name__)
 
@@ -797,7 +785,8 @@ if __name__ == &amp;#34;__main__&amp;#34;:
       <guid>https://articles.maximemoreillon.com/articles/33/</guid>
       
       <description>&lt;p&gt;From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;function area_of_circle(radius){
   return Math.PI * radius * radius
 }
@@ -937,7 +926,7 @@ int main()
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;let myConstant:Int = 1
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;variables&#34;&gt;Variables&lt;/h2&gt;
 &lt;p&gt;Swift is a strongly typed language. Variables are declared using the &lt;code&gt;var&lt;/code&gt; keyword as following this syntax:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var variableName:String = &amp;#39;Hello&amp;#39;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var variableName:String = &amp;#34;Hello&amp;#34;
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;loops&#34;&gt;Loops&lt;/h2&gt;
 &lt;p&gt;Here is an example of a for loop:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;for i in 1...5{
@@ -972,7 +961,7 @@ int main()
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;apply-optimizer-to-loss-function&#34;&gt;Apply optimizer to loss function&lt;/h2&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;train = optimizer.minimize(loss)
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;init-variables&#34;&gt;init variables&lt;/h2&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;init = tf.globalvariablesinitializer()
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;init = tf.global_variables_initializer()
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;run-everything-in-a-session&#34;&gt;Run everything in a session&lt;/h2&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;with tf.Session() as sess:
 	sess.run(init)
@@ -1008,7 +997,7 @@ int main()
       <description>&lt;p&gt;HTML stands for HyperText Markup Language. It is used to describe the content of a webpage to web browsers. Originally, web browsers were designed to display text documents and so HTML was used to define the various parts making up those documents.&lt;/p&gt;
 &lt;h2 id=&#34;tags&#34;&gt;Tags&lt;/h2&gt;
 &lt;p&gt;HTML uses tags to define the attributes of content such as:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;p&amp;gt;This is a pararaph&amp;lt;/a&amp;gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;p&amp;gt;This is a pararaph&amp;lt;/p&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this example, the text &amp;ldquo;This is a paragraph&amp;rdquo; is defined as a paragraph because it is surrounded by &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;/p&amp;gt;&lt;/code&gt; tags. Note the &amp;ldquo;/&amp;rdquo; for the tag after the content, which implies that it is a closing tag.&lt;/p&gt;</description>
       
     </item>
@@ -1022,13 +1011,13 @@ int main()
       
       <description>&lt;p&gt;Let&amp;rsquo;s imagine that we have a python class as follows (Python 3):&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;class MyClass:
-	def init(self):
+	def __init__(self):
 	# Code of the class constructor...
 	print(&amp;#34;Instance of MyClass created&amp;#34;)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A child class of MyClass can be created as such:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;class MyChildClass(MyClass):
-	def init(self):
-	    super().init__() # calls constructor of MyClass
+	def __init__(self):
+	    super().__init__() # calls constructor of MyClass
 	    print(&amp;#34;Instance of MyChildClass created&amp;#34;)
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;By creating an instance of MyChildClass, &lt;code&gt;Instance of MyClass created&lt;/code&gt; and &lt;code&gt;Instance of MyChildClass created&lt;/code&gt; should be printed in the console.&lt;/p&gt;</description>
       
@@ -1149,7 +1138,7 @@ int main()
 &lt;p&gt;Run a container in the background:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run -d IMAGE_NAME
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Run a container and give it a certain name:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run -n CONTAINER_NAME IMAGE_NAME
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker run --name CONTAINER_NAME IMAGE_NAME
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Stop a container (gracefully):&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;docker stop CONTAINER_NAME
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Kill a container (ungraceful stop):&lt;/p&gt;</description>
@@ -1185,15 +1174,13 @@ int main()
 }));
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;key-value pairs can be set using the session property:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;req.session.username = &amp;#34;myUsername&amp;#34;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The value is encrypted using the secret defined hereabove&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The value is signed (not encrypted) using the secret defined hereabove, meaning it prevents tampering but does not prevent the payload from being read&lt;/p&gt;
 &lt;p&gt;Requires special options for CORS:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;app.use(cors({
   origin: [/* origins */],
   credentials: true,
 }));
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;As well as Axios:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;axios.defaults.withCredentials = true
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This method works well for clients using web browsers with cookies enabled but consequently not so much for mobile or IoT devices&lt;/p&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;As well as Axios:&lt;/p&gt;</description>
       
     </item>
     
@@ -1416,7 +1403,7 @@ void upload_image(){
       body_pre_image = &amp;#34;--&amp;#34;;
       body_pre_image += BOUNDARY;
       body_pre_image += &amp;#34;\r\n&amp;#34;;
-      body_pre_image += &amp;#34;Content-Disposition: form-data; name=\&amp;#34;imageFile\&amp;#34;; filename=\&amp;#34;picture.jpg\&amp;#34;\r\n&amp;#34;);
+      body_pre_image += &amp;#34;Content-Disposition: form-data; name=\&amp;#34;imageFile\&amp;#34;; filename=\&amp;#34;picture.jpg\&amp;#34;\r\n&amp;#34;;
       body_pre_image += &amp;#34;Content-Type: image/jpeg\r\n&amp;#34;;
       body_pre_image += &amp;#34;\r\n&amp;#34;;
     

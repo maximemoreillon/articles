@@ -38,7 +38,7 @@ docker image rm IMAGE_NAME Containers Run a container:
 docker run IMAGE_NAME Here, the container will run in the foreground with a randomly assigned name
 Run a container in the background:
 docker run -d IMAGE_NAME Run a container and give it a certain name:
-docker run -n CONTAINER_NAME IMAGE_NAME Stop a container (gracefully):
+docker run --name CONTAINER_NAME IMAGE_NAME Stop a container (gracefully):
 docker stop CONTAINER_NAME Kill a container (ungraceful stop):">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
@@ -60,7 +60,7 @@ docker image rm IMAGE_NAME Containers Run a container:
 docker run IMAGE_NAME Here, the container will run in the foreground with a randomly assigned name
 Run a container in the background:
 docker run -d IMAGE_NAME Run a container and give it a certain name:
-docker run -n CONTAINER_NAME IMAGE_NAME Stop a container (gracefully):
+docker run --name CONTAINER_NAME IMAGE_NAME Stop a container (gracefully):
 docker stop CONTAINER_NAME Kill a container (ungraceful stop):">
 
 
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Run a container in the background:</p>
 <pre tabindex="0"><code>docker run -d IMAGE_NAME
 </code></pre><p>Run a container and give it a certain name:</p>
-<pre tabindex="0"><code>docker run -n CONTAINER_NAME IMAGE_NAME
+<pre tabindex="0"><code>docker run --name CONTAINER_NAME IMAGE_NAME
 </code></pre><p>Stop a container (gracefully):</p>
 <pre tabindex="0"><code>docker stop CONTAINER_NAME
 </code></pre><p>Kill a container (ungraceful stop):</p>

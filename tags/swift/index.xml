@@ -23,7 +23,7 @@
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;let myConstant:Int = 1
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;variables&#34;&gt;Variables&lt;/h2&gt;
 &lt;p&gt;Swift is a strongly typed language. Variables are declared using the &lt;code&gt;var&lt;/code&gt; keyword as following this syntax:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var variableName:String = &amp;#39;Hello&amp;#39;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var variableName:String = &amp;#34;Hello&amp;#34;
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;loops&#34;&gt;Loops&lt;/h2&gt;
 &lt;p&gt;Here is an example of a for loop:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;for i in 1...5{

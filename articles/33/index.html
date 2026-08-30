@@ -245,13 +245,14 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.</p>
-<p><img src="https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4" alt="">As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:</p>
+<p><img src="https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4" alt=""></p>
+<p>As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:</p>
 <pre tabindex="0"><code>function area_of_circle(radius){
   return Math.PI * radius * radius
 }
 </code></pre><p>With this implementation, this function can be used within other parts of the code. For instance, one could later use it to compute the volume of a cylinder as so:</p>
 <pre tabindex="0"><code>let cylinder_height = 5
-let cylinder_radius = 3 
+let cylinder_radius = 3
 
 let cylinder_volume = area_of_circle(cylinder_radius ) * cylinder_height
 </code></pre><p>However, defining a function in this fashion does obviously not make it available to every single piece of software in the world. In fact, the function can only be used within the scope of the application it is part of. Consequenlty, data flow is also bound the the application scope.</p>
@@ -263,81 +264,80 @@ let cylinder_volume = area_of_circle(cylinder_radius ) * cylinder_height
 <p>Now that we&rsquo;ve cleared some basic theory about APIs, let&rsquo;s go through some practical examples. Here, we are going to take our <em>area_of_circle</em> function and expose it using a REST API so that other applications can access it.</p>
 <h3 id="javascript-nodejs">JavaScript (Node.js)</h3>
 <p>Applications written in JavaScript and run in Node.js can be made so as to react to HTTP requests using the <a href="https://expressjs.com/">Express</a> package.</p>
-<pre tabindex="0"><code>const express = require(&#39;express&#39;)
-const cors = require(&#39;cors&#39;)
-
-const app = express()
-app.use(cors())
-
-// The function to expose outside the scope of the application
-function area_of_circle(radius){
-  return Math.PI * radius * radius
-}
-
-// Have the application listen to requests on the route &#39;/area_of_circle&#39;
-app.get(&#39;/area_of_circle&#39;, (req, res) =&gt; {
-  
-  // req.query contains data passed in the URL of the request
-  const area=area_of_circle(req.query.radius)
-
-  // res.send is used to reply to the request
-  res.send({area})
-
-})
-
-// Have the server listen on HTTP requests coming on port 8080
-app.listen(8080, () =&gt; {console.log(&#39;Example API listening on PORT 8080&#39;))
-</code></pre><p>This application responds to HTTP GET requests coming on the URL <code>http://&lt;Server IP&gt;:8080/</code>area_of_circle<code>?</code>radius<code>=2</code> with 12.566370614359172</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// The function to expose outside the scope of the application
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">area_of_circle</span>(<span style="color:#a6e22e">radius</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> Math.<span style="color:#a6e22e">PI</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">radius</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">radius</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Have the application listen to requests on the route &#39;/area_of_circle&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/area_of_circle&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// req.query contains data passed in the URL of the request
+</span></span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">area</span><span style="color:#f92672">=</span><span style="color:#a6e22e">area_of_circle</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">query</span>.<span style="color:#a6e22e">radius</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// res.send is used to reply to the request
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>({<span style="color:#a6e22e">area</span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Have the server listen on HTTP requests coming on port 8080
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">8080</span>, () =&gt; {<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Example API listening on PORT 8080&#39;</span>))
+</span></span></code></pre></div><p>This application responds to HTTP GET requests coming on the URL <code>http://&lt;Server IP&gt;:8080/</code>area_of_circle<code>?</code>radius<code>=2</code> with 12.566370614359172</p>
 <h2 id="python">Python</h2>
 <p>Applications written in Python can be made to respond to HTTP requests using, for example, <a href="https://flask.palletsprojects.com/">Flask</a>. Here is a simple example:</p>
-<pre tabindex="0"><code># Importing modules
-from flask import Flask, request
-from flask_cors import CORS
-import math
-
-# Instanciation of the Flask app
-app = Flask(__name__)
-
-# Dealing with the Cross Origin Control headers
-CORS(app)
-
-# The function to expose
-def area_of_circle(radius):
-    return math.pi * radius * radius
-
-# Definition of the API endpoint
-@app.route(&#39;/area_of_circle&#39;)
-def get_area_of_circle():
-    # Getting the data from the query parameters
-    # Data is passed as string so it needs to be converted as an integer
-    radius = int(request.args.get(&#39;radius&#39;))
-
-    # Apply our function
-    area = area_of_circle(radius)
-
-    # Respond with the result
-    return {&#34;area&#34;: area }
-
-# Start listening on port 8080
-if __name__ == &#39;__main__&#39;:
-    app.run(&#39;0.0.0.0&#39;, 8080)
-</code></pre><p>Here, Flask creates a development server for testing purposes. This kind of server should not be used in production. Please refer to <a href="https://flask.palletsprojects.com/en/1.1.x/deploying/">this page</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Importing modules</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask, request
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flask_cors <span style="color:#f92672">import</span> CORS
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> math
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Instanciation of the Flask app</span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Flask(__name__)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dealing with the Cross Origin Control headers</span>
+</span></span><span style="display:flex;"><span>CORS(app)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The function to expose</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">area_of_circle</span>(radius):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> math<span style="color:#f92672">.</span>pi <span style="color:#f92672">*</span> radius <span style="color:#f92672">*</span> radius
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Definition of the API endpoint</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/area_of_circle&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_area_of_circle</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Getting the data from the query parameters</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Data is passed as string so it needs to be converted as an integer</span>
+</span></span><span style="display:flex;"><span>    radius <span style="color:#f92672">=</span> int(request<span style="color:#f92672">.</span>args<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;radius&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Apply our function</span>
+</span></span><span style="display:flex;"><span>    area <span style="color:#f92672">=</span> area_of_circle(radius)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Respond with the result</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;area&#34;</span>: area }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start listening on port 8080</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    app<span style="color:#f92672">.</span>run(<span style="color:#e6db74">&#39;0.0.0.0&#39;</span>, <span style="color:#ae81ff">8080</span>)
+</span></span></code></pre></div><p>Here, Flask creates a development server for testing purposes. This kind of server should not be used in production. Please refer to <a href="https://flask.palletsprojects.com/en/1.1.x/deploying/">this page</a>.</p>
 <h2 id="consuming-rest-apis">Consuming REST APIs</h2>
 <p>Now that we&rsquo;ve exposed our circle area computing function via a REST API, we can use it from other applications through API calls. This section presents examples on how to do so</p>
 <h3 id="javascript-nodejs-1">JavaScript (Node.js)</h3>
 <p>There are multiple ways to perform HTTP requests in JavaScript. Here is an example that uses the Axios library, which is relatively easy to use:</p>
-<pre tabindex="0"><code>const axios = require(&#39;axios&#39;)
-const URL = &#39;http://localhost:8080/area_of_circle&#39;
-
-axios.get(URL,{params: {radius: 2}})
-  .then(response =&gt; console.log(response.data))
-</code></pre><h3 id="python-1">Python</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">axios</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;axios&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">URL</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:8080/area_of_circle&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">axios</span>
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">get</span>(<span style="color:#a6e22e">URL</span>, { <span style="color:#a6e22e">params</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">radius</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span> } })
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">response</span>) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">data</span>));
+</span></span></code></pre></div><h3 id="python-1">Python</h3>
 <p>In Python, HTTP requests can be done using the built-in requests module as follows:</p>
-<pre tabindex="0"><code>import requests
-URL = &#39;http://localhost:8080/area_of_circle&#39;
-response = requests.get(URL, params={&#39;radius&#39;: 2})
-print(response.text)
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>URL <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://localhost:8080/area_of_circle&#39;</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(URL, params<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;radius&#39;</span>: <span style="color:#ae81ff">2</span>})
+</span></span><span style="display:flex;"><span>print(response<span style="color:#f92672">.</span>text)
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

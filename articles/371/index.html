@@ -282,7 +282,7 @@ model.save(&#39;./{}/{}/&#39;.format(MODEL_NAME, MODEL_VERSION ))
 <pre tabindex="0"><code>docker kill serving_base
 docker rm serving_base
 </code></pre><p>Here, it might be a good idea to check if the container is actually working, so let&rsquo;s run it</p>
-<pre tabindex="0"><code>docker run -d -p 8501:8510 my-registry/mymodel-serving
+<pre tabindex="0"><code>docker run -d -p 8501:8501 my-registry/mymodel-serving
 </code></pre><p>Note that 8501 is the port TensorFlow serving uses for its REST API.</p>
 <p>A Get request to <code>http://localhost:8501/v1/models/mymodel</code> Should return the following JSON:</p>
 <pre tabindex="0"><code>{
