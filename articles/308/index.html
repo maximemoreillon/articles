@@ -246,8 +246,8 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>To solve this, the content of sensitive files can be saved as a CI variable, which becomes accessible as an environment variable by the gitlab-runner. This option can be found under:</p>
 <p>project settings &gt; CI/CD &gt; variables</p>
 <p>Here is an example command that retrieves the content of a secret file and save it as secrets.js:</p>
-<pre tabindex="0"><code>- cp ${SECRETS} ./secrets.js
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- <span style="color:#ae81ff">cp ${SECRETS} ./secrets.js</span>
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

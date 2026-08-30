@@ -245,24 +245,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>This tutorial explains how to setup a Linux, Apache, MariaDB, PHP (LAMP), server.</p>
 <h2 id="apache-2">Apache 2</h2>
 <p>Opening an web browser and entering a computer&rsquo;s IP in the URL bar is likely not to result in anything. This is because the computer isn&rsquo;t equipped with any software designed to handle requests from the web browser. A web server must be running of the computer so as to serve webpages in response to requests from a web browser. The two most popular web servers currently are Apache 2 and NGINX. This tutorial explains how to install the former. Apache can be installed using apt-get:</p>
-<pre tabindex="0"><code>sudo apt-get install apache2
-</code></pre><p>Once installed, apache will serve content stored in <code>/var/www/html</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install apache2
+</span></span></code></pre></div><p>Once installed, apache will serve content stored in <code>/var/www/html</code></p>
 <h2 id="php">PHP</h2>
 <p>Pages served by apache are commonly .html files. The HTML code fully describes the content of the page. Thus, the content will not change unless the HTML code does. Here, content is said to be static. However, sometimes, content needs to be dynamic. For example, a discussion forum keeps evolving as users post messages. For this purpose, PHP is used. It can be installed with apt-get:</p>
-<pre tabindex="0"><code>sudo apt-get install php libapache2-mod-php
-</code></pre><h2 id="mariadb">MariaDB</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install php libapache2-mod-php
+</span></span></code></pre></div><h2 id="mariadb">MariaDB</h2>
 <p>Very often, websites need to store and organize information. This is done using a database. Databases are managed by Database engines. The most popular one is probably MySQL and its fork, MariaDB. For this tutorial, MariaDB will be used. It can be installed using apt-get:</p>
-<pre tabindex="0"><code>sudo apt-get install mariadb-server php-mysql
-</code></pre><h3 id="mariadb-secure-installation">MariaDB secure installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install mariadb-server php-mysql
+</span></span></code></pre></div><h3 id="mariadb-secure-installation">MariaDB secure installation</h3>
 <p>Once setup, MariaDB must be setup so as to increase security:</p>
-<pre tabindex="0"><code>sudo mysql_secure_installation
-</code></pre><p>The same actions can also be performed through command line:</p>
-<pre tabindex="0"><code>sudo mysql -uroot -p$mariadbrootpassword -e &#34;UPDATE mysql.user SET Password = PASSWORD(&#39;$mariadbrootpassword&#39;) WHERE User = &#39;root&#39;&#34;
-sudo mysql -uroot -p$mariadbrootpassword -e &#34;DELETE FROM mysql.user WHERE User=&#39;&#39;&#34;
-sudo mysql -uroot -p$mariadbrootpassword -e &#34;DELETE FROM mysql.user WHERE User=&#39;root&#39; AND Host NOT IN (&#39;localhost&#39;, &#39;127.0.0.1&#39;, &#39;::1&#39;)&#34;
-sudo mysql -uroot -p$mariadbrootpassword -e &#34;DROP DATABASE IF EXISTS test&#34;
-sudo mysql -uroot -p$mariadbrootpassword -e &#34;FLUSH PRIVILEGES&#34;
-</code></pre><p>Thus, a LAMP server can serve dynamic web pages with content coming from Databases.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mysql_secure_installation
+</span></span></code></pre></div><p>The same actions can also be performed through command line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo mysql -uroot -p$mariadbrootpassword -e <span style="color:#e6db74">&#34;UPDATE mysql.user SET Password = PASSWORD(&#39;</span>$mariadbrootpassword<span style="color:#e6db74">&#39;) WHERE User = &#39;root&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>sudo mysql -uroot -p$mariadbrootpassword -e <span style="color:#e6db74">&#34;DELETE FROM mysql.user WHERE User=&#39;&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>sudo mysql -uroot -p$mariadbrootpassword -e <span style="color:#e6db74">&#34;DELETE FROM mysql.user WHERE User=&#39;root&#39; AND Host NOT IN (&#39;localhost&#39;, &#39;127.0.0.1&#39;, &#39;::1&#39;)&#34;</span>
+</span></span><span style="display:flex;"><span>sudo mysql -uroot -p$mariadbrootpassword -e <span style="color:#e6db74">&#34;DROP DATABASE IF EXISTS test&#34;</span>
+</span></span><span style="display:flex;"><span>sudo mysql -uroot -p$mariadbrootpassword -e <span style="color:#e6db74">&#34;FLUSH PRIVILEGES&#34;</span>
+</span></span></code></pre></div><p>Thus, a LAMP server can serve dynamic web pages with content coming from Databases.</p>
 
             </div>
         </article></main>

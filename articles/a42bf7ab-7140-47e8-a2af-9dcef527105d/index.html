@@ -244,23 +244,23 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>Quasar integrates i18n fairly well but its suggested usage does not suit the i18n-ally VS code extension very well. This article presents how to adapt the quasar proposed i18n usage so that i18n-ally can be used properly.</p>
 <p>When following the quasar i18n integration guide, translations are stored in .ts files, residing in their respective folders in src/i18n. For i18n-ally to work, those need to be .json files. Also, I personally prefer to have all translations files in the same folder so let&rsquo;s go ahead and delete the translation folders. Instead, the new structure of the i18n folder should look like this:</p>
-<pre tabindex="0"><code>src
-|- i18n
-|  |- index.ts
-|  |- en.json
-|  |- ja.json
-</code></pre><p>The content of src/i18n/index.ts must be adapted accordingly:</p>
-<pre tabindex="0"><code>import en from &#39;./en.json&#39;
-import ja from &#39;./ja.json&#39;
-
-export default {
-    en,
-    ja,
-}
-</code></pre><p>With this done, quasar will use those .json files for translations.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>src
+</span></span><span style="display:flex;"><span>|- i18n
+</span></span><span style="display:flex;"><span>|  |- index.ts
+</span></span><span style="display:flex;"><span>|  |- en.json
+</span></span><span style="display:flex;"><span>|  |- ja.json
+</span></span></code></pre></div><p>The content of src/i18n/index.ts must be adapted accordingly:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">en</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./en.json&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">ja</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./ja.json&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">en</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ja</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With this done, quasar will use those .json files for translations.</p>
 <p>The final step is to configure VS code&rsquo;s i18n-ally extension to use those files as well. This can be achieved by editing the .vscode/settings.json file and enabling json parsing for i18n by adding the following line:</p>
-<pre tabindex="0"><code>  &#34;i18n-ally.enabledParsers&#34;: [&#34;json&#34;],
-</code></pre><p>With this done, i18n-ally should work properly in your quasar project.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;i18n-ally.enabledParsers&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> [<span style="color:#e6db74">&#34;json&#34;</span>]<span style="color:#960050;background-color:#1e0010">,</span>
+</span></span></code></pre></div><p>With this done, i18n-ally should work properly in your quasar project.</p>
 
             </div>
         </article></main>

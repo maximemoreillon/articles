@@ -16,10 +16,10 @@
       
       <description>&lt;p&gt;This article presents how to combine two independent and unrelated git repositories.&lt;/p&gt;
 &lt;p&gt;First, clone the first repository locally and cd into it.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone URL_TO_REMOTE_1
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Create a branch off the first remote&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git checkout -b master-2
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In order to combine a completely independent repository into the current one without losing either one&amp;rsquo;s content, &lt;strong&gt;move&lt;/strong&gt; the existing content of the folder into its own subdirectory (apart from the .git folder). Once done, commit the changes:&lt;/p&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone URL_TO_REMOTE_1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Create a branch off the first remote&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git checkout -b master-2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In order to combine a completely independent repository into the current one without losing either one&amp;rsquo;s content, &lt;strong&gt;move&lt;/strong&gt; the existing content of the folder into its own subdirectory (apart from the .git folder). Once done, commit the changes:&lt;/p&gt;</description>
       
     </item>
     
@@ -31,8 +31,8 @@
       <guid>https://articles.maximemoreillon.com/articles/380/</guid>
       
       <description>&lt;p&gt;Having to enter one&amp;rsquo;s credentials for every push to a remote can be annoying. Here is to have git save those credentials for future uses.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git config --global credential.helper store
-&lt;/code&gt;&lt;/pre&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git config --global credential.helper store
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
       
     </item>
     

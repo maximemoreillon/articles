@@ -247,15 +247,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.</p>
 <p><img src="https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4" alt=""></p>
 <p>As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:</p>
-<pre tabindex="0"><code>function area_of_circle(radius){
-  return Math.PI * radius * radius
-}
-</code></pre><p>With this implementation, this function can be used within other parts of the code. For instance, one could later use it to compute the volume of a cylinder as so:</p>
-<pre tabindex="0"><code>let cylinder_height = 5
-let cylinder_radius = 3
-
-let cylinder_volume = area_of_circle(cylinder_radius ) * cylinder_height
-</code></pre><p>However, defining a function in this fashion does obviously not make it available to every single piece of software in the world. In fact, the function can only be used within the scope of the application it is part of. Consequenlty, data flow is also bound the the application scope.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">area_of_circle</span>(<span style="color:#a6e22e">radius</span>){
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> Math.<span style="color:#a6e22e">PI</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">radius</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">radius</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With this implementation, this function can be used within other parts of the code. For instance, one could later use it to compute the volume of a cylinder as so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">cylinder_height</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">cylinder_radius</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">cylinder_volume</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">area_of_circle</span>(<span style="color:#a6e22e">cylinder_radius</span> ) <span style="color:#f92672">*</span> <span style="color:#a6e22e">cylinder_height</span>
+</span></span></code></pre></div><p>However, defining a function in this fashion does obviously not make it available to every single piece of software in the world. In fact, the function can only be used within the scope of the application it is part of. Consequenlty, data flow is also bound the the application scope.</p>
 <p><img src="https://img.maximemoreillon.com/images/5ec5d21055b0c175c0749cf3" alt=""></p>
 <p>In numerous cases, data needs to be exchanged not only within but also between applications. This requires some form of interface for data to leave and enter the scope of their respective application. Such interface is called an application programming interface, or API.</p>
 <p><img src="https://img.maximemoreillon.com/images/5ec5d32255b0c1675b749cf5" alt=""></p>

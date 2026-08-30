@@ -248,19 +248,19 @@ This article presents an approach to leverage Kustomize in a GitLab CICD pipelin
 Throughout this article, git tags deploy to the <code>prod</code> environment while the <code>staging</code> branch deploys to the eponymous environment.</p>
 <h2 id="repository-structure">Repository structure</h2>
 <p>Here is an example repository structure for an application that would have both staging and production environments to deploy to:</p>
-<pre tabindex="0"><code>my-app/
-├── kustomize/
-│   ├── base/
-│   │   ├── deployment.yml
-│   │   └── kustomization.yml
-│   └── overlays/
-│       ├── staging/
-│       │   └── kustomization.yml
-│       └── prod/
-│           └── kustomization.yml
-├── ...
-└── .gitlab-ci.yml
-</code></pre><h2 id="kustomize">Kustomize</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>my-app/
+</span></span><span style="display:flex;"><span>├── kustomize/
+</span></span><span style="display:flex;"><span>│   ├── base/
+</span></span><span style="display:flex;"><span>│   │   ├── deployment.yml
+</span></span><span style="display:flex;"><span>│   │   └── kustomization.yml
+</span></span><span style="display:flex;"><span>│   └── overlays/
+</span></span><span style="display:flex;"><span>│       ├── staging/
+</span></span><span style="display:flex;"><span>│       │   └── kustomization.yml
+</span></span><span style="display:flex;"><span>│       └── prod/
+</span></span><span style="display:flex;"><span>│           └── kustomization.yml
+</span></span><span style="display:flex;"><span>├── ...
+</span></span><span style="display:flex;"><span>└── .gitlab-ci.yml
+</span></span></code></pre></div><h2 id="kustomize">Kustomize</h2>
 <p>In such a scenario, Kustomize would be used as follows.</p>
 <h3 id="base">Base</h3>
 <p>In this example, a simple deployment manifest is applied by <code>kubectl</code>.</p>

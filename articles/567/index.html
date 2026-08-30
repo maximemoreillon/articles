@@ -244,72 +244,72 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>With the storage addon enabled, microk8s can automatically provision a PV when a PVC is created. The size of the PV is set according to that of the PVC. However, PVCs cannot be resized after creation. The PVC could be deleted and recreated with a larger size but this would result in the deletion of the PV and, by extension, all the data stored so far in it. This article presents a workaround to resize a PVC and its corresponding PV without any loss of data.</p>
 <p>First, let&rsquo;s start by creating a simple PVC with a size of 100Gb in the a Microk8s cluster using the following manifest:</p>
-<pre tabindex="0"><code>apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: example-pvc
-  namespace: example
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Gi
-</code></pre><p>After being applied, the manifest creates the desired PVC:</p>
-<pre tabindex="0"><code>moreillon@home:~/kubernetes$ microk8s.kubectl apply -f example-pvc.yml
-persistentvolumeclaim/example-pvc created
-</code></pre><p>The PVC can be listed using kubectl:</p>
-<pre tabindex="0"><code>moreillon@home:~/kubernetes$ microk8s.kubectl get pvc -n example
-NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS        AGE
-example-pvc   Bound    pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4   100Gi      RWO            microk8s-hostpath   9s
-</code></pre><p>The same goes for its corresponding PV:</p>
-<pre tabindex="0"><code>moreillon@home:~/kubernetes$ microk8s.kubectl get pv
-NAME                                      CAPACITY  ACCESS MODES  RECLAIM POLICY  STATUS  CLAIM                STORAGECLASS
-pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4  100Gi     RWO           Delete          Bound   example/example-pvc  microk8s-hostpath
-</code></pre><p>Now let&rsquo;s assume that we want to change to storage size to 200Gb. Modifying the manifest and re-applying it would result in the following error: <em>only dynamically provisioned pvc can be resized and the storageclass that provisions the pvc must support resize</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">PersistentVolumeClaim</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">example-pvc</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">example</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">accessModes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">ReadWriteOnce</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">storage</span>: <span style="color:#ae81ff">100Gi</span>
+</span></span></code></pre></div><p>After being applied, the manifest creates the desired PVC:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>moreillon@home:~/kubernetes$ microk8s.kubectl apply -f example-pvc.yml
+</span></span><span style="display:flex;"><span>persistentvolumeclaim/example-pvc created
+</span></span></code></pre></div><p>The PVC can be listed using kubectl:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>moreillon@home:~/kubernetes$ microk8s.kubectl get pvc -n example
+</span></span><span style="display:flex;"><span>NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS        AGE
+</span></span><span style="display:flex;"><span>example-pvc   Bound    pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4   100Gi      RWO            microk8s-hostpath   9s
+</span></span></code></pre></div><p>The same goes for its corresponding PV:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>moreillon@home:~/kubernetes$ microk8s.kubectl get pv
+</span></span><span style="display:flex;"><span>NAME                                      CAPACITY  ACCESS MODES  RECLAIM POLICY  STATUS  CLAIM                STORAGECLASS
+</span></span><span style="display:flex;"><span>pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4  100Gi     RWO           Delete          Bound   example/example-pvc  microk8s-hostpath
+</span></span></code></pre></div><p>Now let&rsquo;s assume that we want to change to storage size to 200Gb. Modifying the manifest and re-applying it would result in the following error: <em>only dynamically provisioned pvc can be resized and the storageclass that provisions the pvc must support resize</em></p>
 <p>Here, one could delete the PVC and recreate it with a larger size, but this would result in the deletion of the PV and thus the data that it contains. Consequently, one must first prevent the PV to be deleted along with the PVC. This can be done by changing the <em>reclaim policy</em> of the PV from &ldquo;Delete&rdquo; (Microk8s default) to &ldquo;Retain&rdquo;. This can be achieved with the <em>microk8.kubectl patch</em> command:</p>
-<pre tabindex="0"><code>microk8s.kubectl patch pv pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4 -p &#39;{&#34;spec&#34;:{&#34;persistentVolumeReclaimPolicy&#34;:&#34;Retain&#34;}}&#39;
-</code></pre><p>Now, we can see that the reclaim policy of the PV has been changed to &ldquo;Retain&rdquo;:</p>
-<pre tabindex="0"><code>moreillon@home:~/kubernetes$ microk8s.kubectl get pv
-NAME                                      CAPACITY  ACCESS MODES  RECLAIM POLICY  STATUS  CLAIM                STORAGECLASS
-pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4  100Gi     RWO           Retain          Bound   example/example-pvc  microk8s-hostpath
-</code></pre><p>This will prevent the PV to be deleted when the PVC is removed. We can thus go ahead and delete the PVC.</p>
-<pre tabindex="0"><code>moreillon@home:~/kubernetes$ microk8s.kubectl delete -f example-pvc.yml
-persistentvolumeclaim &#34;example-pvc&#34; deleted
-</code></pre><p>As a result, the PV should be marked as Released:</p>
-<pre tabindex="0"><code>moreillon@home:~/kubernetes$ microk8s.kubectl get pv
-NAME                                      CAPACITY  ACCESS MODES  RECLAIM POLICY  STATUS    CLAIM                STORAGECLASS
-pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4  100Gi     RWO           Retain          Released  example/example-pvc  microk8s-hostpath
-</code></pre><p>Thus, the PV can be resized, which can also be achieved using the <em>microk8.kubectl patch</em> command:</p>
-<pre tabindex="0"><code>microk8s.kubectl patch pv pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4 -p &#39;{&#34;spec&#34;:{&#34;capacity&#34;:{&#34;storage&#34;:&#34;200Gi&#34;}}}&#39;
-</code></pre><p>The PV should now have a size of 200Gb.</p>
-<pre tabindex="0"><code>moreillon@home:~/kubernetes$ microk8s.kubectl get pv
-NAME                                      CAPACITY  ACCESS MODES  RECLAIM POLICY  STATUS    CLAIM                STORAGECLASS
-pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4  200Gi     RWO           Retain          Released  example/example-pvc  microk8s-hostpath
-</code></pre><p>Before we can re-apply our PVC, we also need to make the PV ready to be bound again, i.e. set its status to &ldquo;Available&rdquo;. Here again, we use the patch command:</p>
-<pre tabindex="0"><code>microk8s.kubectl patch pv pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4 -p &#39;{&#34;spec&#34;:{&#34;claimRef&#34;: null}}&#39;
-</code></pre><p>Which results in the PV beign in the &ldquo;Available&rdquo; state:</p>
-<pre tabindex="0"><code>moreillon@home:~/kubernetes$ microk8s.kubectl get pv
-NAME                                      CAPACITY  ACCESS MODES  RECLAIM POLICY  STATUS    CLAIM                STORAGECLASS
-pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4  200Gi     RWO           Retain          Available  example/example-pvc  microk8s-hostpath
-</code></pre><p>With that, done, one can apply a modified version of the original PVC manifest. Those modifications include a storage size increase to match that of the PV as well as a reference to the PV to bind. Without such reference, the PVC creation would trigger the automatic creation of a new PV by Kubernetes:</p>
-<pre tabindex="0"><code>apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: example-pvc
-  namespace: example
-spec:
-  accessModes:
-    - ReadWriteOnce
-  volumeName: pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4
-  resources:
-    requests:
-      storage: 200Gi
-</code></pre><p>After the application of the manifest, we can confirm that our PVC is correctly bound to the original PV, thus ensuring that the data persisted during the PVC update:</p>
-<pre tabindex="0"><code>moreillon@home:~/kubernetes$ microk8s.kubectl get pvc -n example
-NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS        AGE
-example-pvc   Bound    pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4   200Gi      RWO            microk8s-hostpath   12s
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>microk8s.kubectl patch pv pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4 -p <span style="color:#e6db74">&#39;{&#34;spec&#34;:{&#34;persistentVolumeReclaimPolicy&#34;:&#34;Retain&#34;}}&#39;</span>
+</span></span></code></pre></div><p>Now, we can see that the reclaim policy of the PV has been changed to &ldquo;Retain&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>moreillon@home:~/kubernetes$ microk8s.kubectl get pv
+</span></span><span style="display:flex;"><span>NAME                                      CAPACITY  ACCESS MODES  RECLAIM POLICY  STATUS  CLAIM                STORAGECLASS
+</span></span><span style="display:flex;"><span>pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4  100Gi     RWO           Retain          Bound   example/example-pvc  microk8s-hostpath
+</span></span></code></pre></div><p>This will prevent the PV to be deleted when the PVC is removed. We can thus go ahead and delete the PVC.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>moreillon@home:~/kubernetes$ microk8s.kubectl delete -f example-pvc.yml
+</span></span><span style="display:flex;"><span>persistentvolumeclaim <span style="color:#e6db74">&#34;example-pvc&#34;</span> deleted
+</span></span></code></pre></div><p>As a result, the PV should be marked as Released:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>moreillon@home:~/kubernetes$ microk8s.kubectl get pv
+</span></span><span style="display:flex;"><span>NAME                                      CAPACITY  ACCESS MODES  RECLAIM POLICY  STATUS    CLAIM                STORAGECLASS
+</span></span><span style="display:flex;"><span>pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4  100Gi     RWO           Retain          Released  example/example-pvc  microk8s-hostpath
+</span></span></code></pre></div><p>Thus, the PV can be resized, which can also be achieved using the <em>microk8.kubectl patch</em> command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>microk8s.kubectl patch pv pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4 -p <span style="color:#e6db74">&#39;{&#34;spec&#34;:{&#34;capacity&#34;:{&#34;storage&#34;:&#34;200Gi&#34;}}}&#39;</span>
+</span></span></code></pre></div><p>The PV should now have a size of 200Gb.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>moreillon@home:~/kubernetes$ microk8s.kubectl get pv
+</span></span><span style="display:flex;"><span>NAME                                      CAPACITY  ACCESS MODES  RECLAIM POLICY  STATUS    CLAIM                STORAGECLASS
+</span></span><span style="display:flex;"><span>pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4  200Gi     RWO           Retain          Released  example/example-pvc  microk8s-hostpath
+</span></span></code></pre></div><p>Before we can re-apply our PVC, we also need to make the PV ready to be bound again, i.e. set its status to &ldquo;Available&rdquo;. Here again, we use the patch command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>microk8s.kubectl patch pv pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4 -p <span style="color:#e6db74">&#39;{&#34;spec&#34;:{&#34;claimRef&#34;: null}}&#39;</span>
+</span></span></code></pre></div><p>Which results in the PV beign in the &ldquo;Available&rdquo; state:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>moreillon@home:~/kubernetes$ microk8s.kubectl get pv
+</span></span><span style="display:flex;"><span>NAME                                      CAPACITY  ACCESS MODES  RECLAIM POLICY  STATUS    CLAIM                STORAGECLASS
+</span></span><span style="display:flex;"><span>pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4  200Gi     RWO           Retain          Available  example/example-pvc  microk8s-hostpath
+</span></span></code></pre></div><p>With that, done, one can apply a modified version of the original PVC manifest. Those modifications include a storage size increase to match that of the PV as well as a reference to the PV to bind. Without such reference, the PVC creation would trigger the automatic creation of a new PV by Kubernetes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">PersistentVolumeClaim</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">example-pvc</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">example</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">accessModes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">ReadWriteOnce</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">volumeName</span>: <span style="color:#ae81ff">pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">storage</span>: <span style="color:#ae81ff">200Gi</span>
+</span></span></code></pre></div><p>After the application of the manifest, we can confirm that our PVC is correctly bound to the original PV, thus ensuring that the data persisted during the PVC update:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>moreillon@home:~/kubernetes$ microk8s.kubectl get pvc -n example
+</span></span><span style="display:flex;"><span>NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS        AGE
+</span></span><span style="display:flex;"><span>example-pvc   Bound    pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4   200Gi      RWO            microk8s-hostpath   12s
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

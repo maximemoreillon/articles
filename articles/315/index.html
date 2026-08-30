@@ -250,21 +250,21 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>Mosquitto is an open source message broker that implements the MQTT protocol. It is lightweight and is suitable for use on all devices from low power single board computers to full servers.</p>
 <h2 id="installation">Installation</h2>
-<pre tabindex="0"><code>sudo apt install mosquitto mosquitto-clients
-</code></pre><h2 id="setup">Setup</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install mosquitto mosquitto-clients
+</span></span></code></pre></div><h2 id="setup">Setup</h2>
 <p>Place a .conf file in /etc/mosquitto/conf.d</p>
 <h3 id="setting-up-a-listener">Setting up a listener</h3>
-<pre tabindex="0"><code>listener 1883
-protocol mqtt
-</code></pre><p>Also available for websockets:</p>
-<pre tabindex="0"><code>listener 9001
-protocol websockets
-</code></pre><h3 id="setting-up-authentication">Setting up authentication</h3>
-<pre tabindex="0"><code>allow_anonymous false
-password_file /etc/mosquitto/passwd
-</code></pre><p>the file /etc/mosquitto/passwd can be created using an utility provided by mosquitto (run as root):</p>
-<pre tabindex="0"><code>mosquitto_passwd -c /etc/mosquitto/passwd username
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>listener 1883
+</span></span><span style="display:flex;"><span>protocol mqtt
+</span></span></code></pre></div><p>Also available for websockets:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>listener 9001
+</span></span><span style="display:flex;"><span>protocol websockets
+</span></span></code></pre></div><h3 id="setting-up-authentication">Setting up authentication</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>allow_anonymous false
+</span></span><span style="display:flex;"><span>password_file /etc/mosquitto/passwd
+</span></span></code></pre></div><p>the file /etc/mosquitto/passwd can be created using an utility provided by mosquitto (run as root):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mosquitto_passwd -c /etc/mosquitto/passwd username
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

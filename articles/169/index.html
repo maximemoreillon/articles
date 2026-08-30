@@ -245,44 +245,44 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>Let&rsquo;s imagine the file server.js which, when executed by Node.js, serves web pages to connecting clients. A trivial way to execute server.js using NodeJS would be to run the following bash command in a terminal:</p>
-<pre tabindex="0"><code>node server.js
-</code></pre><p>Here, Node.js will execute server.js as long as the user does not interrupt the process with Ctrl-C or ends the bash session.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node server.js
+</span></span></code></pre></div><p>Here, Node.js will execute server.js as long as the user does not interrupt the process with Ctrl-C or ends the bash session.</p>
 <p>However, this last point can cause problems. What if we want to continue serving web pages even after exiting the bash session? Basically, what we want is server.js to be executed in the background. A method to do so is to execute of server.js as a service.</p>
 <h2 id="service-files">Service files</h2>
 <p>To execute a program as a service, a .service file needs to be created in <code>/etc/systemd/system/</code>. Here is a simple .service file for our corresponding example:</p>
-<pre tabindex="0"><code>[Unit]
-Description=My service
-After=network.target
-
-[Service]
-User=yourusername
-ExecStart=/usr/bin/node /home/yourusername/server.js
-
-[Install]
-WantedBy=multi-user.target
-</code></pre><p>It is important to notice the line beginning with <code>ExecStart</code>, which specifies the command to be run as a service.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[Unit]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Description</span><span style="color:#f92672">=</span><span style="color:#e6db74">My service</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">After</span><span style="color:#f92672">=</span><span style="color:#e6db74">network.target</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Service]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">User</span><span style="color:#f92672">=</span><span style="color:#e6db74">yourusername</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ExecStart</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/bin/node /home/yourusername/server.js</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Install]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">WantedBy</span><span style="color:#f92672">=</span><span style="color:#e6db74">multi-user.target</span>
+</span></span></code></pre></div><p>It is important to notice the line beginning with <code>ExecStart</code>, which specifies the command to be run as a service.</p>
 <h2 id="systemctl">systemctl</h2>
 <p>Services are handled with a program called <em>systemd</em> (hence the path of the service files) and uses the command <code>systemctl</code> to start or stop services. For example:</p>
-<pre tabindex="0"><code>sudo systemctl start myservice.service
-</code></pre><p>Once started, a service will run until the computer is shut down. However, services can be made so as to start automatically at boot using the command systemctl enable:</p>
-<pre tabindex="0"><code>sudo systemctl enable myservice.service
-</code></pre><p>Finally, to check if a service is running, the command systemctl status can be used:</p>
-<pre tabindex="0"><code>sudo systemctl status myservice.service
-</code></pre><h2 id="automatic-restart-of-services-upon-failure">Automatic restart of services upon failure</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl start myservice.service
+</span></span></code></pre></div><p>Once started, a service will run until the computer is shut down. However, services can be made so as to start automatically at boot using the command systemctl enable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl enable myservice.service
+</span></span></code></pre></div><p>Finally, to check if a service is running, the command systemctl status can be used:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl status myservice.service
+</span></span></code></pre></div><h2 id="automatic-restart-of-services-upon-failure">Automatic restart of services upon failure</h2>
 <p>Services are commonly meant to be left running without supervision. However, services can crash and would require being restarted manually. However, services can be configured to as to automatically by adding the lines <code>Restart=always</code> and <code>RestartSec=3</code> in the service file as such:</p>
-<pre tabindex="0"><code>[Unit]
-Description=My service
-After=network.target
-
-[Service]
-User=yourusername
-Restart=always
-RestartSec=3
-ExecStart=/usr/bin/node /home/yourusername/server.js
-
-[Install]
-WantedBy=multi-user.target
-</code></pre><p>Here, <code>RestartSec</code> is used to delay the restart a little so as to not crash repeatedly too often.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[Unit]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Description</span><span style="color:#f92672">=</span><span style="color:#e6db74">My service</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">After</span><span style="color:#f92672">=</span><span style="color:#e6db74">network.target</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Service]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">User</span><span style="color:#f92672">=</span><span style="color:#e6db74">yourusername</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Restart</span><span style="color:#f92672">=</span><span style="color:#e6db74">always</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">RestartSec</span><span style="color:#f92672">=</span><span style="color:#e6db74">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ExecStart</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/bin/node /home/yourusername/server.js</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Install]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">WantedBy</span><span style="color:#f92672">=</span><span style="color:#e6db74">multi-user.target</span>
+</span></span></code></pre></div><p>Here, <code>RestartSec</code> is used to delay the restart a little so as to not crash repeatedly too often.</p>
 <h2 id="remarks">Remarks</h2>
 <p>Although using systemd can be used to run applications in the background, there are better ways to deploy web applications. For instance, Kubernetes has become an industry standard for the orchestration of applications.</p>
 

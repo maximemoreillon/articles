@@ -248,48 +248,48 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>HTML defines the content of a web page but not its aesthetics. Styling a document is achieved using CSS, which stands for Cascading Style Sheet and is another language that web browsers can interpret.</p>
 <h2 id="inline-css">Inline CSS</h2>
 <p>The simplest way to style elements of an HTML document is to add the &ldquo;style&rdquo; property in the HTML tag. For example:</p>
-<pre tabindex="0"><code>&lt;p style=&#39;color:blue;&#39;&gt;This is a paragraph and it is blue&lt;/p&gt;
-</code></pre><p><strong>property:value</strong> is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:</p>
-<pre tabindex="0"><code>&lt;p style=&#39;color:blue;background-color:lightgreen;&#39;&gt;This is a paragraph and it is blue with a light green background&lt;/p&gt;
-</code></pre><h2 id="css-in-head">CSS in head</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;color:blue;&#39;</span>&gt;This is a paragraph and it is blue&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span></code></pre></div><p><strong>property:value</strong> is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;color:blue;background-color:lightgreen;&#39;</span>&gt;This is a paragraph and it is blue with a light green background&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span></code></pre></div><h2 id="css-in-head">CSS in head</h2>
 <p>The approach presented previously can quickly become tedious for great amounts of elements to style. To apply a style to multiple elements at once, the styling rule can be written in the head of the document within the <code>&lt;style&gt;</code> tag. For example, all links can be turned green using the following code nested in the document head:</p>
-<pre tabindex="0"><code>a {
-    color: green;
-}
-</code></pre><p>In this example, the links of the document are targeted by the selector <code>a</code> and the corresponding styling rules are put in brackets. Multiple styling rules and targets can be set in similar fashion:</p>
-<pre tabindex="0"><code>a {
-    color: red;
-    font-size: 25px;
-}
-p {
-    background-color: pink;
-}
-</code></pre><h2 id="external-css">External CSS</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">a</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">green</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In this example, the links of the document are targeted by the selector <code>a</code> and the corresponding styling rules are put in brackets. Multiple styling rules and targets can be set in similar fashion:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">a</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">red</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">25</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">p</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">background-color</span>: <span style="color:#66d9ef">pink</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="external-css">External CSS</h2>
 <p>Having the CSS in the document head allows to style multiple elements of a document at once. However, websites are often composed of multiple documents. Copying the styles into every one of those would create unnecessary redundancy and make maintenance troublesome. If CSS code is to be shared by multiple documents, it can be put in an external .css file and linked in all relevant documents using:</p>
-<pre tabindex="0"><code>&lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;styles.css&#34;&gt;
-</code></pre><p>where styles.css is the document containing the styling rules. It is important to note that styles.css has to contain only CSS, i.e. no <code>&lt;style&gt;</code> tags.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/css&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;styles.css&#34;</span>&gt;
+</span></span></code></pre></div><p>where styles.css is the document containing the styling rules. It is important to note that styles.css has to contain only CSS, i.e. no <code>&lt;style&gt;</code> tags.</p>
 <h2 id="selectors">Selectors</h2>
 <h3 id="classes">Classes</h3>
 <p>Selecting elements to style using their tag can be fairly limiting: What if there were two classes of links and one class should be red while the other should be green? HTML tags can hold a class property. For example, here is a link of class red:</p>
-<pre tabindex="0"><code>&lt;a class=&#34;red&#34;&gt;
-</code></pre><p>A class can be selected in CSS by adding a dot in front of it. For example, setting a red color to all elements of class &ldquo;red&rdquo; is done as so:</p>
-<pre tabindex="0"><code>.red {
-  color: red;
-}
-</code></pre><p>Note that elements with a different tag type can be part of the same class.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;red&#34;</span>&gt;
+</span></span></code></pre></div><p>A class can be selected in CSS by adding a dot in front of it. For example, setting a red color to all elements of class &ldquo;red&rdquo; is done as so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">red</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">red</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Note that elements with a different tag type can be part of the same class.</p>
 <h3 id="ids">IDs</h3>
 <p>Sometimes a single specific element must be styled. One option to do so would be to create a class just for it. However, one could use the &ldquo;id&rdquo; property of HTML tags:</p>
-<pre tabindex="0"><code>&lt;a id=&#34;specialElement&#34;&gt;
-</code></pre><p>IDs can be targetted in CSS using a # placed in front of the ID:</p>
-<pre tabindex="0"><code>#specialElement {
-  font-weight: bold;
-}
-</code></pre><h3 id="relation-to-other-elements">Relation to other elements</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;specialElement&#34;</span>&gt;
+</span></span></code></pre></div><p>IDs can be targetted in CSS using a # placed in front of the ID:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>#specialElement {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">font-weight</span>: <span style="color:#66d9ef">bold</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="relation-to-other-elements">Relation to other elements</h3>
 <p>Another way to target some elements in CSS is to use their relation to other known elements. For example, adding a selector after a selector, separated by a space implies targeting elements matching the second selector if they are nested (at any level) within the first selector. Here, all links that are inside a table will be turned red:</p>
-<pre tabindex="0"><code>table a {
-  color: red;
-}
-</code></pre><p>There exist many ways to select elements using CSS and this tutorial only covers the most basic of them. For a more detailed list of selection methods, please check <a href="https://www.w3schools.com/cssref/css_selectors.asp">this page</a>, provided by W3Schools.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">table</span> <span style="color:#f92672">a</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#66d9ef">red</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>There exist many ways to select elements using CSS and this tutorial only covers the most basic of them. For a more detailed list of selection methods, please check <a href="https://www.w3schools.com/cssref/css_selectors.asp">this page</a>, provided by W3Schools.</p>
 <h2 id="key-takeaways">Key takeaways</h2>
 <p>CSS describes the aesthetics of an HTML content. It targets HTML elements usually by tag, class, id or relation to other elements.</p>
 <h2 id="more-on-the-subject">More on the subject</h2>

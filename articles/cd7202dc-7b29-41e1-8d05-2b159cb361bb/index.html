@@ -247,95 +247,95 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>Kong is a popular API gateway that can be used as a reverse proxy for clients to access back-end services. It can be run as a Docker container and, as such, can be deployed to Kubernetes.</p>
 <p>The following is an example manifest to do so:</p>
-<pre tabindex="0"><code>apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: kong
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: kong
-  template:
-    metadata:
-      labels:
-        app: kong
-    spec:
-      containers:
-        - name: kong
-          image: kong:3.4.0
-          ports:
-            - containerPort: 8000
-          env:
-            - name: KONG_DATABASE
-              value: &#34;off&#34;
-            - name: KONG_DECLARATIVE_CONFIG
-              value: /kong/declarative/kong.yml
-          volumeMounts:
-            - mountPath: /kong/declarative/
-              name: config
-      volumes:
-        - name: config
-          configMap:
-            name: kong
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: kong
-spec:
-  ports:
-    - port: 8000
-      nodePort: 31800
-  selector:
-    app: kong
-  type: NodePort
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: kong
-data:
-  kong.yml: |
-
-    _format_version: &#34;3.0&#34;
-    _transform: true
-    services:
-    - name: mqtt-logger
-      url: http://mqtt-logger
-      routes:
-      - name: mqtt-logger
-        paths:
-        - /mqttlogger
-</code></pre><p>In this example, Kong is configured to proxy requests on /mqttlogger to mqtt-logger, another service deployed in Kubernetes. As such, from Kong, this service can be resolved by CoreDNS at http://mqtt-logger.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">kong</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">kong</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">kong</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">kong</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">kong:3.4.0</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">KONG_DATABASE</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;off&#34;</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">KONG_DECLARATIVE_CONFIG</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#ae81ff">/kong/declarative/kong.yml</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">volumeMounts</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/kong/declarative/</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">configMap</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">name</span>: <span style="color:#ae81ff">kong</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">kong</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">nodePort</span>: <span style="color:#ae81ff">31800</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">kong</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">NodePort</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">kong</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">kong.yml</span>: <span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">_format_version</span>: <span style="color:#e6db74">&#34;3.0&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">_transform</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mqtt-logger</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#ae81ff">http://mqtt-logger</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">routes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mqtt-logger</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">paths</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">/mqttlogger</span>
+</span></span></code></pre></div><p>In this example, Kong is configured to proxy requests on /mqttlogger to mqtt-logger, another service deployed in Kubernetes. As such, from Kong, this service can be resolved by CoreDNS at http://mqtt-logger.</p>
 <p>However, in this configuration, one might experience some unusually high latency when requesting one of the proxied back-end service:</p>
-<pre tabindex="0"><code>*   Trying 127.0.0.1:31800...
-* TCP_NODELAY set
-* Connected to localhost (127.0.0.1) port 31800 (#0)
-&gt; GET /mqttlogger HTTP/1.1
-&gt; Host: localhost:31800
-&gt; User-Agent: curl/7.68.0
-&gt; Accept: */*
-&gt; 
-* Mark bundle as not supporting multiuse
-&lt; HTTP/1.1 200 OK
-&lt; Content-Type: application/json; charset=utf-8
-&lt; Content-Length: 327
-&lt; Connection: keep-alive
-&lt; X-Powered-By: Express
-&lt; Access-Control-Allow-Origin: *
-&lt; ETag: W/&#34;147-5qVhQtCrfyTSEc7nwcETprlwdvI&#34;
-&lt; Date: Mon, 04 Dec 2023 10:56:05 GMT
-&lt; X-Kong-Upstream-Latency: 2
-&lt; X-Kong-Proxy-Latency: 8199
-&lt; Via: kong/3.4.0
-&lt; 
-* Connection #0 to host localhost left intact
-</code></pre><p>Here, one can see from the <code>X-Kong-Proxy-Latency</code> header that the request took more than 8s to be fulfilled.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>*   Trying 127.0.0.1:31800...
+</span></span><span style="display:flex;"><span>* TCP_NODELAY set
+</span></span><span style="display:flex;"><span>* Connected to localhost (127.0.0.1) port 31800 (#0)
+</span></span><span style="display:flex;"><span>&gt; GET /mqttlogger HTTP/1.1
+</span></span><span style="display:flex;"><span>&gt; Host: localhost:31800
+</span></span><span style="display:flex;"><span>&gt; User-Agent: curl/7.68.0
+</span></span><span style="display:flex;"><span>&gt; Accept: */*
+</span></span><span style="display:flex;"><span>&gt; 
+</span></span><span style="display:flex;"><span>* Mark bundle as not supporting multiuse
+</span></span><span style="display:flex;"><span>&lt; HTTP/1.1 200 OK
+</span></span><span style="display:flex;"><span>&lt; Content-Type: application/json; charset=utf-8
+</span></span><span style="display:flex;"><span>&lt; Content-Length: 327
+</span></span><span style="display:flex;"><span>&lt; Connection: keep-alive
+</span></span><span style="display:flex;"><span>&lt; X-Powered-By: Express
+</span></span><span style="display:flex;"><span>&lt; Access-Control-Allow-Origin: *
+</span></span><span style="display:flex;"><span>&lt; ETag: W/&#34;147-5qVhQtCrfyTSEc7nwcETprlwdvI&#34;
+</span></span><span style="display:flex;"><span>&lt; Date: Mon, 04 Dec 2023 10:56:05 GMT
+</span></span><span style="display:flex;"><span>&lt; X-Kong-Upstream-Latency: 2
+</span></span><span style="display:flex;"><span>&lt; X-Kong-Proxy-Latency: 8199
+</span></span><span style="display:flex;"><span>&lt; Via: kong/3.4.0
+</span></span><span style="display:flex;"><span>&lt; 
+</span></span><span style="display:flex;"><span>* Connection #0 to host localhost left intact
+</span></span></code></pre></div><p>Here, one can see from the <code>X-Kong-Proxy-Latency</code> header that the request took more than 8s to be fulfilled.</p>
 <p>The problem, lies in the way Kong handles DNS in Kubernetes. <a href="https://docs.konghq.com/gateway/latest/reference/configuration/#dns_order">As explained in the official documentation</a>, Kong does not resolve services by CNAME or A records in priority by default. However, this can be configured using environment variables, by adding the following variable under env section of the manifest:</p>
-<pre tabindex="0"><code>- name: KONG_DNS_ORDER
-  value: A,CNAME,LAST,SRV
-</code></pre><p>With the DNS order tweak as such, Kong should now process requests with little to no latency.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">KONG_DNS_ORDER</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">value</span>: <span style="color:#ae81ff">A,CNAME,LAST,SRV</span>
+</span></span></code></pre></div><p>With the DNS order tweak as such, Kong should now process requests with little to no latency.</p>
 
             </div>
         </article></main>

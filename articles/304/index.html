@@ -33,7 +33,7 @@
 	<meta property="og:title" content="Mongoose bulk update upsert">
 	<meta property="og:description" content="MongoDB’s upsert option enables the creation of a new document if the query of an update operationdoesn’t match any existing document. Basically, an update command with upsert creates a document if it does notexist already, and update it otherwise.
 This operation is rather striaghtforward when updating single documents but can be trickier when applied to multiple documents at conce. For multiple documents, bulkWrite can be used:
-let bulk_operations = [] for (var transaction of req.body.transactions) { bulk_operations.push({ updateOne: { filter: transaction, update: transaction, upsert: true } }) } Transaction.bulkWrite(bulk_operations) .then( bulkWriteOpResult =&gt; { console.log(&#39;BULK update OK&#39;); }) .catch( err =&gt; { console.log(err); });">
+let bulk_operations = []; for (var transaction of req.body.transactions) { bulk_operations.push({ updateOne: { filter: transaction, update: transaction, upsert: true, }, }); } Transaction.bulkWrite(bulk_operations) .then((bulkWriteOpResult) =&gt; { console.log(&#34;BULK update OK&#34;); }) .catch((err) =&gt; { console.log(err); });">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -50,7 +50,7 @@ let bulk_operations = [] for (var transaction of req.body.transactions) { bulk_o
 	<meta name="twitter:title" content="Mongoose bulk update upsert">
 	<meta name="twitter:description" content="MongoDB’s upsert option enables the creation of a new document if the query of an update operationdoesn’t match any existing document. Basically, an update command with upsert creates a document if it does notexist already, and update it otherwise.
 This operation is rather striaghtforward when updating single documents but can be trickier when applied to multiple documents at conce. For multiple documents, bulkWrite can be used:
-let bulk_operations = [] for (var transaction of req.body.transactions) { bulk_operations.push({ updateOne: { filter: transaction, update: transaction, upsert: true } }) } Transaction.bulkWrite(bulk_operations) .then( bulkWriteOpResult =&gt; { console.log(&#39;BULK update OK&#39;); }) .catch( err =&gt; { console.log(err); });">
+let bulk_operations = []; for (var transaction of req.body.transactions) { bulk_operations.push({ updateOne: { filter: transaction, update: transaction, upsert: true, }, }); } Transaction.bulkWrite(bulk_operations) .then((bulkWriteOpResult) =&gt; { console.log(&#34;BULK update OK&#34;); }) .catch((err) =&gt; { console.log(err); });">
 
 
     
@@ -247,26 +247,26 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>MongoDB&rsquo;s upsert option enables the creation of a new document if the query of an update operationdoesn&rsquo;t match any existing document. Basically, an update command with upsert creates a document if it does notexist already, and update it otherwise.</p>
 <p>This operation is rather striaghtforward when updating single documents but can be trickier when applied to multiple documents at conce. For multiple documents, bulkWrite can be used:</p>
-<pre tabindex="0"><code>let bulk_operations = []
-
-for (var transaction of req.body.transactions) {
-  bulk_operations.push({
-    updateOne: {
-      filter: transaction,
-      update: transaction,
-      upsert: true
-    }
-  })
-}
-
-Transaction.bulkWrite(bulk_operations)
-.then( bulkWriteOpResult =&gt; {
-  console.log(&#39;BULK update OK&#39;);
-})
-.catch( err =&gt; {
-  console.log(err);
-});
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">bulk_operations</span> <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">transaction</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">transactions</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">bulk_operations</span>.<span style="color:#a6e22e">push</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">updateOne</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">filter</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">transaction</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">update</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">transaction</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">upsert</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Transaction</span>.<span style="color:#a6e22e">bulkWrite</span>(<span style="color:#a6e22e">bulk_operations</span>)
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">bulkWriteOpResult</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;BULK update OK&#34;</span>);
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  .<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">err</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">err</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

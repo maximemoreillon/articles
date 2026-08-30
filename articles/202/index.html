@@ -254,99 +254,99 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>Here are some of the basis of the Swift programming language</p>
 <h2 id="comments">Comments</h2>
 <p>Comments are written using <code>//</code>, Similar to C/C++:</p>
-<pre tabindex="0"><code>// This is a comment
-</code></pre><h2 id="constants">Constants</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#75715e">// This is a comment</span>
+</span></span></code></pre></div><h2 id="constants">Constants</h2>
 <p>Constants are declared using the let keyword:</p>
-<pre tabindex="0"><code>let myConstant:Int = 1
-</code></pre><h2 id="variables">Variables</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> myConstant:Int = <span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><h2 id="variables">Variables</h2>
 <p>Swift is a strongly typed language. Variables are declared using the <code>var</code> keyword as following this syntax:</p>
-<pre tabindex="0"><code>var variableName:String = &#34;Hello&#34;
-</code></pre><h2 id="loops">Loops</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> variableName:String = <span style="color:#e6db74">&#34;Hello&#34;</span>
+</span></span></code></pre></div><h2 id="loops">Loops</h2>
 <p>Here is an example of a for loop:</p>
-<pre tabindex="0"><code>for i in 1...5{
-    // do something
-}
-</code></pre><h2 id="functions">Functions</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1.</span>..<span style="color:#ae81ff">5</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// do something</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="functions">Functions</h2>
 <p>Functions are defined using the <code>func</code> keyword. The type of the function parameters and its return values must be defined. Note that a function can have multiple return values.</p>
-<pre tabindex="0"><code>func myFunction(var1:Type, var2:Type) -&gt; (returnType1, returnType2) {
-	// Function code
-	return ...
-}
-</code></pre><p>The function can then be used as follows:</p>
-<pre tabindex="0"><code>(ret1, ret2) = myFunction(var1: 2, var2: 4)
-</code></pre><h3 id="function-labelts">Function labelts</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">myFunction</span>(var1:<span style="color:#66d9ef">Type</span>, var2:<span style="color:#66d9ef">Type</span>) -&gt; (returnType1, returnType2) {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Function code</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The function can then be used as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>(ret1, ret2) = myFunction(var1: <span style="color:#ae81ff">2</span>, var2: <span style="color:#ae81ff">4</span>)
+</span></span></code></pre></div><h3 id="function-labelts">Function labelts</h3>
 <p>Labels can be added to improve functions readability:</p>
-<pre tabindex="0"><code>func sum(of a :Int, and b:Int) -&gt; Int {
-    return a + b
-}
-let result = sum(of: 2, and: 3)
-print(&#34;The sum is \(result)&#34;)
-</code></pre><h2 id="classes">Classes</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">sum</span>(of a :Int, and b:Int) -&gt; Int {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> result = sum(of: <span style="color:#ae81ff">2</span>, and: <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;The sum is </span><span style="color:#e6db74">\(</span>result<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="classes">Classes</h2>
 <p>classes can be defined using the <code>class</code> keyword:</p>
-<pre tabindex="0"><code>class MyClass {
-
-}
-</code></pre><h2 id="example">Example</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyClass</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="example">Example</h2>
 <p>Here is an example that combines a bit of all the basics</p>
-<pre tabindex="0"><code>import Foundation
-
-class Person {
-
-    // Properties
-    var first_name:String
-    var last_name:String
-    var age:Int
-    var bank_account_balance:Int
-
-    // Constructor
-    init(first_name:String, last_name:String, age:Int = 0) {
-        self.first_name = first_name
-        self.last_name = last_name
-        self.age = age
-        bank_account_balance = 0
-    }
-    
-    // Methods
-    func self_introduction(){
-        print(&#34;Hi, my name is \(first_name) \(last_name)&#34;)
-    }
-
-    func birthday(){
-        age = age + 1
-        print(&#34;Happy \(age)th birthday \(first_name)!&#34;)
-    }
-}
-
-// Subclass of Person (inherits from Person)
-class Employee : Person {
-
-    var employee_number:String
-    var salary:Int
-
-    init(first_name:String, last_name:String, employee_number:String, salary:Int = 0){
-        self.employee_number = employee_number
-        self.salary = salary
-        super.init(first_name:first_name,last_name:last_name)
-    }
-    
-    func work(){
-        bank_account_balance = bank_account_balance + salary
-        print(&#34;\(first_name) worked for $\(salary) an hour, bank account balance is now $\(bank_account_balance)&#34;)
-    }
-}
-
-
-var person1 = Person(first_name:&#34;John&#34;, last_name:&#34;Doe&#34;, age:23)
-person1.self_introduction()
-person1.birthday()
-
-var employee1 = Employee(first_name:&#34;Mark&#34;, last_name:&#34;Smith&#34;, employee_number:&#34;1234&#34;, salary:20)
-
-// Example for loop
-for _ in 1...5{
-    employee1.work()
-}
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Foundation</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Properties</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> first_name:String
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> last_name:String
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> age:Int
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> bank_account_balance:Int
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Constructor</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">init</span>(first_name:String, last_name:String, age:Int = <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">self</span>.first_name = first_name
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">self</span>.last_name = last_name
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">self</span>.age = age
+</span></span><span style="display:flex;"><span>        bank_account_balance = <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Methods</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">self_introduction</span>(){
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Hi, my name is </span><span style="color:#e6db74">\(</span>first_name<span style="color:#e6db74">)</span><span style="color:#e6db74"> </span><span style="color:#e6db74">\(</span>last_name<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">birthday</span>(){
+</span></span><span style="display:flex;"><span>        age = age <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Happy </span><span style="color:#e6db74">\(</span>age<span style="color:#e6db74">)</span><span style="color:#e6db74">th birthday </span><span style="color:#e6db74">\(</span>first_name<span style="color:#e6db74">)</span><span style="color:#e6db74">!&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Subclass of Person (inherits from Person)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Employee</span> : Person {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> employee_number:String
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> salary:Int
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">init</span>(first_name:String, last_name:String, employee_number:String, salary:Int = <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">self</span>.employee_number = employee_number
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">self</span>.salary = salary
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>.<span style="color:#66d9ef">init</span>(first_name:first_name,last_name:last_name)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">work</span>(){
+</span></span><span style="display:flex;"><span>        bank_account_balance = bank_account_balance <span style="color:#f92672">+</span> salary
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>first_name<span style="color:#e6db74">)</span><span style="color:#e6db74"> worked for $</span><span style="color:#e6db74">\(</span>salary<span style="color:#e6db74">)</span><span style="color:#e6db74"> an hour, bank account balance is now $</span><span style="color:#e6db74">\(</span>bank_account_balance<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> person1 = Person(first_name:<span style="color:#e6db74">&#34;John&#34;</span>, last_name:<span style="color:#e6db74">&#34;Doe&#34;</span>, age:<span style="color:#ae81ff">23</span>)
+</span></span><span style="display:flex;"><span>person1.self_introduction()
+</span></span><span style="display:flex;"><span>person1.birthday()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> employee1 = Employee(first_name:<span style="color:#e6db74">&#34;Mark&#34;</span>, last_name:<span style="color:#e6db74">&#34;Smith&#34;</span>, employee_number:<span style="color:#e6db74">&#34;1234&#34;</span>, salary:<span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Example for loop</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1.</span>..<span style="color:#ae81ff">5</span>{
+</span></span><span style="display:flex;"><span>    employee1.work()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

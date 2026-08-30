@@ -15,8 +15,8 @@
       <guid>https://articles.maximemoreillon.com/articles/b18a20dc-6916-484c-95c6-858b2c6b98ac/</guid>
       
       <description>&lt;p&gt;An HDD can be configured to spin down after a certain time via the APM settings which can be managed by smartctl. For example&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo smartctl --set=apm,63 /dev/sdb
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;sets the APM (Advanced Power Management) level of disk sdb to 63, a fairly aggressive power-saving level. Note that APM controls how aggressively the drive manages power, not a literal spin-down timer; an actual idle timeout is configured separately, for example via &lt;code&gt;hdparm -S&lt;/code&gt;.&lt;/p&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo smartctl --set&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;apm,63 /dev/sdb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;sets the APM (Advanced Power Management) level of disk sdb to 63, a fairly aggressive power-saving level. Note that APM controls how aggressively the drive manages power, not a literal spin-down timer; an actual idle timeout is configured separately, for example via &lt;code&gt;hdparm -S&lt;/code&gt;.&lt;/p&gt;</description>
       
     </item>
     

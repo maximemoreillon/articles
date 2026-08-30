@@ -15,18 +15,18 @@
       <guid>https://articles.maximemoreillon.com/articles/297/</guid>
       
       <description>&lt;p&gt;A Keras model can be created in various ways, for example using the &lt;a href=&#34;https://keras.io/getting-started/sequential-model-guide/&#34;&gt;sequential model&lt;/a&gt;:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;from keras.models import Sequential
-from keras.layers import Dense, Activation
-
-model = Sequential([
-    Dense(32, input_shape=(784,)),
-    Activation(&amp;#39;relu&amp;#39;),
-    Dense(10),
-    Activation(&amp;#39;softmax&amp;#39;),
-])
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Such model can be saved using the save() function:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;model.save(&amp;#39;./my_model/1&amp;#39;)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here, the /1 at the end of the path is important for later.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; keras.models &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Sequential
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; keras.layers &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; Dense, Activation
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;model &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Sequential([
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Dense(&lt;span style=&#34;color:#ae81ff&#34;&gt;32&lt;/span&gt;, input_shape&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;784&lt;/span&gt;,)),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Activation(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;relu&amp;#39;&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Dense(&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    Activation(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;softmax&amp;#39;&lt;/span&gt;),
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Such model can be saved using the save() function:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;model&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;save(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;./my_model/1&amp;#39;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here, the /1 at the end of the path is important for later.&lt;/p&gt;
 &lt;p&gt;The model will be run inside a docker container. To do so, first download and run an &amp;ldquo;empty&amp;rdquo; serving container which will serve as a base:&lt;/p&gt;</description>
       
     </item>

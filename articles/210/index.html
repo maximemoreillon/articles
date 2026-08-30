@@ -260,66 +260,66 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>The API port of a Microk8s cluster is 16443. Thus, the API URL should be in the form <code>https://&lt;Server IP&gt;:16443</code>, where <code>&lt;Server IP&gt;</code> is to be replaced with the IP of the server where the Microk8s cluster is running.</p>
 <h2 id="ca-certificate">CA certificate</h2>
 <p>The CA certificate of the cluster can be retrieved using the following command:</p>
-<pre tabindex="0"><code>microk8s.kubectl get secret $(microk8s.kubectl get secrets | grep default-token | awk &#39;{print $1}&#39;) -o jsonpath=&#34;{[&#39;data&#39;][&#39;ca\.crt&#39;]}&#34; | base64 --decode
-</code></pre><p>The command should output the certificate of the cluster in the following form:</p>
-<pre tabindex="0"><code>-----BEGIN CERTIFICATE-----
-MIICwTCCAamgAwIBAgIEMv8+mzANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDDApJ
-bnRlcm1lZENBMB4XDTIwMDYwMjAzNDkzMVoXDTI1MTIzMTAwMDAwMFowETEPMA0G
-A1UEAwwGYXNkYXNkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1Mwr
-RKEaDgevx5xFdhNTdmHvC0Q3G2eUr0LECd/WVV7LzIZ0iZIqqMHY/c++IG6IaKRY
-nD3zwsQS1xfw1OiqgWxBHhmEksRHVIm5OG60kmuNVyXbw3TyKOxBplC1UaYdKc9f
-U7ywp9KY70lxL7jzEEbEEkVhq/EDDUnFII2nhSBYifpcdmoi24NtrwTTjBiO7rg5
-GOrifksQykCnZoMzBBedbq4rzB2/vSTWeAeMRE5X0vfArQzvHS6kSWwAPD9tH+1W
-8t4vkUI1HQrjPU+Al5oYNaB73oOeG9APZa7TelvwO+h8Lo7rZ+b2TIC9Q4ghiq2D
-yEz5Sew0Db5LfaLhSQIDAQABox0wGzAOBgNVHQ8BAf8EBAMCB4AwCQYDVR0TBAIw
-ADANBgkqhkiG9w0BAQsFAAOCAQEAAKTJtXgadrDcumDTnemDEAvRmKBHA6+pjadO
-PUKYx426qh37Dzf0YQSYIMPZ0DTojs3kahU7QpGziJjGlXRwJsK2HBmFpqTPBxvf
-6qfYvzkcicaDUNEcw4xubFLeo6T0r0L9hzsWJ7H9dIP6hYxQ1SnLVJtk/yP1WzyS
-kVlnylXsf0mimfkQNfN1I2RJfPjpX6aAq4XereUFbNFXWA7Nl/36YNMSQWoGPps7
-Rz7uXOy3p2VS+FsHUmBGDjX5x7koAJbE3+h9xn+bqwkHy3roxHOgI2fxjvARHgsg
-58SIFfm6D+9Pisp2ej/gd7uX/k95FzVgnaVDQMoCyC0tPcbcUw==
------END CERTIFICATE-----
-</code></pre><h2 id="service-token">Service token</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>microk8s.kubectl get secret <span style="color:#66d9ef">$(</span>microk8s.kubectl get secrets | grep default-token | awk <span style="color:#e6db74">&#39;{print $1}&#39;</span><span style="color:#66d9ef">)</span> -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{[&#39;data&#39;][&#39;ca\.crt&#39;]}&#34;</span> | base64 --decode
+</span></span></code></pre></div><p>The command should output the certificate of the cluster in the following form:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>-----BEGIN CERTIFICATE-----
+</span></span><span style="display:flex;"><span>MIICwTCCAamgAwIBAgIEMv8+mzANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDDApJ
+</span></span><span style="display:flex;"><span>bnRlcm1lZENBMB4XDTIwMDYwMjAzNDkzMVoXDTI1MTIzMTAwMDAwMFowETEPMA0G
+</span></span><span style="display:flex;"><span>A1UEAwwGYXNkYXNkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1Mwr
+</span></span><span style="display:flex;"><span>RKEaDgevx5xFdhNTdmHvC0Q3G2eUr0LECd/WVV7LzIZ0iZIqqMHY/c++IG6IaKRY
+</span></span><span style="display:flex;"><span>nD3zwsQS1xfw1OiqgWxBHhmEksRHVIm5OG60kmuNVyXbw3TyKOxBplC1UaYdKc9f
+</span></span><span style="display:flex;"><span>U7ywp9KY70lxL7jzEEbEEkVhq/EDDUnFII2nhSBYifpcdmoi24NtrwTTjBiO7rg5
+</span></span><span style="display:flex;"><span>GOrifksQykCnZoMzBBedbq4rzB2/vSTWeAeMRE5X0vfArQzvHS6kSWwAPD9tH+1W
+</span></span><span style="display:flex;"><span>8t4vkUI1HQrjPU+Al5oYNaB73oOeG9APZa7TelvwO+h8Lo7rZ+b2TIC9Q4ghiq2D
+</span></span><span style="display:flex;"><span>yEz5Sew0Db5LfaLhSQIDAQABox0wGzAOBgNVHQ8BAf8EBAMCB4AwCQYDVR0TBAIw
+</span></span><span style="display:flex;"><span>ADANBgkqhkiG9w0BAQsFAAOCAQEAAKTJtXgadrDcumDTnemDEAvRmKBHA6+pjadO
+</span></span><span style="display:flex;"><span>PUKYx426qh37Dzf0YQSYIMPZ0DTojs3kahU7QpGziJjGlXRwJsK2HBmFpqTPBxvf
+</span></span><span style="display:flex;"><span>6qfYvzkcicaDUNEcw4xubFLeo6T0r0L9hzsWJ7H9dIP6hYxQ1SnLVJtk/yP1WzyS
+</span></span><span style="display:flex;"><span>kVlnylXsf0mimfkQNfN1I2RJfPjpX6aAq4XereUFbNFXWA7Nl/36YNMSQWoGPps7
+</span></span><span style="display:flex;"><span>Rz7uXOy3p2VS+FsHUmBGDjX5x7koAJbE3+h9xn+bqwkHy3roxHOgI2fxjvARHgsg
+</span></span><span style="display:flex;"><span>58SIFfm6D+9Pisp2ej/gd7uX/k95FzVgnaVDQMoCyC0tPcbcUw==
+</span></span><span style="display:flex;"><span>-----END CERTIFICATE-----
+</span></span></code></pre></div><h2 id="service-token">Service token</h2>
 <p>Finally, the service token can be obtained by creating a service account for GitLab in the Kubernetes cluster. This requires RBAC to be enabled in the Kubernetes cluster. For Microk8s, RBAC can be enabled easily using</p>
-<pre tabindex="0"><code>microk8s enable rbac
-</code></pre><p>The GitLab service account can be created just like any other Kubernetes resource using a manifest file. Thus, create a file named <code>gitlabserviceaccount.yml</code> with the following content</p>
-<pre tabindex="0"><code>apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: gitlab-admin
-  namespace: kube-system
----
-apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRoleBinding
-metadata:
-  name: gitlab-admin
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-- kind: ServiceAccount
-  name: gitlab-admin
-  namespace: kube-system
-</code></pre><p>The resources can be created by running</p>
-<pre tabindex="0"><code>microk8s.kubectl apply -f gitlabserviceaccount.yml
-</code></pre><p>With the newly created service account, the token can be retrieved using this command:</p>
-<pre tabindex="0"><code>microk8s.kubectl -n kube-system describe secret $(microk8s.kubectl -n kube-system get secret | grep gitlab-admin | awk &#39;{print $1}&#39;)
-</code></pre><p>Which should output the following</p>
-<pre tabindex="0"><code>Name:         gitlab-admin-token-xwb79
-Namespace:    kube-system
-Labels:       &lt;none&gt;
-Annotations:  kubernetes.io/service-account.name: gitlab-admin
-              kubernetes.io/service-account.uid: 6b9a089a-0b55-4546-947c-8954507a754d
-
-Type:  kubernetes.io/service-account-token
-
-Data
-====
-token:      eyJhbGciO893mlaKlas73ASm3...30cvPbicVMm98asdSDD9uFas29OASJeUBQ
-ca.crt:     1103 bytes
-namespace:  11 bytes
-</code></pre><p>Here, simply copy and paste the long string after <em>token</em> into the GitLab configuration page.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>microk8s enable rbac
+</span></span></code></pre></div><p>The GitLab service account can be created just like any other Kubernetes resource using a manifest file. Thus, create a file named <code>gitlabserviceaccount.yml</code> with the following content</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ServiceAccount</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">gitlab-admin</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">kube-system</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">rbac.authorization.k8s.io/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ClusterRoleBinding</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">gitlab-admin</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">roleRef</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">apiGroup</span>: <span style="color:#ae81ff">rbac.authorization.k8s.io</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ClusterRole</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">cluster-admin</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">subjects</span>:
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ServiceAccount</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">gitlab-admin</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">kube-system</span>
+</span></span></code></pre></div><p>The resources can be created by running</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>microk8s.kubectl apply -f gitlabserviceaccount.yml
+</span></span></code></pre></div><p>With the newly created service account, the token can be retrieved using this command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>microk8s.kubectl -n kube-system describe secret <span style="color:#66d9ef">$(</span>microk8s.kubectl -n kube-system get secret | grep gitlab-admin | awk <span style="color:#e6db74">&#39;{print $1}&#39;</span><span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>Which should output the following</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Name:         gitlab-admin-token-xwb79
+</span></span><span style="display:flex;"><span>Namespace:    kube-system
+</span></span><span style="display:flex;"><span>Labels:       &lt;none&gt;
+</span></span><span style="display:flex;"><span>Annotations:  kubernetes.io/service-account.name: gitlab-admin
+</span></span><span style="display:flex;"><span>              kubernetes.io/service-account.uid: 6b9a089a-0b55-4546-947c-8954507a754d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Type:  kubernetes.io/service-account-token
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Data
+</span></span><span style="display:flex;"><span>====
+</span></span><span style="display:flex;"><span>token:      eyJhbGciO893mlaKlas73ASm3...30cvPbicVMm98asdSDD9uFas29OASJeUBQ
+</span></span><span style="display:flex;"><span>ca.crt:     1103 bytes
+</span></span><span style="display:flex;"><span>namespace:  11 bytes
+</span></span></code></pre></div><p>Here, simply copy and paste the long string after <em>token</em> into the GitLab configuration page.</p>
 <p>With those steps completed, the only thing left to do is to click save and the cluster should be integrated in GitLab.</p>
 
             </div>

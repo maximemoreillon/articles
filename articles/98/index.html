@@ -260,127 +260,127 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>The application deployed in this guide is built using <a href="https://nodejs.org/en/">Node.js.</a> It consists of a simple web server built using the <a href="https://expressjs.com/">Express</a> package and responds Hello World! to HTTP requests. Here, it is assumed that Node.js is installed in the development environment. If this is not the case, a recommendation is to use <a href="https://github.com/nvm-sh/nvm">NVM</a> to install it.</p>
 <h3 id="project-creation">Project creation</h3>
 <p>With Node.js installed, the application can be built. For this purpose, an empty Node.js project can be created as follows:</p>
-<pre tabindex="0"><code>mkdir my_app
-cd my_app
-touch main.js
-</code></pre><p>Next, we need to install Express, which can be done using the <a href="https://www.npmjs.com/">Node Package Manager, or NPM</a>, which comes with Node.js. This requires the initialization of the project with NPM, which can be done using the <code>init</code>command:</p>
-<pre tabindex="0"><code>npm install --save express
-</code></pre><p>With that done, Express is installed using the following command:</p>
-<pre tabindex="0"><code>npm install --save express
-</code></pre><p>At this point, a new folder named <em>node_modules</em>as well as files called <em>package.json</em> and <em>package-lock.json</em> should have appeared in the project’s directory. Those are here for dependencies management. <em>node_modules</em>is effectively where packages are stored locally*.*</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir my_app
+</span></span><span style="display:flex;"><span>cd my_app
+</span></span><span style="display:flex;"><span>touch main.js
+</span></span></code></pre></div><p>Next, we need to install Express, which can be done using the <a href="https://www.npmjs.com/">Node Package Manager, or NPM</a>, which comes with Node.js. This requires the initialization of the project with NPM, which can be done using the <code>init</code>command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install --save express
+</span></span></code></pre></div><p>With that done, Express is installed using the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install --save express
+</span></span></code></pre></div><p>At this point, a new folder named <em>node_modules</em>as well as files called <em>package.json</em> and <em>package-lock.json</em> should have appeared in the project’s directory. Those are here for dependencies management. <em>node_modules</em>is effectively where packages are stored locally*.*</p>
 <p>With this done, the project is now ready for actual development.</p>
 <h3 id="example-application">Example application</h3>
 <p>As an example application, we&rsquo;ll use the <a href="https://expressjs.com/en/starter/hello-world.html">hello world example from the Express documentation</a></p>
 <p>With a text editor, open the empty file main.js in the my_app directory and paste the following content</p>
-<pre tabindex="0"><code>// Import the express package
-const express = require(&#39;express&#39;)
-
-// Instanciate an express app
-const app = express()
-
-// Specify port on which the application will listen
-const port = 3000
-
-// Define a route
-app.get(&#39;/&#39;, (req, res) =&gt; res.send(&#39;Hello World!&#39;))
-
-// Start listening on the defined port
-app.listen(port, () =&gt; console.log(`Example app listening at http://0.0.0.0:${port}`))
-</code></pre><p>This application can be executed using</p>
-<pre tabindex="0"><code>node main.js
-</code></pre><p>One can now point a browser to the ip of the server and specifying port 3000 to see the application responding with <code>Hello World!</code>. To quit the app, press <em>Ctrl+C</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// Import the express package
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Instanciate an express app
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Specify port on which the application will listen
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Define a route
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Hello World!&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Start listening on the defined port
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Example app listening at http://0.0.0.0:</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>))
+</span></span></code></pre></div><p>This application can be executed using</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node main.js
+</span></span></code></pre></div><p>One can now point a browser to the ip of the server and specifying port 3000 to see the application responding with <code>Hello World!</code>. To quit the app, press <em>Ctrl+C</em>.</p>
 <p><img src="https://img.maximemoreillon.com/images/5ecb48f555b0c15cbb749cfd" alt="">One could argue about the usefuleness of such application. However, it wil likely appear obvious to readers that business logic can be added to the code in order to exapand its capabilities.</p>
 <h2 id="dockerization-configuration">Dockerization configuration</h2>
 <p>Now that the application is working in the development environment, it is time to containerize it so that it can be shipped to the production environment.</p>
 <p>The application is containerized using <a href="https://www.docker.com/">Docker</a>, which simply requires a configuration file (called Dockerfile) to specify the containerization parameters. This section follows the <a href="https://nodejs.org/fr/docs/guides/nodejs-docker-webapp/">NodeJS guide to application dockerization</a></p>
 <p>A Dockerfile is used to create a container image, which servers as template for containers. For example, the official Python docker Image can be used to deploy containers with Python preinstalled.</p>
 <p>Thus, to create an image of our application, create a file named <em>Dockerfile</em>in the root of the project with the following content:</p>
-<pre tabindex="0"><code># The image requires node so base it on an image that already has node installed
-FROM node:12
-
-# Create app directory
-WORKDIR /usr/src/app
-
-# Copy all files into the container
-COPY . .
-
-# Install dependencies
-RUN npm install
-
-# Open appropriate port 
-EXPOSE 3000
-
-# Start the application
-CMD [ &#34;node&#34;, &#34;main.js&#34; ]
-</code></pre><p>Note that additional commands might be required when working behind a corporate proxy.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># The image requires node so base it on an image that already has node installed</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">node:12</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Create app directory</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/usr/src/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Copy all files into the container</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Install dependencies</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Open appropriate port </span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">3000</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Start the application</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [ <span style="color:#e6db74">&#34;node&#34;</span>, <span style="color:#e6db74">&#34;main.js&#34;</span> ]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>Note that additional commands might be required when working behind a corporate proxy.</p>
 <p>To prevent the container from being too heavy, the <code>node_modules</code> directory is not needed inside of it. Instead, <code>node_modules</code> will be recreated automatically when <code>npm install</code> is run. To prevent the node_modules directory to be copied over, create a file named .dockerignore in the application directory with the following content:</p>
-<pre tabindex="0"><code>node_modules
-</code></pre><h2 id="kubernetes-deployment-configuration">Kubernetes deployment configuration</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>node_modules
+</span></span></code></pre></div><h2 id="kubernetes-deployment-configuration">Kubernetes deployment configuration</h2>
 <p>With the Dockerfile created in the previous section, a container image of the application can be created and thus pushed to a container registry. This makes the application available for deployment in a Kubernetes cluster.</p>
 <p>Deploying the application in a Kubernetes consists of creating two components: A <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">deployment</a> and a <a href="https://kubernetes.io/docs/concepts/services-networking/service/">service</a>. The deployment is basically the application itself while a service is a resource used to connect the application to its users, effectively by providing the deployment with a port with which it can communicate with the outside. Here, we will use port 31234 for our service.</p>
 <p>The creation of the deployment and the service for our aplication is done by describing those in a manifest file and having Kubernetes read the content of that file. Thus, create a file names kubernetes.manifes.yml in the root of the project with the following content:</p>
-<pre tabindex="0"><code># This section will create a deployment in the Kubernetes cluster
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: my-application
-spec:
-  replicas: 1 # Specifies how many instances of the app will run in parallel for load balancing
-  selector:
-    matchLabels:
-      app: my-application
-  template:
-    metadata:
-      labels:
-        app: my-application
-    spec:
-      containers:
-      - name: my-application
-        image: my-registry/my-application:latest # Where the image has been pushed
-        imagePullPolicy: Always # Ensures that k8s pulls a new image on restart
-        ports:
-        - containerPort: 3000 # Must match the port of the application and that exposed in the container
----
-# This section will create a service in the Kubernetes cluster
-# so that the deployment can be accessed from the outside
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-application
-spec:
-  ports:
-  - port: 3000 # Must match the container port
-    nodePort: 31234 # Port of the app from outside the cluster. Service ports must be between 30000 and 32767
-  selector:
-    app: my-application
-  type: NodePort
-</code></pre><h2 id="gitlab-cicd-configuration">GitLab CI/CD configuration</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># This section will create a deployment in the Kubernetes cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span> <span style="color:#75715e"># Specifies how many instances of the app will run in parallel for load balancing</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">my-application</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">my-application</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-application</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">my-registry/my-application:latest</span> <span style="color:#75715e"># Where the image has been pushed</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">Always</span> <span style="color:#75715e"># Ensures that k8s pulls a new image on restart</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">3000</span> <span style="color:#75715e"># Must match the port of the application and that exposed in the container</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This section will create a service in the Kubernetes cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># so that the deployment can be accessed from the outside</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">3000</span> <span style="color:#75715e"># Must match the container port</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">nodePort</span>: <span style="color:#ae81ff">31234</span> <span style="color:#75715e"># Port of the app from outside the cluster. Service ports must be between 30000 and 32767</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">my-application</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">NodePort</span>
+</span></span></code></pre></div><h2 id="gitlab-cicd-configuration">GitLab CI/CD configuration</h2>
 <p>The project now has a working source code as well as the configuration needed to be containerized and deployed to the Kubernetes cluster. Although the containerization and deployment can be done manually, it is more convenient to have GitLab perform those steps automatically. This is especially true if the tools needed to perform those steps are not installed in the development environment.</p>
 <p>To have GitLab take care of the containerization and deployment, simply create a file named <code>.gitlab-ci.yml</code> that contains the necessary commands for each step as yaml arrays:</p>
-<pre tabindex="0"><code>stages:
-  - containerization
-  - deploy
-
-containerization:
-  stage: containerization # must match the stage name declared above
-  script:
-    # Build the container image
-    - docker build -t my-registry/my-application .
-    # Push the container image to the registry
-    - docker push my-registry/my-application
-    # Cleanup by removing the local image
-    - docker image rm my-registry/my-application
-
-deployment:
-  stage: deploy # must match the stage name declared above
-  script:
-    # create/update the kubernetes resources
-    - envsubst &lt; kubernetes_manifest.yml | kubectl apply -f -
-    # Restart the deployment so as to pull the latest version of the container image
-    - kubectl rollout restart deployment/my-application
-  environment:
-    name: production
-</code></pre><h2 id="gitlab-project-preparation">GitLab project preparation</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">stages</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">containerization</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">deploy</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">containerization</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">containerization</span> <span style="color:#75715e"># must match the stage name declared above</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Build the container image</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker build -t my-registry/my-application .</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Push the container image to the registry</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker push my-registry/my-application</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Cleanup by removing the local image</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker image rm my-registry/my-application</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">deployment</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">deploy</span> <span style="color:#75715e"># must match the stage name declared above</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># create/update the kubernetes resources</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">envsubst &lt; kubernetes_manifest.yml | kubectl apply -f -</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Restart the deployment so as to pull the latest version of the container image</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kubectl rollout restart deployment/my-application</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">production</span>
+</span></span></code></pre></div><h2 id="gitlab-project-preparation">GitLab project preparation</h2>
 <h3 id="project-creation-1">Project creation</h3>
 <p>The local content of the project is ready for the deployment of the application. Now, a remote repository needs to be created for the project in GitLab. This can be done simply by clicking the New project button and then giving a name to the project.</p>
 <p><img src="https://img.maximemoreillon.com/images/5ecb4fb355b0c15768749cfe" alt=""></p>
@@ -392,16 +392,16 @@ deployment:
 <p>This leads to a page allowing the user to configure details of the Kubernetes cluster integration. The <a href="https://docs.gitlab.com/ee/user/project/clusters/add_remove_clusters.html">Gitlab documentation</a> provides a complete guide on how to do so.</p>
 <h2 id="pushing-the-project-to-gitlab-using-git">Pushing the project to GitLab using Git</h2>
 <p>With the remote repository created, the local content can pushed using <a href="https://git-scm.com/">Git</a>. To do so, the project direcotry must be inisialized so as to be used with git, which can be done as so</p>
-<pre tabindex="0"><code>git init
-</code></pre><p>The remote repository can then be registered using the <code>git remote add</code> command:</p>
-<pre tabindex="0"><code>git remote add gitlab http://&lt;gitlab url&gt;/&lt;my-user&gt;/my-application
-</code></pre><p>The <code>node_modules</code> directory can be quite heavy so it is not needed to upload it to GitLab. Users can download the modules by running <code>npm install</code> if needed. To prevent it to be uploaded, file named <code>.gitignore</code> in the project&rsquo;s root directory and have the following as content:</p>
-<pre tabindex="0"><code>node_modules
-</code></pre><p>With everything in place, the code can be staged, commited and pushed</p>
-<pre tabindex="0"><code>git add .
-git commit -m &#34;Deploying to k8s&#34;
-git push gitlab master
-</code></pre><p>Now that the code has been pushed to GitLab, the CI pipeline takes care of the containerization and deployment of the application. If everything succeeds, the project page should greet users with a green check mark next to the commit number.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git init
+</span></span></code></pre></div><p>The remote repository can then be registered using the <code>git remote add</code> command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git remote add gitlab http://&lt;gitlab url&gt;/&lt;my-user&gt;/my-application
+</span></span></code></pre></div><p>The <code>node_modules</code> directory can be quite heavy so it is not needed to upload it to GitLab. Users can download the modules by running <code>npm install</code> if needed. To prevent it to be uploaded, file named <code>.gitignore</code> in the project&rsquo;s root directory and have the following as content:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>node_modules
+</span></span></code></pre></div><p>With everything in place, the code can be staged, commited and pushed</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Deploying to k8s&#34;</span>
+</span></span><span style="display:flex;"><span>git push gitlab master
+</span></span></code></pre></div><p>Now that the code has been pushed to GitLab, the CI pipeline takes care of the containerization and deployment of the application. If everything succeeds, the project page should greet users with a green check mark next to the commit number.</p>
 <p>With such a pipeline in place, the application running in Kubernetes will be updated automatically each time the developer pushes code on the master branch of the project, which greatly reduces the hurdles of deployment.</p>
 
             </div>

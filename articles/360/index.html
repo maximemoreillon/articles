@@ -253,14 +253,14 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>By default, Minikube will not allow the usage of insecure docker registries. To change this setting, Minikube can be started as so:</p>
 <p>Argument &ndash;insecure registry can be used</p>
-<pre tabindex="0"><code>minikube start --insecure-registry=&#34;http://192.168.1.2:5000&#34;
-</code></pre><p>Here, replace http://192.168.1.2 with the URL of the registry</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>minikube start --insecure-registry<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://192.168.1.2:5000&#34;</span>
+</span></span></code></pre></div><p>Here, replace http://192.168.1.2 with the URL of the registry</p>
 <p>For bare-metal (requires sudo):</p>
-<pre tabindex="0"><code>sudo minikube start --insecure-registry=&#34;http://192.168.1.2:5000&#34; --vm-driver=none
-</code></pre><p>Note: if Minikube had already been started without the insecure-registry option, it must be stopped and recreated:</p>
-<pre tabindex="0"><code>minikube stop
-minikube delete
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo minikube start --insecure-registry<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://192.168.1.2:5000&#34;</span> --vm-driver<span style="color:#f92672">=</span>none
+</span></span></code></pre></div><p>Note: if Minikube had already been started without the insecure-registry option, it must be stopped and recreated:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>minikube stop
+</span></span><span style="display:flex;"><span>minikube delete
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

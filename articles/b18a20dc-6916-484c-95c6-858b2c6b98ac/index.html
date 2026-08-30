@@ -244,20 +244,20 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>An HDD can be configured to spin down after a certain time via the APM settings which can be managed by smartctl. For example</p>
-<pre tabindex="0"><code>sudo smartctl --set=apm,63 /dev/sdb
-</code></pre><p>sets the APM (Advanced Power Management) level of disk sdb to 63, a fairly aggressive power-saving level. Note that APM controls how aggressively the drive manages power, not a literal spin-down timer; an actual idle timeout is configured separately, for example via <code>hdparm -S</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo smartctl --set<span style="color:#f92672">=</span>apm,63 /dev/sdb
+</span></span></code></pre></div><p>sets the APM (Advanced Power Management) level of disk sdb to 63, a fairly aggressive power-saving level. Note that APM controls how aggressively the drive manages power, not a literal spin-down timer; an actual idle timeout is configured separately, for example via <code>hdparm -S</code>.</p>
 <p>Unfortunately, those settings do not persist after a reboot. To achieve persistence on systems with systemd installed, the following sdb-apm.service service file can be created in /etc/systemd/system/</p>
-<pre tabindex="0"><code>[Unit]
-Description=/dev/sdb apm settings
-
-[Service]
-ExecStart=/usr/sbin/smartctl --set=apm,63 /dev/sdb
-
-[Install]
-WantedBy=multi-user.target
-</code></pre><p>After enabling the service with</p>
-<pre tabindex="0"><code>sudo systemctl enable sdb-apm.service
-</code></pre><p>the settings should persist even after a system reboot.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[Unit]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Description</span><span style="color:#f92672">=</span><span style="color:#e6db74">/dev/sdb apm settings</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Service]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ExecStart</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/sbin/smartctl --set=apm,63 /dev/sdb</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Install]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">WantedBy</span><span style="color:#f92672">=</span><span style="color:#e6db74">multi-user.target</span>
+</span></span></code></pre></div><p>After enabling the service with</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl enable sdb-apm.service
+</span></span></code></pre></div><p>the settings should persist even after a system reboot.</p>
 
             </div>
         </article></main>

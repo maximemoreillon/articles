@@ -244,46 +244,46 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>With cert-manager installed, SSL certificates can be automatically obtained for Ingresses deployed in a Kubernetes cluster. To achieve this, one must deploy the appropriate ClusterIssuers to the cluster. Here are example manifests to do so.</p>
 <h2 id="production">Production</h2>
-<pre tabindex="0"><code># prod_issuer.yaml
-apiVersion: cert-manager.io/v1alpha2
-kind: ClusterIssuer # Maybe could make it just an issuer for individual apps
-metadata:
-  name: letsencrypt-prod
-spec:
-  acme:
-    # The ACME server URL
-    server: https://acme-v02.api.letsencrypt.org/directory
-    # Email address used for ACME registration
-    email: MY_EMAIL@gmail.com
-    # Name of a secret used to store the ACME account private key
-    privateKeySecretRef:
-      name: letsencrypt-prod
-    # Enable the HTTP-01 challenge provider
-    solvers:
-    - http01:
-        ingress:
-          class:  nginx
-</code></pre><h2 id="staging">Staging</h2>
-<pre tabindex="0"><code># staging_issuer.yaml
-apiVersion: cert-manager.io/v1alpha2
-kind: ClusterIssuer
-metadata:
-  name: letsencrypt-staging
-spec:
-  acme:
-    # The ACME server URL
-    server: https://acme-staging-v02.api.letsencrypt.org/directory
-    # Email address used for ACME registration
-    email: MY_EMAIL@gmail.com
-    # Name of a secret used to store the ACME account private key
-    privateKeySecretRef:
-      name: letsencrypt-staging
-    # Enable the HTTP-01 challenge provider
-    solvers:
-    - http01:
-        ingress:
-          class:  nginx
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># prod_issuer.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">cert-manager.io/v1alpha2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ClusterIssuer</span> <span style="color:#75715e"># Maybe could make it just an issuer for individual apps</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">letsencrypt-prod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">acme</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The ACME server URL</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span>: <span style="color:#ae81ff">https://acme-v02.api.letsencrypt.org/directory</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Email address used for ACME registration</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">email</span>: <span style="color:#ae81ff">MY_EMAIL@gmail.com</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Name of a secret used to store the ACME account private key</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">privateKeySecretRef</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">letsencrypt-prod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Enable the HTTP-01 challenge provider</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">solvers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">http01</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ingress</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">class</span>:  <span style="color:#ae81ff">nginx</span>
+</span></span></code></pre></div><h2 id="staging">Staging</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># staging_issuer.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">cert-manager.io/v1alpha2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ClusterIssuer</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">letsencrypt-staging</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">acme</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># The ACME server URL</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span>: <span style="color:#ae81ff">https://acme-staging-v02.api.letsencrypt.org/directory</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Email address used for ACME registration</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">email</span>: <span style="color:#ae81ff">MY_EMAIL@gmail.com</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Name of a secret used to store the ACME account private key</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">privateKeySecretRef</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">letsencrypt-staging</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Enable the HTTP-01 challenge provider</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">solvers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">http01</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ingress</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">class</span>:  <span style="color:#ae81ff">nginx</span>
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

@@ -246,39 +246,39 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>Node.js can execute .ts files if those do not contain any TypeScript specific syntax. However, the running code like the following example:</p>
-<pre tabindex="0"><code>interface Movie {
-  title: string
-  year: number
-}
-</code></pre><p>Yields the following error</p>
-<pre tabindex="0"><code>[moreillon@fedora ts-test]$ node index.ts
-/home/moreillon/node/ts-test/index.ts:3
-interface Movie {
-          ^^^^^
-
-SyntaxError: Unexpected identifier
-    at Object.compileFunction (node:vm:360:18)
-    at wrapSafe (node:internal/modules/cjs/loader:1088:15)
-    at Module._compile (node:internal/modules/cjs/loader:1123:27)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
-    at Module.load (node:internal/modules/cjs/loader:1037:32)
-    at Module._load (node:internal/modules/cjs/loader:878:12)
-    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
-    at node:internal/main/run_main_module:23:47
-</code></pre><p>Here, TS code must be converted into plain JS. This is achieved using the TypeScript Compiler, or TSC. The compiler can be installed using npm:</p>
-<pre tabindex="0"><code>npm i -D typescript
-</code></pre><p>With the typescript module installed, tsc can be invoked as</p>
-<pre tabindex="0"><code>npx tsc myFile.ts
-</code></pre><p>This results in the file myFile.js, which is a compiled version of myFile.ts. myFile.js can then be run as a normal JavaScript file using the node command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Movie</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">title</span>: <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">year</span>: <span style="color:#66d9ef">number</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Yields the following error</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[moreillon@fedora ts-test]$ node index.ts
+</span></span><span style="display:flex;"><span>/home/moreillon/node/ts-test/index.ts:3
+</span></span><span style="display:flex;"><span>interface Movie {
+</span></span><span style="display:flex;"><span>          ^^^^^
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SyntaxError: Unexpected identifier
+</span></span><span style="display:flex;"><span>    at Object.compileFunction (node:vm:360:18)
+</span></span><span style="display:flex;"><span>    at wrapSafe (node:internal/modules/cjs/loader:1088:15)
+</span></span><span style="display:flex;"><span>    at Module._compile (node:internal/modules/cjs/loader:1123:27)
+</span></span><span style="display:flex;"><span>    at Module._extensions..js (node:internal/modules/cjs/loader:1213:10)
+</span></span><span style="display:flex;"><span>    at Module.load (node:internal/modules/cjs/loader:1037:32)
+</span></span><span style="display:flex;"><span>    at Module._load (node:internal/modules/cjs/loader:878:12)
+</span></span><span style="display:flex;"><span>    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12)
+</span></span><span style="display:flex;"><span>    at node:internal/main/run_main_module:23:47
+</span></span></code></pre></div><p>Here, TS code must be converted into plain JS. This is achieved using the TypeScript Compiler, or TSC. The compiler can be installed using npm:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm i -D typescript
+</span></span></code></pre></div><p>With the typescript module installed, tsc can be invoked as</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npx tsc myFile.ts
+</span></span></code></pre></div><p>This results in the file myFile.js, which is a compiled version of myFile.ts. myFile.js can then be run as a normal JavaScript file using the node command.</p>
 <h2 id="tsconfigjson">tsconfig.json</h2>
 <p>The configuration of the TypeScript compiler is achieved using a file called tsconfig.json. Creating such file can be done using the following tsc command:</p>
-<pre tabindex="0"><code>npx tsc --init
-</code></pre><h2 id="ts-node">ts-node</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npx tsc --init
+</span></span></code></pre></div><h2 id="ts-node">ts-node</h2>
 <p>Having to invoke tsc each time one wants to run TypeScript code can be time-consuming. To solve this problem, the ts-node module can be used. ts-node runs .ts code just like the node command runs .js files. It can be installed using npm:</p>
-<pre tabindex="0"><code>npm i -D ts-node
-</code></pre><p>And invoked using npx:</p>
-<pre tabindex="0"><code>npx ts-node
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm i -D ts-node
+</span></span></code></pre></div><p>And invoked using npx:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npx ts-node
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

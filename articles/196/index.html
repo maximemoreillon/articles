@@ -245,36 +245,36 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>Flask can be seen as the equivalent of Express for Python. However, although an express application is basically production ready, a Flask app outputs the following when executed by itself:</p>
-<pre tabindex="0"><code>WARNING: This is a development server. Do not use it in a production deployment.
-</code></pre><p>`flask_app.py</p>
-<pre tabindex="0"><code>from flask import Flask
-app = Flask(__name__)
-
-@app.route(&#39;/&#39;)
-def hello_world():
-    return &#39;Hello, World!&#39;
-
-# Allow the app to be run in devvelopment mode if run using python3 main.py
-if __name__ == &#34;__main__&#34;:
-    app.run(&#39;0.0.0.0&#39;, 7193)
-</code></pre><p>requirements.txt</p>
-<pre tabindex="0"><code>Flask
-gunicorn
-</code></pre><p>Dockerfile</p>
-<pre tabindex="0"><code>FROM python:3.6
-
-WORKDIR /usr/src/app
-COPY . .
-
-
-RUN pip3 install -r requirements.txt
-
-# Expose port
-EXPOSE 7557
-
-# Run the app
-CMD [ &#34;gunicorn&#34;, &#34;flask_app:app&#34;, &#34;-b 0.0.0.0:7557&#34;]
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>WARNING: This is a development server. Do not use it in a production deployment.
+</span></span></code></pre></div><p>`flask_app.py</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Flask(__name__)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello_world</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;Hello, World!&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Allow the app to be run in devvelopment mode if run using python3 main.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    app<span style="color:#f92672">.</span>run(<span style="color:#e6db74">&#39;0.0.0.0&#39;</span>, <span style="color:#ae81ff">7193</span>)
+</span></span></code></pre></div><p>requirements.txt</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Flask
+</span></span><span style="display:flex;"><span>gunicorn
+</span></span></code></pre></div><p>Dockerfile</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">python:3.6</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/usr/src/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> pip3 install -r requirements.txt<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Expose port</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">7557</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Run the app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [ <span style="color:#e6db74">&#34;gunicorn&#34;</span>, <span style="color:#e6db74">&#34;flask_app:app&#34;</span>, <span style="color:#e6db74">&#34;-b 0.0.0.0:7557&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div>
             </div>
         </article></main>
 </div>

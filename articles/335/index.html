@@ -244,44 +244,44 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>Here is an example configuration file to use Nextcloud with an Apache2 server in Ubuntu. Here, it is assumed that nextcloud install is located in <code>/var/www/</code></p>
-<pre tabindex="0"><code>&lt;VirtualHost *:80&gt;
-	# Redirection to HTTPS
-	ServerName nextcloud.example.com
-	Redirect / https://nextcloud.example.com/
-&lt;/VirtualHost&gt;
-
-&lt;IfModule mod_ssl.c&gt;
-	&lt;VirtualHost *:443&gt;
-
-	ServerName nextcloud.example.com
-
-	DocumentRoot /var/www/nextcloud/
-
-	# Specific configuration for nextcloud
-	&lt;Directory /var/www/nextcloud/&gt;
-		Options +FollowSymlinks
-		AllowOverride All
-
-		&lt;IfModule mod_dav.c&gt;
-			Dav off
-		&lt;/IfModule&gt;
-
-		SetEnv HOME /var/www/nextcloud
-		SetEnv HTTP_HOME /var/www/nextcloud
-
-		&lt;IfModule mod_headers.c&gt;
-			Header always set Strict-Transport-Security &#34;max-age=15552000; includeSubDomains; preload&#34;
-		&lt;/IfModule&gt;
-	&lt;/Directory&gt;
-
-	# SSL configuration
-	SSLEngine on
-	SSLCertificateFile /etc/letsencrypt/live/nextcloud.example.com/fullchain.pem
-	SSLCertificateKeyFile /etc/letsencrypt/live/nextcloud.example.com/privkey.pem
-
-	&lt;/VirtualHost&gt;
-&lt;/IfModule&gt;
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-apacheconf" data-lang="apacheconf"><span style="display:flex;"><span><span style="color:#f92672">&lt;VirtualHost</span> <span style="color:#e6db74">*:80</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Redirection to HTTPS</span>
+</span></span><span style="display:flex;"><span>	ServerName nextcloud.example.com
+</span></span><span style="display:flex;"><span>	Redirect / https://nextcloud.example.com/
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/VirtualHost&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;IfModule</span> <span style="color:#e6db74">mod_ssl.c</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;VirtualHost</span> <span style="color:#e6db74">*:443</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	ServerName nextcloud.example.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	DocumentRoot <span style="color:#e6db74">/var/www/nextcloud/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># Specific configuration for nextcloud</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;Directory</span> <span style="color:#e6db74">/var/www/nextcloud/</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>		Options +FollowSymlinks
+</span></span><span style="display:flex;"><span>		AllowOverride <span style="color:#66d9ef">All</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;IfModule</span> <span style="color:#e6db74">mod_dav.c</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>			Dav <span style="color:#66d9ef">off</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;/IfModule&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		SetEnv HOME <span style="color:#e6db74">/var/www/nextcloud</span>
+</span></span><span style="display:flex;"><span>		SetEnv HTTP_HOME <span style="color:#e6db74">/var/www/nextcloud</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;IfModule</span> <span style="color:#e6db74">mod_headers.c</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>			Header always set Strict-Transport-Security <span style="color:#e6db74">&#34;max-age=15552000; includeSubDomains; preload&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;/IfModule&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/Directory&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># SSL configuration</span>
+</span></span><span style="display:flex;"><span>	SSLEngine <span style="color:#66d9ef">on</span>
+</span></span><span style="display:flex;"><span>	SSLCertificateFile <span style="color:#e6db74">/etc/letsencrypt/live/nextcloud.example.com/fullchain.pem</span>
+</span></span><span style="display:flex;"><span>	SSLCertificateKeyFile <span style="color:#e6db74">/etc/letsencrypt/live/nextcloud.example.com/privkey.pem</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;/VirtualHost&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/IfModule&gt;</span>
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

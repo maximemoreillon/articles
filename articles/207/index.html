@@ -254,38 +254,38 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>C is widely considered to be a difficult programming language. Here are various code snippets to help make some sense of it.</p>
 <h2 id="hello-world">Hello world</h2>
 <p>Here is the traditional Hello World in C:</p>
-<pre tabindex="0"><code>#include &lt;stdio.h&gt;
-int main()
-{
-   // printf() displays the string inside quotation
-   printf(&#34;Hello, World!&#34;);
-   return 0;
-}
-</code></pre><h2 id="typedef">Typedef</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// printf() displays the string inside quotation
+</span></span></span><span style="display:flex;"><span>   <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;Hello, World!&#34;</span>);
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="typedef">Typedef</h2>
 <p>Is used to define a new type.</p>
 <p>for example:</p>
-<pre tabindex="0"><code>typedef unsigned int natural;
-</code></pre><p>defines natural as unsigned int</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">int</span> natural;
+</span></span></code></pre></div><p>defines natural as unsigned int</p>
 <p>then a natural variable can be declared as:</p>
-<pre tabindex="0"><code>natural a = 2;
-</code></pre><h2 id="struct">struct</h2>
-<pre tabindex="0"><code>struct Rectangle {
-  int width;
-  int height;
-};
-</code></pre><p>creates a new type called struct Rectangle</p>
-<pre tabindex="0"><code>struct  Rectangle myRectangle;
-</code></pre><p>declares a struct Rectangle called myRectangle</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>natural a <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span></code></pre></div><h2 id="struct">struct</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> Rectangle {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> width;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> height;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>creates a new type called struct Rectangle</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span>  Rectangle myRectangle;
+</span></span></code></pre></div><p>declares a struct Rectangle called myRectangle</p>
 <p>Properties accessed as so:</p>
-<pre tabindex="0"><code>myRectangle.width = 10;
-</code></pre><p>struct Rectangle is annoying to type so we can use a typedef:</p>
-<pre tabindex="0"><code>typedef struct Rectangle Rectangle;
-</code></pre><p>a shortcut is:</p>
-<pre tabindex="0"><code>typedef struct Rectangle {
-  int width;
-  int height;
-} Rectangle;
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>myRectangle.width <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span></code></pre></div><p>struct Rectangle is annoying to type so we can use a typedef:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> Rectangle Rectangle;
+</span></span></code></pre></div><p>a shortcut is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> Rectangle {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> width;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> height;
+</span></span><span style="display:flex;"><span>} Rectangle;
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

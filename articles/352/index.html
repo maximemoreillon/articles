@@ -250,15 +250,15 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>Docker does not use environment variables for proxy configuration. This article presents how to configure Docker to use a proxy.</p>
 <p>To use docker behind a proxy, create the file<code>/etc/systemd/system/docker.service.d/http-proxy.conf</code> With the following content:</p>
-<pre tabindex="0"><code>[Service]
-Environment=&#34;HTTP_PROXY=http://127.0.0.1:8118/&#34;
-Environment=&#34;HTTPS_PROXY=http://127.0.0.1:8118/&#34;
-Environment=&#34;NO_PROXY=localhost,127.0.0.1,172.16.98.151&#34;
-</code></pre><p>Here, <code>127.0.0.1:8118</code> should be replaced by the address of your proxy</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[Service]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Environment</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;HTTP_PROXY=http://127.0.0.1:8118/&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Environment</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;HTTPS_PROXY=http://127.0.0.1:8118/&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Environment</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;NO_PROXY=localhost,127.0.0.1,172.16.98.151&#34;</span>
+</span></span></code></pre></div><p>Here, <code>127.0.0.1:8118</code> should be replaced by the address of your proxy</p>
 <p>Once done, reload the daemon and restart docker</p>
-<pre tabindex="0"><code>sudo systemctl daemon-reload
-sudo systemctl restart docker
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl daemon-reload
+</span></span><span style="display:flex;"><span>sudo systemctl restart docker
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

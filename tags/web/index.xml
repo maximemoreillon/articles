@@ -194,10 +194,10 @@
       <description>&lt;p&gt;From a simplistic point of view, software can be seen as a combination of operations performed on data. Data comes in, gets processed through a series of functions and some result comes out.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://img.maximemoreillon.com/images/5ec5d30a55b0c12424749cf4&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;As an example, here is a simple function that computes the area of a circle from its radius as it would be written in JavaScript:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;function area_of_circle(radius){
-  return Math.PI * radius * radius
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;With this implementation, this function can be used within other parts of the code. For instance, one could later use it to compute the volume of a cylinder as so:&lt;/p&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;area_of_circle&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;radius&lt;/span&gt;){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Math.&lt;span style=&#34;color:#a6e22e&#34;&gt;PI&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;radius&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;radius&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With this implementation, this function can be used within other parts of the code. For instance, one could later use it to compute the volume of a cylinder as so:&lt;/p&gt;</description>
       
     </item>
     
@@ -235,8 +235,8 @@
       
       <description>&lt;p&gt;Depending on the settings, Internet Explorer can decide to render webpages using a lower version, which can result in compatibility issues.&lt;/p&gt;
 &lt;p&gt;To force IE to use its latest, the following can be added to an HTML document&amp;rsquo;s head:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;meta http-equiv=&amp;#34;X-UA-Compatible&amp;#34; content=&amp;#34;IE=edge&amp;#34; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;meta&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;http-equiv&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;X-UA-Compatible&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;content&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;IE=edge&amp;#34;&lt;/span&gt; /&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
       
     </item>
     
@@ -250,8 +250,8 @@
       <description>&lt;p&gt;HTML defines the content of a web page but not its aesthetics. Styling a document is achieved using CSS, which stands for Cascading Style Sheet and is another language that web browsers can interpret.&lt;/p&gt;
 &lt;h2 id=&#34;inline-css&#34;&gt;Inline CSS&lt;/h2&gt;
 &lt;p&gt;The simplest way to style elements of an HTML document is to add the &amp;ldquo;style&amp;rdquo; property in the HTML tag. For example:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;p style=&amp;#39;color:blue;&amp;#39;&amp;gt;This is a paragraph and it is blue&amp;lt;/p&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;property:value&lt;/strong&gt; is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:&lt;/p&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;style&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;color:blue;&amp;#39;&lt;/span&gt;&amp;gt;This is a paragraph and it is blue&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;property:value&lt;/strong&gt; is the CSS semantics used to style elements and every statement should be terminated by a semicolon (;). As such, multiple properties can be styled:&lt;/p&gt;</description>
       
     </item>
     
@@ -278,8 +278,8 @@
       <description>&lt;p&gt;HTML stands for HyperText Markup Language. It is used to describe the content of a webpage to web browsers. Originally, web browsers were designed to display text documents and so HTML was used to define the various parts making up those documents.&lt;/p&gt;
 &lt;h2 id=&#34;tags&#34;&gt;Tags&lt;/h2&gt;
 &lt;p&gt;HTML uses tags to define the attributes of content such as:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;p&amp;gt;This is a pararaph&amp;lt;/p&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;In this example, the text &amp;ldquo;This is a paragraph&amp;rdquo; is defined as a paragraph because it is surrounded by &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;/p&amp;gt;&lt;/code&gt; tags. Note the &amp;ldquo;/&amp;rdquo; for the tag after the content, which implies that it is a closing tag.&lt;/p&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;This is a pararaph&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this example, the text &amp;ldquo;This is a paragraph&amp;rdquo; is defined as a paragraph because it is surrounded by &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;/p&amp;gt;&lt;/code&gt; tags. Note the &amp;ldquo;/&amp;rdquo; for the tag after the content, which implies that it is a closing tag.&lt;/p&gt;</description>
       
     </item>
     

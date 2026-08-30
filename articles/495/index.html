@@ -251,34 +251,40 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Additionally, this article introduces middleware for Express and Vue that facilitate the integration of the service into existing applications.</p>
 <p><strong>An example application</strong></p>
 <p>Let’s imagine a simple Express application which serves <code>Sensitive data</code> upon receiving an HTTP GET requests on the <em>/data</em> endpoint:</p>
-<pre tabindex="0"><code>const express = require(&#39;express&#39;)
-const cors = require(&#39;cors&#39;)const app = express()
-const port =  7070
-
-app.use(cors())app.get(&#39;/data&#39;, (req, res) =&gt; res.send(`Sensitive data`))app.listen(port, () =&gt; console.log(`App listening on :${port}`))
-</code></pre><p>As an example front-end, we’ll use a simple Vue application which uses <a href="https://www.npmjs.com/package/vue-axios">vue-axios</a> to retrieve the aforementioned data from the back-end:</p>
-<pre tabindex="0"><code>&lt;template&gt;
-  &lt;div&gt;
-    &lt;h1&gt;My app&lt;/h1&gt;
-    &lt;p&gt;{{message}}&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/template&gt;&lt;script&gt;
-export default {
-  name: &#39;App&#39;,
-  data: () =&gt; ({ message: &#39;Loading...&#39; }),
-  mounted(){
-    this.get_data()
-  },
-  methods: {
-    get_data(){
-      this.axios.get(&#39;http://YOUR_SERVER_IP:7070/data&#39;)
-      .then( ({data}) =&gt; { this.message = data } )
-      .catch( error =&gt; { this.message = error } )
-    }
-  },
-}
-&lt;/script&gt;
-</code></pre><p>With such a simple setup, it comes to no surprise that our front-end application is able to display the back-end’s <code>Sensitive data</code> whether the user is authenticated or not:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;cors&#39;</span>)<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span>  <span style="color:#ae81ff">7070</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">cors</span>())<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/data&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">`Sensitive data`</span>))<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`App listening on :</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>))
+</span></span></code></pre></div><p>As an example front-end, we’ll use a simple Vue application which uses <a href="https://www.npmjs.com/package/vue-axios">vue-axios</a> to retrieve the aforementioned data from the back-end:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h1</span>&gt;My app&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;{{message}}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;App&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> () =&gt; ({ <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Loading...&#34;</span> }),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mounted</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">get_data</span>();
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">get_data</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">axios</span>
+</span></span><span style="display:flex;"><span>          .<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;http://YOUR_SERVER_IP:7070/data&#34;</span>)
+</span></span><span style="display:flex;"><span>          .<span style="color:#a6e22e">then</span>(({ <span style="color:#a6e22e">data</span> }) =&gt; {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>;
+</span></span><span style="display:flex;"><span>          })
+</span></span><span style="display:flex;"><span>          .<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">error</span>) =&gt; {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">error</span>;
+</span></span><span style="display:flex;"><span>          });
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>With such a simple setup, it comes to no surprise that our front-end application is able to display the back-end’s <code>Sensitive data</code> whether the user is authenticated or not:</p>
 <p><img src="https://miro.medium.com/max/261/1*eubvoN4ZHHtRHsi9BfvrAw.png" alt=""></p>
 <p>Without any authentication mechanism, the front-end can freely retrieve the back-end’s sensitive data</p>
 <p>Here, one way to implement access restrictions would be to build an authentication system from the ground up, but having to do so for every application would be tedious. Instead, we’ll deploy our pluggable authentication system to handle the task.</p>
@@ -291,29 +297,33 @@ export default {
 <li>A <a href="https://github.com/maximemoreillon/api_proxy">reverse proxy</a> to appropriately tie the GUI and the back-end together</li>
 </ul>
 <p>All three are packaged as docker containers and can thus be easily deployed using the following <em>docker-compose.yml</em> file:</p>
-<pre tabindex="0"><code>version: &#34;3.7&#34;services:
-  mongo:
-    image: mongo
-    logging:
-      driver: noneuser-manager-api:
-    image: moreillon/user-manager-mongoose
-    environment:
-      MONGODB_URL: mongodb://mongo
-      JWT_SECRET: keyboard_cat
-    ports:
-      - &#34;7071:80&#34;user-manager-front:
-    image: moreillon/user-manager-mongoose-front
-    logging:
-      driver: none
-    environment:
-      VUE_APP_USER_MANAGER_API_URL: /proxy/apiuser-manager-front-proxy:
-    image: moreillon/api-proxy
-    environment:
-      PROXY_API: http://user-manager-api
-      PROXY_ROOT: http://user-manager-front
-    ports:
-      - &#34;8081:80&#34;
-</code></pre><p>Note the JWT_SECRET environment variable that users will want to set to a secret of their choice. Also, the MONGODB_URL environment variable can be changed so as to use another MongoDB instance.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.7&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mongo</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mongo</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">logging</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">none</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">user-manager-api</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">moreillon/user-manager-mongoose</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">MONGODB_URL</span>: <span style="color:#ae81ff">mongodb://mongo</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">JWT_SECRET</span>: <span style="color:#ae81ff">keyboard_cat</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;7071:80&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">user-manager-front</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">moreillon/user-manager-mongoose-front</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">logging</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">none</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">VUE_APP_USER_MANAGER_API_URL</span>: <span style="color:#ae81ff">/proxy/api</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">user-manager-front-proxy</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">moreillon/api-proxy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">PROXY_API</span>: <span style="color:#ae81ff">http://user-manager-api</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">PROXY_ROOT</span>: <span style="color:#ae81ff">http://user-manager-front</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;8081:80&#34;</span>
+</span></span></code></pre></div><p>Note the JWT_SECRET environment variable that users will want to set to a secret of their choice. Also, the MONGODB_URL environment variable can be changed so as to use another MongoDB instance.</p>
 <p>After deployment using the <code>docker-compose up</code> command, the service should be deployed. Its back-end API is available on port 7071 while pointing your browser to port 8081 of your server should present you with the following login screen:</p>
 <p><img src="https://miro.medium.com/max/639/1*Sh0ou59AfLrEjOXBEMem0A.png" alt=""></p>
 <p>The login screen of the user management service</p>
@@ -332,55 +342,56 @@ export default {
 <p>Now that the user management service is deployed, our example application needs to be updated so as to use the former for authentication. This involves connecting the both the back-end and the front end of our example application to the user management service’s server-side application.</p>
 <h2 id="back-end-integration"><strong>Back-end integration</strong></h2>
 <p>We will start with the back-end integration. Here the objective is to prevent unauthenticated usersfrom accessing retriving data from the <em>/data</em> endpoint. For Express applications, <a href="https://github.com/maximemoreillon/express_identification_middleware">a dedicated module</a> has been developed and can be installed via NPM:</p>
-<pre tabindex="0"><code>npm install @moreillon/express_identification_middleware
-</code></pre><p>Once downloaded, our back-end code can be refactored so as to use the module as an express middleware:</p>
-<pre tabindex="0"><code>const express = require(&#39;express&#39;)
-const cors = require(&#39;cors&#39;)
-const auth = require(&#39;@moreillon/express_identification_middleware&#39;)const app = express()
-const port =  7070const auth_options = {url: &#39;http://YOUR_SERVER_IP:7071&#39;}app.use(cors())
-app.use(auth(auth_options))app.listen(port, () =&gt; console.log(`App listening on :${port}`) )
-</code></pre><p>Note here that the middleware takes the url of the user management service as parameter. Technical details about this package are omitted for the sake of brevity.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install @moreillon/express_identification_middleware
+</span></span></code></pre></div><p>Once downloaded, our back-end code can be refactored so as to use the module as an express middleware:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;cors&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">auth</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;@moreillon/express_identification_middleware&#39;</span>)<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span>  <span style="color:#ae81ff">7070</span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">auth_options</span> <span style="color:#f92672">=</span> {<span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;http://YOUR_SERVER_IP:7071&#39;</span>}<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">cors</span>())
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">auth</span>(<span style="color:#a6e22e">auth_options</span>))<span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`App listening on :</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>) )
+</span></span></code></pre></div><p>Note here that the middleware takes the url of the user management service as parameter. Technical details about this package are omitted for the sake of brevity.</p>
 <p>With this done, the front-end should no longer be able to display the <code>Sensitive data</code> from the <em>/data</em> endpoint and return a 403 (forbidden) error code instead:</p>
 <p><img src="https://miro.medium.com/max/571/1*icmAjhmWnkUfC03kGWR18g.png" alt=""></p>
 <p>The front-end after authentication has been implemented in the back-end</p>
 <h2 id="front-end-integration"><strong>Front-end integration</strong></h2>
 <p>Now that the data is restricted to authenticated users on the back-end, it is time to provide our front-end with means of authenticating users.</p>
 <p>Here again, <a href="https://github.com/maximemoreillon/vue_authentication_wall">a dedicated front-end module</a> has been developed for this purpose. It can be installed using NPM as follows:</p>
-<pre tabindex="0"><code>npm install @moreillon/vue_authentication_wall
-</code></pre><p>This package provides the <code>AuthenticationWall</code> component, which, as it names suggests, places itself between unauthenticated users and the application content. Here again, technical details about the package are omitted. The usage of the component is fairly straightforward. It wraps the application content as such:</p>
-<pre tabindex="0"><code>&lt;template&gt;
-  &lt;AuthenticationWall
-    :options=&#34;wall_options&#34;
-    @user=&#34;get_data()&#34;&gt;    &lt;div&gt;
-      &lt;h1&gt;My app&lt;/h1&gt;
-      &lt;p&gt;{{message}}&lt;/p&gt;
-    &lt;/div&gt;  &lt;/AuthenticationWall&gt;
-&lt;/template&gt;&lt;script&gt;
-import AuthenticationWall from &#39;@moreillon/vue_authentication_wall_vuetify&#39;export default {
-  name: &#39;App&#39;,
-  components: { AuthenticationWall },
-  data(){
-    return {
-      message: &#34;&#34;,
-      options: {
-        login_url: &#39;http://YOUR_SERVER_IP:7071/auth/login&#39;,
-        identification_url: &#39;http://YOUR_SERVER_IP:7071/users/self&#39;,
-      }
-    }
-  },
-  mounted(){
-    // get_data() call moved to @user event of AuthenticationWall
-  },
-  methods: {
-    get_data(){
-      this.axios.get(&#39;http://YOUR_SERVER_IP:7070/data&#39;)
-      .then( ({data}) =&gt; { this.message = data } )
-      .catch( error =&gt; { this.message = error } )
-    }
-  },
-}
-&lt;/script&gt;
-</code></pre><p>Note how the <code>AuthenticationWall</code> needs to be made aware of the user management service’s API URL for login and authentication. This is done using the <code>options</code> prop.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install @moreillon/vue_authentication_wall
+</span></span></code></pre></div><p>This package provides the <code>AuthenticationWall</code> component, which, as it names suggests, places itself between unauthenticated users and the application content. Here again, technical details about the package are omitted. The usage of the component is fairly straightforward. It wraps the application content as such:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">AuthenticationWall</span> <span style="color:#a6e22e">:options</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;wall_options&#34;</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">user</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;get_data()&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h1</span>&gt;My app&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">p</span>&gt;{{message}}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">AuthenticationWall</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">import</span> <span style="color:#a6e22e">AuthenticationWall</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@moreillon/vue_authentication_wall_vuetify&#39;</span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;App&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">AuthenticationWall</span> },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span>(){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">message</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">options</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">login_url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;http://YOUR_SERVER_IP:7071/auth/login&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">identification_url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;http://YOUR_SERVER_IP:7071/users/self&#39;</span>,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mounted</span>(){
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// get_data() call moved to @user event of AuthenticationWall
+</span></span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">get_data</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;http://YOUR_SERVER_IP:7070/data&#39;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">then</span>( ({<span style="color:#a6e22e">data</span>}) =&gt; { <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span> } )
+</span></span><span style="display:flex;"><span>        .<span style="color:#66d9ef">catch</span>( <span style="color:#a6e22e">error</span> =&gt; { <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">error</span> } )
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>Note how the <code>AuthenticationWall</code> needs to be made aware of the user management service’s API URL for login and authentication. This is done using the <code>options</code> prop.</p>
 <p>Also, the call of <code>get_data()</code> has been moved from <code>mounted()</code> to a custom event emitted by the authentication module, which allows the API call to be delayed until the user is properly authenticated.</p>
 <p>With the authentication module installed, clients accessing the front-end should be presented with the following login page:</p>
 <p><img src="https://miro.medium.com/max/453/1*77aQzdOfijI8hUDBzEcLrw.png" alt=""></p>

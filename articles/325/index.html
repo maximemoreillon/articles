@@ -250,26 +250,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>Here are the steps to prepare a brand new hard drive and install a file system on it.</p>
 <h2 id="setting-up-partitions">Setting up partitions</h2>
 <p>Partitions can be managed using parted:</p>
-<pre tabindex="0"><code>sudo parted
-</code></pre><h3 id="creating-a-partition-table">Creating a partition table</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo parted
+</span></span></code></pre></div><h3 id="creating-a-partition-table">Creating a partition table</h3>
 <p>A partition table stores information about the partitions of the drive. It can be created using:</p>
-<pre tabindex="0"><code>mklabel
-</code></pre><p>GPT is the current standard for label types.</p>
-<pre tabindex="0"><code>New disk label type? gpt
-</code></pre><h3 id="creating-a-partition">Creating a partition</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>mklabel
+</span></span></code></pre></div><p>GPT is the current standard for label types.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>New disk label type? gpt
+</span></span></code></pre></div><h3 id="creating-a-partition">Creating a partition</h3>
 <p>The command mkpart can be used to create partitions on the disk</p>
-<pre tabindex="0"><code>mkpart
-</code></pre><p>Note that the partition name is not the label of the partition&rsquo;s file system</p>
-<pre tabindex="0"><code>Partition name?  []? primary
-</code></pre><p>Among the various existing file systems, ext4 is the most convenient for Linux</p>
-<pre tabindex="0"><code>File system type?  [ext2]? ext4
-</code></pre><p>Define the size of the partition</p>
-<pre tabindex="0"><code>Start? 2048s                                                              
-End? 100%
-</code></pre><h2 id="creating-a-file-system-in-a-partition">Creating a file system in a partition</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>mkpart
+</span></span></code></pre></div><p>Note that the partition name is not the label of the partition&rsquo;s file system</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Partition name?  []? primary
+</span></span></code></pre></div><p>Among the various existing file systems, ext4 is the most convenient for Linux</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>File system type?  [ext2]? ext4
+</span></span></code></pre></div><p>Define the size of the partition</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Start? 2048s                                                              
+</span></span><span style="display:flex;"><span>End? 100%
+</span></span></code></pre></div><h2 id="creating-a-file-system-in-a-partition">Creating a file system in a partition</h2>
 <p>Replace MY_LABEL by the label to be used for the file system</p>
-<pre tabindex="0"><code>mkfs.ext4 -L MY_LABEL /dev/sda1
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkfs.ext4 -L MY_LABEL /dev/sda1
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

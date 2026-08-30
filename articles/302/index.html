@@ -245,39 +245,39 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>This is an example .gitlab-ci.yml file which can be used to containerize and deploy a tensorflow model</p>
-<pre tabindex="0"><code>stages:
-  - containerize
-  - deploy
-
-variables:
-  SERVING_CONTAINER: serving_base
-  DOCKER_IMAGE: 192.168.1.2:5000/redblack
-  AI_MODEL: redblack
-  DEPLOYMENT: redblack
-
-containerization:
-  stage: containerize
-  script:
-    # Run an empty tensorflow serving container
-    - docker run -d --name ${SERVING_CONTAINER} tensorflow/serving
-    # Copy the model into the serving container and save it as a new image
-    - docker cp ./${AI_MODEL} ${SERVING_CONTAINER}:/models/${AI_MODEL}
-    - docker commit --change &#34;ENV MODEL_NAME ${AI_MODEL}&#34; serving_base ${DOCKER_IMAGE}
-    # Push the container to the registry
-    - docker push ${DOCKER_IMAGE}
-    # Cleanup
-    - docker stop ${SERVING_CONTAINER}
-    - docker container rm ${SERVING_CONTAINER}
-    - docker image rm ${DOCKER_IMAGE}
-
-deployment:
-  stage: deploy
-  script:
-    - kubectl apply -f deployment.yml
-    - kubectl rollout restart deployment/${DEPLOYMENT}
-  environment:
-    name: staging
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">stages</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">containerize</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">deploy</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">variables</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">SERVING_CONTAINER</span>: <span style="color:#ae81ff">serving_base</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">DOCKER_IMAGE</span>: <span style="color:#ae81ff">192.168.1.2</span>:<span style="color:#ae81ff">5000</span><span style="color:#ae81ff">/redblack</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">AI_MODEL</span>: <span style="color:#ae81ff">redblack</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">DEPLOYMENT</span>: <span style="color:#ae81ff">redblack</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">containerization</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">containerize</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Run an empty tensorflow serving container</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker run -d --name ${SERVING_CONTAINER} tensorflow/serving</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Copy the model into the serving container and save it as a new image</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker cp ./${AI_MODEL} ${SERVING_CONTAINER}:/models/${AI_MODEL}</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker commit --change &#34;ENV MODEL_NAME ${AI_MODEL}&#34; serving_base ${DOCKER_IMAGE}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Push the container to the registry</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker push ${DOCKER_IMAGE}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Cleanup</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker stop ${SERVING_CONTAINER}</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker container rm ${SERVING_CONTAINER}</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker image rm ${DOCKER_IMAGE}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">deployment</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">deploy</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kubectl apply -f deployment.yml</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">kubectl rollout restart deployment/${DEPLOYMENT}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">staging</span>
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

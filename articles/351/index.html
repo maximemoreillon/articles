@@ -252,14 +252,14 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>This article merely summarizes the basics involved in the process.</p>
 <h2 id="self-hosted-docker-registry-as-container">Self hosted Docker registry as container</h2>
 <p>A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:</p>
-<pre tabindex="0"><code>docker run -d --restart=always --name registry -p 5000:5000 -e REGISTRY_HTTP_ADDR=0.0.0.0:5000 registry:2
-</code></pre><h2 id="pushing-to-the-registry">Pushing to the registry</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d --restart<span style="color:#f92672">=</span>always --name registry -p 5000:5000 -e REGISTRY_HTTP_ADDR<span style="color:#f92672">=</span>0.0.0.0:5000 registry:2
+</span></span></code></pre></div><h2 id="pushing-to-the-registry">Pushing to the registry</h2>
 <p>To push images to a specific registry, their name must be in the form <!-- raw HTML omitted -->/<!-- raw HTML omitted -->. A new name can be set to an image using the <code>docker tag</code> command:</p>
-<pre tabindex="0"><code>docker tag my-local-image:version 192.168.1.2:5000/my-image
-</code></pre><p>Here, replace 192.168.1.2 with the URL of your registry</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker tag my-local-image:version 192.168.1.2:5000/my-image
+</span></span></code></pre></div><p>Here, replace 192.168.1.2 with the URL of your registry</p>
 <p>Image can now be pushed to the registry using the <code>docker push</code> command</p>
-<pre tabindex="0"><code>docker push 192.168.1.2:5000/my-image
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker push 192.168.1.2:5000/my-image
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

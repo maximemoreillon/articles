@@ -247,10 +247,10 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>The memory consumption of GitLab can be reduced slightly by turning prometheus monitoring off:</p>
 <p>In /etc/gitlab/gitlab.rb:</p>
-<pre tabindex="0"><code>prometheus_monitoring[&#39;enable&#39;] = false
-</code></pre><p>Additionally, the memory used by PostgreSQL can be limited:</p>
-<pre tabindex="0"><code>postgresql[&#39;shared_buffers&#39;] = &#34;512MB&#34;
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>prometheus_monitoring<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;enable&#39;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><p>Additionally, the memory used by PostgreSQL can be limited:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>postgresql<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;shared_buffers&#39;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;512MB&#34;</span>
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

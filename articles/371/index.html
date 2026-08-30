@@ -245,103 +245,103 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>This guide is based on the <a href="https://www.tensorflow.org/tfx/serving/serving_kubernetes">official TensorFlow Serving documentation</a></p>
 <h2 id="the-tensorflow-model">The TensorFlow Model</h2>
 <p>First, we need a model to work with. For this purpose, here is a snippet taken from the TensorFlow getting started guide that deals with the building and training of a simple Keras model:</p>
-<pre tabindex="0"><code># Data loading, preprocessing etc...
-
-# Building the model
-model = tf.keras.models.Sequential([
-  tf.keras.layers.Flatten(input_shape=(28, 28)),
-  tf.keras.layers.Dense(128, activation=&#39;relu&#39;),
-  tf.keras.layers.Dropout(0.2),
-  tf.keras.layers.Dense(10)
-])
-
-# Compiling the model
-model.compile(optimizer=&#39;adam&#39;,
-              loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
-              metrics=[&#39;accuracy&#39;])
-
-# Train the model
-model.fit(x_train, y_train, epochs=5)
-</code></pre><p>The trained model can then be used within the code so as to make predictions. However, this model would me more useful if it could also be used by other applications, potentially deployed on different computers. To do so, the model can be exposed to HTTP request using a REST API. Although this could be done by using Flask to create an API endpoint for our model, Tensorflow Serving offers a similar solution without requiring complicated setup for developers.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Data loading, preprocessing etc...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Building the model</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>Sequential([
+</span></span><span style="display:flex;"><span>  tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Flatten(input_shape<span style="color:#f92672">=</span>(<span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">28</span>)),
+</span></span><span style="display:flex;"><span>  tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Dense(<span style="color:#ae81ff">128</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;relu&#39;</span>),
+</span></span><span style="display:flex;"><span>  tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Dropout(<span style="color:#ae81ff">0.2</span>),
+</span></span><span style="display:flex;"><span>  tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Dense(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compiling the model</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>compile(optimizer<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;adam&#39;</span>,
+</span></span><span style="display:flex;"><span>              loss<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>losses<span style="color:#f92672">.</span>SparseCategoricalCrossentropy(from_logits<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>),
+</span></span><span style="display:flex;"><span>              metrics<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;accuracy&#39;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Train the model</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>fit(x_train, y_train, epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span></code></pre></div><p>The trained model can then be used within the code so as to make predictions. However, this model would me more useful if it could also be used by other applications, potentially deployed on different computers. To do so, the model can be exposed to HTTP request using a REST API. Although this could be done by using Flask to create an API endpoint for our model, Tensorflow Serving offers a similar solution without requiring complicated setup for developers.</p>
 <p>Tensorflow Serving consists of a Docker container inside which the desired model is copied. The container contains the necesssary logic to expose the model to HTTP requests.</p>
 <p>To use Tensorflow Serving, one must first export the model using the <code>save</code> function of Keras:</p>
-<pre tabindex="0"><code>MODEL_NAME = &#39;mymodel&#39;
-MODEL_VERSION = 1
-model.save(&#39;./{}/{}/&#39;.format(MODEL_NAME, MODEL_VERSION ))
-</code></pre><p>Note how the model name and version are defined.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>MODEL_NAME <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;mymodel&#39;</span>
+</span></span><span style="display:flex;"><span>MODEL_VERSION <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>save(<span style="color:#e6db74">&#39;./</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">/&#39;</span><span style="color:#f92672">.</span>format(MODEL_NAME, MODEL_VERSION ))
+</span></span></code></pre></div><p>Note how the model name and version are defined.</p>
 <p>The model now exists in the folder <code>./mymodel/1/</code>.</p>
 <h2 id="preparing-a-tensorflow-serving-container">Preparing a TensorFlow Serving container</h2>
 <p>Now, an empty TensorFlow serving container can be pulled from Docker Hub and run locally:</p>
-<pre tabindex="0"><code>docker run -d --name serving_base tensorflow/serving
-</code></pre><p>With the container running, one can now copy the exported model into it using:</p>
-<pre tabindex="0"><code>docker cp ./mymodel serving_base:/models/mymodel
-</code></pre><p>The container now contains our model and can be saved as a new image. This can be done by using the docker commit command:</p>
-<pre tabindex="0"><code>docker commit --change &#34;ENV MODEL_NAME mymodel&#34; serving_base my-registry/mymodel-serving
-</code></pre><p>Note here that my-registry is the URL of the docker registry to push the image to.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d --name serving_base tensorflow/serving
+</span></span></code></pre></div><p>With the container running, one can now copy the exported model into it using:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker cp ./mymodel serving_base:/models/mymodel
+</span></span></code></pre></div><p>The container now contains our model and can be saved as a new image. This can be done by using the docker commit command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker commit --change <span style="color:#e6db74">&#34;ENV MODEL_NAME mymodel&#34;</span> serving_base my-registry/mymodel-serving
+</span></span></code></pre></div><p>Note here that my-registry is the URL of the docker registry to push the image to.</p>
 <p>Once done, we can get rid of the original TensworFlow serving image</p>
-<pre tabindex="0"><code>docker kill serving_base
-docker rm serving_base
-</code></pre><p>Here, it might be a good idea to check if the container is actually working, so let&rsquo;s run it</p>
-<pre tabindex="0"><code>docker run -d -p 8501:8501 my-registry/mymodel-serving
-</code></pre><p>Note that 8501 is the port TensorFlow serving uses for its REST API.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker kill serving_base
+</span></span><span style="display:flex;"><span>docker rm serving_base
+</span></span></code></pre></div><p>Here, it might be a good idea to check if the container is actually working, so let&rsquo;s run it</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -p 8501:8501 my-registry/mymodel-serving
+</span></span></code></pre></div><p>Note that 8501 is the port TensorFlow serving uses for its REST API.</p>
 <p>A Get request to <code>http://localhost:8501/v1/models/mymodel</code> Should return the following JSON:</p>
-<pre tabindex="0"><code>{
- &#34;model_version_status&#34;: [
-  {
-   &#34;version&#34;: &#34;1&#34;,
-   &#34;state&#34;: &#34;AVAILABLE&#34;,
-   &#34;status&#34;: {
-    &#34;error_code&#34;: &#34;OK&#34;,
-    &#34;error_message&#34;: &#34;&#34;
-   }
-  }
- ]
-}
-</code></pre><p>If everything is successful so far, the container can be pushed to the registry, which will make it available for Kubernetes to deploy:</p>
-<pre tabindex="0"><code>docker push my-registry/mymodel-serving
-</code></pre><h2 id="deploying-the-container-to-kubernetes">Deploying the container to Kubernetes</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">&#34;model_version_status&#34;</span>: [
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&#34;state&#34;</span>: <span style="color:#e6db74">&#34;AVAILABLE&#34;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&#34;status&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;error_code&#34;</span>: <span style="color:#e6db74">&#34;OK&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;error_message&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span> ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If everything is successful so far, the container can be pushed to the registry, which will make it available for Kubernetes to deploy:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker push my-registry/mymodel-serving
+</span></span></code></pre></div><h2 id="deploying-the-container-to-kubernetes">Deploying the container to Kubernetes</h2>
 <p>Now that the container has been pushed to a registry, it can be deployed to our Kubernetes cluster. This is achieved by creating two resources in the cluster: a deployment and a service. The deployment is basically the application itself while the service is here to allow users to reach the deployment from outside the cluster. Here, we will use a NodePort service so that our TensorFlow serving container can be accessed from outside the cluster by simply using a dedicated port. We will choose 30111 for this matter.</p>
 <p>Creating those resources is done simply by applying the content of a YAML manifest file with the kubectl command. In our case, here is the content of our kubernetes_manifest.yml file:</p>
-<pre tabindex="0"><code>apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mymodel-serving
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mymodel-serving
-  template:
-    metadata:
-      labels:
-        app: mymodel-serving
-    spec:
-      containers:
-      - name: mymodel-serving
-        image: my-registry/mymodel-serving
-        ports:
-        - containerPort: 8501
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mymodel-serving
-spec:
-  ports:
-  - port: 8501
-    nodePort: 30111
-  selector:
-    app: mymodel-serving
-  type: NodePort
-</code></pre><p>The resources can then be created by executing</p>
-<pre tabindex="0"><code>kubectl apply -f kubernetes_manifest.yml
-</code></pre><p>The container should now be deployed in the Kubernetes cluster</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mymodel-serving</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mymodel-serving</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mymodel-serving</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mymodel-serving</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">my-registry/mymodel-serving</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">8501</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mymodel-serving</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">8501</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">nodePort</span>: <span style="color:#ae81ff">30111</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mymodel-serving</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">NodePort</span>
+</span></span></code></pre></div><p>The resources can then be created by executing</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl apply -f kubernetes_manifest.yml
+</span></span></code></pre></div><p>The container should now be deployed in the Kubernetes cluster</p>
 <h2 id="using-the-container">Using the container</h2>
 <p>The AI model deployed in Kubernetes can now be used for predictions. To do so, one must send a POST request to prediction API of the TensorFlow Serving container with a a body consisting of a JSON containing the input data. The model will then reply with its prediction, also in JSON format. Here is an example of how this can be implemented in Python, using the <code>requests</code> library</p>
-<pre tabindex="0"><code>image = cv2.imread(image_path)
-payload = json.dumps( {&#39;instances&#39;: [image.tolist()]} )
-r = requests.post(&#34;http://&lt;IP of the Cluster&gt;:30111/v1/models/mymodel:predict&#34;, data=payload)
-</code></pre><p>Note here that the image data sent to the AI model is embedded in an array. This is because of the way TensorFlow serving accepts input data. In our case, the input image is 28x28 pixels so the data sent to the AI model must be have a (n,28,28) shape where n is the number of images to evaluate.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>image <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>imread(image_path)
+</span></span><span style="display:flex;"><span>payload <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>dumps( {<span style="color:#e6db74">&#39;instances&#39;</span>: [image<span style="color:#f92672">.</span>tolist()]} )
+</span></span><span style="display:flex;"><span>r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(<span style="color:#e6db74">&#34;http://&lt;IP of the Cluster&gt;:30111/v1/models/mymodel:predict&#34;</span>, data<span style="color:#f92672">=</span>payload)
+</span></span></code></pre></div><p>Note here that the image data sent to the AI model is embedded in an array. This is because of the way TensorFlow serving accepts input data. In our case, the input image is 28x28 pixels so the data sent to the AI model must be have a (n,28,28) shape where n is the number of images to evaluate.</p>
 
             </div>
         </article></main>

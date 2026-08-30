@@ -244,11 +244,11 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>VirtualBox used to be installed easily using apt, but this recently changed. Here is a method proven to work:</p>
-<pre tabindex="0"><code>wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-echo &#34;deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian bionic contrib&#34; | sudo tee /etc/apt/sources.list.d/virtualbox.list
-sudo apt-get update
-sudo apt-get -y install virtualbox-6.0
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian bionic contrib&#34;</span> | sudo tee /etc/apt/sources.list.d/virtualbox.list
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get -y install virtualbox-6.0
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

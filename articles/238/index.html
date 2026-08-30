@@ -245,25 +245,25 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>Let&rsquo;s imagine a container with three divs as content:</p>
-<pre tabindex="0"><code>&lt;div class=&#34;container&#34;&gt;
-  &lt;div&gt;1&lt;/div&gt;
-  &lt;div&gt;2&lt;/div&gt;
-  &lt;div&gt;Looooooooooooong&lt;/div&gt;
-&lt;/div&gt;
-</code></pre><p>One might want to lay the three divs horizontally and make it so that all divs share the available space equally. This can be achieved using flexbox:</p>
-<pre tabindex="0"><code>.container {
-  display: flex;
-}
-
-.container div{
-  /* take all available space */
-  flex-grow: 1;
-	
-  /* Insensitivity to size of content */
-  /* If not set, the div containing &#34;looong&#34; will take more space */
-  flex-basis: 0;
-}
-</code></pre><p>Here, if <code>flex-basis</code> was not set the div containing <em>looooong</em> would get more horizontal space</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;1&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;2&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;Looooooooooooong&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span></code></pre></div><p>One might want to lay the three divs horizontally and make it so that all divs share the available space equally. This can be achieved using flexbox:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">container</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">flex</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">container</span> <span style="color:#f92672">div</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* take all available space */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">flex-grow</span>: <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* Insensitivity to size of content */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* If not set, the div containing &#34;looong&#34; will take more space */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">flex-basis</span>: <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here, if <code>flex-basis</code> was not set the div containing <em>looooong</em> would get more horizontal space</p>
 
             </div>
         </article></main>

@@ -248,21 +248,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>GitLab provides a great number of tools needed for the DevOps cycle of an application. In this guide, we&rsquo;ll install a GitLab instance on our own server and configure it to fit our DevOps needs. Here, we will use a fresh install of Ubuntu 18.04 as a base.</p>
 <h2 id="gitlab-installation">GitLab installation</h2>
 <p><a href="https://about.gitlab.com/install/">https://about.gitlab.com/install/</a></p>
-<pre tabindex="0"><code>sudo apt-get update
-sudo apt-get install -y curl openssh-server ca-certificates
-</code></pre><pre tabindex="0"><code>curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
-</code></pre><pre tabindex="0"><code>sudo EXTERNAL_URL=&#34;http://192.168.1.2:8090&#34; apt-get install gitlab-ee
-</code></pre><h2 id="docker-installation">Docker installation</h2>
-<pre tabindex="0"><code>sudo apt install docker.io
-</code></pre><h2 id="kubectl-installation">Kubectl installation</h2>
-<pre tabindex="0"><code>snap install kubectl --classic
-</code></pre><h2 id="gitlab-runner-installation-registration-and-configuration">GitLab runner installation, registration and configuration</h2>
-<pre tabindex="0"><code>curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
-</code></pre><pre tabindex="0"><code>sudo apt-get install gitlab-runner
-</code></pre><pre tabindex="0"><code>sudo gitlab-runner register
-</code></pre><p>Finally, appropriate permissions must be given to the runner to use Docker</p>
-<pre tabindex="0"><code>sudo adduser gitlab-runner docker
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install -y curl openssh-server ca-certificates
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo EXTERNAL_URL<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://192.168.1.2:8090&#34;</span> apt-get install gitlab-ee
+</span></span></code></pre></div><h2 id="docker-installation">Docker installation</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install docker.io
+</span></span></code></pre></div><h2 id="kubectl-installation">Kubectl installation</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>snap install kubectl --classic
+</span></span></code></pre></div><h2 id="gitlab-runner-installation-registration-and-configuration">GitLab runner installation, registration and configuration</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install gitlab-runner
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo gitlab-runner register
+</span></span></code></pre></div><p>Finally, appropriate permissions must be given to the runner to use Docker</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo adduser gitlab-runner docker
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

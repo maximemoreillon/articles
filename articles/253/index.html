@@ -246,13 +246,13 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>Importing data from a Neo4J v3 database into a v4 one can be a hassle. Here are the steps to achieve the migration.</p>
 <p>Since Neo4J V4 is a major update from V3, the data imported must be updated to the new version. Enabling the update can be done by editing the /etc/neo4j/neo4j.conf and changing the following line accordingly;</p>
-<pre tabindex="0"><code>dbms.allow_upgrade=true
-</code></pre><p>With that done, the data can be imported using the neo4j-admin, executed <strong>as the neo4j user</strong></p>
-<pre tabindex="0"><code>sudo -u neo4j neo4j-admin load --from=&lt;dump_file&gt; --database=&lt;your db&gt; --force
-</code></pre><p>In case neo4j-admin has been executed as root, The ownership of files might need to be set back to the neo4j user.</p>
-<pre tabindex="0"><code>sudo chown -R neo4j:neo4j /var/lib/neo4j/data/databases/&lt;your db&gt;
-sudo chown -R neo4j:neo4j /var/lib/neo4j/data/transactions/&lt;your db&gt;
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#a6e22e">dbms.allow_upgrade</span><span style="color:#f92672">=</span><span style="color:#e6db74">true</span>
+</span></span></code></pre></div><p>With that done, the data can be imported using the neo4j-admin, executed <strong>as the neo4j user</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo -u neo4j neo4j-admin load --from<span style="color:#f92672">=</span>&lt;dump_file&gt; --database<span style="color:#f92672">=</span>&lt;your db&gt; --force
+</span></span></code></pre></div><p>In case neo4j-admin has been executed as root, The ownership of files might need to be set back to the neo4j user.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chown -R neo4j:neo4j /var/lib/neo4j/data/databases/&lt;your db&gt;
+</span></span><span style="display:flex;"><span>sudo chown -R neo4j:neo4j /var/lib/neo4j/data/transactions/&lt;your db&gt;
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

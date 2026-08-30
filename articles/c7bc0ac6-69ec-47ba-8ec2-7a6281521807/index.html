@@ -243,81 +243,81 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>Although API gateways such as Kong exist, a simple reverse-proxy can be created using NGINX. Here is a sample manifest to do so in Kubernetes:</p>
-<pre tabindex="0"><code>apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-        - name: nginx
-          image: nginx
-          volumeMounts:
-            - mountPath: /etc/nginx/nginx.conf
-              name: config
-              subPath: nginx.conf
-      volumes:
-        - name: config
-          configMap:
-            name: config
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx
-spec:
-  ports:
-    - port: 80
-      nodePort: 30080
-  selector:
-    app: nginx
-  type: NodePort
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: config
-data:
-  nginx.conf: |
-    user  nginx;
-    worker_processes  1;
-    error_log  /var/log/nginx/error.log warn;
-    pid        /var/run/nginx.pid;
-    events {
-      worker_connections  1024;
-    }
-    http {
-      include       /etc/nginx/mime.types;
-      default_type  application/octet-stream;
-      log_format  main  &#39;$remote_addr - $remote_user [$time_local] &#34;$request&#34; &#39;
-                        &#39;$status $body_bytes_sent &#34;$http_referer&#34; &#39;
-                        &#39;&#34;$http_user_agent&#34; &#34;$http_x_forwarded_for&#34;&#39;;
-      access_log  /var/log/nginx/access.log  main;
-      sendfile        on;
-      keepalive_timeout  65;
-      server {
-        listen       80;
-        server_name  localhost;
-        location /finances {
-          proxy_pass http://my-service;
-        }
-        error_page   500 502 503 504  /50x.html;
-        location = /50x.html {
-          root   /usr/share/nginx/html;
-        }
-      }
-    }
-
----
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">volumeMounts</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/etc/nginx/nginx.conf</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">subPath</span>: <span style="color:#ae81ff">nginx.conf</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">configMap</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">nodePort</span>: <span style="color:#ae81ff">30080</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">NodePort</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">nginx.conf</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    user  nginx;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    worker_processes  1;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    error_log  /var/log/nginx/error.log warn;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    pid        /var/run/nginx.pid;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    events {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      worker_connections  1024;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    http {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      include       /etc/nginx/mime.types;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      default_type  application/octet-stream;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      log_format  main  &#39;$remote_addr - $remote_user [$time_local] &#34;$request&#34; &#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &#39;$status $body_bytes_sent &#34;$http_referer&#34; &#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &#39;&#34;$http_user_agent&#34; &#34;$http_x_forwarded_for&#34;&#39;;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      access_log  /var/log/nginx/access.log  main;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      sendfile        on;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      keepalive_timeout  65;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      server {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        listen       80;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        server_name  localhost;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        location /finances {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          proxy_pass http://my-service;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        error_page   500 502 503 504  /50x.html;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        location = /50x.html {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          root   /usr/share/nginx/html;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

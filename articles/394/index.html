@@ -248,11 +248,11 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>This is similar to how one&rsquo;s home address is almost identical to that of their neighbor&rsquo;s, except for the house number. Here, Y represents the device and 192.168.X the network.</p>
 <p>Very often, the word <em>netmask</em> appears along IP addresses in configuration menus. Most commonly, this value is set to 255.255.255.0 . The purpose of an IP address is fairly easy to grasp but what kind of purpose does this netmask have, and why does it look like an IP address?</p>
 <p>First, one must understand why IP addresses are written in the shape A.B.C.D . Here, A,B,C,D are 8bit numbers, i.e. ranging from 0 to 255. This is why IP addresses never have components higher than 255. As such, the IP 192.168.1.2 translates to:</p>
-<pre tabindex="0"><code>11000000.10101000.00000001.00000010
-</code></pre><p>Following our explanation above, we know that the first three bytes of the IP, i.e. 11000000.10101000.00000001 (192.168.1 in binary) correrspond to the network. On the other hand, the last number of the IP 00000010 (2 in binary) is the device number.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>11000000.10101000.00000001.00000010
+</span></span></code></pre></div><p>Following our explanation above, we know that the first three bytes of the IP, i.e. 11000000.10101000.00000001 (192.168.1 in binary) correrspond to the network. On the other hand, the last number of the IP 00000010 (2 in binary) is the device number.</p>
 <p>How about the netmask 255.255.255.0? Its binary representation is:</p>
-<pre tabindex="0"><code>11111111.11111111.11111111.00000000
-</code></pre><p>The netmask has a ones at every position corresponding to the network and zeroes for every bit corresponding to the device number. In other words, the netmask specifies which part of the IP corresponds to the network and which part is specific to the device.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>11111111.11111111.11111111.00000000
+</span></span></code></pre></div><p>The netmask has a ones at every position corresponding to the network and zeroes for every bit corresponding to the device number. In other words, the netmask specifies which part of the IP corresponds to the network and which part is specific to the device.</p>
 
             </div>
         </article></main>

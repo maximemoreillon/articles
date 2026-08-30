@@ -246,173 +246,173 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>TDD has been proven to significantly reduce the amount of bugs in software releases. Moreover, with CI/CD systems, tests can be run automatically before the application deployment, preventing a faulty application to reach its end user. This guide goes through the steps required to set up a TDD workflow with an Express application.</p>
 <h2 id="an-example-application">An example application</h2>
 <p>Let&rsquo;s start with the application we would like to test. Here we&rsquo;ll use the following Express application:</p>
-<pre tabindex="0"><code>const express = require(&#39;express&#39;)
-const cors = require(&#39;cors&#39;)
-
-const app = express()
-app.use(cors())
-
-const port = 7070
-
-const fruits = [&#39;apple&#39;, &#39;banana&#39;, &#39;cherry&#39;]
-
-const create_fruit = (req, res) =&gt; {
-  const {fruit} = req.body
-  fruits.push(fruit)
-  res.send(fruit)
-}
-
-const read_fruits = (req, res) =&gt; {
-  res.send(fruits)
-}
-
-const read_fruit = (req, res) =&gt; {
-  const {index} = req.params
-  const fruit = fruits[index]
-  res.send(fruit)
-}
-
-app.route(&#39;/fruits&#39;)
-  .post(create_fruit)
-  .get(read_fruits)
-
-app.route(&#39;/fruits/:index&#39;)
-  .get(read_fruit)
-
-app.listen(port, () =&gt; {
-  console.log(`App listening on port ${port}`)
-})
-
-module.exports = app
-</code></pre><p>This simple application manages fruits via a REST API. Fruits can be queried or created via the /fruits route using an HTTP GET or POST request respectively. Moreover, individual fruits can be retrieved using their index via the /fruits/:index route.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;cors&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">cors</span>())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">7070</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruits</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;apple&#39;</span>, <span style="color:#e6db74">&#39;banana&#39;</span>, <span style="color:#e6db74">&#39;cherry&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">create_fruit</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> {<span style="color:#a6e22e">fruit</span>} <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">fruit</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">fruit</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">read_fruits</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">fruits</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">read_fruit</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> {<span style="color:#a6e22e">index</span>} <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">params</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fruits</span>[<span style="color:#a6e22e">index</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">fruit</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">route</span>(<span style="color:#e6db74">&#39;/fruits&#39;</span>)
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">post</span>(<span style="color:#a6e22e">create_fruit</span>)
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">get</span>(<span style="color:#a6e22e">read_fruits</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">route</span>(<span style="color:#e6db74">&#39;/fruits/:index&#39;</span>)
+</span></span><span style="display:flex;"><span>  .<span style="color:#a6e22e">get</span>(<span style="color:#a6e22e">read_fruit</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`App listening on port </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">app</span>
+</span></span></code></pre></div><p>This simple application manages fruits via a REST API. Fruits can be queried or created via the /fruits route using an HTTP GET or POST request respectively. Moreover, individual fruits can be retrieved using their index via the /fruits/:index route.</p>
 <p>In this example, it appears clear that the application expects fruits to be of type <code>String</code> and indices to be integers. Thus, to make sure that this application is built properly, let us write some tests.</p>
 <h2 id="installing-testing-modules">Installing testing modules</h2>
 <p>To manage tests, we can leverage an testing framework called Mocha. Additionally, we&rsquo;ll add Chai, a library which helps with writing test success or failure conditions and Supertest, which allows us to test the application via its REST API. Those modules can be installed with NPM, but we won&rsquo;t be needing them in production so let&rsquo;s add them as development dependencies as so:</p>
-<pre tabindex="0"><code>npm install chai mocha supertest --save-dev
-</code></pre><h2 id="writing-tests">Writing tests</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install chai mocha supertest --save-dev
+</span></span></code></pre></div><h2 id="writing-tests">Writing tests</h2>
 <p>Tests are meant to be written in separate .js files placed in a directory named <em>test.</em> It is usually wise to have one test file per controller. As such, for our example, we&rsquo;ll create the test folder with a file named fruits.js in it. Those tests follow the Mocha, Chai and Supertest syntax and should express the execution conditions we mentioned earlier. As such, this is one way those tests could be written:</p>
-<pre tabindex="0"><code>const app = require(&#34;../index.js&#34;)
-const request = require(&#34;supertest&#34;)
-const {expect} = require(&#34;chai&#34;)
-
-describe(&#34;/fruits&#34;, () =&gt; {
-
-  describe(&#34;GET /fruits/:index&#34;, () =&gt; {
-
-    it(&#34;Should not allow to query a fruit using an integer as index&#34;, async () =&gt; {
-      const {status} = await request(app).get(&#34;/fruits/2&#34;)
-      expect(status).to.equal(200)
-    })
-
-    it(&#34;Should not allow to query a fruit using a String as index&#34;, async () =&gt; {
-      const {status} = await request(app).get(&#34;/fruits/b&#34;)
-      expect(status).to.not.equal(200)
-    })
-
-  })
-
-  describe(&#34;POST /fruits/&#34;, () =&gt; {
-
-    it(&#34;Should allow to create a fruit as String&#34;, async () =&gt; {
-      const {status} = await request(app)
-        .post(&#34;/fruits&#34;)
-        .send({fruit: &#39;Peach&#39;})
-
-      expect(status).to.equal(200)
-    })
-
-    it(&#34;Should not allow to create a fruit as Array&#34;, async () =&gt; {
-      const {status} = await request(app)
-        .post(&#34;/fruits&#34;)
-        .send({fruit: [1,2,3]})
-
-      expect(status).to.not.equal(200)
-    })
-
-  })
-
-})
-</code></pre><p>Notice how the test file imports the express application at its first line.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;../index.js&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;supertest&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> {<span style="color:#a6e22e">expect</span>} <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;chai&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#34;/fruits&#34;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#34;GET /fruits/:index&#34;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;Should not allow to query a fruit using an integer as index&#34;</span>, <span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> {<span style="color:#a6e22e">status</span>} <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">request</span>(<span style="color:#a6e22e">app</span>).<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;/fruits/2&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">status</span>).<span style="color:#a6e22e">to</span>.<span style="color:#a6e22e">equal</span>(<span style="color:#ae81ff">200</span>)
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;Should not allow to query a fruit using a String as index&#34;</span>, <span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> {<span style="color:#a6e22e">status</span>} <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">request</span>(<span style="color:#a6e22e">app</span>).<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;/fruits/b&#34;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">status</span>).<span style="color:#a6e22e">to</span>.<span style="color:#a6e22e">not</span>.<span style="color:#a6e22e">equal</span>(<span style="color:#ae81ff">200</span>)
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#34;POST /fruits/&#34;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;Should allow to create a fruit as String&#34;</span>, <span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> {<span style="color:#a6e22e">status</span>} <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">request</span>(<span style="color:#a6e22e">app</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#34;/fruits&#34;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">send</span>({<span style="color:#a6e22e">fruit</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Peach&#39;</span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">status</span>).<span style="color:#a6e22e">to</span>.<span style="color:#a6e22e">equal</span>(<span style="color:#ae81ff">200</span>)
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">it</span>(<span style="color:#e6db74">&#34;Should not allow to create a fruit as Array&#34;</span>, <span style="color:#66d9ef">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> {<span style="color:#a6e22e">status</span>} <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">request</span>(<span style="color:#a6e22e">app</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#34;/fruits&#34;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">send</span>({<span style="color:#a6e22e">fruit</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>]})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">status</span>).<span style="color:#a6e22e">to</span>.<span style="color:#a6e22e">not</span>.<span style="color:#a6e22e">equal</span>(<span style="color:#ae81ff">200</span>)
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>Notice how the test file imports the express application at its first line.</p>
 <h2 id="modifying-packagejson-to-simplify-the-execution-of-tests">Modifying package.json to simplify the execution of tests</h2>
 <p>In order to run tests easily, let&rsquo;s configure the <em>npm run test</em> command to perform the necessary actions. To do so, we edit the package.json file at the scripts section, where the original content should like this:</p>
-<pre tabindex="0"><code>&#34;scripts&#34;: {
-  &#34;test&#34;: &#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;
-},
-</code></pre><p>Here, let&rsquo;s replace the original content of the test command by our own:</p>
-<pre tabindex="0"><code>&#34;scripts&#34;: {
-  &#34;test&#34;: &#34;mocha --timeout 10000 --exit&#34;
-},
-</code></pre><h2 id="running-the-tests">Running the tests</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;test&#34;</span>: <span style="color:#e6db74">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span>
+</span></span><span style="display:flex;"><span>}<span style="color:#960050;background-color:#1e0010">,</span>
+</span></span></code></pre></div><p>Here, let&rsquo;s replace the original content of the test command by our own:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#e6db74">&#34;scripts&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;test&#34;</span>: <span style="color:#e6db74">&#34;mocha --timeout 10000 --exit&#34;</span>
+</span></span><span style="display:flex;"><span>}<span style="color:#960050;background-color:#1e0010">,</span>
+</span></span></code></pre></div><h2 id="running-the-tests">Running the tests</h2>
 <p>We are now ready to test our application through its REST API. let us go ahead an do so by running</p>
-<pre tabindex="0"><code>npm run test
-</code></pre><p>The result should look as follows:</p>
-<pre tabindex="0"><code>  /fruits
-    GET /fruits/:index
-      ✔ Should not allow to query a fruit using an integer as index
-      1) Should not allow to query a fruit using a String as index
-    POST /fruits/
-      ✔ Should allow to create a fruit as String
-      2) Should not allow to create a fruit as Array
-
-
-  2 passing (39ms)
-  2 failing
-
-  1) /fruits
-       GET /fruits/:index
-         Should not allow to query a fruit using a String as index:
-
-      AssertionError: expected 200 to not equal 200
-      + expected - actual
-
-
-      at Context.&lt;anonymous&gt; (test/fruits.js:17:29)
-      at processTicksAndRejections (internal/process/task_queues.js:93:5)
-
-  2) /fruits
-       POST /fruits/
-         Should not allow to create a fruit as Array:
-
-      AssertionError: expected 200 to not equal 200
-      + expected - actual
-
-
-      at Context.&lt;anonymous&gt; (test/fruits.js:37:29)
-      at processTicksAndRejections (internal/process/task_queues.js:93:5)
-</code></pre><p>We can see that our application has not passed the tests. This is because, contrary to our original idea, the application does not prevent the user from using Strings as fruit index or creating a fruit as something else than a String.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm run test
+</span></span></code></pre></div><p>The result should look as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>  /fruits
+</span></span><span style="display:flex;"><span>    GET /fruits/:index
+</span></span><span style="display:flex;"><span>      ✔ Should not allow to query a fruit using an integer as index
+</span></span><span style="display:flex;"><span>      1) Should not allow to query a fruit using a String as index
+</span></span><span style="display:flex;"><span>    POST /fruits/
+</span></span><span style="display:flex;"><span>      ✔ Should allow to create a fruit as String
+</span></span><span style="display:flex;"><span>      2) Should not allow to create a fruit as Array
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  2 passing (39ms)
+</span></span><span style="display:flex;"><span>  2 failing
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  1) /fruits
+</span></span><span style="display:flex;"><span>       GET /fruits/:index
+</span></span><span style="display:flex;"><span>         Should not allow to query a fruit using a String as index:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      AssertionError: expected 200 to not equal 200
+</span></span><span style="display:flex;"><span>      + expected - actual
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      at Context.&lt;anonymous&gt; (test/fruits.js:17:29)
+</span></span><span style="display:flex;"><span>      at processTicksAndRejections (internal/process/task_queues.js:93:5)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  2) /fruits
+</span></span><span style="display:flex;"><span>       POST /fruits/
+</span></span><span style="display:flex;"><span>         Should not allow to create a fruit as Array:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      AssertionError: expected 200 to not equal 200
+</span></span><span style="display:flex;"><span>      + expected - actual
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      at Context.&lt;anonymous&gt; (test/fruits.js:37:29)
+</span></span><span style="display:flex;"><span>      at processTicksAndRejections (internal/process/task_queues.js:93:5)
+</span></span></code></pre></div><p>We can see that our application has not passed the tests. This is because, contrary to our original idea, the application does not prevent the user from using Strings as fruit index or creating a fruit as something else than a String.</p>
 <h2 id="refactoring-the-application-so-as-to-pass-tests">Refactoring the application so as to pass tests</h2>
 <p>The tests we&rsquo;ve written allow us to see where our application needs fixing. We&rsquo;ll go ahead and modify the controllers accordingly:</p>
-<pre tabindex="0"><code>// ...
-
-const create_fruit = (req, res) =&gt; {
-  const {fruit} = req.body
-  if( (typeof fruit) !== &#39;string&#39;) return res.status(400).send(&#39;fruit must be a String&#39;)
-  fruits.push(fruit)
-  res.send(fruit)
-}
-
-// ...
-
-const read_fruit = (req, res) =&gt; {
-  const {index} = req.params
-  if(isNaN(index)) return res.status(400).send(&#39;Index must be a Number&#39;)
-  const fruit = fruits[index]
-  res.send(fruit)
-}
-
-//...
-</code></pre><p>With that done, we can go ahead and run our tests again.</p>
-<pre tabindex="0"><code> /fruits
-    GET /fruits/:index
-      ✔ Should not allow to query a fruit using an integer as index
-      ✔ Should not allow to query a fruit using a String as index
-    POST /fruits/
-      ✔ Should allow to create a fruit as String
-      ✔ Should not allow to create a fruit as Array
-
-
-  4 passing (38ms)
-</code></pre><p>This time, the tests have passed, meaning our application is now properly handles those unintended use cases.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">create_fruit</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> {<span style="color:#a6e22e">fruit</span>} <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>( (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">fruit</span>) <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;string&#39;</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">400</span>).<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;fruit must be a String&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">fruit</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">fruit</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">read_fruit</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> {<span style="color:#a6e22e">index</span>} <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">params</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(isNaN(<span style="color:#a6e22e">index</span>)) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">400</span>).<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Index must be a Number&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fruits</span>[<span style="color:#a6e22e">index</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">fruit</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//...
+</span></span></span></code></pre></div><p>With that done, we can go ahead and run our tests again.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span> /fruits
+</span></span><span style="display:flex;"><span>    GET /fruits/:index
+</span></span><span style="display:flex;"><span>      ✔ Should not allow to query a fruit using an integer as index
+</span></span><span style="display:flex;"><span>      ✔ Should not allow to query a fruit using a String as index
+</span></span><span style="display:flex;"><span>    POST /fruits/
+</span></span><span style="display:flex;"><span>      ✔ Should allow to create a fruit as String
+</span></span><span style="display:flex;"><span>      ✔ Should not allow to create a fruit as Array
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  4 passing (38ms)
+</span></span></code></pre></div><p>This time, the tests have passed, meaning our application is now properly handles those unintended use cases.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>TDD allows developers to think ahead about what could potentially go wrong with their app and build software that is robust about those potential problems. Just like other languages, JavaScript has packages readily available to make testing more convenient and straightforward. When combined with CI/CD, TDD is a great way to significantly reduce the risk of releasing faulty software to its end user.</p>
 

@@ -248,33 +248,33 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>A low pass filter written as class for Arduino code</p>
-<pre tabindex="0"><code>class LowPassFilter {
-  
-  private:
-    float filter_constant;
-    
-  public:
-
-    float output;
-    
-    LowPassFilter(float filter_constant) {
-      // Constructor
-      this-&gt;output = 0;
-      this-&gt;filter_constant = filter_constant;
-    }
-    
-    void feed(float input) {
-      this-&gt;output = (this-&gt;output)*(1.00 - this-&gt;filter_constant) + input * (this-&gt;filter_constant);
-    }
-    
-};
-</code></pre><p>Top use it, simply instanciate a LowPassFilter object:</p>
-<pre tabindex="0"><code>LowPassFilter lpf1(FILTER_CONSTANT);
-</code></pre><p>Then feed values into it:</p>
-<pre tabindex="0"><code>lpf1.feed(sample);
-</code></pre><p>The output of the filter can be accessed using:</p>
-<pre tabindex="0"><code>lpf1.output
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LowPassFilter</span> {
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> filter_constant;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> output;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    LowPassFilter(<span style="color:#66d9ef">float</span> filter_constant) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Constructor
+</span></span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>output <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>filter_constant <span style="color:#f92672">=</span> filter_constant;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">feed</span>(<span style="color:#66d9ef">float</span> input) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>output <span style="color:#f92672">=</span> (<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>output)<span style="color:#f92672">*</span>(<span style="color:#ae81ff">1.00</span> <span style="color:#f92672">-</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>filter_constant) <span style="color:#f92672">+</span> input <span style="color:#f92672">*</span> (<span style="color:#66d9ef">this</span><span style="color:#f92672">-&gt;</span>filter_constant);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Top use it, simply instanciate a LowPassFilter object:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>LowPassFilter <span style="color:#a6e22e">lpf1</span>(FILTER_CONSTANT);
+</span></span></code></pre></div><p>Then feed values into it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>lpf1.feed(sample);
+</span></span></code></pre></div><p>The output of the filter can be accessed using:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>lpf1.output
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

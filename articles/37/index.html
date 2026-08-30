@@ -245,11 +245,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>GitLab CI is a feature of GitLab that allows users to have actions triggered upon pushing a repository to it&rsquo;s remote. For example, it can be used to execute all tests defined in the code, containerize the application and deploy it. A popular alternative to GitLab CI is Jenkins.</p>
 <h2 id="install-gitlab-runner">Install GitLab Runner</h2>
 <p>GitLab CI requires GitLab runner to execute the actions defined by the user. On Ubuntu, GitLab runner can be installed as so:</p>
-<pre tabindex="0"><code>curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
-sudo apt install gitlab-runner
-</code></pre><h2 id="registering-runner">Registering runner</h2>
-<pre tabindex="0"><code>sudo gitlab-runner register
-</code></pre><p>The command will prompt for the following information:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+</span></span><span style="display:flex;"><span>sudo apt install gitlab-runner
+</span></span></code></pre></div><h2 id="registering-runner">Registering runner</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo gitlab-runner register
+</span></span></code></pre></div><p>The command will prompt for the following information:</p>
 <ul>
 <li>URL of the GitLab instance</li>
 <li>Token (available from the Admin Area of the GitLab instance Overview &gt; Runners)</li>
@@ -258,45 +258,45 @@ sudo apt install gitlab-runner
 <li>Executor</li>
 </ul>
 <p>Usin the shell executor is the simplest way to use gitlab runner. If using the shell executor, commands are run in the host shell as the gitlab-runner user. To interact with docker, the gitlab-runner must be in the docker group:</p>
-<pre tabindex="0"><code>sudo usermod -aG docker gitlab-runner
-</code></pre><p>More info about the shell executor <a href="https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-shell-executor">here</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo usermod -aG docker gitlab-runner
+</span></span></code></pre></div><p>More info about the shell executor <a href="https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-shell-executor">here</a></p>
 <h2 id="gitlab-ciyml">.gitlab-ci.yml</h2>
 <p>To trigger actions, a .gitlab-ci.yml file needs to be present in the project directory.</p>
 <p>Excellent tutorial <a href="https://dev.to/6thcode/how-to-set-up-a-cicd-environment-on-gitlab-using-nodejs-jh3">here</a></p>
 <p>Here is an example .gitlab-ci.yml file used for the testing and dockerization of a NodeJS app:</p>
-<pre tabindex="0"><code>stages:
-  - install
-  - test
-  - dockerize
-  - run
-
-cache:
-  paths:
-    - node_modules/
-
-install_dependencies:
-  stage: install
-  script:
-    - npm install
-  artifacts:
-    paths:
-      - node_modules/
-
-testing_testing:
-  stage: test
-  script: npm test
-
-dockerization:
-  stage: dockerize
-  script:
-    - docker build -t gitlab-ci-dockerization-test .
-
-run_container:
-  stage: run
-  script:
-    - docker stop gitlab-ci-dockerization-test || true &amp;&amp; docker rm gitlab-ci-dockerization-test || true
-    - docker run --name=gitlab-ci-dockerization-test -d -p 3334:3334 gitlab-ci-dockerization-test
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">stages</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">install</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">test</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">dockerize</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">run</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">cache</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">paths</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">node_modules/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">install_dependencies</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">install</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">npm install</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">artifacts</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">paths</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">node_modules/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">testing_testing</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">test</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>: <span style="color:#ae81ff">npm test</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">dockerization</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">dockerize</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker build -t gitlab-ci-dockerization-test .</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">run_container</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">stage</span>: <span style="color:#ae81ff">run</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker stop gitlab-ci-dockerization-test || true &amp;&amp; docker rm gitlab-ci-dockerization-test || true</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">docker run --name=gitlab-ci-dockerization-test -d -p 3334:3334 gitlab-ci-dockerization-test</span>
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

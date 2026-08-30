@@ -248,41 +248,41 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>HTML stands for HyperText Markup Language. It is used to describe the content of a webpage to web browsers. Originally, web browsers were designed to display text documents and so HTML was used to define the various parts making up those documents.</p>
 <h2 id="tags">Tags</h2>
 <p>HTML uses tags to define the attributes of content such as:</p>
-<pre tabindex="0"><code>&lt;p&gt;This is a pararaph&lt;/p&gt;
-</code></pre><p>In this example, the text &ldquo;This is a paragraph&rdquo; is defined as a paragraph because it is surrounded by <code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> tags. Note the &ldquo;/&rdquo; for the tag after the content, which implies that it is a closing tag.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;This is a pararaph&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span></code></pre></div><p>In this example, the text &ldquo;This is a paragraph&rdquo; is defined as a paragraph because it is surrounded by <code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code> tags. Note the &ldquo;/&rdquo; for the tag after the content, which implies that it is a closing tag.</p>
 <h2 id="links">Links</h2>
 <p>The web takes its name from how web pages are interconnected together: A user can navigate from one page to another using hypertext links. To define a portion of text as a link, the <code>&lt;a&gt;</code> tag is used:</p>
-<pre tabindex="0"><code>&lt;a href=&#39;maximemoreillon.com&#39;&gt;This is a link to maximemoreillon.com&lt;/a&gt;
-</code></pre><p>Note that the target of the link is defined within the dag using the &ldquo;href&rdquo; attribute.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;maximemoreillon.com&#39;</span>&gt;This is a link to maximemoreillon.com&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div><p>Note that the target of the link is defined within the dag using the &ldquo;href&rdquo; attribute.</p>
 <h2 id="nested-tags">Nested tags</h2>
 <p>Tagged content can be placed inside tagged content. For example, a link can be put inside a paragraph:</p>
-<pre tabindex="0"><code>&lt;p&gt;
-  This is a paragraph and it contains &lt;a href=&#39;maximemoreillon.com&#39;&gt;link to maximemoreillon.com&lt;/a&gt;
-&lt;/p&gt;
-</code></pre><p>Note that HTML is insensitive to line breaks.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>  This is a paragraph and it contains &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;maximemoreillon.com&#39;</span>&gt;link to maximemoreillon.com&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span></code></pre></div><p>Note that HTML is insensitive to line breaks.</p>
 <h2 id="html-document-structure">HTML document structure</h2>
 <p>In fact, the content is displayed on the body of the document and as such, must be nested in the <code>&lt;body&gt;</code> tag. Moreover, the body is part of an HTML document and, consequently, is nested within the <code>&lt;html&gt;</code> tag:</p>
-<pre tabindex="0"><code>&lt;html&gt; 
-    &lt;body&gt; 
-        &lt;p&gt; 
-            This is a paragraph and it contains &lt;a href=&#39;maximemoreillon.com&#39;&gt;link to maximemoreillon.com&lt;/a&gt; 
-        &lt;/p&gt; 
-    &lt;/body&gt; 
-&lt;/html&gt;
-</code></pre><p>At this point, it may seem trivial that content should appear on the body of the page and as such, the <code>&lt;body&gt;</code> tag should not need to exist. However, the page can carry information that does not necessarily appear in its body. Namely, the text is shown in the browser tab, i.e. title (tag: <code>&lt;title&gt;</code>)of the document, does not appear on the page. This sort of information is written in the head of the document, which is nested in the <!-- raw HTML omitted --> tag just like the body. This yields the following document structure, which constitutes somewhat of a bare minimum for a web page:</p>
-<pre tabindex="0"><code>&lt;html&gt; 
-    &lt;head&gt; 
-        &lt;title&gt; 
-            Document title 
-        &lt;/title&gt; 
-    &lt;/head&gt; 
-    &lt;body&gt; 
-        &lt;p&gt; 
-            This is a paragraph and it contains &lt;a href=&#39;maximemoreillon.com&#39;&gt;link to maximemoreillon.com&lt;/a&gt; 
-        &lt;/p&gt; 
-    &lt;/body&gt; 
-&lt;/html&gt;
-</code></pre><h2 id="key-takeaways">Key takeaways</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt; 
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">body</span>&gt; 
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">p</span>&gt; 
+</span></span><span style="display:flex;"><span>            This is a paragraph and it contains &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;maximemoreillon.com&#39;</span>&gt;link to maximemoreillon.com&lt;/<span style="color:#f92672">a</span>&gt; 
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">p</span>&gt; 
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">body</span>&gt; 
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><p>At this point, it may seem trivial that content should appear on the body of the page and as such, the <code>&lt;body&gt;</code> tag should not need to exist. However, the page can carry information that does not necessarily appear in its body. Namely, the text is shown in the browser tab, i.e. title (tag: <code>&lt;title&gt;</code>)of the document, does not appear on the page. This sort of information is written in the head of the document, which is nested in the <!-- raw HTML omitted --> tag just like the body. This yields the following document structure, which constitutes somewhat of a bare minimum for a web page:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt; 
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">head</span>&gt; 
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">title</span>&gt; 
+</span></span><span style="display:flex;"><span>            Document title 
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">title</span>&gt; 
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">head</span>&gt; 
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">body</span>&gt; 
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">p</span>&gt; 
+</span></span><span style="display:flex;"><span>            This is a paragraph and it contains &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;maximemoreillon.com&#39;</span>&gt;link to maximemoreillon.com&lt;/<span style="color:#f92672">a</span>&gt; 
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">p</span>&gt; 
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">body</span>&gt; 
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><h2 id="key-takeaways">Key takeaways</h2>
 <p>HTML describes the content of a web page using tags.</p>
 <h2 id="more-on-the-subject">More on the subject</h2>
 <p>The content of this page constitutes a very rudimentary introduction to HTML for a more thorough study of the subject, <a href="https://www.w3schools.com/">W3Schools</a> offers detailed tutorials on web development.</p>

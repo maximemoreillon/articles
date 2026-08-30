@@ -248,31 +248,31 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>NodeJS apps can be containerized using the <code>docker build</code> command. This article is based on <a href="https://nodejs.org/de/docs/guides/nodejs-docker-webapp/">this guide</a>.</p>
 <p>To create a container image, a Dockerfile is needed. Here is an example specifically made for the containerization of NodeJS apps:</p>
-<pre tabindex="0"><code>FROM node:14
-
-# Create and move into app directory
-WORKDIR /usr/src/app
-
-# Copy files of host current workdir
-# into container workdir
-COPY . .
-
-# Install dependecies described in packages.json
-RUN npm install
-
-# Open port 8080
-EXPOSE 8080
-
-# Run the node app
-CMD [ &#34;node&#34;, &#34;server.js&#34; ]
-</code></pre><p>RUN is for commands to be executed during the container building process</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">node:14</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Create and move into app directory</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/usr/src/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Copy files of host current workdir</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># into container workdir</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Install dependecies described in packages.json</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Open port 8080</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">8080</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Run the node app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [ <span style="color:#e6db74">&#34;node&#34;</span>, <span style="color:#e6db74">&#34;server.js&#34;</span> ]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>RUN is for commands to be executed during the container building process</p>
 <p>CMD is for commands to be executed when the container is run</p>
 <p>With this Dockerfile, a container image can be built by running:</p>
-<pre tabindex="0"><code>docker build -t docker_test .
-</code></pre><p>where -t means tag</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build -t docker_test .
+</span></span></code></pre></div><p>where -t means tag</p>
 <p>To reduce the size of the container image, node_modules can be prevented from being copied by creating a .dockeringore file with the following content:</p>
-<pre tabindex="0"><code>node_modules
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>node_modules
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

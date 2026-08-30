@@ -248,79 +248,79 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Kubernetes provides an abstraction layer for persistent data storage. Volumes can be of various storage classes depending on user requirements. Those requirements can evolve with time, meaning that volumes sometimes need to be migrated from one storage class to another. This article introduces a method to do so.</p>
 <p>In this article, MinIO will be used as an example. MinIO pods do not support the <code>kubectl cp</code> command as the container does not have <code>tar</code> installed, which <code>kubectl cp</code> requires to stream files. For applications that do support the <code>kubectl cp</code> command, the procedure in this article can be simplified</p>
 <p>Here is a manifest for a MinIO pod, where data is stored using a storage class called <code>nfs-csi</code>:</p>
-<pre tabindex="0"><code>apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: minio-nfs
-spec:
-  storageClassName: nfs-csi
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 500Gi
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: minio
-spec:
-  volumes:
-    - name: minio-data
-      persistentVolumeClaim:
-        claimName: minio-nfs
-  containers:
-    - name: minio
-      image: quay.io/minio/minio
-      command:
-        - /bin/bash
-        - -c
-      args:
-        - minio server /data --console-address :9001
-      volumeMounts:
-        - mountPath: /data
-          name: minio-data
-</code></pre><p>Now let&rsquo;s imagine we want MinIO to use a new storage class, Longhorn. Thins involves creating a new set of PVC and PV. Assuming the <code>lonhgorn</code> storage class already exists in the cluster: This can be done using the following manifest:</p>
-<pre tabindex="0"><code>apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: minio-longhorn
-spec:
-  storageClassName: longhorn
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 500Gi
-</code></pre><p>The data now needs to be moved from the original PV to the new one. For this purpose, let&rsquo;s start by deleting the MinIO pod:</p>
-<pre tabindex="0"><code>kubectl delete pod minio
-</code></pre><p>In its place, we will deploy a Ubuntu pod with the PVC mounted to <code>/mnt</code></p>
-<pre tabindex="0"><code>apiVersion: v1
-kind: Pod
-metadata:
-  name: ubuntu
-spec:
-  containers:
-  - image: ubuntu
-    command:
-      - &#34;sleep&#34;
-      - &#34;604800&#34;
-    name: ubuntu
-    volumeMounts:
-      - mountPath: /mnt
-        name: mnt
-  restartPolicy: Always
-  volumes:
-    - name: mnt
-      persistentVolumeClaim:
-        claimName: minio-nfs
-</code></pre><p>With the pod deployed, we can leverage <code>kubectl cp</code> to copy data from the PV to our local machine in a temporary folder:</p>
-<pre tabindex="0"><code>kubectl cp ubuntu:/mnt ./tmp
-</code></pre><p>Once done, we can delete the Ubuntu pod and recreate it by changing the <code>spec.volumes.persistentVolumeClaim.claimName</code> to <code>minio-longhorn</code>. The newly create Ubuntu pod now has the new PVC mounted to <code>/mnt</code>. This allows us to copy the content of the temporary folder into the PV:</p>
-<pre tabindex="0"><code>microk8s.kubectl cp ./tmp/. ubuntu:/mnt
-</code></pre><p>After the data has been transferred to the new PV, the Ubuntu pod can once again be deleted.</p>
-<pre tabindex="0"><code>kubectl delete pod ubuntu
-</code></pre><p>The <code>spec.volumes.persistentVolumeClaim.claimName</code> of the MinIO pod can now be changed to <code>longhorn</code> as well, after which the pod can be redeployed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">PersistentVolumeClaim</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">minio-nfs</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storageClassName</span>: <span style="color:#ae81ff">nfs-csi</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">accessModes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">ReadWriteOnce</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">storage</span>: <span style="color:#ae81ff">500Gi</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">minio</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">minio-data</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">persistentVolumeClaim</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">claimName</span>: <span style="color:#ae81ff">minio-nfs</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">minio</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">image</span>: <span style="color:#ae81ff">quay.io/minio/minio</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">command</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">/bin/bash</span>
+</span></span><span style="display:flex;"><span>        - -<span style="color:#ae81ff">c</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">args</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">minio server /data --console-address :9001</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumeMounts</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/data</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">minio-data</span>
+</span></span></code></pre></div><p>Now let&rsquo;s imagine we want MinIO to use a new storage class, Longhorn. Thins involves creating a new set of PVC and PV. Assuming the <code>lonhgorn</code> storage class already exists in the cluster: This can be done using the following manifest:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">PersistentVolumeClaim</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">minio-longhorn</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storageClassName</span>: <span style="color:#ae81ff">longhorn</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">accessModes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">ReadWriteOnce</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">storage</span>: <span style="color:#ae81ff">500Gi</span>
+</span></span></code></pre></div><p>The data now needs to be moved from the original PV to the new one. For this purpose, let&rsquo;s start by deleting the MinIO pod:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl delete pod minio
+</span></span></code></pre></div><p>In its place, we will deploy a Ubuntu pod with the PVC mounted to <code>/mnt</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ubuntu</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">image</span>: <span style="color:#ae81ff">ubuntu</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">command</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#e6db74">&#34;sleep&#34;</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#e6db74">&#34;604800&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ubuntu</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumeMounts</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/mnt</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mnt</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">restartPolicy</span>: <span style="color:#ae81ff">Always</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mnt</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">persistentVolumeClaim</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">claimName</span>: <span style="color:#ae81ff">minio-nfs</span>
+</span></span></code></pre></div><p>With the pod deployed, we can leverage <code>kubectl cp</code> to copy data from the PV to our local machine in a temporary folder:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl cp ubuntu:/mnt ./tmp
+</span></span></code></pre></div><p>Once done, we can delete the Ubuntu pod and recreate it by changing the <code>spec.volumes.persistentVolumeClaim.claimName</code> to <code>minio-longhorn</code>. The newly create Ubuntu pod now has the new PVC mounted to <code>/mnt</code>. This allows us to copy the content of the temporary folder into the PV:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl cp ./tmp/. ubuntu:/mnt
+</span></span></code></pre></div><p>After the data has been transferred to the new PV, the Ubuntu pod can once again be deleted.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl delete pod ubuntu
+</span></span></code></pre></div><p>The <code>spec.volumes.persistentVolumeClaim.claimName</code> of the MinIO pod can now be changed to <code>longhorn</code> as well, after which the pod can be redeployed.</p>
 <p>The MinIO pod should now be using Longhorn as a storage class and have its data from the original <code>nfs-csi</code> PV.</p>
 
             </div>

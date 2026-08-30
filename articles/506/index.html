@@ -247,44 +247,44 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Mosquitto can usually be installed on an Ubuntu server fairly easily using the APT package manager. By Default, the broker handles unencrypted MQTT connections but it can be configured to use SSL certificates obtained, for example, using Certbot and thus enable MQTTs connections. This configuration is usually achieved by editing the Mosquitto configuration file in /etc/mosquitto so as to point to certificates obtained independently. However, when deploying Mosquitto to Kubernetes, one would prefer not to edit configuration files manually after install. Moreover, in Kubernetes, one can use Cert-manager to obtain SSL certificates. Thus, this article presents an efficient method to deploy a secure MQTTs broker in Kubernetes.</p>
 <h2 id="deployment">Deployment</h2>
 <p>Let&rsquo;s begin by creating a deployment for the broker. This can be done easily with the following manifest.</p>
-<pre tabindex="0"><code>apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mosquitto
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mosquitto
-  template:
-    metadata:
-      labels:
-        app: mosquitto
-    spec:
-      containers:
-      - name: mosquitto
-        image: eclipse-mosquitto
-        ports:
-        - containerPort: 8883
-        - containerPort: 9001
-        volumeMounts:
-        - mountPath: /etc/mosquitto/
-          name: config
-        - mountPath: /mosquitto/certs/
-          name: certs
-        - mountPath: /mosquitto/data/
-          name: data
-      volumes:
-      - name: config
-        configMap:
-          name: mosquitto-config
-      - name: certs
-        secret:
-          secretName: mosquitto-certs
-      - name: data
-        persistentVolumeClaim:
-          claimName: mosquitto-data
-</code></pre><p>The volumeMounts are the essential part to pay attention to. Here, we have 3 volumes mounted:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mosquitto</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mosquitto</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mosquitto</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mosquitto</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">eclipse-mosquitto</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">8883</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">9001</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">volumeMounts</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/etc/mosquitto/</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/mosquitto/certs/</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">certs</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/mosquitto/data/</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">data</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">config</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">configMap</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mosquitto-config</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">certs</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">secret</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">secretName</span>: <span style="color:#ae81ff">mosquitto-certs</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">data</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">persistentVolumeClaim</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">claimName</span>: <span style="color:#ae81ff">mosquitto-data</span>
+</span></span></code></pre></div><p>The volumeMounts are the essential part to pay attention to. Here, we have 3 volumes mounted:</p>
 <ul>
 <li>/mosquitto/data: which holds the Mosquitto persistent data, mapped to a PVC</li>
 <li>/mosquitto/certs: which will hold SSL certificates, mapped to a secret</li>
@@ -292,75 +292,75 @@ spec:
 </ul>
 <h2 id="pvc-for-persistent-data">PVC for Persistent data</h2>
 <p>The Mosquitto persistent data should survive even when pods are deleted or recreated. Consequently, the persistent data is stored in a PV, for which this would be a typical PVC:</p>
-<pre tabindex="0"><code>apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mosquitto-data
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-</code></pre><h2 id="secret-for-ssl-certificates">Secret for SSL certificates</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">PersistentVolumeClaim</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mosquitto-data</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">accessModes</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">ReadWriteOnce</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">storage</span>: <span style="color:#ae81ff">5Gi</span>
+</span></span></code></pre></div><h2 id="secret-for-ssl-certificates">Secret for SSL certificates</h2>
 <p>The Mosquitto deployment specifies that /mosquitto/certs is to be mounted from a secret. This secret is in fact that created automatically by Cert-manager when creating an Ingress for our Broker:</p>
-<pre tabindex="0"><code>apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: mosquitto
-  annotations:
-    kubernetes.io/ingress.class: &#34;nginx&#34;
-    cert-manager.io/cluster-issuer: &#34;letsencrypt-prod&#34;
-spec:
-  tls:
-  - hosts:
-    - mqtt.example.com
-    secretName: mosquitto-certs
-  rules:
-  - host: mqtt.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: mosquitto-clusterip
-            port: 
-              number: 8883
-</code></pre><h2 id="configmap-for-mosquitto-configuration">Configmap for Mosquitto configuration</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">networking.k8s.io/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Ingress</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mosquitto</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kubernetes.io/ingress.class</span>: <span style="color:#e6db74">&#34;nginx&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cert-manager.io/cluster-issuer</span>: <span style="color:#e6db74">&#34;letsencrypt-prod&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">tls</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">hosts</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">mqtt.example.com</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">secretName</span>: <span style="color:#ae81ff">mosquitto-certs</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rules</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">host</span>: <span style="color:#ae81ff">mqtt.example.com</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">http</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">paths</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">pathType</span>: <span style="color:#ae81ff">Prefix</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">backend</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">service</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mosquitto-clusterip</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">port</span>: 
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">number</span>: <span style="color:#ae81ff">8883</span>
+</span></span></code></pre></div><h2 id="configmap-for-mosquitto-configuration">Configmap for Mosquitto configuration</h2>
 <p>The last volume to take care of is that of the Mosquitto configuration. The Mosquitto configuration is usually achieved by editing a text file but here, the file actually mounted as a configmap. The configuration specifies the path to the SSL certificates which have been mounted as a secret:</p>
-<pre tabindex="0"><code>apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mosquitto-config
-data:
-  mosquitto.conf: |
-
-    persistence true
-    persistence_location /mosquitto/data/
-
-    log_dest stdout
-
-    # MQTT with TLS (MQTTS)
-    listener 8883
-    protocol mqtt
-
-    cafile /etc/ssl/certs/ca-certificates.crt
-    keyfile /mosquitto/certs/tls.key
-    certfile /mosquitto/certs/tls.crt
-</code></pre><h2 id="services">Services</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mosquitto-config</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mosquitto.conf</span>: <span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">persistence true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">persistence_location /mosquitto/data/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">log_dest stdout</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># MQTT with TLS (MQTTS)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">listener 8883</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">protocol mqtt</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">cafile /etc/ssl/certs/ca-certificates.crt</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">keyfile /mosquitto/certs/tls.key</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">certfile /mosquitto/certs/tls.crt</span>
+</span></span></code></pre></div><h2 id="services">Services</h2>
 <p>Finally, we add a service to connect the ingress to the deployment:</p>
-<pre tabindex="0"><code>apiVersion: v1
-kind: Service
-metadata:
-  name: mosquitto-mqtts
-spec:
-  type: ClusterIP
-  selector:
-    app: mosquitto
-  ports:
-  - port: 8883
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mosquitto-mqtts</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">ClusterIP</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mosquitto</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">8883</span>
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

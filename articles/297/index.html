@@ -249,33 +249,33 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>A Keras model can be created in various ways, for example using the <a href="https://keras.io/getting-started/sequential-model-guide/">sequential model</a>:</p>
-<pre tabindex="0"><code>from keras.models import Sequential
-from keras.layers import Dense, Activation
-
-model = Sequential([
-    Dense(32, input_shape=(784,)),
-    Activation(&#39;relu&#39;),
-    Dense(10),
-    Activation(&#39;softmax&#39;),
-])
-</code></pre><p>Such model can be saved using the save() function:</p>
-<pre tabindex="0"><code>model.save(&#39;./my_model/1&#39;)
-</code></pre><p>Here, the /1 at the end of the path is important for later.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> keras.models <span style="color:#f92672">import</span> Sequential
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> keras.layers <span style="color:#f92672">import</span> Dense, Activation
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> Sequential([
+</span></span><span style="display:flex;"><span>    Dense(<span style="color:#ae81ff">32</span>, input_shape<span style="color:#f92672">=</span>(<span style="color:#ae81ff">784</span>,)),
+</span></span><span style="display:flex;"><span>    Activation(<span style="color:#e6db74">&#39;relu&#39;</span>),
+</span></span><span style="display:flex;"><span>    Dense(<span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>    Activation(<span style="color:#e6db74">&#39;softmax&#39;</span>),
+</span></span><span style="display:flex;"><span>])
+</span></span></code></pre></div><p>Such model can be saved using the save() function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model<span style="color:#f92672">.</span>save(<span style="color:#e6db74">&#39;./my_model/1&#39;</span>)
+</span></span></code></pre></div><p>Here, the /1 at the end of the path is important for later.</p>
 <p>The model will be run inside a docker container. To do so, first download and run an &ldquo;empty&rdquo; serving container which will serve as a base:</p>
-<pre tabindex="0"><code>docker run -d --name serving_base tensorflow/serving
-</code></pre><p>Here, the name <code>serving_base</code> is given to the container using the <code>--name</code> flag to easily manipulate it later</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d --name serving_base tensorflow/serving
+</span></span></code></pre></div><p>Here, the name <code>serving_base</code> is given to the container using the <code>--name</code> flag to easily manipulate it later</p>
 <p>Then copy the model into it. Here it is assumed that the user is in the working directory of the python script</p>
-<pre tabindex="0"><code>docker cp ./my_model serving_base:/models/my_model
-</code></pre><p>The container thus obtained can be saved into a new image using the commit command:</p>
-<pre tabindex="0"><code>docker commit --change &#34;ENV MODEL_NAME my_model&#34; serving_base my-model-serving
-</code></pre><p>With this done, the base container is no longer needed and can be deleted:</p>
-<pre tabindex="0"><code>docker kill serving_base
-docker rm serving_base
-</code></pre><p>Containers can now be started from the generated image:</p>
-<pre tabindex="0"><code>docker run -d -p 8501:8501 my-model-serving
-</code></pre><p>To test if this is working, curl can be used:</p>
-<pre tabindex="0"><code>curl -d &#39;{&#34;instances&#34;: [1.0, 2.0, 5.0]}&#39; http://localhost:8501/v1/models/my_model:predict
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker cp ./my_model serving_base:/models/my_model
+</span></span></code></pre></div><p>The container thus obtained can be saved into a new image using the commit command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker commit --change <span style="color:#e6db74">&#34;ENV MODEL_NAME my_model&#34;</span> serving_base my-model-serving
+</span></span></code></pre></div><p>With this done, the base container is no longer needed and can be deleted:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker kill serving_base
+</span></span><span style="display:flex;"><span>docker rm serving_base
+</span></span></code></pre></div><p>Containers can now be started from the generated image:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -p 8501:8501 my-model-serving
+</span></span></code></pre></div><p>To test if this is working, curl can be used:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -d <span style="color:#e6db74">&#39;{&#34;instances&#34;: [1.0, 2.0, 5.0]}&#39;</span> http://localhost:8501/v1/models/my_model:predict
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

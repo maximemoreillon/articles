@@ -32,7 +32,8 @@
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Generic Kubernetes manifest for web application deployment">
 	<meta property="og:description" content="Deployment name, container registry and service port are externalized, making this manifest general-purpose
-apiVersion: apps/v1 kind: Deployment metadata: name: ${APPLICATION_NAME} spec: replicas: 1 selector: matchLabels: app: ${APPLICATION_NAME} template: metadata: labels: app: ${APPLICATION_NAME} spec: containers: - name: ${APPLICATION_NAME} image: ${CONTAINER_REGISTRY}/${APPLICATION_NAME} imagePullPolicy: Always ports: - containerPort: 80 --- apiVersion: v1 kind: Service metadata: labels: run: ${APPLICATION_NAME} name: ${APPLICATION_NAME} spec: ports: - port: 80 nodePort: ${SERVICE_PORT} selector: app: ${APPLICATION_NAME} type: LoadBalancer Reminder: To parse environment variables in a kubernetes manifest file, use the following:">
+apiVersion: apps/v1 kind: Deployment metadata: name: ${APPLICATION_NAME} spec: replicas: 1 selector: matchLabels: app: ${APPLICATION_NAME} template: metadata: labels: app: ${APPLICATION_NAME} spec: containers: - name: ${APPLICATION_NAME} image: ${CONTAINER_REGISTRY}/${APPLICATION_NAME} imagePullPolicy: Always ports: - containerPort: 80 --- apiVersion: v1 kind: Service metadata: labels: run: ${APPLICATION_NAME} name: ${APPLICATION_NAME} spec: ports: - port: 80 nodePort: ${SERVICE_PORT} selector: app: ${APPLICATION_NAME} type: LoadBalancer Reminder: To parse environment variables in a kubernetes manifest file, use the following:
+envsubst &lt; deployment.yml | kubectl apply -f -">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -47,7 +48,8 @@ apiVersion: apps/v1 kind: Deployment metadata: name: ${APPLICATION_NAME} spec: r
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Generic Kubernetes manifest for web application deployment">
 	<meta name="twitter:description" content="Deployment name, container registry and service port are externalized, making this manifest general-purpose
-apiVersion: apps/v1 kind: Deployment metadata: name: ${APPLICATION_NAME} spec: replicas: 1 selector: matchLabels: app: ${APPLICATION_NAME} template: metadata: labels: app: ${APPLICATION_NAME} spec: containers: - name: ${APPLICATION_NAME} image: ${CONTAINER_REGISTRY}/${APPLICATION_NAME} imagePullPolicy: Always ports: - containerPort: 80 --- apiVersion: v1 kind: Service metadata: labels: run: ${APPLICATION_NAME} name: ${APPLICATION_NAME} spec: ports: - port: 80 nodePort: ${SERVICE_PORT} selector: app: ${APPLICATION_NAME} type: LoadBalancer Reminder: To parse environment variables in a kubernetes manifest file, use the following:">
+apiVersion: apps/v1 kind: Deployment metadata: name: ${APPLICATION_NAME} spec: replicas: 1 selector: matchLabels: app: ${APPLICATION_NAME} template: metadata: labels: app: ${APPLICATION_NAME} spec: containers: - name: ${APPLICATION_NAME} image: ${CONTAINER_REGISTRY}/${APPLICATION_NAME} imagePullPolicy: Always ports: - containerPort: 80 --- apiVersion: v1 kind: Service metadata: labels: run: ${APPLICATION_NAME} name: ${APPLICATION_NAME} spec: ports: - port: 80 nodePort: ${SERVICE_PORT} selector: app: ${APPLICATION_NAME} type: LoadBalancer Reminder: To parse environment variables in a kubernetes manifest file, use the following:
+envsubst &lt; deployment.yml | kubectl apply -f -">
 
 
     
@@ -243,43 +245,43 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>Deployment name, container registry and service port are externalized, making this manifest general-purpose</p>
-<pre tabindex="0"><code>apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: ${APPLICATION_NAME}
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: ${APPLICATION_NAME}
-  template:
-    metadata:
-      labels:
-        app: ${APPLICATION_NAME}
-    spec:
-      containers:
-      - name: ${APPLICATION_NAME}
-        image: ${CONTAINER_REGISTRY}/${APPLICATION_NAME}
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    run: ${APPLICATION_NAME}
-  name: ${APPLICATION_NAME}
-spec:
-  ports:
-  - port: 80
-    nodePort: ${SERVICE_PORT}
-  selector:
-    app: ${APPLICATION_NAME}
-  type: LoadBalancer
-</code></pre><p>Reminder: To parse environment variables in a kubernetes manifest file, use the following:</p>
-<pre tabindex="0"><code>envsubst &lt; deployment.yml | kubectl apply -f -
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">${APPLICATION_NAME}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">${APPLICATION_NAME}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">${APPLICATION_NAME}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">${APPLICATION_NAME}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">${CONTAINER_REGISTRY}/${APPLICATION_NAME}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">Always</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">run</span>: <span style="color:#ae81ff">${APPLICATION_NAME}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">${APPLICATION_NAME}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">nodePort</span>: <span style="color:#ae81ff">${SERVICE_PORT}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">${APPLICATION_NAME}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">LoadBalancer</span>
+</span></span></code></pre></div><p>Reminder: To parse environment variables in a kubernetes manifest file, use the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>envsubst &lt; deployment.yml | kubectl apply -f -
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

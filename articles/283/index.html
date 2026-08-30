@@ -250,24 +250,24 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>User authenticates using username and password, server sets a signed cookie containing serialized user info</p>
-<pre tabindex="0"><code>app.use(cookieSession({
-  name: &#39;session&#39;,
-  secret: &#39;shhhh&#39;,
-  maxAge: 253402300000000, // infinite
-  sameSite: false,
-  domain: &#34;yourdomain.com&#34;
-}));
-</code></pre><p>key-value pairs can be set using the session property:</p>
-<pre tabindex="0"><code>req.session.username = &#34;myUsername&#34;
-</code></pre><p>The value is signed (not encrypted) using the secret defined hereabove, meaning it prevents tampering but does not prevent the payload from being read</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">cookieSession</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;session&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">secret</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;shhhh&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">maxAge</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">253402300000000</span>, <span style="color:#75715e">// infinite
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sameSite</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">domain</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;yourdomain.com&#34;</span>
+</span></span><span style="display:flex;"><span>}));
+</span></span></code></pre></div><p>key-value pairs can be set using the session property:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">session</span>.<span style="color:#a6e22e">username</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;myUsername&#34;</span>
+</span></span></code></pre></div><p>The value is signed (not encrypted) using the secret defined hereabove, meaning it prevents tampering but does not prevent the payload from being read</p>
 <p>Requires special options for CORS:</p>
-<pre tabindex="0"><code>app.use(cors({
-  origin: [/* origins */],
-  credentials: true,
-}));
-</code></pre><p>As well as Axios:</p>
-<pre tabindex="0"><code>axios.defaults.withCredentials = true
-</code></pre><p>This method works well for clients using web browsers with cookies enabled but consequently not so much for mobile or IoT devices</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">cors</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">origin</span><span style="color:#f92672">:</span> [<span style="color:#75715e">/* origins */</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">credentials</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>}));
+</span></span></code></pre></div><p>As well as Axios:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">defaults</span>.<span style="color:#a6e22e">withCredentials</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>This method works well for clients using web browsers with cookies enabled but consequently not so much for mobile or IoT devices</p>
 
             </div>
         </article></main>

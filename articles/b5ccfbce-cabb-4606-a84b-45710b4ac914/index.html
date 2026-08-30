@@ -259,16 +259,16 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Once created, the certificate can be exported, alongside its key.</p>
 <h2 id="certificate-format-conversion">Certificate format conversion</h2>
 <p>The server certificate exported in the previous step cannot be uploaded as is to the Aruba IAP. The content of the exported key and intermediate CA must be added to it. This can be done with a text editor. The resulting content should match the following structure:</p>
-<pre tabindex="0"><code>-----BEGIN PRIVATE KEY-----
-Key
------END PRIVATE KEY-----
------BEGIN CERTIFICATE-----
-Server certificate
------END CERTIFICATE-----
------BEGIN CERTIFICATE-----
-Intermediate CA
------END CERTIFICATE-----
-</code></pre><h2 id="uploading-the-certificate-to-the-aruba-iap">Uploading the certificate to the Aruba IAP</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>-----BEGIN PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>Key
+</span></span><span style="display:flex;"><span>-----END PRIVATE KEY-----
+</span></span><span style="display:flex;"><span>-----BEGIN CERTIFICATE-----
+</span></span><span style="display:flex;"><span>Server certificate
+</span></span><span style="display:flex;"><span>-----END CERTIFICATE-----
+</span></span><span style="display:flex;"><span>-----BEGIN CERTIFICATE-----
+</span></span><span style="display:flex;"><span>Intermediate CA
+</span></span><span style="display:flex;"><span>-----END CERTIFICATE-----
+</span></span></code></pre></div><h2 id="uploading-the-certificate-to-the-aruba-iap">Uploading the certificate to the Aruba IAP</h2>
 <p>The modified server certificate can now be uploaded to the Aruba IAP. This is achieved in similar fashion to that of the CA, apart from the certificate type which must be set to <em>Server.</em></p>
 <h2 id="registering-the-certificate-for-use-with-the-web-gui">Registering the Certificate for use with the Web GUI</h2>
 <p>Now that the certificate and the CA have been uploaded to the Aruba IAP, the Web UI can be configured to use those for HTTPS. For this purpose, click the + button under <em>Certificate Usage.</em> From there, select Web UI from the application drop down, <em>Server</em> as <em>Certificate type</em> and the uploaded as <em>Certificate name</em>.</p>

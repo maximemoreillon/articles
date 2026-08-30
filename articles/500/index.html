@@ -251,8 +251,8 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>With that done, I built a simple stand for the monitor, added 12V and 5V power supplies as well as a Raspberry pi and the hardware was pretty much done.</p>
 <p><img src="https://img.maximemoreillon.com/images/61495b4e9a075f58c959b4f9" alt=""></p>
 <p>As a final step, I configured the Raspberry pi to open Chromium upon boot and show the Grafana dashboard in full screen. This is achieved by editing the file <code>/etc/xdg/lxsession/LXDE-pi/autostart</code> and adding the following line:</p>
-<pre tabindex="0"><code>/usr/bin/chromium-browser --kiosk  --disable-restore-session-state http://192.168.1.2:30300/d/ahxbKKVnz/energy?orgId=1&amp;kiosk
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>/usr/bin/chromium-browser --kiosk  --disable-restore-session-state http://192.168.1.2:30300/d/ahxbKKVnz/energy?orgId<span style="color:#f92672">=</span>1&amp;kiosk
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

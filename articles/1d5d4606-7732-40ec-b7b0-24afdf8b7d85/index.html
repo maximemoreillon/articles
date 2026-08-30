@@ -249,25 +249,25 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Most database tables - corresponding to the entities manged by the application - need their own CRUD controller and set of HTTP endpoints. Because of this, large applications can quickly become tedious to develop and maintain. However, the logic for each table is usually quite similar.</p>
 <p>Auto CRUD has been developed to reduce this workload. It consists of an Express.js middleware to which an instance of Prisma client is provided. Thanks to Prisma&rsquo;s ability to infer the data schema from the database, Auto CRUD can automatically create CRUD controller and corresponding HTTP endpoints for each table.</p>
 <p>Auto CRUD is provided, among others, <a href="https://www.npmjs.com/package/@moreillon/prisma-auto-crud">as an NPM package</a> which can be installed as follows:</p>
-<pre tabindex="0"><code>npm install @moreillon/prisma-auto-crud
-</code></pre><p>Once, installed, the package can be used such as in this example code:</p>
-<pre tabindex="0"><code>import express from &#34;express&#34;
-import { PrismaClient } from &#34;@prisma/client&#34;
-import autoCrud from &#34;@moreillon/prisma-auto-crud&#34;
-
-const prismaClient = new PrismaClient()
-
-const { PORT = 7070 } = process.env
-
-const app = express()
-app.use(express.json())
-
-app.use(autoCrud(prismaClient))
-
-app.listen(PORT, () =&gt; {
-  console.log(`[Express] Listening on port ${PORT}`)
-})
-</code></pre><p>This exposes CRUD operations for each table via a REST API. For example, a new record in the table named <em>project</em> can be created using a POST request to the <code>/project</code> route.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install @moreillon/prisma-auto-crud
+</span></span></code></pre></div><p>Once, installed, the package can be used such as in this example code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">express</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;express&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PrismaClient</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@prisma/client&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">autoCrud</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@moreillon/prisma-auto-crud&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">prismaClient</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PrismaClient</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">PORT</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">7070</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">app</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">express</span>.<span style="color:#a6e22e">json</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">autoCrud</span>(<span style="color:#a6e22e">prismaClient</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">PORT</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`[Express] Listening on port </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">PORT</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>This exposes CRUD operations for each table via a REST API. For example, a new record in the table named <em>project</em> can be created using a POST request to the <code>/project</code> route.</p>
 <p>The source code for Auto CRUD is available on GitHub <a href="https://github.com/maximemoreillon/prisma-auto-crud">here</a>.</p>
 
             </div>

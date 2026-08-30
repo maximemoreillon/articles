@@ -65,15 +65,15 @@
       
       <description>&lt;p&gt;This article is based on &lt;a href=&#34;https://www.freecodecamp.org/news/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78/&#34;&gt;this publiation&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To publish to npm, being logged in is required:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;npm login
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The package to be published must be contained in its own directory, which must include a &lt;code&gt;package.json&lt;/code&gt; file&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;npm login
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The package to be published must be contained in its own directory, which must include a &lt;code&gt;package.json&lt;/code&gt; file&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;package.json&lt;/code&gt; file must contain at least the following information:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;{
-  &amp;#34;name&amp;#34;: &amp;#34;@USERNAME/MODULE_NAME&amp;#34;,
-  &amp;#34;version&amp;#34;: &amp;#34;0.0.1&amp;#34;
-  &amp;#34;main&amp;#34;: &amp;#34;FILE.js&amp;#34;,
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;where &lt;code&gt;USERNAME&lt;/code&gt; is the username of registered npmjs.com account, &lt;code&gt;MODULE_NAME&lt;/code&gt; is the name of the module to publish and &lt;code&gt;FILE.js&lt;/code&gt; the main file of the module.&lt;/p&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;@USERNAME/MODULE_NAME&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0.0.1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;main&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;FILE.js&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where &lt;code&gt;USERNAME&lt;/code&gt; is the username of registered npmjs.com account, &lt;code&gt;MODULE_NAME&lt;/code&gt; is the name of the module to publish and &lt;code&gt;FILE.js&lt;/code&gt; the main file of the module.&lt;/p&gt;</description>
       
     </item>
     

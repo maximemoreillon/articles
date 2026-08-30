@@ -247,13 +247,13 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>A JavaScript file can be imported as a module into another file using the <code>require</code> command. For example, he file myPackage.js can be imported as so:</p>
-<pre tabindex="0"><code>var myModule= require(&#39;./myModule&#39;)
-</code></pre><p>Here, <code>myModule</code> becomes an object whose properties are that nested in the <code>exports</code> object present in the myModule.js file:</p>
-<pre tabindex="0"><code>exports.foo= &#34;bar&#34;
-</code></pre><p>This allows the variable foo to be used in the code that imported myModule.js:</p>
-<pre tabindex="0"><code>var myModule= require(&#39;./myModule&#39;)
-console.log(myModule.foo) // Will print &#34;bar&#34;
-</code></pre><p>However, <code>exports</code>is an alias of module.exports. Consequently, whatever is assigned to exports is also available on module.exports. However, if something is assigned directly to exports, then the shortcut to module.exports is lost (from <a href="https://adrianmejia.com/getting-started-with-node-js-modules-require-exports-imports-npm-and-beyond/">here</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myModule</span><span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./myModule&#39;</span>)
+</span></span></code></pre></div><p>Here, <code>myModule</code> becomes an object whose properties are that nested in the <code>exports</code> object present in the myModule.js file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">exports</span>.<span style="color:#a6e22e">foo</span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bar&#34;</span>
+</span></span></code></pre></div><p>This allows the variable foo to be used in the code that imported myModule.js:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myModule</span><span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;./myModule&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">myModule</span>.<span style="color:#a6e22e">foo</span>) <span style="color:#75715e">// Will print &#34;bar&#34;
+</span></span></span></code></pre></div><p>However, <code>exports</code>is an alias of module.exports. Consequently, whatever is assigned to exports is also available on module.exports. However, if something is assigned directly to exports, then the shortcut to module.exports is lost (from <a href="https://adrianmejia.com/getting-started-with-node-js-modules-require-exports-imports-npm-and-beyond/">here</a></p>
 
             </div>
         </article></main>

@@ -34,8 +34,7 @@
 	<meta property="og:description" content="By default Docker refuses to push/pull from registries that are not served using HTTPS.
 To enable Docker to push to registries served over HTTP, the address of the registry must be appended to the insecure-registries Array of the /etc/docker/daemon.json file. If the file does not exist, it must be created.
 Here is an example:
-{ &#34;insecure-registries&#34; : [&#34;IP:PORT&#34;] } Docker must be restarted after changes to /etc/docker/daemon.json have been done:
-sudo systemctl restart docker">
+{ &#34;insecure-registries&#34; : [&#34;IP:PORT&#34;] } Docker must be restarted after changes to /etc/docker/daemon.json have been done:">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -53,8 +52,7 @@ sudo systemctl restart docker">
 	<meta name="twitter:description" content="By default Docker refuses to push/pull from registries that are not served using HTTPS.
 To enable Docker to push to registries served over HTTP, the address of the registry must be appended to the insecure-registries Array of the /etc/docker/daemon.json file. If the file does not exist, it must be created.
 Here is an example:
-{ &#34;insecure-registries&#34; : [&#34;IP:PORT&#34;] } Docker must be restarted after changes to /etc/docker/daemon.json have been done:
-sudo systemctl restart docker">
+{ &#34;insecure-registries&#34; : [&#34;IP:PORT&#34;] } Docker must be restarted after changes to /etc/docker/daemon.json have been done:">
 
 
     
@@ -252,12 +250,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>By default Docker refuses to push/pull from registries that are not served using HTTPS.</p>
 <p>To enable Docker to push to registries served over HTTP, the address of the registry must be appended to the <code>insecure-registries</code> Array of the <code>/etc/docker/daemon.json</code> file. If the file does not exist, it must be created.</p>
 <p>Here is an example:</p>
-<pre tabindex="0"><code>{
-  &#34;insecure-registries&#34; : [&#34;IP:PORT&#34;]
-}
-</code></pre><p>Docker must be restarted after changes to <code>/etc/docker/daemon.json</code> have been done:</p>
-<pre tabindex="0"><code>sudo systemctl restart docker
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;insecure-registries&#34;</span> : [<span style="color:#e6db74">&#34;IP:PORT&#34;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Docker must be restarted after changes to <code>/etc/docker/daemon.json</code> have been done:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart docker
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

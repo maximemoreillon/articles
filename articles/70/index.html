@@ -248,120 +248,120 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>Our objective is to deploy a TensorFlow Serving container in a Kubernetes cluster running on the Jetson Nano. Moreover, this container should fully take advantage of the CUDA capabilities of the Nano. Consequently, some preliminary environment preparation is necessary, namely .The following is based on <a href="https://www.virtualthoughts.co.uk/2020/03/24/k3s-and-nvidia-jetson-nano/">this guide</a>. Additionally this article assumes that the reader has a Docker container registry available to push to and pull from.</p>
 <h3 id="docker-configuration">Docker configuration</h3>
 <p>JetPack, the default Linux distribution that comes with the Jetson Nano, ships with Docker preinstalled. However, Docker must be configured to take advantage of the Jetson Nano&rsquo;s GPU capabilities. This can be done by editing the <code>/etc/docker/daemon.json</code> file. Moreover, if we intend to use a private docker registry served over HTTP, the address of the latter must be specified in the same file. Here is how the file should look like after modifications:</p>
-<pre tabindex="0"><code>{
-    &#34;default-runtime&#34;: &#34;nvidia&#34;,
-    &#34;runtimes&#34;: {
-        &#34;nvidia&#34;: {
-            &#34;path&#34;: &#34;nvidia-container-runtime&#34;,
-            &#34;runtimeArgs&#34;: []
-        }
-    },
-    &#34;insecure-registries&#34; : [&#34;192.168.1.2:5000&#34;]
-}
-</code></pre><p>Here, 192.168.1.2:5000 is to be replaced by the URL of your registry.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;default-runtime&#34;</span>: <span style="color:#e6db74">&#34;nvidia&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;runtimes&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;nvidia&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;nvidia-container-runtime&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;runtimeArgs&#34;</span>: []
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;insecure-registries&#34;</span> : [<span style="color:#e6db74">&#34;192.168.1.2:5000&#34;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here, 192.168.1.2:5000 is to be replaced by the URL of your registry.</p>
 <p>Those changes can be applied by restarting docker:</p>
-<pre tabindex="0"><code>sudo systemctl restart docker
-</code></pre><h3 id="k3s-installation">K3s installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart docker
+</span></span></code></pre></div><h3 id="k3s-installation">K3s installation</h3>
 <p>The objective is to deploy an AI model to a Kubernetes cluster running on the Jetson Nano. However, due to the architecture of the latter, most distributions of Kubernetes like Microk8s cannot run on it. This is why we are going to use <a href="https://k3s.io/">K3s</a>, a Kubernetes distribution made specifically for edge devices. K3s can be installed as so:</p>
-<pre tabindex="0"><code>curl -sfL https://get.k3s.io | sh -
-</code></pre><p>By default, K3s uses containerd as container engine. However, here, we would prefer to use Docker since we&rsquo;ve configured it to fit our needs in the previous step. This can be done by editing the /etc/systemd/system/k3s.service file and adding the &ndash;docker flag to he ExecStart line as follows:</p>
-<pre tabindex="0"><code>ExecStart=/usr/local/bin/k3s \
-    server \
-    --docker
-</code></pre><p>K3s must then be restarted using</p>
-<pre tabindex="0"><code>sudo systemctl restart k3s
-</code></pre><p>Futher details in the <a href="https://rancher.com/docs/k3s/latest/en/advanced/">official documentation</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -sfL https://get.k3s.io | sh -
+</span></span></code></pre></div><p>By default, K3s uses containerd as container engine. However, here, we would prefer to use Docker since we&rsquo;ve configured it to fit our needs in the previous step. This can be done by editing the /etc/systemd/system/k3s.service file and adding the &ndash;docker flag to he ExecStart line as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#a6e22e">ExecStart</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/local/bin/k3s \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    server \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    --docker</span>
+</span></span></code></pre></div><p>K3s must then be restarted using</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl restart k3s
+</span></span></code></pre></div><p>Futher details in the <a href="https://rancher.com/docs/k3s/latest/en/advanced/">official documentation</a>.</p>
 <p>To check if K3s properly uses the Jetson Nano&rsquo;s GPU, one can deploy the following container in it:</p>
-<pre tabindex="0"><code>sudo kubectl run -i -t gpu-check --image=jitteam/devicequery --restart=Never
-</code></pre><h2 id="tensorflow-serving">TensorFlow Serving</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo kubectl run -i -t gpu-check --image<span style="color:#f92672">=</span>jitteam/devicequery --restart<span style="color:#f92672">=</span>Never
+</span></span></code></pre></div><h2 id="tensorflow-serving">TensorFlow Serving</h2>
 <p>First, we are going to need a model to deploy. Here is that of the TensorFlow getting started example, which classifies images from the MNIST dataset:</p>
-<pre tabindex="0"><code># Importing TensorFlow
-import tensorflow as tf
-
-# Loading the data
-mnist = tf.keras.datasets.mnist
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
-
-# Data preprocessing (here, normalization)
-x_train, x_test = x_train / 255.0, x_test / 255.0
-
-# Building the model
-model = tf.keras.models.Sequential([
-  tf.keras.layers.Flatten(input_shape=(28, 28)),
-  tf.keras.layers.Dense(128, activation=&#39;relu&#39;),
-  tf.keras.layers.Dropout(0.2),
-  tf.keras.layers.Dense(10)
-])
-
-# Loss function declaration
-loss_fn = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
-
-# Model compilation
-model.compile(optimizer=&#39;adam&#39;,
-              loss=loss_fn,
-              metrics=[&#39;accuracy&#39;])
-
-# Training
-model.fit(x_train, y_train, epochs=5)
-
-# Exporting
-model.save(&#39;./mymodel/1/&#39;)
-</code></pre><p>Running this snippet should generate a folder called mymodel in the working directory, containing our exported model. Thus, the next step is to embed themodel in a TensorFlow Serving container.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Importing TensorFlow</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> tensorflow <span style="color:#66d9ef">as</span> tf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Loading the data</span>
+</span></span><span style="display:flex;"><span>mnist <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>mnist
+</span></span><span style="display:flex;"><span>(x_train, y_train), (x_test, y_test) <span style="color:#f92672">=</span> mnist<span style="color:#f92672">.</span>load_data()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Data preprocessing (here, normalization)</span>
+</span></span><span style="display:flex;"><span>x_train, x_test <span style="color:#f92672">=</span> x_train <span style="color:#f92672">/</span> <span style="color:#ae81ff">255.0</span>, x_test <span style="color:#f92672">/</span> <span style="color:#ae81ff">255.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Building the model</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>models<span style="color:#f92672">.</span>Sequential([
+</span></span><span style="display:flex;"><span>  tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Flatten(input_shape<span style="color:#f92672">=</span>(<span style="color:#ae81ff">28</span>, <span style="color:#ae81ff">28</span>)),
+</span></span><span style="display:flex;"><span>  tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Dense(<span style="color:#ae81ff">128</span>, activation<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;relu&#39;</span>),
+</span></span><span style="display:flex;"><span>  tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Dropout(<span style="color:#ae81ff">0.2</span>),
+</span></span><span style="display:flex;"><span>  tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>layers<span style="color:#f92672">.</span>Dense(<span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Loss function declaration</span>
+</span></span><span style="display:flex;"><span>loss_fn <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>keras<span style="color:#f92672">.</span>losses<span style="color:#f92672">.</span>SparseCategoricalCrossentropy(from_logits<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Model compilation</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>compile(optimizer<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;adam&#39;</span>,
+</span></span><span style="display:flex;"><span>              loss<span style="color:#f92672">=</span>loss_fn,
+</span></span><span style="display:flex;"><span>              metrics<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;accuracy&#39;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Training</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>fit(x_train, y_train, epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Exporting</span>
+</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>save(<span style="color:#e6db74">&#39;./mymodel/1/&#39;</span>)
+</span></span></code></pre></div><p>Running this snippet should generate a folder called mymodel in the working directory, containing our exported model. Thus, the next step is to embed themodel in a TensorFlow Serving container.</p>
 <p>The official TensorFlow serving image is unfortunately incompatible with the Jetson Nano&rsquo;s architecture. However, Docker Hub user helmuthvaprovided <a href="https://hub.docker.com/r/helmuthva/jetson-nano-tensorflow-serving">this alternative</a> which works nicely. it can be used just like an usual TensorFlow Serving image:</p>
-<pre tabindex="0"><code>docker run -d --name serving_base helmuthva/jetson-nano-tensorflow-serving
-docker cp ./mymodel serving_base:/models/mymodel
-docker commit --change &#34;ENV MODEL_NAME mymodel&#34; serving_base my-registry/mymodel-serving
-</code></pre><p>The container image can then be pushed to our registry, making it available for Kubernetes to deploy:</p>
-<pre tabindex="0"><code>docker push my-registry/mymodel-serving
-</code></pre><h2 id="kubernetes">Kubernetes</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d --name serving_base helmuthva/jetson-nano-tensorflow-serving
+</span></span><span style="display:flex;"><span>docker cp ./mymodel serving_base:/models/mymodel
+</span></span><span style="display:flex;"><span>docker commit --change <span style="color:#e6db74">&#34;ENV MODEL_NAME mymodel&#34;</span> serving_base my-registry/mymodel-serving
+</span></span></code></pre></div><p>The container image can then be pushed to our registry, making it available for Kubernetes to deploy:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker push my-registry/mymodel-serving
+</span></span></code></pre></div><h2 id="kubernetes">Kubernetes</h2>
 <p>Now that an image of our TensorFlow serving container is available in our container registry, it is time to pull it in the Kubernetes cluster. to do so, we create a Kubernetes manifest file, for example kubernetes_manifest.yml, with the following content:</p>
-<pre tabindex="0"><code>apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mymodel-serving
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mymodel-serving
-  template:
-    metadata:
-      labels:
-        app: mymodel-serving
-    spec:
-      containers:
-      - name: mymodel-serving
-        image: my-registry/mymodel-serving
-        ports:
-        - containerPort: 8501
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mymodel-serving
-spec:
-  ports:
-  - port: 8501
-    nodePort: 30111
-  selector:
-    app: mymodel-serving
-  type: NodePort
-</code></pre><p>Those resources can be created using kubectl apply</p>
-<pre tabindex="0"><code>kubectl apply -f kubernetes_manifest.yml
-</code></pre><p>The model should now be deployed to the Kubernetes cluster. This can be verified by pointing a web browser to http://<!-- raw HTML omitted -->/v1/models/mymodel, which should yield the following JSON:</p>
-<pre tabindex="0"><code>{
- &#34;model_version_status&#34;: [
-  {
-   &#34;version&#34;: &#34;1&#34;,
-   &#34;state&#34;: &#34;AVAILABLE&#34;,
-   &#34;status&#34;: {
-    &#34;error_code&#34;: &#34;OK&#34;,
-    &#34;error_message&#34;: &#34;&#34;
-   }
-  }
- ]
-}
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mymodel-serving</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mymodel-serving</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mymodel-serving</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mymodel-serving</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">my-registry/mymodel-serving</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">8501</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">mymodel-serving</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">8501</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">nodePort</span>: <span style="color:#ae81ff">30111</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">mymodel-serving</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">NodePort</span>
+</span></span></code></pre></div><p>Those resources can be created using kubectl apply</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl apply -f kubernetes_manifest.yml
+</span></span></code></pre></div><p>The model should now be deployed to the Kubernetes cluster. This can be verified by pointing a web browser to http://<!-- raw HTML omitted -->/v1/models/mymodel, which should yield the following JSON:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">&#34;model_version_status&#34;</span>: [
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&#34;state&#34;</span>: <span style="color:#e6db74">&#34;AVAILABLE&#34;</span>,
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&#34;status&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;error_code&#34;</span>: <span style="color:#e6db74">&#34;OK&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;error_message&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span> ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

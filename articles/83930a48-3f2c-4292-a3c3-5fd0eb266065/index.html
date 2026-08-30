@@ -247,12 +247,12 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>Using a key file can greatly increase security when connecting to a host via SSH. This article presents how to create such keys and configure hosts to use them.</p>
 <p>First, a SSH key can be created on a local host using the ssh-keygen command:</p>
-<pre tabindex="0"><code>ssh-keygen
-</code></pre><p>ssh-keygen will prompt the user for a filename as well as an optional password for the keys. In this example, let&rsquo;s assume that the chosen filename was myKey.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh-keygen
+</span></span></code></pre></div><p>ssh-keygen will prompt the user for a filename as well as an optional password for the keys. In this example, let&rsquo;s assume that the chosen filename was myKey.</p>
 <p>ssh-keygen will generate two files: myKey and myKey.pub. Those are the private and public keys respectively.</p>
 <p>The public key must be registered on any hosts that we want to connect to. This can be achieved using ssh-copy-id:</p>
-<pre tabindex="0"><code>ssh-copy-id -i myKey.pub username@serverip
-</code></pre><p>Where username and serverip are to be replaced by the corresponding values of the server to connect to.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh-copy-id -i myKey.pub username@serverip
+</span></span></code></pre></div><p>Where username and serverip are to be replaced by the corresponding values of the server to connect to.</p>
 
             </div>
         </article></main>

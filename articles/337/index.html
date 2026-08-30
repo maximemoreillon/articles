@@ -249,16 +249,16 @@ document.addEventListener('DOMContentLoaded', function () {
 <h2 id="server-side-apache-configuration">Server-side: Apache configuration</h2>
 <p>The following snippet is to be placed into the configuration of your default virtual host. X.X.X.X is the public IP of the local proxy.</p>
 <p><strong>Do not use <em>Allow from all</em> in the <em><!-- raw HTML omitted --></em> directive. this is a serious security problem as it allows anyone to use the proxy to fetch content from internet resoures.</strong></p>
-<pre tabindex="0"><code># SSH tunneling
-ProxyRequests On
-AllowConnect 22
-&lt;Proxy&gt;
-  Order deny,allow
-  Deny from all
-  Allow from X.X.X.X
-&lt;/Proxy&gt;
-# End of SSH tunneling
-</code></pre><p>The following Apache modules are needed:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-apacheconf" data-lang="apacheconf"><span style="display:flex;"><span><span style="color:#75715e"># SSH tunneling</span>
+</span></span><span style="display:flex;"><span>ProxyRequests <span style="color:#66d9ef">On</span>
+</span></span><span style="display:flex;"><span>AllowConnect <span style="color:#ae81ff">22</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;Proxy&gt;</span>
+</span></span><span style="display:flex;"><span>  Order deny,allow
+</span></span><span style="display:flex;"><span>  Deny from <span style="color:#66d9ef">all</span>
+</span></span><span style="display:flex;"><span>  Allow from X.X.X.X
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/Proxy&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># End of SSH tunneling</span>
+</span></span></code></pre></div><p>The following Apache modules are needed:</p>
 <ul>
 <li>proxy</li>
 <li>proxy_connect</li>
@@ -266,11 +266,11 @@ AllowConnect 22
 <h2 id="client-side">Client-side</h2>
 <h3 id="windows-putty-configuration">Windows: Putty configuration</h3>
 <p>Proxy type: local</p>
-<pre tabindex="0"><code>PATH_TO_PROXYTUNNEL\proxytunnel.exe -p LOCAL_PROXY_HOST:LOCAL_PROXY_PORT -r REMOTE_PROXY:REMOTE_PROXY_PORT -d localhost:22
-</code></pre><h3 id="ubuntu">Ubuntu</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>PATH_TO_PROXYTUNNEL\proxytunnel.exe -p LOCAL_PROXY_HOST:LOCAL_PROXY_PORT -r REMOTE_PROXY:REMOTE_PROXY_PORT -d localhost:22
+</span></span></code></pre></div><h3 id="ubuntu">Ubuntu</h3>
 <p>Proxytunnel can be installed simply using Aptitude:</p>
-<pre tabindex="0"><code>sudo apt install proxytunnel
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install proxytunnel
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

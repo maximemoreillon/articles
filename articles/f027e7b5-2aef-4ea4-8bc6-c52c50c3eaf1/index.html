@@ -247,49 +247,49 @@ document.addEventListener('DOMContentLoaded', function () {
 <p>The comparison starts with the Vue.js implementation of a simple counter button. As of version 3 of Vue.js, components can be written in either the Options API of Composition API fashion so both are shown hereunder.</p>
 <h3 id="options-api">Options API</h3>
 <p>Here the counter button, written in Vue.js version 3 using the options API:</p>
-<pre tabindex="0"><code>&lt;template&gt;
-  &lt;button @click=&#34;increment()&#34;&gt;{{ count }}&lt;/button&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-export default {
-  data: () =&gt; ({
-    count: 0
-  }),
-  methods: {
-    increment(){
-      this.count ++
-    }
-  }
-}
-&lt;/script&gt;
-</code></pre><p>The <code>&lt;script&gt;</code> section of the component involves a fair amount of boilerplate code which can throw some beginners off.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">button</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;increment()&#34;</span>&gt;{{ count }}&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> () =&gt; ({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">count</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  }),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">methods</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">increment</span>(){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">count</span> <span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>The <code>&lt;script&gt;</code> section of the component involves a fair amount of boilerplate code which can throw some beginners off.</p>
 <h3 id="composition-api">Composition API</h3>
 <p>Vue.js version 3 introduces the composition API as well as the <code>setup</code> clause of the script tag which allows components to be written in a more concise way:</p>
-<pre tabindex="0"><code>&lt;template&gt;
-  &lt;button @click=&#34;increment()&#34;&gt;{{ count }}&lt;/button&gt;
-&lt;/template&gt;
-
-&lt;script setup&gt;
-import { ref } from &#39;vue&#39;
-const count = ref(0)
-const increment = () =&gt; {
-  count.value ++
-}
-&lt;/script&gt;
-</code></pre><p>Although slightly more straightforward, the Composition API involves the use of <code>ref()</code> (or <code>reactive()</code>) for reactivity, which diverges from conventional JavaScript syntax.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">button</span> <span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;increment()&#34;</span>&gt;{{ count }}&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">setup</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ref</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;vue&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ref</span>(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">increment</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>Although slightly more straightforward, the Composition API involves the use of <code>ref()</code> (or <code>reactive()</code>) for reactivity, which diverges from conventional JavaScript syntax.</p>
 <h2 id="svelte">Svelte</h2>
 <p>Here is the same counter button implemented in Svelte:</p>
-<pre tabindex="0"><code>&lt;button on:click={increment}&gt;{count}&lt;/button&gt;
-
-&lt;script&gt;
-let count = 0
-
-const increment = () =&gt; {
-    count ++
-}
-&lt;/script&gt;
-</code></pre><p>Clearly, this implementation is far more concise than its Vue.js equivalent as the <code>&lt;template&gt;</code> tag and usage of <code>ref()</code> are no longer needed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">button</span> <span style="color:#a6e22e">on</span><span style="color:#f92672">:</span><span style="color:#a6e22e">click</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">increment</span>}<span style="color:#f92672">&gt;</span>{<span style="color:#a6e22e">count</span>}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/button&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">increment</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">count</span> <span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+</span></span></code></pre></div><p>Clearly, this implementation is far more concise than its Vue.js equivalent as the <code>&lt;template&gt;</code> tag and usage of <code>ref()</code> are no longer needed.</p>
 <p>This straightforward syntax is most likely one of the many reasons why Svelte became so popular and makes Svelte an ideal framework for beginners to learn.</p>
 
             </div>

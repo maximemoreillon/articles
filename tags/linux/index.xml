@@ -15,8 +15,8 @@
       <guid>https://articles.maximemoreillon.com/articles/b18a20dc-6916-484c-95c6-858b2c6b98ac/</guid>
       
       <description>&lt;p&gt;An HDD can be configured to spin down after a certain time via the APM settings which can be managed by smartctl. For example&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo smartctl --set=apm,63 /dev/sdb
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;sets the APM (Advanced Power Management) level of disk sdb to 63, a fairly aggressive power-saving level. Note that APM controls how aggressively the drive manages power, not a literal spin-down timer; an actual idle timeout is configured separately, for example via &lt;code&gt;hdparm -S&lt;/code&gt;.&lt;/p&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo smartctl --set&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;apm,63 /dev/sdb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;sets the APM (Advanced Power Management) level of disk sdb to 63, a fairly aggressive power-saving level. Note that APM controls how aggressively the drive manages power, not a literal spin-down timer; an actual idle timeout is configured separately, for example via &lt;code&gt;hdparm -S&lt;/code&gt;.&lt;/p&gt;</description>
       
     </item>
     
@@ -56,16 +56,10 @@
       <description>&lt;p&gt;Samba is a piece of software used to share directories over a network. Directories shared using samba appear as network folders on the file manager of computers that are on the same network.&lt;/p&gt;
 &lt;h2 id=&#34;samba-installation&#34;&gt;Samba installation&lt;/h2&gt;
 &lt;p&gt;samba can be installed easily using apt:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt-get install samba
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;samba-configuration&#34;&gt;Samba configuration&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get install samba
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;samba-configuration&#34;&gt;Samba configuration&lt;/h2&gt;
 &lt;p&gt;Samba is configured using the &lt;code&gt;/etc/samba/smb.conf&lt;/code&gt; file&lt;/p&gt;
-&lt;p&gt;Here is an example configuration file that shares the directory /mnt/hdd/samba_shares, belonging to user myusername&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;[MY SHARED DIRECTORY]
-  valid users = myusername
-  writable = yes
-  path = /mnt/hdd/samba_shares
-  comment = My shared directory
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Because permissions don&amp;rsquo;t work the same way between Linux and Windows, the line valid &lt;em&gt;users = myusername&lt;/em&gt; ensures the files can only be accessed by &lt;em&gt;username&lt;/em&gt;. This option requires myusername to be a registered user of samba. This can be done with the following shell command:&lt;/p&gt;</description>
+&lt;p&gt;Here is an example configuration file that shares the directory /mnt/hdd/samba_shares, belonging to user myusername&lt;/p&gt;</description>
       
     </item>
     
@@ -89,8 +83,8 @@
       <guid>https://articles.maximemoreillon.com/articles/169/</guid>
       
       <description>&lt;p&gt;Let&amp;rsquo;s imagine the file server.js which, when executed by Node.js, serves web pages to connecting clients. A trivial way to execute server.js using NodeJS would be to run the following bash command in a terminal:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;node server.js
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Here, Node.js will execute server.js as long as the user does not interrupt the process with Ctrl-C or ends the bash session.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;node server.js
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here, Node.js will execute server.js as long as the user does not interrupt the process with Ctrl-C or ends the bash session.&lt;/p&gt;
 &lt;p&gt;However, this last point can cause problems. What if we want to continue serving web pages even after exiting the bash session? Basically, what we want is server.js to be executed in the background. A method to do so is to execute of server.js as a service.&lt;/p&gt;</description>
       
     </item>
@@ -104,14 +98,14 @@
       
       <description>&lt;h2 id=&#34;adding-user&#34;&gt;Adding user&lt;/h2&gt;
 &lt;p&gt;In linux, or at least Ubuntu, a user can be added using:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;adduser username
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;adduser&lt;/code&gt; is a user-friendly command that uses &lt;code&gt;useradd&lt;/code&gt; as back-end. Thus, &lt;code&gt;adduser&lt;/code&gt; should be prefered to &lt;code&gt;useradd&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;adduser username
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;adduser&lt;/code&gt; is a user-friendly command that uses &lt;code&gt;useradd&lt;/code&gt; as back-end. Thus, &lt;code&gt;adduser&lt;/code&gt; should be prefered to &lt;code&gt;useradd&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;adding-user-to-a-group&#34;&gt;Adding user to a group&lt;/h2&gt;
 &lt;p&gt;A user can be added to a group using:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;adduser username groupname
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This can be used to allow users to use sudo:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;adduser username sudo
-&lt;/code&gt;&lt;/pre&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;adduser username groupname
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This can be used to allow users to use sudo:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;adduser username sudo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
       
     </item>
     
@@ -138,13 +132,13 @@
       <description>&lt;p&gt;Here are the steps to prepare a brand new hard drive and install a file system on it.&lt;/p&gt;
 &lt;h2 id=&#34;setting-up-partitions&#34;&gt;Setting up partitions&lt;/h2&gt;
 &lt;p&gt;Partitions can be managed using parted:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo parted
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;creating-a-partition-table&#34;&gt;Creating a partition table&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo parted
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;creating-a-partition-table&#34;&gt;Creating a partition table&lt;/h3&gt;
 &lt;p&gt;A partition table stores information about the partitions of the drive. It can be created using:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;mklabel
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;GPT is the current standard for label types.&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;New disk label type? gpt
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;creating-a-partition&#34;&gt;Creating a partition&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mklabel
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;GPT is the current standard for label types.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;New disk label type? gpt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;creating-a-partition&#34;&gt;Creating a partition&lt;/h3&gt;
 &lt;p&gt;The command mkpart can be used to create partitions on the disk&lt;/p&gt;</description>
       
     </item>
@@ -158,19 +152,19 @@
       
       <description>&lt;p&gt;Mosquitto is an open source message broker that implements the MQTT protocol. It is lightweight and is suitable for use on all devices from low power single board computers to full servers.&lt;/p&gt;
 &lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo apt install mosquitto mosquitto-clients
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install mosquitto mosquitto-clients
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;
 &lt;p&gt;Place a .conf file in /etc/mosquitto/conf.d&lt;/p&gt;
 &lt;h3 id=&#34;setting-up-a-listener&#34;&gt;Setting up a listener&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;listener 1883
-protocol mqtt
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Also available for websockets:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;listener 9001
-protocol websockets
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;setting-up-authentication&#34;&gt;Setting up authentication&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;allow_anonymous false
-password_file /etc/mosquitto/passwd
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;the file /etc/mosquitto/passwd can be created using an utility provided by mosquitto (run as root):&lt;/p&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;listener 1883
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;protocol mqtt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Also available for websockets:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;listener 9001
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;protocol websockets
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;setting-up-authentication&#34;&gt;Setting up authentication&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;allow_anonymous false
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;password_file /etc/mosquitto/passwd
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;the file /etc/mosquitto/passwd can be created using an utility provided by mosquitto (run as root):&lt;/p&gt;</description>
       
     </item>
     

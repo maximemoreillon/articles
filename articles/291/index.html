@@ -246,28 +246,28 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>Physical buttons and switches do not switch between open and close position instantly and perfectly. Instead, they have a tendency to &ldquo;bounce&rdquo; between the two states before settling on one. This issue is thoroughly described in circuitdigest&rsquo;s excellent article. Consequently, when using such components with, for example, an Arduino microcontroller, a proper debouncing algorithm must be implemented.</p>
 <p><img src="https://circuitdigest.com/sites/default/files/inlineimages/u1/Switch-Bouncing-in-the-Circuit.png" alt="">Here is a code sample for my approach to solving the problem.</p>
-<pre tabindex="0"><code>int readButtonDebounce(int pin) {
-  const int DEBOUNCE_DELAY = 50;
-  static int buttonState, lastButtonState;
-  static long lastDebounceTime; 
-  int out = 0;
-
-  int reading = digitalRead(pin);
-  if(reading != lastButtonState) lastDebounceTime = millis();
-
-  if((millis() - lastDebounceTime) &gt; DEBOUNCE_DELAY) {
-    if (reading != buttonState) {
-      buttonState = reading;
-      // CHANGE TO !buttonState if active low
-      if(buttonState) {
-        out = 1;
-      }
-    }
-  }
-  lastButtonState = reading;
-  return out;
-}
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">readButtonDebounce</span>(<span style="color:#66d9ef">int</span> pin) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> DEBOUNCE_DELAY <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> buttonState, lastButtonState;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">long</span> lastDebounceTime; 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> out <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> reading <span style="color:#f92672">=</span> digitalRead(pin);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(reading <span style="color:#f92672">!=</span> lastButtonState) lastDebounceTime <span style="color:#f92672">=</span> millis();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>((millis() <span style="color:#f92672">-</span> lastDebounceTime) <span style="color:#f92672">&gt;</span> DEBOUNCE_DELAY) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (reading <span style="color:#f92672">!=</span> buttonState) {
+</span></span><span style="display:flex;"><span>      buttonState <span style="color:#f92672">=</span> reading;
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// CHANGE TO !buttonState if active low
+</span></span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span>(buttonState) {
+</span></span><span style="display:flex;"><span>        out <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  lastButtonState <span style="color:#f92672">=</span> reading;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> out;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

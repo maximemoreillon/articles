@@ -248,88 +248,88 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>A docker registry can be run easily using as a docker container using docker itself.</p>
-<pre tabindex="0"><code>docker run -d -p 5000:5000 --restart=always --name registry registry:2
-</code></pre><p>However, this registry is accessed through HTTP and does not provide any authentication mechanism</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -p 5000:5000 --restart<span style="color:#f92672">=</span>always --name registry registry:2
+</span></span></code></pre></div><p>However, this registry is accessed through HTTP and does not provide any authentication mechanism</p>
 <p>To solve this problem, the docker registry can be made so as to be accessed via an Ingress with Basic Authentication:</p>
-<pre tabindex="0"><code>kind: Service
-apiVersion: v1
-metadata:
- name: registry
-spec:
- type: ClusterIP
- ports:
- - port: 5000
-   targetPort: 5000
----
-kind: Endpoints
-apiVersion: v1
-metadata:
- name: registry
-subsets:
- - addresses:
-     - ip: 192.168.1.2
-   ports:
-     - port: 5000
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: registry
-  annotations:
-    kubernetes.io/ingress.class: &#34;nginx&#34;
-
-    # Necessary to prevent 413 errors
-    nginx.ingress.kubernetes.io/proxy-body-size: &#34;500m&#34;
-    nginx/client_max_body_size: 500m
-
-    cert-manager.io/cluster-issuer: &#34;letsencrypt-prod&#34;
-    
-    nginx.ingress.kubernetes.io/auth-type: basic
-    nginx.ingress.kubernetes.io/auth-secret: registry
-    nginx.ingress.kubernetes.io/auth-realm: &#39;Authentication Required&#39;
-spec:
-  tls:
-  - hosts:
-    - registry.example.com
-    secretName: registry
-  rules:
-  - host: registry.example.com
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: registry
-          servicePort: 5000
-</code></pre><p>Here, it is important to specify the maximum body size in the Ingress annotations to prevent 413 Request Entity Too Large errors</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">name</span>: <span style="color:#ae81ff">registry</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">type</span>: <span style="color:#ae81ff">ClusterIP</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span> - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">5000</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">5000</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Endpoints</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">name</span>: <span style="color:#ae81ff">registry</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">subsets</span>:
+</span></span><span style="display:flex;"><span> - <span style="color:#f92672">addresses</span>:
+</span></span><span style="display:flex;"><span>     - <span style="color:#f92672">ip</span>: <span style="color:#ae81ff">192.168.1.2</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>     - <span style="color:#f92672">port</span>: <span style="color:#ae81ff">5000</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">extensions/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Ingress</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">registry</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">kubernetes.io/ingress.class</span>: <span style="color:#e6db74">&#34;nginx&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Necessary to prevent 413 errors</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">nginx.ingress.kubernetes.io/proxy-body-size</span>: <span style="color:#e6db74">&#34;500m&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">nginx/client_max_body_size</span>: <span style="color:#ae81ff">500m</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cert-manager.io/cluster-issuer</span>: <span style="color:#e6db74">&#34;letsencrypt-prod&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">nginx.ingress.kubernetes.io/auth-type</span>: <span style="color:#ae81ff">basic</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">nginx.ingress.kubernetes.io/auth-secret</span>: <span style="color:#ae81ff">registry</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">nginx.ingress.kubernetes.io/auth-realm</span>: <span style="color:#e6db74">&#39;Authentication Required&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">tls</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">hosts</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">registry.example.com</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">secretName</span>: <span style="color:#ae81ff">registry</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rules</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">host</span>: <span style="color:#ae81ff">registry.example.com</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">http</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">paths</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">backend</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">serviceName</span>: <span style="color:#ae81ff">registry</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">servicePort</span>: <span style="color:#ae81ff">5000</span>
+</span></span></code></pre></div><p>Here, it is important to specify the maximum body size in the Ingress annotations to prevent 413 Request Entity Too Large errors</p>
 <h2 id="solving-ufw-not-blocking-access-to-registry">Solving UFW not blocking access to registry</h2>
 <p>Taken from <a href="https://github.com/chaifeng/ufw-docker">here</a></p>
-<pre tabindex="0"><code>Modify the UFW configuration file /etc/ufw/after.rules and add the following rules at the end of the file:
-
-# BEGIN UFW AND DOCKER
-*filter
-:ufw-user-forward - [0:0]
-:DOCKER-USER - [0:0]
--A DOCKER-USER -j RETURN -s 10.0.0.0/8
--A DOCKER-USER -j RETURN -s 172.16.0.0/12
--A DOCKER-USER -j RETURN -s 192.168.0.0/16
-
--A DOCKER-USER -p udp -m udp --sport 53 --dport 1024:65535 -j RETURN
-
--A DOCKER-USER -j ufw-user-forward
-
--A DOCKER-USER -j DROP -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -d 192.168.0.0/16
--A DOCKER-USER -j DROP -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -d 10.0.0.0/8
--A DOCKER-USER -j DROP -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -d 172.16.0.0/12
--A DOCKER-USER -j DROP -p udp -m udp --dport 0:32767 -d 192.168.0.0/16
--A DOCKER-USER -j DROP -p udp -m udp --dport 0:32767 -d 10.0.0.0/8
--A DOCKER-USER -j DROP -p udp -m udp --dport 0:32767 -d 172.16.0.0/12
-
--A DOCKER-USER -j RETURN
-COMMIT
-# END UFW AND DOCKER
-</code></pre><h2 id="creating-secret-to-pull-images-from-the-registry">Creating secret to pull images from the registry</h2>
-<pre tabindex="0"><code>microk8s.kubectl create secret generic registry-credentials     --from-file=.dockerconfigjson=/home/yourUser/.docker/config.json --type=kubernetes.io/dockerconfigjson --namespace=your-namespace
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Modify the UFW configuration file /etc/ufw/after.rules and add the following rules at the end of the file:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># BEGIN UFW AND DOCKER
+</span></span><span style="display:flex;"><span>*filter
+</span></span><span style="display:flex;"><span>:ufw-user-forward - [0:0]
+</span></span><span style="display:flex;"><span>:DOCKER-USER - [0:0]
+</span></span><span style="display:flex;"><span>-A DOCKER-USER -j RETURN -s 10.0.0.0/8
+</span></span><span style="display:flex;"><span>-A DOCKER-USER -j RETURN -s 172.16.0.0/12
+</span></span><span style="display:flex;"><span>-A DOCKER-USER -j RETURN -s 192.168.0.0/16
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-A DOCKER-USER -p udp -m udp --sport 53 --dport 1024:65535 -j RETURN
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-A DOCKER-USER -j ufw-user-forward
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-A DOCKER-USER -j DROP -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -d 192.168.0.0/16
+</span></span><span style="display:flex;"><span>-A DOCKER-USER -j DROP -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -d 10.0.0.0/8
+</span></span><span style="display:flex;"><span>-A DOCKER-USER -j DROP -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -d 172.16.0.0/12
+</span></span><span style="display:flex;"><span>-A DOCKER-USER -j DROP -p udp -m udp --dport 0:32767 -d 192.168.0.0/16
+</span></span><span style="display:flex;"><span>-A DOCKER-USER -j DROP -p udp -m udp --dport 0:32767 -d 10.0.0.0/8
+</span></span><span style="display:flex;"><span>-A DOCKER-USER -j DROP -p udp -m udp --dport 0:32767 -d 172.16.0.0/12
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-A DOCKER-USER -j RETURN
+</span></span><span style="display:flex;"><span>COMMIT
+</span></span><span style="display:flex;"><span># END UFW AND DOCKER
+</span></span></code></pre></div><h2 id="creating-secret-to-pull-images-from-the-registry">Creating secret to pull images from the registry</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>microk8s.kubectl create secret generic registry-credentials     --from-file<span style="color:#f92672">=</span>.dockerconfigjson<span style="color:#f92672">=</span>/home/yourUser/.docker/config.json --type<span style="color:#f92672">=</span>kubernetes.io/dockerconfigjson --namespace<span style="color:#f92672">=</span>your-namespace
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>

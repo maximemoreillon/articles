@@ -246,40 +246,40 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>Hard disk drives (HDDs) and Solid state drives (SSDs) are currently the most widespread high capacity storage devices. When such a drive is connected to a computer running Linux, it can be found in the device directory <em>/dev/</em> under the name <em>sdX</em>, where <em>X</em> is a letter changing for each drive.</p>
 <h2 id="partitions">Partitions</h2>
 <p>The memory of a HDD can be split into multiple partitions. This can be useful to install several operating systems on a single HDD. In Linux, partitions are listed by adding a number after the drive name. Thus, the 3rd partition of the drive <em>sdb</em> can be found at <em>/dev/sdb3</em>. Drives and partitions can be listed using the fdisk tool with root privileges, using the option <em>l</em>:</p>
-<pre tabindex="0"><code>sudo fdisk -l
-</code></pre><p><em>fdisk</em> can also be used to edit partitions. However, newer tools like <em>parted</em> might be more appropriate for this purpose. <em>parted</em> offers an interactive interface to create and delete partitions on a drive. <em>parted</em> can be started using the parted command. It is recommended to specify which drive to work for example for the drive sdc:</p>
-<pre tabindex="0"><code>sudo parted /dev/sdc
-</code></pre><h3 id="creating-label">Creating label</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo fdisk -l
+</span></span></code></pre></div><p><em>fdisk</em> can also be used to edit partitions. However, newer tools like <em>parted</em> might be more appropriate for this purpose. <em>parted</em> offers an interactive interface to create and delete partitions on a drive. <em>parted</em> can be started using the parted command. It is recommended to specify which drive to work for example for the drive sdc:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo parted /dev/sdc
+</span></span></code></pre></div><h3 id="creating-label">Creating label</h3>
 <p>The way partitions are structured is described in the drive&rsquo;s label. A new label can be created with <em>parted</em> using <em>mklabel</em>. Note that doing so basically tells the drive to forget all about the previous content. Different label types exist but GPT seems on its way to become the new standard.</p>
-<pre tabindex="0"><code>(parted) mklabel
-New disk label type? gpt
-Warning: The existing disk label on /dev/nvme0n1 will be destroyed and all data on this disk will be lost. Do you want to continue?
-Yes/No? Yes
-</code></pre><h3 id="creating-a-partition">Creating a partition</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>(parted) mklabel
+</span></span><span style="display:flex;"><span>New disk label type? gpt
+</span></span><span style="display:flex;"><span>Warning: The existing disk label on /dev/nvme0n1 will be destroyed and all data on this disk will be lost. Do you want to continue?
+</span></span><span style="display:flex;"><span>Yes/No? Yes
+</span></span></code></pre></div><h3 id="creating-a-partition">Creating a partition</h3>
 <p>A new partition can be created using the <em>mkpart</em> command. <em>parted</em> will ask for the required parameters such as partition name, start and end. Note that the name of the partition does not constitute its label. I usually use <em>primary</em> as name when creating a single partition spanning the whole drive. Additionally, for reasons I haven&rsquo;t studied, a partition cannot be made to begin at the very first memory sector of the drive and its start point cannot be made aribrary. On the Seagate Barracuda HDD I own, setting the start and end points at 2048s and 100% happened to work.</p>
-<pre tabindex="0"><code>(parted) mkpart
-Partition name?  []? primary
-File system type?  [ext2]? ext4
-Start? 2048s
-End? 100%
-</code></pre><h2 id="file-systems">File systems</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>(parted) mkpart
+</span></span><span style="display:flex;"><span>Partition name?  []? primary
+</span></span><span style="display:flex;"><span>File system type?  [ext2]? ext4
+</span></span><span style="display:flex;"><span>Start? 2048s
+</span></span><span style="display:flex;"><span>End? 100%
+</span></span></code></pre></div><h2 id="file-systems">File systems</h2>
 <p>If a partition of an HDD is to be used to store files, a file system needs to be installed on the former. A popular Linux file system is ext4. which can be installed on a partition (here <em>/dev/sda1</em> for example) using the <em>mkfs</em> (make file system) command:</p>
-<pre tabindex="0"><code>mkfs.ext4 /dev/sda1 -L MY_LABEL
-</code></pre><p>Here, the <em>L</em> option allows the user to choose a label for the file system. Setting a label can be useful to automated the mounting of drives using fstab. Creating a file system on a partition will mark all the available memory of the partition as free. Thus, the data which was previously stored there is considered as erased by the drive and will be written over when files are stored.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkfs.ext4 /dev/sda1 -L MY_LABEL
+</span></span></code></pre></div><p>Here, the <em>L</em> option allows the user to choose a label for the file system. Setting a label can be useful to automated the mounting of drives using fstab. Creating a file system on a partition will mark all the available memory of the partition as free. Thus, the data which was previously stored there is considered as erased by the drive and will be written over when files are stored.</p>
 <p>Once a filesystem is installed on the partition of a HDD, files can be transfered to it. Usually, files are being transferred to a HDD from a computer, running an OS with its own file system. Thus, the root of the HDD&rsquo;s file system needs to be made accessible from the computer&rsquo;s. This process is called mounting. Mounting a drive basically puts its filesystem&rsquo;s root into a directory of the computer&rsquo;s filesystem. The command used to mount drive is, simply enough, <em>mount</em>. For example, the filesystem contained within the 3rd partition of the drive <em>sda</em> can be mounted in the directory <em>/mnt/mydir</em> using:</p>
-<pre tabindex="0"><code>mount /dev/sda3 /mnt/mydir
-</code></pre><h3 id="automatic-mount">Automatic mount</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mount /dev/sda3 /mnt/mydir
+</span></span></code></pre></div><h3 id="automatic-mount">Automatic mount</h3>
 <p>By default, the mounting process has to be done manually when a drive is connected to the computer. However, this can be automated using <em>fstab</em>. <em>fstab</em> lists known drives and their mounting location so it can be consulted by the system on boot or when a drive is connected. Thus, setting automatic mounting for a drive is as simple as adding an entry to <em>fstab</em>. Here&rsquo;s an example fstab entry that mounts the ext4 formatted drive identified by the label <em>MY_HDD</em> at <em>/mnt/mydrive</em>. I haven&rsquo;t studied the role of the other options.</p>
-<pre tabindex="0"><code>LABEL=MY_HDD  /mnt/mydrive  ext4  defaults,nofail,noatime 0 0
-</code></pre><p>Alternatively, the drive can be identified by its device path as so:</p>
-<pre tabindex="0"><code>/dev/sda3  /mnt/mydrive  ext4  defaults,nofail,noatime 0 0
-</code></pre><h2 id="check-read-and-write-speed">Check read and write speed</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>LABEL=MY_HDD  /mnt/mydrive  ext4  defaults,nofail,noatime 0 0
+</span></span></code></pre></div><p>Alternatively, the drive can be identified by its device path as so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>/dev/sda3  /mnt/mydrive  ext4  defaults,nofail,noatime 0 0
+</span></span></code></pre></div><h2 id="check-read-and-write-speed">Check read and write speed</h2>
 <p>Finally, when dealing with storage devices such as hard drives, it can be useful to know wether they&rsquo;re delivering their full potential in terms of writing speed. This can be done by writing a massive file to the drive and measure how long the process takes. The command <em>dd</em> can take care of this to provide accurate results. Here is an usage example:</p>
-<pre tabindex="0"><code>dd if=/dev/zero of=/mnt/hdd/output bs=8k count=100k
-</code></pre><p>This will create a file full of zeros called output on the root of a hard drive mounted at /mnt/hdd. Here, /mnt/hdd is to be replaced to wherever the hard drive is mounted.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dd <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>/dev/zero of<span style="color:#f92672">=</span>/mnt/hdd/output bs<span style="color:#f92672">=</span>8k count<span style="color:#f92672">=</span>100k
+</span></span></code></pre></div><p>This will create a file full of zeros called output on the root of a hard drive mounted at /mnt/hdd. Here, /mnt/hdd is to be replaced to wherever the hard drive is mounted.</p>
 <p>The file created can then be used to test the reading speed of the drive. This can be done using the following command:</p>
-<pre tabindex="0"><code>dd if=/mnt/hdd/output of=/dev/null bs=8k
-</code></pre><p>What this command does it actually measure how long it takes to send the content of the test file to /dev/null</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dd <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>/mnt/hdd/output of<span style="color:#f92672">=</span>/dev/null bs<span style="color:#f92672">=</span>8k
+</span></span></code></pre></div><p>What this command does it actually measure how long it takes to send the content of the test file to /dev/null</p>
 
             </div>
         </article></main>

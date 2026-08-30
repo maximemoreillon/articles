@@ -244,47 +244,47 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="page-content">
                 <p>With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoque the prop update from their parent using $emit.</p>
 <p>For this purpose, computed values can be leveraged as they provide ways to define custom getters and setters. In this case, the get() method can simply return the value passed as prop by the parent while set() emits the desired new value.</p>
-<pre tabindex="0"><code>&lt;template&gt;
-  &lt;div&gt;
-    &lt;input v-model=&#34;myComputedProp&#34; /&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-export default {
-  name: &#39;ChildComponent&#39;,
-  props: {
-    value: String
-  },
-  computed: {
-    myComputedProp: {
-      get() { return this.value },
-      set(newVal) { this.$emit(&#39;input&#39;, newVal)}
-    }
-  }
-}
-&lt;/script&gt;
-</code></pre><p>In this example, the prop is named value and its value updates are emitted using the input event. Consequently the parent component can directly achieve bi-directional syncing using v-model.</p>
-<pre tabindex="0"><code>&lt;template&gt;
-  &lt;div&gt;
-    &lt;ChildComponent v-model=&#34;myVar&#34; /&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-import ChildComponent from &#39;./components/ChildComponent.vue&#39;
-
-export default {
-  name: &#39;ParentComponent&#39;,
-  components: {
-    ChildComponent
-  },
-  data: () =&gt; ({
-    myVar: &#39;Hello&#39;
-  })
-}
-&lt;/script&gt;
-</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myComputedProp&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ChildComponent&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> String
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">computed</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">myComputedProp</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">get</span>() { <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">value</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">set</span>(<span style="color:#a6e22e">newVal</span>) { <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$emit</span>(<span style="color:#e6db74">&#39;input&#39;</span>, <span style="color:#a6e22e">newVal</span>)}
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>In this example, the prop is named value and its value updates are emitted using the input event. Consequently the parent component can directly achieve bi-directional syncing using v-model.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">ChildComponent</span> <span style="color:#a6e22e">v-model</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myVar&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">ChildComponent</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/ChildComponent.vue&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;ParentComponent&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">components</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ChildComponent</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> () =&gt; ({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">myVar</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Hello&#39;</span>
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div>
             </div>
         </article></main>
 </div>
