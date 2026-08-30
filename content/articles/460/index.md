@@ -1,0 +1,18 @@
+---
+title: "ESP-12F basic circuit and PCB"
+date: '2021-09-20'
+lastmod: '2021-09-26'
+tags: ['PCB design', 'Projects', 'Electronics', 'SMD']
+---
+
+Modules like the Wemos D1 mini are a relatively cheap and easy way to integrate an ESP8266 in a project. However, one would sometimes require to have more freedom over the electronics, especially when it comes to PCB layout. For this purpose, the ESP8266 can be used in a form factor closer to its raw form, the ESP12-F module.
+
+An ESP12-F is lacking many of the components required for its operation that would normally be present on the Wemos D1 mini. Thus, whenever integrating an ESP12-F in a project, it is important to add those components to the schematic and PCB.
+
+Before starting a larger scale project, I wanted to first check whether I could design a circuit that would get an ESP8266 to run and be flashed. After some research, here is the schematic I came up with:
+
+![](6147f91d5d171aff38416cc7.png)I then proceeded to design a PCB based on the schematic:
+
+![](6147fa4d5d171a2ea1416cc8.png)I ordered the PCB from JLCPCB and here's the result once assembled:
+
+![](6147fe5c5d171a7abb416cca.jpg)The assembled PCB performed as expected and the ESP8266 could be flashed and operated successfully.

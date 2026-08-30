@@ -1,0 +1,25 @@
+---
+title: "A GUI for ChartMuseum"
+date: '2023-03-13'
+lastmod: '2023-03-13'
+tags: ['Projects', 'Helm', 'Svelte']
+---
+
+[ChartMuseum](https://chartmuseum.com/) is an open-source Helm chart repository server which can be used as a self-hosted alternative to [Artifact Hub](https://artifacthub.io/). Although it originally consists of only a server-side application to be interacted with via a REST API, its official UI, [ChartMuseumUI](https://github.com/chartmuseum/ui), can be deployed to interact with ChartMuseum graphically.
+
+Unfortunately, ChartMuseumUI seems to be broken and the GitHub repository has been inactive for years now. Thus, I decided to make my own GUI for ChartMuseum.
+
+![Article image](640facaedc4ad82495f55de3.png)
+
+![Article image](640fac99dc4ad85f60f55ddf.png)
+
+Deploying the application can be achieved using Docer:
+
+```bash
+docker run \
+  -p 3000:3000 \
+  -e PUBLIC_CHARTMUSEUM_URL=<URL OF CHARTMUSEUM> \
+  moreillon/chartmuseum-gui
+```
+
+This GUI has been built using [Svelte](https://svelte.dev/) and the [Svelte Material UI](https://sveltematerialui.com/) components. its source-code is available on [GitHub](https://github.com/maximemoreillon/chartmuseum-gui).

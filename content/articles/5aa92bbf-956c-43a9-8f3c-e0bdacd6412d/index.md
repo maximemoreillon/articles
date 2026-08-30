@@ -1,0 +1,29 @@
+---
+title: "MQTT Logger"
+date: '2022-07-09'
+lastmod: '2022-12-29'
+tags: ['Projects', 'InfluxDB', 'Mongoose', 'Featured', 'Express', 'MQTT', 'MongoDB', 'Vuetify']
+---
+
+Over the years, I've used various IoT sensors which collect data that is then broadcast using MQTT. Those sensors generally broadcast individual measurements without saving any form of history locally. Consequently, if one would want to plot time-series graphs, the data would first need to be stored somewhere. This is the objective of the application presented in this article, named MQTT Logger.
+
+MQTT Logger is a Node.js application which subscribes to MQTT topics of IoT sensors and stores the data that those published in an InfluxDB time-series database.
+
+MQTT topics to subscribe to are stored in a MongoDB database and can be managed via a REST API built using Express.
+
+In order to facilitate the management of topics, I designed a simple Vue.js GUI which interacts with the aforementioned API. This GUI provides a list of all registered data sources as well as the option to register more.
+
+![](62c93d0b3bbcba393f77cb15.png)
+
+Sources can then be edited in a dedicated view, which also provides a simple graph to display the collected data.
+
+![](62c93d963bbcbab05077cb1d.png)
+
+The data stored can then be accessed either directly in InfluxDB or via the REST API of MQTT Logger. This makes it convenient to use in a dashboard created in Grafana for instance.
+
+![](62c93ec73bbcba88ff77cb21.png)
+
+The source code for this application is available on GitHub:
+
+* [Back-end](https://github.com/maximemoreillon/mqtt_logger)
+* [Front-end](https://github.com/maximemoreillon/mqtt_logger_gui)

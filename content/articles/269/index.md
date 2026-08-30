@@ -1,0 +1,22 @@
+---
+title: "Controlling a motor using an H bridge"
+date: '2020-01-25'
+lastmod: '2022-12-29'
+tags: ['Tutorials', 'Mechatronics', 'Electronics', 'Motor']
+---
+
+A DC motor model can be as simple as: T = K \* I where T is the torque provided by the motor, K the motor constant and I the current that flows through it. From this simple model, one can see that if the sign of the current changes, that of the torque also changes. Thus, changing the direction of rotation of a DC motor is a simple as reverting flow into it.
+
+![Article image](63ad9ee64417695e14b807b5.png)
+
+Using switches, one can create a circuit that can accomplish such reversal of the current flow:
+
+![Article image](63ad9ef94417697d65b807b9.png)
+
+Here, if S1 and S4 are closed while S2 and S3 are open, the motor will rotate in one direction. If all switches are toggled, the motor reverses direction.
+
+Transistors can be used instead of switches so that the motor can be controlled using a microcontroller for instance. Thus the diagram becomes as follows:
+
+![Article image](63ad9f12441769db21b807bd.png)
+
+This configuration is called an H bridge, because of the similarity between the its diagram and the letter H.

@@ -1,0 +1,18 @@
+---
+title: "MQTThree"
+date: '2023-05-03'
+lastmod: '2023-05-07'
+tags: ['Featured', 'Three.js', 'Projects', 'IoT', 'MQTT', 'Vue.js', 'Nuxt.js']
+---
+
+Recently, I've been working on a few projects involving digital twins. At its core, a digital twin is simply a digital representation, oftentimes in 3D, of a physical system. Such representation commonly provides information about the system as well as ways of interactions. On the physical system, this is can be accomplished with IoT devices.
+
+Having to build a dedicated application for each digital twin would be tedious so I designed a simple framework to make the process more convenient. The framework uses Three.js for the 3D representation of the system and MQTT to interact with its IoT devices, which led to the name MQTThree.
+
+Here is an example where I created a digital twin of my apartment, where lights can be controlled and the data of various sensors is displayed:
+
+![Article image](6451b994fe111a0013b73de6.gif)
+
+The framework is built using Nuxt.js so as to allow the user to upload 3D models as well as IoT device configurations on the server at runtime.
+
+The source code for this project is available on [GitHub](https://github.com/maximemoreillon/MQTThree)

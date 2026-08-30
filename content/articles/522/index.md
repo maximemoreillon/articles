@@ -1,0 +1,16 @@
+---
+title: "3D printed bracket for fume extractor"
+date: '2020-08-09'
+lastmod: '2021-11-23'
+tags: ['3D printing', 'CAD', 'Projects']
+---
+
+I got myself a fume extractor but it takes a rather large amount of real-estate on my desk. I decided to mount it on an arm so that I could easily move it out of the way so I designed and 3D printed an attachment bracket for it.
+
+![](614fd10f9a075f99a459c899.jpg)The bracket was designed in Fusion 360
+
+![](614fd8ca9a075faaea59c8ad.png)And then printed on my QIDI Tech 1
+
+![](614fd97c9a075f778d59c8b1.jpg)It ended up fitting the fume extractor nicely
+
+![](614fd99b9a075f1d4c59c8b5.jpg)The STL file for this part is available on [Thingiverse](https://www.thingiverse.com/thing:5145169)

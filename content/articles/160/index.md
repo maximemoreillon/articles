@@ -1,0 +1,30 @@
+---
+title: "IoT scale"
+date: '2020-03-09'
+lastmod: '2022-10-24'
+tags: ['Projects', 'ESP8266', 'IoT', 'Electronics']
+---
+
+Keeping track of one's body weight usually involves manually writing down measurements on a spreadsheet or similar. To automate the process, I removed the electronics of a cheap scale, keeping only the load cells, and replaced it with my own.
+
+I installed an HX711 load cell amplifier, Wemos D1 mini (ESP8266 breakout board) and SSD1306 OLED display. With this setup, the ESP8266 reads measurements from the load cells, converts it into the appropriate value in kilograms and uploads it using HTTP requests to an API of my choice via Wi-Fi.
+
+![](5e786e056f2c2a1eca19cad4.jpg)
+
+Here is the parts list for this project:
+
+* [Wemos D1 mini](https://wiki.wemos.cc/products:d1:d1_mini)
+* [HX711 Load cell amplifier](https://cdn.sparkfun.com/datasheets/Sensors/ForceFlex/hx711_english.pdf)
+* SSD1306 OLED display
+
+Those are laid out according to the following schematic:
+
+![Article image](62d36ff23bbcba047377d4af.png)
+
+Those parts are assembled directly in the housing of the scale. However, future versions will involve a custom made PCB.
+
+![Article image](62d370223bbcbae9b777d4b5.jpg)
+
+The source code for the firmware is available on [GitHub](https://github.com/maximemoreillon/scale)
+
+More info about the hardware on [OSHWLab](https://oshwlab.com/m.moreillon/iot_scale)

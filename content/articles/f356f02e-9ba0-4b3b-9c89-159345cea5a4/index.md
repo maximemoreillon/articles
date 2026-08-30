@@ -1,0 +1,34 @@
+---
+title: "Smart outlet setup"
+date: '2021-12-28'
+lastmod: '2022-06-27'
+tags: ['IoT']
+---
+
+## Connect to the device's WiFi access point
+
+When used for the first time, the device will have no knowledge of what WiFi to connect to. Consequently, the smart outlet will generate its own, prefixed with the name *socket.*
+
+![](61cab9b835a52f0b519e337d.jpg)
+
+Connecting to the access point should automatically open a configuration page.
+
+## WiFi configuration
+
+Once connected to the wifi, the following page should open. On this page, the WiFi settings and MQTT credentials can be set.
+
+![](61caba7a35a52f8eaf9e3387.jpg)
+
+The settings can be saved by clicking the *save* button at the bottom of the page.
+
+Dashboard
+
+Devices can be controlled from <https://dashboard.iot.maximemoreillon.com>. Accessing the page should yield the following login page:
+
+![](61cabb7835a52f3f979e338d.png)
+
+Once logged in with appropriate credentials, available devices are listed as such:
+
+![](61cabbad35a52f0d799e3391.png)
+
+Clicking the On/Off button on the right side of a device allows to turn the latter on and off.

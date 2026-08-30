@@ -1,0 +1,18 @@
+---
+title: "IoT pan-tilt platform"
+date: '2021-02-04'
+lastmod: '2022-06-26'
+tags: ['Electronics', 'IoT', 'WIP', 'MQTT', 'Projects']
+---
+
+With the COVID-19 pandemic, many of us cannot participate in family gatherings or other similar events in person. Instead, some opt for video-call applications like zoom, but then get constrained to the field of view of camera of the device used for the call.
+
+In order to look around more freely, I modified this off the shelf pan-tilt platform so as to be controlled by MQTT from anywhere in the world.
+
+The original RF receiver of the YT260 has been replaced by a Wemos D1 Mini ESP8266 breakout board.
+
+![](601b6d1f0397cf0e763cb658.jpg)
+
+![](601b6d180397cf59bb3cb657.jpg)
+
+The firmware is available on [GitLab](https://gitlab.com/moreillon/pan_tilt_firmware)

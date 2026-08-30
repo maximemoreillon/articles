@@ -1,0 +1,21 @@
+---
+title: "Wardrobe and outfits management web app"
+date: '2022-01-27'
+lastmod: '2022-12-30'
+tags: ['Vue.js', 'MongoDB', 'Mongoose', 'Vuetify', 'WIP', 'Express', 'Web', 'Node.js']
+---
+
+Have you ever bought a piece of clothing only to come home and realize you already had a similar one in your wardrobe? This web application aims at solving this problem by allowing users to register their garments in a database.
+
+![](61f2b47035a52f9bb09e4eef.png)
+
+Moreover, the application provides a way to register complete outfits and list the various garments that are parts it.
+
+![](62b8fa733bbcba1c3e77be8c.png)
+
+The application consists of a Node.js back-end which stores garment information in a MongoDB database. It also provides a REST API built using Express to exchange data with the application's GUI. The latter is a Vue.js single page application featuring UI components from the Vuetify library.
+
+The source-code for the application is available on GitHub:
+
+* [Back-end](https://github.com/maximemoreillon/outfit_manager)
+* [GUI](https://github.com/maximemoreillon/outfit_manager_front)

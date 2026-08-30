@@ -1,0 +1,26 @@
+---
+title: "Group and User Pickers"
+date: "2021-09-25"
+lastmod: "2023-09-05"
+tags: ["NPM", "WIP", "Web", "Projects"]
+---
+
+With the [user management](https://articles.maximemoreillon.com/articles/585) and [group management microservices](https://articles.maximemoreillon.com/articles/398), users and their groups can be easily queried through HTTP requests. However, the GUI that the user interacts with must also be properly designed so as to provide an optimal UX. To facilitate the query of users via the GUI, I designed a group and user picker component for Vue.js that can be easily installed using NPM.
+
+## Group picker
+
+With the group management microservice, users are divided into groups. So, I first designed a group picker that allows to query the node corresponding to a specific group in the database. This picker takes advantage of the tree structure of groups to show those in orderly fashion. The component has been made so as to emit the group properties when a selection is made.
+
+![](614e83b69a075f349b59c235.png)
+
+If the group picker has access to the authentication API, it can automatically expand the groups that the current user is part of.
+
+The group picker ca be installed using [NPM](https://www.npmjs.com/package/@moreillon/vue_group_picker). Its source code is available on [GitHub](https://github.com/maximemoreillon/vue_group_picker).
+
+## User Picker
+
+To enable the selection of a specific user of a group, I designed a user picker. This picker displays users of a selected group in a list, with an additional search feature for convenience.
+
+![](614e84e79a075f434359c239.png)
+
+The group picker ca be installed using [NPM](https://www.npmjs.com/package/@moreillon/vue_user_picker). Its source code is available on [GitHub](https://github.com/maximemoreillon/vue_user_picker).

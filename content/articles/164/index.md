@@ -9,7 +9,7 @@ One of the companies I used to work for had a serious bathroom issue: My floor h
 
 The indicator simply consists of a SONOFF B2 with a custom firmware.
 
-![](https://img.maximemoreillon.com/images/5e7858335e7feeaa726e573f)
+![](5e7858335e7feeaa726e573f.jpg)
 
 The sensors, on the other hand, are built using a reed switch connected to an ESP2866. Luckily for me, the stalls' door would rest in an open position unless locked. Thus, all I needed to do was using the reed switch to check if the door was closed.
 

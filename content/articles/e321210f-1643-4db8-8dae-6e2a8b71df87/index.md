@@ -1,0 +1,22 @@
+---
+title: "Rebuilding the Odroid XU4 server"
+date: '2023-01-31'
+lastmod: '2024-01-04'
+tags: ['Projects', '3D printing', 'CAD']
+---
+
+[In a previous article](https://articles.maximemoreillon.com/articles/390) I showcased a simple home server built around an Odroid XU4, which I dismantled after migrating to a full-size desktop computer. However, having the Odroid laying around unused was a bit of a waste and I recently started needing a secondary file server to store data backups. So I decided to build a new server with the single board computer.
+
+The core hardware remained similar to the original server: the Odroid itself, a hard disk connected via USB to SATA converter and a power supply. However, this time I decided to package the components in a compact PC case.
+
+![Article image](63d872894417693386b832f5.jpg)
+
+Because the XU4 does not have a typical ATX (mini, micro or anything) form factor, mounting it in the case required a special frame which I designed in FreeCad and 3D printed.
+
+![Article image](63d871a7441769ec6bb832da.jpg)
+
+![Article image](63d871974417695470b832d6.jpg)
+
+![Article image](63d871784417696376b832d2.jpg)
+
+As a result, the server works similarly to its previous version but in a more robust enclosure.
