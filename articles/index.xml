@@ -237,6 +237,25 @@ Although functional, this approach required operational overhead such as server 
     </item>
     
     <item>
+      <title>My Homelab: Proxmox and Talos Linux</title>
+      <link>https://articles.maximemoreillon.com/articles/homelab-proxmox-talos/</link>
+      <pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/homelab-proxmox-talos/</guid>
+      
+      <description>&lt;h1 id=&#34;my-homelab-proxmox-and-talos-linux&#34;&gt;My Homelab: Proxmox and Talos Linux&lt;/h1&gt;
+&lt;p&gt;I recently rebuilt my homelab around &lt;a href=&#34;https://www.proxmox.com/&#34;&gt;Proxmox&lt;/a&gt; as the hypervisor and &lt;a href=&#34;https://www.talos.dev/&#34;&gt;Talos Linux&lt;/a&gt; for running applications. This is a short overview of how it is put together.&lt;/p&gt;
+&lt;h2 id=&#34;virtualisation&#34;&gt;Virtualisation&lt;/h2&gt;
+&lt;p&gt;A single Proxmox host runs the whole setup as virtual machines:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;TrueNAS&lt;/strong&gt; runs as a VM and handles storage. Disks are passed through to it so that ZFS manages them directly, and it exposes that storage back to the other VMs over NFS and iSCSI.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Talos Linux&lt;/strong&gt; provides a minimal, immutable, API-driven Kubernetes OS. All of my self-hosted applications run here rather than directly on the host.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Keeping everything as VMs on Proxmox makes it easy to snapshot, back up and rebuild individual pieces without touching the rest.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Nginx as reverse proxy in Kubernetes</title>
       <link>https://articles.maximemoreillon.com/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
@@ -3470,7 +3489,7 @@ Although functional, this approach required operational overhead such as server 
     </item>
     
     <item>
-      <title>Self hosted Docker registry</title>
+      <title>Self-hosted Docker registry</title>
       <link>https://articles.maximemoreillon.com/articles/351/</link>
       <pubDate>Fri, 10 Jan 2020 00:00:00 +0000</pubDate>
       
@@ -3479,7 +3498,7 @@ Although functional, this approach required operational overhead such as server 
       <description>&lt;p&gt;When using the &lt;code&gt;docker pull&lt;/code&gt; command, container images are by default downloaded from docker hub, the official public registry for container images. However, for some projects, images are better stored on a private platform. This can be achieved by hosting one&amp;rsquo;s own docker registry.&lt;/p&gt;
 &lt;p&gt;A complete guide is written here: &lt;a href=&#34;https://docs.docker.com/registry/deploying/&#34;&gt;https://docs.docker.com/registry/deploying/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This article merely summarizes the basics involved in the process.&lt;/p&gt;
-&lt;h2 id=&#34;self-hosted-docker-registry-as-container&#34;&gt;Self hosted Docker registry as container&lt;/h2&gt;
+&lt;h2 id=&#34;self-hosted-docker-registry-as-container&#34;&gt;Self-hosted Docker registry as container&lt;/h2&gt;
 &lt;p&gt;A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:&lt;/p&gt;</description>
       
     </item>

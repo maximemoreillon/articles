@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Self hosted Docker registry | Maxime Moreillon</title>
-<meta property="og:title" content="Self hosted Docker registry | Maxime Moreillon" />
-<meta name="twitter:title" content="Self hosted Docker registry | Maxime Moreillon" />
-<meta itemprop="name" content="Self hosted Docker registry | Maxime Moreillon" />
-<meta name="application-name" content="Self hosted Docker registry | Maxime Moreillon" />
+<title itemprop="name">Self-hosted Docker registry | Maxime Moreillon</title>
+<meta property="og:title" content="Self-hosted Docker registry | Maxime Moreillon" />
+<meta name="twitter:title" content="Self-hosted Docker registry | Maxime Moreillon" />
+<meta itemprop="name" content="Self-hosted Docker registry | Maxime Moreillon" />
+<meta name="application-name" content="Self-hosted Docker registry | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -30,11 +30,11 @@
     
     <meta property="og:url" content="https://articles.maximemoreillon.com/articles/351/">
 	<meta property="og:site_name" content="Maxime Moreillon">
-	<meta property="og:title" content="Self hosted Docker registry">
+	<meta property="og:title" content="Self-hosted Docker registry">
 	<meta property="og:description" content="When using the docker pull command, container images are by default downloaded from docker hub, the official public registry for container images. However, for some projects, images are better stored on a private platform. This can be achieved by hosting one’s own docker registry.
 A complete guide is written here: https://docs.docker.com/registry/deploying/
 This article merely summarizes the basics involved in the process.
-Self hosted Docker registry as container A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:">
+Self-hosted Docker registry as container A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -48,11 +48,11 @@ Self hosted Docker registry as container A docker registry is an application jus
     
     
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Self hosted Docker registry">
+	<meta name="twitter:title" content="Self-hosted Docker registry">
 	<meta name="twitter:description" content="When using the docker pull command, container images are by default downloaded from docker hub, the official public registry for container images. However, for some projects, images are better stored on a private platform. This can be achieved by hosting one’s own docker registry.
 A complete guide is written here: https://docs.docker.com/registry/deploying/
 This article merely summarizes the basics involved in the process.
-Self hosted Docker registry as container A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:">
+Self-hosted Docker registry as container A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:">
 
 
     
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <main class="page-content" aria-label="Content">
         <article>
             <header class="header">
-                <h1 class="header-title">Self hosted Docker registry</h1>
+                <h1 class="header-title">Self-hosted Docker registry</h1>
                 
                 
                 
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>When using the <code>docker pull</code> command, container images are by default downloaded from docker hub, the official public registry for container images. However, for some projects, images are better stored on a private platform. This can be achieved by hosting one&rsquo;s own docker registry.</p>
 <p>A complete guide is written here: <a href="https://docs.docker.com/registry/deploying/">https://docs.docker.com/registry/deploying/</a></p>
 <p>This article merely summarizes the basics involved in the process.</p>
-<h2 id="self-hosted-docker-registry-as-container">Self hosted Docker registry as container</h2>
+<h2 id="self-hosted-docker-registry-as-container">Self-hosted Docker registry as container</h2>
 <p>A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d --restart<span style="color:#f92672">=</span>always --name registry -p 5000:5000 -e REGISTRY_HTTP_ADDR<span style="color:#f92672">=</span>0.0.0.0:5000 registry:2
 </span></span></code></pre></div><h2 id="pushing-to-the-registry">Pushing to the registry</h2>
