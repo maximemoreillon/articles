@@ -1,10 +1,8 @@
 ---
-date: '2025-06-15'
-title: "My Homelab: Proxmox and Talos Linux"
+date: "2025-06-15"
+title: "Proxmox homelab with Talos and TrueNAS"
 tags: ["Homelab", "Proxmox", "Talos", "Kubernetes", "Projects"]
 ---
-
-# My Homelab: Proxmox and Talos Linux
 
 I recently rebuilt my homelab around [Proxmox](https://www.proxmox.com/) as the hypervisor and [Talos Linux](https://www.talos.dev/) for running applications. This is a short overview of how it is put together.
 
