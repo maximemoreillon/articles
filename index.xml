@@ -237,14 +237,13 @@ Although functional, this approach required operational overhead such as server 
     </item>
     
     <item>
-      <title>My Homelab: Proxmox and Talos Linux</title>
-      <link>https://articles.maximemoreillon.com/articles/homelab-proxmox-talos/</link>
+      <title>Proxmox homelab with Talos and TrueNAS</title>
+      <link>https://articles.maximemoreillon.com/articles/homelab-proxmox-talos-truenas/</link>
       <pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://articles.maximemoreillon.com/articles/homelab-proxmox-talos/</guid>
+      <guid>https://articles.maximemoreillon.com/articles/homelab-proxmox-talos-truenas/</guid>
       
-      <description>&lt;h1 id=&#34;my-homelab-proxmox-and-talos-linux&#34;&gt;My Homelab: Proxmox and Talos Linux&lt;/h1&gt;
-&lt;p&gt;I recently rebuilt my homelab around &lt;a href=&#34;https://www.proxmox.com/&#34;&gt;Proxmox&lt;/a&gt; as the hypervisor and &lt;a href=&#34;https://www.talos.dev/&#34;&gt;Talos Linux&lt;/a&gt; for running applications. This is a short overview of how it is put together.&lt;/p&gt;
+      <description>&lt;p&gt;I recently rebuilt my homelab around &lt;a href=&#34;https://www.proxmox.com/&#34;&gt;Proxmox&lt;/a&gt; as the hypervisor and &lt;a href=&#34;https://www.talos.dev/&#34;&gt;Talos Linux&lt;/a&gt; for running applications. This is a short overview of how it is put together.&lt;/p&gt;
 &lt;h2 id=&#34;virtualisation&#34;&gt;Virtualisation&lt;/h2&gt;
 &lt;p&gt;A single Proxmox host runs the whole setup as virtual machines:&lt;/p&gt;
 &lt;ul&gt;
