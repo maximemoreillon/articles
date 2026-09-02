@@ -15,13 +15,19 @@
       <guid>https://articles.maximemoreillon.com/articles/homelab-proxmox-talos-truenas/</guid>
       
       <description>&lt;p&gt;I recently rebuilt my homelab around &lt;a href=&#34;https://www.proxmox.com/&#34;&gt;Proxmox&lt;/a&gt; as the hypervisor and &lt;a href=&#34;https://www.talos.dev/&#34;&gt;Talos Linux&lt;/a&gt; for running applications. This is a short overview of how it is put together.&lt;/p&gt;
-&lt;h2 id=&#34;virtualisation&#34;&gt;Virtualisation&lt;/h2&gt;
-&lt;p&gt;A single Proxmox host runs the whole setup as virtual machines:&lt;/p&gt;
+&lt;h2 id=&#34;hardware&#34;&gt;Hardware&lt;/h2&gt;
+&lt;p&gt;Almost all of it was bought second-hand, mostly on &lt;a href=&#34;https://jp.mercari.com/&#34;&gt;Mercari&lt;/a&gt;:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;TrueNAS&lt;/strong&gt; runs as a VM and handles storage. Disks are passed through to it so that ZFS manages them directly, and it exposes that storage back to the other VMs over NFS and iSCSI.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Talos Linux&lt;/strong&gt; provides a minimal, immutable, API-driven Kubernetes OS. All of my self-hosted applications run here rather than directly on the host.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Motherboard:&lt;/strong&gt; ASUS H270 Pro (ATX)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CPU:&lt;/strong&gt; Intel Core i7-7700&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Memory:&lt;/strong&gt; 64 GB DDR4&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Proxmox boot:&lt;/strong&gt; 2× Crucial MX500 256 GB SATA SSD&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VM storage:&lt;/strong&gt; 2× Crucial P5 Plus NVMe SSD&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HBA:&lt;/strong&gt; Inspur 9300-8i flashed to IT mode, passed through to the TrueNAS VM&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PSU:&lt;/strong&gt; Seasonic Focus SSR-650FM (650 W, semi-modular)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Chassis:&lt;/strong&gt; Chieftec UNC-411E-B 4U, mounted in a StarTech 18U rack&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Keeping everything as VMs on Proxmox makes it easy to snapshot, back up and rebuild individual pieces without touching the rest.&lt;/p&gt;</description>
+&lt;p&gt;Every pair of drives is set up as a ZFS mirror — the boot SSDs and the VM NVMe drives on Proxmox, and on the HBA, TrueNAS manages two more mirrored pools:&lt;/p&gt;</description>
       
     </item>
     
