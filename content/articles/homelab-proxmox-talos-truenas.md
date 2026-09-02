@@ -6,6 +6,26 @@ tags: ["Homelab", "Proxmox", "Talos", "Kubernetes", "Projects"]
 
 I recently rebuilt my homelab around [Proxmox](https://www.proxmox.com/) as the hypervisor and [Talos Linux](https://www.talos.dev/) for running applications. This is a short overview of how it is put together.
 
+## Hardware
+
+Almost all of it was bought second-hand, mostly on [Mercari](https://jp.mercari.com/):
+
+- **Motherboard:** ASUS H270 Pro (ATX)
+- **CPU:** Intel Core i7-7700
+- **Memory:** 64 GB DDR4
+- **Proxmox boot:** 2× Crucial MX500 256 GB SATA SSD
+- **VM storage:** 2× Crucial P5 Plus NVMe SSD
+- **HBA:** Inspur 9300-8i flashed to IT mode, passed through to the TrueNAS VM
+- **PSU:** Seasonic Focus SSR-650FM (650 W, semi-modular)
+- **Chassis:** Chieftec UNC-411E-B 4U, mounted in a StarTech 18U rack
+
+Every pair of drives is set up as a ZFS mirror — the boot SSDs and the VM NVMe drives on Proxmox, and on the HBA, TrueNAS manages two more mirrored pools:
+
+- 2× 2 TB Seagate IronWolf — HDD mirror
+- 2× Crucial MX500 500 GB — SSD mirror
+
+Buying used keeps the cost down, and the i7-7700 / H270 platform has more than enough headroom for what the lab actually does.
+
 ## Virtualisation
 
 A single Proxmox host runs the whole setup as virtual machines:
@@ -23,23 +43,6 @@ Persistent volumes for the Talos cluster are provisioned dynamically on the True
 - **Zvols** exported over iSCSI, for block storage with `ReadWriteOnce` access.
 
 The volume is then mounted into the pod like any other. This keeps all of the data on ZFS — with its snapshots, compression and scrubbing — while Kubernetes handles provisioning and lifecycle.
-
-## Networking
-
-**OPNsense** runs as the firewall and router for the network.
-
-## Self-hosted applications
-
-Everything below runs as workloads on the Talos Kubernetes cluster:
-
-- **Nextcloud** – files, calendar and contacts
-- **Immich** – photo library
-- **Vaultwarden** – password manager
-- **Home Assistant** – home automation
-- **Navidrome** – music streaming
-- **Homebox** – inventory
-- **n8n** and **Node-RED** – automation and workflows
-- **NocoDB** – database front-end
 
 ## Why this setup
 
