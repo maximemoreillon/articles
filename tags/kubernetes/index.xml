@@ -212,6 +212,19 @@ Throughout this article, git tags deploy to the &lt;code&gt;prod&lt;/code&gt; en
     </item>
     
     <item>
+      <title>Backups with Velero</title>
+      <link>https://articles.maximemoreillon.com/articles/velero/</link>
+      <pubDate>Sun, 04 May 2025 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/velero/</guid>
+      
+      <description>&lt;p&gt;The persistent volumes of my Talos cluster are provisioned by democratic-csi in TrueNAS and the latter uses replication to take backups into another system. On the other hand the Kubernetes manifests nused to deploy applications in the cluster are stored in a git repository. This offers a first disaster recovery solution but a proper backup strategy should rely on more than one.&lt;/p&gt;
+&lt;p&gt;As another backup solution, I installed &lt;a href=&#34;https://velero.io/&#34;&gt;Velero&lt;/a&gt;, a popular backup strategy for Cloud Native infrastructures.
+Velero makes backups of K8s objects such as deployments or services as well PV content using Kopia.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Nginx as reverse proxy in Kubernetes</title>
       <link>https://articles.maximemoreillon.com/articles/c7bc0ac6-69ec-47ba-8ec2-7a6281521807/</link>
       <pubDate>Mon, 17 Jun 2024 00:00:00 +0000</pubDate>
