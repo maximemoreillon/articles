@@ -26,5 +26,18 @@
       
     </item>
     
+    <item>
+      <title>Dynamic storage provisioning with democratic-csi</title>
+      <link>https://articles.maximemoreillon.com/articles/democratic-csi/</link>
+      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/democratic-csi/</guid>
+      
+      <description>&lt;p&gt;My Talos cluster needed persistent storage backed by the TrueNAS VM that already manages my disks with ZFS. Rather than provisioning volumes on TrueNAS by hand for every workload, I installed &lt;a href=&#34;https://github.com/democratic-csi/democratic-csi&#34;&gt;democratic-csi&lt;/a&gt;, a CSI driver that lets Kubernetes provision storage on TrueNAS directly.&lt;/p&gt;
+&lt;h2 id=&#34;how-it-works&#34;&gt;How it works&lt;/h2&gt;
+&lt;p&gt;democratic-csi talks to the TrueNAS API. When a &lt;code&gt;PersistentVolumeClaim&lt;/code&gt; is created in the cluster, it creates a matching resource on TrueNAS and hands it back to Kubernetes as a &lt;code&gt;PersistentVolume&lt;/code&gt;, so provisioning stays entirely declarative — no manual dataset or zvol creation.&lt;/p&gt;</description>
+      
+    </item>
+    
   </channel>
 </rss>

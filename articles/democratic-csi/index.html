@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">TrueNAS | Maxime Moreillon</title>
-<meta property="og:title" content="TrueNAS | Maxime Moreillon" />
-<meta name="twitter:title" content="TrueNAS | Maxime Moreillon" />
-<meta itemprop="name" content="TrueNAS | Maxime Moreillon" />
-<meta name="application-name" content="TrueNAS | Maxime Moreillon" />
+<title itemprop="name">Dynamic storage provisioning with democratic-csi | Maxime Moreillon</title>
+<meta property="og:title" content="Dynamic storage provisioning with democratic-csi | Maxime Moreillon" />
+<meta name="twitter:title" content="Dynamic storage provisioning with democratic-csi | Maxime Moreillon" />
+<meta itemprop="name" content="Dynamic storage provisioning with democratic-csi | Maxime Moreillon" />
+<meta name="application-name" content="Dynamic storage provisioning with democratic-csi | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/tags/truenas/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/democratic-csi/" title="" />
 
 
 
@@ -28,24 +28,31 @@
 <meta name="generator" content="Hugo 0.162.1">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/tags/truenas/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/democratic-csi/">
 	<meta property="og:site_name" content="Maxime Moreillon">
-	<meta property="og:title" content="TrueNAS">
+	<meta property="og:title" content="Dynamic storage provisioning with democratic-csi">
+	<meta property="og:description" content="My Talos cluster needed persistent storage backed by the TrueNAS VM that already manages my disks with ZFS. Rather than provisioning volumes on TrueNAS by hand for every workload, I installed democratic-csi, a CSI driver that lets Kubernetes provision storage on TrueNAS directly.
+How it works democratic-csi talks to the TrueNAS API. When a PersistentVolumeClaim is created in the cluster, it creates a matching resource on TrueNAS and hands it back to Kubernetes as a PersistentVolume, so provisioning stays entirely declarative — no manual dataset or zvol creation.">
 	<meta property="og:locale" content="en_us">
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2025-03-10T00:00:00+00:00">
+		<meta property="article:modified_time" content="2025-03-10T00:00:00+00:00">
+		<meta property="article:tag" content="Kubernetes">
+		<meta property="article:tag" content="TrueNAS">
 
 
     
     
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="TrueNAS">
+	<meta name="twitter:title" content="Dynamic storage provisioning with democratic-csi">
+	<meta name="twitter:description" content="My Talos cluster needed persistent storage backed by the TrueNAS VM that already manages my disks with ZFS. Rather than provisioning volumes on TrueNAS by hand for every workload, I installed democratic-csi, a CSI driver that lets Kubernetes provision storage on TrueNAS directly.
+How it works democratic-csi talks to the TrueNAS API. When a PersistentVolumeClaim is created in the cluster, it creates a matching resource on TrueNAS and hands it back to Kubernetes as a PersistentVolume, so provisioning stays entirely declarative — no manual dataset or zvol creation.">
 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/tags/truenas/">
-    <link href="/tags/truenas/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/tags/truenas/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/democratic-csi/">
     <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -111,7 +118,7 @@ stroke-linejoin="round" class="feather feather-home">
                 </li>
                 
                 <li>
-                    <a class="menu-link " href="/articles/">
+                    <a class="menu-link active" href="/articles/">
                         Articles
                     </a>
                     
@@ -219,55 +226,37 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<div class="wrapper list-page">
-    <header class="header">
-        <h1 class="header-title center">TrueNAS</h1>
-    </header>
+
+<div class="wrapper post">
     <main class="page-content" aria-label="Content">
-        
-        
-        <h2 class="post-year">2025</h2>
+        <article>
+            <header class="header">
+                <h1 class="header-title">Dynamic storage provisioning with democratic-csi</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2025-03-10T00:00:00&#43;00:00" itemprop="datePublished"> 10 Mar 2025 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>My Talos cluster needed persistent storage backed by the TrueNAS VM that already manages my disks with ZFS. Rather than provisioning volumes on TrueNAS by hand for every workload, I installed <a href="https://github.com/democratic-csi/democratic-csi">democratic-csi</a>, a CSI driver that lets Kubernetes provision storage on TrueNAS directly.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>democratic-csi talks to the TrueNAS API. When a <code>PersistentVolumeClaim</code> is created in the cluster, it creates a matching resource on TrueNAS and hands it back to Kubernetes as a <code>PersistentVolume</code>, so provisioning stays entirely declarative — no manual dataset or zvol creation.</p>
+<p>I ended up with two <code>StorageClass</code>es on the cluster, covering the two access modes I need:</p>
+<ul>
+<li><strong>NFS</strong>, backed by ZFS datasets, for volumes that need <code>ReadWriteMany</code>.</li>
+<li><strong>iSCSI</strong>, backed by ZFS zvols, for block storage with <code>ReadWriteOnce</code>.</li>
+</ul>
+<h2 id="why-this-setup">Why this setup</h2>
+<p>Letting Kubernetes drive storage provisioning through the TrueNAS API keeps volume lifecycle entirely declarative and tied to the cluster&rsquo;s manifests, while ZFS underneath still gives me snapshots, compression and scrubbing for free. It&rsquo;s also what makes <a href="/articles/secondary-server-switzerland/">replicating the pool to my secondary server in Switzerland</a> straightforward — it builds directly on top of it.</p>
 
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/secondary-server-switzerland/">Secondary server in Switzerland</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2025-08-15T00:00:00Z">
-        15 Aug 2025
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/democratic-csi/">Dynamic storage provisioning with democratic-csi</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2025-03-10T00:00:00Z">
-        10 Mar 2025
-    </time>
-</article>
-
-
-         
-
-         
-
-    </main>
-</div><footer class="footer">
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 
