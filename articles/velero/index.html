@@ -31,8 +31,8 @@
     <meta property="og:url" content="https://articles.maximemoreillon.com/articles/velero/">
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Backups with Velero">
-	<meta property="og:description" content="The persistent volumes of my Talos cluster are provisioned by democratic-csi in TrueNAS and the latter uses replication to take backups into another system. On the other hand the Kubernetes manifests nused to deploy applications in the cluster are stored in a git repository. This offers a first disaster recovery solution but a proper backup strategy should rely on more than one.
-As another backup solution, I installed Velero, a popular backup strategy for Cloud Native infrastructures. Velero makes backups of K8s objects such as deployments or services as well PV content using Kopia.">
+	<meta property="og:description" content="The persistent volumes of my Talos cluster are provisioned by democratic-csi in TrueNAS, and TrueNAS uses replication to copy backups to another system. The Kubernetes manifests used to deploy applications in the cluster are also stored in a git repository. This gives a first disaster recovery path, but a proper backup strategy should rely on more than one mechanism.
+As another layer, I installed Velero, a popular backup tool for Cloud Native infrastructures. Velero backs up Kubernetes objects such as deployments and services, as well as the contents of persistent volumes, using Kopia.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -45,8 +45,8 @@ As another backup solution, I installed Velero, a popular backup strategy for Cl
     
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Backups with Velero">
-	<meta name="twitter:description" content="The persistent volumes of my Talos cluster are provisioned by democratic-csi in TrueNAS and the latter uses replication to take backups into another system. On the other hand the Kubernetes manifests nused to deploy applications in the cluster are stored in a git repository. This offers a first disaster recovery solution but a proper backup strategy should rely on more than one.
-As another backup solution, I installed Velero, a popular backup strategy for Cloud Native infrastructures. Velero makes backups of K8s objects such as deployments or services as well PV content using Kopia.">
+	<meta name="twitter:description" content="The persistent volumes of my Talos cluster are provisioned by democratic-csi in TrueNAS, and TrueNAS uses replication to copy backups to another system. The Kubernetes manifests used to deploy applications in the cluster are also stored in a git repository. This gives a first disaster recovery path, but a proper backup strategy should rely on more than one mechanism.
+As another layer, I installed Velero, a popular backup tool for Cloud Native infrastructures. Velero backs up Kubernetes objects such as deployments and services, as well as the contents of persistent volumes, using Kopia.">
 
 
     
@@ -241,10 +241,10 @@ document.addEventListener('DOMContentLoaded', function () {
             </header>
             
             <div class="page-content">
-                <p>The persistent volumes of my Talos cluster are provisioned by democratic-csi in TrueNAS and the latter uses replication to take backups into another system. On the other hand the Kubernetes manifests nused to deploy applications in the cluster are stored in a git repository. This offers a first disaster recovery solution but a proper backup strategy should rely on more than one.</p>
-<p>As another backup solution, I installed <a href="https://velero.io/">Velero</a>, a popular backup strategy for Cloud Native infrastructures.
-Velero makes backups of K8s objects such as deployments or services as well PV content using Kopia.</p>
-<p>Although Velero can be installed using its own CLI, I used its Helm chart instead as I don&rsquo;t like unnecessarily increase the number of tools I need to handle to manage my infrastructure.</p>
+                <p>The persistent volumes of my Talos cluster are provisioned by democratic-csi in TrueNAS, and TrueNAS uses replication to copy backups to another system. The Kubernetes manifests used to deploy applications in the cluster are also stored in a git repository. This gives a first disaster recovery path, but a proper backup strategy should rely on more than one mechanism.</p>
+<p>As another layer, I installed <a href="https://velero.io/">Velero</a>, a popular backup tool for Cloud Native infrastructures. Velero backs up Kubernetes objects such as deployments and services, as well as the contents of persistent volumes, using Kopia.</p>
+<h2 id="installation">Installation</h2>
+<p>Although Velero can be installed using its own CLI, I used its Helm chart instead, as I don&rsquo;t like unnecessarily increasing the number of tools I need to manage my infrastructure.</p>
 <p>In my case, the backup destination is Linode Object Storage.</p>
 <p>The Helm values are as follows:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">deployNodeAgent</span>: <span style="color:#66d9ef">true</span>
@@ -277,7 +277,13 @@ Velero makes backups of K8s objects such as deployments or services as well PV c
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">provider</span>: <span style="color:#ae81ff">aws</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">config</span>:
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">region</span>: <span style="color:#ae81ff">jp-osa-1</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><p><code>linode-object-storage-credentials</code> is a plain <code>Opaque</code> secret containing a <code>cloud</code> key in the standard AWS credentials file format:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[default]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">aws_access_key_id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&lt;access key&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">aws_secret_access_key</span><span style="color:#f92672">=</span><span style="color:#e6db74">&lt;secret key&gt;</span>
+</span></span></code></pre></div><h2 id="why-this-setup">Why this setup</h2>
+<p>Between democratic-csi&rsquo;s replication on TrueNAS, the git repository holding my manifests, and Velero backing up both Kubernetes objects and volume contents to Linode Object Storage, I now have backups that don&rsquo;t all depend on a single failure domain.</p>
+
             </div>
         </article></main>
 </div>
