@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Homelab | Maxime Moreillon</title>
-<meta property="og:title" content="Homelab | Maxime Moreillon" />
-<meta name="twitter:title" content="Homelab | Maxime Moreillon" />
-<meta itemprop="name" content="Homelab | Maxime Moreillon" />
-<meta name="application-name" content="Homelab | Maxime Moreillon" />
+<title itemprop="name">Secondary server in Switzerland | Maxime Moreillon</title>
+<meta property="og:title" content="Secondary server in Switzerland | Maxime Moreillon" />
+<meta name="twitter:title" content="Secondary server in Switzerland | Maxime Moreillon" />
+<meta itemprop="name" content="Secondary server in Switzerland | Maxime Moreillon" />
+<meta name="application-name" content="Secondary server in Switzerland | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/tags/homelab/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/secondary-server-switzerland/" title="" />
 
 
 
@@ -28,24 +28,35 @@
 <meta name="generator" content="Hugo 0.162.1">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/tags/homelab/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/secondary-server-switzerland/">
 	<meta property="og:site_name" content="Maxime Moreillon">
-	<meta property="og:title" content="Homelab">
+	<meta property="og:title" content="Secondary server in Switzerland">
+	<meta property="og:description" content="I built a secondary server at my parents’ house in Switzerland. It acts as an offsite target for TrueNAS replication and runs its own small Kubernetes cluster for workloads I want to keep running independently of the main homelab.
+Hardware The setup mirrors my main homelab — Proxmox as the hypervisor, Talos Linux for Kubernetes — but scaled down and built for a spare room rather than a rack:
+No rack-mount chassis, just a small tower case. A single pair of NVMe SSDs, mirrored, holding both the Proxmox boot install and the VM storage — unlike the main homelab, there’s no separate SSD pool on the TrueNAS VM, only HDDs. Networking Sensitive services such as the Proxmox UI and the Talos API are not exposed directly — they’re only reachable over Tailscale, which also links the server back to my main network so it can talk to the primary site.">
 	<meta property="og:locale" content="en_us">
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2025-08-15T00:00:00+00:00">
+		<meta property="article:modified_time" content="2025-08-15T00:00:00+00:00">
+		<meta property="article:tag" content="Homelab">
+		<meta property="article:tag" content="Talos">
+		<meta property="article:tag" content="Kubernetes">
+		<meta property="article:tag" content="TrueNAS">
 
 
     
     
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Homelab">
+	<meta name="twitter:title" content="Secondary server in Switzerland">
+	<meta name="twitter:description" content="I built a secondary server at my parents’ house in Switzerland. It acts as an offsite target for TrueNAS replication and runs its own small Kubernetes cluster for workloads I want to keep running independently of the main homelab.
+Hardware The setup mirrors my main homelab — Proxmox as the hypervisor, Talos Linux for Kubernetes — but scaled down and built for a spare room rather than a rack:
+No rack-mount chassis, just a small tower case. A single pair of NVMe SSDs, mirrored, holding both the Proxmox boot install and the VM storage — unlike the main homelab, there’s no separate SSD pool on the TrueNAS VM, only HDDs. Networking Sensitive services such as the Proxmox UI and the Talos API are not exposed directly — they’re only reachable over Tailscale, which also links the server back to my main network so it can talk to the primary site.">
 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/tags/homelab/">
-    <link href="/tags/homelab/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/tags/homelab/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/secondary-server-switzerland/">
     <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -111,7 +122,7 @@ stroke-linejoin="round" class="feather feather-home">
                 </li>
                 
                 <li>
-                    <a class="menu-link " href="/articles/">
+                    <a class="menu-link active" href="/articles/">
                         Articles
                     </a>
                     
@@ -219,55 +230,42 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<div class="wrapper list-page">
-    <header class="header">
-        <h1 class="header-title center">Homelab</h1>
-    </header>
+
+<div class="wrapper post">
     <main class="page-content" aria-label="Content">
-        
-        
-        <h2 class="post-year">2025</h2>
+        <article>
+            <header class="header">
+                <h1 class="header-title">Secondary server in Switzerland</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2025-08-15T00:00:00&#43;00:00" itemprop="datePublished"> 15 Aug 2025 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>I built a secondary server at my parents&rsquo; house in Switzerland. It acts as an offsite target for TrueNAS replication and runs its own small Kubernetes cluster for workloads I want to keep running independently of the main homelab.</p>
+<h2 id="hardware">Hardware</h2>
+<p>The setup mirrors my main homelab — <a href="https://www.proxmox.com/">Proxmox</a> as the hypervisor, <a href="https://www.talos.dev/">Talos Linux</a> for Kubernetes — but scaled down and built for a spare room rather than a rack:</p>
+<ul>
+<li>No rack-mount chassis, just a small tower case.</li>
+<li>A single pair of NVMe SSDs, mirrored, holding both the Proxmox boot install and the VM storage — unlike the main homelab, there&rsquo;s no separate SSD pool on the TrueNAS VM, only HDDs.</li>
+</ul>
+<h2 id="networking">Networking</h2>
+<p>Sensitive services such as the Proxmox UI and the Talos API are not exposed directly — they&rsquo;re only reachable over <a href="https://tailscale.com/">Tailscale</a>, which also links the server back to my main network so it can talk to the primary site.</p>
+<h2 id="storage-and-replication">Storage and replication</h2>
+<p>As on the primary homelab, a TrueNAS VM manages the local disks. It&rsquo;s set up as a replication target: the primary TrueNAS pushes ZFS snapshots to it over the Tailscale link, so the offsite copy stays in sync without needing its own backup jobs.</p>
+<h2 id="workloads">Workloads</h2>
+<p>Alongside the replication target, the server runs its own small Talos Kubernetes cluster for workloads that benefit from running off-site, including monitoring — so I still have visibility into the primary site if it goes down entirely, rather than losing monitoring along with everything else.</p>
+<h2 id="why-this-setup">Why this setup</h2>
+<p>Reusing the same Proxmox/Talos/TrueNAS stack as the main homelab means there&rsquo;s nothing new to learn to operate this box, while physically separating it at a different site closes the single-location gap that neither <a href="/articles/velero/">democratic-csi&rsquo;s local replication nor Velero</a> could address on their own.</p>
 
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/secondary-server-switzerland/">Secondary server in Switzerland</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2025-08-15T00:00:00Z">
-        15 Aug 2025
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/homelab-proxmox-talos-truenas/">Proxmox homelab with Talos and TrueNAS</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2025-06-15T00:00:00Z">
-        15 Jun 2025
-    </time>
-</article>
-
-
-         
-
-         
-
-    </main>
-</div><footer class="footer">
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 

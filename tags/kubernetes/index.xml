@@ -188,6 +188,25 @@ Throughout this article, git tags deploy to the &lt;code&gt;prod&lt;/code&gt; en
     </item>
     
     <item>
+      <title>Secondary server in Switzerland</title>
+      <link>https://articles.maximemoreillon.com/articles/secondary-server-switzerland/</link>
+      <pubDate>Fri, 15 Aug 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/secondary-server-switzerland/</guid>
+      
+      <description>&lt;p&gt;I built a secondary server at my parents&amp;rsquo; house in Switzerland. It acts as an offsite target for TrueNAS replication and runs its own small Kubernetes cluster for workloads I want to keep running independently of the main homelab.&lt;/p&gt;
+&lt;h2 id=&#34;hardware&#34;&gt;Hardware&lt;/h2&gt;
+&lt;p&gt;The setup mirrors my main homelab — &lt;a href=&#34;https://www.proxmox.com/&#34;&gt;Proxmox&lt;/a&gt; as the hypervisor, &lt;a href=&#34;https://www.talos.dev/&#34;&gt;Talos Linux&lt;/a&gt; for Kubernetes — but scaled down and built for a spare room rather than a rack:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;No rack-mount chassis, just a small tower case.&lt;/li&gt;
+&lt;li&gt;A single pair of NVMe SSDs, mirrored, holding both the Proxmox boot install and the VM storage — unlike the main homelab, there&amp;rsquo;s no separate SSD pool on the TrueNAS VM, only HDDs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;networking&#34;&gt;Networking&lt;/h2&gt;
+&lt;p&gt;Sensitive services such as the Proxmox UI and the Talos API are not exposed directly — they&amp;rsquo;re only reachable over &lt;a href=&#34;https://tailscale.com/&#34;&gt;Tailscale&lt;/a&gt;, which also links the server back to my main network so it can talk to the primary site.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Proxmox homelab with Talos and TrueNAS</title>
       <link>https://articles.maximemoreillon.com/articles/homelab-proxmox-talos-truenas/</link>
       <pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate>
