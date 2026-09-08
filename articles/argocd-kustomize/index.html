@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">ArgoCD with Kustomize | Maxime Moreillon</title>
-<meta property="og:title" content="ArgoCD with Kustomize | Maxime Moreillon" />
-<meta name="twitter:title" content="ArgoCD with Kustomize | Maxime Moreillon" />
-<meta itemprop="name" content="ArgoCD with Kustomize | Maxime Moreillon" />
-<meta name="application-name" content="ArgoCD with Kustomize | Maxime Moreillon" />
+<title itemprop="name">ArgoCD with Kustomize: examples | Maxime Moreillon</title>
+<meta property="og:title" content="ArgoCD with Kustomize: examples | Maxime Moreillon" />
+<meta name="twitter:title" content="ArgoCD with Kustomize: examples | Maxime Moreillon" />
+<meta itemprop="name" content="ArgoCD with Kustomize: examples | Maxime Moreillon" />
+<meta name="application-name" content="ArgoCD with Kustomize: examples | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -30,13 +30,12 @@
     
     <meta property="og:url" content="https://articles.maximemoreillon.com/articles/argocd-kustomize/">
 	<meta property="og:site_name" content="Maxime Moreillon">
-	<meta property="og:title" content="ArgoCD with Kustomize">
-	<meta property="og:description" content="Here is an example of how Kustomize can be used with Argo CD.
-Repo A: contains deployment.yml Repo B: contains kustomization.yml patch.yml deployment.yml
-apiVersion: apps/v1 kind: Deployment metadata: name: nginx namespace: test spec: replicas: 1 selector: matchLabels: app.kubernetes.io/name: nginx template: metadata: labels: app.kubernetes.io/name: nginx spec: containers: - name: nginx image: nginx kustomization.yml
-apiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization resources: - https://github.com/your-org/repo-a//path/to/deployment.yml?ref=v1.0.0 patches: - path: ./patch.yml NOTE: double slash in resources URL is intentional
-patch.yml
-apiVersion: apps/v1 kind: Deployment metadata: name: nginx namespace: test spec: replicas: 2 ArgoCD application:">
+	<meta property="og:title" content="ArgoCD with Kustomize: examples">
+	<meta property="og:description" content="Here are examples of how Kustomize can be used with Argo CD.
+Example 1: referencing a single file Repo A contains a plain manifest. Repo B’s kustomization.yml references that file directly and patches it.
+Repo A repo-a └── path/to └── deployment.yml deployment.yml
+apiVersion: apps/v1 kind: Deployment metadata: name: nginx namespace: test spec: replicas: 1 selector: matchLabels: app.kubernetes.io/name: nginx template: metadata: labels: app.kubernetes.io/name: nginx spec: containers: - name: nginx image: nginx Repo B repo-b └── path/to ├── kustomization.yml └── patch.yml kustomization.yml
+apiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization resources: - https://github.com/your-org/repo-a//path/to/deployment.yml?ref=v1.0.0 patches: - path: ./patch.yml NOTE: the // in the resources URL is intentional. It marks where the repo root ends and the in-repo path begins, e.g. repo-a//path/to/deployment.yml. This is the preferred, most portable syntax since it works for any git host.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -49,13 +48,12 @@ apiVersion: apps/v1 kind: Deployment metadata: name: nginx namespace: test spec:
     
     
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="ArgoCD with Kustomize">
-	<meta name="twitter:description" content="Here is an example of how Kustomize can be used with Argo CD.
-Repo A: contains deployment.yml Repo B: contains kustomization.yml patch.yml deployment.yml
-apiVersion: apps/v1 kind: Deployment metadata: name: nginx namespace: test spec: replicas: 1 selector: matchLabels: app.kubernetes.io/name: nginx template: metadata: labels: app.kubernetes.io/name: nginx spec: containers: - name: nginx image: nginx kustomization.yml
-apiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization resources: - https://github.com/your-org/repo-a//path/to/deployment.yml?ref=v1.0.0 patches: - path: ./patch.yml NOTE: double slash in resources URL is intentional
-patch.yml
-apiVersion: apps/v1 kind: Deployment metadata: name: nginx namespace: test spec: replicas: 2 ArgoCD application:">
+	<meta name="twitter:title" content="ArgoCD with Kustomize: examples">
+	<meta name="twitter:description" content="Here are examples of how Kustomize can be used with Argo CD.
+Example 1: referencing a single file Repo A contains a plain manifest. Repo B’s kustomization.yml references that file directly and patches it.
+Repo A repo-a └── path/to └── deployment.yml deployment.yml
+apiVersion: apps/v1 kind: Deployment metadata: name: nginx namespace: test spec: replicas: 1 selector: matchLabels: app.kubernetes.io/name: nginx template: metadata: labels: app.kubernetes.io/name: nginx spec: containers: - name: nginx image: nginx Repo B repo-b └── path/to ├── kustomization.yml └── patch.yml kustomization.yml
+apiVersion: kustomize.config.k8s.io/v1beta1 kind: Kustomization resources: - https://github.com/your-org/repo-a//path/to/deployment.yml?ref=v1.0.0 patches: - path: ./patch.yml NOTE: the // in the resources URL is intentional. It marks where the repo root ends and the in-repo path begins, e.g. repo-a//path/to/deployment.yml. This is the preferred, most portable syntax since it works for any git host.">
 
 
     
@@ -239,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <main class="page-content" aria-label="Content">
         <article>
             <header class="header">
-                <h1 class="header-title">ArgoCD with Kustomize</h1>
+                <h1 class="header-title">ArgoCD with Kustomize: examples</h1>
                 
                 
                 
@@ -250,17 +248,14 @@ document.addEventListener('DOMContentLoaded', function () {
             </header>
             
             <div class="page-content">
-                <p>Here is an example of how Kustomize can be used with Argo CD.</p>
-<ul>
-<li>Repo A: contains <code>deployment.yml</code></li>
-<li>Repo B: contains
-<ul>
-<li><code>kustomization.yml</code></li>
-<li><code>patch.yml</code></li>
-</ul>
-</li>
-</ul>
-<p><code>deployment.yml</code></p>
+                <p>Here are examples of how Kustomize can be used with Argo CD.</p>
+<h2 id="example-1-referencing-a-single-file">Example 1: referencing a single file</h2>
+<p>Repo A contains a plain manifest. Repo B&rsquo;s <code>kustomization.yml</code> references that file directly and patches it.</p>
+<h3 id="repo-a">Repo A</h3>
+<pre tabindex="0"><code>repo-a
+└── path/to
+    └── deployment.yml
+</code></pre><p><code>deployment.yml</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
@@ -279,7 +274,12 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
 </span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
-</span></span></code></pre></div><p><code>kustomization.yml</code></p>
+</span></span></code></pre></div><h3 id="repo-b">Repo B</h3>
+<pre tabindex="0"><code>repo-b
+└── path/to
+    ├── kustomization.yml
+    └── patch.yml
+</code></pre><p><code>kustomization.yml</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kustomize.config.k8s.io/v1beta1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Kustomization</span>
 </span></span><span style="display:flex;"><span>
@@ -288,7 +288,8 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">patches</span>:
 </span></span><span style="display:flex;"><span>  - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./patch.yml</span>
-</span></span></code></pre></div><p>NOTE: double slash in <code>resources</code> URL is intentional</p>
+</span></span></code></pre></div><p>NOTE: the <code>//</code> in the <code>resources</code> URL is intentional. It marks where the repo root ends and the in-repo path begins, e.g. <code>repo-a//path/to/deployment.yml</code>. This is the preferred, most portable syntax since it works for any git host.</p>
+<p>On <code>github.com</code> specifically, Kustomize can also infer the boundary without <code>//</code>, since it assumes an org/repo is always 2 path segments (e.g. <code>your-org/repo-a/path/to/deployment.yml</code> would resolve the same way). Other markers Kustomize recognizes instead of <code>//</code> are a <code>.git</code> suffix (<code>repo-a.git/path/to/deployment.yml</code>) and, for Azure DevOps, <code>_git/</code>.</p>
 <p><code>patch.yml</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
@@ -312,7 +313,38 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span>: <span style="color:#ae81ff">https://kubernetes.default.svc</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">whatever</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">project</span>: <span style="color:#ae81ff">default</span>
-</span></span></code></pre></div>
+</span></span></code></pre></div><h2 id="example-2-referencing-a-directory">Example 2: referencing a directory</h2>
+<p>This time Repo A has its own <code>kustomization.yml</code>, so Repo B references the directory instead of the file directly. This is the more common pattern in practice — most published Kustomize bases (e.g. <code>kubernetes-csi/external-snapshotter</code>) work this way.</p>
+<h3 id="repo-a-1">Repo A</h3>
+<pre tabindex="0"><code>repo-a
+└── path/to
+    ├── deployment.yml
+    └── kustomization.yml
+</code></pre><p><code>deployment.yml</code>: same as in Example 1.</p>
+<p><code>kustomization.yml</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kustomize.config.k8s.io/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Kustomization</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">deployment.yml</span>
+</span></span></code></pre></div><h3 id="repo-b-1">Repo B</h3>
+<pre tabindex="0"><code>repo-b
+└── path/to
+    ├── kustomization.yml
+    └── patch.yml
+</code></pre><p><code>kustomization.yml</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">kustomize.config.k8s.io/v1beta1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Kustomization</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">https://github.com/your-org/repo-a//path/to?ref=v1.0.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">patches</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./patch.yml</span>
+</span></span></code></pre></div><p>Note the <code>resources</code> URL now points at the directory (<code>.../path/to</code>) rather than the file, since Repo A&rsquo;s <code>kustomization.yml</code> already declares <code>deployment.yml</code> as a resource.</p>
+<p><code>patch.yml</code>: same as in Example 1.</p>
+<p>The Argo CD <code>Application</code> manifest is unchanged from Example 1.</p>
+
             </div>
         </article></main>
 </div>
