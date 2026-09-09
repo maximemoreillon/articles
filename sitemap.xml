@@ -3,8 +3,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://articles.maximemoreillon.com/tags/argocd/</loc>
+    <lastmod>2026-09-08T00:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://articles.maximemoreillon.com/articles/</loc>
-    <lastmod>2026-08-26T00:00:00+00:00</lastmod>
+    <lastmod>2026-09-08T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/helm/</loc>
+    <lastmod>2026-09-08T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/kubernetes/</loc>
+    <lastmod>2026-09-08T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/</loc>
+    <lastmod>2026-09-08T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/</loc>
+    <lastmod>2026-09-08T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/untangling-helm-and-argocd/</loc>
+    <lastmod>2026-09-08T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/devops/</loc>
     <lastmod>2026-08-26T00:00:00+00:00</lastmod>
@@ -12,16 +30,7 @@
     <loc>https://articles.maximemoreillon.com/tags/gitlab/</loc>
     <lastmod>2026-08-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/kubernetes/</loc>
-    <lastmod>2026-08-26T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://articles.maximemoreillon.com/articles/kustomize-gitlab-cicd/</loc>
-    <lastmod>2026-08-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/</loc>
-    <lastmod>2026-08-26T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/</loc>
     <lastmod>2026-08-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/kubeconfig-for-namespace/</loc>
@@ -235,9 +244,6 @@
     <lastmod>2024-02-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/e1d7dd0b-83b9-454e-a6e5-8e72bca46902/</loc>
-    <lastmod>2023-03-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/helm/</loc>
     <lastmod>2023-03-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/a3efd0bb-5866-42ef-94fc-596f4923732b/</loc>

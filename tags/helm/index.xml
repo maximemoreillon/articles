@@ -6,7 +6,26 @@
     <description>Recent content in Helm on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/helm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/helm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Untangling ArgoCD and Helm</title>
+      <link>https://articles.maximemoreillon.com/articles/untangling-helm-and-argocd/</link>
+      <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/untangling-helm-and-argocd/</guid>
+      
+      <description>&lt;p&gt;When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the &lt;code&gt;helm list&lt;/code&gt; output would not reflect what the Kubernetes cluster actualy contains.&lt;/p&gt;
+&lt;p&gt;For example:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ helm list -n cert-manager
+NAME          NAMESPACE     REVISION	UPDATED                                	STATUS  	CHART                 APP VERSION
+cert-manager  cert-manager  1       	2025-05-04 11:22:41.771600434 +0900 JST	deployed	cert-manager-v1.17.2  v1.17.2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;While in fact&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ kubectl get applications -n argocd cert-manager -o jsonpath={.spec.source.targetRevision}
+v1.19.4
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;De-registering an application from Helm can be achieved simply be removing the corresponding secret:&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>A GUI for ChartMuseum</title>
       <link>https://articles.maximemoreillon.com/articles/e1d7dd0b-83b9-454e-a6e5-8e72bca46902/</link>
