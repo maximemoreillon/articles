@@ -39,6 +39,8 @@ spec:
       ref: values
 ```
 
+Here, `values.yml` is provided in a separate repo as per this [article](argocd-multi-source-helm-values.md)
+
 Once Vault is installed and its keys/token generated, an access policy for ESO needs to be added.
 
 ### Secret engine
