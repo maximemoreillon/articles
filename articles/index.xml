@@ -2939,18 +2939,6 @@ Although functional, this approach required operational overhead such as server 
     </item>
     
     <item>
-      <title>Cookies</title>
-      <link>https://articles.maximemoreillon.com/articles/286/</link>
-      <pubDate>Thu, 13 Feb 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/articles/286/</guid>
-      
-      <description>&lt;p&gt;Cookies are key-value pairs stored on a web browser. They can be set (i.e. created) using client-side JavaScript. Conversely, a server can get a client&amp;rsquo;s browser to set cookies via instructions in an HTTP response. As such, cookies can be set by both the client and the server.&lt;/p&gt;
-&lt;p&gt;Once a cookie is set, it is sent with every subsequent HTTP request addressed at the domain on which the cookie was set. Hence, if a cookie is set while using an application served on the domain example.com, it will not be sent to a server at otherdomain.com. However, cookies can be shared across subdomains. With the previous example, cookies will be sent to exampleapp.example.com.&lt;/p&gt;</description>
-      
-    </item>
-    
-    <item>
       <title>Cookie-session</title>
       <link>https://articles.maximemoreillon.com/articles/283/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
