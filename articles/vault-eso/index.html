@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>    - <span style="color:#f92672">repoURL: your-repo-with-values # placeholder</span>: <span style="color:#ae81ff">replace with the repo holding your values.yml</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">HEAD</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">ref</span>: <span style="color:#ae81ff">values</span>
-</span></span></code></pre></div><p>Here, <code>values.yml</code> is provided in a separate repo as per this <a href="argocd-multi-source-helm-values.md">article</a></p>
+</span></span></code></pre></div><p>Here, <code>values.yml</code> is provided in a separate repo as per <a href="/articles/argocd-multi-source-helm-values/">this article</a></p>
 <p>Once Vault is installed and its keys/token generated, an access policy for ESO needs to be added.</p>
 <h3 id="secret-engine">Secret engine</h3>
 <p>In Secrets, enable a new engine of type <code>kv</code> and give it a path such as <code>k8s</code>. Once done, a secret can be added, for example one named <code>testsecret</code> with a key-value pair <code>testkey</code>: <code>testvalue</code>.</p>
