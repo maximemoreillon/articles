@@ -184,6 +184,21 @@ Throughout this article, git tags deploy to the &lt;code&gt;prod&lt;/code&gt; en
     </item>
     
     <item>
+      <title>HashiCorp Vault OIDC with Keycloak</title>
+      <link>https://articles.maximemoreillon.com/articles/vault-oidc-keycloak/</link>
+      <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/vault-oidc-keycloak/</guid>
+      
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.hashicorp.com/en/products/vault&#34;&gt;HashiCorp Vault&lt;/a&gt; supports authenticating users via OIDC, which means it can delegate login to an existing &lt;a href=&#34;https://www.keycloak.org/&#34;&gt;Keycloak&lt;/a&gt; instance instead of managing its own set of credentials.&lt;/p&gt;
+&lt;h2 id=&#34;keycloak-client-settings&#34;&gt;Keycloak client settings&lt;/h2&gt;
+&lt;p&gt;In Keycloak, create a client for Vault with &lt;em&gt;Client authentication&lt;/em&gt; set to &lt;code&gt;ON&lt;/code&gt;, so that Keycloak issues a client secret for it.&lt;/p&gt;
+&lt;h2 id=&#34;policy&#34;&gt;Policy&lt;/h2&gt;
+&lt;p&gt;Vault&amp;rsquo;s OIDC role needs to be mapped to a policy. The built-in &lt;code&gt;root&lt;/code&gt; policy cannot be used for this, so a separate &lt;code&gt;admin&lt;/code&gt; policy granting the needed capabilities has to be created instead and used in the role below.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>ESO with HashiCorp Vault</title>
       <link>https://articles.maximemoreillon.com/articles/vault-eso/</link>
       <pubDate>Sat, 11 Apr 2026 00:00:00 +0900</pubDate>
