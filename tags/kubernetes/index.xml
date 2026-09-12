@@ -184,6 +184,34 @@ Throughout this article, git tags deploy to the &lt;code&gt;prod&lt;/code&gt; en
     </item>
     
     <item>
+      <title>ESO with HashiCorp Vault</title>
+      <link>https://articles.maximemoreillon.com/articles/vault-eso/</link>
+      <pubDate>Sat, 11 Apr 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/vault-eso/</guid>
+      
+      <description>&lt;p&gt;ArgoCD enables the management of Kubernetes resources declaratively, using code that lives in a git repository. Although most resources can be handled this way, secrets should never be committed, meaning ArgoCD cannot handle them. To solve this, secrets can be stored in &lt;a href=&#34;https://www.hashicorp.com/en/products/vault&#34;&gt;HashiCorp Vault&lt;/a&gt; and turned into Kubernetes secret objects using the &lt;a href=&#34;https://external-secrets.io/latest/&#34;&gt;External Secrets Operator (ESO)&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This article presents the setup I use in my Kubernetes cluster.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://external-secrets.io/latest/pictures/diagrams-high-level-simple.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;hashicorp-vault&#34;&gt;HashiCorp Vault&lt;/h2&gt;
+&lt;h3 id=&#34;install&#34;&gt;Install&lt;/h3&gt;
+&lt;p&gt;HashiCorp Vault can be installed using ArgoCD using the following manifest:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>ArgoCD Helm chart with values from another repo</title>
+      <link>https://articles.maximemoreillon.com/articles/argocd-multi-source-helm-values/</link>
+      <pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/argocd-multi-source-helm-values/</guid>
+      
+      <description>&lt;p&gt;ArgoCD&amp;rsquo;s multi-source applications make it possible to pull a Helm chart from one repo (e.g. its official Helm repository) while sourcing the &lt;code&gt;values.yaml&lt;/code&gt; from another repo/path, such as a private repo holding cluster-specific configuration.&lt;/p&gt;
+&lt;p&gt;This is done by declaring two entries under &lt;code&gt;sources&lt;/code&gt;: one for the chart itself, and one &lt;code&gt;ref&lt;/code&gt; source pointing at the repo/path containing the values file. The chart source then references that values file via the &lt;code&gt;$&amp;lt;ref&amp;gt;/&amp;lt;path&amp;gt;&lt;/code&gt; syntax.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Grafana database migration from SQLite to postgresql</title>
       <link>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</link>
       <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>

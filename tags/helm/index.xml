@@ -27,6 +27,18 @@ v1.19.4
     </item>
     
     <item>
+      <title>ArgoCD Helm chart with values from another repo</title>
+      <link>https://articles.maximemoreillon.com/articles/argocd-multi-source-helm-values/</link>
+      <pubDate>Sun, 15 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/argocd-multi-source-helm-values/</guid>
+      
+      <description>&lt;p&gt;ArgoCD&amp;rsquo;s multi-source applications make it possible to pull a Helm chart from one repo (e.g. its official Helm repository) while sourcing the &lt;code&gt;values.yaml&lt;/code&gt; from another repo/path, such as a private repo holding cluster-specific configuration.&lt;/p&gt;
+&lt;p&gt;This is done by declaring two entries under &lt;code&gt;sources&lt;/code&gt;: one for the chart itself, and one &lt;code&gt;ref&lt;/code&gt; source pointing at the repo/path containing the values file. The chart source then references that values file via the &lt;code&gt;$&amp;lt;ref&amp;gt;/&amp;lt;path&amp;gt;&lt;/code&gt; syntax.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>A GUI for ChartMuseum</title>
       <link>https://articles.maximemoreillon.com/articles/e1d7dd0b-83b9-454e-a6e5-8e72bca46902/</link>
       <pubDate>Mon, 13 Mar 2023 00:00:00 +0000</pubDate>

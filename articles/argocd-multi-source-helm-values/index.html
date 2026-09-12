@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Helm | Maxime Moreillon</title>
-<meta property="og:title" content="Helm | Maxime Moreillon" />
-<meta name="twitter:title" content="Helm | Maxime Moreillon" />
-<meta itemprop="name" content="Helm | Maxime Moreillon" />
-<meta name="application-name" content="Helm | Maxime Moreillon" />
+<title itemprop="name">ArgoCD Helm chart with values from another repo | Maxime Moreillon</title>
+<meta property="og:title" content="ArgoCD Helm chart with values from another repo | Maxime Moreillon" />
+<meta name="twitter:title" content="ArgoCD Helm chart with values from another repo | Maxime Moreillon" />
+<meta itemprop="name" content="ArgoCD Helm chart with values from another repo | Maxime Moreillon" />
+<meta name="application-name" content="ArgoCD Helm chart with values from another repo | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/tags/helm/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/argocd-multi-source-helm-values/" title="" />
 
 
 
@@ -28,24 +28,32 @@
 <meta name="generator" content="Hugo 0.162.1">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/tags/helm/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/argocd-multi-source-helm-values/">
 	<meta property="og:site_name" content="Maxime Moreillon">
-	<meta property="og:title" content="Helm">
+	<meta property="og:title" content="ArgoCD Helm chart with values from another repo">
+	<meta property="og:description" content="ArgoCD’s multi-source applications make it possible to pull a Helm chart from one repo (e.g. its official Helm repository) while sourcing the values.yaml from another repo/path, such as a private repo holding cluster-specific configuration.
+This is done by declaring two entries under sources: one for the chart itself, and one ref source pointing at the repo/path containing the values file. The chart source then references that values file via the $&lt;ref&gt;/&lt;path&gt; syntax.">
 	<meta property="og:locale" content="en_us">
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2026-03-15T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-03-15T00:00:00+00:00">
+		<meta property="article:tag" content="Kubernetes">
+		<meta property="article:tag" content="Helm">
+		<meta property="article:tag" content="ArgoCD">
 
 
     
     
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Helm">
+	<meta name="twitter:title" content="ArgoCD Helm chart with values from another repo">
+	<meta name="twitter:description" content="ArgoCD’s multi-source applications make it possible to pull a Helm chart from one repo (e.g. its official Helm repository) while sourcing the values.yaml from another repo/path, such as a private repo holding cluster-specific configuration.
+This is done by declaring two entries under sources: one for the chart itself, and one ref source pointing at the repo/path containing the values file. The chart source then references that values file via the $&lt;ref&gt;/&lt;path&gt; syntax.">
 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/tags/helm/">
-    <link href="/tags/helm/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/tags/helm/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/argocd-multi-source-helm-values/">
     <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -111,7 +119,7 @@ stroke-linejoin="round" class="feather feather-home">
                 </li>
                 
                 <li>
-                    <a class="menu-link " href="/articles/">
+                    <a class="menu-link active" href="/articles/">
                         Articles
                     </a>
                     
@@ -219,103 +227,52 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<div class="wrapper list-page">
-    <header class="header">
-        <h1 class="header-title center">Helm</h1>
-    </header>
+
+<div class="wrapper post">
     <main class="page-content" aria-label="Content">
-        
-        
-        <h2 class="post-year">2026</h2>
+        <article>
+            <header class="header">
+                <h1 class="header-title">ArgoCD Helm chart with values from another repo</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-03-15T00:00:00&#43;00:00" itemprop="datePublished"> 15 Mar 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>ArgoCD&rsquo;s multi-source applications make it possible to pull a Helm chart from one repo (e.g. its official Helm repository) while sourcing the <code>values.yaml</code> from another repo/path, such as a private repo holding cluster-specific configuration.</p>
+<p>This is done by declaring two entries under <code>sources</code>: one for the chart itself, and one <code>ref</code> source pointing at the repo/path containing the values file. The chart source then references that values file via the <code>$&lt;ref&gt;/&lt;path&gt;</code> syntax.</p>
+<p>For example, an application for <code>ingress-nginx</code> where the chart comes from the project&rsquo;s own Helm repo but the values come from a separate homelab configuration repo:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">argoproj.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Application</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ingress-nginx</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">argocd</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">project</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">destination</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server</span>: <span style="color:#ae81ff">https://kubernetes.default.svc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">ingress-nginx</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sources</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">https://kubernetes.github.io/ingress-nginx</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">chart</span>: <span style="color:#ae81ff">ingress-nginx</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">4.15.1</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">helm</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">valueFiles</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">$values/ingress-nginx/values.yml</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">repoURL</span>: <span style="color:#ae81ff">git@github.com:maximemoreillon/homelab-k8s.git</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetRevision</span>: <span style="color:#ae81ff">HEAD</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">ref</span>: <span style="color:#ae81ff">values</span>
+</span></span></code></pre></div><p>The <code>ref: values</code> on the second source gives it a name that can be referenced elsewhere in the manifest. The first source then points <code>helm.valueFiles</code> at <code>$values/ingress-nginx/values.yml</code>, which resolves to <code>ingress-nginx/values.yml</code> inside that second repo.</p>
+<p>This keeps chart versions decoupled from values, and allows values for many applications to live together in a single configuration repo instead of being duplicated per-application or baked into the chart source itself.</p>
 
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/untangling-helm-and-argocd/">Untangling ArgoCD and Helm</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-09-08T00:00:00&#43;0900">
-        8 Sep 2026
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/argocd-multi-source-helm-values/">ArgoCD Helm chart with values from another repo</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-03-15T00:00:00Z">
-        15 Mar 2026
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2023</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/e1d7dd0b-83b9-454e-a6e5-8e72bca46902/">A GUI for ChartMuseum</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-03-13T00:00:00Z">
-        13 Mar 2023
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2021</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/626/">Distributing a Helm chart on Artifact Hub</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2021-11-23T00:00:00Z">
-        23 Nov 2021
-    </time>
-</article>
-
-
-         
-
-         
-
-    </main>
-</div><footer class="footer">
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 
