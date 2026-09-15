@@ -3,22 +3,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://articles.maximemoreillon.com/articles/</loc>
+    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/mongodb-backup-k8s-cronjob/</loc>
+    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/kubernetes/</loc>
+    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/</loc>
+    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/mongodb/</loc>
+    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/</loc>
+    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://articles.maximemoreillon.com/tags/argocd/</loc>
     <lastmod>2026-09-08T00:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://articles.maximemoreillon.com/articles/</loc>
-    <lastmod>2026-09-08T00:00:00+09:00</lastmod>
-  </url><url>
     <loc>https://articles.maximemoreillon.com/tags/helm/</loc>
-    <lastmod>2026-09-08T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/kubernetes/</loc>
-    <lastmod>2026-09-08T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/</loc>
-    <lastmod>2026-09-08T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/</loc>
     <lastmod>2026-09-08T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/untangling-helm-and-argocd/</loc>
@@ -293,9 +299,6 @@
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/f027e7b5-2aef-4ea4-8bc6-c52c50c3eaf1/</loc>
     <lastmod>2022-12-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/mongodb/</loc>
-    <lastmod>2024-02-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/mongoose/</loc>
     <lastmod>2024-02-17T00:00:00+00:00</lastmod>
