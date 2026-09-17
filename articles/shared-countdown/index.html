@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">SvelteKit | Maxime Moreillon</title>
-<meta property="og:title" content="SvelteKit | Maxime Moreillon" />
-<meta name="twitter:title" content="SvelteKit | Maxime Moreillon" />
-<meta itemprop="name" content="SvelteKit | Maxime Moreillon" />
-<meta name="application-name" content="SvelteKit | Maxime Moreillon" />
+<title itemprop="name">Shared Countdown: a Small Firebase &#43; SvelteKit App | Maxime Moreillon</title>
+<meta property="og:title" content="Shared Countdown: a Small Firebase &#43; SvelteKit App | Maxime Moreillon" />
+<meta name="twitter:title" content="Shared Countdown: a Small Firebase &#43; SvelteKit App | Maxime Moreillon" />
+<meta itemprop="name" content="Shared Countdown: a Small Firebase &#43; SvelteKit App | Maxime Moreillon" />
+<meta name="application-name" content="Shared Countdown: a Small Firebase &#43; SvelteKit App | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/tags/sveltekit/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/shared-countdown/" title="" />
 
 
 
@@ -28,24 +28,30 @@
 <meta name="generator" content="Hugo 0.162.1">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/tags/sveltekit/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/shared-countdown/">
 	<meta property="og:site_name" content="Maxime Moreillon">
-	<meta property="og:title" content="SvelteKit">
+	<meta property="og:title" content="Shared Countdown: a Small Firebase &#43; SvelteKit App">
+	<meta property="og:description" content="shared-countdown is a pet project built to poke at Firestore’s real-time sync rather than to fill some gap in the countdown-timer market: a countdown, plus the ability to share it with other people instead of it living only in your own browser tab. It’s a SvelteKit frontend on Firebase — Firebase Authentication for Google sign-in, Firestore for storage — and it reuses the same stack as encrypted-chat, another small project built around SvelteKit and Firebase.">
 	<meta property="og:locale" content="en_us">
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2026-03-21T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-03-21T00:00:00+00:00">
+		<meta property="article:tag" content="Svelte">
+		<meta property="article:tag" content="SvelteKit">
+		<meta property="article:tag" content="Firebase">
 
 
     
     
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="SvelteKit">
+	<meta name="twitter:title" content="Shared Countdown: a Small Firebase &#43; SvelteKit App">
+	<meta name="twitter:description" content="shared-countdown is a pet project built to poke at Firestore’s real-time sync rather than to fill some gap in the countdown-timer market: a countdown, plus the ability to share it with other people instead of it living only in your own browser tab. It’s a SvelteKit frontend on Firebase — Firebase Authentication for Google sign-in, Firestore for storage — and it reuses the same stack as encrypted-chat, another small project built around SvelteKit and Firebase.">
 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/tags/sveltekit/">
-    <link href="/tags/sveltekit/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/tags/sveltekit/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/shared-countdown/">
     <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -111,7 +117,7 @@ stroke-linejoin="round" class="feather feather-home">
                 </li>
                 
                 <li>
-                    <a class="menu-link " href="/articles/">
+                    <a class="menu-link active" href="/articles/">
                         Articles
                     </a>
                     
@@ -219,55 +225,35 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<div class="wrapper list-page">
-    <header class="header">
-        <h1 class="header-title center">SvelteKit</h1>
-    </header>
+
+<div class="wrapper post">
     <main class="page-content" aria-label="Content">
-        
-        
-        <h2 class="post-year">2026</h2>
+        <article>
+            <header class="header">
+                <h1 class="header-title">Shared Countdown: a Small Firebase &#43; SvelteKit App</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-03-21T00:00:00&#43;00:00" itemprop="datePublished"> 21 Mar 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p><a href="https://github.com/maximemoreillon/shared-countdown">shared-countdown</a> is a pet project built to poke at Firestore&rsquo;s real-time sync rather than to fill some gap in the countdown-timer market: a countdown, plus the ability to share it with other people instead of it living only in your own browser tab. It&rsquo;s a SvelteKit frontend on Firebase — Firebase Authentication for Google sign-in, Firestore for storage — and it reuses the same stack as <a href="/encrypted-chat/">encrypted-chat</a>, another small project built around SvelteKit and Firebase.</p>
+<h2 id="what-it-does">What it does</h2>
+<p>A countdown is just a name and a target date and time, picked with a calendar and time input and stored in Firestore as a <code>Timestamp</code>. The countdown page recomputes the remaining years, months, days, hours, minutes, and seconds once a second using <code>dayjs</code>&rsquo;s duration plugin, and renders them as a simple breakdown rather than a single &ldquo;time remaining&rdquo; string.</p>
+<p>Sharing is handled with a <code>users</code> field on each countdown document: a list of email addresses. Adding someone appends their email to that array; removing them (aside from yourself) splices it back out. Firestore security rules — not part of the client code — are what actually enforce that only the users listed on a countdown can read or write it; the app itself only ever reads and updates that array.</p>
+<h2 id="stack">Stack</h2>
+<p>Same shape as the other Firebase-based projects in this series: SvelteKit with Svelte 5, Tailwind CSS, a shadcn-svelte-style component set (<code>bits-ui</code>, <code>lucide-svelte</code>), <code>sveltekit-superforms</code> and <code>zod</code> for form handling, built with <code>adapter-static</code>, and deployed to Firebase Hosting through GitHub Actions — a preview channel on pull requests, production on merge to <code>master</code>.</p>
+<h2 id="why-it-exists">Why it exists</h2>
+<p>Nothing about a countdown timer needs a backend, but sharing state between multiple people does, so this is mostly an excuse to play with Firestore listeners and real-time synced state, wrapped around whatever UI made that interesting to build. It&rsquo;s not aimed at competing with any of the many polished countdown apps out there, or even at being generally useful — it&rsquo;s a pet project that happens to work well enough to actually use for something like agreeing on an event date with a few other people.</p>
 
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/shared-countdown/">Shared Countdown: a Small Firebase &#43; SvelteKit App</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-03-21T00:00:00Z">
-        21 Mar 2026
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/encrypted-chat/">Building a Client-Side Encrypted Chat App with SvelteKit and Firebase</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-03-21T00:00:00Z">
-        21 Mar 2026
-    </time>
-</article>
-
-
-         
-
-         
-
-    </main>
-</div><footer class="footer">
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 

@@ -19,6 +19,17 @@
     </item>
     
     <item>
+      <title>Shared Countdown: a Small Firebase &#43; SvelteKit App</title>
+      <link>https://articles.maximemoreillon.com/articles/shared-countdown/</link>
+      <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/shared-countdown/</guid>
+      
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/maximemoreillon/shared-countdown&#34;&gt;shared-countdown&lt;/a&gt; is a pet project built to poke at Firestore&amp;rsquo;s real-time sync rather than to fill some gap in the countdown-timer market: a countdown, plus the ability to share it with other people instead of it living only in your own browser tab. It&amp;rsquo;s a SvelteKit frontend on Firebase — Firebase Authentication for Google sign-in, Firestore for storage — and it reuses the same stack as &lt;a href=&#34;https://articles.maximemoreillon.com/encrypted-chat/&#34;&gt;encrypted-chat&lt;/a&gt;, another small project built around SvelteKit and Firebase.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Countries tracker</title>
       <link>https://articles.maximemoreillon.com/articles/bd9dcf40-ce45-42ac-8d58-de4be0c04ab1/</link>
       <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
