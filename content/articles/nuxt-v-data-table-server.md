@@ -89,3 +89,68 @@ Having the page number or page size reset every time the user navigates away wou
 Since `query` is a `computed`, any changes of URL query parameter triggers a re-execution of `useFetch`.
 
 `key: JSON.stringify(query.value)` solves `<no response> Request aborted as another request to the same endpoint was initiated` errors.
+
+## Dependency-free alternative
+
+Pulling in [VueUse](https://vueuse.org/) just for `useRouteQuery` can be overkill if that is the only thing it is used for. Since `useRouteQuery` is really just a writable `computed` wrapping `route.query`, it is easy enough to reimplement with Nuxt's own `useRoute` and `navigateTo`, with no extra dependency:
+
+```ts
+// composables/useRouteQuery.ts
+export function useRouteQuery<T>(
+  name: string,
+  defaultValue: T,
+  { transform }: { transform?: (value: unknown) => T } = {},
+) {
+  const route = useRoute();
+
+  return computed<T>({
+    get() {
+      const raw = route.query[name];
+      if (raw === undefined || raw === null) return defaultValue;
+      return transform ? transform(raw) : (raw as T);
+    },
+    set(value) {
+      navigateTo({
+        query: { ...route.query, [name]: String(value) },
+        replace: true,
+      });
+    },
+  });
+}
+```
+
+Dropped into `composables/`, Nuxt auto-imports it, so the component itself does not change at all beyond the import:
+
+```html
+<template>
+  <h2>Movies</h2>
+  <v-data-table-server
+    :loading="pending"
+    :headers="headers"
+    :items="data.items"
+    :items-length="data.total"
+    v-model:itemsPerPage="itemsPerPage"
+    v-model:page="page"
+  />
+</template>
+
+<script setup lang="ts">
+  const route = useRoute();
+  const query = computed(() => route.query);
+
+  const page = useRouteQuery("page", 1, { transform: Number });
+  const itemsPerPage = useRouteQuery("itemsPerPage", 10, { transform: Number });
+
+  const { data, pending } = await useFetch("/api/movies", {
+    query,
+    key: JSON.stringify(query.value),
+  });
+
+  const headers = [
+    { title: "ID", key: "id" },
+    { title: "Title", key: "title" },
+  ];
+</script>
+```
+
+Writing to `page` or `itemsPerPage` calls `navigateTo` with the merged query object and `replace: true`, which updates `route.query`, which in turn updates `query` and re-triggers `useFetch`, exactly as with the VueUse version. The `replace: true` matters here: without it every page/size change would push a new browser history entry, making the back button step through pagination states instead of leaving the page.
