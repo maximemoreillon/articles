@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Svelte | Maxime Moreillon</title>
-<meta property="og:title" content="Svelte | Maxime Moreillon" />
-<meta name="twitter:title" content="Svelte | Maxime Moreillon" />
-<meta itemprop="name" content="Svelte | Maxime Moreillon" />
-<meta name="application-name" content="Svelte | Maxime Moreillon" />
+<title itemprop="name">Building a Client-Side Encrypted Chat App with SvelteKit and Firebase | Maxime Moreillon</title>
+<meta property="og:title" content="Building a Client-Side Encrypted Chat App with SvelteKit and Firebase | Maxime Moreillon" />
+<meta name="twitter:title" content="Building a Client-Side Encrypted Chat App with SvelteKit and Firebase | Maxime Moreillon" />
+<meta itemprop="name" content="Building a Client-Side Encrypted Chat App with SvelteKit and Firebase | Maxime Moreillon" />
+<meta name="application-name" content="Building a Client-Side Encrypted Chat App with SvelteKit and Firebase | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/tags/svelte/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/encrypted-chat/" title="" />
 
 
 
@@ -28,24 +28,31 @@
 <meta name="generator" content="Hugo 0.162.1">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/tags/svelte/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/encrypted-chat/">
 	<meta property="og:site_name" content="Maxime Moreillon">
-	<meta property="og:title" content="Svelte">
+	<meta property="og:title" content="Building a Client-Side Encrypted Chat App with SvelteKit and Firebase">
+	<meta property="og:description" content="encrypted-chat is a small chat application built not as a secure messaging product but as a way to get hands-on with the Web Crypto API: what it actually takes to keep message content unreadable to the backend itself, rather than merely encrypting data in transit and at rest. The app is a SvelteKit frontend backed by Firebase: Firebase Authentication (Google sign-in) handles who can access the app, and Firestore stores chats and messages, but the messages Firestore holds are already ciphertext by the time they leave the browser.">
 	<meta property="og:locale" content="en_us">
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2026-03-21T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-03-21T00:00:00+00:00">
+		<meta property="article:tag" content="Svelte">
+		<meta property="article:tag" content="SvelteKit">
+		<meta property="article:tag" content="Firebase">
+		<meta property="article:tag" content="Cryptography">
 
 
     
     
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Svelte">
+	<meta name="twitter:title" content="Building a Client-Side Encrypted Chat App with SvelteKit and Firebase">
+	<meta name="twitter:description" content="encrypted-chat is a small chat application built not as a secure messaging product but as a way to get hands-on with the Web Crypto API: what it actually takes to keep message content unreadable to the backend itself, rather than merely encrypting data in transit and at rest. The app is a SvelteKit frontend backed by Firebase: Firebase Authentication (Google sign-in) handles who can access the app, and Firestore stores chats and messages, but the messages Firestore holds are already ciphertext by the time they leave the browser.">
 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/tags/svelte/">
-    <link href="/tags/svelte/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/tags/svelte/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/encrypted-chat/">
     <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -111,7 +118,7 @@ stroke-linejoin="round" class="feather feather-home">
                 </li>
                 
                 <li>
-                    <a class="menu-link " href="/articles/">
+                    <a class="menu-link active" href="/articles/">
                         Articles
                     </a>
                     
@@ -219,127 +226,39 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<div class="wrapper list-page">
-    <header class="header">
-        <h1 class="header-title center">Svelte</h1>
-    </header>
+
+<div class="wrapper post">
     <main class="page-content" aria-label="Content">
-        
-        
-        <h2 class="post-year">2026</h2>
+        <article>
+            <header class="header">
+                <h1 class="header-title">Building a Client-Side Encrypted Chat App with SvelteKit and Firebase</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-03-21T00:00:00&#43;00:00" itemprop="datePublished"> 21 Mar 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p><a href="https://github.com/maximemoreillon/encrypted-chat">encrypted-chat</a> is a small chat application built not as a secure messaging product but as a way to get hands-on with the Web Crypto API: what it actually takes to keep message content unreadable to the backend itself, rather than merely encrypting data in transit and at rest. The app is a SvelteKit frontend backed by Firebase: Firebase Authentication (Google sign-in) handles who can access the app, and Firestore stores chats and messages, but the messages Firestore holds are already ciphertext by the time they leave the browser.</p>
+<h2 id="where-encryption-happens">Where encryption happens</h2>
+<p>All encryption and decryption is done client-side using the browser&rsquo;s native <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API">Web Crypto API</a>, with AES-GCM as the cipher. Each chat has its own 256-bit symmetric key, generated with <code>crypto.subtle.generateKey</code> and exported to a base64 string so it can be stored and pasted around. Encrypting a message generates a random 12-byte IV, encrypts the plaintext with <code>crypto.subtle.encrypt</code>, and writes the resulting ciphertext and IV (both base64-encoded) to the message document in Firestore. Decryption reverses the process using the same key and the IV stored alongside the ciphertext. Firestore never sees the key or the plaintext, only opaque ciphertext and an IV.</p>
+<h2 id="key-handling">Key handling</h2>
+<p>Since Firestore isn&rsquo;t a party to the encryption, the key has to reach every participant some other way. The app never transmits it: a per-chat key dialog lets a user either generate a fresh key or paste in one shared out of band, and the key is then kept in the browser&rsquo;s <code>localStorage</code>, indexed by chat ID. This also means the app has no way to recover a chat if the key is lost, and no server-side mechanism to reset it.</p>
+<p>To catch the common mistake of a participant holding the wrong key, the chat view tries to decrypt the most recent message as soon as a key is entered. If that fails, the UI flags the key as incorrect instead of silently showing garbled text, and disables the message composer until a working key is provided.</p>
+<h2 id="encrypteddecrypted-toggle">Encrypted/decrypted toggle</h2>
+<p>Each chat view has a lock/unlock switch that toggles between showing messages as their decrypted plaintext or as raw stored ciphertext, which makes it easy to see, message by message, that what&rsquo;s leaving the browser really is encrypted rather than trusting the implementation blindly.</p>
+<h2 id="stack-and-deployment">Stack and deployment</h2>
+<p>The frontend is built with SvelteKit and Svelte 5, styled with Tailwind CSS and a shadcn-svelte-style component set (<code>bits-ui</code>, <code>lucide-svelte</code> icons). It&rsquo;s built with <code>adapter-static</code> and deployed to Firebase Hosting, with GitHub Actions workflows publishing a preview on pull requests and deploying to production on merge to <code>master</code>.</p>
+<h2 id="limitations">Limitations</h2>
+<p>This is a learning project, not a security product, and it was never meant to be one. Its value is in making the primitives concrete: generating a key, using it to encrypt and decrypt, and seeing what happens when Firestore only ever stores ciphertext. Real secure messaging systems (Signal being the reference example) also have to solve key exchange, forward secrecy, multi-device support, and metadata protection, none of which this project attempts. Key distribution here is entirely manual and there is no key rotation, both of which would be immediate problems for anything beyond a toy.</p>
 
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/encrypted-chat/">Building a Client-Side Encrypted Chat App with SvelteKit and Firebase</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-03-21T00:00:00Z">
-        21 Mar 2026
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2024</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/bd9dcf40-ce45-42ac-8d58-de4be0c04ab1/">Countries tracker</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-02-18T00:00:00Z">
-        18 Feb 2024
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2023</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/56e285eb-3b1f-436a-b56a-39f0c69245a1/">Habit tracker</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-05-07T00:00:00Z">
-        7 May 2023
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/e1d7dd0b-83b9-454e-a6e5-8e72bca46902/">A GUI for ChartMuseum</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-03-13T00:00:00Z">
-        13 Mar 2023
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2022</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/f027e7b5-2aef-4ea4-8bc6-c52c50c3eaf1/">A simple comparison of Svelte and Vue</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2022-12-19T00:00:00Z">
-        19 Dec 2022
-    </time>
-</article>
-
-
-         
-
-         
-
-    </main>
-</div><footer class="footer">
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 

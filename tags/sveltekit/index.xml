@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SvelteKit on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/sveltekit/</link>
+    <description>Recent content in SvelteKit on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 21 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/sveltekit/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Building a Client-Side Encrypted Chat App with SvelteKit and Firebase</title>
+      <link>https://articles.maximemoreillon.com/articles/encrypted-chat/</link>
+      <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/encrypted-chat/</guid>
+      
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/maximemoreillon/encrypted-chat&#34;&gt;encrypted-chat&lt;/a&gt; is a small chat application built not as a secure messaging product but as a way to get hands-on with the Web Crypto API: what it actually takes to keep message content unreadable to the backend itself, rather than merely encrypting data in transit and at rest. The app is a SvelteKit frontend backed by Firebase: Firebase Authentication (Google sign-in) handles who can access the app, and Firestore stores chats and messages, but the messages Firestore holds are already ciphertext by the time they leave the browser.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

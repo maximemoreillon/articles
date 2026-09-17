@@ -132,6 +132,21 @@
     <loc>https://articles.maximemoreillon.com/articles/vault-eso/</loc>
     <lastmod>2026-04-11T00:00:00+09:00</lastmod>
   </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/encrypted-chat/</loc>
+    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/cryptography/</loc>
+    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/firebase/</loc>
+    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/svelte/</loc>
+    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/sveltekit/</loc>
+    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://articles.maximemoreillon.com/articles/argocd-multi-source-helm-values/</loc>
     <lastmod>2026-03-15T00:00:00+00:00</lastmod>
   </url><url>
@@ -184,12 +199,6 @@
     <lastmod>2024-05-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/bd9dcf40-ce45-42ac-8d58-de4be0c04ab1/</loc>
-    <lastmod>2024-03-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/firebase/</loc>
-    <lastmod>2024-03-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/svelte/</loc>
     <lastmod>2024-03-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/cce8a613-0885-4ac0-a0e0-b6d454d811cf/</loc>
