@@ -6,7 +6,29 @@
     <description>Recent content in Tags on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vue.js</title>
+      <link>https://articles.maximemoreillon.com/tags/vue.js/</link>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/vue.js/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Vuetify</title>
+      <link>https://articles.maximemoreillon.com/tags/vuetify/</link>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/vuetify/</guid>
+      
+      <description></description>
+      
+    </item>
+    
     <item>
       <title>Kubernetes</title>
       <link>https://articles.maximemoreillon.com/tags/kubernetes/</link>
@@ -46,17 +68,6 @@
       <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/vue/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Vuetify</title>
-      <link>https://articles.maximemoreillon.com/tags/vuetify/</link>
-      <pubDate>Tue, 15 Sep 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/vuetify/</guid>
       
       <description></description>
       
@@ -563,17 +574,6 @@
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/three.js/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Vue.js</title>
-      <link>https://articles.maximemoreillon.com/tags/vue.js/</link>
-      <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/vue.js/</guid>
       
       <description></description>
       
