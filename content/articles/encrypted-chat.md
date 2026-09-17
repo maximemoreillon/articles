@@ -1,7 +1,7 @@
 ---
 date: "2026-03-21"
 title: "Building a Client-Side Encrypted Chat App with SvelteKit and Firebase"
-tags: ["Svelte", "SvelteKit", "Firebase", "Cryptography"]
+tags: ["Svelte", "SvelteKit", "Firebase", "Cryptography", "Projects"]
 ---
 
 [encrypted-chat](https://github.com/maximemoreillon/encrypted-chat) is a small chat application built not as a secure messaging product but as a way to get hands-on with the Web Crypto API: what it actually takes to keep message content unreadable to the backend itself, rather than merely encrypting data in transit and at rest. The app is a SvelteKit frontend backed by Firebase: Firebase Authentication (Google sign-in) handles who can access the app, and Firestore stores chats and messages, but the messages Firestore holds are already ciphertext by the time they leave the browser.

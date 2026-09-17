@@ -1,7 +1,7 @@
 ---
 date: "2026-09-15"
 title: "Nuxt with Vuetify's v-data-table-server"
-tags: ["Nuxt", "Vue", "Vuetify"]
+tags: ["Nuxt", "Vue.js", "Vuetify"]
 ---
 
 This article showcases the usage Vuetify's `v-data-table-server` in a Nuxt application.
