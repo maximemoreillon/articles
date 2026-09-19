@@ -4,7 +4,7 @@ title: "Shared Countdown: a Small Firebase + SvelteKit App"
 tags: ["Svelte", "SvelteKit", "Firebase", "Projects"]
 ---
 
-[shared-countdown](https://github.com/maximemoreillon/shared-countdown) is a pet project built to poke at Firestore's real-time sync rather than to fill some gap in the countdown-timer market: a countdown, plus the ability to share it with other people instead of it living only in your own browser tab. It's a SvelteKit frontend on Firebase — Firebase Authentication for Google sign-in, Firestore for storage — and it reuses the same stack as [encrypted-chat](/encrypted-chat/), another small project built around SvelteKit and Firebase.
+[shared-countdown](https://github.com/maximemoreillon/shared-countdown) is a pet project built to poke at Firestore's real-time sync rather than to fill some gap in the countdown-timer market: a countdown, plus the ability to share it with other people instead of it living only in your own browser tab. It's a SvelteKit frontend on Firebase — Firebase Authentication for Google sign-in, Firestore for storage — and it reuses the same stack as [encrypted-chat](/articles/encrypted-chat/), another small project built around SvelteKit and Firebase.
 
 ## What it does
 
