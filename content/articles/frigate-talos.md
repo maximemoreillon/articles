@@ -6,7 +6,7 @@ tags: ["Kubernetes", "DevOps", "Talos"]
 
 # Fixing Frigate's RTSP Issues on Kubernetes
 
-If you've tried deploying [Frigate NVR](https://frigate.video/) on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate's API stops working correctly. The root cause comes down to how OpenCV handles RTSP streams by default, and the fix is a single environment variable.
+If you've tried deploying [Frigate NVR](https://frigate.video/) on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate's API stops working correctly. The likely cause is how OpenCV handles RTSP streams by default, and the fix is a single environment variable.
 
 ## What's Going On
 

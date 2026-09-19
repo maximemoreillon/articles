@@ -54,7 +54,7 @@ spec:
                     name: mongodb-backups
 ```
 
-The necesary environment variables are `MONGODB_URI`, `AWS_ACCESS_KEY_ID` and `ACCESS_SECRET_KEY`, stored in a dedicated secret.
+The necessary environment variables are `MONGODB_URI`, `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`, stored in a dedicated secret.
 
 ## Dedicated container
 

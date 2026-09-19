@@ -74,6 +74,8 @@ Once the method is created, a role is to be created in the corresponding tab of 
 
 Moreover, on the same role configuration page, under Tokens, set _Generated Token's Policies_ to `eso`. This allows the `eso` role to access the `eso` `kv` secret engine created above.
 
+Note that using `*` for both the service account names and namespaces lets any service account in the cluster log in with this role, and thereby read every secret under `k8s`. This is convenient on a single-user cluster, but these can be restricted to the service account ESO authenticates with.
+
 ## External Secrets Operator
 
 ### Install
