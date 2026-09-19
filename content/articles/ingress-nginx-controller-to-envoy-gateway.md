@@ -37,7 +37,7 @@ Wildcard certificates can only be validated with the `DNS-01` challenge, which i
 
 As per [the official documentation](https://gateway.envoyproxy.io/docs/install/install-helm/), Envoy Gateway can be installed using Helm.
 
-Since my setup is a homelab running as a single-node Kubernetes cluster, I'm configuring Envoy Gateway to receive traffic through a `NodePort`. This is achieved by creating an `EnvoyProxy` object (CRD) as follows:
+Since my setup is a homelab running as a single-node Kubernetes cluster, there is no cloud load balancer to provision a `LoadBalancer` service. Instead, I'm configuring Envoy Gateway to receive traffic through a `NodePort`, to which the router forwards incoming traffic. This is achieved by creating an `EnvoyProxy` object (CRD) as follows:
 
 ```yaml
 apiVersion: gateway.envoyproxy.io/v1alpha1
@@ -90,11 +90,8 @@ spec:
       protocol: HTTPS
       port: 443
       tls:
-        mode: Terminate
         certificateRefs:
-          - group: ""
-            kind: Secret
-            name: wildcard-tls
+          - name: wildcard-tls
       allowedRoutes:
         namespaces:
           from: All
@@ -142,23 +139,14 @@ spec:
   hostnames:
     - homepage.example.com
   parentRefs:
-    - group: gateway.networking.k8s.io
-      kind: Gateway
-      name: eg
+    - name: eg
       namespace: envoy-gateway-system
   rules:
     - backendRefs:
-        - group: ""
-          kind: Service
-          name: homepage
+        - name: homepage
           port: 3000
-          weight: 1
-      matches:
-        - path:
-            type: PathPrefix
-            value: /
 ```
 
 Note that the `HTTPRoute` has no TLS configuration: the `tls` block and the cert-manager annotation are gone, as the wildcard certificate on the `Gateway` listener already terminates TLS for every hostname.
 
-The `NodePort` values of Envoy Gateway's service are assigned randomly by Kubernetes, so they have to be looked up, for example using `kubectl get svc -n envoy-gateway-system`. Once the `HTTPRoutes` are in place, incoming traffic can be switched from the Ingress NGINX controller to Envoy Gateway by updating the router's port-forwards or the load balancer configuration so that they point to these ports instead.
+Once the `HTTPRoutes` are in place, incoming traffic can be switched from the Ingress NGINX controller to Envoy Gateway by updating the router's port-forwards or the load balancer configuration so that they point to the NodePorts assigned to Envoy Gateway instead of the ports used by Ingress NGINX.
