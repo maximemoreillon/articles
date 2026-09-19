@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">SvelteKit | Maxime Moreillon</title>
-<meta property="og:title" content="SvelteKit | Maxime Moreillon" />
-<meta name="twitter:title" content="SvelteKit | Maxime Moreillon" />
-<meta itemprop="name" content="SvelteKit | Maxime Moreillon" />
-<meta name="application-name" content="SvelteKit | Maxime Moreillon" />
+<title itemprop="name">Tokun: Tracking Japanese Vocabulary Across Texts | Maxime Moreillon</title>
+<meta property="og:title" content="Tokun: Tracking Japanese Vocabulary Across Texts | Maxime Moreillon" />
+<meta name="twitter:title" content="Tokun: Tracking Japanese Vocabulary Across Texts | Maxime Moreillon" />
+<meta itemprop="name" content="Tokun: Tracking Japanese Vocabulary Across Texts | Maxime Moreillon" />
+<meta name="application-name" content="Tokun: Tracking Japanese Vocabulary Across Texts | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/tags/sveltekit/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/tokun/" title="" />
 
 
 
@@ -28,24 +28,34 @@
 <meta name="generator" content="Hugo 0.162.1">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/tags/sveltekit/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/tokun/">
 	<meta property="og:site_name" content="Maxime Moreillon">
-	<meta property="og:title" content="SvelteKit">
+	<meta property="og:title" content="Tokun: Tracking Japanese Vocabulary Across Texts">
+	<meta property="og:description" content="tokun is a pet project for learning Japanese from real texts: paste some Japanese in, and the app splits it into words and lets you mark which ones you know. It is a SvelteKit application storing its data in PostgreSQL through Drizzle ORM, and relying on kuromoji.js to do the actual language processing.
+How it works Japanese is written without spaces, so the first step is tokenization. When a text is submitted, kuromoji breaks it into tokens, each with its surface form (the word as written), part of speech and reading. The server stores the text, then registers every token. Tokens belong to a user and are deduplicated by surface form, so a word that appears in ten different texts is a single token linked to each text through a join table that also keeps its position. This is what makes the tracking useful: marking a word once applies to every text containing it.">
 	<meta property="og:locale" content="en_us">
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2025-04-02T00:00:00+00:00">
+		<meta property="article:modified_time" content="2025-04-02T00:00:00+00:00">
+		<meta property="article:tag" content="Svelte">
+		<meta property="article:tag" content="SvelteKit">
+		<meta property="article:tag" content="Japanese">
+		<meta property="article:tag" content="Drizzle ORM">
+		<meta property="article:tag" content="Projects">
 
 
     
     
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="SvelteKit">
+	<meta name="twitter:title" content="Tokun: Tracking Japanese Vocabulary Across Texts">
+	<meta name="twitter:description" content="tokun is a pet project for learning Japanese from real texts: paste some Japanese in, and the app splits it into words and lets you mark which ones you know. It is a SvelteKit application storing its data in PostgreSQL through Drizzle ORM, and relying on kuromoji.js to do the actual language processing.
+How it works Japanese is written without spaces, so the first step is tokenization. When a text is submitted, kuromoji breaks it into tokens, each with its surface form (the word as written), part of speech and reading. The server stores the text, then registers every token. Tokens belong to a user and are deduplicated by surface form, so a word that appears in ten different texts is a single token linked to each text through a join table that also keeps its position. This is what makes the tracking useful: marking a word once applies to every text containing it.">
 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/tags/sveltekit/">
-    <link href="/tags/sveltekit/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/tags/sveltekit/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/tokun/">
     <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -111,7 +121,7 @@ stroke-linejoin="round" class="feather feather-home">
                 </li>
                 
                 <li>
-                    <a class="menu-link " href="/articles/">
+                    <a class="menu-link active" href="/articles/">
                         Articles
                     </a>
                     
@@ -219,95 +229,37 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<div class="wrapper list-page">
-    <header class="header">
-        <h1 class="header-title center">SvelteKit</h1>
-    </header>
+
+<div class="wrapper post">
     <main class="page-content" aria-label="Content">
-        
-        
-        <h2 class="post-year">2026</h2>
+        <article>
+            <header class="header">
+                <h1 class="header-title">Tokun: Tracking Japanese Vocabulary Across Texts</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2025-04-02T00:00:00&#43;00:00" itemprop="datePublished"> 2 Apr 2025 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p><a href="https://github.com/maximemoreillon/tokun">tokun</a> is a pet project for learning Japanese from real texts: paste some Japanese in, and the app splits it into words and lets you mark which ones you know. It is a SvelteKit application storing its data in PostgreSQL through Drizzle ORM, and relying on <a href="https://github.com/takuyaa/kuromoji.js">kuromoji.js</a> to do the actual language processing.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>Japanese is written without spaces, so the first step is tokenization. When a text is submitted, kuromoji breaks it into tokens, each with its surface form (the word as written), part of speech and reading. The server stores the text, then registers every token. Tokens belong to a user and are deduplicated by surface form, so a word that appears in ten different texts is a single token linked to each text through a join table that also keeps its position. This is what makes the tracking useful: marking a word once applies to every text containing it.</p>
+<p>Not every token is worth tracking. Only nouns, verbs, interjections and adverbs that have a reading are treated as vocabulary, and everything else, particles for instance, is rendered as plain text.</p>
+<h2 id="reading-a-text">Reading a text</h2>
+<p>A text is displayed with its unknown words in red, in bold if they were flagged as important. Toggles can additionally highlight known words in green and ignored words in grey. Clicking a word opens a dialog showing it with its reading above it as furigana, along with checkboxes to mark it as known, important or ignored. A details page for each word lists how many times it occurs and in which texts. There is also a token list page with search, known/important filters and pagination, which is a more direct way to go through what has been collected so far.</p>
+<h2 id="auth-and-deployment">Auth and deployment</h2>
+<p>Login goes through Auth.js with Keycloak or Auth0 as the identity provider, and the user&rsquo;s email is used as the user ID. Every query is scoped to it, so each user only ever sees their own texts and words. The app itself is deployed like the other small services of my homelab: a Node Dockerfile, a GitLab CI pipeline pushing the image to Docker Hub, and a manifest applied to the Kubernetes cluster, with settings coming from Vault through an <code>ExternalSecret</code>.</p>
+<h2 id="rough-edges">Rough edges</h2>
+<p>A few things are simple by design, and some are marked as TODOs in the code. The database schema has no unique constraints on texts or tokens, although the application logic deduplicates tokens. Tokens are matched by surface form only, so two words written identically but read differently share a single entry. The kuromoji dictionary is also reloaded every time a text is submitted, which is slow but of little consequence at this scale.</p>
 
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/mqtt-alarm-clock/">MQTT Alarm Clock: a Cron Scheduler with a Web UI</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-05-25T00:00:00Z">
-        25 May 2026
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/shared-countdown/">Shared Countdown: a Small Firebase &#43; SvelteKit App</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-03-21T00:00:00Z">
-        21 Mar 2026
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/encrypted-chat/">Building a Client-Side Encrypted Chat App with SvelteKit and Firebase</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-03-21T00:00:00Z">
-        21 Mar 2026
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2025</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/tokun/">Tokun: Tracking Japanese Vocabulary Across Texts</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2025-04-02T00:00:00Z">
-        2 Apr 2025
-    </time>
-</article>
-
-
-         
-
-         
-
-    </main>
-</div><footer class="footer">
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 

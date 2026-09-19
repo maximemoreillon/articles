@@ -41,6 +41,19 @@
     </item>
     
     <item>
+      <title>Tokun: Tracking Japanese Vocabulary Across Texts</title>
+      <link>https://articles.maximemoreillon.com/articles/tokun/</link>
+      <pubDate>Wed, 02 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/tokun/</guid>
+      
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/maximemoreillon/tokun&#34;&gt;tokun&lt;/a&gt; is a pet project for learning Japanese from real texts: paste some Japanese in, and the app splits it into words and lets you mark which ones you know. It is a SvelteKit application storing its data in PostgreSQL through Drizzle ORM, and relying on &lt;a href=&#34;https://github.com/takuyaa/kuromoji.js&#34;&gt;kuromoji.js&lt;/a&gt; to do the actual language processing.&lt;/p&gt;
+&lt;h2 id=&#34;how-it-works&#34;&gt;How it works&lt;/h2&gt;
+&lt;p&gt;Japanese is written without spaces, so the first step is tokenization. When a text is submitted, kuromoji breaks it into tokens, each with its surface form (the word as written), part of speech and reading. The server stores the text, then registers every token. Tokens belong to a user and are deduplicated by surface form, so a word that appears in ten different texts is a single token linked to each text through a join table that also keeps its position. This is what makes the tracking useful: marking a word once applies to every text containing it.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Countries tracker</title>
       <link>https://articles.maximemoreillon.com/articles/bd9dcf40-ce45-42ac-8d58-de4be0c04ab1/</link>
       <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>

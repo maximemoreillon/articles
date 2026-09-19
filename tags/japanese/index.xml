@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Drizzle ORM on Maxime Moreillon</title>
-    <link>https://articles.maximemoreillon.com/tags/drizzle-orm/</link>
-    <description>Recent content in Drizzle ORM on Maxime Moreillon</description>
+    <title>Japanese on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/japanese/</link>
+    <description>Recent content in Japanese on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/drizzle-orm/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>MQTT Alarm Clock: a Cron Scheduler with a Web UI</title>
-      <link>https://articles.maximemoreillon.com/articles/mqtt-alarm-clock/</link>
-      <pubDate>Mon, 25 May 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/articles/mqtt-alarm-clock/</guid>
-      
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/maximemoreillon/mqtt-alarm-clock&#34;&gt;mqtt-alarm-clock&lt;/a&gt; is a small home project born from a practical worry: I often sleep with earplugs and fear I won&amp;rsquo;t hear a regular alarm clock. My bedroom lights, on the other hand, are controlled over MQTT, so instead of making a sound, an alarm in this app publishes a message to an MQTT broker and the lights do the waking up. The app itself stays down to a scheduler with a settings page, and what happens on a given message is up to whatever is subscribed to that topic.&lt;/p&gt;</description>
-      
-    </item>
-    
+    <lastBuildDate>Wed, 02 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/japanese/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tokun: Tracking Japanese Vocabulary Across Texts</title>
       <link>https://articles.maximemoreillon.com/articles/tokun/</link>
