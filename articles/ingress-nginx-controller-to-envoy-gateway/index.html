@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span></code></pre></div><p>Wildcard certificates can only be validated with the <code>DNS-01</code> challenge, which is what the <code>letsencrypt-dns</code> issuer is set up for. See cert-manager&rsquo;s documentation on <a href="https://cert-manager.io/docs/configuration/acme/dns01/">configuring DNS01 challenge providers</a> for how to set one up.</p>
 <h2 id="envoy-gateway-install-and-setup">Envoy Gateway install and setup</h2>
 <p>As per <a href="https://gateway.envoyproxy.io/docs/install/install-helm/">the official documentation</a>, Envoy Gateway can be installed using Helm.</p>
-<p>Since my setup is a homelab running as a single-node Kubernetes cluster, I&rsquo;m configuring Envoy Gateway to receive traffic through a <code>NodePort</code>. This is achieved by creating an <code>EnvoyProxy</code> object (CRD) as follows:</p>
+<p>Since my setup is a homelab running as a single-node Kubernetes cluster, there is no cloud load balancer to provision a <code>LoadBalancer</code> service. Instead, I&rsquo;m configuring Envoy Gateway to receive traffic through a <code>NodePort</code>, to which the router forwards incoming traffic. This is achieved by creating an <code>EnvoyProxy</code> object (CRD) as follows:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">gateway.envoyproxy.io/v1alpha1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">EnvoyProxy</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
@@ -306,11 +306,8 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">HTTPS</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">443</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">tls</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">mode</span>: <span style="color:#ae81ff">Terminate</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">certificateRefs</span>:
-</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">group</span>: <span style="color:#e6db74">&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">name</span>: <span style="color:#ae81ff">wildcard-tls</span>
+</span></span><span style="display:flex;"><span>          - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">wildcard-tls</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">allowedRoutes</span>:
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">namespaces</span>:
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">from</span>: <span style="color:#ae81ff">All</span>
@@ -348,23 +345,14 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">hostnames</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">homepage.example.com</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">parentRefs</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">group</span>: <span style="color:#ae81ff">gateway.networking.k8s.io</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Gateway</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">eg</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">eg</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">envoy-gateway-system</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">rules</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#f92672">backendRefs</span>:
-</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">group</span>: <span style="color:#e6db74">&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">name</span>: <span style="color:#ae81ff">homepage</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">homepage</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">port</span>: <span style="color:#ae81ff">3000</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">matches</span>:
-</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">path</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">type</span>: <span style="color:#ae81ff">PathPrefix</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">value</span>: <span style="color:#ae81ff">/</span>
 </span></span></code></pre></div><p>Note that the <code>HTTPRoute</code> has no TLS configuration: the <code>tls</code> block and the cert-manager annotation are gone, as the wildcard certificate on the <code>Gateway</code> listener already terminates TLS for every hostname.</p>
-<p>The <code>NodePort</code> values of Envoy Gateway&rsquo;s service are assigned randomly by Kubernetes, so they have to be looked up, for example using <code>kubectl get svc -n envoy-gateway-system</code>. Once the <code>HTTPRoutes</code> are in place, incoming traffic can be switched from the Ingress NGINX controller to Envoy Gateway by updating the router&rsquo;s port-forwards or the load balancer configuration so that they point to these ports instead.</p>
+<p>Once the <code>HTTPRoutes</code> are in place, incoming traffic can be switched from the Ingress NGINX controller to Envoy Gateway by updating the router&rsquo;s port-forwards or the load balancer configuration so that they point to the NodePorts assigned to Envoy Gateway instead of the ports used by Ingress NGINX.</p>
 
             </div>
         </article></main>
