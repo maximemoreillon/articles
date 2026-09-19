@@ -6,7 +6,18 @@
     <description>Recent content in Svelte on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/svelte/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/svelte/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MQTT Alarm Clock: a Cron Scheduler with a Web UI</title>
+      <link>https://articles.maximemoreillon.com/articles/mqtt-alarm-clock/</link>
+      <pubDate>Mon, 25 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/mqtt-alarm-clock/</guid>
+      
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/maximemoreillon/mqtt-alarm-clock&#34;&gt;mqtt-alarm-clock&lt;/a&gt; is a small home project born from a practical worry: I often sleep with earplugs and fear I won&amp;rsquo;t hear a regular alarm clock. My bedroom lights, on the other hand, are controlled over MQTT, so instead of making a sound, an alarm in this app publishes a message to an MQTT broker and the lights do the waking up. The app itself stays down to a scheduler with a settings page, and what happens on a given message is up to whatever is subscribed to that topic.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Building a Client-Side Encrypted Chat App with SvelteKit and Firebase</title>
       <link>https://articles.maximemoreillon.com/articles/encrypted-chat/</link>

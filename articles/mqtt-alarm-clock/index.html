@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Svelte | Maxime Moreillon</title>
-<meta property="og:title" content="Svelte | Maxime Moreillon" />
-<meta name="twitter:title" content="Svelte | Maxime Moreillon" />
-<meta itemprop="name" content="Svelte | Maxime Moreillon" />
-<meta name="application-name" content="Svelte | Maxime Moreillon" />
+<title itemprop="name">MQTT Alarm Clock: a Cron Scheduler with a Web UI | Maxime Moreillon</title>
+<meta property="og:title" content="MQTT Alarm Clock: a Cron Scheduler with a Web UI | Maxime Moreillon" />
+<meta name="twitter:title" content="MQTT Alarm Clock: a Cron Scheduler with a Web UI | Maxime Moreillon" />
+<meta itemprop="name" content="MQTT Alarm Clock: a Cron Scheduler with a Web UI | Maxime Moreillon" />
+<meta name="application-name" content="MQTT Alarm Clock: a Cron Scheduler with a Web UI | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/tags/svelte/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/mqtt-alarm-clock/" title="" />
 
 
 
@@ -28,24 +28,33 @@
 <meta name="generator" content="Hugo 0.162.1">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/tags/svelte/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/mqtt-alarm-clock/">
 	<meta property="og:site_name" content="Maxime Moreillon">
-	<meta property="og:title" content="Svelte">
+	<meta property="og:title" content="MQTT Alarm Clock: a Cron Scheduler with a Web UI">
+	<meta property="og:description" content="mqtt-alarm-clock is a small home project born from a practical worry: I often sleep with earplugs and fear I won’t hear a regular alarm clock. My bedroom lights, on the other hand, are controlled over MQTT, so instead of making a sound, an alarm in this app publishes a message to an MQTT broker and the lights do the waking up. The app itself stays down to a scheduler with a settings page, and what happens on a given message is up to whatever is subscribed to that topic.">
 	<meta property="og:locale" content="en_us">
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2026-05-25T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-05-25T00:00:00+00:00">
+		<meta property="article:tag" content="Svelte">
+		<meta property="article:tag" content="SvelteKit">
+		<meta property="article:tag" content="MQTT">
+		<meta property="article:tag" content="IoT">
+		<meta property="article:tag" content="Drizzle ORM">
+		<meta property="article:tag" content="Kubernetes">
 
 
     
     
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Svelte">
+	<meta name="twitter:title" content="MQTT Alarm Clock: a Cron Scheduler with a Web UI">
+	<meta name="twitter:description" content="mqtt-alarm-clock is a small home project born from a practical worry: I often sleep with earplugs and fear I won’t hear a regular alarm clock. My bedroom lights, on the other hand, are controlled over MQTT, so instead of making a sound, an alarm in this app publishes a message to an MQTT broker and the lights do the waking up. The app itself stays down to a scheduler with a settings page, and what happens on a given message is up to whatever is subscribed to that topic.">
 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/tags/svelte/">
-    <link href="/tags/svelte/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/tags/svelte/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/mqtt-alarm-clock/">
     <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -111,7 +120,7 @@ stroke-linejoin="round" class="feather feather-home">
                 </li>
                 
                 <li>
-                    <a class="menu-link " href="/articles/">
+                    <a class="menu-link active" href="/articles/">
                         Articles
                     </a>
                     
@@ -219,159 +228,38 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<div class="wrapper list-page">
-    <header class="header">
-        <h1 class="header-title center">Svelte</h1>
-    </header>
+
+<div class="wrapper post">
     <main class="page-content" aria-label="Content">
-        
-        
-        <h2 class="post-year">2026</h2>
+        <article>
+            <header class="header">
+                <h1 class="header-title">MQTT Alarm Clock: a Cron Scheduler with a Web UI</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-05-25T00:00:00&#43;00:00" itemprop="datePublished"> 25 May 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p><a href="https://github.com/maximemoreillon/mqtt-alarm-clock">mqtt-alarm-clock</a> is a small home project born from a practical worry: I often sleep with earplugs and fear I won&rsquo;t hear a regular alarm clock. My bedroom lights, on the other hand, are controlled over MQTT, so instead of making a sound, an alarm in this app publishes a message to an MQTT broker and the lights do the waking up. The app itself stays down to a scheduler with a settings page, and what happens on a given message is up to whatever is subscribed to that topic.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>An alarm is a name, a time, a set of weekdays, and an enabled flag. The UI is a time input and a row of weekday toggles, and it turns that selection into a cron expression of the form <code>minute hour * * weekdays</code> (for example <code>30 7 * * 1,2,3,4,5</code>), which is what gets stored. Alarms live in a PostgreSQL table managed with Drizzle ORM, with just <code>id</code>, <code>name</code>, <code>cron</code> and <code>enabled</code> columns. When an alarm is displayed or edited, the time and weekdays are parsed back out of the stored cron string.</p>
+<p>The scheduling itself is done in the SvelteKit server process with <code>node-cron</code>. On startup, the server hook connects to the MQTT broker and registers a cron job for every enabled alarm. Every create, update or delete then calls <code>recreateCronJobs()</code>, which stops all registered jobs and registers them again from the database. It&rsquo;s a blunt approach, but with a handful of alarms it is simple and always leaves the in-memory schedule matching what is in the database. It also means the scheduler state lives in a single process, so running more than one replica would publish every alarm more than once, and the manifest sets <code>replicas: 1</code>.</p>
+<p>When a job fires, it publishes a message to the broker. The broker URI, credentials, topic and payload all come from environment variables (<code>MQTT_BROKER_URI</code>, <code>MQTT_USERNAME</code>, <code>MQTT_PASSWORD</code>, <code>MQTT_TOPIC</code>, <code>MQTT_PAYLOAD</code>), defaulting to a public test broker, the topic <code>test</code> and the payload <code>ON</code>. Two things follow from that: every alarm publishes the same topic and payload, so an alarm carries no information beyond when it fires, and the cron jobs are scheduled in a hardcoded <code>Asia/Tokyo</code> timezone.</p>
+<h2 id="authentication">Authentication</h2>
+<p>Login goes through Auth.js (<code>@auth/sveltekit</code>), with Keycloak and Auth0 available as providers depending on which issuer variables are set. The JSON API under <code>/api/alarms</code> is used by the UI and checks for a session on every request, returning a 401 otherwise.</p>
+<h2 id="deployment">Deployment</h2>
+<p>The app is built with <code>adapter-node</code> and packaged in a small Node 22 Dockerfile. A GitLab CI pipeline builds the image, pushes it to Docker Hub, and applies a Kubernetes manifest to a home cluster. The manifest contains the Deployment, a ClusterIP Service and a TLS Ingress, along with an <code>ExternalSecret</code> that pulls the MQTT credentials and the Keycloak client settings from Vault into the container&rsquo;s environment. The database connection is read from a <code>DATABASE_URL</code> environment variable.</p>
+<h2 id="limitations">Limitations</h2>
+<p>Since it is a personal tool, several things are deliberately left simple: there is no per-alarm topic or payload, the timezone is not configurable, the UI only supports a time plus weekdays rather than arbitrary cron expressions, and there is no handling of missed alarms if the pod happens to be down at the scheduled minute. The last point follows directly from using in-process cron jobs rather than persisting any record of executions.</p>
 
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/mqtt-alarm-clock/">MQTT Alarm Clock: a Cron Scheduler with a Web UI</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-05-25T00:00:00Z">
-        25 May 2026
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/shared-countdown/">Shared Countdown: a Small Firebase &#43; SvelteKit App</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-03-21T00:00:00Z">
-        21 Mar 2026
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/encrypted-chat/">Building a Client-Side Encrypted Chat App with SvelteKit and Firebase</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-03-21T00:00:00Z">
-        21 Mar 2026
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2024</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/bd9dcf40-ce45-42ac-8d58-de4be0c04ab1/">Countries tracker</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2024-02-18T00:00:00Z">
-        18 Feb 2024
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2023</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/56e285eb-3b1f-436a-b56a-39f0c69245a1/">Habit tracker</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-05-07T00:00:00Z">
-        7 May 2023
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/e1d7dd0b-83b9-454e-a6e5-8e72bca46902/">A GUI for ChartMuseum</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-03-13T00:00:00Z">
-        13 Mar 2023
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2022</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/f027e7b5-2aef-4ea4-8bc6-c52c50c3eaf1/">A simple comparison of Svelte and Vue</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2022-12-19T00:00:00Z">
-        19 Dec 2022
-    </time>
-</article>
-
-
-         
-
-         
-
-    </main>
-</div><footer class="footer">
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 

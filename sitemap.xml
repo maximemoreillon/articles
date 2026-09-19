@@ -4,15 +4,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://articles.maximemoreillon.com/articles/</loc>
-    <lastmod>2026-09-16T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-18T00:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://articles.maximemoreillon.com/articles/vuetify-snackbar/</loc>
-    <lastmod>2026-09-16T00:00:00+09:00</lastmod>
+    <loc>https://articles.maximemoreillon.com/tags/kubernetes/</loc>
+    <lastmod>2026-09-18T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/</loc>
-    <lastmod>2026-09-16T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-18T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/retiring-oauth2-proxy/</loc>
+    <lastmod>2026-09-18T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/</loc>
+    <lastmod>2026-09-18T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/vuetify-snackbar/</loc>
     <lastmod>2026-09-16T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/vue.js/</loc>
@@ -22,9 +28,6 @@
     <lastmod>2026-09-16T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/mongodb-backup-k8s-cronjob/</loc>
-    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/kubernetes/</loc>
     <lastmod>2026-09-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/mongodb/</loc>
@@ -117,6 +120,24 @@
     <loc>https://articles.maximemoreillon.com/articles/opentelemetry-collector-prometheus/</loc>
     <lastmod>2026-05-26T00:00:00+09:00</lastmod>
   </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/drizzle-orm/</loc>
+    <lastmod>2026-05-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/iot/</loc>
+    <lastmod>2026-05-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/mqtt/</loc>
+    <lastmod>2026-05-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/mqtt-alarm-clock/</loc>
+    <lastmod>2026-05-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/svelte/</loc>
+    <lastmod>2026-05-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/sveltekit/</loc>
+    <lastmod>2026-05-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://articles.maximemoreillon.com/tags/hashicorp-vault/</loc>
     <lastmod>2026-04-18T00:00:00+00:00</lastmod>
   </url><url>
@@ -139,12 +160,6 @@
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/shared-countdown/</loc>
-    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/svelte/</loc>
-    <lastmod>2026-03-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/sveltekit/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/argocd-multi-source-helm-values/</loc>
@@ -249,9 +264,6 @@
     <loc>https://articles.maximemoreillon.com/tags/esp32/</loc>
     <lastmod>2023-07-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/iot/</loc>
-    <lastmod>2025-10-26T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://articles.maximemoreillon.com/articles/c322b2f5-5180-4cf7-8ecf-4fd3a1d21783/</loc>
     <lastmod>2023-07-09T00:00:00+00:00</lastmod>
   </url><url>
@@ -275,9 +287,6 @@
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/featured/</loc>
     <lastmod>2024-02-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/mqtt/</loc>
-    <lastmod>2024-02-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/2e301bdf-99eb-49cc-8c11-02ac8f0a4f72/</loc>
     <lastmod>2023-05-07T00:00:00+00:00</lastmod>
