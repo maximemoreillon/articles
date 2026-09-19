@@ -83,7 +83,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#f92672&#34;&gt;envFrom&lt;/span&gt;:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                - &lt;span style=&#34;color:#f92672&#34;&gt;secretRef&lt;/span&gt;:
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    &lt;span style=&#34;color:#f92672&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;mongodb-backups&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The necesary environment variables are &lt;code&gt;MONGODB_URI&lt;/code&gt;, &lt;code&gt;AWS_ACCESS_KEY_ID&lt;/code&gt; and &lt;code&gt;ACCESS_SECRET_KEY&lt;/code&gt;, stored in a dedicated secret.&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The necessary environment variables are &lt;code&gt;MONGODB_URI&lt;/code&gt;, &lt;code&gt;AWS_ACCESS_KEY_ID&lt;/code&gt; and &lt;code&gt;AWS_SECRET_ACCESS_KEY&lt;/code&gt;, stored in a dedicated secret.&lt;/p&gt;</description>
       
     </item>
     
@@ -141,7 +141,7 @@ Throughout this article, git tags deploy to the &lt;code&gt;prod&lt;/code&gt; en
       <guid>https://articles.maximemoreillon.com/articles/frigate-talos/</guid>
       
       <description>&lt;h1 id=&#34;fixing-frigates-rtsp-issues-on-kubernetes&#34;&gt;Fixing Frigate&amp;rsquo;s RTSP Issues on Kubernetes&lt;/h1&gt;
-&lt;p&gt;If you&amp;rsquo;ve tried deploying &lt;a href=&#34;https://frigate.video/&#34;&gt;Frigate NVR&lt;/a&gt; on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate&amp;rsquo;s API stops working correctly. The root cause comes down to how OpenCV handles RTSP streams by default, and the fix is a single environment variable.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;ve tried deploying &lt;a href=&#34;https://frigate.video/&#34;&gt;Frigate NVR&lt;/a&gt; on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate&amp;rsquo;s API stops working correctly. The likely cause is how OpenCV handles RTSP streams by default, and the fix is a single environment variable.&lt;/p&gt;
 &lt;h2 id=&#34;whats-going-on&#34;&gt;What&amp;rsquo;s Going On&lt;/h2&gt;
 &lt;p&gt;Frigate&amp;rsquo;s FastAPI layer uses OpenCV under the hood for certain frame-level operations. By default, OpenCV probes RTSP streams over &lt;strong&gt;UDP&lt;/strong&gt;. Under most environments this works fine, but in Kubernetes — especially with CNI plugins like Flannel — UDP-based RTSP handling tends to break silently, causing the API to malfunction.&lt;/p&gt;</description>
       

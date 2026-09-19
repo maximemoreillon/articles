@@ -31,7 +31,7 @@
     <meta property="og:url" content="https://articles.maximemoreillon.com/articles/frigate-talos/">
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Fixing Frigate&#39;s RTSP Issues on Kubernetes">
-	<meta property="og:description" content="Fixing Frigate’s RTSP Issues on Kubernetes If you’ve tried deploying Frigate NVR on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate’s API stops working correctly. The root cause comes down to how OpenCV handles RTSP streams by default, and the fix is a single environment variable.
+	<meta property="og:description" content="Fixing Frigate’s RTSP Issues on Kubernetes If you’ve tried deploying Frigate NVR on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate’s API stops working correctly. The likely cause is how OpenCV handles RTSP streams by default, and the fix is a single environment variable.
 What’s Going On Frigate’s FastAPI layer uses OpenCV under the hood for certain frame-level operations. By default, OpenCV probes RTSP streams over UDP. Under most environments this works fine, but in Kubernetes — especially with CNI plugins like Flannel — UDP-based RTSP handling tends to break silently, causing the API to malfunction.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
@@ -47,7 +47,7 @@ What’s Going On Frigate’s FastAPI layer uses OpenCV under the hood for certa
     
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Fixing Frigate&#39;s RTSP Issues on Kubernetes">
-	<meta name="twitter:description" content="Fixing Frigate’s RTSP Issues on Kubernetes If you’ve tried deploying Frigate NVR on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate’s API stops working correctly. The root cause comes down to how OpenCV handles RTSP streams by default, and the fix is a single environment variable.
+	<meta name="twitter:description" content="Fixing Frigate’s RTSP Issues on Kubernetes If you’ve tried deploying Frigate NVR on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate’s API stops working correctly. The likely cause is how OpenCV handles RTSP streams by default, and the fix is a single environment variable.
 What’s Going On Frigate’s FastAPI layer uses OpenCV under the hood for certain frame-level operations. By default, OpenCV probes RTSP streams over UDP. Under most environments this works fine, but in Kubernetes — especially with CNI plugins like Flannel — UDP-based RTSP handling tends to break silently, causing the API to malfunction.">
 
 
@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <h1 id="fixing-frigates-rtsp-issues-on-kubernetes">Fixing Frigate&rsquo;s RTSP Issues on Kubernetes</h1>
-<p>If you&rsquo;ve tried deploying <a href="https://frigate.video/">Frigate NVR</a> on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate&rsquo;s API stops working correctly. The root cause comes down to how OpenCV handles RTSP streams by default, and the fix is a single environment variable.</p>
+<p>If you&rsquo;ve tried deploying <a href="https://frigate.video/">Frigate NVR</a> on Kubernetes — in this case on Talos Linux — you may have run into a situation where cameras fail to connect and Frigate&rsquo;s API stops working correctly. The likely cause is how OpenCV handles RTSP streams by default, and the fix is a single environment variable.</p>
 <h2 id="whats-going-on">What&rsquo;s Going On</h2>
 <p>Frigate&rsquo;s FastAPI layer uses OpenCV under the hood for certain frame-level operations. By default, OpenCV probes RTSP streams over <strong>UDP</strong>. Under most environments this works fine, but in Kubernetes — especially with CNI plugins like Flannel — UDP-based RTSP handling tends to break silently, causing the API to malfunction.</p>
 <p>This is the exact issue I hit while deploying Frigate on a homelab Kubernetes cluster running Talos Linux with Flannel as the CNI.</p>

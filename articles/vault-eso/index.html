@@ -290,6 +290,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>Bound service account namespaces: <code>*</code></li>
 </ul>
 <p>Moreover, on the same role configuration page, under Tokens, set <em>Generated Token&rsquo;s Policies</em> to <code>eso</code>. This allows the <code>eso</code> role to access the <code>eso</code> <code>kv</code> secret engine created above.</p>
+<p>Note that using <code>*</code> for both the service account names and namespaces lets any service account in the cluster log in with this role, and thereby read every secret under <code>k8s</code>. This is convenient on a single-user cluster, but these can be restricted to the service account ESO authenticates with.</p>
 <h2 id="external-secrets-operator">External Secrets Operator</h2>
 <h3 id="install-1">Install</h3>
 <p>The External Secrets Operator can also be installed via ArgoCD:</p>
