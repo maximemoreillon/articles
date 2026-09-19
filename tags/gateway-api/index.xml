@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gateway API on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/gateway-api/</link>
+    <description>Recent content in Gateway API on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 18 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/gateway-api/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Retiring Oauth2-Proxy in favor of Envoy Gateway</title>
+      <link>https://articles.maximemoreillon.com/articles/retiring-oauth2-proxy/</link>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/retiring-oauth2-proxy/</guid>
+      
+      <description>&lt;p&gt;Oauth2-Proxy is a convenient solution to add authentication with OIDC on applications that do not ship with it natively. It integrates well with the &lt;a href=&#34;https://github.com/kubernetes/ingress-nginx&#34;&gt;Ingress NGINX controller&lt;/a&gt; but the latter is now deprecated.&lt;/p&gt;
+&lt;p&gt;A replacement for Ingress NGINX is the Gateway API, a newer Kubernetes standard for traffic routing with several available implementations — &lt;a href=&#34;https://gateway.envoyproxy.io/&#34;&gt;Envoy Gateway&lt;/a&gt;, Istio, Cilium, and NGINX Gateway Fabric among them. This article uses Envoy Gateway. Since Envoy Gateway provides its own OIDC authentication, Oauth2-Proxy is no longer needed for this purpose.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Migrating from Ingress NGINX Controller to Envoy Gateway</title>
+      <link>https://articles.maximemoreillon.com/articles/ingress-nginx-controller-to-envoy-gateway/</link>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/ingress-nginx-controller-to-envoy-gateway/</guid>
+      
+      <description>&lt;p&gt;As the &lt;a href=&#34;https://github.com/kubernetes/ingress-nginx&#34;&gt;Ingress NGINX controller&lt;/a&gt; is now deprecated, replacing it with the Gateway API is in order. The Gateway API is a newer Kubernetes standard for traffic routing with several available implementations — &lt;a href=&#34;https://gateway.envoyproxy.io/&#34;&gt;Envoy Gateway&lt;/a&gt;, Istio, Cilium, and NGINX Gateway Fabric among them. Here, I have chosen Envoy Gateway as it is backed by the CNCF and provides all needed features, including native OIDC authentication, which removes the need for Oauth2-Proxy (see &lt;a href=&#34;https://articles.maximemoreillon.com/articles/retiring-oauth2-proxy/&#34;&gt;this article&lt;/a&gt;).&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

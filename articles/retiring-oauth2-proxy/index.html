@@ -32,13 +32,15 @@
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Retiring Oauth2-Proxy in favor of Envoy Gateway">
 	<meta property="og:description" content="Oauth2-Proxy is a convenient solution to add authentication with OIDC on applications that do not ship with it natively. It integrates well with the Ingress NGINX controller but the latter is now deprecated.
-A popular replacement for Ingress NGINX is the Gateway API, a newer Kubernetes standard for traffic routing with several available implementations — Envoy Gateway, Istio, Cilium, and NGINX Gateway Fabric among them. This article uses Envoy Gateway.. Since Envoy Gateway provides its own OIDC authentication, Oauth2-Proxy is no longer needed for this purpose.">
+A replacement for Ingress NGINX is the Gateway API, a newer Kubernetes standard for traffic routing with several available implementations — Envoy Gateway, Istio, Cilium, and NGINX Gateway Fabric among them. This article uses Envoy Gateway. Since Envoy Gateway provides its own OIDC authentication, Oauth2-Proxy is no longer needed for this purpose.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
 		<meta property="article:published_time" content="2026-09-18T00:00:00+09:00">
 		<meta property="article:modified_time" content="2026-09-18T00:00:00+09:00">
 		<meta property="article:tag" content="Kubernetes">
+		<meta property="article:tag" content="Envoy Gateway">
+		<meta property="article:tag" content="Gateway API">
 
 
     
@@ -46,7 +48,7 @@ A popular replacement for Ingress NGINX is the Gateway API, a newer Kubernetes s
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Retiring Oauth2-Proxy in favor of Envoy Gateway">
 	<meta name="twitter:description" content="Oauth2-Proxy is a convenient solution to add authentication with OIDC on applications that do not ship with it natively. It integrates well with the Ingress NGINX controller but the latter is now deprecated.
-A popular replacement for Ingress NGINX is the Gateway API, a newer Kubernetes standard for traffic routing with several available implementations — Envoy Gateway, Istio, Cilium, and NGINX Gateway Fabric among them. This article uses Envoy Gateway.. Since Envoy Gateway provides its own OIDC authentication, Oauth2-Proxy is no longer needed for this purpose.">
+A replacement for Ingress NGINX is the Gateway API, a newer Kubernetes standard for traffic routing with several available implementations — Envoy Gateway, Istio, Cilium, and NGINX Gateway Fabric among them. This article uses Envoy Gateway. Since Envoy Gateway provides its own OIDC authentication, Oauth2-Proxy is no longer needed for this purpose.">
 
 
     
@@ -241,9 +243,9 @@ document.addEventListener('DOMContentLoaded', function () {
             </header>
             
             <div class="page-content">
-                <p>Oauth2-Proxy is a convenient solution to add authentication with OIDC on applications that do not ship with it natively. It integrates well with the <a href="https://github.com/kubernetes/ingress-NGINX">Ingress NGINX controller</a> but the latter is now deprecated.</p>
-<p>A popular replacement for Ingress NGINX is the Gateway API, a newer Kubernetes standard for traffic routing with several available implementations — <a href="https://gateway.envoyproxy.io/">Envoy Gateway</a>, Istio, Cilium, and NGINX Gateway Fabric among them. This article uses Envoy Gateway.. Since Envoy Gateway provides its own OIDC authentication, Oauth2-Proxy is no longer needed for this purpose.</p>
-<p>This article presents how to replace Oauth2-Proxy with Envoy Gateway-s native OIDC authentication solution. For this purpose, the following <code>HTTPRoute</code> for the popular dashboard application <a href="https://gethomepage.dev/">Homepage</a> is used as example:</p>
+                <p>Oauth2-Proxy is a convenient solution to add authentication with OIDC on applications that do not ship with it natively. It integrates well with the <a href="https://github.com/kubernetes/ingress-nginx">Ingress NGINX controller</a> but the latter is now deprecated.</p>
+<p>A replacement for Ingress NGINX is the Gateway API, a newer Kubernetes standard for traffic routing with several available implementations — <a href="https://gateway.envoyproxy.io/">Envoy Gateway</a>, Istio, Cilium, and NGINX Gateway Fabric among them. This article uses Envoy Gateway. Since Envoy Gateway provides its own OIDC authentication, Oauth2-Proxy is no longer needed for this purpose.</p>
+<p>This article presents how to replace Oauth2-Proxy with Envoy Gateway&rsquo;s native OIDC authentication solution. For this purpose, the following <code>HTTPRoute</code> for the popular dashboard application <a href="https://gethomepage.dev/">Homepage</a> is used as example:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">gateway.networking.k8s.io/v1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">HTTPRoute</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
@@ -288,10 +290,10 @@ document.addEventListener('DOMContentLoaded', function () {
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">name</span>: <span style="color:#ae81ff">homepage-oidc-settings</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">homepage-oidc-settings</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">type</span>: <span style="color:#ae81ff">Opaque</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">stringData</span>:
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">client-secret</span>: <span style="color:#e6db74">&#34;&lt;CLIENT_SECRET&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">client-secret</span>: <span style="color:#e6db74">&#34;&lt;CLIENT_SECRET&gt;&#34;</span>
 </span></span></code></pre></div><p>With the <code>SecurityPolicy</code> in place, accessing Homepage should now only be possible after authenticating towards the configured IdP.</p>
 
             </div>

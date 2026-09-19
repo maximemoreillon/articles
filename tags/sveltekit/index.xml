@@ -36,7 +36,7 @@
       
       <guid>https://articles.maximemoreillon.com/articles/shared-countdown/</guid>
       
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/maximemoreillon/shared-countdown&#34;&gt;shared-countdown&lt;/a&gt; is a pet project built to poke at Firestore&amp;rsquo;s real-time sync rather than to fill some gap in the countdown-timer market: a countdown, plus the ability to share it with other people instead of it living only in your own browser tab. It&amp;rsquo;s a SvelteKit frontend on Firebase — Firebase Authentication for Google sign-in, Firestore for storage — and it reuses the same stack as &lt;a href=&#34;https://articles.maximemoreillon.com/encrypted-chat/&#34;&gt;encrypted-chat&lt;/a&gt;, another small project built around SvelteKit and Firebase.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/maximemoreillon/shared-countdown&#34;&gt;shared-countdown&lt;/a&gt; is a pet project built to poke at Firestore&amp;rsquo;s real-time sync rather than to fill some gap in the countdown-timer market: a countdown, plus the ability to share it with other people instead of it living only in your own browser tab. It&amp;rsquo;s a SvelteKit frontend on Firebase — Firebase Authentication for Google sign-in, Firestore for storage — and it reuses the same stack as &lt;a href=&#34;https://articles.maximemoreillon.com/articles/encrypted-chat/&#34;&gt;encrypted-chat&lt;/a&gt;, another small project built around SvelteKit and Firebase.&lt;/p&gt;</description>
       
     </item>
     

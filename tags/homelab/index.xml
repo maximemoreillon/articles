@@ -6,7 +6,18 @@
     <description>Recent content in Homelab on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/homelab/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/homelab/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrating from Ingress NGINX Controller to Envoy Gateway</title>
+      <link>https://articles.maximemoreillon.com/articles/ingress-nginx-controller-to-envoy-gateway/</link>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/ingress-nginx-controller-to-envoy-gateway/</guid>
+      
+      <description>&lt;p&gt;As the &lt;a href=&#34;https://github.com/kubernetes/ingress-nginx&#34;&gt;Ingress NGINX controller&lt;/a&gt; is now deprecated, replacing it with the Gateway API is in order. The Gateway API is a newer Kubernetes standard for traffic routing with several available implementations — &lt;a href=&#34;https://gateway.envoyproxy.io/&#34;&gt;Envoy Gateway&lt;/a&gt;, Istio, Cilium, and NGINX Gateway Fabric among them. Here, I have chosen Envoy Gateway as it is backed by the CNCF and provides all needed features, including native OIDC authentication, which removes the need for Oauth2-Proxy (see &lt;a href=&#34;https://articles.maximemoreillon.com/articles/retiring-oauth2-proxy/&#34;&gt;this article&lt;/a&gt;).&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Secondary server in Switzerland</title>
       <link>https://articles.maximemoreillon.com/articles/secondary-server-switzerland/</link>
