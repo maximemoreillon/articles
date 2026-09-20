@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Homelab | Maxime Moreillon</title>
-<meta property="og:title" content="Homelab | Maxime Moreillon" />
-<meta name="twitter:title" content="Homelab | Maxime Moreillon" />
-<meta itemprop="name" content="Homelab | Maxime Moreillon" />
-<meta name="application-name" content="Homelab | Maxime Moreillon" />
+<title itemprop="name">Nextcloud Notes re-syncing everything behind Envoy Gateway | Maxime Moreillon</title>
+<meta property="og:title" content="Nextcloud Notes re-syncing everything behind Envoy Gateway | Maxime Moreillon" />
+<meta name="twitter:title" content="Nextcloud Notes re-syncing everything behind Envoy Gateway | Maxime Moreillon" />
+<meta itemprop="name" content="Nextcloud Notes re-syncing everything behind Envoy Gateway | Maxime Moreillon" />
+<meta name="application-name" content="Nextcloud Notes re-syncing everything behind Envoy Gateway | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/tags/homelab/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/nextcloud-notes-envoy-gateway-header-case/" title="" />
 
 
 
@@ -28,24 +28,35 @@
 <meta name="generator" content="Hugo 0.162.1">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/tags/homelab/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/nextcloud-notes-envoy-gateway-header-case/">
 	<meta property="og:site_name" content="Maxime Moreillon">
-	<meta property="og:title" content="Homelab">
+	<meta property="og:title" content="Nextcloud Notes re-syncing everything behind Envoy Gateway">
+	<meta property="og:description" content="After moving from Ingress NGINX to Envoy Gateway, the Nextcloud Notes app on my phone started taking around 40 seconds to sync, with the loader spinning the whole time.
+The problem The Envoy access log showed why: every sync downloaded the whole collection.
+GET /index.php/apps/notes/api/v1/notes?pruneBefore=0 200 4.8 MB With around 5,000 notes, that is a lot of data to fetch for a sync that usually has nothing to update. According to the Notes API documentation, a client is supposed to send the Last-Modified timestamp and the ETag of the previous response, so that the server only returns what changed. Behind Ingress NGINX, this worked. Behind Envoy Gateway, pruneBefore was always 0.">
 	<meta property="og:locale" content="en_us">
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2026-09-20T00:00:00+09:00">
+		<meta property="article:modified_time" content="2026-09-20T00:00:00+09:00">
+		<meta property="article:tag" content="Kubernetes">
+		<meta property="article:tag" content="Homelab">
+		<meta property="article:tag" content="Envoy Gateway">
+		<meta property="article:tag" content="Nextcloud">
 
 
     
     
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Homelab">
+	<meta name="twitter:title" content="Nextcloud Notes re-syncing everything behind Envoy Gateway">
+	<meta name="twitter:description" content="After moving from Ingress NGINX to Envoy Gateway, the Nextcloud Notes app on my phone started taking around 40 seconds to sync, with the loader spinning the whole time.
+The problem The Envoy access log showed why: every sync downloaded the whole collection.
+GET /index.php/apps/notes/api/v1/notes?pruneBefore=0 200 4.8 MB With around 5,000 notes, that is a lot of data to fetch for a sync that usually has nothing to update. According to the Notes API documentation, a client is supposed to send the Last-Modified timestamp and the ETag of the previous response, so that the server only returns what changed. Behind Ingress NGINX, this worked. Behind Envoy Gateway, pruneBefore was always 0.">
 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/tags/homelab/">
-    <link href="/tags/homelab/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/tags/homelab/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/nextcloud-notes-envoy-gateway-header-case/">
     <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -111,7 +122,7 @@ stroke-linejoin="round" class="feather feather-home">
                 </li>
                 
                 <li>
-                    <a class="menu-link " href="/articles/">
+                    <a class="menu-link active" href="/articles/">
                         Articles
                     </a>
                     
@@ -219,111 +230,71 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<div class="wrapper list-page">
-    <header class="header">
-        <h1 class="header-title center">Homelab</h1>
-    </header>
+
+<div class="wrapper post">
     <main class="page-content" aria-label="Content">
-        
-        
-        <h2 class="post-year">2026</h2>
+        <article>
+            <header class="header">
+                <h1 class="header-title">Nextcloud Notes re-syncing everything behind Envoy Gateway</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-09-20T00:00:00&#43;09:00" itemprop="datePublished"> 20 Sep 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>After <a href="/articles/ingress-nginx-controller-to-envoy-gateway/">moving from Ingress NGINX to Envoy Gateway</a>, the Nextcloud Notes app on my phone started taking around 40 seconds to sync, with the loader spinning the whole time.</p>
+<h2 id="the-problem">The problem</h2>
+<p>The Envoy access log showed why: every sync downloaded the whole collection.</p>
+<pre tabindex="0"><code>GET /index.php/apps/notes/api/v1/notes?pruneBefore=0   200   4.8 MB
+</code></pre><p>With around 5,000 notes, that is a lot of data to fetch for a sync that usually has nothing to update. According to the <a href="https://github.com/nextcloud/notes/blob/main/docs/api/v1.md">Notes API documentation</a>, a client is supposed to send the <code>Last-Modified</code> timestamp and the <code>ETag</code> of the previous response, so that the server only returns what changed. Behind Ingress NGINX, this worked. Behind Envoy Gateway, <code>pruneBefore</code> was always <code>0</code>.</p>
+<h2 id="the-cause">The cause</h2>
+<p>Three things combine:</p>
+<ol>
+<li>
+<p><strong>Envoy lowercases HTTP/1.1 header names by default.</strong> Ingress NGINX and Apache keep them as sent. The same file, requested over HTTP/1.1, returns:</p>
+<pre tabindex="0"><code># Ingress NGINX / Apache
+Last-Modified: Tue, 11 Aug 2026 00:23:30 GMT
+ETag: &#34;32f-658ba7af4d4b7&#34;
 
-        
+# Envoy Gateway
+last-modified: Tue, 11 Aug 2026 00:23:30 GMT
+etag: &#34;32f-658ba7af4d4b7&#34;
+</code></pre><p>This is compliant, since header names are case-insensitive (<a href="https://www.rfc-editor.org/rfc/rfc9110#name-field-names">RFC 9110</a>).</p>
+</li>
+<li>
+<p><strong>The Android client treats them as case-sensitive.</strong> The Notes app reaches the server through the Nextcloud Files app and the Single Sign-On library. The Files app forwards header names exactly as received, and the library stores them in a plain <a href="https://github.com/nextcloud/Android-SingleSignOn/blob/main/lib/src/main/java/com/nextcloud/android/sso/api/ParsedResponse.java"><code>HashMap</code></a>.</p>
+</li>
+<li>
+<p><strong>The Notes app looks up <code>&quot;ETag&quot;</code> and <code>&quot;Last-Modified&quot;</code> exactly.</strong> If they are not found, it <a href="https://github.com/nextcloud/notes-android/blob/main/app/src/main/java/it/niedermann/owncloud/notes/persistence/NotesServerSyncTask.java">stores a modified time of 0 and no ETag</a>, and the next request is <code>pruneBefore=0</code> again.</p>
+</li>
+</ol>
+<h2 id="the-fix">The fix</h2>
+<p>Envoy Gateway can keep the original casing with a <code>ClientTrafficPolicy</code> on the <code>Gateway</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">gateway.envoyproxy.io/v1alpha1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ClientTrafficPolicy</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">preserve-header-case</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">envoy-gateway-system</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">targetRefs</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">group</span>: <span style="color:#ae81ff">gateway.networking.k8s.io</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Gateway</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">eg</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">http1</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">preserveHeaderCase</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>After this, the headers keep the case sent by the backend, and syncs become incremental:</p>
+<pre tabindex="0"><code>GET /index.php/apps/notes/api/v1/notes?pruneBefore=1789885232   200   69 KB
+GET /index.php/apps/notes/api/v1/notes?pruneBefore=1789885288   304   0 B
+</code></pre><p>A sync now takes under a second. The policy applies to all HTTP/1.1 traffic going through the <code>Gateway</code>, which is harmless for compliant clients. HTTP/2 is unaffected, as it always uses lowercase names.</p>
 
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/nextcloud-notes-envoy-gateway-header-case/">Nextcloud Notes re-syncing everything behind Envoy Gateway</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-09-20T00:00:00&#43;0900">
-        20 Sep 2026
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/envoy-gateway-hostport/">Exposing Envoy Gateway on ports 80 and 443 with hostPort</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-09-20T00:00:00&#43;0900">
-        20 Sep 2026
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/ingress-nginx-controller-to-envoy-gateway/">Migrating from Ingress NGINX Controller to Envoy Gateway</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-09-17T00:00:00&#43;0900">
-        17 Sep 2026
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2025</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/secondary-server-switzerland/">Secondary server in Switzerland</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2025-08-15T00:00:00Z">
-        15 Aug 2025
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/homelab-proxmox-talos-truenas/">Proxmox homelab with Talos and TrueNAS</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2025-06-15T00:00:00Z">
-        15 Jun 2025
-    </time>
-</article>
-
-
-         
-
-         
-
-    </main>
-</div><footer class="footer">
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 

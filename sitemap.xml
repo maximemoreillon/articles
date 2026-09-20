@@ -24,6 +24,12 @@
     <loc>https://articles.maximemoreillon.com/</loc>
     <lastmod>2026-09-20T00:00:00+09:00</lastmod>
   </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/nextcloud/</loc>
+    <lastmod>2026-09-20T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/nextcloud-notes-envoy-gateway-header-case/</loc>
+    <lastmod>2026-09-20T00:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://articles.maximemoreillon.com/tags/</loc>
     <lastmod>2026-09-20T00:00:00+09:00</lastmod>
   </url><url>
@@ -938,9 +944,6 @@
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/337/</loc>
     <lastmod>2020-04-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/nextcloud/</loc>
-    <lastmod>2020-03-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/335/</loc>
     <lastmod>2020-03-10T00:00:00+00:00</lastmod>
