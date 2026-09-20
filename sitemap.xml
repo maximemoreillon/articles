@@ -4,28 +4,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://articles.maximemoreillon.com/articles/</loc>
-    <lastmod>2026-09-18T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-20T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/envoy-gateway/</loc>
-    <lastmod>2026-09-18T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-20T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/envoy-gateway-hostport/</loc>
+    <lastmod>2026-09-20T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/gateway-api/</loc>
-    <lastmod>2026-09-18T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-20T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/homelab/</loc>
+    <lastmod>2026-09-20T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/kubernetes/</loc>
-    <lastmod>2026-09-18T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-20T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/</loc>
-    <lastmod>2026-09-18T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-20T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/</loc>
+    <lastmod>2026-09-20T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/retiring-oauth2-proxy/</loc>
     <lastmod>2026-09-18T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/</loc>
-    <lastmod>2026-09-18T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/homelab/</loc>
-    <lastmod>2026-09-17T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/ingress-nginx-controller-to-envoy-gateway/</loc>
     <lastmod>2026-09-17T00:00:00+09:00</lastmod>

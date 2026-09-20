@@ -6,7 +6,18 @@
     <description>Recent content in Envoy Gateway on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 18 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/envoy-gateway/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/envoy-gateway/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exposing Envoy Gateway on ports 80 and 443 with hostPort</title>
+      <link>https://articles.maximemoreillon.com/articles/envoy-gateway-hostport/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/envoy-gateway-hostport/</guid>
+      
+      <description>&lt;p&gt;In &lt;a href=&#34;https://articles.maximemoreillon.com/articles/ingress-nginx-controller-to-envoy-gateway/&#34;&gt;my article on migrating to Envoy Gateway&lt;/a&gt;, I exposed Envoy through a &lt;code&gt;NodePort&lt;/code&gt; service and pointed the router&amp;rsquo;s port-forwards at the assigned ports, as a &lt;code&gt;NodePort&lt;/code&gt; cannot use the standard HTTP and HTTPS ports. Accessing apps directly on the local LAN, however, then requires specifying a non-standard port in the URL. On a single-node homelab cluster, &lt;code&gt;hostPort&lt;/code&gt; avoids this: it binds a container port directly on the node&amp;rsquo;s network interface, so the node answers on ports 80 and 443 with nothing in between. Unlike &lt;code&gt;hostNetwork&lt;/code&gt;, the pod keeps its own network namespace.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Retiring Oauth2-Proxy in favor of Envoy Gateway</title>
       <link>https://articles.maximemoreillon.com/articles/retiring-oauth2-proxy/</link>
