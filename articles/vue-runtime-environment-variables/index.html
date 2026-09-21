@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">Runtime environment variables in a Vue.js app | Maxime Moreillon</title>
+<meta property="og:title" content="Runtime environment variables in a Vue.js app | Maxime Moreillon" />
+<meta name="twitter:title" content="Runtime environment variables in a Vue.js app | Maxime Moreillon" />
+<meta itemprop="name" content="Runtime environment variables in a Vue.js app | Maxime Moreillon" />
+<meta name="application-name" content="Runtime environment variables in a Vue.js app | Maxime Moreillon" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/vue-runtime-environment-variables/" title="" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.162.1">
+
+    
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/vue-runtime-environment-variables/">
+	<meta property="og:site_name" content="Maxime Moreillon">
+	<meta property="og:title" content="Runtime environment variables in a Vue.js app">
+	<meta property="og:description" content="In a Vue.js app built with Vite, environment variables such as VITE_API_URL are read from import.meta.env. This is convenient, but Vite replaces the VITE_ environment variables with their values during the build. This means they cannot be changed at runtime.
+The usual workaround is to generate a small JavaScript file when the container starts, which copies the container’s environment variables onto window. The app then reads its configuration from there.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2026-09-21T00:00:00+09:00">
+		<meta property="article:modified_time" content="2026-09-21T00:00:00+09:00">
+		<meta property="article:tag" content="Vue.js">
+		<meta property="article:tag" content="Docker">
+		<meta property="article:tag" content="Vite">
+		<meta property="article:tag" content="Tutorials">
+
+
+    
+    
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Runtime environment variables in a Vue.js app">
+	<meta name="twitter:description" content="In a Vue.js app built with Vite, environment variables such as VITE_API_URL are read from import.meta.env. This is convenient, but Vite replaces the VITE_ environment variables with their values during the build. This means they cannot be changed at runtime.
+The usual workaround is to generate a small JavaScript file when the container starts, which copies the container’s environment variables onto window. The app then reads its configuration from there.">
+
+
+    
+
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/vue-runtime-environment-variables/">
+    <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://articles.maximemoreillon.com/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+    <meta name="color-scheme" content="light dark">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        
+        <a href="https://articles.maximemoreillon.com/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/articles/">
+                        Articles
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+            </ul>
+
+            <div class="tools">
+
+                
+                <button id="search-trigger" aria-label="Search (Ctrl+K)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <a id="mode" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div id="search-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Search">
+    <div id="search-box">
+        <div id="search"></div>
+    </div>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var overlay = document.getElementById('search-overlay');
+    var trigger = document.getElementById('search-trigger');
+    var initialized = false;
+
+    function loadPagefind() {
+        return new Promise(function (resolve) {
+            if (typeof PagefindUI !== 'undefined') { resolve(); return; }
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = '/pagefind/pagefind-ui.css';
+            document.head.appendChild(link);
+            var script = document.createElement('script');
+            script.src = '/pagefind/pagefind-ui.js';
+            script.onload = resolve;
+            script.onerror = resolve;
+            document.head.appendChild(script);
+        });
+    }
+
+    function focusInput() {
+        setTimeout(function () {
+            var input = document.querySelector('.pagefind-ui__search-input');
+            if (input) input.focus();
+        }, 50);
+    }
+
+    function openSearch() {
+        overlay.setAttribute('aria-hidden', 'false');
+        overlay.classList.add('is-open');
+        if (!initialized) {
+            loadPagefind().then(function () {
+                if (typeof PagefindUI !== 'undefined') {
+                    new PagefindUI({ element: '#search', showSubResults: true });
+                    initialized = true;
+                }
+                focusInput();
+            });
+        } else {
+            focusInput();
+        }
+    }
+
+    function closeSearch() {
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.classList.remove('is-open');
+    }
+
+    trigger.addEventListener('click', openSearch);
+
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeSearch();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeSearch();
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+    });
+});
+</script>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Runtime environment variables in a Vue.js app</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-09-21T00:00:00&#43;09:00" itemprop="datePublished"> 21 Sep 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>In a Vue.js app built with Vite, environment variables such as <code>VITE_API_URL</code> are read from <code>import.meta.env</code>. This is convenient, but Vite replaces the <code>VITE_</code> environment variables with their values during the build. This means they cannot be changed at runtime.</p>
+<p>The usual workaround is to generate a small JavaScript file when the container starts, which copies the container&rsquo;s environment variables onto <code>window</code>. The app then reads its configuration from there.</p>
+<p>This article explains how to set this up.</p>
+<h2 id="why-not-just-replace-a-placeholder">Why not just replace a placeholder?</h2>
+<p>A common approach, which I described in <a href="https://moreillon.medium.com/environment-variables-for-containerized-vue-js-applications-f0aa943cb962">an earlier article</a>, is to build the app with a placeholder such as <code>VITE_API_URL_PLACEHOLDER</code> and to run <code>sed</code> over the built files when the container starts. It works, but it rewrites minified, content-hashed bundles, and it relies on the placeholder surviving the build untouched. A separate configuration file leaves the bundle as it is.</p>
+<h2 id="setup">Setup</h2>
+<h3 id="1-keep-dev-values-in-the-usual-place">1. Keep dev values in the usual place</h3>
+<p><code>.env.development</code> and <code>import.meta.env</code> continue to work for <code>npm run dev</code>:</p>
+<pre tabindex="0"><code>VITE_API_URL=http://127.0.0.1:8080
+</code></pre><h3 id="2-load-a-runtime-config-file">2. Load a runtime config file</h3>
+<p>In <code>public/env.js</code>, an empty object serves as a placeholder during development:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>window.<span style="color:#a6e22e">__ENV__</span> <span style="color:#f92672">=</span> {};
+</span></span></code></pre></div><p>Vite serves it as is in development and copies it into <code>dist</code> at build time. It is loaded from <code>index.html</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/env.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;module&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/src/main.ts&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>If the project uses TypeScript, the compiler needs to be told about the object that will hold the runtime values. Without it, <code>window.__ENV__</code> fails with <code>Property '__ENV__' does not exist on type 'Window'</code>, even though the property will exist at runtime. This is done by editing <code>env.d.ts</code> and adding a <code>Window</code> declaration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">/// &lt;reference types=&#34;vite/client&#34; /&gt;
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Window</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">__ENV__?</span>: <span style="color:#66d9ef">Record</span>&lt;<span style="color:#f92672">string</span>, <span style="color:#a6e22e">string</span>&gt;;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="3-read-the-values-in-a-single-place">3. Read the values in a single place</h3>
+<p><code>src/env.ts</code> merges the build-time and runtime values, the runtime ones taking precedence:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">env</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  ...<span style="color:#66d9ef">import</span>.<span style="color:#a6e22e">meta</span>.<span style="color:#a6e22e">env</span>,
+</span></span><span style="display:flex;"><span>  ...window.<span style="color:#a6e22e">__ENV__</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Components then use <code>env.VITE_API_URL</code> instead of <code>import.meta.env.VITE_API_URL</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">axios</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;axios&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">env</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./env&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">defaults</span>.<span style="color:#a6e22e">baseURL</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">VITE_API_URL</span>;
+</span></span></code></pre></div><p>In development, <code>window.__ENV__</code> is empty, so the value comes from <code>.env.development</code>. In production, it comes from the container.</p>
+<h3 id="4-generate-the-file-when-the-container-starts">4. Generate the file when the container starts</h3>
+<p>The official nginx image runs every executable script found in <code>/docker-entrypoint.d/</code> before starting nginx. This one writes <code>env.js</code> from all the <code>VITE_*</code> environment variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 40-env-config.sh</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;window.__ENV__ = {&#34;</span>
+</span></span><span style="display:flex;"><span>  env | grep <span style="color:#e6db74">&#39;^VITE_&#39;</span> | <span style="color:#66d9ef">while</span> IFS<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;=&#39;</span> read -r key value; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;  \&#34;</span>$key<span style="color:#e6db74">\&#34;: \&#34;</span>$value<span style="color:#e6db74">\&#34;,&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;};&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span> &gt; /usr/share/nginx/html/env.js
+</span></span></code></pre></div><p>Because it exports every variable with the <code>VITE_</code> prefix, adding a new setting later doesn&rsquo;t require touching this script.</p>
+<p>Values are not escaped: one containing a double quote or a line break would produce invalid JavaScript. This is fine for URLs, but arbitrary values would call for a proper JSON encoder in the script.</p>
+<h3 id="5-dockerfile-and-nginx">5. Dockerfile and nginx</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">node:24</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">build-stage</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> package*.json ./<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm run build<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">nginx</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">production-stage</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>build-stage /app/dist /usr/share/nginx/html<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> nginx.conf /etc/nginx/conf.d/default.conf<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> 40-env-config.sh /docker-entrypoint.d/40-env-config.sh<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> chmod +x /docker-entrypoint.d/40-env-config.sh<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>There is no <code>ENTRYPOINT</code> in this Dockerfile: overriding it would prevent the base image&rsquo;s own entrypoint, and therefore the script above, from running.</p>
+<p><code>env.js</code> must not be cached by the browser, otherwise a changed variable would not be picked up right away:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">listen</span> <span style="color:#ae81ff">80</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">root</span> <span style="color:#e6db74">/usr/share/nginx/html</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">try_files</span> $uri $uri/ <span style="color:#e6db74">/index.html</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">location</span> = <span style="color:#e6db74">/env.js</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">add_header</span> <span style="color:#e6db74">Cache-Control</span> <span style="color:#e6db74">&#34;no-cache&#34;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <code>try_files</code> line is the usual fallback to <code>index.html</code> for a router in history mode.</p>
+<h2 id="result">Result</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build -t my-app .
+</span></span><span style="display:flex;"><span>docker run --rm -p 8080:80 -e VITE_API_URL<span style="color:#f92672">=</span>https://api.example.com my-app
+</span></span><span style="display:flex;"><span>curl localhost:8080/env.js
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>window.<span style="color:#a6e22e">__ENV__</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;VITE_API_URL&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://api.example.com&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Starting a new container with a different <code>VITE_API_URL</code> is enough to change the API the app talks to, without rebuilding the image. The same works with the <code>environment</code> section of Docker Compose, or the <code>env</code> section of a Kubernetes container.</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+</div>
+    <small class="footer_copyright">
+        © 2026 Maxime Moreillon.
+        Powered by <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>
