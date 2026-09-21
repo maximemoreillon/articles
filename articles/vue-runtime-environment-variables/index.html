@@ -266,14 +266,14 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">__ENV__?</span>: <span style="color:#66d9ef">Record</span>&lt;<span style="color:#f92672">string</span>, <span style="color:#a6e22e">string</span>&gt;;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="3-read-the-values-in-a-single-place">3. Read the values in a single place</h3>
-<p><code>src/env.ts</code> merges the build-time and runtime values, the runtime ones taking precedence:</p>
+<p><code>src/runtimeEnv.ts</code> merges the build-time and runtime values, the runtime ones taking precedence:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">env</span> <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>  ...<span style="color:#66d9ef">import</span>.<span style="color:#a6e22e">meta</span>.<span style="color:#a6e22e">env</span>,
 </span></span><span style="display:flex;"><span>  ...window.<span style="color:#a6e22e">__ENV__</span>,
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div><p>Components then use <code>env.VITE_API_URL</code> instead of <code>import.meta.env.VITE_API_URL</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">axios</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;axios&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">env</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./env&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">env</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./runtimeEnv&#34;</span>;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">defaults</span>.<span style="color:#a6e22e">baseURL</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">VITE_API_URL</span>;
 </span></span></code></pre></div><p>In development, <code>window.__ENV__</code> is empty, so the value comes from <code>.env.development</code>. In production, it comes from the container.</p>
