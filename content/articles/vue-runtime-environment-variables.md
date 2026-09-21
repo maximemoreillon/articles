@@ -60,7 +60,7 @@ export const env = {
 };
 ```
 
-Components then use `env.VITE_API_URL` instead of `import.meta.env.VITE_API_URL`:
+The rest of the app then uses `env.VITE_API_URL` instead of `import.meta.env.VITE_API_URL`:
 
 ```diff
  import axios from "axios";
@@ -74,7 +74,7 @@ In development, `window.__ENV__` is empty, so the value comes from `.env.develop
 
 ### 4. Generate the file when the container starts
 
-The official nginx image runs every executable script found in `/docker-entrypoint.d/` before starting nginx. This one writes `env.js` from all the `VITE_*` environment variables:
+The official nginx image runs every executable script found in `/docker-entrypoint.d/` before starting nginx. This one, saved as `40-env-config.sh` at the root of the project, writes `env.js` from all the `VITE_*` environment variables:
 
 ```sh
 #!/bin/sh
