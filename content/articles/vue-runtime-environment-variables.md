@@ -34,19 +34,19 @@ window.__ENV__ = {};
 
 Vite serves it as is in development and copies it into `dist` at build time. It is loaded from `index.html`:
 
-```html
-<script src="/env.js"></script>
-<script type="module" src="/src/main.ts"></script>
+```diff
++<script src="/env.js"></script>
+ <script type="module" src="/src/main.ts"></script>
 ```
 
 If the project uses TypeScript, the compiler needs to be told about the object that will hold the runtime values. Without it, `window.__ENV__` fails with `Property '__ENV__' does not exist on type 'Window'`, even though the property will exist at runtime. This is done by editing `env.d.ts` and adding a `Window` declaration:
 
-```ts
-/// <reference types="vite/client" />
-
-interface Window {
-  __ENV__?: Record<string, string>;
-}
+```diff
+ /// <reference types="vite/client" />
++
++interface Window {
++  __ENV__?: Record<string, string>;
++}
 ```
 
 ### 3. Read the values in a single place
@@ -62,11 +62,12 @@ export const env = {
 
 Components then use `env.VITE_API_URL` instead of `import.meta.env.VITE_API_URL`:
 
-```ts
-import axios from "axios";
-import { env } from "./runtimeEnv";
+```diff
+ import axios from "axios";
++import { env } from "./runtimeEnv";
 
-axios.defaults.baseURL = env.VITE_API_URL;
+-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
++axios.defaults.baseURL = env.VITE_API_URL;
 ```
 
 In development, `window.__ENV__` is empty, so the value comes from `.env.development`. In production, it comes from the container.
@@ -103,31 +104,31 @@ RUN npm run build
 
 FROM nginx AS production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
 COPY 40-env-config.sh /docker-entrypoint.d/40-env-config.sh
 RUN chmod +x /docker-entrypoint.d/40-env-config.sh
 ```
 
 There is no `ENTRYPOINT` in this Dockerfile: overriding it would prevent the base image's own entrypoint, and therefore the script above, from running.
 
-`env.js` must not be cached by the browser, otherwise a changed variable would not be picked up right away:
+The nginx configuration is in `default.conf` at the root of the project, and the Dockerfile copies it over the image's default site configuration. It starts from the [standalone server configuration of the Vue Router documentation](https://router.vuejs.org/guide/essentials/history-mode.html), for applications with a router in history mode, which is not the object of this article. It has been modified to deal with the caching of `env.js`:
 
-```nginx
-server {
-  listen 80;
-  root /usr/share/nginx/html;
-
-  location / {
-    try_files $uri $uri/ /index.html;
-  }
-
-  location = /env.js {
-    add_header Cache-Control "no-cache";
-  }
-}
+```diff
+ server {
+   listen 80;
+   server_name localhost;
+   root /usr/share/nginx/html;
+   index index.html;
+   location / {
+     try_files $uri $uri/ /index.html;
+   }
++  location = /env.js {
++    add_header Cache-Control "no-cache";
++  }
+ }
 ```
 
-The `try_files` line is the usual fallback to `index.html` for a router in history mode.
+The `location = /env.js` block prevents browsers from caching the file, which could otherwise leave them with the previous values for a while after a variable is changed.
 
 ## Result
 
