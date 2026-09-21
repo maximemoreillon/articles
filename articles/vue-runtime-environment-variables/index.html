@@ -32,7 +32,7 @@
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Runtime environment variables in a Vue.js app">
 	<meta property="og:description" content="In a Vue.js app built with Vite, environment variables such as VITE_API_URL are read from import.meta.env. This is convenient, but Vite replaces the VITE_ environment variables with their values during the build. This means they cannot be changed at runtime.
-The usual workaround is to generate a small JavaScript file when the container starts, which copies the container’s environment variables onto window. The app then reads its configuration from there.">
+This article presents a workaround: when the container starts, a small JavaScript file is generated to copy the container’s environment variables onto window. The app then reads its configuration from there.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -49,7 +49,7 @@ The usual workaround is to generate a small JavaScript file when the container s
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Runtime environment variables in a Vue.js app">
 	<meta name="twitter:description" content="In a Vue.js app built with Vite, environment variables such as VITE_API_URL are read from import.meta.env. This is convenient, but Vite replaces the VITE_ environment variables with their values during the build. This means they cannot be changed at runtime.
-The usual workaround is to generate a small JavaScript file when the container starts, which copies the container’s environment variables onto window. The app then reads its configuration from there.">
+This article presents a workaround: when the container starts, a small JavaScript file is generated to copy the container’s environment variables onto window. The app then reads its configuration from there.">
 
 
     
@@ -245,8 +245,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>In a Vue.js app built with Vite, environment variables such as <code>VITE_API_URL</code> are read from <code>import.meta.env</code>. This is convenient, but Vite replaces the <code>VITE_</code> environment variables with their values during the build. This means they cannot be changed at runtime.</p>
-<p>The usual workaround is to generate a small JavaScript file when the container starts, which copies the container&rsquo;s environment variables onto <code>window</code>. The app then reads its configuration from there.</p>
-<p>This article explains how to set this up.</p>
+<p>This article presents a workaround: when the container starts, a small JavaScript file is generated to copy the container&rsquo;s environment variables onto <code>window</code>. The app then reads its configuration from there.</p>
 <h2 id="why-not-just-replace-a-placeholder">Why not just replace a placeholder?</h2>
 <p>A common approach, which I described in <a href="https://moreillon.medium.com/environment-variables-for-containerized-vue-js-applications-f0aa943cb962">an earlier article</a>, is to build the app with a placeholder such as <code>VITE_API_URL_PLACEHOLDER</code> and to run <code>sed</code> over the built files when the container starts. It works, but it rewrites minified, content-hashed bundles, and it relies on the placeholder surviving the build untouched. A separate configuration file leaves the bundle as it is.</p>
 <h2 id="setup">Setup</h2>
