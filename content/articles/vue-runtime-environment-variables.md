@@ -51,7 +51,7 @@ interface Window {
 
 ### 3. Read the values in a single place
 
-`src/env.ts` merges the build-time and runtime values, the runtime ones taking precedence:
+`src/runtimeEnv.ts` merges the build-time and runtime values, the runtime ones taking precedence:
 
 ```ts
 export const env = {
@@ -64,7 +64,7 @@ Components then use `env.VITE_API_URL` instead of `import.meta.env.VITE_API_URL`
 
 ```ts
 import axios from "axios";
-import { env } from "./env";
+import { env } from "./runtimeEnv";
 
 axios.defaults.baseURL = env.VITE_API_URL;
 ```
