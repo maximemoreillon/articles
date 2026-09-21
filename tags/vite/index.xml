@@ -9,10 +9,10 @@
     <lastBuildDate>Mon, 21 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/vite/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Runtime environment variables in a Vue.js app</title>
-      <link>https://articles.maximemoreillon.com/articles/vue-runtime-environment-variables/</link>
+      <link>https://articles.maximemoreillon.com/articles/vue-runtime-env/</link>
       <pubDate>Mon, 21 Sep 2026 00:00:00 +0900</pubDate>
       
-      <guid>https://articles.maximemoreillon.com/articles/vue-runtime-environment-variables/</guid>
+      <guid>https://articles.maximemoreillon.com/articles/vue-runtime-env/</guid>
       
       <description>&lt;p&gt;In a Vue.js app built with Vite, environment variables such as &lt;code&gt;VITE_API_URL&lt;/code&gt; are read from &lt;code&gt;import.meta.env&lt;/code&gt;. This is convenient, but Vite replaces the &lt;code&gt;VITE_&lt;/code&gt; environment variables with their values during the build. This means they cannot be changed at runtime.&lt;/p&gt;
 &lt;p&gt;This article presents a workaround: when the container starts, a small JavaScript file is generated to copy the container&amp;rsquo;s environment variables onto &lt;code&gt;window&lt;/code&gt;. The app then reads its configuration from there.&lt;/p&gt;</description>
