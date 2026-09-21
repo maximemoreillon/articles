@@ -6,9 +6,7 @@ tags: ["Vue.js", "Docker", "Vite", "Tutorials"]
 
 In a Vue.js app built with Vite, environment variables such as `VITE_API_URL` are read from `import.meta.env`. This is convenient, but Vite replaces the `VITE_` environment variables with their values during the build. This means they cannot be changed at runtime.
 
-The usual workaround is to generate a small JavaScript file when the container starts, which copies the container's environment variables onto `window`. The app then reads its configuration from there.
-
-This article explains how to set this up.
+This article presents a workaround: when the container starts, a small JavaScript file is generated to copy the container's environment variables onto `window`. The app then reads its configuration from there.
 
 ## Why not just replace a placeholder?
 
