@@ -37,11 +37,9 @@ Vite serves it as is in development and copies it into `dist` at build time. It 
  <script type="module" src="/src/main.ts"></script>
 ```
 
-If the project uses TypeScript, the compiler needs to be told about the object that will hold the runtime values. Without it, `window.__ENV__` fails with `Property '__ENV__' does not exist on type 'Window'`, even though the property will exist at runtime. This is done by editing `env.d.ts` and adding a `Window` declaration:
+If the project uses TypeScript, the compiler needs to be told about the object that will hold the runtime values. Without it, `window.__ENV__` fails with `Property '__ENV__' does not exist on type 'Window'`, even though the property will exist at runtime. This is done by adding a `Window` declaration to the project's declaration file, such as `env.d.ts` or `shims-vue.d.ts`:
 
 ```diff
- /// <reference types="vite/client" />
-+
 +interface Window {
 +  __ENV__?: Record<string, string>;
 +}
