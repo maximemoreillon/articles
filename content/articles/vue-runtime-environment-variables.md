@@ -96,7 +96,7 @@ Values are not escaped: one containing a double quote or a line break would prod
 FROM node:24 AS build-stage
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 COPY . .
 RUN npm run build
 
