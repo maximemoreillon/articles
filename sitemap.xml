@@ -4,27 +4,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://articles.maximemoreillon.com/articles/</loc>
-    <lastmod>2026-09-21T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/docker/</loc>
-    <lastmod>2026-09-21T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/</loc>
-    <lastmod>2026-09-21T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://articles.maximemoreillon.com/articles/vue-runtime-env-window/</loc>
-    <lastmod>2026-09-21T00:00:00+09:00</lastmod>
+    <loc>https://articles.maximemoreillon.com/articles/vite-app-version-docker-build-arg/</loc>
+    <lastmod>2026-09-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/</loc>
-    <lastmod>2026-09-21T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/tutorials/</loc>
-    <lastmod>2026-09-21T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/vite/</loc>
-    <lastmod>2026-09-21T00:00:00+09:00</lastmod>
+    <lastmod>2026-09-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/vue.js/</loc>
+    <lastmod>2026-09-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/vue-runtime-env-window/</loc>
     <lastmod>2026-09-21T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/envoy-gateway/</loc>
