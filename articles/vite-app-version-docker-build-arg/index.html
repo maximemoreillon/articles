@@ -33,7 +33,7 @@
 	<meta property="og:title" content="Showing the application version in a Vite-based Vue.js app">
 	<meta property="og:description" content="This article shows how to set the version of a Vite-based Vue.js app automatically at build time, using a Docker build argument fed by an environment variable provided by CI/CD, such as the Git tag being built.
 The Dockerfile A build argument is declared with ARG, and made available to the build steps that follow it in the same stage:
-FROM node:24 AS build-stage WORKDIR /app COPY package*.json ./ RUN npm install COPY . . ARG APP_VERSION=dev ENV VITE_APP_VERSION=$APP_VERSION RUN npm run build ARG alone is not enough, because Vite only exposes environment variables prefixed with VITE_ to client code, and a build argument is not automatically an environment variable to begin with. The ENV line does both jobs at once: it turns the build argument into an environment variable, under the name Vite expects, before npm run build runs.">
+FROM node:24 AS build-stage WORKDIR /app COPY package*.json ./ RUN npm install COPY . . &#43;ARG APP_VERSION=dev &#43;ENV VITE_APP_VERSION=$APP_VERSION &#43; RUN npm run build ARG alone is not enough, because Vite only exposes environment variables prefixed with VITE_ to client code, and a build argument is not automatically an environment variable to begin with. The ENV line does both jobs at once: it turns the build argument into an environment variable, under the name Vite expects, before npm run build runs.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -51,7 +51,7 @@ FROM node:24 AS build-stage WORKDIR /app COPY package*.json ./ RUN npm install C
 	<meta name="twitter:title" content="Showing the application version in a Vite-based Vue.js app">
 	<meta name="twitter:description" content="This article shows how to set the version of a Vite-based Vue.js app automatically at build time, using a Docker build argument fed by an environment variable provided by CI/CD, such as the Git tag being built.
 The Dockerfile A build argument is declared with ARG, and made available to the build steps that follow it in the same stage:
-FROM node:24 AS build-stage WORKDIR /app COPY package*.json ./ RUN npm install COPY . . ARG APP_VERSION=dev ENV VITE_APP_VERSION=$APP_VERSION RUN npm run build ARG alone is not enough, because Vite only exposes environment variables prefixed with VITE_ to client code, and a build argument is not automatically an environment variable to begin with. The ENV line does both jobs at once: it turns the build argument into an environment variable, under the name Vite expects, before npm run build runs.">
+FROM node:24 AS build-stage WORKDIR /app COPY package*.json ./ RUN npm install COPY . . &#43;ARG APP_VERSION=dev &#43;ENV VITE_APP_VERSION=$APP_VERSION &#43; RUN npm run build ARG alone is not enough, because Vite only exposes environment variables prefixed with VITE_ to client code, and a build argument is not automatically an environment variable to begin with. The ENV line does both jobs at once: it turns the build argument into an environment variable, under the name Vite expects, before npm run build runs.">
 
 
     
@@ -249,32 +249,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>This article shows how to set the version of a Vite-based Vue.js app automatically at build time, using a Docker build argument fed by an environment variable provided by CI/CD, such as the Git tag being built.</p>
 <h2 id="the-dockerfile">The Dockerfile</h2>
 <p>A build argument is declared with <code>ARG</code>, and made available to the build steps that follow it in the same stage:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">node:24</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">build-stage</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> package*.json ./<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm install<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ARG</span> APP_VERSION<span style="color:#f92672">=</span>dev
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ENV</span> VITE_APP_VERSION<span style="color:#f92672">=</span>$APP_VERSION<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm run build<span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><p><code>ARG</code> alone is not enough, because Vite only exposes environment variables prefixed with <code>VITE_</code> to client code, and a build argument is not automatically an environment variable to begin with. The <code>ENV</code> line does both jobs at once: it turns the build argument into an environment variable, under the name Vite expects, before <code>npm run build</code> runs.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span> FROM node:24 AS build-stage
+</span></span><span style="display:flex;"><span> WORKDIR /app
+</span></span><span style="display:flex;"><span> COPY package*.json ./
+</span></span><span style="display:flex;"><span> RUN npm install
+</span></span><span style="display:flex;"><span> COPY . .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ARG APP_VERSION=dev
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+ENV VITE_APP_VERSION=$APP_VERSION
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">+
+</span></span></span><span style="display:flex;"><span> RUN npm run build
+</span></span></code></pre></div><p><code>ARG</code> alone is not enough, because Vite only exposes environment variables prefixed with <code>VITE_</code> to client code, and a build argument is not automatically an environment variable to begin with. The <code>ENV</code> line does both jobs at once: it turns the build argument into an environment variable, under the name Vite expects, before <code>npm run build</code> runs.</p>
 <p>The default, <code>dev</code>, is used whenever the image is built without specifying a version, for instance during local development.</p>
 <h2 id="passing-the-version-at-build-time">Passing the version at build time</h2>
 <p>To set the version explicitly, <code>--build-arg</code> is passed to <code>docker build</code>, with its value taken from a variable the CI/CD platform already provides. On GitLab CI/CD, <code>$CI_COMMIT_TAG</code> holds the tag being built:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build --build-arg APP_VERSION<span style="color:#f92672">=</span>$CI_COMMIT_TAG .
 </span></span></code></pre></div><p>This is only set when the pipeline is triggered by a tag, so it fits a job that runs on tagged releases. Any other variable works equally well, such as a commit SHA for untagged builds.</p>
 <h2 id="reading-it-in-the-app">Reading it in the app</h2>
-<p>With the environment variable set at build time, the version is read like any other Vite environment variable, <code>import.meta.env.VITE_APP_VERSION</code>. Because it is undefined when the app is run directly with <code>npm run dev</code>, outside of the Docker build, a fallback is worth keeping:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">version</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">import</span>.<span style="color:#a6e22e">meta</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">VITE_APP_VERSION</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;dev&#34;</span>
-</span></span></code></pre></div><p>This can then be displayed anywhere in the app, for instance in an about page:</p>
+<p>With the environment variable set at build time, the version is read like any other Vite environment variable, <code>import.meta.env.VITE_APP_VERSION</code>, directly where it is needed, for instance in an about page. Because it is undefined when the app is run directly with <code>npm run dev</code>, outside of the Docker build, a fallback is worth keeping:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">v-list-item</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Version&#34;</span> <span style="color:#f92672">:subtitle</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;version&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">p</span>&gt;<span style="color:#a6e22e">Version</span><span style="color:#f92672">:</span> {{ <span style="color:#a6e22e">version</span> }}&lt;/<span style="color:#f92672">p</span>&gt;
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">setup</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ts&#34;</span>&gt;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">version</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;./version&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">version</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">import</span>.<span style="color:#a6e22e">meta</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">VITE_APP_VERSION</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;dev&#34;</span>
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
 </span></span></code></pre></div><h2 id="verifying-the-result">Verifying the result</h2>
 <p>Building the image with an explicit version and inspecting the built files confirms that the value has been substituted, and not left as a reference to be resolved later:</p>
