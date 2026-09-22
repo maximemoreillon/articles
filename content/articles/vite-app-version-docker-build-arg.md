@@ -7,6 +7,8 @@ tags: ["Vue.js", "Docker", "Vite", "Tutorials"]
 
 This article shows how to set the version of a Vite-based Vue.js app automatically at build time, using a Docker build argument fed by an environment variable provided by CI/CD, such as the Git tag being built.
 
+It is tempting to read the version from the `version` field of `package.json` instead, since it is already there. This only works for Node.js projects, though, so the same approach could not be reused for an application written in another language. Relying on a Git tag also means a release does not require cloning the repository and bumping a file locally: it is often just as easy to create the tag from the GitLab UI directly.
+
 ## The Dockerfile
 
 A build argument is declared with `ARG`, and made available to the build steps that follow it in the same stage:
