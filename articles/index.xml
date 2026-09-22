@@ -9,10 +9,10 @@
     <lastBuildDate>Mon, 21 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/articles/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Runtime environment variables in a Vue.js app</title>
-      <link>https://articles.maximemoreillon.com/articles/vue-runtime-env/</link>
+      <link>https://articles.maximemoreillon.com/articles/vue-runtime-env-window/</link>
       <pubDate>Mon, 21 Sep 2026 00:00:00 +0900</pubDate>
       
-      <guid>https://articles.maximemoreillon.com/articles/vue-runtime-env/</guid>
+      <guid>https://articles.maximemoreillon.com/articles/vue-runtime-env-window/</guid>
       
       <description>&lt;p&gt;In a Vue.js app built with Vite, environment variables such as &lt;code&gt;VITE_API_URL&lt;/code&gt; are read from &lt;code&gt;import.meta.env&lt;/code&gt;. This is convenient, but Vite replaces the &lt;code&gt;VITE_&lt;/code&gt; environment variables with their values during the build. This means they cannot be changed at runtime.&lt;/p&gt;
 &lt;p&gt;This article presents a workaround: when the container starts, a small JavaScript file is generated to copy the container&amp;rsquo;s environment variables onto &lt;code&gt;window&lt;/code&gt;. The app then reads its configuration from there.&lt;/p&gt;</description>
@@ -1223,6 +1223,36 @@ Although functional, this approach required operational overhead such as server 
     </item>
     
     <item>
+      <title>Wiring the generic substitution script into the Dockerfile</title>
+      <link>https://articles.maximemoreillon.com/articles/vue-runtime-env-dockerfile/</link>
+      <pubDate>Mon, 19 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/vue-runtime-env-dockerfile/</guid>
+      
+      <description>&lt;p&gt;In &lt;a href=&#34;https://articles.maximemoreillon.com/articles/generic-vite-runtime-env-script/&#34;&gt;a previous article&lt;/a&gt;, I made the environment variable substitution script generic, so that it no longer needs to be edited when a new variable is added. This article covers how that script is wired into the Dockerfile.&lt;/p&gt;
+&lt;h2 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h2&gt;
+&lt;p&gt;The Dockerfile copies the script into &lt;code&gt;/docker-entrypoint.d/&lt;/code&gt;, where nginx&amp;rsquo;s own entrypoint picks it up and runs it before starting nginx:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;COPY&lt;/span&gt; 40-env-config.sh /docker-entrypoint.d/40-env-config.sh&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;RUN&lt;/span&gt; chmod +x /docker-entrypoint.d/40-env-config.sh&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The original article&amp;rsquo;s Dockerfile has a mismatch here: it copies the script to &lt;code&gt;/docker-entrypoint.d/substitute_environment_variables.sh&lt;/code&gt;, but runs &lt;code&gt;chmod +x&lt;/code&gt; on &lt;code&gt;/substitute_environment_variables.sh&lt;/code&gt;, a different path. The copied script is therefore never made executable, and nginx&amp;rsquo;s entrypoint silently skips it. Keeping the two paths identical, as above, avoids the issue.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>A generic environment variable substitution script for Vite-based Vue.js containers</title>
+      <link>https://articles.maximemoreillon.com/articles/generic-vite-runtime-env-script/</link>
+      <pubDate>Mon, 12 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/generic-vite-runtime-env-script/</guid>
+      
+      <description>&lt;p&gt;In &lt;a href=&#34;https://articles.maximemoreillon.com/articles/vue-runtime-env-vite-migration/&#34;&gt;a previous article&lt;/a&gt;, I adapted a method to set environment variables at runtime for a containerized Vue.js application to Vue 3 and Vite: build the app with placeholders such as &lt;code&gt;VITE_MY_VARIABLE_PLACEHOLDER&lt;/code&gt;, then have a script replace them with real values when the container starts, using &lt;code&gt;sed&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;That script had two problems I have since run into in practice. This article addresses both.&lt;/p&gt;
+&lt;h2 id=&#34;every-variable-has-to-be-added-by-hand&#34;&gt;Every variable has to be added by hand&lt;/h2&gt;
+&lt;p&gt;The original script substitutes one variable, and adding another means adding another line:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>SSH keys</title>
       <link>https://articles.maximemoreillon.com/articles/83930a48-3f2c-4292-a3c3-5fd0eb266065/</link>
       <pubDate>Sun, 28 Aug 2022 00:00:00 +0000</pubDate>
@@ -1318,6 +1348,17 @@ Although functional, this approach required operational overhead such as server 
       
       <description>&lt;p&gt;Managing one&amp;rsquo;s body weight can be quite a challenge. And as the quote from Peter Drucker goes, &amp;ldquo;You can&amp;rsquo;t manage what you can&amp;rsquo;t measure&amp;rdquo;. So, I built a body weight scale that can upload data to an API of my choice, which was the object of &lt;a href=&#34;https://articles.maximemoreillon.com/articles/160&#34;&gt;this article&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I used &lt;a href=&#34;https://thingspeak.com/&#34;&gt;ThingSpeak&lt;/a&gt; to store this data for some time but then decided I wanted to have my own storing system. Thus I designed a simple Node.js application to handle this.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Adapting the environment variable substitution approach to Vue 3 and Vite</title>
+      <link>https://articles.maximemoreillon.com/articles/vue-runtime-env-vite-migration/</link>
+      <pubDate>Mon, 18 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/vue-runtime-env-vite-migration/</guid>
+      
+      <description>&lt;p&gt;&lt;a href=&#34;https://articles.maximemoreillon.com/articles/vue-runtime-env-substitution/&#34;&gt;The original article&lt;/a&gt; on setting environment variables at runtime for a containerized Vue.js application was written for a Vue 2 project built with Vue CLI, which uses webpack. Since then, Vite has become the standard build tool for Vue 3 projects, and it changes two things the original approach depends on: how variables are named and read, and where the built files end up. This article covers what has to change.&lt;/p&gt;</description>
       
     </item>
     
@@ -1447,10 +1488,10 @@ Although functional, this approach required operational overhead such as server 
     
     <item>
       <title>Environment variables for containerized Vue.js applications and how to set them at runtime</title>
-      <link>https://articles.maximemoreillon.com/articles/environment-variables-for-containerized-vue-js-applications/</link>
+      <link>https://articles.maximemoreillon.com/articles/vue-runtime-env-substitution/</link>
       <pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://articles.maximemoreillon.com/articles/environment-variables-for-containerized-vue-js-applications/</guid>
+      <guid>https://articles.maximemoreillon.com/articles/vue-runtime-env-substitution/</guid>
       
       <description>&lt;p&gt;Note: this article is mirrored on &lt;a href=&#34;https://moreillon.medium.com/environment-variables-for-containerized-vue-js-applications-f0aa943cb962&#34;&gt;Medium&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Environment variables can be used in a Vue.js application but those get converted into their hardcoded value during build. Thus, those variables cannot be changed to fit their environment at runtime. This article presents a method to circumvent the problem and allow the setting of environment variables at runtime.&lt;/p&gt;

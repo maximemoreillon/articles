@@ -9,10 +9,10 @@
     <lastBuildDate>Mon, 22 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/medium/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Environment variables for containerized Vue.js applications and how to set them at runtime</title>
-      <link>https://articles.maximemoreillon.com/articles/environment-variables-for-containerized-vue-js-applications/</link>
+      <link>https://articles.maximemoreillon.com/articles/vue-runtime-env-substitution/</link>
       <pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://articles.maximemoreillon.com/articles/environment-variables-for-containerized-vue-js-applications/</guid>
+      <guid>https://articles.maximemoreillon.com/articles/vue-runtime-env-substitution/</guid>
       
       <description>&lt;p&gt;Note: this article is mirrored on &lt;a href=&#34;https://moreillon.medium.com/environment-variables-for-containerized-vue-js-applications-f0aa943cb962&#34;&gt;Medium&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Environment variables can be used in a Vue.js application but those get converted into their hardcoded value during build. Thus, those variables cannot be changed to fit their environment at runtime. This article presents a method to circumvent the problem and allow the setting of environment variables at runtime.&lt;/p&gt;

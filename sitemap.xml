@@ -12,7 +12,7 @@
     <loc>https://articles.maximemoreillon.com/</loc>
     <lastmod>2026-09-21T00:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://articles.maximemoreillon.com/articles/vue-runtime-env/</loc>
+    <loc>https://articles.maximemoreillon.com/articles/vue-runtime-env-window/</loc>
     <lastmod>2026-09-21T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/</loc>
@@ -381,6 +381,12 @@
     <loc>https://articles.maximemoreillon.com/articles/a42bf7ab-7140-47e8-a2af-9dcef527105d/</loc>
     <lastmod>2024-02-11T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/vue-runtime-env-dockerfile/</loc>
+    <lastmod>2022-09-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/generic-vite-runtime-env-script/</loc>
+    <lastmod>2022-09-12T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://articles.maximemoreillon.com/tags/security/</loc>
     <lastmod>2024-02-12T00:00:00+00:00</lastmod>
   </url><url>
@@ -426,6 +432,9 @@
     <loc>https://articles.maximemoreillon.com/articles/4d7c6224-9574-4015-b45b-c6f2cbfb4e4c/</loc>
     <lastmod>2023-02-04T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/vue-runtime-env-vite-migration/</loc>
+    <lastmod>2022-04-18T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://articles.maximemoreillon.com/articles/03878fe3-1eca-4f22-9521-0589ba076930/</loc>
     <lastmod>2023-12-07T00:00:00+00:00</lastmod>
   </url><url>
@@ -465,7 +474,7 @@
     <loc>https://articles.maximemoreillon.com/tags/css/</loc>
     <lastmod>2022-06-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://articles.maximemoreillon.com/articles/environment-variables-for-containerized-vue-js-applications/</loc>
+    <loc>https://articles.maximemoreillon.com/articles/vue-runtime-env-substitution/</loc>
     <lastmod>2023-08-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/medium/</loc>

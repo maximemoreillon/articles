@@ -3,11 +3,11 @@
 <meta http-equiv="content-type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title itemprop="name">Vue.js | Maxime Moreillon</title>
-<meta property="og:title" content="Vue.js | Maxime Moreillon" />
-<meta name="twitter:title" content="Vue.js | Maxime Moreillon" />
-<meta itemprop="name" content="Vue.js | Maxime Moreillon" />
-<meta name="application-name" content="Vue.js | Maxime Moreillon" />
+<title itemprop="name">Wiring the generic substitution script into the Dockerfile | Maxime Moreillon</title>
+<meta property="og:title" content="Wiring the generic substitution script into the Dockerfile | Maxime Moreillon" />
+<meta name="twitter:title" content="Wiring the generic substitution script into the Dockerfile | Maxime Moreillon" />
+<meta itemprop="name" content="Wiring the generic substitution script into the Dockerfile | Maxime Moreillon" />
+<meta name="application-name" content="Wiring the generic substitution script into the Dockerfile | Maxime Moreillon" />
 <meta property="og:site_name" content="" />
 
 <meta name="description" content="">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/tags/vue.js/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/vue-runtime-env-dockerfile/" title="" />
 
 
 
@@ -28,24 +28,35 @@
 <meta name="generator" content="Hugo 0.162.1">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/tags/vue.js/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/vue-runtime-env-dockerfile/">
 	<meta property="og:site_name" content="Maxime Moreillon">
-	<meta property="og:title" content="Vue.js">
+	<meta property="og:title" content="Wiring the generic substitution script into the Dockerfile">
+	<meta property="og:description" content="In a previous article, I made the environment variable substitution script generic, so that it no longer needs to be edited when a new variable is added. This article covers how that script is wired into the Dockerfile.
+Dockerfile The Dockerfile copies the script into /docker-entrypoint.d/, where nginx’s own entrypoint picks it up and runs it before starting nginx:
+COPY 40-env-config.sh /docker-entrypoint.d/40-env-config.sh RUN chmod &#43;x /docker-entrypoint.d/40-env-config.sh The original article’s Dockerfile has a mismatch here: it copies the script to /docker-entrypoint.d/substitute_environment_variables.sh, but runs chmod &#43;x on /substitute_environment_variables.sh, a different path. The copied script is therefore never made executable, and nginx’s entrypoint silently skips it. Keeping the two paths identical, as above, avoids the issue.">
 	<meta property="og:locale" content="en_us">
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2022-09-19T00:00:00+00:00">
+		<meta property="article:modified_time" content="2022-09-19T00:00:00+00:00">
+		<meta property="article:tag" content="Vue.js">
+		<meta property="article:tag" content="Docker">
+		<meta property="article:tag" content="DevOps">
+		<meta property="article:tag" content="Tutorials">
 
 
     
     
 	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="Vue.js">
+	<meta name="twitter:title" content="Wiring the generic substitution script into the Dockerfile">
+	<meta name="twitter:description" content="In a previous article, I made the environment variable substitution script generic, so that it no longer needs to be edited when a new variable is added. This article covers how that script is wired into the Dockerfile.
+Dockerfile The Dockerfile copies the script into /docker-entrypoint.d/, where nginx’s own entrypoint picks it up and runs it before starting nginx:
+COPY 40-env-config.sh /docker-entrypoint.d/40-env-config.sh RUN chmod &#43;x /docker-entrypoint.d/40-env-config.sh The original article’s Dockerfile has a mismatch here: it copies the script to /docker-entrypoint.d/substitute_environment_variables.sh, but runs chmod &#43;x on /substitute_environment_variables.sh, a different path. The copied script is therefore never made executable, and nginx’s entrypoint silently skips it. Keeping the two paths identical, as above, avoids the issue.">
 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/tags/vue.js/">
-    <link href="/tags/vue.js/index.xml" rel="alternate" type="application/rss+xml" title="Maxime Moreillon">
-    <link href="/tags/vue.js/index.xml" rel="feed" type="application/rss+xml" title="Maxime Moreillon">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/vue-runtime-env-dockerfile/">
     <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -111,7 +122,7 @@ stroke-linejoin="round" class="feather feather-home">
                 </li>
                 
                 <li>
-                    <a class="menu-link " href="/articles/">
+                    <a class="menu-link active" href="/articles/">
                         Articles
                     </a>
                     
@@ -219,327 +230,36 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-<div class="wrapper list-page">
-    <header class="header">
-        <h1 class="header-title center">Vue.js</h1>
-    </header>
+
+<div class="wrapper post">
     <main class="page-content" aria-label="Content">
-        
-        
-        <h2 class="post-year">2026</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/vue-runtime-env-window/">Runtime environment variables in a Vue.js app</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-09-21T00:00:00&#43;0900">
-        21 Sep 2026
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/vuetify-snackbar/">Centralized Vuetify Snackbar</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-09-16T00:00:00&#43;0900">
-        16 Sep 2026
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/nuxt-v-data-table-server/">Nuxt with Vuetify&#39;s v-data-table-server</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2026-09-15T00:00:00Z">
-        15 Sep 2026
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2023</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/2e301bdf-99eb-49cc-8c11-02ac8f0a4f72/">MQTThree</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-05-03T00:00:00Z">
-        3 May 2023
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/dab7a1ac-0d3e-4c8f-8e5c-6a724ad97b31/">Vue3 Options vs Composition API</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2023-02-03T00:00:00Z">
-        3 Feb 2023
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2022</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/8c63c27c-e250-4207-a284-971a33096d5b/">Rebuilding the GUI of this CMS with Nuxt 3</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2022-12-30T00:00:00Z">
-        30 Dec 2022
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/f027e7b5-2aef-4ea4-8bc6-c52c50c3eaf1/">A simple comparison of Svelte and Vue</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2022-12-19T00:00:00Z">
-        19 Dec 2022
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/07acf065-3dbb-4c7e-86cf-7a0769ec7379/">Vue Router setup in Vue 3</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2022-11-16T00:00:00Z">
-        16 Nov 2022
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/vue-runtime-env-dockerfile/">Wiring the generic substitution script into the Dockerfile</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2022-09-19T00:00:00Z">
-        19 Sep 2022
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/generic-vite-runtime-env-script/">A generic environment variable substitution script for Vite-based Vue.js containers</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2022-09-12T00:00:00Z">
-        12 Sep 2022
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/627bd1d8-79e3-4b3b-8c71-95e76c937d93/">Web based approval system</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2022-07-30T00:00:00Z">
-        30 Jul 2022
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/76fbaccb-e02e-4b16-bcdb-f3f9e1b1cc31/">Using v-model on a prop</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2022-07-15T00:00:00Z">
-        15 Jul 2022
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/vue-runtime-env-vite-migration/">Adapting the environment variable substitution approach to Vue 3 and Vite</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2022-04-18T00:00:00Z">
-        18 Apr 2022
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/0c1a7a47-c651-472d-a867-e1e2b040e997/">Wardrobe and outfits management web app</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2022-01-27T00:00:00Z">
-        27 Jan 2022
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2021</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/vue-runtime-env-substitution/">Environment variables for containerized Vue.js applications and how to set them at runtime</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2021-11-22T00:00:00Z">
-        22 Nov 2021
-    </time>
-</article>
-
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/28/">A template for Vue.js applications</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2021-09-27T00:00:00Z">
-        27 Sep 2021
-    </time>
-</article>
-
-
-         
-
-        
-        
-        <h2 class="post-year">2019</h2>
-
-        
-
-        
-
-        <article class="post-item">
-    <h4 class="post-item-title">
-        <a href="/articles/321/">Using v-for or v-if on multiple elements</a>
-    </h4>
-    
-    
-    
-    
-    <time class="post-item-meta" datetime="2019-12-24T00:00:00Z">
-        24 Dec 2019
-    </time>
-</article>
-
-
-         
-
-         
-
-    </main>
-</div><footer class="footer">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Wiring the generic substitution script into the Dockerfile</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2022-09-19T00:00:00&#43;00:00" itemprop="datePublished"> 19 Sep 2022 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>In <a href="/articles/generic-vite-runtime-env-script/">a previous article</a>, I made the environment variable substitution script generic, so that it no longer needs to be edited when a new variable is added. This article covers how that script is wired into the Dockerfile.</p>
+<h2 id="dockerfile">Dockerfile</h2>
+<p>The Dockerfile copies the script into <code>/docker-entrypoint.d/</code>, where nginx&rsquo;s own entrypoint picks it up and runs it before starting nginx:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> 40-env-config.sh /docker-entrypoint.d/40-env-config.sh<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> chmod +x /docker-entrypoint.d/40-env-config.sh<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>The original article&rsquo;s Dockerfile has a mismatch here: it copies the script to <code>/docker-entrypoint.d/substitute_environment_variables.sh</code>, but runs <code>chmod +x</code> on <code>/substitute_environment_variables.sh</code>, a different path. The copied script is therefore never made executable, and nginx&rsquo;s entrypoint silently skips it. Keeping the two paths identical, as above, avoids the issue.</p>
+<h2 id="no-more-exec-">No more <code>exec &quot;$@&quot;</code></h2>
+<p>Unlike the original article&rsquo;s version, the generic script does not end with <code>exec &quot;$@&quot;</code>. That line was needed because the original script replaced the image&rsquo;s <code>ENTRYPOINT</code> entirely, and had to hand off to the container&rsquo;s command itself. Saved as <code>40-env-config.sh</code> and placed under <code>/docker-entrypoint.d/</code> as above, it is instead run by the image&rsquo;s own entrypoint, which starts nginx once every script there has finished.</p>
+<p>The rest of the setup, the rest of the Dockerfile and the placeholder values in <code>.env.production</code>, is unchanged from the original article.</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
     <span class="footer_item"> </span>
     &nbsp;
 

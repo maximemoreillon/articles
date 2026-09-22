@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en-us" />
 <meta name="language" content="en-us" />
 
-  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/environment-variables-for-containerized-vue-js-applications/" title="" />
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/vue-runtime-env-substitution/" title="" />
 
 
 
@@ -28,7 +28,7 @@
 <meta name="generator" content="Hugo 0.162.1">
 
     
-    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/environment-variables-for-containerized-vue-js-applications/">
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/vue-runtime-env-substitution/">
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Environment variables for containerized Vue.js applications and how to set them at runtime">
 	<meta property="og:description" content="Note: this article is mirrored on Medium.
@@ -57,7 +57,7 @@ An example Vue.js application Let us consider the following Vue.js application. 
 
     
 
-    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/environment-variables-for-containerized-vue-js-applications/">
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/vue-runtime-env-substitution/">
     <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
     <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
 
@@ -402,6 +402,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span></code></pre></div><p>And with that done, Our container now sets our environment variables to the values provided at runtime instead of build time.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Because Vue.js converts environment variables into hardcoded strings at build time, setting environment variables during container runtime is challenging. With the method presented in this article, temporary placeholder variables are set at build time and then substituted at runtime. This provides Vue.js apps with an extra layer of customization options for their operators. The source code for the example application presented in this article is available on <a href="https://github.com/maximemoreillon/vue-runtime-env">GitHub</a>.</p>
+<p>This technique has since been <a href="/articles/vue-runtime-env-vite-migration/">adapted to Vue 3 and Vite</a> and <a href="/articles/generic-vite-runtime-env-script/">made generic</a>, so that it no longer needs to be edited for every new variable.</p>
 
             </div>
         </article></main>
