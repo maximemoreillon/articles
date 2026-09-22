@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">Environment variables for containerized Vue.js applications and how to set them at runtime | Maxime Moreillon</title>
+<meta property="og:title" content="Environment variables for containerized Vue.js applications and how to set them at runtime | Maxime Moreillon" />
+<meta name="twitter:title" content="Environment variables for containerized Vue.js applications and how to set them at runtime | Maxime Moreillon" />
+<meta itemprop="name" content="Environment variables for containerized Vue.js applications and how to set them at runtime | Maxime Moreillon" />
+<meta name="application-name" content="Environment variables for containerized Vue.js applications and how to set them at runtime | Maxime Moreillon" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/environment-variables-for-containerized-vue-js-applications/" title="" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.162.1">
+
+    
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/environment-variables-for-containerized-vue-js-applications/">
+	<meta property="og:site_name" content="Maxime Moreillon">
+	<meta property="og:title" content="Environment variables for containerized Vue.js applications and how to set them at runtime">
+	<meta property="og:description" content="Note: this article is mirrored on Medium.
+Environment variables can be used in a Vue.js application but those get converted into their hardcoded value during build. Thus, those variables cannot be changed to fit their environment at runtime. This article presents a method to circumvent the problem and allow the setting of environment variables at runtime.
+An example Vue.js application Let us consider the following Vue.js application. All this application does is display the value of the environment variable VUE_APP_MY_VARIABLE.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2021-11-22T00:00:00+00:00">
+		<meta property="article:modified_time" content="2023-08-05T00:00:00+00:00">
+		<meta property="article:tag" content="Vue.js">
+		<meta property="article:tag" content="Docker">
+		<meta property="article:tag" content="DevOps">
+		<meta property="article:tag" content="Tutorials">
+		<meta property="article:tag" content="Medium">
+
+
+    
+    
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Environment variables for containerized Vue.js applications and how to set them at runtime">
+	<meta name="twitter:description" content="Note: this article is mirrored on Medium.
+Environment variables can be used in a Vue.js application but those get converted into their hardcoded value during build. Thus, those variables cannot be changed to fit their environment at runtime. This article presents a method to circumvent the problem and allow the setting of environment variables at runtime.
+An example Vue.js application Let us consider the following Vue.js application. All this application does is display the value of the environment variable VUE_APP_MY_VARIABLE.">
+
+
+    
+
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/environment-variables-for-containerized-vue-js-applications/">
+    <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://articles.maximemoreillon.com/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+    <meta name="color-scheme" content="light dark">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        
+        <a href="https://articles.maximemoreillon.com/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/articles/">
+                        Articles
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+            </ul>
+
+            <div class="tools">
+
+                
+                <button id="search-trigger" aria-label="Search (Ctrl+K)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <a id="mode" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div id="search-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Search">
+    <div id="search-box">
+        <div id="search"></div>
+    </div>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var overlay = document.getElementById('search-overlay');
+    var trigger = document.getElementById('search-trigger');
+    var initialized = false;
+
+    function loadPagefind() {
+        return new Promise(function (resolve) {
+            if (typeof PagefindUI !== 'undefined') { resolve(); return; }
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = '/pagefind/pagefind-ui.css';
+            document.head.appendChild(link);
+            var script = document.createElement('script');
+            script.src = '/pagefind/pagefind-ui.js';
+            script.onload = resolve;
+            script.onerror = resolve;
+            document.head.appendChild(script);
+        });
+    }
+
+    function focusInput() {
+        setTimeout(function () {
+            var input = document.querySelector('.pagefind-ui__search-input');
+            if (input) input.focus();
+        }, 50);
+    }
+
+    function openSearch() {
+        overlay.setAttribute('aria-hidden', 'false');
+        overlay.classList.add('is-open');
+        if (!initialized) {
+            loadPagefind().then(function () {
+                if (typeof PagefindUI !== 'undefined') {
+                    new PagefindUI({ element: '#search', showSubResults: true });
+                    initialized = true;
+                }
+                focusInput();
+            });
+        } else {
+            focusInput();
+        }
+    }
+
+    function closeSearch() {
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.classList.remove('is-open');
+    }
+
+    trigger.addEventListener('click', openSearch);
+
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeSearch();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeSearch();
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+    });
+});
+</script>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Environment variables for containerized Vue.js applications and how to set them at runtime</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2021-11-22T00:00:00&#43;00:00" itemprop="datePublished"> 22 Nov 2021 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>Note: this article is mirrored on <a href="https://moreillon.medium.com/environment-variables-for-containerized-vue-js-applications-f0aa943cb962">Medium</a>.</p>
+<p>Environment variables can be used in a Vue.js application but those get converted into their hardcoded value during build. Thus, those variables cannot be changed to fit their environment at runtime. This article presents a method to circumvent the problem and allow the setting of environment variables at runtime.</p>
+<h2 id="an-example-vuejs-application">An example Vue.js application</h2>
+<p>Let us consider the following Vue.js application. All this application does is display the value of the environment variable <code>VUE_APP_MY_VARIABLE</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-vue" data-lang="vue"><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;<span style="color:#a6e22e">VUE_APP_MY_VARIABLE</span><span style="color:#f92672">:</span> {{<span style="color:#a6e22e">my_variable</span>}}&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">template</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;App&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> () =&gt; ({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">my_variable</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">VUE_APP_MY_VARIABLE</span>
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>As described in the <a href="https://cli.vuejs.org/guide/mode-and-env.html">official documentation</a>, Vue.js reads environment variables defined in .env files. For convenience, variables corresponding to the development and production environments can be distinguished by using the .env.development and .env.production files respectively.</p>
+<h2 id="development-environment">Development environment</h2>
+<p>So, let’s start by configuring our <code>VUE_APP_MY_VARIABLE</code> variable for the development environment by creating a .env.development file with the following content:</p>
+<pre tabindex="0"><code>VUE_APP_MY_VARIABLE=dev
+</code></pre><p>If we run the application in the development server</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm run serve
+</span></span></code></pre></div><p>We can see that our environment variable is set properly</p>
+<p><img src="6QxGxfLaP0dx8P6FhTY1zA.png" alt=""></p>
+<p><em>Our environment variable set correctly for our development environment</em></p>
+<h2 id="build">Build</h2>
+<p>Now we want to build our application for production. This implies that the <code>VUE_APP_MY_VARIABLE</code> should be set to its production value. Here, we might want to deploy the application to various production environments so for now we will just set the value to <em>build</em> in the .env.production file:</p>
+<pre tabindex="0"><code>VUE_APP_MY_VARIABLE=build
+</code></pre><p>We can build the application as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm run build
+</span></span></code></pre></div><p>As a result, we now have the <em>dist</em> directory which contains the static files that constitute our application</p>
+<p><img src="w66_bYKSYzS0po50NrEFMw.png" alt=""></p>
+<p><em>The content of the dist directory</em></p>
+<p>Here, we can try to serve the application using <a href="https://www.npmjs.com/package/http-server">http-server</a> to check how it behaves</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>http-server ./dist
+</span></span></code></pre></div><p>As expected, the our environment variable has been set according to our settings:</p>
+<p><img src="izUoVdo85muyk0hasVBxkA.png" alt=""></p>
+<p><em>The environment variable successfully taken the build value</em></p>
+<h2 id="containerization">Containerization</h2>
+<p>Now let us imagine we want to deploy the application to our production environment. For this purpose we will containerize it using Docker, which can be achieved following official <a href="https://cli.vuejs.org/guide/deployment.html#docker-nginx">Vue.js documentation</a>. We start by creating a Dockerfile for the application with the following content:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">node:14</span> <span style="color:#66d9ef">as</span> <span style="color:#e6db74">build-stage</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> package*.json ./<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> ./ .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm run build<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">nginx</span> <span style="color:#66d9ef">as</span> <span style="color:#e6db74">production-stage</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> mkdir /app<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>build-stage /app/dist /app<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> nginx.conf /etc/nginx/nginx.conf<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>Here, the built application is to be served in an NGINX container. Here, NGINX must be configured for our needs, which is achieved with the following file, nginx.conf, which will also be included in the container:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">user</span>  <span style="color:#e6db74">nginx</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">worker_processes</span>  <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">error_log</span>  <span style="color:#e6db74">/var/log/nginx/error.log</span> <span style="color:#e6db74">warn</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">pid</span>        <span style="color:#e6db74">/var/run/nginx.pid</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">events</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">worker_connections</span>  <span style="color:#ae81ff">1024</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">http</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">include</span>       <span style="color:#e6db74">/etc/nginx/mime.types</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">default_type</span>  <span style="color:#e6db74">application/octet-stream</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">log_format</span>  <span style="color:#e6db74">main</span>  <span style="color:#e6db74">&#39;</span>$remote_addr <span style="color:#e6db74">-</span> $remote_user <span style="color:#e6db74">[</span>$time_local] <span style="color:#e6db74">&#34;</span>$request&#34; <span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;</span>$status $body_bytes_sent <span style="color:#e6db74">&#34;</span>$http_referer&#34; <span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;&#34;</span>$http_user_agent&#34; <span style="color:#e6db74">&#34;</span>$http_x_forwarded_for&#34;&#39;;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">access_log</span>  <span style="color:#e6db74">/var/log/nginx/access.log</span>  <span style="color:#e6db74">main</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sendfile</span>        <span style="color:#66d9ef">on</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">keepalive_timeout</span>  <span style="color:#ae81ff">65</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span>       <span style="color:#ae81ff">80</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span>  <span style="color:#e6db74">localhost</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">root</span>   <span style="color:#e6db74">/app</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">index</span>  <span style="color:#e6db74">index.html</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">try_files</span> $uri $uri/ <span style="color:#e6db74">/index.html</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">error_page</span>   <span style="color:#ae81ff">500</span> <span style="color:#ae81ff">502</span> <span style="color:#ae81ff">503</span> <span style="color:#ae81ff">504</span>  <span style="color:#e6db74">/50x.html</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> = <span style="color:#e6db74">/50x.html</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">root</span>   <span style="color:#e6db74">/usr/share/nginx/html</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Additionally, we want the container to hold a fresh install of the application so we’ll configure docker to ignore the <em>node_modules</em> and previous <em>dist</em> directories. This is done using a .dockerignore file with the following content:</p>
+<pre tabindex="0"><code>**/node_modules
+**/dist
+</code></pre><p>The application container image can then be built using the docker command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build -t my-vue-app .
+</span></span></code></pre></div><p>Once build, a container can be started using the image. Here we will use the -e flag to set our environment variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -e VUE_APP_MY_VARIABLE<span style="color:#f92672">=</span>run -p 8080:80 my-vue-app
+</span></span></code></pre></div><p>However, accessing the application served by the container reveals that our environment variable setting has not been acknowledged:</p>
+<p><img src="izUoVdo85muyk0hasVBxkA.png" alt=""></p>
+<p><em>The environment variable did not take the value we specified</em></p>
+<p>So what is happening?</p>
+<p>It turns out that during build, environment variables are injected into the application. The resulting static files thus contain the respective values of those variables as hardcoded strings.</p>
+<p>Luckily, <a href="https://stackoverflow.com/a/57928031/12312215">StackOverflow user NehaM proposes a solution to the problem</a>, which will be explained in the following section.</p>
+<h2 id="substitution-of-variables-afterbuild">Substitution of variables after build</h2>
+<p>We start by setting our production environment variables to strings that can easily be parsed in the built application. Here, a simple option is to set the variable value to its actual name, suffixed by <em>_PLACEHOLDER.</em></p>
+<pre tabindex="0"><code>VUE_APP_MY_VARIABLE=VUE_APP_MY_VARIABLE_PLACEHOLDER
+</code></pre><p>With that done, the building and running the container yields the following:</p>
+<p><img src="guidjWv3lugdY4J62_zkKg.png" alt=""></p>
+<p><em>Using a temporary placeholder for our variables</em></p>
+<p>In this state, the situation does not seem to have progressed much. However, our variables can now be easily found in the static files generated during build. Thanks to this, we can create a bash script, <em>substitute_environment_variables.sh</em>, that goes through all files of the <em>dist</em> folder and replaces instances our _PLACEHOLDER values with actual environment variables. This substitution is performed by the <em>sed</em> command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
+</span></span></span><span style="display:flex;"><span>ROOT_DIR<span style="color:#f92672">=</span>./dist
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Replace env vars in files served by NGINX</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in $ROOT_DIR/js/*.js* $ROOT_DIR/index.html $ROOT_DIR/precache-manifest*.js;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  sed -i <span style="color:#e6db74">&#39;s|VUE_APP_MY_VARIABLE_PLACEHOLDER|&#39;</span><span style="color:#e6db74">${</span>VUE_APP_MY_VARIABLE<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;|g&#39;</span> $file
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Your other variables here...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>To test this, let’s go ahead and set the <code>VUE_APP_MY_VARIABLE</code> environment variable and then run our script:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export VUE_APP_MY_VARIABLE<span style="color:#f92672">=</span>run
+</span></span><span style="display:flex;"><span>bash ./substitute_environment_variables.sh
+</span></span></code></pre></div><p>Serving the <em>dist</em> directory with http-server shows that the <code>VUE_APP_MY_VARIABLE_PLACEHOLDER</code> has been successfully substituted with our environment variable:</p>
+<p><img src="ncWBa9mz_QEmaB4DqZVAvQ.png" alt=""></p>
+<p><em>The environment variable has successfully taken the value of our environment</em></p>
+<h2 id="substitution-of-variables-at-container-runtime">Substitution of variables at container runtime</h2>
+<p>Now, we need to get this script executed whenever the container is started, i.e. at container runtime. Consequently, we need to modify the dockerfile so as to run the <em>substitute_environment_variables.sh</em> file instead of running the NGINX server directly. Here, this can be achieved by copying <em>substitute_environment_variables.sh</em> into the /docker-entrypoint.d/ folder of the container</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Build the Vue app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">node:14</span> <span style="color:#66d9ef">as</span> <span style="color:#e6db74">build-stage</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> package*.json ./<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> ./ .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm run build<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Copy the built app in an NGINX contaier</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">nginx</span> <span style="color:#66d9ef">as</span> <span style="color:#e6db74">production-stage</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> mkdir /app<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>build-stage /app/dist /app<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> nginx.conf /etc/nginx/nginx.conf<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Running the script at container run</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> ./substitute_environment_variables.sh /docker-entrypoint.d/substitute_environment_variables.sh<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> chmod +x /substitute_environment_variables.sh<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>However, we will need to adapt our file to use the correct directory for substitution. Additionally we need to let the NGINX usual startup to continue by adding <em>exec “$@”</em> at the end of our script:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/sh
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ROOT_DIR<span style="color:#f92672">=</span>/app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Replace env vars in files served by NGINX</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in $ROOT_DIR/js/*.js* $ROOT_DIR/index.html $ROOT_DIR/precache-manifest*.js;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  sed -i <span style="color:#e6db74">&#39;s|VUE_APP_MY_VARIABLE_PLACEHOLDER|&#39;</span><span style="color:#e6db74">${</span>VUE_APP_MY_VARIABLE<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;|g&#39;</span> $file
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Your other variables here...</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Let container execution proceed</span>
+</span></span><span style="display:flex;"><span>exec <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>And with that done, Our container now sets our environment variables to the values provided at runtime instead of build time.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Because Vue.js converts environment variables into hardcoded strings at build time, setting environment variables during container runtime is challenging. With the method presented in this article, temporary placeholder variables are set at build time and then substituted at runtime. This provides Vue.js apps with an extra layer of customization options for their operators. The source code for the example application presented in this article is available on <a href="https://github.com/maximemoreillon/vue-runtime-env">GitHub</a>.</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+</div>
+    <small class="footer_copyright">
+        © 2026 Maxime Moreillon.
+        Powered by <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>
