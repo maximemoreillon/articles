@@ -32,8 +32,7 @@
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Showing the application version in a Vite-based Vue.js app">
 	<meta property="og:description" content="This article shows how to set the version of a Vite-based Vue.js app automatically at build time, using a Docker build argument fed by an environment variable provided by CI/CD, such as the Git tag being built.
-The Dockerfile A build argument is declared with ARG, and made available to the build steps that follow it in the same stage:
-FROM node:24 AS build-stage WORKDIR /app COPY package*.json ./ RUN npm install COPY . . &#43;ARG APP_VERSION=dev &#43;ENV VITE_APP_VERSION=$APP_VERSION &#43; RUN npm run build ARG alone is not enough, because Vite only exposes environment variables prefixed with VITE_ to client code, and a build argument is not automatically an environment variable to begin with. The ENV line does both jobs at once: it turns the build argument into an environment variable, under the name Vite expects, before npm run build runs.">
+It is tempting to read the version from the version field of package.json instead, since it is already there. This only works for Node.js projects, though, so the same approach could not be reused for an application written in another language. Relying on a Git tag also means a release does not require cloning the repository and bumping a file locally: it is often just as easy to create the tag from the GitLab UI directly.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -50,8 +49,7 @@ FROM node:24 AS build-stage WORKDIR /app COPY package*.json ./ RUN npm install C
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Showing the application version in a Vite-based Vue.js app">
 	<meta name="twitter:description" content="This article shows how to set the version of a Vite-based Vue.js app automatically at build time, using a Docker build argument fed by an environment variable provided by CI/CD, such as the Git tag being built.
-The Dockerfile A build argument is declared with ARG, and made available to the build steps that follow it in the same stage:
-FROM node:24 AS build-stage WORKDIR /app COPY package*.json ./ RUN npm install COPY . . &#43;ARG APP_VERSION=dev &#43;ENV VITE_APP_VERSION=$APP_VERSION &#43; RUN npm run build ARG alone is not enough, because Vite only exposes environment variables prefixed with VITE_ to client code, and a build argument is not automatically an environment variable to begin with. The ENV line does both jobs at once: it turns the build argument into an environment variable, under the name Vite expects, before npm run build runs.">
+It is tempting to read the version from the version field of package.json instead, since it is already there. This only works for Node.js projects, though, so the same approach could not be reused for an application written in another language. Relying on a Git tag also means a release does not require cloning the repository and bumping a file locally: it is often just as easy to create the tag from the GitLab UI directly.">
 
 
     
@@ -247,6 +245,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>This article shows how to set the version of a Vite-based Vue.js app automatically at build time, using a Docker build argument fed by an environment variable provided by CI/CD, such as the Git tag being built.</p>
+<p>It is tempting to read the version from the <code>version</code> field of <code>package.json</code> instead, since it is already there. This only works for Node.js projects, though, so the same approach could not be reused for an application written in another language. Relying on a Git tag also means a release does not require cloning the repository and bumping a file locally: it is often just as easy to create the tag from the GitLab UI directly.</p>
 <h2 id="the-dockerfile">The Dockerfile</h2>
 <p>A build argument is declared with <code>ARG</code>, and made available to the build steps that follow it in the same stage:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span> FROM node:24 AS build-stage

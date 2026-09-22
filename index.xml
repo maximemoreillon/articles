@@ -15,19 +15,7 @@
       <guid>https://articles.maximemoreillon.com/articles/vite-app-version-docker-build-arg/</guid>
       
       <description>&lt;p&gt;This article shows how to set the version of a Vite-based Vue.js app automatically at build time, using a Docker build argument fed by an environment variable provided by CI/CD, such as the Git tag being built.&lt;/p&gt;
-&lt;h2 id=&#34;the-dockerfile&#34;&gt;The Dockerfile&lt;/h2&gt;
-&lt;p&gt;A build argument is declared with &lt;code&gt;ARG&lt;/code&gt;, and made available to the build steps that follow it in the same stage:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-diff&#34; data-lang=&#34;diff&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; FROM node:24 AS build-stage
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; WORKDIR /app
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; COPY package*.json ./
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; RUN npm install
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; COPY . .
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+ARG APP_VERSION=dev
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+ENV VITE_APP_VERSION=$APP_VERSION
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;+
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; RUN npm run build
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;ARG&lt;/code&gt; alone is not enough, because Vite only exposes environment variables prefixed with &lt;code&gt;VITE_&lt;/code&gt; to client code, and a build argument is not automatically an environment variable to begin with. The &lt;code&gt;ENV&lt;/code&gt; line does both jobs at once: it turns the build argument into an environment variable, under the name Vite expects, before &lt;code&gt;npm run build&lt;/code&gt; runs.&lt;/p&gt;</description>
+&lt;p&gt;It is tempting to read the version from the &lt;code&gt;version&lt;/code&gt; field of &lt;code&gt;package.json&lt;/code&gt; instead, since it is already there. This only works for Node.js projects, though, so the same approach could not be reused for an application written in another language. Relying on a Git tag also means a release does not require cloning the repository and bumping a file locally: it is often just as easy to create the tag from the GitLab UI directly.&lt;/p&gt;</description>
       
     </item>
     
