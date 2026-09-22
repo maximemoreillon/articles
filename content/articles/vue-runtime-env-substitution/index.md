@@ -256,3 +256,5 @@ And with that done, Our container now sets our environment variables to the valu
 ## Conclusion
 
 Because Vue.js converts environment variables into hardcoded strings at build time, setting environment variables during container runtime is challenging. With the method presented in this article, temporary placeholder variables are set at build time and then substituted at runtime. This provides Vue.js apps with an extra layer of customization options for their operators. The source code for the example application presented in this article is available on [GitHub](https://github.com/maximemoreillon/vue-runtime-env).
+
+This technique has since been [adapted to Vue 3 and Vite](/articles/vue-runtime-env-vite-migration/) and [made generic](/articles/generic-vite-runtime-env-script/), so that it no longer needs to be edited for every new variable.
