@@ -83,6 +83,7 @@ spec:
         - /bin/sh
         - -c
         - |
+          set -e
           cat > /tmp/migrate.hcl <<'EOF'
           storage_source "file" {
             path = "/vault/data"
@@ -94,6 +95,8 @@ spec:
           cluster_addr = "https://vault-0.vault-internal:8201"
           EOF
           vault operator migrate -config=/tmp/migrate.hcl
+          echo "--- /vault/data after migration:"
+          ls -la /vault/data
       volumeMounts:
         - name: data
           mountPath: /vault/data
@@ -103,18 +106,15 @@ spec:
         claimName: data-vault-0
 ```
 
-The `node_id` matches the one set by `setNodeId`, and `cluster_addr` matches the address the chart gives to the pod.
+The `node_id` matches the one set by `setNodeId`, and `cluster_addr` matches the address the chart gives to the pod. With `set -e`, the pod stops right away if the migration fails. Otherwise, it lists the content of the volume, so that the result can be checked.
 
-The logs of the pod list every key copied and should end with:
+The logs of the pod list every key copied, followed by the confirmation and the content of the volume:
 
 ```
+$ kubectl -n vault logs vault-migrate
+...
 Success! All of the keys have been migrated.
-```
-
-Raft stores its data in a `vault.db` file and a `raft` folder. These sit next to the folders of the file storage (`auth`, `core`, `logical` and `sys`), which the migration leaves untouched:
-
-```
-$ ls -la /vault/data
+--- /vault/data after migration:
 drwx------    3 vault    vault           50 Sep 12 02:12 auth
 drwx------    6 vault    vault         4096 Sep 26 01:09 core
 drwx------    4 vault    vault           94 Sep 12 01:58 logical
@@ -122,6 +122,8 @@ drwx------    3 vault    vault           38 Sep 26 01:09 raft
 drwx------    6 vault    vault           64 Sep 26 01:08 sys
 -rw-------    1 vault    vault     16801792 Sep 26 01:09 vault.db
 ```
+
+Raft stores its data in the `vault.db` file and the `raft` folder. These sit next to the folders of the file storage (`auth`, `core`, `logical` and `sys`), which the migration leaves untouched.
 
 The pod can then be deleted.
 

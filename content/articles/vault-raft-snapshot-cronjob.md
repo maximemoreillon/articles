@@ -6,7 +6,7 @@ tags: ["Kubernetes", "Homelab", "HashiCorp Vault"]
 
 In [my previous article](/articles/vault-raft-migration/), I migrated HashiCorp Vault from file storage to Raft, mainly so that it could be backed up properly: with Raft, `vault operator raft snapshot save` produces a consistent snapshot of the whole Vault in a single file. Vault Enterprise can take such snapshots automatically, but with the free version, they have to be scheduled some other way.
 
-This article explains how I use a Kubernetes `CronJob` to take a daily snapshot of Vault and upload it to S3-compatible object storage located on another site, in my case a [RustFS](https://rustfs.com/) instance running in another cluster.
+This article explains how I use a Kubernetes `CronJob` to take a daily snapshot of Vault and upload it to S3-compatible object storage. Any provider works, whether self-hosted or in the cloud, but it should ideally be located on another site than the cluster, so that a backup survives the loss of the cluster.
 
 ## Overview
 
@@ -150,7 +150,7 @@ A few details are worth explaining:
 
 - **`vault write auth/kubernetes/login`** exchanges the token of the pod's service account for a Vault token. The `@` prefix tells the Vault CLI to read the value from a file.
 - **`vault-active`** is one of the services the Helm chart creates in Raft mode. It always points to the active Vault server, which is the one able to take a snapshot.
-- **rclone is configured entirely through environment variables**: variables named `RCLONE_CONFIG_<REMOTE>_<OPTION>` define a remote, here named `dest`, so no configuration file is needed. As a result, rclone prints a harmless notice that its configuration file was not found.
+- **rclone is configured entirely through environment variables**: variables named `RCLONE_CONFIG_<REMOTE>_<OPTION>` define a remote, here named `dest`, so no configuration file is needed. As a result, rclone prints a harmless notice that its configuration file was not found. The `Other` provider works with any S3-compatible storage, and only the endpoint has to be adapted. rclone also has presets for many providers, which can be used instead.
 - **Retention** is handled by rclone itself, with `rclone delete --min-age 30d`, so it doesn't depend on the object storage supporting lifecycle rules.
 - **`concurrencyPolicy: Forbid`** prevents a new job from starting while the previous one is still running.
 
