@@ -26,7 +26,7 @@
       <guid>https://articles.maximemoreillon.com/articles/vault-raft-snapshot-cronjob/</guid>
       
       <description>&lt;p&gt;In &lt;a href=&#34;https://articles.maximemoreillon.com/articles/vault-raft-migration/&#34;&gt;my previous article&lt;/a&gt;, I migrated HashiCorp Vault from file storage to Raft, mainly so that it could be backed up properly: with Raft, &lt;code&gt;vault operator raft snapshot save&lt;/code&gt; produces a consistent snapshot of the whole Vault in a single file. Vault Enterprise can take such snapshots automatically, but with the free version, they have to be scheduled some other way.&lt;/p&gt;
-&lt;p&gt;This article explains how I use a Kubernetes &lt;code&gt;CronJob&lt;/code&gt; to take a daily snapshot of Vault and upload it to S3-compatible object storage located on another site, in my case a &lt;a href=&#34;https://rustfs.com/&#34;&gt;RustFS&lt;/a&gt; instance running in another cluster.&lt;/p&gt;</description>
+&lt;p&gt;This article explains how I use a Kubernetes &lt;code&gt;CronJob&lt;/code&gt; to take a daily snapshot of Vault and upload it to S3-compatible object storage. Any provider works, whether self-hosted or in the cloud, but it should ideally be located on another site than the cluster, so that a backup survives the loss of the cluster.&lt;/p&gt;</description>
       
     </item>
     

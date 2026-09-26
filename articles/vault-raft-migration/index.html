@@ -292,6 +292,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">/bin/sh</span>
 </span></span><span style="display:flex;"><span>        - -<span style="color:#ae81ff">c</span>
 </span></span><span style="display:flex;"><span>        - |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          set -e
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          cat &gt; /tmp/migrate.hcl &lt;&lt;&#39;EOF&#39;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          storage_source &#34;file&#34; {
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            path = &#34;/vault/data&#34;
@@ -302,7 +303,9 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          }
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          cluster_addr = &#34;https://vault-0.vault-internal:8201&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          EOF
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          vault operator migrate -config=/tmp/migrate.hcl</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          vault operator migrate -config=/tmp/migrate.hcl
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          echo &#34;--- /vault/data after migration:&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          ls -la /vault/data</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">volumeMounts</span>:
 </span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">data</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">mountPath</span>: <span style="color:#ae81ff">/vault/data</span>
@@ -310,18 +313,20 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">data</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">persistentVolumeClaim</span>:
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">claimName</span>: <span style="color:#ae81ff">data-vault-0</span>
-</span></span></code></pre></div><p>The <code>node_id</code> matches the one set by <code>setNodeId</code>, and <code>cluster_addr</code> matches the address the chart gives to the pod.</p>
-<p>The logs of the pod list every key copied and should end with:</p>
-<pre tabindex="0"><code>Success! All of the keys have been migrated.
-</code></pre><p>Raft stores its data in a <code>vault.db</code> file and a <code>raft</code> folder. These sit next to the folders of the file storage (<code>auth</code>, <code>core</code>, <code>logical</code> and <code>sys</code>), which the migration leaves untouched:</p>
-<pre tabindex="0"><code>$ ls -la /vault/data
+</span></span></code></pre></div><p>The <code>node_id</code> matches the one set by <code>setNodeId</code>, and <code>cluster_addr</code> matches the address the chart gives to the pod. With <code>set -e</code>, the pod stops right away if the migration fails. Otherwise, it lists the content of the volume, so that the result can be checked.</p>
+<p>The logs of the pod list every key copied, followed by the confirmation and the content of the volume:</p>
+<pre tabindex="0"><code>$ kubectl -n vault logs vault-migrate
+...
+Success! All of the keys have been migrated.
+--- /vault/data after migration:
 drwx------    3 vault    vault           50 Sep 12 02:12 auth
 drwx------    6 vault    vault         4096 Sep 26 01:09 core
 drwx------    4 vault    vault           94 Sep 12 01:58 logical
 drwx------    3 vault    vault           38 Sep 26 01:09 raft
 drwx------    6 vault    vault           64 Sep 26 01:08 sys
 -rw-------    1 vault    vault     16801792 Sep 26 01:09 vault.db
-</code></pre><p>The pod can then be deleted.</p>
+</code></pre><p>Raft stores its data in the <code>vault.db</code> file and the <code>raft</code> folder. These sit next to the folders of the file storage (<code>auth</code>, <code>core</code>, <code>logical</code> and <code>sys</code>), which the migration leaves untouched.</p>
+<p>The pod can then be deleted.</p>
 <h3 id="switching-to-raft">Switching to Raft</h3>
 <p>Once the Helm values are updated and applied, Vault starts using Raft. It then has to be unsealed with the same keys as before:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>kubectl -n vault exec -it vault-0 -- vault operator unseal
