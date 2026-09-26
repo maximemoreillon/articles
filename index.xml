@@ -6,7 +6,30 @@
     <description>Recent content on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Migrating HashiCorp Vault from file storage to Raft</title>
+      <link>https://articles.maximemoreillon.com/articles/vault-raft-migration/</link>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/vault-raft-migration/</guid>
+      
+      <description>&lt;p&gt;In &lt;a href=&#34;https://articles.maximemoreillon.com/articles/vault-eso/&#34;&gt;my article on ESO with HashiCorp Vault&lt;/a&gt;, Vault was installed with the Helm chart&amp;rsquo;s default configuration: a single server using &lt;strong&gt;file storage&lt;/strong&gt; on a &lt;code&gt;PersistentVolumeClaim&lt;/code&gt;. This works well, but backing it up is not trivial. The only option is to copy the files of the volume while Vault is running, for instance with &lt;a href=&#34;https://articles.maximemoreillon.com/articles/velero/&#34;&gt;Velero&lt;/a&gt;, and nothing guarantees that such a copy is consistent, since a single write to Vault can touch several files.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Off-site Vault backups with Raft snapshots and a CronJob</title>
+      <link>https://articles.maximemoreillon.com/articles/vault-raft-snapshot-cronjob/</link>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/vault-raft-snapshot-cronjob/</guid>
+      
+      <description>&lt;p&gt;In &lt;a href=&#34;https://articles.maximemoreillon.com/articles/vault-raft-migration/&#34;&gt;my previous article&lt;/a&gt;, I migrated HashiCorp Vault from file storage to Raft, mainly so that it could be backed up properly: with Raft, &lt;code&gt;vault operator raft snapshot save&lt;/code&gt; produces a consistent snapshot of the whole Vault in a single file. Vault Enterprise can take such snapshots automatically, but with the free version, they have to be scheduled some other way.&lt;/p&gt;
+&lt;p&gt;This article explains how I use a Kubernetes &lt;code&gt;CronJob&lt;/code&gt; to take a daily snapshot of Vault and upload it to S3-compatible object storage located on another site, in my case a &lt;a href=&#34;https://rustfs.com/&#34;&gt;RustFS&lt;/a&gt; instance running in another cluster.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Showing the application version in a Vite-based Vue.js app</title>
       <link>https://articles.maximemoreillon.com/articles/vite-app-version-docker-build-arg/</link>

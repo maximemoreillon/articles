@@ -6,7 +6,40 @@
     <description>Recent content in Tags on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HashiCorp Vault</title>
+      <link>https://articles.maximemoreillon.com/tags/hashicorp-vault/</link>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/hashicorp-vault/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Homelab</title>
+      <link>https://articles.maximemoreillon.com/tags/homelab/</link>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/homelab/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://articles.maximemoreillon.com/tags/kubernetes/</link>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/kubernetes/</guid>
+      
+      <description></description>
+      
+    </item>
+    
     <item>
       <title>Docker</title>
       <link>https://articles.maximemoreillon.com/tags/docker/</link>
@@ -68,28 +101,6 @@
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0900</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/gateway-api/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Homelab</title>
-      <link>https://articles.maximemoreillon.com/tags/homelab/</link>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0900</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/homelab/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Kubernetes</title>
-      <link>https://articles.maximemoreillon.com/tags/kubernetes/</link>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0900</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/kubernetes/</guid>
       
       <description></description>
       
@@ -365,17 +376,6 @@
       <pubDate>Mon, 25 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/sveltekit/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>HashiCorp Vault</title>
-      <link>https://articles.maximemoreillon.com/tags/hashicorp-vault/</link>
-      <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/hashicorp-vault/</guid>
       
       <description></description>
       
