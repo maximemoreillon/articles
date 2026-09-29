@@ -6,22 +6,11 @@
     <description>Recent content in Tags on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 26 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>HashiCorp Vault</title>
-      <link>https://articles.maximemoreillon.com/tags/hashicorp-vault/</link>
-      <pubDate>Sat, 26 Sep 2026 00:00:00 +0900</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/hashicorp-vault/</guid>
-      
-      <description></description>
-      
-    </item>
-    
+    <lastBuildDate>Tue, 29 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Homelab</title>
       <link>https://articles.maximemoreillon.com/tags/homelab/</link>
-      <pubDate>Sat, 26 Sep 2026 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 +0900</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/homelab/</guid>
       
@@ -32,9 +21,53 @@
     <item>
       <title>Kubernetes</title>
       <link>https://articles.maximemoreillon.com/tags/kubernetes/</link>
-      <pubDate>Sat, 26 Sep 2026 00:00:00 +0900</pubDate>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 +0900</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/kubernetes/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Proxmox</title>
+      <link>https://articles.maximemoreillon.com/tags/proxmox/</link>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/proxmox/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Talos</title>
+      <link>https://articles.maximemoreillon.com/tags/talos/</link>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/talos/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>TrueNAS</title>
+      <link>https://articles.maximemoreillon.com/tags/truenas/</link>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/truenas/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>HashiCorp Vault</title>
+      <link>https://articles.maximemoreillon.com/tags/hashicorp-vault/</link>
+      <pubDate>Sat, 26 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/hashicorp-vault/</guid>
       
       <description></description>
       
@@ -294,17 +327,6 @@
     </item>
     
     <item>
-      <title>Talos</title>
-      <link>https://articles.maximemoreillon.com/tags/talos/</link>
-      <pubDate>Fri, 05 Jun 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/talos/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
       <title>Argo CD</title>
       <link>https://articles.maximemoreillon.com/tags/argo-cd/</link>
       <pubDate>Thu, 04 Jun 2026 00:00:00 +0900</pubDate>
@@ -431,28 +453,6 @@
       <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/hugo/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>TrueNAS</title>
-      <link>https://articles.maximemoreillon.com/tags/truenas/</link>
-      <pubDate>Fri, 15 Aug 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/truenas/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Proxmox</title>
-      <link>https://articles.maximemoreillon.com/tags/proxmox/</link>
-      <pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/proxmox/</guid>
       
       <description></description>
       

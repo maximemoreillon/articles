@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">A host-only storage network to survive ISP network changes | Maxime Moreillon</title>
+<meta property="og:title" content="A host-only storage network to survive ISP network changes | Maxime Moreillon" />
+<meta name="twitter:title" content="A host-only storage network to survive ISP network changes | Maxime Moreillon" />
+<meta itemprop="name" content="A host-only storage network to survive ISP network changes | Maxime Moreillon" />
+<meta name="application-name" content="A host-only storage network to survive ISP network changes | Maxime Moreillon" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/proxmox-storage-bridge/" title="" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.162.1">
+
+    
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/proxmox-storage-bridge/">
+	<meta property="og:site_name" content="Maxime Moreillon">
+	<meta property="og:title" content="A host-only storage network to survive ISP network changes">
+	<meta property="og:description" content="My secondary server in Switzerland runs Proxmox with two VMs: TrueNAS and a single-node Talos Kubernetes cluster, whose volumes are served by TrueNAS over iSCSI and NFS. The LAN is managed by the ISP’s router, whose settings the ISP can override at any time.
+One day, the ISP moved the LAN to a different subnet, losing the DHCP reservations along the way. The addresses the cluster used to reach TrueNAS no longer worked, so its volumes became unreachable.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2026-09-29T00:00:00+09:00">
+		<meta property="article:modified_time" content="2026-09-29T00:00:00+09:00">
+		<meta property="article:tag" content="Homelab">
+		<meta property="article:tag" content="Proxmox">
+		<meta property="article:tag" content="Talos">
+		<meta property="article:tag" content="TrueNAS">
+		<meta property="article:tag" content="Kubernetes">
+
+
+    
+    
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="A host-only storage network to survive ISP network changes">
+	<meta name="twitter:description" content="My secondary server in Switzerland runs Proxmox with two VMs: TrueNAS and a single-node Talos Kubernetes cluster, whose volumes are served by TrueNAS over iSCSI and NFS. The LAN is managed by the ISP’s router, whose settings the ISP can override at any time.
+One day, the ISP moved the LAN to a different subnet, losing the DHCP reservations along the way. The addresses the cluster used to reach TrueNAS no longer worked, so its volumes became unreachable.">
+
+
+    
+
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/proxmox-storage-bridge/">
+    <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://articles.maximemoreillon.com/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+    <meta name="color-scheme" content="light dark">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        
+        <a href="https://articles.maximemoreillon.com/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/articles/">
+                        Articles
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+            </ul>
+
+            <div class="tools">
+
+                
+                <button id="search-trigger" aria-label="Search (Ctrl+K)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <a id="mode" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div id="search-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Search">
+    <div id="search-box">
+        <div id="search"></div>
+    </div>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var overlay = document.getElementById('search-overlay');
+    var trigger = document.getElementById('search-trigger');
+    var initialized = false;
+
+    function loadPagefind() {
+        return new Promise(function (resolve) {
+            if (typeof PagefindUI !== 'undefined') { resolve(); return; }
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = '/pagefind/pagefind-ui.css';
+            document.head.appendChild(link);
+            var script = document.createElement('script');
+            script.src = '/pagefind/pagefind-ui.js';
+            script.onload = resolve;
+            script.onerror = resolve;
+            document.head.appendChild(script);
+        });
+    }
+
+    function focusInput() {
+        setTimeout(function () {
+            var input = document.querySelector('.pagefind-ui__search-input');
+            if (input) input.focus();
+        }, 50);
+    }
+
+    function openSearch() {
+        overlay.setAttribute('aria-hidden', 'false');
+        overlay.classList.add('is-open');
+        if (!initialized) {
+            loadPagefind().then(function () {
+                if (typeof PagefindUI !== 'undefined') {
+                    new PagefindUI({ element: '#search', showSubResults: true });
+                    initialized = true;
+                }
+                focusInput();
+            });
+        } else {
+            focusInput();
+        }
+    }
+
+    function closeSearch() {
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.classList.remove('is-open');
+    }
+
+    trigger.addEventListener('click', openSearch);
+
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeSearch();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeSearch();
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+    });
+});
+</script>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">A host-only storage network to survive ISP network changes</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-09-29T00:00:00&#43;09:00" itemprop="datePublished"> 29 Sep 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>My <a href="/articles/secondary-server-switzerland/">secondary server in Switzerland</a> runs Proxmox with two VMs: TrueNAS and a single-node Talos Kubernetes cluster, whose volumes are served by TrueNAS over iSCSI and NFS. The LAN is managed by the ISP&rsquo;s router, whose settings the ISP can override at any time.</p>
+<p>One day, the ISP moved the LAN to a different subnet, losing the DHCP reservations along the way. The addresses the cluster used to reach TrueNAS no longer worked, so its volumes became unreachable.</p>
+<p>The fix is to stop relying on the LAN for anything that must stay stable. TrueNAS and Talos run on the same Proxmox host, so they don&rsquo;t need the LAN to talk to each other: a Proxmox bridge without any physical port gives them a private network that no router can change.</p>
+<h2 id="the-bridge">The bridge</h2>
+<p>On Proxmox, <code>vmbr1</code> has no physical port and no gateway. Jumbo frames cost nothing on a bridge that never leaves the host, so its MTU is 9000:</p>
+<pre tabindex="0"><code>auto vmbr1
+iface vmbr1 inet static
+        address 10.10.30.111/24
+        bridge-ports none
+        bridge-stp off
+        bridge-fd 0
+        mtu 9000
+</code></pre><p>Each VM gets a second VirtIO NIC on <code>vmbr1</code>, with the firewall unchecked (it only adds extra devices in the path) and the MTU left to &ldquo;same as bridge&rdquo;. The addresses are static, since nothing else can hand them out: <code>.111</code> for Proxmox, <code>.112</code> for Talos and <code>.113</code> for TrueNAS. On TrueNAS, the new interface gets <code>10.10.30.113/24</code> and an MTU of 9000, without a gateway.</p>
+<p>Jumbo frames only work if every member uses them, and a mismatch shows up as mounts that hang on large transfers. A ping at full size with fragmentation forbidden checks it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ping -M <span style="color:#66d9ef">do</span> -s <span style="color:#ae81ff">8972</span> -c <span style="color:#ae81ff">3</span> 10.10.30.113
+</span></span></code></pre></div><h2 id="talos">Talos</h2>
+<p>On Talos, the new NIC is configured in the machine config. The LAN interface keeps DHCP, so that it follows whatever the ISP decides:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">machine</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">network</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">interfaces</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">deviceSelector</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">hardwareAddr</span>: <span style="color:#ae81ff">bc:24:11:xx:xx:xx</span> <span style="color:#75715e"># LAN</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">dhcp</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">deviceSelector</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">hardwareAddr</span>: <span style="color:#ae81ff">bc:24:11:yy:yy:yy</span> <span style="color:#75715e"># storage bridge</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">dhcp</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">mtu</span>: <span style="color:#ae81ff">9000</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">addresses</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ae81ff">10.10.30.112</span><span style="color:#ae81ff">/24</span>
+</span></span></code></pre></div><p>There&rsquo;s a catch: Talos chooses the node&rsquo;s Kubernetes <code>InternalIP</code> and etcd&rsquo;s advertised address automatically among the node&rsquo;s addresses. Adding the NIC made it switch both to the new address. Rather than let a NIC change move them, I pinned them explicitly, and to the bridge, whose address exists as soon as the VM boots, regardless of the router or Tailscale:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">machine</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">kubelet</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">nodeIP</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">validSubnets</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">10.10.30.0</span><span style="color:#ae81ff">/24</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">cluster</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">etcd</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">advertisedSubnets</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">10.10.30.0</span><span style="color:#ae81ff">/24</span>
+</span></span></code></pre></div><p>I applied the change with <code>talosctl apply-config --mode=try --timeout 5m</code>, which rolls back automatically unless the config is applied again without <code>try</code>. That made it safe to change the network of a node I only reach remotely.</p>
+<h2 id="storage-over-the-bridge">Storage over the bridge</h2>
+<p>The CSI driver then only needs TrueNAS&rsquo;s bridge address. I used this as the opportunity to move from <a href="/articles/democratic-csi/">democratic-csi</a> to <a href="https://github.com/fenio/tns-csi">tns-csi</a>, with <code>server: 10.10.30.113</code> in its storage classes.</p>
+<p>For iSCSI, the address alone isn&rsquo;t enough. TrueNAS advertises every address an iSCSI portal listens on, and tns-csi logs into all of them. With the default portal listening on <code>0.0.0.0</code>, each volume ends up with extra sessions over the LAN and Tailscale. I created a second portal listening only on <code>10.10.30.113</code> and pointed tns-csi&rsquo;s storage class at it with <code>portalId</code>.</p>
+<h2 id="proxmox">Proxmox</h2>
+<p>The Proxmox host itself also moved to DHCP on its LAN bridge, so that it keeps internet access, and therefore Tailscale, whatever the subnet. That needs a small trick, which I describe in <a href="/articles/proxmox-dhcp/">a separate article</a>: the host&rsquo;s name must resolve to the static bridge address instead of the LAN one.</p>
+<p>Proxmox backs up its VMs to an NFS share on TrueNAS, so that storage now uses <code>10.10.30.113</code> as well.</p>
+<h2 id="result">Result</h2>
+<p>The LAN only provides internet access now, through DHCP, and the stable addresses live on networks I control: the host-only bridge for storage, and Tailscale for remote access. The next subnet change should only affect the router&rsquo;s port forwarding, which a tunnel will eventually replace.</p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+</div>
+    <small class="footer_copyright">
+        © 2026 Maxime Moreillon.
+        Powered by <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

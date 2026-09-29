@@ -6,7 +6,19 @@
     <description>Recent content in Kubernetes on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 26 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A host-only storage network to survive ISP network changes</title>
+      <link>https://articles.maximemoreillon.com/articles/proxmox-storage-bridge/</link>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/proxmox-storage-bridge/</guid>
+      
+      <description>&lt;p&gt;My &lt;a href=&#34;https://articles.maximemoreillon.com/articles/secondary-server-switzerland/&#34;&gt;secondary server in Switzerland&lt;/a&gt; runs Proxmox with two VMs: TrueNAS and a single-node Talos Kubernetes cluster, whose volumes are served by TrueNAS over iSCSI and NFS. The LAN is managed by the ISP&amp;rsquo;s router, whose settings the ISP can override at any time.&lt;/p&gt;
+&lt;p&gt;One day, the ISP moved the LAN to a different subnet, losing the DHCP reservations along the way. The addresses the cluster used to reach TrueNAS no longer worked, so its volumes became unreachable.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Migrating HashiCorp Vault from file storage to Raft</title>
       <link>https://articles.maximemoreillon.com/articles/vault-raft-migration/</link>
