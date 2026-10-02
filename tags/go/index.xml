@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/go/</link>
+    <description>Recent content in Go on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 12 Nov 2025 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubeconfig-merger: merging kubeconfig files into ~/.kube/config</title>
+      <link>https://articles.maximemoreillon.com/articles/kubeconfig-merger/</link>
+      <pubDate>Wed, 12 Nov 2025 00:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/kubeconfig-merger/</guid>
+      
+      <description>&lt;p&gt;Each new Kubernetes cluster usually comes with its own kubeconfig file, and getting it into &lt;code&gt;~/.kube/config&lt;/code&gt; means copying its cluster, user and context entries over by hand. Kubeconfig-merger is a small Go CLI that removes this step: kubeconfig files are simply dropped into a directory, and the application merges all of them into &lt;code&gt;~/.kube/config&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;how-it-works&#34;&gt;How it works&lt;/h2&gt;
+&lt;p&gt;By default, kubeconfig files are kept as separate files in &lt;code&gt;~/.kube/config.d&lt;/code&gt;, one per cluster. The application:&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
