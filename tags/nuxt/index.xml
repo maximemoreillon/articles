@@ -6,7 +6,18 @@
     <description>Recent content in Nuxt on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/nuxt/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Sep 2026 08:28:42 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/nuxt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Synchronizing a local user table with an OIDC identity provider</title>
+      <link>https://articles.maximemoreillon.com/articles/oidc-local-user-sync/</link>
+      <pubDate>Fri, 18 Sep 2026 08:28:42 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/oidc-local-user-sync/</guid>
+      
+      <description>&lt;p&gt;Applications authenticating via OIDC might not need a local user table at all; the session can simply hold whatever claims the identity provider hands back for the user currently logged in. The trouble starts as soon as the application needs to display data about users other than the one currently logged in, for example a list of items with the name of their owner. Other tables can only reference a user by an identifier such as &lt;code&gt;sub&lt;/code&gt;, and the OIDC flow only ever hands back claims for whoever is logging in at that moment, so there is no way to look up another user&amp;rsquo;s name without keeping a local copy of it. This article shows a pattern for solving this in a &lt;a href=&#34;https://nuxt.com/&#34;&gt;Nuxt&lt;/a&gt; application using &lt;a href=&#34;https://github.com/atinux/nuxt-auth-utils&#34;&gt;&lt;code&gt;nuxt-auth-utils&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://orm.drizzle.team/&#34;&gt;Drizzle ORM&lt;/a&gt;, where a minimal local copy of each user is upserted into a PostgreSQL table on every successful login.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Nuxt with Vuetify&#39;s v-data-table-server</title>
       <link>https://articles.maximemoreillon.com/articles/nuxt-v-data-table-server/</link>

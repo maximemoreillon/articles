@@ -6,7 +6,39 @@
     <description>Recent content in Articles on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Oct 2026 12:31:20 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tailnet-only services with Envoy Gateway, Cloudflare DNS and Tailscale</title>
+      <link>https://articles.maximemoreillon.com/articles/envoy-tailnet-only/</link>
+      <pubDate>Sat, 10 Oct 2026 12:31:20 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/envoy-tailnet-only/</guid>
+      
+      <description>&lt;p&gt;Some services in my Kubernetes cluster, like HashiCorp Vault, should only be reachable from devices on my &lt;a href=&#34;https://tailscale.com/&#34;&gt;Tailscale&lt;/a&gt; tailnet. They used to be exposed through NodePorts on the node&amp;rsquo;s Tailscale IP, which works but means remembering port numbers. This article shows how to give them proper hostnames through &lt;a href=&#34;https://gateway.envoyproxy.io/&#34;&gt;Envoy Gateway&lt;/a&gt; while keeping them off the internet and the LAN.&lt;/p&gt;
+&lt;p&gt;Three pieces are involved:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cloudflare DNS&lt;/strong&gt;: a public record pointing at the node&amp;rsquo;s Tailscale IP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tailscale&lt;/strong&gt;: split DNS, so devices can resolve that record wherever they are&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Envoy Gateway&lt;/strong&gt;: a dedicated listener, restricted by client IP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cloudflare-a-dns-only-record&#34;&gt;Cloudflare: a DNS-only record&lt;/h2&gt;
+&lt;p&gt;In the Cloudflare dashboard, create an &lt;code&gt;A&lt;/code&gt; record for a wildcard under a dedicated subdomain, pointing at the Tailscale IP of the Kubernetes node:&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Vaultwarden hiding Email 2FA behind a Cloudflare tunnel</title>
+      <link>https://articles.maximemoreillon.com/articles/vaultwarden-cloudflare-cache-email-2fa/</link>
+      <pubDate>Thu, 08 Oct 2026 08:00:05 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/vaultwarden-cloudflare-cache-email-2fa/</guid>
+      
+      <description>&lt;p&gt;I run a &lt;a href=&#34;https://github.com/dani-garcia/vaultwarden&#34;&gt;Vaultwarden&lt;/a&gt; instance that can be reached through two hostnames: one goes through a Cloudflare tunnel, the other through a router port forward straight to Envoy Gateway. After configuring SMTP so that users could enable two-step login by email, the Email option appeared in the web vault&amp;rsquo;s two-step login settings (&lt;code&gt;/#/settings/security/two-factor&lt;/code&gt;) on the second hostname, but not on the first.&lt;/p&gt;
+&lt;h2 id=&#34;the-problem&#34;&gt;The problem&lt;/h2&gt;
+&lt;p&gt;Both hostnames lead to the same pod, so the difference had to come from what sits in front of it. The API returned the same server configuration either way:&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>A host-only storage network to survive ISP network changes</title>
       <link>https://articles.maximemoreillon.com/articles/proxmox-storage-bridge/</link>
@@ -81,10 +113,10 @@
     
     <item>
       <title>Exposing Envoy Gateway on ports 80 and 443 with hostPort</title>
-      <link>https://articles.maximemoreillon.com/articles/envoy-gateway-hostport/</link>
+      <link>https://articles.maximemoreillon.com/articles/envoy-hostport/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0900</pubDate>
       
-      <guid>https://articles.maximemoreillon.com/articles/envoy-gateway-hostport/</guid>
+      <guid>https://articles.maximemoreillon.com/articles/envoy-hostport/</guid>
       
       <description>&lt;p&gt;In &lt;a href=&#34;https://articles.maximemoreillon.com/articles/ingress-nginx-controller-to-envoy-gateway/&#34;&gt;my article on migrating to Envoy Gateway&lt;/a&gt;, I exposed Envoy through a &lt;code&gt;NodePort&lt;/code&gt; service and pointed the router&amp;rsquo;s port-forwards at the assigned ports, as a &lt;code&gt;NodePort&lt;/code&gt; cannot use the standard HTTP and HTTPS ports. Accessing apps directly on the local LAN, however, then requires specifying a non-standard port in the URL. On a single-node homelab cluster, &lt;code&gt;hostPort&lt;/code&gt; avoids this: it binds a container port directly on the node&amp;rsquo;s network interface, so the node answers on ports 80 and 443 with nothing in between. Unlike &lt;code&gt;hostNetwork&lt;/code&gt;, the pod keeps its own network namespace.&lt;/p&gt;</description>
       
@@ -102,6 +134,17 @@
 &lt;p&gt;The Envoy access log showed why: every sync downloaded the whole collection.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;GET /index.php/apps/notes/api/v1/notes?pruneBefore=0   200   4.8 MB
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;With around 5,000 notes, that is a lot of data to fetch for a sync that usually has nothing to update. According to the &lt;a href=&#34;https://github.com/nextcloud/notes/blob/main/docs/api/v1.md&#34;&gt;Notes API documentation&lt;/a&gt;, a client is supposed to send the &lt;code&gt;Last-Modified&lt;/code&gt; timestamp and the &lt;code&gt;ETag&lt;/code&gt; of the previous response, so that the server only returns what changed. Behind Ingress NGINX, this worked. Behind Envoy Gateway, &lt;code&gt;pruneBefore&lt;/code&gt; was always &lt;code&gt;0&lt;/code&gt;.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title>Synchronizing a local user table with an OIDC identity provider</title>
+      <link>https://articles.maximemoreillon.com/articles/oidc-local-user-sync/</link>
+      <pubDate>Fri, 18 Sep 2026 08:28:42 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/oidc-local-user-sync/</guid>
+      
+      <description>&lt;p&gt;Applications authenticating via OIDC might not need a local user table at all; the session can simply hold whatever claims the identity provider hands back for the user currently logged in. The trouble starts as soon as the application needs to display data about users other than the one currently logged in, for example a list of items with the name of their owner. Other tables can only reference a user by an identifier such as &lt;code&gt;sub&lt;/code&gt;, and the OIDC flow only ever hands back claims for whoever is logging in at that moment, so there is no way to look up another user&amp;rsquo;s name without keeping a local copy of it. This article shows a pattern for solving this in a &lt;a href=&#34;https://nuxt.com/&#34;&gt;Nuxt&lt;/a&gt; application using &lt;a href=&#34;https://github.com/atinux/nuxt-auth-utils&#34;&gt;&lt;code&gt;nuxt-auth-utils&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://orm.drizzle.team/&#34;&gt;Drizzle ORM&lt;/a&gt;, where a minimal local copy of each user is upserted into a PostgreSQL table on every successful login.&lt;/p&gt;</description>
       
     </item>
     

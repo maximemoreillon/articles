@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-us"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">Synchronizing a local user table with an OIDC identity provider | Maxime Moreillon</title>
+<meta property="og:title" content="Synchronizing a local user table with an OIDC identity provider | Maxime Moreillon" />
+<meta name="twitter:title" content="Synchronizing a local user table with an OIDC identity provider | Maxime Moreillon" />
+<meta itemprop="name" content="Synchronizing a local user table with an OIDC identity provider | Maxime Moreillon" />
+<meta name="application-name" content="Synchronizing a local user table with an OIDC identity provider | Maxime Moreillon" />
+<meta property="og:site_name" content="" />
+
+<meta name="description" content="">
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+<meta property="og:locale" content="en-us" />
+<meta name="language" content="en-us" />
+
+  <link rel="alternate" hreflang="en" href="https://articles.maximemoreillon.com/articles/oidc-local-user-sync/" title="" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.162.1">
+
+    
+    <meta property="og:url" content="https://articles.maximemoreillon.com/articles/oidc-local-user-sync/">
+	<meta property="og:site_name" content="Maxime Moreillon">
+	<meta property="og:title" content="Synchronizing a local user table with an OIDC identity provider">
+	<meta property="og:description" content="Applications authenticating via OIDC might not need a local user table at all; the session can simply hold whatever claims the identity provider hands back for the user currently logged in. The trouble starts as soon as the application needs to display data about users other than the one currently logged in, for example a list of items with the name of their owner. Other tables can only reference a user by an identifier such as sub, and the OIDC flow only ever hands back claims for whoever is logging in at that moment, so there is no way to look up another user’s name without keeping a local copy of it. This article shows a pattern for solving this in a Nuxt application using nuxt-auth-utils and Drizzle ORM, where a minimal local copy of each user is upserted into a PostgreSQL table on every successful login.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="articles">
+		<meta property="article:published_time" content="2026-09-18T08:28:42+09:00">
+		<meta property="article:modified_time" content="2026-09-18T08:28:42+09:00">
+		<meta property="article:tag" content="Nuxt">
+		<meta property="article:tag" content="OIDC">
+		<meta property="article:tag" content="Authentication">
+		<meta property="article:tag" content="Drizzle ORM">
+
+
+    
+    
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Synchronizing a local user table with an OIDC identity provider">
+	<meta name="twitter:description" content="Applications authenticating via OIDC might not need a local user table at all; the session can simply hold whatever claims the identity provider hands back for the user currently logged in. The trouble starts as soon as the application needs to display data about users other than the one currently logged in, for example a list of items with the name of their owner. Other tables can only reference a user by an identifier such as sub, and the OIDC flow only ever hands back claims for whoever is logging in at that moment, so there is no way to look up another user’s name without keeping a local copy of it. This article shows a pattern for solving this in a Nuxt application using nuxt-auth-utils and Drizzle ORM, where a minimal local copy of each user is upserted into a PostgreSQL table on every successful login.">
+
+
+    
+
+    <link rel="canonical" href="https://articles.maximemoreillon.com/articles/oidc-local-user-sync/">
+    <link href="/style.min.a33114132b9beae04b506d6e1768c6cb3880b2616618954dbfa32e335ee73357.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://articles.maximemoreillon.com/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+    <meta name="color-scheme" content="light dark">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        
+        <a href="https://articles.maximemoreillon.com/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/articles/">
+                        Articles
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/tags/">
+                        Tags
+                    </a>
+                    
+                </li>
+                
+            </ul>
+
+            <div class="tools">
+
+                
+                <button id="search-trigger" aria-label="Search (Ctrl+K)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <a id="mode" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div id="search-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Search">
+    <div id="search-box">
+        <div id="search"></div>
+    </div>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var overlay = document.getElementById('search-overlay');
+    var trigger = document.getElementById('search-trigger');
+    var initialized = false;
+
+    function loadPagefind() {
+        return new Promise(function (resolve) {
+            if (typeof PagefindUI !== 'undefined') { resolve(); return; }
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = '/pagefind/pagefind-ui.css';
+            document.head.appendChild(link);
+            var script = document.createElement('script');
+            script.src = '/pagefind/pagefind-ui.js';
+            script.onload = resolve;
+            script.onerror = resolve;
+            document.head.appendChild(script);
+        });
+    }
+
+    function focusInput() {
+        setTimeout(function () {
+            var input = document.querySelector('.pagefind-ui__search-input');
+            if (input) input.focus();
+        }, 50);
+    }
+
+    function openSearch() {
+        overlay.setAttribute('aria-hidden', 'false');
+        overlay.classList.add('is-open');
+        if (!initialized) {
+            loadPagefind().then(function () {
+                if (typeof PagefindUI !== 'undefined') {
+                    new PagefindUI({ element: '#search', showSubResults: true });
+                    initialized = true;
+                }
+                focusInput();
+            });
+        } else {
+            focusInput();
+        }
+    }
+
+    function closeSearch() {
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.classList.remove('is-open');
+    }
+
+    trigger.addEventListener('click', openSearch);
+
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeSearch();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeSearch();
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+    });
+});
+</script>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Synchronizing a local user table with an OIDC identity provider</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-09-18T08:28:42&#43;09:00" itemprop="datePublished"> 18 Sep 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>Applications authenticating via OIDC might not need a local user table at all; the session can simply hold whatever claims the identity provider hands back for the user currently logged in. The trouble starts as soon as the application needs to display data about users other than the one currently logged in, for example a list of items with the name of their owner. Other tables can only reference a user by an identifier such as <code>sub</code>, and the OIDC flow only ever hands back claims for whoever is logging in at that moment, so there is no way to look up another user&rsquo;s name without keeping a local copy of it. This article shows a pattern for solving this in a <a href="https://nuxt.com/">Nuxt</a> application using <a href="https://github.com/atinux/nuxt-auth-utils"><code>nuxt-auth-utils</code></a> and <a href="https://orm.drizzle.team/">Drizzle ORM</a>, where a minimal local copy of each user is upserted into a PostgreSQL table on every successful login.</p>
+<h2 id="the-users-table">The users table</h2>
+<p>Here is the <a href="https://orm.drizzle.team/">Drizzle</a> schema for the local <code>users</code> table. It only stores what the application actually needs: the issuer and subject claims from the OIDC token, which together uniquely identify the user, and a display name. The combination of <code>issuer</code> and <code>sub</code> is declared unique, since the same <code>sub</code> value could in theory be reused across different identity providers.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">users</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pgTable</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;users&#34;</span>,
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">serial</span>().<span style="color:#a6e22e">primaryKey</span>(),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">issuer</span>: <span style="color:#66d9ef">text</span>().<span style="color:#a6e22e">notNull</span>(),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sub</span>: <span style="color:#66d9ef">text</span>().<span style="color:#a6e22e">notNull</span>(),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">text</span>(),
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">table</span>) <span style="color:#f92672">=&gt;</span> [<span style="color:#66d9ef">unique</span>().<span style="color:#a6e22e">on</span>(<span style="color:#a6e22e">table</span>.<span style="color:#a6e22e">issuer</span>, <span style="color:#a6e22e">table</span>.<span style="color:#a6e22e">sub</span>)],
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>Having a local, auto-incrementing <code>id</code> also means other tables can reference the user with a plain integer foreign key instead of a composite <code>(issuer, sub)</code> pair, for example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">items</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pgTable</span>(<span style="color:#e6db74">&#34;items&#34;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">serial</span>().<span style="color:#a6e22e">primaryKey</span>(),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">owner_id</span>: <span style="color:#66d9ef">integer</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">notNull</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">references</span>(() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">id</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="the-oidc-callback-route">The OIDC callback route</h2>
+<p><code>nuxt-auth-utils</code> exposes <code>defineOAuthOidcEventHandler</code>, which handles the OIDC redirect flow and hands back the provider&rsquo;s <code>user</code> claims and <code>tokens</code> once the login succeeds. The route reads the issuer out of the ID token itself (via <a href="https://github.com/panva/jose"><code>jose</code></a>&rsquo;s <code>decodeJwt</code>), upserts a local user record, and stores that local record in the session instead of the raw OIDC claims.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">decodeJwt</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;jose&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">defineOAuthOidcEventHandler</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">config</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">scope</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;openid&#34;</span>, <span style="color:#e6db74">&#34;profile&#34;</span>],
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">onSuccess</span>(<span style="color:#a6e22e">event</span>, { <span style="color:#a6e22e">user</span>, <span style="color:#a6e22e">tokens</span> }) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">issuer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">tokens</span>.<span style="color:#a6e22e">id_token</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">decodeJwt</span>(<span style="color:#a6e22e">tokens</span>.<span style="color:#a6e22e">id_token</span>).<span style="color:#a6e22e">iss</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">issuer</span>) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;ID token is missing an issuer&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dbUser</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">upsertUser</span>(<span style="color:#a6e22e">issuer</span>, <span style="color:#a6e22e">user</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">setUserSession</span>(<span style="color:#a6e22e">event</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">dbUser</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">sendRedirect</span>(<span style="color:#a6e22e">event</span>, <span style="color:#e6db74">&#34;/&#34;</span>);
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">onError</span>(<span style="color:#a6e22e">event</span>, <span style="color:#a6e22e">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#e6db74">&#34;OIDC error:&#34;</span>, <span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">sendRedirect</span>(<span style="color:#a6e22e">event</span>, <span style="color:#e6db74">&#34;/&#34;</span>);
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Storing <code>dbUser</code> in the session, rather than the OIDC <code>user</code> object, means the rest of the application only ever deals with the shape of the local <code>users</code> table (including its local <code>id</code>), regardless of which identity provider was used to authenticate.</p>
+<h2 id="upserting-the-user">Upserting the user</h2>
+<p>The actual upsert lives in a small utility function. It relies on Drizzle&rsquo;s <code>onConflictDoUpdate</code> against the <code>(issuer, sub)</code> unique constraint to either insert a new user or refresh the existing one&rsquo;s <code>name</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">sub</span>: <span style="color:#66d9ef">string</span>; <span style="color:#a6e22e">name?</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">null</span> };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">upsertUser</span>(<span style="color:#a6e22e">issuer</span>: <span style="color:#66d9ef">string</span>, { <span style="color:#a6e22e">sub</span>, <span style="color:#a6e22e">name</span> }<span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">user</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">db</span>
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">insert</span>(<span style="color:#a6e22e">schema</span>.<span style="color:#a6e22e">users</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">values</span>({ <span style="color:#a6e22e">issuer</span>, <span style="color:#a6e22e">sub</span>, <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">name</span> <span style="color:#f92672">??</span> <span style="color:#66d9ef">null</span> })
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">onConflictDoUpdate</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">target</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">schema</span>.<span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">issuer</span>, <span style="color:#a6e22e">schema</span>.<span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">sub</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">set</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">name</span> },
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">returning</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">user</span>) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#34;Failed to upsert user&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Because this runs on every login, the local copy self-heals: if a user&rsquo;s display name changes at the identity provider, the change is picked up the next time they sign in, without any separate sync job.</p>
+<h2 id="why-this-works-well">Why this works well</h2>
+<ul>
+<li>The local <code>id</code> gives the rest of the schema a stable, simple foreign key to reference, instead of a composite <code>(issuer, sub)</code> pair or the OIDC <code>sub</code> alone.</li>
+<li>The unique constraint on <code>(issuer, sub)</code> makes the upsert idempotent and keeps the door open to supporting more than one identity provider without risking <code>sub</code> collisions.</li>
+</ul>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+</div>
+    <small class="footer_copyright">
+        © 2026 Maxime Moreillon.
+        Powered by <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer>
+
+
+
+
+
+
+
+    
+    <script src="https://articles.maximemoreillon.com/js/main.min.4ee188e1744c19816e95a540b2650ed9f033ea0371e74eac8e717355cfca8741.js" integrity="sha256-TuGI4XRMGYFulaVAsmUO2fAz6gNx506sjnFzVc/Kh0E="></script>
+
+    
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vaultwarden on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/vaultwarden/</link>
+    <description>Recent content in Vaultwarden on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Oct 2026 08:00:05 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/vaultwarden/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vaultwarden hiding Email 2FA behind a Cloudflare tunnel</title>
+      <link>https://articles.maximemoreillon.com/articles/vaultwarden-cloudflare-cache-email-2fa/</link>
+      <pubDate>Thu, 08 Oct 2026 08:00:05 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/vaultwarden-cloudflare-cache-email-2fa/</guid>
+      
+      <description>&lt;p&gt;I run a &lt;a href=&#34;https://github.com/dani-garcia/vaultwarden&#34;&gt;Vaultwarden&lt;/a&gt; instance that can be reached through two hostnames: one goes through a Cloudflare tunnel, the other through a router port forward straight to Envoy Gateway. After configuring SMTP so that users could enable two-step login by email, the Email option appeared in the web vault&amp;rsquo;s two-step login settings (&lt;code&gt;/#/settings/security/two-factor&lt;/code&gt;) on the second hostname, but not on the first.&lt;/p&gt;
+&lt;h2 id=&#34;the-problem&#34;&gt;The problem&lt;/h2&gt;
+&lt;p&gt;Both hostnames lead to the same pod, so the difference had to come from what sits in front of it. The API returned the same server configuration either way:&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

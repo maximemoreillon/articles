@@ -3,28 +3,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://articles.maximemoreillon.com/articles/proxmox-storage-bridge/</loc>
-    <lastmod>2026-09-29T00:00:00+09:00</lastmod>
-  </url><url>
     <loc>https://articles.maximemoreillon.com/articles/</loc>
-    <lastmod>2026-09-29T00:00:00+09:00</lastmod>
+    <lastmod>2026-10-10T12:31:20+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/cloudflare/</loc>
+    <lastmod>2026-10-10T12:31:20+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/envoy-gateway/</loc>
+    <lastmod>2026-10-10T12:31:20+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/homelab/</loc>
-    <lastmod>2026-09-29T00:00:00+09:00</lastmod>
+    <lastmod>2026-10-10T12:31:20+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/kubernetes/</loc>
-    <lastmod>2026-09-29T00:00:00+09:00</lastmod>
+    <lastmod>2026-10-10T12:31:20+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/</loc>
+    <lastmod>2026-10-10T12:31:20+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/</loc>
+    <lastmod>2026-10-10T12:31:20+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/envoy-tailnet-only/</loc>
+    <lastmod>2026-10-10T12:31:20+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/tailscale/</loc>
+    <lastmod>2026-10-10T12:31:20+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/vaultwarden/</loc>
+    <lastmod>2026-10-08T08:00:05+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/vaultwarden-cloudflare-cache-email-2fa/</loc>
+    <lastmod>2026-10-08T08:00:05+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/proxmox-storage-bridge/</loc>
     <lastmod>2026-09-29T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/proxmox/</loc>
     <lastmod>2026-09-29T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/proxmox-dhcp/</loc>
-    <lastmod>2026-09-29T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/</loc>
     <lastmod>2026-09-29T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/talos/</loc>
@@ -60,10 +78,7 @@
     <loc>https://articles.maximemoreillon.com/articles/vue-runtime-env-window/</loc>
     <lastmod>2026-09-21T00:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/envoy-gateway/</loc>
-    <lastmod>2026-09-20T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/articles/envoy-gateway-hostport/</loc>
+    <loc>https://articles.maximemoreillon.com/articles/envoy-hostport/</loc>
     <lastmod>2026-09-20T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/gateway-api/</loc>
@@ -74,6 +89,21 @@
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/nextcloud-notes-envoy-gateway-header-case/</loc>
     <lastmod>2026-09-20T00:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/authentication/</loc>
+    <lastmod>2026-09-18T08:28:42+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/drizzle-orm/</loc>
+    <lastmod>2026-09-18T08:28:42+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/nuxt/</loc>
+    <lastmod>2026-09-18T08:28:42+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/oidc/</loc>
+    <lastmod>2026-09-18T08:28:42+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/oidc-local-user-sync/</loc>
+    <lastmod>2026-09-18T08:28:42+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/retiring-oauth2-proxy/</loc>
     <lastmod>2026-09-18T00:00:00+09:00</lastmod>
@@ -91,9 +121,6 @@
     <lastmod>2026-09-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/mongodb/</loc>
-    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/nuxt/</loc>
     <lastmod>2026-09-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/nuxt-v-data-table-server/</loc>
@@ -173,9 +200,6 @@
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/opentelemetry-collector-prometheus/</loc>
     <lastmod>2026-05-26T00:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/drizzle-orm/</loc>
-    <lastmod>2026-05-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/iot/</loc>
     <lastmod>2026-05-25T00:00:00+00:00</lastmod>

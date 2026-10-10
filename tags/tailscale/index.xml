@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tailscale on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/tailscale/</link>
+    <description>Recent content in Tailscale on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 10 Oct 2026 12:31:20 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/tailscale/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tailnet-only services with Envoy Gateway, Cloudflare DNS and Tailscale</title>
+      <link>https://articles.maximemoreillon.com/articles/envoy-tailnet-only/</link>
+      <pubDate>Sat, 10 Oct 2026 12:31:20 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/envoy-tailnet-only/</guid>
+      
+      <description>&lt;p&gt;Some services in my Kubernetes cluster, like HashiCorp Vault, should only be reachable from devices on my &lt;a href=&#34;https://tailscale.com/&#34;&gt;Tailscale&lt;/a&gt; tailnet. They used to be exposed through NodePorts on the node&amp;rsquo;s Tailscale IP, which works but means remembering port numbers. This article shows how to give them proper hostnames through &lt;a href=&#34;https://gateway.envoyproxy.io/&#34;&gt;Envoy Gateway&lt;/a&gt; while keeping them off the internet and the LAN.&lt;/p&gt;
+&lt;p&gt;Three pieces are involved:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cloudflare DNS&lt;/strong&gt;: a public record pointing at the node&amp;rsquo;s Tailscale IP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tailscale&lt;/strong&gt;: split DNS, so devices can resolve that record wherever they are&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Envoy Gateway&lt;/strong&gt;: a dedicated listener, restricted by client IP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cloudflare-a-dns-only-record&#34;&gt;Cloudflare: a DNS-only record&lt;/h2&gt;
+&lt;p&gt;In the Cloudflare dashboard, create an &lt;code&gt;A&lt;/code&gt; record for a wildcard under a dedicated subdomain, pointing at the Tailscale IP of the Kubernetes node:&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>

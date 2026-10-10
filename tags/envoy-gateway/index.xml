@@ -6,13 +6,32 @@
     <description>Recent content in Envoy Gateway on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/envoy-gateway/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Oct 2026 12:31:20 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/envoy-gateway/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tailnet-only services with Envoy Gateway, Cloudflare DNS and Tailscale</title>
+      <link>https://articles.maximemoreillon.com/articles/envoy-tailnet-only/</link>
+      <pubDate>Sat, 10 Oct 2026 12:31:20 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/envoy-tailnet-only/</guid>
+      
+      <description>&lt;p&gt;Some services in my Kubernetes cluster, like HashiCorp Vault, should only be reachable from devices on my &lt;a href=&#34;https://tailscale.com/&#34;&gt;Tailscale&lt;/a&gt; tailnet. They used to be exposed through NodePorts on the node&amp;rsquo;s Tailscale IP, which works but means remembering port numbers. This article shows how to give them proper hostnames through &lt;a href=&#34;https://gateway.envoyproxy.io/&#34;&gt;Envoy Gateway&lt;/a&gt; while keeping them off the internet and the LAN.&lt;/p&gt;
+&lt;p&gt;Three pieces are involved:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cloudflare DNS&lt;/strong&gt;: a public record pointing at the node&amp;rsquo;s Tailscale IP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tailscale&lt;/strong&gt;: split DNS, so devices can resolve that record wherever they are&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Envoy Gateway&lt;/strong&gt;: a dedicated listener, restricted by client IP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cloudflare-a-dns-only-record&#34;&gt;Cloudflare: a DNS-only record&lt;/h2&gt;
+&lt;p&gt;In the Cloudflare dashboard, create an &lt;code&gt;A&lt;/code&gt; record for a wildcard under a dedicated subdomain, pointing at the Tailscale IP of the Kubernetes node:&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Exposing Envoy Gateway on ports 80 and 443 with hostPort</title>
-      <link>https://articles.maximemoreillon.com/articles/envoy-gateway-hostport/</link>
+      <link>https://articles.maximemoreillon.com/articles/envoy-hostport/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0900</pubDate>
       
-      <guid>https://articles.maximemoreillon.com/articles/envoy-gateway-hostport/</guid>
+      <guid>https://articles.maximemoreillon.com/articles/envoy-hostport/</guid>
       
       <description>&lt;p&gt;In &lt;a href=&#34;https://articles.maximemoreillon.com/articles/ingress-nginx-controller-to-envoy-gateway/&#34;&gt;my article on migrating to Envoy Gateway&lt;/a&gt;, I exposed Envoy through a &lt;code&gt;NodePort&lt;/code&gt; service and pointed the router&amp;rsquo;s port-forwards at the assigned ports, as a &lt;code&gt;NodePort&lt;/code&gt; cannot use the standard HTTP and HTTPS ports. Accessing apps directly on the local LAN, however, then requires specifying a non-standard port in the URL. On a single-node homelab cluster, &lt;code&gt;hostPort&lt;/code&gt; avoids this: it binds a container port directly on the node&amp;rsquo;s network interface, so the node answers on ports 80 and 443 with nothing in between. Unlike &lt;code&gt;hostNetwork&lt;/code&gt;, the pod keeps its own network namespace.&lt;/p&gt;</description>
       
