@@ -12,7 +12,13 @@ In Keycloak, create a client for Vault with _Client authentication_ set to `ON`,
 
 ## Policy
 
-Vault's OIDC role needs to be mapped to a policy. The built-in `root` policy cannot be used for this, so a separate `admin` policy granting the needed capabilities has to be created instead and used in the role below.
+Vault's OIDC role needs to be mapped to a policy. The built-in `root` policy cannot be used for this, so a separate `admin` policy granting the needed capabilities has to be created instead:
+
+```
+path "/*" {
+  capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+}
+```
 
 ## Auth method configuration
 
