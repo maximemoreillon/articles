@@ -18,6 +18,7 @@ Vault's OIDC role needs to be mapped to a policy. The built-in `root` policy can
 
 In Vault, enable an `OIDC` auth method with a path such as `keycloak`. Then configure it with:
 
+- Default role: `default`
 - OIDC discovery URL, pointing at the Keycloak realm
 - OIDC client ID, from the Keycloak client created above
 - OIDC client secret, from the same client
