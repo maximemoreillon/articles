@@ -1,6 +1,5 @@
 ---
-date: '2026-10-10T12:31:20+09:00'
-draft: true
+date: "2026-10-10T12:31:20+09:00"
 title: "Tailnet-only services with Envoy Gateway, Cloudflare DNS and Tailscale"
 tags: ["Kubernetes", "Homelab", "Envoy Gateway", "Cloudflare", "Tailscale"]
 ---
@@ -126,10 +125,10 @@ kubectl -n envoy-gateway-system logs deploy/<envoy-deployment> -c envoy --since=
 
 In my case, with Envoy bound to host ports 80/443 and also exposed through a NodePort with `externalTrafficPolicy: Local`:
 
-| Client | Address seen by Envoy |
-| --- | --- |
+| Client                                   | Address seen by Envoy                |
+| ---------------------------------------- | ------------------------------------ |
 | Tailscale, through the node's tailnet IP | `10.244.0.1`, the CNI bridge gateway |
-| Internet, through a router port forward | the client's real public IP |
+| Internet, through a router port forward  | the client's real public IP          |
 
 Tailscale traffic was masqueraded the same way through the host port and the NodePort, so the original `100.x` address could not be matched, but the bridge address could. Public traffic doesn't match it, which is what matters. Nothing else should be allowed: in particular, the pod network must stay out of the list, or anything that proxies requests from inside the cluster would be let in.
 

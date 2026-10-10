@@ -1,6 +1,5 @@
 ---
-date: '2026-10-08T08:00:05+09:00'
-draft: true
+date: "2026-10-08T08:00:05+09:00"
 title: "Vaultwarden hiding Email 2FA behind a Cloudflare tunnel"
 tags: ["Kubernetes", "Homelab", "Vaultwarden", "Cloudflare"]
 ---
@@ -22,7 +21,9 @@ The web vault's `index.html` and its hashed JavaScript bundles were identical to
 The web vault is the regular Bitwarden web client, with a few patches. To hide what a Vaultwarden instance doesn't support or has disabled, Vaultwarden serves a stylesheet, `/css/vaultwarden.css`, that it generates from a template and its current configuration. When no SMTP server is configured, the generated file hides the Email provider:
 
 ```css
-.providers-2fa-1 { display: none !important }
+.providers-2fa-1 {
+  display: none !important;
+}
 ```
 
 The signup link is hidden in the same way when signups are disabled. Unlike the rest of the web vault, this file has no hash in its name, so its URL stays the same when its content changes. Vaultwarden serves it with `cache-control: public, no-cache`, which tells caches to check with the server before reusing it.

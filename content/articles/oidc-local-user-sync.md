@@ -1,6 +1,5 @@
 ---
 date: "2026-09-18T08:28:42+09:00"
-draft: true
 title: "Synchronizing a local user table with an OIDC identity provider"
 tags: ["Nuxt", "OIDC", "Authentication", "Drizzle ORM"]
 ---
