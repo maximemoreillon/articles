@@ -33,7 +33,7 @@
 	<meta property="og:title" content="HashiCorp Vault OIDC with Keycloak">
 	<meta property="og:description" content="HashiCorp Vault supports authenticating users via OIDC, which means it can delegate login to an existing Keycloak instance instead of managing its own set of credentials.
 Keycloak client settings In Keycloak, create a client for Vault with Client authentication set to ON, so that Keycloak issues a client secret for it.
-Policy Vault’s OIDC role needs to be mapped to a policy. The built-in root policy cannot be used for this, so a separate admin policy granting the needed capabilities has to be created instead and used in the role below.">
+Policy Vault’s OIDC role needs to be mapped to a policy. The built-in root policy cannot be used for this, so a separate admin policy granting the needed capabilities has to be created instead:">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -50,7 +50,7 @@ Policy Vault’s OIDC role needs to be mapped to a policy. The built-in root pol
 	<meta name="twitter:title" content="HashiCorp Vault OIDC with Keycloak">
 	<meta name="twitter:description" content="HashiCorp Vault supports authenticating users via OIDC, which means it can delegate login to an existing Keycloak instance instead of managing its own set of credentials.
 Keycloak client settings In Keycloak, create a client for Vault with Client authentication set to ON, so that Keycloak issues a client secret for it.
-Policy Vault’s OIDC role needs to be mapped to a policy. The built-in root policy cannot be used for this, so a separate admin policy granting the needed capabilities has to be created instead and used in the role below.">
+Policy Vault’s OIDC role needs to be mapped to a policy. The built-in root policy cannot be used for this, so a separate admin policy granting the needed capabilities has to be created instead:">
 
 
     
@@ -249,8 +249,11 @@ document.addEventListener('DOMContentLoaded', function () {
 <h2 id="keycloak-client-settings">Keycloak client settings</h2>
 <p>In Keycloak, create a client for Vault with <em>Client authentication</em> set to <code>ON</code>, so that Keycloak issues a client secret for it.</p>
 <h2 id="policy">Policy</h2>
-<p>Vault&rsquo;s OIDC role needs to be mapped to a policy. The built-in <code>root</code> policy cannot be used for this, so a separate <code>admin</code> policy granting the needed capabilities has to be created instead and used in the role below.</p>
-<h2 id="auth-method-configuration">Auth method configuration</h2>
+<p>Vault&rsquo;s OIDC role needs to be mapped to a policy. The built-in <code>root</code> policy cannot be used for this, so a separate <code>admin</code> policy granting the needed capabilities has to be created instead:</p>
+<pre tabindex="0"><code>path &#34;/*&#34; {
+  capabilities = [&#34;create&#34;, &#34;read&#34;, &#34;update&#34;, &#34;delete&#34;, &#34;list&#34;, &#34;sudo&#34;]
+}
+</code></pre><h2 id="auth-method-configuration">Auth method configuration</h2>
 <p>In Vault, enable an <code>OIDC</code> auth method with a path such as <code>keycloak</code>. Then configure it with:</p>
 <ul>
 <li>Default role: <code>default</code></li>
