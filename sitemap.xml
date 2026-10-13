@@ -4,10 +4,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://articles.maximemoreillon.com/articles/</loc>
-    <lastmod>2026-10-13T22:58:04+09:00</lastmod>
+    <lastmod>2026-10-14T07:58:09+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/celery/</loc>
-    <lastmod>2026-10-13T22:58:04+09:00</lastmod>
+    <lastmod>2026-10-14T07:58:09+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/</loc>
+    <lastmod>2026-10-14T07:58:09+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/mongodb/</loc>
+    <lastmod>2026-10-14T07:58:09+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/python/</loc>
+    <lastmod>2026-10-14T07:58:09+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/rabbitmq/</loc>
+    <lastmod>2026-10-14T07:58:09+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/tags/</loc>
+    <lastmod>2026-10-14T07:58:09+09:00</lastmod>
+  </url><url>
+    <loc>https://articles.maximemoreillon.com/articles/celery-result-backend-task-state-store/</loc>
+    <lastmod>2026-10-14T07:58:09+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/fastapi/</loc>
     <lastmod>2026-10-13T22:58:04+09:00</lastmod>
@@ -15,19 +33,7 @@
     <loc>https://articles.maximemoreillon.com/articles/celery-task-events-socketio-fastapi/</loc>
     <lastmod>2026-10-13T22:58:04+09:00</lastmod>
   </url><url>
-    <loc>https://articles.maximemoreillon.com/</loc>
-    <lastmod>2026-10-13T22:58:04+09:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/python/</loc>
-    <lastmod>2026-10-13T22:58:04+09:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/rabbitmq/</loc>
-    <lastmod>2026-10-13T22:58:04+09:00</lastmod>
-  </url><url>
     <loc>https://articles.maximemoreillon.com/tags/socket.io/</loc>
-    <lastmod>2026-10-13T22:58:04+09:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/</loc>
     <lastmod>2026-10-13T22:58:04+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/tags/cloudflare/</loc>
@@ -145,9 +151,6 @@
     <lastmod>2026-09-16T00:00:00+09:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/mongodb-backup-k8s-cronjob/</loc>
-    <lastmod>2026-09-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://articles.maximemoreillon.com/tags/mongodb/</loc>
     <lastmod>2026-09-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://articles.maximemoreillon.com/articles/nuxt-v-data-table-server/</loc>
