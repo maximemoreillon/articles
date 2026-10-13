@@ -12,13 +12,10 @@ Workers only send task events (`task-started`, `task-succeeded`, `task-failed`, 
 
 ```python
 # main.py (worker)
-import logging
 import time
 
 from celery import Celery
 from config import RABBITMQ_URL, MONGODB_URI, TASK_QUEUE, TASK_NAME
-
-logger = logging.getLogger(__name__)
 
 app = Celery(
     'tasks',
@@ -78,8 +75,8 @@ def progressReporter(task):
                 stage=stage,
                 data={} if data is None else data
             )
-        except Exception:
-            logger.warning(f"Could not send progress event {stage}", exc_info=True)
+        except Exception as e:
+            print(f"Could not send progress event {stage}: {e}")
             pausedUntil = time.monotonic() + PROGRESS_PAUSE_AFTER_FAILURE
 
     return report
@@ -148,14 +145,11 @@ Celery's event receiver is built on kombu and is blocking, so it can't run on th
 ```python
 # taskEvents.py
 import asyncio
-import logging
 import threading
 import time
 
 from celeryPublisher import publisher
 from socketioServer import sio
-
-logger = logging.getLogger(__name__)
 
 def startTaskEventReceiver():
     thread = threading.Thread(
@@ -188,9 +182,9 @@ def receiveTaskEvents(loop):
             forwarded = socketEvent(event)
             if forwarded:
                 emit(*forwarded)
-        except Exception:
+        except Exception as e:
             # One bad event must not stop the receiver
-            logger.exception(f"Could not forward task event {event.get('type')}")
+            print(f"Could not forward task event {event.get('type')}: {e}")
 
     while True:
         try:
@@ -200,11 +194,11 @@ def receiveTaskEvents(loop):
                     connection,
                     handlers={"*": forward}
                 )
-                logger.info("Receiving Celery task events")
+                print("Receiving Celery task events")
                 receiver.capture(limit=None, timeout=None, wakeup=True)
-        except Exception:
+        except Exception as e:
             # E.g. RabbitMQ restarting: events sent until receiver is back are lost
-            logger.exception("Celery task events receiver disconnected, reconnecting")
+            print(f"Celery task events receiver disconnected, reconnecting: {e}")
             time.sleep(RECONNECT_DELAY)
 ```
 
