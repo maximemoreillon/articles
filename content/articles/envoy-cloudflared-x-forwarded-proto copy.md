@@ -47,13 +47,13 @@ It only hides the symptom, though. Keycloak still believes the request came over
 
 ## The fix: set the header on the route
 
-A dedicated `HTTPRoute` for the tunnel hostname, attached only to the `http` listener, overwrites the header before the request reaches Keycloak:
+The filter goes on Keycloak's `HTTPRoute`, which overwrites the header before the request reaches Keycloak:
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: keycloak-cloudflare-tunnel
+  name: keycloak
   namespace: keycloak
 spec:
   hostnames:
@@ -61,7 +61,6 @@ spec:
   parentRefs:
     - name: eg
       namespace: envoy-gateway-system
-      sectionName: http
   rules:
     - filters:
         - type: RequestHeaderModifier
@@ -78,7 +77,9 @@ spec:
             value: /
 ```
 
-Forcing `https` is safe here because the hostname is only reachable through Cloudflare, which serves it over HTTPS only. The filter is scoped with `sectionName: http`, so it doesn't affect anything arriving on the `https` listener.
+On the `https` listener, Envoy already sets `X-Forwarded-Proto: https`, so the filter changes nothing there. On the `http` listener, it corrects the header for the tunnel. Forcing `https` is safe as long as no plain-HTTP request can reach the `http` listener from the internet: Cloudflare serves the tunnel hostname over HTTPS only, and port 80 must not be forwarded by the router. Plain-HTTP requests from the LAN also get the header, but `sslRequired: external` already lets private addresses use HTTP, so nothing is weakened.
+
+A single route also avoids a trap. With a separate route for the tunnel hostname on the `http` listener, adding that hostname to the main route as well makes the two conflict. Envoy Gateway then keeps the oldest route, and the header filter is silently ignored.
 
 The discovery document shows whether Keycloak now sees the right scheme: its URLs should all start with `https://`.
 
@@ -95,11 +96,8 @@ curl -s https://keycloak.example.com/realms/master/.well-known/openid-configurat
 }
 ```
 
-Two details matter:
-
-- The hostname must not also be listed in another route attached to the `http` listener. When two routes match the same hostname and path, Envoy Gateway keeps the oldest one, and the header filter would silently be ignored.
-- Other apps behind the tunnel can have the same problem in a different form, for example an OIDC client building an `http://` callback URL. Each one needs the same filter, or its external URL pinned to `https://`.
+Other apps behind the tunnel can have the same problem in a different form, for example an OIDC client building an `http://` callback URL. Each one needs the same filter, or its external URL pinned to `https://`.
 
 ## The cleaner alternative
 
-The workaround fixes one route at a time. A more general solution is to point cloudflared at Envoy's `https` listener instead (`https://<envoy-service>.envoy-gateway-system.svc:443`, with "Match SNI to Host" enabled), so Envoy sets `X-Forwarded-Proto: https` by itself. This requires Envoy to serve a valid certificate for the tunnel hostnames, and the tunnel then depends on that certificate being renewed. Until then, the route above keeps Keycloak working.
+The workaround fixes one route at a time. A more general solution is to point cloudflared at Envoy's `https` listener instead (`https://<envoy-service>.envoy-gateway-system.svc:443`, with "Match SNI to Host" enabled), so Envoy sets `X-Forwarded-Proto: https` by itself and the filter can go. This requires Envoy to serve a valid certificate for the tunnel hostnames, and the tunnel then depends on that certificate being renewed. Until then, the route above keeps Keycloak working.
