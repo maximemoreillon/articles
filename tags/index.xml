@@ -6,11 +6,66 @@
     <description>Recent content in Tags on Maxime Moreillon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Oct 2026 12:31:20 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Oct 2026 22:58:04 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Celery</title>
+      <link>https://articles.maximemoreillon.com/tags/celery/</link>
+      <pubDate>Tue, 13 Oct 2026 22:58:04 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/celery/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>FastAPI</title>
+      <link>https://articles.maximemoreillon.com/tags/fastapi/</link>
+      <pubDate>Tue, 13 Oct 2026 22:58:04 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/fastapi/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://articles.maximemoreillon.com/tags/python/</link>
+      <pubDate>Tue, 13 Oct 2026 22:58:04 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/python/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>RabbitMQ</title>
+      <link>https://articles.maximemoreillon.com/tags/rabbitmq/</link>
+      <pubDate>Tue, 13 Oct 2026 22:58:04 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/rabbitmq/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Socket.IO</title>
+      <link>https://articles.maximemoreillon.com/tags/socket.io/</link>
+      <pubDate>Tue, 13 Oct 2026 22:58:04 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/socket.io/</guid>
+      
+      <description></description>
+      
+    </item>
+    
     <item>
       <title>Cloudflare</title>
       <link>https://articles.maximemoreillon.com/tags/cloudflare/</link>
-      <pubDate>Sat, 10 Oct 2026 12:31:20 +0900</pubDate>
+      <pubDate>Sun, 11 Oct 2026 12:00:00 +0900</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/cloudflare/</guid>
       
@@ -21,7 +76,7 @@
     <item>
       <title>Envoy Gateway</title>
       <link>https://articles.maximemoreillon.com/tags/envoy-gateway/</link>
-      <pubDate>Sat, 10 Oct 2026 12:31:20 +0900</pubDate>
+      <pubDate>Sun, 11 Oct 2026 12:00:00 +0900</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/envoy-gateway/</guid>
       
@@ -32,7 +87,7 @@
     <item>
       <title>Homelab</title>
       <link>https://articles.maximemoreillon.com/tags/homelab/</link>
-      <pubDate>Sat, 10 Oct 2026 12:31:20 +0900</pubDate>
+      <pubDate>Sun, 11 Oct 2026 12:00:00 +0900</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/homelab/</guid>
       
@@ -41,9 +96,20 @@
     </item>
     
     <item>
+      <title>Keycloak</title>
+      <link>https://articles.maximemoreillon.com/tags/keycloak/</link>
+      <pubDate>Sun, 11 Oct 2026 12:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/tags/keycloak/</guid>
+      
+      <description></description>
+      
+    </item>
+    
+    <item>
       <title>Kubernetes</title>
       <link>https://articles.maximemoreillon.com/tags/kubernetes/</link>
-      <pubDate>Sat, 10 Oct 2026 12:31:20 +0900</pubDate>
+      <pubDate>Sun, 11 Oct 2026 12:00:00 +0900</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/kubernetes/</guid>
       
@@ -453,17 +519,6 @@
       <pubDate>Mon, 25 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/sveltekit/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Keycloak</title>
-      <link>https://articles.maximemoreillon.com/tags/keycloak/</link>
-      <pubDate>Sat, 18 Apr 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/keycloak/</guid>
       
       <description></description>
       
@@ -921,17 +976,6 @@
     </item>
     
     <item>
-      <title>Python</title>
-      <link>https://articles.maximemoreillon.com/tags/python/</link>
-      <pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/python/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
       <title>Neo4J</title>
       <link>https://articles.maximemoreillon.com/tags/neo4j/</link>
       <pubDate>Sat, 25 Sep 2021 00:00:00 +0000</pubDate>
@@ -1157,17 +1201,6 @@
       <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/tags/puppeteer/</guid>
-      
-      <description></description>
-      
-    </item>
-    
-    <item>
-      <title>Socket.IO</title>
-      <link>https://articles.maximemoreillon.com/tags/socket.io/</link>
-      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://articles.maximemoreillon.com/tags/socket.io/</guid>
       
       <description></description>
       

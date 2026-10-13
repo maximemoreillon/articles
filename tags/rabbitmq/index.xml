@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RabbitMQ on Maxime Moreillon</title>
+    <link>https://articles.maximemoreillon.com/tags/rabbitmq/</link>
+    <description>Recent content in RabbitMQ on Maxime Moreillon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 Oct 2026 22:58:04 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/rabbitmq/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Forwarding Celery task events to Socket.IO in a FastAPI app</title>
+      <link>https://articles.maximemoreillon.com/articles/celery-task-events-socketio-fastapi/</link>
+      <pubDate>Tue, 13 Oct 2026 22:58:04 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/celery-task-events-socketio-fastapi/</guid>
+      
+      <description>&lt;p&gt;In a FastAPI app that hands long-running jobs, such as training a model, to &lt;a href=&#34;https://docs.celeryq.dev/&#34;&gt;Celery&lt;/a&gt; workers, clients usually want to know how their task is doing: when it starts, how far along it is, and when it succeeds or fails. One way to do this is to build a feedback system of one&amp;rsquo;s own, with a dedicated queue in RabbitMQ that workers publish to and the API consumes. Celery already has such a mechanism, though: &lt;a href=&#34;https://docs.celeryq.dev/en/stable/userguide/monitoring.html#events&#34;&gt;task events&lt;/a&gt;, which workers send through the broker and which anyone connected to it can receive. This article shows how to emit custom progress events from a task and forward all task events to clients with &lt;a href=&#34;https://python-socketio.readthedocs.io/&#34;&gt;Socket.IO&lt;/a&gt;.&lt;/p&gt;</description>
+      
+    </item>
+    
+  </channel>
+</rss>
