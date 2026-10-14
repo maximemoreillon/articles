@@ -30,6 +30,17 @@
     </item>
     
     <item>
+      <title>Verifying OIDC access tokens in FastAPI with JWKS</title>
+      <link>https://articles.maximemoreillon.com/articles/fastapi-oidc-jwks/</link>
+      <pubDate>Sat, 13 Sep 2025 11:00:00 +0900</pubDate>
+      
+      <guid>https://articles.maximemoreillon.com/articles/fastapi-oidc-jwks/</guid>
+      
+      <description>&lt;p&gt;When a frontend authenticates its users with an OIDC identity provider, it typically calls its backend API with the user&amp;rsquo;s access token in the &lt;code&gt;Authorization: Bearer&lt;/code&gt; header. Before trusting the claims in that token, the API needs to verify its signature using the public keys of the identity provider, which are published at the provider&amp;rsquo;s JWKS (JSON Web Key Set) endpoint. Since this has to be done in every API that sits behind the identity provider, I packaged the verification logic as a FastAPI dependency, &lt;a href=&#34;https://github.com/maximemoreillon/fastapi-oidc-jwks&#34;&gt;&lt;code&gt;fastapi-oidc-jwks&lt;/code&gt;&lt;/a&gt;, published on PyPI.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
       <title>Unlocking my apartment with my face</title>
       <link>https://articles.maximemoreillon.com/articles/624/</link>
       <pubDate>Mon, 22 Nov 2021 00:00:00 +0000</pubDate>
