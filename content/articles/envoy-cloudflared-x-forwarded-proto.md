@@ -2,6 +2,7 @@
 date: "2026-10-11T12:00:00+09:00"
 title: 'Fixing Keycloak''s "HTTPS required" behind cloudflared and Envoy Gateway'
 tags: ["Kubernetes", "Homelab", "Envoy Gateway", "Cloudflare", "Keycloak"]
+aliases: ["/articles/envoy-cloudflared-x-forwarded-proto-copy/"]
 ---
 
 In my Kubernetes cluster, public services are exposed through a [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/): `cloudflared` runs in the cluster and forwards requests to [Envoy Gateway](https://gateway.envoyproxy.io/), which routes them to the applications. When I published [Keycloak](https://www.keycloak.org/) this way, every page answered with a 403 and the message "HTTPS required", although the browser was on `https://`. This article explains why and shows a small fix at the route level.
