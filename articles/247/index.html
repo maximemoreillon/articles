@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
             <div class="page-content">
                 <p>Many applications require some form of authorization mechanism to prevent users from accessing restricted content. Authenticated users are commonly in possession of a cookie containing identification data. With the authentication microservice that I designed, this cookie contains a JWT that contains the user&rsquo;s username. This JWT is sent in the authorization header of HTTP requests. Thus, authorization can be performed easily within each application by simply decoding the JWT. To do so, I designed this simple middleware for ExpressJS.</p>
-<p>Its content is fairly straightforward: if a JWT is present in the authorization header, it is sent using an HTTP POST request to the authentication microservice which decodes it. If the JWT is valid, the authentication microservice responds with the user information, allowing the application to decide wether the user should be allowed in or not.</p>
+<p>Its content is fairly straightforward: if a JWT is present in the authorization header, it is sent using an HTTP POST request to the authentication microservice which decodes it. If the JWT is valid, the authentication microservice responds with the user information, allowing the application to decide whether the user should be allowed in or not.</p>
 <p>Source code available on <a href="https://github.com/maximemoreillon/authorization_middleware">GitHub</a></p>
 <p>Available as an <a href="https://www.npmjs.com/package/@moreillon/express_identification_middleware">NPM package</a></p>
 

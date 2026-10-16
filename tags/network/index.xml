@@ -27,7 +27,7 @@
       
       <guid>https://articles.maximemoreillon.com/articles/5/</guid>
       
-      <description>&lt;p&gt;Let&amp;rsquo;s imagine that we&amp;rsquo;ve just finished developping a NodeJS application that listens for HTTP requests on port 8086 and that we have an Apache2 instance listening on port 80.&lt;/p&gt;
+      <description>&lt;p&gt;Let&amp;rsquo;s imagine that we&amp;rsquo;ve just finished developing a NodeJS application that listens for HTTP requests on port 8086 and that we have an Apache2 instance listening on port 80.&lt;/p&gt;
 &lt;p&gt;It is possible to configure Apache so that it connects its clients to the NodeJS app using the proxy module. Here is an example configuration file that does so:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-apacheconf&#34; data-lang=&#34;apacheconf&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;IfModule&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;mod_ssl.c&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;*:443&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;

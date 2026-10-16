@@ -371,7 +371,7 @@
 &lt;p&gt;A complete guide is written here: &lt;a href=&#34;https://docs.docker.com/registry/deploying/&#34;&gt;https://docs.docker.com/registry/deploying/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This article merely summarizes the basics involved in the process.&lt;/p&gt;
 &lt;h2 id=&#34;self-hosted-docker-registry-as-container&#34;&gt;Self-hosted Docker registry as container&lt;/h2&gt;
-&lt;p&gt;A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:&lt;/p&gt;</description>
+&lt;p&gt;A docker registry is an application just like any other and can thus be containerized. In fact, an official image is available on docker hub. It can be run as so:&lt;/p&gt;</description>
       
     </item>
     

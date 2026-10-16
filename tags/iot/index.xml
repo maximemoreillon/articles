@@ -377,7 +377,7 @@
       
       <guid>https://articles.maximemoreillon.com/articles/168/</guid>
       
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.itead.cc/&#34;&gt;ITEAD&lt;/a&gt;&amp;lsquo;s &lt;a href=&#34;https://sonoff.itead.cc/en/&#34;&gt;SONOFF&lt;/a&gt;s are Wi-Fi enabled relays that can be used to turn applicances on and off remotely.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.itead.cc/&#34;&gt;ITEAD&lt;/a&gt;&amp;lsquo;s &lt;a href=&#34;https://sonoff.itead.cc/en/&#34;&gt;SONOFF&lt;/a&gt;s are Wi-Fi enabled relays that can be used to turn appliances on and off remotely.&lt;/p&gt;
 &lt;p&gt;The firmware they come with did not suit my needs so I wrote and flashed my own. This can be achieved easily since the SONOFFS are built around an ESP8266 chip, which can be programmed with the Arduino IDE.&lt;/p&gt;
 &lt;p&gt;Here is a list of functions that the custom firmware features:&lt;/p&gt;
 &lt;ul&gt;

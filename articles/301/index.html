@@ -31,7 +31,7 @@
     <meta property="og:url" content="https://articles.maximemoreillon.com/articles/301/">
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Kubectl create deplpoyment and service at same time">
-	<meta property="og:description" content="Simply add entries for both the deployment and the service in the same manifest, separeted by —
+	<meta property="og:description" content="Simply add entries for both the deployment and the service in the same manifest, separated by —
 apiVersion: apps/v1 kind: Deployment metadata: name: helloserver spec: replicas: 1 selector: matchLabels: app: helloserver template: metadata: labels: app: helloserver spec: containers: - name: helloserver image: 192.168.1.2:5000/helloserver:latest ports: - containerPort: 3333 --- apiVersion: v1 kind: Service metadata: labels: run: helloserver name: helloserver spec: ports: - port: 3333 nodePort: 33333 selector: app: helloserver type: LoadBalancer">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
@@ -46,7 +46,7 @@ apiVersion: apps/v1 kind: Deployment metadata: name: helloserver spec: replicas:
     
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Kubectl create deplpoyment and service at same time">
-	<meta name="twitter:description" content="Simply add entries for both the deployment and the service in the same manifest, separeted by —
+	<meta name="twitter:description" content="Simply add entries for both the deployment and the service in the same manifest, separated by —
 apiVersion: apps/v1 kind: Deployment metadata: name: helloserver spec: replicas: 1 selector: matchLabels: app: helloserver template: metadata: labels: app: helloserver spec: containers: - name: helloserver image: 192.168.1.2:5000/helloserver:latest ports: - containerPort: 3333 --- apiVersion: v1 kind: Service metadata: labels: run: helloserver name: helloserver spec: ports: - port: 3333 nodePort: 33333 selector: app: helloserver type: LoadBalancer">
 
 
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </header>
             
             <div class="page-content">
-                <p>Simply add entries for both the deployment and the service in the same manifest, separeted by &mdash;</p>
+                <p>Simply add entries for both the deployment and the service in the same manifest, separated by &mdash;</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:

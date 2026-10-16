@@ -14,7 +14,7 @@
       
       <guid>https://articles.maximemoreillon.com/articles/untangling-helm-and-argocd/</guid>
       
-      <description>&lt;p&gt;When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the &lt;code&gt;helm list&lt;/code&gt; output would not reflect what the Kubernetes cluster actualy contains.&lt;/p&gt;
+      <description>&lt;p&gt;When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the &lt;code&gt;helm list&lt;/code&gt; output would not reflect what the Kubernetes cluster actually contains.&lt;/p&gt;
 &lt;p&gt;For example:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ helm list -n cert-manager
 NAME          NAMESPACE     REVISION	UPDATED                                	STATUS  	CHART                 APP VERSION

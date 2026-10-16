@@ -31,7 +31,7 @@
     <meta property="og:url" content="https://articles.maximemoreillon.com/articles/76fbaccb-e02e-4b16-bcdb-f3f9e1b1cc31/">
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Using v-model on a prop">
-	<meta property="og:description" content="With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoque the prop update from their parent using $emit.
+	<meta property="og:description" content="With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoke the prop update from their parent using $emit.
 For this purpose, computed values can be leveraged as they provide ways to define custom getters and setters. In this case, the get() method can simply return the value passed as prop by the parent while set() emits the desired new value.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
@@ -46,7 +46,7 @@ For this purpose, computed values can be leveraged as they provide ways to defin
     
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Using v-model on a prop">
-	<meta name="twitter:description" content="With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoque the prop update from their parent using $emit.
+	<meta name="twitter:description" content="With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoke the prop update from their parent using $emit.
 For this purpose, computed values can be leveraged as they provide ways to define custom getters and setters. In this case, the get() method can simply return the value passed as prop by the parent while set() emits the desired new value.">
 
 
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </header>
             
             <div class="page-content">
-                <p>With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoque the prop update from their parent using $emit.</p>
+                <p>With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoke the prop update from their parent using $emit.</p>
 <p>For this purpose, computed values can be leveraged as they provide ways to define custom getters and setters. In this case, the get() method can simply return the value passed as prop by the parent while set() emits the desired new value.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">template</span>&gt;
 </span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span>&gt;

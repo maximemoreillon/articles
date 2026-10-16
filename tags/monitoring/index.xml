@@ -14,7 +14,7 @@
       
       <guid>https://articles.maximemoreillon.com/articles/aruba-monitoring/</guid>
       
-      <description>&lt;p&gt;I currently use an Aruba IAP-315 (ArubaOS v8) as WiFi access point. Although it provides insight such as the number connected clients on its own web interface, I wanted to visualize this data in Grafana.&lt;/p&gt;
+      <description>&lt;p&gt;I currently use an Aruba IAP-315 (ArubaOS v8) as a WiFi access point. Although it provides insight such as the number of connected clients on its own web interface, I wanted to visualize this data in Grafana.&lt;/p&gt;
 &lt;p&gt;This can be achieved thanks to Aruba access points&amp;rsquo; support of the SNMP protocol, which can be exported as Prometheus metrics using the &lt;a href=&#34;https://github.com/prometheus/snmp_exporter/tree/main&#34;&gt;Prometheus SNMP Exporter&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This article focuses simply on client count but more data can be extracted in similar fashion.&lt;/p&gt;</description>
       

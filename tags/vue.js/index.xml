@@ -274,7 +274,7 @@ Here is &lt;code&gt;server/api/movies/index.get.ts&lt;/code&gt;&lt;/p&gt;
       
       <guid>https://articles.maximemoreillon.com/articles/76fbaccb-e02e-4b16-bcdb-f3f9e1b1cc31/</guid>
       
-      <description>&lt;p&gt;With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoque the prop update from their parent using $emit.&lt;/p&gt;
+      <description>&lt;p&gt;With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoke the prop update from their parent using $emit.&lt;/p&gt;
 &lt;p&gt;For this purpose, computed values can be leveraged as they provide ways to define custom getters and setters. In this case, the get() method can simply return the value passed as prop by the parent while set() emits the desired new value.&lt;/p&gt;</description>
       
     </item>

@@ -32,7 +32,7 @@
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Low pass filter for Arduino">
 	<meta property="og:description" content="A low pass filter written as class for Arduino code
-class LowPassFilter { private: float filter_constant; public: float output; LowPassFilter(float filter_constant) { // Constructor this-&gt;output = 0; this-&gt;filter_constant = filter_constant; } void feed(float input) { this-&gt;output = (this-&gt;output)*(1.00 - this-&gt;filter_constant) &#43; input * (this-&gt;filter_constant); } }; Top use it, simply instanciate a LowPassFilter object:
+class LowPassFilter { private: float filter_constant; public: float output; LowPassFilter(float filter_constant) { // Constructor this-&gt;output = 0; this-&gt;filter_constant = filter_constant; } void feed(float input) { this-&gt;output = (this-&gt;output)*(1.00 - this-&gt;filter_constant) &#43; input * (this-&gt;filter_constant); } }; To use it, simply instantiate a LowPassFilter object:
 LowPassFilter lpf1(FILTER_CONSTANT); Then feed values into it:
 lpf1.feed(sample); The output of the filter can be accessed using:
 lpf1.output">
@@ -49,7 +49,7 @@ lpf1.output">
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Low pass filter for Arduino">
 	<meta name="twitter:description" content="A low pass filter written as class for Arduino code
-class LowPassFilter { private: float filter_constant; public: float output; LowPassFilter(float filter_constant) { // Constructor this-&gt;output = 0; this-&gt;filter_constant = filter_constant; } void feed(float input) { this-&gt;output = (this-&gt;output)*(1.00 - this-&gt;filter_constant) &#43; input * (this-&gt;filter_constant); } }; Top use it, simply instanciate a LowPassFilter object:
+class LowPassFilter { private: float filter_constant; public: float output; LowPassFilter(float filter_constant) { // Constructor this-&gt;output = 0; this-&gt;filter_constant = filter_constant; } void feed(float input) { this-&gt;output = (this-&gt;output)*(1.00 - this-&gt;filter_constant) &#43; input * (this-&gt;filter_constant); } }; To use it, simply instantiate a LowPassFilter object:
 LowPassFilter lpf1(FILTER_CONSTANT); Then feed values into it:
 lpf1.feed(sample); The output of the filter can be accessed using:
 lpf1.output">
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div><p>Top use it, simply instanciate a LowPassFilter object:</p>
+</span></span></code></pre></div><p>To use it, simply instantiate a LowPassFilter object:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>LowPassFilter <span style="color:#a6e22e">lpf1</span>(FILTER_CONSTANT);
 </span></span></code></pre></div><p>Then feed values into it:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>lpf1.feed(sample);

@@ -9,10 +9,10 @@
     <lastBuildDate>Sun, 11 Oct 2026 12:00:00 +0900</lastBuildDate><atom:link href="https://articles.maximemoreillon.com/tags/cloudflare/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fixing Keycloak&#39;s &#34;HTTPS required&#34; behind cloudflared and Envoy Gateway</title>
-      <link>https://articles.maximemoreillon.com/articles/envoy-cloudflared-x-forwarded-proto-copy/</link>
+      <link>https://articles.maximemoreillon.com/articles/envoy-cloudflared-x-forwarded-proto/</link>
       <pubDate>Sun, 11 Oct 2026 12:00:00 +0900</pubDate>
       
-      <guid>https://articles.maximemoreillon.com/articles/envoy-cloudflared-x-forwarded-proto-copy/</guid>
+      <guid>https://articles.maximemoreillon.com/articles/envoy-cloudflared-x-forwarded-proto/</guid>
       
       <description>&lt;p&gt;In my Kubernetes cluster, public services are exposed through a &lt;a href=&#34;https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/&#34;&gt;Cloudflare Tunnel&lt;/a&gt;: &lt;code&gt;cloudflared&lt;/code&gt; runs in the cluster and forwards requests to &lt;a href=&#34;https://gateway.envoyproxy.io/&#34;&gt;Envoy Gateway&lt;/a&gt;, which routes them to the applications. When I published &lt;a href=&#34;https://www.keycloak.org/&#34;&gt;Keycloak&lt;/a&gt; this way, every page answered with a 403 and the message &amp;ldquo;HTTPS required&amp;rdquo;, although the browser was on &lt;code&gt;https://&lt;/code&gt;. This article explains why and shows a small fix at the route level.&lt;/p&gt;
 &lt;h2 id=&#34;the-setup&#34;&gt;The setup&lt;/h2&gt;

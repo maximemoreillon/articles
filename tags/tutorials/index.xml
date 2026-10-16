@@ -50,21 +50,21 @@
       
       <guid>https://articles.maximemoreillon.com/articles/express-controllers-services/</guid>
       
-      <description>&lt;p&gt;In early development of an Express application, it is tempting to write business loginc in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes &lt;code&gt;(req, res)&lt;/code&gt;, reads from &lt;code&gt;req.params&lt;/code&gt; or &lt;code&gt;req.body&lt;/code&gt;, and writes directly to &lt;code&gt;res&lt;/code&gt;. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.&lt;/p&gt;</description>
+      <description>&lt;p&gt;In early development of an Express application, it is tempting to write business logic in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes &lt;code&gt;(req, res)&lt;/code&gt;, reads from &lt;code&gt;req.params&lt;/code&gt; or &lt;code&gt;req.body&lt;/code&gt;, and writes directly to &lt;code&gt;res&lt;/code&gt;. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.&lt;/p&gt;</description>
       
     </item>
     
     <item>
-      <title>Grafana database migration from SQLite to postgresql</title>
+      <title>Grafana database migration from SQLite to PostgreSQL</title>
       <link>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</link>
       <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</guid>
       
       <description>&lt;p&gt;By default, Grafana stores its settings in an SQLite database but it can be configured to use PostgreSQL instead.&lt;/p&gt;
-&lt;p&gt;This article explains how to migrate settings from an existing Grafana instance from SQLite to PostgreSQL using &lt;code&gt;pgloader&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This article explains how to migrate settings from an existing Grafana instance from SQLite to PostgreSQL using &lt;code&gt;pgloader&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;This approach is based on &lt;a href=&#34;https://polyglot.jamie.ly/programming/2019/07/01/grafana-sqlite-to-postgres.html&#34;&gt;this article&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Here, both Grafana and PostgreSQL are deployed in Kubernete but the general approach would would for other kind of installations as well.&lt;/p&gt;
+&lt;p&gt;Here, both Grafana and PostgreSQL are deployed in Kubernetes but the general approach would work for other kinds of installations as well.&lt;/p&gt;
 &lt;h2 id=&#34;getting-the-sqlite-db&#34;&gt;Getting the SQLite DB&lt;/h2&gt;
 &lt;p&gt;Getting the SQLite database from the existing Grafana instance can be achieved by simply copying it over locally. Here, we are putting it in a folder named &lt;code&gt;pgloader&lt;/code&gt; for reasons that will become clear later.&lt;/p&gt;</description>
       
@@ -563,7 +563,7 @@
       
       <guid>https://articles.maximemoreillon.com/articles/76fbaccb-e02e-4b16-bcdb-f3f9e1b1cc31/</guid>
       
-      <description>&lt;p&gt;With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoque the prop update from their parent using $emit.&lt;/p&gt;
+      <description>&lt;p&gt;With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoke the prop update from their parent using $emit.&lt;/p&gt;
 &lt;p&gt;For this purpose, computed values can be leveraged as they provide ways to define custom getters and setters. In this case, the get() method can simply return the value passed as prop by the parent while set() emits the desired new value.&lt;/p&gt;</description>
       
     </item>
@@ -784,7 +784,7 @@
       
       <guid>https://articles.maximemoreillon.com/articles/15/</guid>
       
-      <description>&lt;p&gt;There are four main kind of operations when working with a database: &lt;strong&gt;C&lt;/strong&gt;reate, &lt;strong&gt;R&lt;/strong&gt;ead, &lt;strong&gt;U&lt;/strong&gt;pdate and &lt;strong&gt;D&lt;/strong&gt;elete (CRUD). However, databases are usually not exposed directly to the clients. Instead, those operations are performed by a server side application with a client-facing API. The most common type of APIs nowadays are based on HTTP. An HTTP API can be built with complete freedom. However, guidelines for best-practice HTTP API design have been created. An API following those guidlines is called a REST (or RESTful) API.&lt;/p&gt;</description>
+      <description>&lt;p&gt;There are four main kind of operations when working with a database: &lt;strong&gt;C&lt;/strong&gt;reate, &lt;strong&gt;R&lt;/strong&gt;ead, &lt;strong&gt;U&lt;/strong&gt;pdate and &lt;strong&gt;D&lt;/strong&gt;elete (CRUD). However, databases are usually not exposed directly to the clients. Instead, those operations are performed by a server side application with a client-facing API. The most common type of APIs nowadays are based on HTTP. An HTTP API can be built with complete freedom. However, guidelines for best-practice HTTP API design have been created. An API following those guidelines is called a REST (or RESTful) API.&lt;/p&gt;</description>
       
     </item>
     
@@ -1220,7 +1220,7 @@
       <description>&lt;h2 id=&#34;adding-user&#34;&gt;Adding user&lt;/h2&gt;
 &lt;p&gt;In linux, or at least Ubuntu, a user can be added using:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;adduser username
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;adduser&lt;/code&gt; is a user-friendly command that uses &lt;code&gt;useradd&lt;/code&gt; as back-end. Thus, &lt;code&gt;adduser&lt;/code&gt; should be prefered to &lt;code&gt;useradd&lt;/code&gt;.&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;adduser&lt;/code&gt; is a user-friendly command that uses &lt;code&gt;useradd&lt;/code&gt; as back-end. Thus, &lt;code&gt;adduser&lt;/code&gt; should be preferred to &lt;code&gt;useradd&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;adding-user-to-a-group&#34;&gt;Adding user to a group&lt;/h2&gt;
 &lt;p&gt;A user can be added to a group using:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;adduser username groupname
@@ -1349,7 +1349,7 @@
       <guid>https://articles.maximemoreillon.com/articles/304/</guid>
       
       <description>&lt;p&gt;MongoDB&amp;rsquo;s upsert option enables the creation of a new document if the query of an update operationdoesn&amp;rsquo;t match any existing document. Basically, an update command with upsert creates a document if it does notexist already, and update it otherwise.&lt;/p&gt;
-&lt;p&gt;This operation is rather striaghtforward when updating single documents but can be trickier when applied to multiple documents at conce. For multiple documents, bulkWrite can be used:&lt;/p&gt;
+&lt;p&gt;This operation is rather straightforward when updating single documents but can be trickier when applied to multiple documents at once. For multiple documents, bulkWrite can be used:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;bulk_operations&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [];
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;transaction&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;of&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;transactions&lt;/span&gt;) {
@@ -1380,7 +1380,7 @@
       
       <guid>https://articles.maximemoreillon.com/articles/301/</guid>
       
-      <description>&lt;p&gt;Simply add entries for both the deployment and the service in the same manifest, separeted by &amp;mdash;&lt;/p&gt;
+      <description>&lt;p&gt;Simply add entries for both the deployment and the service in the same manifest, separated by &amp;mdash;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;apiVersion&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;apps/v1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;kind&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Deployment&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;metadata&lt;/span&gt;:
@@ -1515,7 +1515,7 @@
       
       <guid>https://articles.maximemoreillon.com/articles/385/</guid>
       
-      <description>&lt;p&gt;This article is based on &lt;a href=&#34;https://www.freecodecamp.org/news/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78/&#34;&gt;this publiation&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;This article is based on &lt;a href=&#34;https://www.freecodecamp.org/news/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78/&#34;&gt;this publication&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To publish to npm, being logged in is required:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;npm login
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The package to be published must be contained in its own directory, which must include a &lt;code&gt;package.json&lt;/code&gt; file&lt;/p&gt;
@@ -1704,7 +1704,7 @@
 &lt;p&gt;A complete guide is written here: &lt;a href=&#34;https://docs.docker.com/registry/deploying/&#34;&gt;https://docs.docker.com/registry/deploying/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This article merely summarizes the basics involved in the process.&lt;/p&gt;
 &lt;h2 id=&#34;self-hosted-docker-registry-as-container&#34;&gt;Self-hosted Docker registry as container&lt;/h2&gt;
-&lt;p&gt;A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:&lt;/p&gt;</description>
+&lt;p&gt;A docker registry is an application just like any other and can thus be containerized. In fact, an official image is available on docker hub. It can be run as so:&lt;/p&gt;</description>
       
     </item>
     

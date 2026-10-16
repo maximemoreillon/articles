@@ -31,7 +31,7 @@
     <meta property="og:url" content="https://articles.maximemoreillon.com/articles/express-controllers-services/">
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Decoupling business logic from Express with a service layer">
-	<meta property="og:description" content="In early development of an Express application, it is tempting to write business loginc in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes (req, res), reads from req.params or req.body, and writes directly to res. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.">
+	<meta property="og:description" content="In early development of an Express application, it is tempting to write business logic in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes (req, res), reads from req.params or req.body, and writes directly to res. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.">
 	<meta property="og:locale" content="en_us">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="articles">
@@ -46,7 +46,7 @@
     
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Decoupling business logic from Express with a service layer">
-	<meta name="twitter:description" content="In early development of an Express application, it is tempting to write business loginc in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes (req, res), reads from req.params or req.body, and writes directly to res. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.">
+	<meta name="twitter:description" content="In early development of an Express application, it is tempting to write business logic in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes (req, res), reads from req.params or req.body, and writes directly to res. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.">
 
 
     
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </header>
             
             <div class="page-content">
-                <p>In early development of an Express application, it is tempting to write business loginc in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes <code>(req, res)</code>, reads from <code>req.params</code> or <code>req.body</code>, and writes directly to <code>res</code>. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.</p>
+                <p>In early development of an Express application, it is tempting to write business logic in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes <code>(req, res)</code>, reads from <code>req.params</code> or <code>req.body</code>, and writes directly to <code>res</code>. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.</p>
 <p>The fix is a service layer: plain functions that contain the actual business logic and know nothing about HTTP. Controllers become a thin adapter between Express and the services.</p>
 <h2 id="before-everything-in-the-route-handler">Before: everything in the route handler</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">&#34;/users/:id&#34;</span>, <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) <span style="color:#f92672">=&gt;</span> {

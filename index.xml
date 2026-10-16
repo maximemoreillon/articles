@@ -66,10 +66,10 @@
     
     <item>
       <title>Fixing Keycloak&#39;s &#34;HTTPS required&#34; behind cloudflared and Envoy Gateway</title>
-      <link>https://articles.maximemoreillon.com/articles/envoy-cloudflared-x-forwarded-proto-copy/</link>
+      <link>https://articles.maximemoreillon.com/articles/envoy-cloudflared-x-forwarded-proto/</link>
       <pubDate>Sun, 11 Oct 2026 12:00:00 +0900</pubDate>
       
-      <guid>https://articles.maximemoreillon.com/articles/envoy-cloudflared-x-forwarded-proto-copy/</guid>
+      <guid>https://articles.maximemoreillon.com/articles/envoy-cloudflared-x-forwarded-proto/</guid>
       
       <description>&lt;p&gt;In my Kubernetes cluster, public services are exposed through a &lt;a href=&#34;https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/&#34;&gt;Cloudflare Tunnel&lt;/a&gt;: &lt;code&gt;cloudflared&lt;/code&gt; runs in the cluster and forwards requests to &lt;a href=&#34;https://gateway.envoyproxy.io/&#34;&gt;Envoy Gateway&lt;/a&gt;, which routes them to the applications. When I published &lt;a href=&#34;https://www.keycloak.org/&#34;&gt;Keycloak&lt;/a&gt; this way, every page answered with a 403 and the message &amp;ldquo;HTTPS required&amp;rdquo;, although the browser was on &lt;code&gt;https://&lt;/code&gt;. This article explains why and shows a small fix at the route level.&lt;/p&gt;
 &lt;h2 id=&#34;the-setup&#34;&gt;The setup&lt;/h2&gt;
@@ -412,7 +412,7 @@ Here is &lt;code&gt;server/api/movies/index.get.ts&lt;/code&gt;&lt;/p&gt;
       
       <guid>https://articles.maximemoreillon.com/articles/untangling-helm-and-argocd/</guid>
       
-      <description>&lt;p&gt;When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the &lt;code&gt;helm list&lt;/code&gt; output would not reflect what the Kubernetes cluster actualy contains.&lt;/p&gt;
+      <description>&lt;p&gt;When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the &lt;code&gt;helm list&lt;/code&gt; output would not reflect what the Kubernetes cluster actually contains.&lt;/p&gt;
 &lt;p&gt;For example:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ helm list -n cert-manager
 NAME          NAMESPACE     REVISION	UPDATED                                	STATUS  	CHART                 APP VERSION
@@ -458,7 +458,7 @@ Throughout this article, git tags deploy to the &lt;code&gt;prod&lt;/code&gt; en
       
       <guid>https://articles.maximemoreillon.com/articles/express-controllers-services/</guid>
       
-      <description>&lt;p&gt;In early development of an Express application, it is tempting to write business loginc in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes &lt;code&gt;(req, res)&lt;/code&gt;, reads from &lt;code&gt;req.params&lt;/code&gt; or &lt;code&gt;req.body&lt;/code&gt;, and writes directly to &lt;code&gt;res&lt;/code&gt;. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.&lt;/p&gt;</description>
+      <description>&lt;p&gt;In early development of an Express application, it is tempting to write business logic in route handlers: fetch the data, validate it, apply business rules, send the response — all in one function. It works, but it also means your business logic is heavily coupled to Express. Every function takes &lt;code&gt;(req, res)&lt;/code&gt;, reads from &lt;code&gt;req.params&lt;/code&gt; or &lt;code&gt;req.body&lt;/code&gt;, and writes directly to &lt;code&gt;res&lt;/code&gt;. None of that logic can be reused outside an HTTP request — not from a CLI script, a cron job, a test, or a future GraphQL resolver — without dragging Express along with it.&lt;/p&gt;</description>
       
     </item>
     
@@ -480,7 +480,7 @@ Throughout this article, git tags deploy to the &lt;code&gt;prod&lt;/code&gt; en
       
       <guid>https://articles.maximemoreillon.com/articles/aruba-monitoring/</guid>
       
-      <description>&lt;p&gt;I currently use an Aruba IAP-315 (ArubaOS v8) as WiFi access point. Although it provides insight such as the number connected clients on its own web interface, I wanted to visualize this data in Grafana.&lt;/p&gt;
+      <description>&lt;p&gt;I currently use an Aruba IAP-315 (ArubaOS v8) as a WiFi access point. Although it provides insight such as the number of connected clients on its own web interface, I wanted to visualize this data in Grafana.&lt;/p&gt;
 &lt;p&gt;This can be achieved thanks to Aruba access points&amp;rsquo; support of the SNMP protocol, which can be exported as Prometheus metrics using the &lt;a href=&#34;https://github.com/prometheus/snmp_exporter/tree/main&#34;&gt;Prometheus SNMP Exporter&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;This article focuses simply on client count but more data can be extracted in similar fashion.&lt;/p&gt;</description>
       
@@ -693,16 +693,16 @@ Throughout this article, git tags deploy to the &lt;code&gt;prod&lt;/code&gt; en
     </item>
     
     <item>
-      <title>Grafana database migration from SQLite to postgresql</title>
+      <title>Grafana database migration from SQLite to PostgreSQL</title>
       <link>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</link>
       <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</guid>
       
       <description>&lt;p&gt;By default, Grafana stores its settings in an SQLite database but it can be configured to use PostgreSQL instead.&lt;/p&gt;
-&lt;p&gt;This article explains how to migrate settings from an existing Grafana instance from SQLite to PostgreSQL using &lt;code&gt;pgloader&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This article explains how to migrate settings from an existing Grafana instance from SQLite to PostgreSQL using &lt;code&gt;pgloader&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;This approach is based on &lt;a href=&#34;https://polyglot.jamie.ly/programming/2019/07/01/grafana-sqlite-to-postgres.html&#34;&gt;this article&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Here, both Grafana and PostgreSQL are deployed in Kubernete but the general approach would would for other kind of installations as well.&lt;/p&gt;
+&lt;p&gt;Here, both Grafana and PostgreSQL are deployed in Kubernetes but the general approach would work for other kinds of installations as well.&lt;/p&gt;
 &lt;h2 id=&#34;getting-the-sqlite-db&#34;&gt;Getting the SQLite DB&lt;/h2&gt;
 &lt;p&gt;Getting the SQLite database from the existing Grafana instance can be achieved by simply copying it over locally. Here, we are putting it in a folder named &lt;code&gt;pgloader&lt;/code&gt; for reasons that will become clear later.&lt;/p&gt;</description>
       
@@ -718,7 +718,7 @@ Throughout this article, git tags deploy to the &lt;code&gt;prod&lt;/code&gt; en
       <description>&lt;p&gt;For several years, I have been managing articles such as this one using a custom CMS built around Neo4j.
 Although functional, this approach required operational overhead such as server administration, authentication and maintenance.&lt;/p&gt;
 &lt;p&gt;To reduce this burden, I decided to export all articles as markdown files and use &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;, a popular static site generator, to render and serve those.&lt;/p&gt;
-&lt;p&gt;Adding articles now involves adding mardkown files to the Hugo project&amp;rsquo;s &lt;code&gt;content&lt;/code&gt; folder and pushing the code to GitHub for CI/CD to compile it into the newest version of the site to be served.&lt;/p&gt;</description>
+&lt;p&gt;Adding articles now involves adding markdown files to the Hugo project&amp;rsquo;s &lt;code&gt;content&lt;/code&gt; folder and pushing the code to GitHub for CI/CD to compile it into the newest version of the site to be served.&lt;/p&gt;</description>
       
     </item>
     
@@ -1495,7 +1495,7 @@ Although functional, this approach required operational overhead such as server 
       
       <guid>https://articles.maximemoreillon.com/articles/76fbaccb-e02e-4b16-bcdb-f3f9e1b1cc31/</guid>
       
-      <description>&lt;p&gt;With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoque the prop update from their parent using $emit.&lt;/p&gt;
+      <description>&lt;p&gt;With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoke the prop update from their parent using $emit.&lt;/p&gt;
 &lt;p&gt;For this purpose, computed values can be leveraged as they provide ways to define custom getters and setters. In this case, the get() method can simply return the value passed as prop by the parent while set() emits the desired new value.&lt;/p&gt;</description>
       
     </item>
@@ -2343,7 +2343,7 @@ Although functional, this approach required operational overhead such as server 
       
       <guid>https://articles.maximemoreillon.com/articles/15/</guid>
       
-      <description>&lt;p&gt;There are four main kind of operations when working with a database: &lt;strong&gt;C&lt;/strong&gt;reate, &lt;strong&gt;R&lt;/strong&gt;ead, &lt;strong&gt;U&lt;/strong&gt;pdate and &lt;strong&gt;D&lt;/strong&gt;elete (CRUD). However, databases are usually not exposed directly to the clients. Instead, those operations are performed by a server side application with a client-facing API. The most common type of APIs nowadays are based on HTTP. An HTTP API can be built with complete freedom. However, guidelines for best-practice HTTP API design have been created. An API following those guidlines is called a REST (or RESTful) API.&lt;/p&gt;</description>
+      <description>&lt;p&gt;There are four main kind of operations when working with a database: &lt;strong&gt;C&lt;/strong&gt;reate, &lt;strong&gt;R&lt;/strong&gt;ead, &lt;strong&gt;U&lt;/strong&gt;pdate and &lt;strong&gt;D&lt;/strong&gt;elete (CRUD). However, databases are usually not exposed directly to the clients. Instead, those operations are performed by a server side application with a client-facing API. The most common type of APIs nowadays are based on HTTP. An HTTP API can be built with complete freedom. However, guidelines for best-practice HTTP API design have been created. An API following those guidelines is called a REST (or RESTful) API.&lt;/p&gt;</description>
       
     </item>
     
@@ -2513,7 +2513,7 @@ Although functional, this approach required operational overhead such as server 
       
       <guid>https://articles.maximemoreillon.com/articles/399/</guid>
       
-      <description>&lt;p&gt;When writing bash scripts, it is sometimes necessary to check if an environment bariable is set.&lt;/p&gt;
+      <description>&lt;p&gt;When writing bash scripts, it is sometimes necessary to check if an environment variable is set.&lt;/p&gt;
 &lt;p&gt;The following command will print &lt;code&gt;hello&lt;/code&gt; if the environment variable &lt;code&gt;HELLO&lt;/code&gt; is set:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;[[&lt;/span&gt; -z &lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;HELLO&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;]]&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;||&lt;/span&gt; echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
@@ -2934,7 +2934,7 @@ Although functional, this approach required operational overhead such as server 
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Top use it, simply instanciate a LowPassFilter object:&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To use it, simply instantiate a LowPassFilter object:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;LowPassFilter &lt;span style=&#34;color:#a6e22e&#34;&gt;lpf1&lt;/span&gt;(FILTER_CONSTANT);
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then feed values into it:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;lpf1.feed(sample);
@@ -3285,7 +3285,7 @@ Although functional, this approach required operational overhead such as server 
       
       <guid>https://articles.maximemoreillon.com/articles/168/</guid>
       
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.itead.cc/&#34;&gt;ITEAD&lt;/a&gt;&amp;lsquo;s &lt;a href=&#34;https://sonoff.itead.cc/en/&#34;&gt;SONOFF&lt;/a&gt;s are Wi-Fi enabled relays that can be used to turn applicances on and off remotely.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.itead.cc/&#34;&gt;ITEAD&lt;/a&gt;&amp;lsquo;s &lt;a href=&#34;https://sonoff.itead.cc/en/&#34;&gt;SONOFF&lt;/a&gt;s are Wi-Fi enabled relays that can be used to turn appliances on and off remotely.&lt;/p&gt;
 &lt;p&gt;The firmware they come with did not suit my needs so I wrote and flashed my own. This can be achieved easily since the SONOFFS are built around an ESP8266 chip, which can be programmed with the Arduino IDE.&lt;/p&gt;
 &lt;p&gt;Here is a list of functions that the custom firmware features:&lt;/p&gt;
 &lt;ul&gt;
@@ -3323,7 +3323,7 @@ Although functional, this approach required operational overhead such as server 
       <description>&lt;h2 id=&#34;adding-user&#34;&gt;Adding user&lt;/h2&gt;
 &lt;p&gt;In linux, or at least Ubuntu, a user can be added using:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;adduser username
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;adduser&lt;/code&gt; is a user-friendly command that uses &lt;code&gt;useradd&lt;/code&gt; as back-end. Thus, &lt;code&gt;adduser&lt;/code&gt; should be prefered to &lt;code&gt;useradd&lt;/code&gt;.&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;adduser&lt;/code&gt; is a user-friendly command that uses &lt;code&gt;useradd&lt;/code&gt; as back-end. Thus, &lt;code&gt;adduser&lt;/code&gt; should be preferred to &lt;code&gt;useradd&lt;/code&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;adding-user-to-a-group&#34;&gt;Adding user to a group&lt;/h2&gt;
 &lt;p&gt;A user can be added to a group using:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;adduser username groupname
@@ -3539,7 +3539,7 @@ Although functional, this approach required operational overhead such as server 
       <guid>https://articles.maximemoreillon.com/articles/304/</guid>
       
       <description>&lt;p&gt;MongoDB&amp;rsquo;s upsert option enables the creation of a new document if the query of an update operationdoesn&amp;rsquo;t match any existing document. Basically, an update command with upsert creates a document if it does notexist already, and update it otherwise.&lt;/p&gt;
-&lt;p&gt;This operation is rather striaghtforward when updating single documents but can be trickier when applied to multiple documents at conce. For multiple documents, bulkWrite can be used:&lt;/p&gt;
+&lt;p&gt;This operation is rather straightforward when updating single documents but can be trickier when applied to multiple documents at once. For multiple documents, bulkWrite can be used:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;bulk_operations&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [];
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;transaction&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;of&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;req&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;body&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;transactions&lt;/span&gt;) {
@@ -3614,7 +3614,7 @@ Although functional, this approach required operational overhead such as server 
       
       <guid>https://articles.maximemoreillon.com/articles/301/</guid>
       
-      <description>&lt;p&gt;Simply add entries for both the deployment and the service in the same manifest, separeted by &amp;mdash;&lt;/p&gt;
+      <description>&lt;p&gt;Simply add entries for both the deployment and the service in the same manifest, separated by &amp;mdash;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;apiVersion&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;apps/v1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;kind&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Deployment&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;metadata&lt;/span&gt;:
@@ -3852,7 +3852,7 @@ Although functional, this approach required operational overhead such as server 
       
       <guid>https://articles.maximemoreillon.com/articles/385/</guid>
       
-      <description>&lt;p&gt;This article is based on &lt;a href=&#34;https://www.freecodecamp.org/news/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78/&#34;&gt;this publiation&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;This article is based on &lt;a href=&#34;https://www.freecodecamp.org/news/how-to-make-a-beautiful-tiny-npm-package-and-publish-it-2881d4307f78/&#34;&gt;this publication&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;To publish to npm, being logged in is required:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;npm login
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The package to be published must be contained in its own directory, which must include a &lt;code&gt;package.json&lt;/code&gt; file&lt;/p&gt;
@@ -3925,7 +3925,7 @@ Although functional, this approach required operational overhead such as server 
       
       <guid>https://articles.maximemoreillon.com/articles/5/</guid>
       
-      <description>&lt;p&gt;Let&amp;rsquo;s imagine that we&amp;rsquo;ve just finished developping a NodeJS application that listens for HTTP requests on port 8086 and that we have an Apache2 instance listening on port 80.&lt;/p&gt;
+      <description>&lt;p&gt;Let&amp;rsquo;s imagine that we&amp;rsquo;ve just finished developing a NodeJS application that listens for HTTP requests on port 8086 and that we have an Apache2 instance listening on port 80.&lt;/p&gt;
 &lt;p&gt;It is possible to configure Apache so that it connects its clients to the NodeJS app using the proxy module. Here is an example configuration file that does so:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-apacheconf&#34; data-lang=&#34;apacheconf&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;IfModule&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;mod_ssl.c&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;VirtualHost&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;*:443&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
@@ -4071,7 +4071,7 @@ Although functional, this approach required operational overhead such as server 
 &lt;p&gt;A complete guide is written here: &lt;a href=&#34;https://docs.docker.com/registry/deploying/&#34;&gt;https://docs.docker.com/registry/deploying/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This article merely summarizes the basics involved in the process.&lt;/p&gt;
 &lt;h2 id=&#34;self-hosted-docker-registry-as-container&#34;&gt;Self-hosted Docker registry as container&lt;/h2&gt;
-&lt;p&gt;A docker registry is an application juste like any other and can this be containerized. In fact, an official image is available on docker hub. It can be run as so:&lt;/p&gt;</description>
+&lt;p&gt;A docker registry is an application just like any other and can thus be containerized. In fact, an official image is available on docker hub. It can be run as so:&lt;/p&gt;</description>
       
     </item>
     

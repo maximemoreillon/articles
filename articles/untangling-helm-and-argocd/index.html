@@ -31,7 +31,7 @@
     <meta property="og:url" content="https://articles.maximemoreillon.com/articles/untangling-helm-and-argocd/">
 	<meta property="og:site_name" content="Maxime Moreillon">
 	<meta property="og:title" content="Untangling ArgoCD and Helm">
-	<meta property="og:description" content="When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the helm list output would not reflect what the Kubernetes cluster actualy contains.
+	<meta property="og:description" content="When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the helm list output would not reflect what the Kubernetes cluster actually contains.
 For example:
 $ helm list -n cert-manager NAME NAMESPACE REVISION	UPDATED STATUS CHART APP VERSION cert-manager cert-manager 1 2025-05-04 11:22:41.771600434 &#43;0900 JST	deployed	cert-manager-v1.17.2 v1.17.2 While in fact
 $ kubectl get applications -n argocd cert-manager -o jsonpath={.spec.source.targetRevision} v1.19.4 De-registering an application from Helm can be achieved simply be removing the corresponding secret:">
@@ -49,7 +49,7 @@ $ kubectl get applications -n argocd cert-manager -o jsonpath={.spec.source.targ
     
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:title" content="Untangling ArgoCD and Helm">
-	<meta name="twitter:description" content="When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the helm list output would not reflect what the Kubernetes cluster actualy contains.
+	<meta name="twitter:description" content="When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the helm list output would not reflect what the Kubernetes cluster actually contains.
 For example:
 $ helm list -n cert-manager NAME NAMESPACE REVISION	UPDATED STATUS CHART APP VERSION cert-manager cert-manager 1 2025-05-04 11:22:41.771600434 &#43;0900 JST	deployed	cert-manager-v1.17.2 v1.17.2 While in fact
 $ kubectl get applications -n argocd cert-manager -o jsonpath={.spec.source.targetRevision} v1.19.4 De-registering an application from Helm can be achieved simply be removing the corresponding secret:">
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </header>
             
             <div class="page-content">
-                <p>When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the <code>helm list</code> output would not reflect what the Kubernetes cluster actualy contains.</p>
+                <p>When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the <code>helm list</code> output would not reflect what the Kubernetes cluster actually contains.</p>
 <p>For example:</p>
 <pre tabindex="0"><code>$ helm list -n cert-manager
 NAME          NAMESPACE     REVISION	UPDATED                                	STATUS  	CHART                 APP VERSION

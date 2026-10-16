@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4  200Gi     RWO           Retain          Released  example/example-pvc  microk8s-hostpath
 </span></span></code></pre></div><p>Before we can re-apply our PVC, we also need to make the PV ready to be bound again, i.e. set its status to &ldquo;Available&rdquo;. Here again, we use the patch command:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>microk8s.kubectl patch pv pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4 -p <span style="color:#e6db74">&#39;{&#34;spec&#34;:{&#34;claimRef&#34;: null}}&#39;</span>
-</span></span></code></pre></div><p>Which results in the PV beign in the &ldquo;Available&rdquo; state:</p>
+</span></span></code></pre></div><p>Which results in the PV being in the &ldquo;Available&rdquo; state:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>moreillon@home:~/kubernetes$ microk8s.kubectl get pv
 </span></span><span style="display:flex;"><span>NAME                                      CAPACITY  ACCESS MODES  RECLAIM POLICY  STATUS    CLAIM                STORAGECLASS
 </span></span><span style="display:flex;"><span>pvc-6ed2529b-f1da-46ba-bc32-d9b4bbad23a4  200Gi     RWO           Retain          Available  example/example-pvc  microk8s-hostpath

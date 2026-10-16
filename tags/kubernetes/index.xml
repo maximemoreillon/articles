@@ -44,10 +44,10 @@
     
     <item>
       <title>Fixing Keycloak&#39;s &#34;HTTPS required&#34; behind cloudflared and Envoy Gateway</title>
-      <link>https://articles.maximemoreillon.com/articles/envoy-cloudflared-x-forwarded-proto-copy/</link>
+      <link>https://articles.maximemoreillon.com/articles/envoy-cloudflared-x-forwarded-proto/</link>
       <pubDate>Sun, 11 Oct 2026 12:00:00 +0900</pubDate>
       
-      <guid>https://articles.maximemoreillon.com/articles/envoy-cloudflared-x-forwarded-proto-copy/</guid>
+      <guid>https://articles.maximemoreillon.com/articles/envoy-cloudflared-x-forwarded-proto/</guid>
       
       <description>&lt;p&gt;In my Kubernetes cluster, public services are exposed through a &lt;a href=&#34;https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/&#34;&gt;Cloudflare Tunnel&lt;/a&gt;: &lt;code&gt;cloudflared&lt;/code&gt; runs in the cluster and forwards requests to &lt;a href=&#34;https://gateway.envoyproxy.io/&#34;&gt;Envoy Gateway&lt;/a&gt;, which routes them to the applications. When I published &lt;a href=&#34;https://www.keycloak.org/&#34;&gt;Keycloak&lt;/a&gt; this way, every page answered with a 403 and the message &amp;ldquo;HTTPS required&amp;rdquo;, although the browser was on &lt;code&gt;https://&lt;/code&gt;. This article explains why and shows a small fix at the route level.&lt;/p&gt;
 &lt;h2 id=&#34;the-setup&#34;&gt;The setup&lt;/h2&gt;
@@ -235,7 +235,7 @@
       
       <guid>https://articles.maximemoreillon.com/articles/untangling-helm-and-argocd/</guid>
       
-      <description>&lt;p&gt;When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the &lt;code&gt;helm list&lt;/code&gt; output would not reflect what the Kubernetes cluster actualy contains.&lt;/p&gt;
+      <description>&lt;p&gt;When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the &lt;code&gt;helm list&lt;/code&gt; output would not reflect what the Kubernetes cluster actually contains.&lt;/p&gt;
 &lt;p&gt;For example:&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ helm list -n cert-manager
 NAME          NAMESPACE     REVISION	UPDATED                                	STATUS  	CHART                 APP VERSION
@@ -459,16 +459,16 @@ Throughout this article, git tags deploy to the &lt;code&gt;prod&lt;/code&gt; en
     </item>
     
     <item>
-      <title>Grafana database migration from SQLite to postgresql</title>
+      <title>Grafana database migration from SQLite to PostgreSQL</title>
       <link>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</link>
       <pubDate>Sun, 18 Jan 2026 00:00:00 +0000</pubDate>
       
       <guid>https://articles.maximemoreillon.com/articles/grafana-sqlite-to-postgresql/</guid>
       
       <description>&lt;p&gt;By default, Grafana stores its settings in an SQLite database but it can be configured to use PostgreSQL instead.&lt;/p&gt;
-&lt;p&gt;This article explains how to migrate settings from an existing Grafana instance from SQLite to PostgreSQL using &lt;code&gt;pgloader&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;This article explains how to migrate settings from an existing Grafana instance from SQLite to PostgreSQL using &lt;code&gt;pgloader&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;This approach is based on &lt;a href=&#34;https://polyglot.jamie.ly/programming/2019/07/01/grafana-sqlite-to-postgres.html&#34;&gt;this article&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Here, both Grafana and PostgreSQL are deployed in Kubernete but the general approach would would for other kind of installations as well.&lt;/p&gt;
+&lt;p&gt;Here, both Grafana and PostgreSQL are deployed in Kubernetes but the general approach would work for other kinds of installations as well.&lt;/p&gt;
 &lt;h2 id=&#34;getting-the-sqlite-db&#34;&gt;Getting the SQLite DB&lt;/h2&gt;
 &lt;p&gt;Getting the SQLite database from the existing Grafana instance can be achieved by simply copying it over locally. Here, we are putting it in a folder named &lt;code&gt;pgloader&lt;/code&gt; for reasons that will become clear later.&lt;/p&gt;</description>
       
@@ -1460,7 +1460,7 @@ Throughout this article, git tags deploy to the &lt;code&gt;prod&lt;/code&gt; en
       
       <guid>https://articles.maximemoreillon.com/articles/301/</guid>
       
-      <description>&lt;p&gt;Simply add entries for both the deployment and the service in the same manifest, separeted by &amp;mdash;&lt;/p&gt;
+      <description>&lt;p&gt;Simply add entries for both the deployment and the service in the same manifest, separated by &amp;mdash;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;apiVersion&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;apps/v1&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;kind&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;Deployment&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;metadata&lt;/span&gt;:
