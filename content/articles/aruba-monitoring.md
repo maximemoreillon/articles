@@ -4,7 +4,7 @@ title: "Monitoring an Aruba WiFi access point with Prometheus and Grafana"
 tags: ['Monitoring', 'Grafana', 'Prometheus']
 ---
 
-I currently use an Aruba IAP-315 (ArubaOS v8) as WiFi access point. Although it provides insight such as the number connected clients on its own web interface, I wanted to visualize this data in Grafana.
+I currently use an Aruba IAP-315 (ArubaOS v8) as a WiFi access point. Although it provides insight such as the number of connected clients on its own web interface, I wanted to visualize this data in Grafana.
 
 This can be achieved thanks to Aruba access points' support of the SNMP protocol, which can be exported as Prometheus metrics using the [Prometheus SNMP Exporter](https://github.com/prometheus/snmp_exporter/tree/main).
 
@@ -12,13 +12,13 @@ This article focuses simply on client count but more data can be extracted in si
 
 ## Aruba IAP configuration
 
-SNMP can be enabled by creating a SNMPV3 user through the web UI. The settings are located under `Configuration > System > Monitoring > Users for SNMPV3` (with advanced options shown), where the `+` button opens the user creation dialog. Configuration is as follows:
+SNMP can be enabled by creating an SNMPv3 user through the web UI. The settings are located under `Configuration > System > Monitoring > Users for SNMPV3` (with advanced options shown), where the `+` button opens the user creation dialog. Configuration is as follows:
 
 - name: a username of your choice
 - Authentication protocol: SHA
 - Password: password of your choice
 - Privacy Protocol: AES
-- Passsword: password of your choice
+- Password: password of your choice
 
 ## `snmpwalk`
 
@@ -31,7 +31,7 @@ snmpwalk -v3 -l authPriv \
   <IP OF THE ARUBA CONTROLLER> 1.3.6.1.4.1.14823.2.3.3
 ```
 
-The output contains a notable lines such as
+The output contains notable lines such as
 
 ```text
 SNMPv2-SMI::enterprises.14823.2.3.3.1.2.2.1.21.36.242.127.195.244.230.1 = INTEGER: 24
@@ -77,7 +77,7 @@ spec:
 ```
 
 The configuration is defined in a `Secret` object as SNMP Exporter does not substitute environment variables in `snmp.yml`.
-The settings under `modules.walk` and `modules.metrics` are derived from the `snmpwalk` command hereabove.
+The settings under `modules.walk` and `modules.metrics` are derived from the `snmpwalk` command above.
 
 ```yml
 # config-secret.yml
@@ -93,7 +93,7 @@ stringData:
       aruba_v3:
         security_level: authPriv
         username: <YOUR USERNAME>
-        password: <YOURAUTH PASSWORD>
+        password: <YOUR AUTH PASSWORD>
         auth_protocol: SHA
         priv_protocol: AES
         priv_password: <YOUR PRIVACY PASSWORD>
@@ -178,5 +178,5 @@ With the metrics properly exported, Prometheus can be configured for scraping. T
 
 ## Conclusion
 
-By leveraging Aruba WiFI accesss points' support for SNMP and exporting metrics with the SNMP Exporter, information about SSIDs can be scraped by Prometheus.
+By leveraging Aruba WiFi access points' support for SNMP and exporting metrics with the SNMP Exporter, information about SSIDs can be scraped by Prometheus.
 This data can then be visualized in Grafana for example.

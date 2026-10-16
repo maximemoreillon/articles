@@ -5,7 +5,7 @@ lastmod: '2024-02-11'
 tags: ['Vue.js', 'Tutorials']
 ---
 
-With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoque the prop update from their parent using $emit.
+With Vue.js, passing data to a child component is generally achieved using props. However, mutating props from a child component is generally considered bad practice. Instead, child components must invoke the prop update from their parent using $emit.
 
 For this purpose, computed values can be leveraged as they provide ways to define custom getters and setters. In this case, the get() method can simply return the value passed as prop by the parent while set() emits the desired new value.
 

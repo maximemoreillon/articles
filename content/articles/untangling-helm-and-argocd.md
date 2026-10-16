@@ -4,7 +4,7 @@ title: "Untangling ArgoCD and Helm"
 tags: ["Kubernetes", "Helm", "ArgoCD"]
 ---
 
-When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the `helm list` output would not reflect what the Kubernetes cluster actualy contains.
+When getting ArgoCD to take over applications originally managed by Helm, the latter might still have those applications registered, meaning the `helm list` output would not reflect what the Kubernetes cluster actually contains.
 
 For example:
 
