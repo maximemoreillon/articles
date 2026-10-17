@@ -104,24 +104,7 @@ def stopTask(taskId):
     return True
 ```
 
-A task revoked while still queued can still run later. Workers keep revoked IDs in memory only, so they are lost on restart, and they expire after 3 hours by default. There are two ways around this. The first is to persist them, with `celery worker --statedb=/data/worker.state`, and to raise `CELERY_WORKER_REVOKE_EXPIRES`. The second is to have workers check the result backend before running a task. That check must happen in `task_prerun`, which runs before the worker records `STARTED`. However, exceptions raised in `task_prerun` are only logged, so the handler only flags the task, and the task body acts on the flag:
-
-```python
-from celery.exceptions import Ignore
-from celery.signals import task_prerun
-
-@task_prerun.connect
-def flagRevoked(task_id, task, **_):
-    task.request.revokedBeforeStart = AsyncResult(task_id, app=task.app).state == states.REVOKED
-
-@app.task(bind=True, name=TASK_NAME)
-def trainModel(self, **kwargs):
-    if getattr(self.request, "revokedBeforeStart", False):
-        # STARTED was recorded in between: record REVOKED again, and don't record SUCCESS
-        self.backend.mark_as_revoked(self.request.id, request=self.request)
-        raise Ignore()
-    ...
-```
+A task revoked while still queued can still run later. Workers keep revoked IDs in memory only, so they are lost on restart, and they expire after 3 hours by default. To avoid this, workers can persist them, with `celery worker --statedb=/data/worker.state`, and `CELERY_WORKER_REVOKE_EXPIRES` can be raised. Another option is to have workers check the result backend for `REVOKED` in `task_prerun`, which runs before the worker records `STARTED`.
 
 ## 6. Lost tasks: nothing ends them for you
 
