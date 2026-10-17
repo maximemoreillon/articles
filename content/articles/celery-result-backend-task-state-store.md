@@ -139,6 +139,20 @@ running = {taskId for tasks in replies.values()
 
 For this to work, each worker pod needs a unique name. Celery's default, `celery@<hostname>`, provides one, so workers shouldn't be given a fixed `--hostname`.
 
+## 7. Progress: update_state, staying STARTED
+
+The result backend can also hold a task's progress. A bound task updates its own record with `update_state`, and the API reads the progress back as `AsyncResult(taskId).info`. Each call writes the whole record, so it should be used sparingly, for example when the stage changes rather than on every batch, and a failure to store progress shouldn't fail the task:
+
+```python
+self.update_state(state=states.STARTED, meta={"stage": "training", "data": {"epoch": 22}})
+```
+
+- The [Celery documentation](https://docs.celeryq.dev/en/stable/userguide/tasks.html#custom-states) uses a custom state, such as `PROGRESS`, for this. That works too, but the custom state then has to be added to `UNFINISHED` and to the lost-task query. Staying `STARTED` changes nothing else.
+- `update_state` passes the task's request to the backend, so the name, kwargs and worker are written again and queries on `kwargs.pipelineId` keep working (checked in Celery 5.6.3).
+- When a worker starts a task, it stores `{"pid": ..., "hostname": ...}` in `result`. Until the first progress update, `info` holds that instead of progress.
+- With the default JSON result serializer, `result` is stored as a string, so progress can only be read through `AsyncResult`, not queried in the collection.
+- A progress update made after `stopTask` recorded `REVOKED`, but before the worker received the revoke, records `STARTED` again. The lost-task check eventually ends the task again.
+
 ## Limitations
 
 - This only covers tasks run by Celery: tasks run elsewhere, for example by Argo Workflows, need another store.
