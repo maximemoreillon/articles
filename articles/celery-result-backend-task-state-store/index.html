@@ -331,6 +331,16 @@ document.addEventListener('DOMContentLoaded', function () {
 </span></span><span style="display:flex;"><span>           <span style="color:#66d9ef">for</span> taskId, (state, _) <span style="color:#f92672">in</span> tasks<span style="color:#f92672">.</span>items() <span style="color:#66d9ef">if</span> state <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;active&#34;</span>}
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Not in `running` for N consecutive checks: stopTask(...)</span>
 </span></span></code></pre></div><p>For this to work, each worker pod needs a unique name. Celery&rsquo;s default, <code>celery@&lt;hostname&gt;</code>, provides one, so workers shouldn&rsquo;t be given a fixed <code>--hostname</code>.</p>
+<h2 id="7-progress-update_state-staying-started">7. Progress: update_state, staying STARTED</h2>
+<p>The result backend can also hold a task&rsquo;s progress. A bound task updates its own record with <code>update_state</code>, and the API reads the progress back as <code>AsyncResult(taskId).info</code>. Each call writes the whole record, so it should be used sparingly, for example when the stage changes rather than on every batch, and a failure to store progress shouldn&rsquo;t fail the task:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>self<span style="color:#f92672">.</span>update_state(state<span style="color:#f92672">=</span>states<span style="color:#f92672">.</span>STARTED, meta<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;stage&#34;</span>: <span style="color:#e6db74">&#34;training&#34;</span>, <span style="color:#e6db74">&#34;data&#34;</span>: {<span style="color:#e6db74">&#34;epoch&#34;</span>: <span style="color:#ae81ff">22</span>}})
+</span></span></code></pre></div><ul>
+<li>The <a href="https://docs.celeryq.dev/en/stable/userguide/tasks.html#custom-states">Celery documentation</a> uses a custom state, such as <code>PROGRESS</code>, for this. That works too, but the custom state then has to be added to <code>UNFINISHED</code> and to the lost-task query. Staying <code>STARTED</code> changes nothing else.</li>
+<li><code>update_state</code> passes the task&rsquo;s request to the backend, so the name, kwargs and worker are written again and queries on <code>kwargs.pipelineId</code> keep working (checked in Celery 5.6.3).</li>
+<li>When a worker starts a task, it stores <code>{&quot;pid&quot;: ..., &quot;hostname&quot;: ...}</code> in <code>result</code>. Until the first progress update, <code>info</code> holds that instead of progress.</li>
+<li>With the default JSON result serializer, <code>result</code> is stored as a string, so progress can only be read through <code>AsyncResult</code>, not queried in the collection.</li>
+<li>A progress update made after <code>stopTask</code> recorded <code>REVOKED</code>, but before the worker received the revoke, records <code>STARTED</code> again. The lost-task check eventually ends the task again.</li>
+</ul>
 <h2 id="limitations">Limitations</h2>
 <ul>
 <li>This only covers tasks run by Celery: tasks run elsewhere, for example by Argo Workflows, need another store.</li>
