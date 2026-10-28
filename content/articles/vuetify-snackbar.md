@@ -108,9 +108,11 @@ The snackbar's visibility can then be triggered from any component using the `no
 </template>
 
 <script lang="ts" setup>
+  const { notify } = useSnackbar();
+
   const saving = ref(false);
 
-  async function updateFood() {
+  async function saveItem() {
     saving.value = true;
 
     try {
